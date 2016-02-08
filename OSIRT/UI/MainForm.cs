@@ -2,7 +2,7 @@
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
-using OSIRT.Extensions;
+using OSIRT.UI;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,11 +18,11 @@ using System.Windows.Forms;
 
 namespace OSIRT
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
       
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -30,11 +30,15 @@ namespace OSIRT
         private void Form1_Load(object sender, EventArgs e)
         {
         
-           // uiBrowserTabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            //uiBrowserTabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
             //uiBrowserTabControl.DrawItem += uiBrowserTabControl_DrawItem;
             //uiBrowserTabControl.MouseDown += uiBrowserTabControl_MouseDown;
 
             //uiBrowserTabControl.SizeMode = TabSizeMode.Fixed;
+
+            BrowserPanel browserPanel = new BrowserPanel();
+            this.Controls.Add(browserPanel);
+
        
         }
 
@@ -68,36 +72,47 @@ namespace OSIRT
         
         private void button2_Click(object sender, EventArgs e)
         {
-            //using (Bitmap fullpage = browser.GetFullpageScreenshot())
-            //{
-            //    fullpage.Save(@"D:/fullpageEX.png");
-            //}
-          
-        }
+
+            //ImagePreviewerForm preview = new ImagePreviewerForm();
+            //preview.Show();
+
+            AuditLogForm audit = new AuditLogForm();
+            audit.Show();
+         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.NewTab("http://google.co.uk");
+            //uiTabbedBrowserControl.NewTab("http://google.co.uk");
         }
 
         private void uiURLtoolStripComboBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                uiTabbedBrowserControl.Navigate(uiURLtoolStripComboBox.Text);
-            }
+            //if (e.KeyCode == Keys.Enter)
+            //{
+            //    e.Handled = true;
+            //    uiTabbedBrowserControl.Navigate(uiURLtoolStripComboBox.Text);
+            //    e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
+           // }
+        }
+
+        private void GetScreenshot(object sender, WaitWindowEventArgs e)
+        {
+            //uiTabbedBrowserControl.GetFullPageScreenshot();
         }
 
         private void fullpageScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            string location = uiTabbedBrowserControl.GetFullPageScreenshot();
-            
-            //using (Bitmap fullpage = uiTabbedBrowserControl.GetFullPageScreenshot())
-           // {
-               // fullpage.Save(@"D:/fullpageEX_TAB.png");
+            //if (uiTabbedBrowserControl.CurrentTab.Browser.IsBusy)
+            //{
+            //    MessageBox.Show("Web page still loading. Please Wait.");
+            //    return;
             //}
+
+            
+
+            //string location = uiTabbedBrowserControl.GetFullPageScreenshot();
+          
         }
+
     }
 }

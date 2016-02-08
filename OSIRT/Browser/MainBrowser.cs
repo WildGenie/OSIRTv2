@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
 using OSIRT.Helpers;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -20,32 +22,17 @@ namespace OSIRT.Browser
     {
 
         private string bitmap;
+        private int MaxScrollHeight { get { return 20000; } }
 
         public MainBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
-            DisableClickSounds();
+            NativeMethods.DisableClickSounds();
             ScriptErrorsSuppressed = true;
         }
 
-        const int FEATURE_DISABLE_NAVIGATION_SOUNDS = 21;
-        const int SET_FEATURE_ON_PROCESS = 0x00000002;
 
-        [DllImport("urlmon.dll")]
-        [PreserveSig]
-        [return: MarshalAs(UnmanagedType.Error)]
-        static extern int CoInternetSetFeatureEnabled(
-            int FeatureEntry,
-            [MarshalAs(UnmanagedType.U4)] int dwFlags,
-            bool fEnable);
 
-        static void DisableClickSounds()
-        {
-            CoInternetSetFeatureEnabled(
-                FEATURE_DISABLE_NAVIGATION_SOUNDS,
-                SET_FEATURE_ON_PROCESS,
-                true);
-        }
 
         /// <summary>
         /// Gets the current viewport of the browser
@@ -61,10 +48,10 @@ namespace OSIRT.Browser
                 using (Graphics graphics = Graphics.FromImage(image))
                 {
 
-                    Point p, upperLeftSource, upperLeftDestination;
+                    Point p, upperLeftDestination;
+                    Point upperLeftSource = new Point(0, 0);
                     p = new Point(0, 0);
                     upperLeftSource = PointToScreen(p);
-
                     upperLeftDestination = new Point(0, 0);
                     Size blockRegionSize = ClientRectangle.Size;
                     graphics.CopyFromScreen(upperLeftSource, upperLeftDestination, blockRegionSize);
@@ -78,55 +65,38 @@ namespace OSIRT.Browser
 
         public async Task PutTaskDelay()
         {
-            await Task.Delay(500);
+            await Task.Delay(300);
         }
 
         private async void FullpageScreenshotByScrolling()
         {
+            ((Control)this).Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
             int scrollHeight = ScrollHeight();
             int scrollWidth = ScrollWidth();
-            bool atBottom = false;
-            bool firstRun = true;
-            int count = 0;
-
             ToggleScrollbars(false);
 
-            Debug.WriteLine("Viewport Height: " + viewportHeight);
-            Debug.WriteLine("Viewport Width: " + viewportWidth);
 
-            Debug.WriteLine("Scroll Height: " + scrollHeight);
-            Debug.WriteLine("Scrikk Width: " + scrollWidth);
-
+            int count = 0;
             int pageLeft = scrollHeight;
-            
+            bool atBottom = false;
             while (!atBottom)
             {
-                Debug.WriteLine("SPAGE LEFT: " + pageLeft);
-                if (!firstRun) //don't want to miss the top, so don't snip it at first!
-                {
-
-                    pageLeft = pageLeft - viewportHeight;
-                    ToggleFixedElements(false);
-                }
-                else
-                {
-                    firstRun = false;
-                }
-
                 if (pageLeft > viewportHeight)
                 {
                     //if we can scroll using the viewport, let's do that
-                    Document.Window.ScrollTo(0, count * viewportHeight);
+                   
+                    this.ScrollTo(0, count * viewportHeight);
+                 
                     count++;
 
-                    await PutTaskDelay(); //let the page catch up. Probably saving to disk causing this problem? Look at saving to RAM, perhaps?
-                    //Thread.Sleep(500);
+                    await PutTaskDelay();
+
 
                     using (Bitmap snap = GetCurrentViewScreenshot())
                     {
-                        snap.Save(@"D:/comb/" + count + ".png");
+                        snap.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
                     }
                 }
                 else //TODO: what if it's exactly divisible?
@@ -134,7 +104,9 @@ namespace OSIRT.Browser
                     //find out what's left of the page to scroll, then take screenshot
                     //if it's the last image, we're going to need to crop what we need, as it'll take
                     //a capture of the entire viewport.
+
                     Navigate("javascript:var s = function() { window.scrollBy(0," + pageLeft.ToString() + "); }; s();");
+
                     atBottom = true;
                     count++;
 
@@ -148,9 +120,13 @@ namespace OSIRT.Browser
                     using (Graphics g = Graphics.FromImage(target))
                     {
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
-                        target.Save(@"D:/comb/" + count + ".png");
+                        target.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
                     }
+
                 }
+
+                pageLeft = pageLeft - viewportHeight;
+                ToggleFixedElements(false);
 
 
             }//end while
@@ -160,10 +136,18 @@ namespace OSIRT.Browser
             //scroll page back to the top
             Document.Body.ScrollIntoView(true);
 
+            ((Control)this).Enabled = true;
+
+           
+            WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
+         }
+
+        private void GetScreenshot(object sender, WaitWindowEventArgs e)
+        {
             DirectoryInfo directory = new DirectoryInfo("D:\\comb");
             FileSystemInfo[] files = directory.GetFileSystemInfos();
-            bitmap = ScreenshotHelper.CombineScreenshot(files);
-     
+            bitmap = ScreenshotHelper.CombineScreenshot(files, e);
+           
         }
 
 
@@ -181,20 +165,19 @@ namespace OSIRT.Browser
             this.Dock = DockStyle.Fill;
             this.ToggleScrollbars(true);
 
-           using(screenshot) 
-           {
-               screenshot.Save(@"D:/GDI_SAVE.png");
-           }
-          
+            using (screenshot)
+            {
+                screenshot.Save(@"D:/GDI_SAVE.png");
+            }
+
 
             bitmap = @"D:/GDI_SAVE.png";
         }
 
         public string GetFullpageScreenshot()
         {
-            int size = ((ScrollHeight() * ScrollWidth()) / 262144) / 10;
-            Debug.WriteLine("SIZE: " + size);
-            if (size > 80) //greater than 100MB
+
+            if (ScrollHeight() > MaxScrollHeight)
             {
                 FullpageScreenshotByScrolling();
             }
@@ -206,8 +189,15 @@ namespace OSIRT.Browser
 
         }
 
-       
+        private void ScrollTo(int x, int y)
+        {
+            Document.Window.ScrollTo(x, y);
+        }
 
+
+        /// <summary>
+        /// Inspects the registry and uses the latest version of IE
+        /// </summary>
         private void SetLatestIEKeyforWebBrowserControl()
         {
 
@@ -252,11 +242,14 @@ namespace OSIRT.Browser
         /// <returns>The document's current Height</returns>
         public int ScrollHeight()
         {
+            int scrollHeight = 0;
+
             Rectangle bounds = this.Document.Body.ScrollRectangle;
             IHTMLElement2 body = this.Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (this.Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
 
-            int scrollHeight = new[] { body.scrollHeight, bounds.Height, doc.scrollHeight, this.Document.Body.OffsetRectangle.Height, doc.clientHeight }.Max();
+            scrollHeight = new[] { body.scrollHeight, bounds.Height, doc.scrollHeight, this.Document.Body.OffsetRectangle.Height, doc.clientHeight }.Max();
+
             return scrollHeight;
         }
 
@@ -268,11 +261,14 @@ namespace OSIRT.Browser
         /// <returns>The document's current Width</returns>
         public int ScrollWidth()
         {
+            int scrollWidth = 0;
+
             Rectangle bounds = this.Document.Body.ScrollRectangle;
             IHTMLElement2 body = this.Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (this.Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
 
-            int scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, this.Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
+            scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, this.Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
+
             return scrollWidth;
         }
 
@@ -282,7 +278,6 @@ namespace OSIRT.Browser
         /// <param name="toggle">Scrolls visible if true, hidden if false</param>
         public void ToggleScrollbars(bool toggle)
         {
-            Debug.WriteLine("TOGGLE: " + toggle);
             string property = toggle ? "visible" : "hidden";
             string attribute = toggle ? "yes" : "no";
             this.Document.Body.Style = String.Format("overflow:{0}", property);

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace OSIRT.Browser
 {
- 
+
 
     public partial class TabbedBrowserControl : UserControl
     {
@@ -20,10 +20,28 @@ namespace OSIRT.Browser
         public TabbedBrowserControl()
         {
             InitializeComponent();
+            this.Load += TabbedBrowserControl_Load;
         }
+
+        void TabbedBrowserControl_Load(object sender, EventArgs e)
+        {
+
+            //uiBrowserTabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
+            //uiBrowserTabControl.SizeMode = TabSizeMode.Fixed;
+            //uiBrowserTabControl.ItemSize = new Size(50, 30);
+            uiBrowserTabControl.DrawItem += uiBrowserTabControl_DrawItem;
+        }
+
+        void uiBrowserTabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            //e.Graphics.DrawString("x", e.Font, Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 4);
+            //e.Graphics.DrawString(this.uiBrowserTabControl.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
+            //e.DrawFocusRectangle();   
+       }
 
         public BrowserTab CurrentTab //active tab
         {
+
             get
             {
                 BrowserTab page = null;
@@ -31,10 +49,8 @@ namespace OSIRT.Browser
                 {
                     page = uiBrowserTabControl.SelectedTab as BrowserTab;
                 }
-
-                return page;
-            }
-
+                 return page;
+             }
         }
 
         BrowserTab CreateTab()
@@ -50,7 +66,7 @@ namespace OSIRT.Browser
         {
             if (CurrentTab == null)
                 throw new Exception("No tabs to screenshot"); //TODO: Handle this better
-            
+
             return CurrentTab.Browser.GetFullpageScreenshot();
         }
 
@@ -62,7 +78,7 @@ namespace OSIRT.Browser
 
         public void Navigate(string url)
         {
-            if(CurrentTab != null)
+            if (CurrentTab != null)
                 CurrentTab.Browser.Navigate(url);
         }
 

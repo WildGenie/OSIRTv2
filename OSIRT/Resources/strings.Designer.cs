@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace OSIRT.Properties {
+namespace OSIRT.Resources {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace OSIRT.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    internal class strings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Resources() {
+        internal strings() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace OSIRT.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSIRT.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OSIRT.Resources.strings", typeof(strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,72 +61,92 @@ namespace OSIRT.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Case Details&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_left {
+        internal static string CaseDetailsHeader {
             get {
-                object obj = ResourceManager.GetObject("arrow_left", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CaseDetailsHeader", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Case Location&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_right {
+        internal static string CaseLocation {
             get {
-                object obj = ResourceManager.GetObject("arrow_right", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CaseLocation", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Case Notes&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap arrow_rotate_clockwise {
+        internal static string CaseNotes {
             get {
-                object obj = ResourceManager.GetObject("arrow_rotate_clockwise", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CaseNotes", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Case Reference&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap attach {
+        internal static string CaseReference {
             get {
-                object obj = ResourceManager.GetObject("attach", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CaseReference", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Combing screenshots... Please wait&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap camera {
+        internal static string CombineScreenshots {
             get {
-                object obj = ResourceManager.GetObject("camera", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("CombineScreenshots", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Evidence Reference&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap film {
+        internal static string EvidenceReference {
             get {
-                object obj = ResourceManager.GetObject("film", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("EvidenceReference", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized string similar to &quot;Hash Funtion&quot;.
         /// </summary>
-        internal static System.Drawing.Bitmap house {
+        internal static string HashFunction {
             get {
-                object obj = ResourceManager.GetObject("house", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetString("HashFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Investigating Agency&quot;.
+        /// </summary>
+        internal static string InvestigatingAgency {
+            get {
+                return ResourceManager.GetString("InvestigatingAgency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Investigating Officer&quot;.
+        /// </summary>
+        internal static string InvestigatingOfficer {
+            get {
+                return ResourceManager.GetString("InvestigatingOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &quot;Operation Name&quot;.
+        /// </summary>
+        internal static string OperationName {
+            get {
+                return ResourceManager.GetString("OperationName", resourceCulture);
             }
         }
     }

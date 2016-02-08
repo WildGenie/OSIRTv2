@@ -77,6 +77,7 @@ namespace Jacksonsoft
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "WaitWindowGUI";
+            this.TopMost = true;
             this.ResumeLayout(false);
 
 		}

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ImageMagick;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -26,9 +28,10 @@ namespace OSIRT.Helpers
             public int Right;
             public int Bottom;
         }
-
+                                                
         public static void GetImage(object obj, Image destination, Color backgroundColor)
         {
+            
             using (Graphics graphics = Graphics.FromImage(destination))
             {
                 IntPtr deviceContextHandle = IntPtr.Zero;
@@ -38,13 +41,14 @@ namespace OSIRT.Helpers
                 rectangle.Bottom = destination.Height;
 
                 graphics.Clear(backgroundColor);
-
+                
                 try
                 {
                     deviceContextHandle = graphics.GetHdc();
 
                     IViewObject viewObject = obj as IViewObject;
                     viewObject.Draw(1, -1, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, deviceContextHandle, ref rectangle, IntPtr.Zero, IntPtr.Zero, 0);
+                    Debug.WriteLine("here");
                 }
                 finally
                 {
@@ -55,5 +59,26 @@ namespace OSIRT.Helpers
                 }
             }
         }
+
+        //Disable click sounds in browser
+        const int FEATURE_DISABLE_NAVIGATION_SOUNDS = 21;
+        const int SET_FEATURE_ON_PROCESS = 0x00000002;
+
+        [DllImport("urlmon.dll")]
+        [PreserveSig]
+        [return: MarshalAs(UnmanagedType.Error)]
+        static extern int CoInternetSetFeatureEnabled(
+            int FeatureEntry,
+            [MarshalAs(UnmanagedType.U4)] int dwFlags,
+            bool fEnable);
+
+        public static void DisableClickSounds()
+        {
+            CoInternetSetFeatureEnabled(
+                FEATURE_DISABLE_NAVIGATION_SOUNDS,
+                SET_FEATURE_ON_PROCESS,
+                true);
+        }
+
     }
 }
