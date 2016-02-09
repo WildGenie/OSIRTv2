@@ -15,7 +15,7 @@ namespace OSIRT.UI
     public partial class CaseDetailsPanel : UserControl
     {
 
-        public event EventHandler ButtonClick;
+        public event EventHandler NextClick;
         public event EventHandler BackClick;
         private string casePath = String.Empty;
         private ErrorProvider errorProvider;
@@ -47,7 +47,6 @@ namespace OSIRT.UI
                 {
                     errorProvider.SetError(tb, "This field is required");
                     isValid = false;
-        
                 }
                 else if (tb.Name == "uiCaseReferenceTextBox")
                 {
@@ -85,18 +84,10 @@ namespace OSIRT.UI
             string caseFolder = uiCasePathTextBox.Text;
             string notes = uiNotesTextBox.Text;
 
+            //TODO: use the tag property to get the key values. 
             Dictionary<string, string> details = new Dictionary<string, string>() { { "Investigating Officer", officer} , {"Investigating Agency", agency }, {"Operation Name",operation}, {"Case Reference",caseReference}, {"Evidence Reference", evidencereference}, {"Case Folder",caseFolder},{"Case Notes", notes} };
             return details;
-            //List<string> details = new List<string>();
-            //string[] details = new string[7];
-            //int index = 0;
-            //var allTextBoxes = groupBox1.GetChildControls<TextBox>();
-            //foreach (TextBox tb in allTextBoxes)
-            //{
-            //    Debug.WriteLine(tb.Name + " V: " + tb.Text);
-            //    details[index++] = tb.Text;
-            //}
-            //return details;
+    
         }
 
         private void uiNextButton_Click(object sender, EventArgs e)
@@ -106,8 +97,8 @@ namespace OSIRT.UI
             if (!isValid)
                 return;
 
-            if (this.ButtonClick != null)
-                this.ButtonClick(this, e);
+            if (this.NextClick != null)
+                this.NextClick(this, e);
         }
 
         
@@ -139,20 +130,7 @@ namespace OSIRT.UI
                 this.BackClick(this, e);
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
+    
 
        
 

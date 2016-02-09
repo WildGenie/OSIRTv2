@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.uiBackButton = new System.Windows.Forms.Button();
-            this.uiNextButton = new System.Windows.Forms.Button();
             this.uiCaseDetailsGroupBox = new System.Windows.Forms.GroupBox();
-            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent3 = new System.Windows.Controls.TextBox();
+            this.uiNextButton = new System.Windows.Forms.Button();
+            this.uiBackButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiBrowsButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.uiCasePathTextBox = new System.Windows.Forms.TextBox();
@@ -48,8 +48,8 @@
             this.uiAgencyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiOfficerTextBox = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent1 = new System.Windows.Controls.TextBox();
             this.panel1.SuspendLayout();
             this.uiCaseDetailsGroupBox.SuspendLayout();
             this.SuspendLayout();
@@ -62,38 +62,13 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1017, 690);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
-            // 
-            // uiBackButton
-            // 
-            this.uiBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiBackButton.Location = new System.Drawing.Point(762, 624);
-            this.uiBackButton.Name = "uiBackButton";
-            this.uiBackButton.Size = new System.Drawing.Size(106, 55);
-            this.uiBackButton.TabIndex = 9;
-            this.uiBackButton.Text = "Back";
-            this.uiBackButton.UseVisualStyleBackColor = true;
-            this.uiBackButton.Click += new System.EventHandler(this.uiBackButton_Click);
-            // 
-            // uiNextButton
-            // 
-            this.uiNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNextButton.Location = new System.Drawing.Point(874, 624);
-            this.uiNextButton.Name = "uiNextButton";
-            this.uiNextButton.Size = new System.Drawing.Size(106, 55);
-            this.uiNextButton.TabIndex = 8;
-            this.uiNextButton.Text = "Next";
-            this.uiNextButton.UseVisualStyleBackColor = true;
-            this.uiNextButton.Click += new System.EventHandler(this.uiNextButton_Click);
             // 
             // uiCaseDetailsGroupBox
             // 
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiNextButton);
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiBackButton);
             this.uiCaseDetailsGroupBox.Controls.Add(this.label8);
-            this.uiCaseDetailsGroupBox.Controls.Add(this.comboBox1);
+            this.uiCaseDetailsGroupBox.Controls.Add(this.uiHashFunctionComboBox);
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiNotesTextBox);
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiBrowsButton);
             this.uiCaseDetailsGroupBox.Controls.Add(this.label7);
@@ -110,24 +85,56 @@
             this.uiCaseDetailsGroupBox.Controls.Add(this.label1);
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiOfficerTextBox);
             this.uiCaseDetailsGroupBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiCaseDetailsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiCaseDetailsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiCaseDetailsGroupBox.Location = new System.Drawing.Point(0, 0);
             this.uiCaseDetailsGroupBox.Name = "uiCaseDetailsGroupBox";
             this.uiCaseDetailsGroupBox.Size = new System.Drawing.Size(1017, 690);
             this.uiCaseDetailsGroupBox.TabIndex = 0;
             this.uiCaseDetailsGroupBox.TabStop = false;
             this.uiCaseDetailsGroupBox.Text = "Case Details";
-            this.uiCaseDetailsGroupBox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // uiNotesTextBox
+            // uiNextButton
             // 
-            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNotesTextBox.Location = new System.Drawing.Point(5, 417);
-            this.uiNotesTextBox.Multiline = true;
-            this.uiNotesTextBox.Name = "uiNotesTextBox";
-            this.uiNotesTextBox.Size = new System.Drawing.Size(975, 201);
-            this.uiNotesTextBox.TabIndex = 14;
-            this.uiNotesTextBox.WordWrap = true;
+            this.uiNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNextButton.Location = new System.Drawing.Point(874, 624);
+            this.uiNextButton.Name = "uiNextButton";
+            this.uiNextButton.Size = new System.Drawing.Size(106, 26);
+            this.uiNextButton.TabIndex = 8;
+            this.uiNextButton.Text = "Next";
+            this.uiNextButton.UseVisualStyleBackColor = true;
+            this.uiNextButton.Click += new System.EventHandler(this.uiNextButton_Click);
+            // 
+            // uiBackButton
+            // 
+            this.uiBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiBackButton.Location = new System.Drawing.Point(762, 624);
+            this.uiBackButton.Name = "uiBackButton";
+            this.uiBackButton.Size = new System.Drawing.Size(106, 26);
+            this.uiBackButton.TabIndex = 9;
+            this.uiBackButton.Text = "Back";
+            this.uiBackButton.UseVisualStyleBackColor = true;
+            this.uiBackButton.Click += new System.EventHandler(this.uiBackButton_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(6, 350);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 16);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Hash Function";
+            // 
+            // uiHashFunctionComboBox
+            // 
+            this.uiHashFunctionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiHashFunctionComboBox.FormattingEnabled = true;
+            this.uiHashFunctionComboBox.Location = new System.Drawing.Point(8, 369);
+            this.uiHashFunctionComboBox.Name = "uiHashFunctionComboBox";
+            this.uiHashFunctionComboBox.Size = new System.Drawing.Size(121, 24);
+            this.uiHashFunctionComboBox.TabIndex = 15;
             // 
             // uiBrowsButton
             // 
@@ -143,11 +150,12 @@
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(6, 299);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(74, 13);
+            this.label7.Size = new System.Drawing.Size(94, 16);
             this.label7.TabIndex = 13;
-            this.label7.Text = "Case Folder";
+            this.label7.Text = "Case Location";
             // 
             // uiCasePathTextBox
             // 
@@ -157,22 +165,25 @@
             this.uiCasePathTextBox.ReadOnly = true;
             this.uiCasePathTextBox.Size = new System.Drawing.Size(606, 20);
             this.uiCasePathTextBox.TabIndex = 11;
+            this.uiCasePathTextBox.Tag = "Case Location";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(5, 401);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 13);
+            this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "Notes";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(5, 245);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(123, 13);
+            this.label5.Size = new System.Drawing.Size(131, 16);
             this.label5.TabIndex = 9;
             this.label5.Text = "Evidence Reference";
             // 
@@ -182,16 +193,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiEvidenceReferenceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiEvidenceReferenceTextBox.Location = new System.Drawing.Point(4, 264);
+            this.uiEvidenceReferenceTextBox.MaxLength = 200;
             this.uiEvidenceReferenceTextBox.Name = "uiEvidenceReferenceTextBox";
             this.uiEvidenceReferenceTextBox.Size = new System.Drawing.Size(976, 20);
             this.uiEvidenceReferenceTextBox.TabIndex = 5;
+            this.uiEvidenceReferenceTextBox.Tag = "Evidence Reference";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(6, 189);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(464, 13);
+            this.label4.Size = new System.Drawing.Size(471, 16);
             this.label4.TabIndex = 7;
             this.label4.Text = "Case Reference (Only contain a-z, A-Z, 0-9, hypthens ( - ) and underscores ( _ ))" +
     "";
@@ -202,16 +216,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiCaseReferenceTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiCaseReferenceTextBox.Location = new System.Drawing.Point(5, 208);
+            this.uiCaseReferenceTextBox.MaxLength = 50;
             this.uiCaseReferenceTextBox.Name = "uiCaseReferenceTextBox";
             this.uiCaseReferenceTextBox.Size = new System.Drawing.Size(975, 20);
             this.uiCaseReferenceTextBox.TabIndex = 4;
+            this.uiCaseReferenceTextBox.Tag = "Case Reference";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(5, 138);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 13);
+            this.label3.Size = new System.Drawing.Size(107, 16);
             this.label3.TabIndex = 5;
             this.label3.Text = "Operation Name";
             // 
@@ -221,16 +238,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiOperationTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiOperationTextBox.Location = new System.Drawing.Point(4, 157);
+            this.uiOperationTextBox.MaxLength = 200;
             this.uiOperationTextBox.Name = "uiOperationTextBox";
             this.uiOperationTextBox.Size = new System.Drawing.Size(976, 20);
             this.uiOperationTextBox.TabIndex = 3;
+            this.uiOperationTextBox.Tag = "Operation Name";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(6, 84);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 13);
+            this.label2.Size = new System.Drawing.Size(132, 16);
             this.label2.TabIndex = 3;
             this.label2.Text = "Investigating Agency";
             // 
@@ -240,16 +260,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiAgencyTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiAgencyTextBox.Location = new System.Drawing.Point(5, 103);
+            this.uiAgencyTextBox.MaxLength = 200;
             this.uiAgencyTextBox.Name = "uiAgencyTextBox";
             this.uiAgencyTextBox.Size = new System.Drawing.Size(975, 20);
             this.uiAgencyTextBox.TabIndex = 1;
+            this.uiAgencyTextBox.Tag = "Investigating Agency";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.Size = new System.Drawing.Size(124, 16);
             this.label1.TabIndex = 1;
             this.label1.Text = "Investigating Officer";
             // 
@@ -259,28 +282,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiOfficerTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiOfficerTextBox.Location = new System.Drawing.Point(5, 47);
+            this.uiOfficerTextBox.MaxLength = 200;
             this.uiOfficerTextBox.Name = "uiOfficerTextBox";
             this.uiOfficerTextBox.Size = new System.Drawing.Size(975, 20);
             this.uiOfficerTextBox.TabIndex = 0;
+            this.uiOfficerTextBox.Tag = "Investigating Officer";
             // 
-            // comboBox1
+            // uiNotesTextBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(4, 366);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 15;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 350);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(89, 13);
-            this.label8.TabIndex = 16;
-            this.label8.Text = "Hash Function";
+            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNotesTextBox.Location = new System.Drawing.Point(5, 417);
+            this.uiNotesTextBox.Multiline = true;
+            this.uiNotesTextBox.Name = "uiNotesTextBox";
+            this.uiNotesTextBox.Size = new System.Drawing.Size(975, 201);
+            this.uiNotesTextBox.TabIndex = 14;
+            this.uiNotesTextBox.WordWrap = true;
             // 
             // CaseDetailsPanel
             // 
@@ -321,7 +337,8 @@
         //private System.Windows.Controls.TextBox hostedComponent1;
         //private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox uiHashFunctionComboBox;
         private System.Windows.Controls.TextBox hostedComponent3;
+        private System.Windows.Controls.TextBox hostedComponent1;
     }
 }
