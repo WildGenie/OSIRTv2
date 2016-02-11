@@ -12,22 +12,19 @@ namespace OSIRT.UI
 {
     public partial class FirstLoadPanel : UserControl
     {
-        private ToolTip tooltip;
+
+        public event EventHandler NewCase_Click;
+        public event EventHandler LoadOldCase_Click;
+        public event EventHandler LoadReport_Click;
 
         public FirstLoadPanel()
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            AddBallonTipsToButtons();
+            
         }
 
-        private void AddBallonTipsToButtons()
-        {
-            tooltip = new ToolTip();
-            tooltip.IsBalloon = true;
-            tooltip.SetToolTip(uiNewCaseButton, "Creates a brand new OSIRT case.");
-
-        }
+   
 
         private void uiFirstLoadPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -35,6 +32,27 @@ namespace OSIRT.UI
         }
 
         private void uiNewCaseButton_Click(object sender, EventArgs e)
+        {
+            if (this.NewCase_Click != null)
+                this.NewCase_Click(this, e);
+        }
+
+        private void uiNewCaseButton_MouseHover(object sender, EventArgs e)
+        {
+            uiHelpLabelLabel.Text = Resources.strings.NewCase;
+        }
+
+        private void uiLoadExistingCaseButton_MouseHover(object sender, EventArgs e)
+        {
+            uiHelpLabelLabel.Text = Resources.strings.ExisitingCase;
+        }
+
+        private void uiLoadReportButton_MouseHover(object sender, EventArgs e)
+        {
+            uiHelpLabelLabel.Text = Resources.strings.LoadReport;
+        }
+
+        private void uiImagePanel_Paint(object sender, PaintEventArgs e)
         {
 
         }

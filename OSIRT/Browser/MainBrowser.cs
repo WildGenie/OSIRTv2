@@ -18,13 +18,13 @@ using System.Windows.Forms;
 
 namespace OSIRT.Browser
 {
-    public class MainBrowser : WebBrowser
+    public class ExtendedBrowser : WebBrowser
     {
 
         private string bitmap;
         private int MaxScrollHeight { get { return 20000; } }
 
-        public MainBrowser()
+        public ExtendedBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
             NativeMethods.DisableClickSounds();

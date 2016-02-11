@@ -96,6 +96,7 @@
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Extensions\Extensions.cs" />
+    <Compile Include="Helpers\CaseCreator.cs" />
     <Compile Include="Helpers\Constants.cs" />
     <Compile Include="Helpers\DatabaseHandler.cs" />
     <Compile Include="Helpers\OsirtHelper.cs" />

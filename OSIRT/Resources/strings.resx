@@ -118,33 +118,42 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="CaseDetailsHeader" xml:space="preserve">
-    <value>"Case Details"</value>
+    <value>Case Details</value>
   </data>
   <data name="CaseLocation" xml:space="preserve">
-    <value>"Case Location"</value>
+    <value>Case Location</value>
   </data>
   <data name="CaseNotes" xml:space="preserve">
-    <value>"Case Notes"</value>
+    <value>Case Notes</value>
   </data>
   <data name="CaseReference" xml:space="preserve">
-    <value>"Case Reference"</value>
+    <value>Case Reference</value>
   </data>
   <data name="CombineScreenshots" xml:space="preserve">
-    <value>"Combing screenshots... Please wait"</value>
+    <value>Combing screenshots... Please wait</value>
   </data>
   <data name="EvidenceReference" xml:space="preserve">
-    <value>"Evidence Reference"</value>
+    <value>Evidence Reference</value>
+  </data>
+  <data name="ExisitingCase" xml:space="preserve">
+    <value>Loads an existing OSIRT case to continue working on</value>
   </data>
   <data name="HashFunction" xml:space="preserve">
-    <value>"Hash Funtion"</value>
+    <value>Hash Funtion</value>
   </data>
   <data name="InvestigatingAgency" xml:space="preserve">
-    <value>"Investigating Agency"</value>
+    <value>Investigating Agency</value>
   </data>
   <data name="InvestigatingOfficer" xml:space="preserve">
-    <value>"Investigating Officer"</value>
+    <value>Investigating Officer</value>
+  </data>
+  <data name="LoadReport" xml:space="preserve">
+    <value>Load an OSIRT case to view its report. [NOT IMPLEMENTED]</value>
+  </data>
+  <data name="NewCase" xml:space="preserve">
+    <value>Creates a brand new OSIRT case</value>
   </data>
   <data name="OperationName" xml:space="preserve">
-    <value>"Operation Name"</value>
+    <value>Operation Name</value>
   </data>
 </root>

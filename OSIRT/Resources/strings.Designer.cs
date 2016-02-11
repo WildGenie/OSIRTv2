@@ -61,7 +61,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Case Details&quot;.
+        ///   Looks up a localized string similar to Case Details.
         /// </summary>
         internal static string CaseDetailsHeader {
             get {
@@ -70,7 +70,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Case Location&quot;.
+        ///   Looks up a localized string similar to Case Location.
         /// </summary>
         internal static string CaseLocation {
             get {
@@ -79,7 +79,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Case Notes&quot;.
+        ///   Looks up a localized string similar to Case Notes.
         /// </summary>
         internal static string CaseNotes {
             get {
@@ -88,7 +88,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Case Reference&quot;.
+        ///   Looks up a localized string similar to Case Reference.
         /// </summary>
         internal static string CaseReference {
             get {
@@ -97,7 +97,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Combing screenshots... Please wait&quot;.
+        ///   Looks up a localized string similar to Combing screenshots... Please wait.
         /// </summary>
         internal static string CombineScreenshots {
             get {
@@ -106,7 +106,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Evidence Reference&quot;.
+        ///   Looks up a localized string similar to Evidence Reference.
         /// </summary>
         internal static string EvidenceReference {
             get {
@@ -115,7 +115,16 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Hash Funtion&quot;.
+        ///   Looks up a localized string similar to Loads an existing OSIRT case to continue working on.
+        /// </summary>
+        internal static string ExisitingCase {
+            get {
+                return ResourceManager.GetString("ExisitingCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hash Funtion.
         /// </summary>
         internal static string HashFunction {
             get {
@@ -124,7 +133,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Investigating Agency&quot;.
+        ///   Looks up a localized string similar to Investigating Agency.
         /// </summary>
         internal static string InvestigatingAgency {
             get {
@@ -133,7 +142,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Investigating Officer&quot;.
+        ///   Looks up a localized string similar to Investigating Officer.
         /// </summary>
         internal static string InvestigatingOfficer {
             get {
@@ -142,7 +151,25 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &quot;Operation Name&quot;.
+        ///   Looks up a localized string similar to Load an OSIRT case to view its report. [NOT IMPLEMENTED].
+        /// </summary>
+        internal static string LoadReport {
+            get {
+                return ResourceManager.GetString("LoadReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creates a brand new OSIRT case.
+        /// </summary>
+        internal static string NewCase {
+            get {
+                return ResourceManager.GetString("NewCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Name.
         /// </summary>
         internal static string OperationName {
             get {

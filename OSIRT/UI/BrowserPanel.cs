@@ -63,6 +63,11 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.GetFullPageScreenshot();
         }
 
+        private void uiTabbedBrowserControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
        
     }
 }

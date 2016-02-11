@@ -2,6 +2,7 @@
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
+using OSIRT.Helpers;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;
@@ -28,21 +29,24 @@ namespace OSIRT
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
+            firstLoadPanel.NewCase_Click += firstLoadPanel_NewCase_Click;
             this.Controls.Add(firstLoadPanel);
-            
-            
-            //CaseDetailsPanel caseDetailsPanel = new CaseDetailsPanel();
-            //caseDetailsPanel.NextClick += new EventHandler(caseDetailsPanel_NextClick);
+        }
 
-            //this.Controls.Add(caseDetailsPanel);
-        
+        void firstLoadPanel_NewCase_Click(object sender, EventArgs e)
+        {
+            this.Controls.Clear();
+            CaseDetailsPanel caseDetailsPanel = new CaseDetailsPanel();
+            this.Controls.Add(caseDetailsPanel);
+            caseDetailsPanel.NextClick += new EventHandler(caseDetailsPanel_NextClick);
         }
 
         protected void caseDetailsPanel_NextClick(object sender, EventArgs e)
         {
             this.Controls.Clear();
+            new CaseCreator();
+
             BrowserPanel browserPanel = new BrowserPanel();
             this.Controls.Add(browserPanel);
             this.WindowState = FormWindowState.Maximized;

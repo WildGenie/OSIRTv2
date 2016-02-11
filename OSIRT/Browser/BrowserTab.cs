@@ -10,18 +10,20 @@ namespace OSIRT.Browser
 {
     public class BrowserTab : TabPage
     {
-        public MainBrowser Browser { get; private set; }
-
+        public ExtendedBrowser Browser { get; private set; }
+       
 
         public BrowserTab() : base()
         {
-            Browser = new MainBrowser();
+            Browser = new ExtendedBrowser();
             Browser.Dock = DockStyle.Fill;
             Browser.DocumentTitleChanged += Browser_DocumentTitleChanged;
+          
 
             this.Controls.Add(Browser);
         }
 
+      
 
         void Browser_DocumentTitleChanged(object sender, EventArgs e)
         {

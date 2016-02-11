@@ -26,22 +26,13 @@ namespace OSIRT.Browser
         void TabbedBrowserControl_Load(object sender, EventArgs e)
         {
 
-            //uiBrowserTabControl.DrawMode = TabDrawMode.OwnerDrawFixed;
-            //uiBrowserTabControl.SizeMode = TabSizeMode.Fixed;
-            //uiBrowserTabControl.ItemSize = new Size(50, 30);
-            uiBrowserTabControl.DrawItem += uiBrowserTabControl_DrawItem;
+       
         }
 
-        void uiBrowserTabControl_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            //e.Graphics.DrawString("x", e.Font, Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 4);
-            //e.Graphics.DrawString(this.uiBrowserTabControl.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
-            //e.DrawFocusRectangle();   
-       }
+  
 
         public BrowserTab CurrentTab //active tab
         {
-
             get
             {
                 BrowserTab page = null;
@@ -53,13 +44,27 @@ namespace OSIRT.Browser
              }
         }
 
-        BrowserTab CreateTab()
+        private ExtendedBrowser CurrentBrowser
+        {
+            get
+            {
+                return CurrentTab.Browser;
+            }
+        }
+
+        private BrowserTab CreateTab()
         {
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             uiBrowserTabControl.SelectedTab = tab;
-            //uiBrowserTabControl.SelectedTab.Scrollbars
+            //TODO: Unsubscribe from this event once tab has closed?
+            CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
             return tab;
+        }
+
+        void Browser_StatusTextChanged(object sender, EventArgs e)
+        {
+            uiStatusLabel.Text = CurrentBrowser.StatusText;
         }
 
         public string GetFullPageScreenshot()
