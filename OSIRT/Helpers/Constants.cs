@@ -4,19 +4,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace OSIRT.Helpers
 {
     public class Constants
     {
 
-        
 
+        public static string CasePath { get; set; }
+        public static string CaseContainerName { get; set; }
+        public static string DatabaseFileName { get { return @"\\case.db"; } }
+
+        public static string ContainerLocation
+        {
+            get
+            {
+                return Path.Combine(CasePath + "\\" + CaseContainerName);
+            }
+
+        }
 
         public class Directories
         {
 
-            private static readonly Dictionary<string,string> directories = new Dictionary<string,string>
+            private static readonly Dictionary<string, string> directories = new Dictionary<string, string>
             {
                 { "images", @"\images\" },
                 { "screenshots", @"\images\screenshots\" },
@@ -31,13 +43,17 @@ namespace OSIRT.Helpers
                 { "report", @"\reports\" },
             };
 
+       
+
+
+
             public static List<string> GetDirectories()
             {
                 List<string> values = new List<string>(directories.Values);
                 return values;
             }
 
-            public static string GetDirectory(string key) 
+            public static string GetDirectory(string key)
             {
                 string value = "";
                 if (!directories.TryGetValue(key, out value))
@@ -45,10 +61,6 @@ namespace OSIRT.Helpers
 
                 return value;
             }
-
-
-
-            public static string CasePath { get; set; }
 
             //images
             /*
@@ -66,7 +78,7 @@ namespace OSIRT.Helpers
             public static string Report { get { return @"\reports\"; } }
              */
 
-         
+
 
         }
     }

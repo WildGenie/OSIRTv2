@@ -35,7 +35,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent6 = new System.Windows.Controls.TextBox();
+            this.hostedComponent8 = new System.Windows.Controls.TextBox();
             this.uiBrowsButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.uiCasePathTextBox = new System.Windows.Forms.TextBox();
@@ -141,7 +141,7 @@
             this.uiHashFunctionComboBox.Name = "uiHashFunctionComboBox";
             this.uiHashFunctionComboBox.Size = new System.Drawing.Size(121, 21);
             this.uiHashFunctionComboBox.TabIndex = 34;
-            this.uiHashFunctionComboBox.Tag = "Hash Function";
+            this.uiHashFunctionComboBox.Tag = "hash_function";
             // 
             // uiNotesTextBox
             // 
@@ -153,6 +153,7 @@
             this.uiNotesTextBox.Name = "uiNotesTextBox";
             this.uiNotesTextBox.Size = new System.Drawing.Size(841, 201);
             this.uiNotesTextBox.TabIndex = 33;
+            this.uiNotesTextBox.Tag = "notes";
             this.uiNotesTextBox.WordWrap = true;
             // 
             // uiBrowsButton
@@ -184,7 +185,7 @@
             this.uiCasePathTextBox.ReadOnly = true;
             this.uiCasePathTextBox.Size = new System.Drawing.Size(606, 20);
             this.uiCasePathTextBox.TabIndex = 30;
-            this.uiCasePathTextBox.Tag = "Case Location";
+            this.uiCasePathTextBox.Tag = "case_location";
             // 
             // label6
             // 
@@ -216,8 +217,7 @@
             this.uiEvidenceReferenceTextBox.Name = "uiEvidenceReferenceTextBox";
             this.uiEvidenceReferenceTextBox.Size = new System.Drawing.Size(842, 20);
             this.uiEvidenceReferenceTextBox.TabIndex = 24;
-            this.uiEvidenceReferenceTextBox.Tag = "Evidence Reference";
-            this.uiEvidenceReferenceTextBox.Enter += new System.EventHandler(this.uiEvidenceReferenceTextBox_Enter);
+            this.uiEvidenceReferenceTextBox.Tag = "evidence_reference";
             // 
             // label4
             // 
@@ -239,7 +239,8 @@
             this.uiCaseReferenceTextBox.Name = "uiCaseReferenceTextBox";
             this.uiCaseReferenceTextBox.Size = new System.Drawing.Size(841, 20);
             this.uiCaseReferenceTextBox.TabIndex = 22;
-            this.uiCaseReferenceTextBox.Tag = "Case Reference";
+            this.uiCaseReferenceTextBox.Tag = "case_reference";
+            this.uiCaseReferenceTextBox.Enter += new System.EventHandler(this.uiCaseReferenceTextBox_Enter);
             // 
             // label3
             // 
@@ -261,7 +262,7 @@
             this.uiOperationTextBox.Name = "uiOperationTextBox";
             this.uiOperationTextBox.Size = new System.Drawing.Size(842, 20);
             this.uiOperationTextBox.TabIndex = 21;
-            this.uiOperationTextBox.Tag = "Operation Name";
+            this.uiOperationTextBox.Tag = "operation_name";
             // 
             // label2
             // 
@@ -283,7 +284,7 @@
             this.uiAgencyTextBox.Name = "uiAgencyTextBox";
             this.uiAgencyTextBox.Size = new System.Drawing.Size(841, 20);
             this.uiAgencyTextBox.TabIndex = 18;
-            this.uiAgencyTextBox.Tag = "Investigating Agency";
+            this.uiAgencyTextBox.Tag = "investigating_agency";
             // 
             // label1
             // 
@@ -305,7 +306,7 @@
             this.uiOfficerTextBox.Name = "uiOfficerTextBox";
             this.uiOfficerTextBox.Size = new System.Drawing.Size(841, 20);
             this.uiOfficerTextBox.TabIndex = 17;
-            this.uiOfficerTextBox.Tag = "Investigating Officer";
+            this.uiOfficerTextBox.Tag = "investigating_officer";
             // 
             // CaseDetailsPanel
             // 
@@ -352,5 +353,7 @@
         private System.Windows.Controls.TextBox hostedComponent4;
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Controls.TextBox hostedComponent6;
+        private System.Windows.Controls.TextBox hostedComponent7;
+        private System.Windows.Controls.TextBox hostedComponent8;
     }
 }

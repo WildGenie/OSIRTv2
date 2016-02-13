@@ -70,6 +70,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -83,6 +85,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseTableCreator.cs" />
+    <Compile Include="Loggers\AttachmentsLog.cs" />
+    <Compile Include="Loggers\BaseLog.cs" />
     <Compile Include="Browser\BrowserTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -95,11 +100,14 @@
     <Compile Include="Browser\TabbedBrowserControl.Designer.cs">
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Database\SQLiteConfiguration.cs" />
     <Compile Include="Extensions\Extensions.cs" />
     <Compile Include="Helpers\CaseCreator.cs" />
     <Compile Include="Helpers\Constants.cs" />
-    <Compile Include="Helpers\DatabaseHandler.cs" />
+    <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Helpers\OsirtHelper.cs" />
+    <Compile Include="Loggers\OsirtActionsLog.cs" />
+    <Compile Include="Loggers\WebpageActionsLog.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +118,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="UI\AuditLogUI\AuditLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -168,6 +177,7 @@
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\SpellBox.cs" />
+    <Compile Include="Loggers\WebsiteLog.cs" />
     <EmbeddedResource Include="Browser\TabbedBrowserControl.resx">
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -204,6 +214,7 @@
     <EmbeddedResource Include="UI\AuditLogUI\TabbedAuditLogControl.resx">
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="fontawesome-webfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -268,6 +279,9 @@
   <ItemGroup>
     <None Include="Resources\view-details-128.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="FodyWeavers.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -275,7 +289,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Data.SQLite.Core.1.0.99.0\build\net45\System.Data.SQLite.Core.targets'))" />
+    <Error Condition="!Exists('..\packages\Fody.1.28.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.28.3\build\Fody.targets'))" />
   </Target>
+  <Import Project="..\packages\Fody.1.28.3\build\Fody.targets" Condition="Exists('..\packages\Fody.1.28.3\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

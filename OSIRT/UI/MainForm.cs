@@ -16,15 +16,26 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.IO.Compression;
 namespace OSIRT
 {
     public partial class MainForm : Form
     {
-      
+
+   
         public MainForm()
         {
             InitializeComponent();
+            this.FormClosing += MainForm_FormClosing;
+
+        }
+
+        void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //Check file exists before creating the zip
+            //using a file extension that is not .zip seems fine, but not checked unzipping
+
+            //ZipFile.CreateFromDirectory(Path.Combine(Constants.Directories.CasePath + "\\" + Constants.Directories.CaseContainerName), @"D:/joe.osirt", CompressionLevel.NoCompression, true);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,12 +56,12 @@ namespace OSIRT
         protected void caseDetailsPanel_NextClick(object sender, EventArgs e)
         {
             this.Controls.Clear();
-            new CaseCreator();
-
             BrowserPanel browserPanel = new BrowserPanel();
             this.Controls.Add(browserPanel);
             this.WindowState = FormWindowState.Maximized;
         }
+
+  
 
      }
 }

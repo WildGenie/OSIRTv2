@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+
 
 namespace OSIRT.UI
 {
@@ -61,11 +63,6 @@ namespace OSIRT.UI
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
             uiTabbedBrowserControl.GetFullPageScreenshot();
-        }
-
-        private void uiTabbedBrowserControl_Load(object sender, EventArgs e)
-        {
-
         }
 
        
