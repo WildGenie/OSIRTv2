@@ -34,8 +34,6 @@
             this.uiBackButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
-            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent8 = new System.Windows.Controls.TextBox();
             this.uiBrowsButton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.uiCasePathTextBox = new System.Windows.Forms.TextBox();
@@ -50,6 +48,8 @@
             this.uiAgencyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiOfficerTextBox = new System.Windows.Forms.TextBox();
+            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent9 = new System.Windows.Controls.TextBox();
             this.uiCaseDetailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,7 +78,7 @@
             this.uiCaseDetailsPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiCaseDetailsPanel.Location = new System.Drawing.Point(0, 0);
             this.uiCaseDetailsPanel.Name = "uiCaseDetailsPanel";
-            this.uiCaseDetailsPanel.Size = new System.Drawing.Size(883, 661);
+            this.uiCaseDetailsPanel.Size = new System.Drawing.Size(989, 669);
             this.uiCaseDetailsPanel.TabIndex = 0;
             this.uiCaseDetailsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.uiCaseDetailsPanel_Paint);
             // 
@@ -98,9 +98,9 @@
             // 
             this.uiNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiNextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNextButton.Location = new System.Drawing.Point(749, 626);
+            this.uiNextButton.Location = new System.Drawing.Point(855, 626);
             this.uiNextButton.Name = "uiNextButton";
-            this.uiNextButton.Size = new System.Drawing.Size(106, 26);
+            this.uiNextButton.Size = new System.Drawing.Size(106, 23);
             this.uiNextButton.TabIndex = 27;
             this.uiNextButton.Text = "Next";
             this.uiNextButton.UseVisualStyleBackColor = true;
@@ -110,9 +110,9 @@
             // 
             this.uiBackButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiBackButton.Location = new System.Drawing.Point(637, 626);
+            this.uiBackButton.Location = new System.Drawing.Point(743, 626);
             this.uiBackButton.Name = "uiBackButton";
-            this.uiBackButton.Size = new System.Drawing.Size(106, 26);
+            this.uiBackButton.Size = new System.Drawing.Size(106, 23);
             this.uiBackButton.TabIndex = 28;
             this.uiBackButton.Text = "Back";
             this.uiBackButton.UseVisualStyleBackColor = true;
@@ -142,19 +142,6 @@
             this.uiHashFunctionComboBox.Size = new System.Drawing.Size(121, 21);
             this.uiHashFunctionComboBox.TabIndex = 34;
             this.uiHashFunctionComboBox.Tag = "hash_function";
-            // 
-            // uiNotesTextBox
-            // 
-            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNotesTextBox.Location = new System.Drawing.Point(14, 419);
-            this.uiNotesTextBox.Multiline = true;
-            this.uiNotesTextBox.Name = "uiNotesTextBox";
-            this.uiNotesTextBox.Size = new System.Drawing.Size(841, 201);
-            this.uiNotesTextBox.TabIndex = 33;
-            this.uiNotesTextBox.Tag = "notes";
-            this.uiNotesTextBox.WordWrap = true;
             // 
             // uiBrowsButton
             // 
@@ -215,7 +202,7 @@
             this.uiEvidenceReferenceTextBox.Location = new System.Drawing.Point(13, 266);
             this.uiEvidenceReferenceTextBox.MaxLength = 200;
             this.uiEvidenceReferenceTextBox.Name = "uiEvidenceReferenceTextBox";
-            this.uiEvidenceReferenceTextBox.Size = new System.Drawing.Size(842, 20);
+            this.uiEvidenceReferenceTextBox.Size = new System.Drawing.Size(948, 20);
             this.uiEvidenceReferenceTextBox.TabIndex = 24;
             this.uiEvidenceReferenceTextBox.Tag = "evidence_reference";
             // 
@@ -237,7 +224,7 @@
             this.uiCaseReferenceTextBox.Location = new System.Drawing.Point(14, 210);
             this.uiCaseReferenceTextBox.MaxLength = 50;
             this.uiCaseReferenceTextBox.Name = "uiCaseReferenceTextBox";
-            this.uiCaseReferenceTextBox.Size = new System.Drawing.Size(841, 20);
+            this.uiCaseReferenceTextBox.Size = new System.Drawing.Size(947, 20);
             this.uiCaseReferenceTextBox.TabIndex = 22;
             this.uiCaseReferenceTextBox.Tag = "case_reference";
             this.uiCaseReferenceTextBox.Enter += new System.EventHandler(this.uiCaseReferenceTextBox_Enter);
@@ -260,7 +247,7 @@
             this.uiOperationTextBox.Location = new System.Drawing.Point(13, 159);
             this.uiOperationTextBox.MaxLength = 200;
             this.uiOperationTextBox.Name = "uiOperationTextBox";
-            this.uiOperationTextBox.Size = new System.Drawing.Size(842, 20);
+            this.uiOperationTextBox.Size = new System.Drawing.Size(948, 20);
             this.uiOperationTextBox.TabIndex = 21;
             this.uiOperationTextBox.Tag = "operation_name";
             // 
@@ -282,7 +269,7 @@
             this.uiAgencyTextBox.Location = new System.Drawing.Point(14, 105);
             this.uiAgencyTextBox.MaxLength = 200;
             this.uiAgencyTextBox.Name = "uiAgencyTextBox";
-            this.uiAgencyTextBox.Size = new System.Drawing.Size(841, 20);
+            this.uiAgencyTextBox.Size = new System.Drawing.Size(947, 20);
             this.uiAgencyTextBox.TabIndex = 18;
             this.uiAgencyTextBox.Tag = "investigating_agency";
             // 
@@ -304,9 +291,22 @@
             this.uiOfficerTextBox.Location = new System.Drawing.Point(14, 49);
             this.uiOfficerTextBox.MaxLength = 200;
             this.uiOfficerTextBox.Name = "uiOfficerTextBox";
-            this.uiOfficerTextBox.Size = new System.Drawing.Size(841, 20);
+            this.uiOfficerTextBox.Size = new System.Drawing.Size(947, 20);
             this.uiOfficerTextBox.TabIndex = 17;
             this.uiOfficerTextBox.Tag = "investigating_officer";
+            // 
+            // uiNotesTextBox
+            // 
+            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNotesTextBox.Location = new System.Drawing.Point(14, 419);
+            this.uiNotesTextBox.Multiline = true;
+            this.uiNotesTextBox.Name = "uiNotesTextBox";
+            this.uiNotesTextBox.Size = new System.Drawing.Size(947, 201);
+            this.uiNotesTextBox.TabIndex = 33;
+            this.uiNotesTextBox.Tag = "notes";
+            this.uiNotesTextBox.WordWrap = true;
             // 
             // CaseDetailsPanel
             // 
@@ -314,7 +314,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.uiCaseDetailsPanel);
             this.Name = "CaseDetailsPanel";
-            this.Size = new System.Drawing.Size(883, 661);
+            this.Size = new System.Drawing.Size(989, 669);
             this.Load += new System.EventHandler(this.CaseDetailsPanel_Load);
             this.uiCaseDetailsPanel.ResumeLayout(false);
             this.uiCaseDetailsPanel.PerformLayout();
@@ -355,5 +355,6 @@
         private System.Windows.Controls.TextBox hostedComponent6;
         private System.Windows.Controls.TextBox hostedComponent7;
         private System.Windows.Controls.TextBox hostedComponent8;
+        private System.Windows.Controls.TextBox hostedComponent9;
     }
 }

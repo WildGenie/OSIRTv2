@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
@@ -44,6 +43,7 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -59,14 +59,6 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(838, 525);
             this.uiBrowserPanel.TabIndex = 0;
-            // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
-            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // uiBrowserToolStrip
             // 
@@ -89,6 +81,7 @@
             // uiHomeButton
             // 
             this.uiHomeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiHomeButton.Image = global::OSIRT.Properties.Resources.house;
             this.uiHomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiHomeButton.Name = "uiHomeButton";
             this.uiHomeButton.Size = new System.Drawing.Size(23, 22);
@@ -192,6 +185,14 @@
             this.newTabToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
             this.newTabToolStripMenuItem.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
+            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // BrowserPanel
             // 

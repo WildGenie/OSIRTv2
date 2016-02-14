@@ -61,6 +61,24 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select the location for the case container.
+        /// </summary>
+        internal static string case_location_desc {
+            get {
+                return ResourceManager.GetString("case_location_desc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A case container already exists with this name. Please chose another..
+        /// </summary>
+        internal static string case_with_that_name_exists_already {
+            get {
+                return ResourceManager.GetString("case_with_that_name_exists_already", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Case Details.
         /// </summary>
         internal static string CaseDetailsHeader {
@@ -106,6 +124,15 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creating New Case... Please Wait.
+        /// </summary>
+        internal static string creating_case_wait {
+            get {
+                return ResourceManager.GetString("creating_case_wait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evidence Reference.
         /// </summary>
         internal static string EvidenceReference {
@@ -120,6 +147,24 @@ namespace OSIRT.Resources {
         internal static string ExisitingCase {
             get {
                 return ResourceManager.GetString("ExisitingCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field can only contain letters, numbers, hyphens (&apos;-&apos;) and underscores (&apos;_&apos;).
+        /// </summary>
+        internal static string field_can_only_contain_valid_directory_char {
+            get {
+                return ResourceManager.GetString("field_can_only_contain_valid_directory_char", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This field is required.
+        /// </summary>
+        internal static string field_is_required {
+            get {
+                return ResourceManager.GetString("field_is_required", resourceCulture);
             }
         }
         

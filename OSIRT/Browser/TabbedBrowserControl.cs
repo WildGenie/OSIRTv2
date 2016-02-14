@@ -70,7 +70,7 @@ namespace OSIRT.Browser
         public string GetFullPageScreenshot()
         {
             if (CurrentTab == null)
-                throw new Exception("No tabs to screenshot"); //TODO: Handle this better
+                throw new NullReferenceException("No tabs to screenshot"); //TODO: Handle this better
 
             return CurrentTab.Browser.GetFullpageScreenshot();
         }

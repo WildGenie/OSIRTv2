@@ -36,7 +36,6 @@ namespace OSIRT.UI
             errorProvider = new ErrorProvider();
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             uiHashFunctionComboBox.SelectedIndex = 0;
-          
             uiOfficerTextBox.Focus();
         }
 
@@ -46,7 +45,7 @@ namespace OSIRT.UI
             string caseRef = uiCaseReferenceTextBox.Text;
             string caseLocation = uiCasePathTextBox.Text;
             string combined = Path.Combine(caseLocation, caseRef);
-            return  Directory.Exists(combined);
+            return Directory.Exists(combined);
         }
 
         private bool AreValidEntries()
@@ -59,7 +58,7 @@ namespace OSIRT.UI
                 
                 if (String.IsNullOrWhiteSpace(tb.Text))
                 {
-                    errorProvider.SetError(tb, "This field is required");
+                    errorProvider.SetError(tb, Resources.strings.field_is_required);
                     isValid = false;
                 }
                 else if (tb.Name == "uiCaseReferenceTextBox")
@@ -67,7 +66,7 @@ namespace OSIRT.UI
                     if (!IsValidDirectoryName(tb.Text))
                     {
 
-                        errorProvider.SetError(tb, "This field can only contain letters, numbers, hyphens ('-') and underscores ('_')");
+                        errorProvider.SetError(tb, Resources.strings.field_can_only_contain_valid_directory_char);
                         isValid = false;
                     }
                 }
@@ -80,7 +79,7 @@ namespace OSIRT.UI
             bool containerExists = ContainerFileAlreadyExists();
             if (containerExists)
             {
-                errorProvider.SetError(uiCaseReferenceTextBox, "A case container already exists with this name. Please chose another.");
+                errorProvider.SetError(uiCaseReferenceTextBox, Resources.strings.case_with_that_name_exists_already);
                 isValid = false;
             }
 
@@ -139,7 +138,7 @@ namespace OSIRT.UI
             //Create the case container
             //Thread out? Background worker?
             Dictionary<string,string> caseDetails = GetCaseDetails();
-            WaitWindow.Show(this.CreateCase,"Creating New Case...", caseDetails);
+            WaitWindow.Show(this.CreateCase, Resources.strings.creating_case_wait, caseDetails);
 
             if (this.NextClick != null)
                 this.NextClick(this, e);
@@ -148,6 +147,7 @@ namespace OSIRT.UI
 
         private void CreateCase(object sender, WaitWindowEventArgs e)
         {
+            Thread.Sleep(500);
             new CaseCreator((Dictionary<string,string>) e.Arguments[0], new DatabaseTableCreator());
             Thread.Sleep(500);
         }
@@ -156,7 +156,7 @@ namespace OSIRT.UI
         {
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.ShowNewFolderButton = false;
-            fbd.Description = "Select the location for the case container";
+            fbd.Description = Resources.strings.case_location_desc;
             DialogResult result = fbd.ShowDialog();
 
             if (result != DialogResult.OK)
@@ -175,7 +175,6 @@ namespace OSIRT.UI
 
         private void uiHashHelpLabel_Click(object sender, EventArgs e)
         {
-            //tooltip.IsBalloon = true;
             ToolTip tooltip = new ToolTip();
             tooltip.ToolTipIcon = ToolTipIcon.Info;
             tooltip.Show(@"Hash functions are listed in order of speed, with the fastest appearing first." + Environment.NewLine + "For verifying that a file has not changed when it was saved and hashed, MD5 is satisfactory.", this.uiHashHelpLabel, 30000);
@@ -188,7 +187,7 @@ namespace OSIRT.UI
             ToolTip tooltip = new ToolTip();
             tooltip.IsBalloon = true;
 
-            tooltip.Show("Only contain a-z, A-Z, 0-9, hypthens ( - ) and underscores ( _ )", caseReferenceTB, 150, -50, 7000);
+            tooltip.Show(Resources.strings.field_can_only_contain_valid_directory_char, caseReferenceTB, 150, -50, 7000);
         }
 
       
