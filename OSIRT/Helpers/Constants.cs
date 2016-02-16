@@ -16,6 +16,9 @@ namespace OSIRT.Helpers
         public static string CaseContainerName { get; set; }
         public static string DatabaseFileName { get { return @"\\case.db"; } }
 
+        /// <summary>
+        /// Returns the location of the container, with the container's name in the path
+        /// </summary>
         public static string ContainerLocation
         {
             get
@@ -30,17 +33,17 @@ namespace OSIRT.Helpers
 
             private static readonly Dictionary<string, string> directories = new Dictionary<string, string>
             {
-                { "images", @"\images\" },
-                { "screenshots", @"\images\screenshots\" },
-                { "scraped", @"\images\scraped\" },
-                { "snippet", @"\images\snippets\" },
-                { "batchsnap", @"\images\batchsnap\" },
-                { "saved", @"\images\saved\" },
-                { "attachment", @"\attachments\" },
-                { "videos", @"\videos\" },
-                { "downloads", @"\downloads\" },
-                { "source", @"\downloads\source_code" },
-                { "report", @"\reports\" },
+                { "images", @"images" },
+                { "screenshots", @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
+                { "scraped", @"images\scraped" },
+                { "snippet", @"images\snippets" },
+                { "batchsnap", @"images\batchsnap" },
+                { "saved", @"images\saved" },
+                { "attachment", @"attachments" },
+                { "videos", @"videos" },
+                { "downloads", @"downloads" },
+                { "source", @"downloads\source_code" },
+                { "report", @"reports" },
             };
 
        

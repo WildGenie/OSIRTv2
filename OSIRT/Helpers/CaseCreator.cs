@@ -31,7 +31,7 @@ namespace OSIRT.Helpers
             List<string> directories = Constants.Directories.GetDirectories();
             foreach (string directory in directories)
             {
-                Directory.CreateDirectory(Constants.ContainerLocation + directory);
+                Directory.CreateDirectory(Path.Combine(Constants.ContainerLocation, directory));
             }
         }
 

@@ -1,17 +1,26 @@
 ﻿using ImageMagick;
 using Jacksonsoft;
-using System;
-using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace OSIRT.Helpers
 {
     public class ScreenshotHelper
     {
+
+        public static void SaveScreenshot(Image screenshot, string name)
+        {
+            using (screenshot)
+            {
+                screenshot.Save(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetDirectory("screenshots"), name), ImageFormat.Png);
+            }
+
+        }
+
+
         public static string CombineScreenshot(FileSystemInfo[] files, WaitWindowEventArgs e)
         {
             string imageLocation = @"D:\\FinalImage.png";
@@ -27,6 +36,7 @@ namespace OSIRT.Helpers
                     images.Add(first);
                 }
 
+              
 
                 using (MagickImage result = images.AppendVertically())
                 {

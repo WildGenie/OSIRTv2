@@ -58,7 +58,7 @@ namespace OSIRT.Browser
             uiBrowserTabControl.TabPages.Add(tab);
             uiBrowserTabControl.SelectedTab = tab;
             //TODO: Unsubscribe from this event once tab has closed?
-            CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
+            //CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
             return tab;
         }
 

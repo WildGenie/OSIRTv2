@@ -49,7 +49,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiOfficerTextBox = new System.Windows.Forms.TextBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent9 = new System.Windows.Controls.TextBox();
+    
             this.uiCaseDetailsPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -327,8 +327,6 @@
         private System.Windows.Forms.Panel uiCaseDetailsPanel;
         //private System.Windows.Controls.TextBox hostedComponent1;
         //private System.Windows.Controls.TextBox hostedComponent2;
-        private System.Windows.Controls.TextBox hostedComponent3;
-        private System.Windows.Controls.TextBox hostedComponent1;
         private System.Windows.Forms.Button uiNextButton;
         private System.Windows.Forms.Button uiBackButton;
         private System.Windows.Forms.Label label8;
@@ -348,13 +346,8 @@
         private System.Windows.Forms.TextBox uiAgencyTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox uiOfficerTextBox;
-        private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Forms.Label uiHashHelpLabel;
-        private System.Windows.Controls.TextBox hostedComponent4;
-        private System.Windows.Controls.TextBox hostedComponent5;
-        private System.Windows.Controls.TextBox hostedComponent6;
-        private System.Windows.Controls.TextBox hostedComponent7;
-        private System.Windows.Controls.TextBox hostedComponent8;
-        private System.Windows.Controls.TextBox hostedComponent9;
+      
+       
     }
 }

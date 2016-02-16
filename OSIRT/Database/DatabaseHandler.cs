@@ -16,7 +16,6 @@ namespace OSIRT.Helpers
         public DatabaseHandler()
         {
            connectionString = "Data Source=" + Constants.ContainerLocation + Constants.DatabaseFileName + ";Version=3;";
-           
         }
 
         

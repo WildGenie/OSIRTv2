@@ -14,14 +14,14 @@ namespace OSIRT.UI
     {
 
         public event EventHandler NewCase_Click;
-        public event EventHandler LoadOldCase_Click;
-        public event EventHandler LoadReport_Click;
+        //public event EventHandler LoadOldCase_Click;
+        //public event EventHandler LoadReport_Click;
 
         public FirstLoadPanel()
         {
             InitializeComponent();
             this.Dock = DockStyle.Fill;
-            
+           
         }
 
    

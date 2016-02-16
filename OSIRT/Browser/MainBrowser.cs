@@ -156,19 +156,17 @@ namespace OSIRT.Browser
             int width = ScrollWidth();
             int height = ScrollHeight();
 
-            Debug.WriteLine("FULLPAGE: Width: {0}. Height: {1}", width, height);
+            Debug.WriteLine($"FULLPAGE: Width: {width}. Height: {height}");
             this.Dock = DockStyle.None;
             this.ToggleScrollbars(false);
             this.Size = new Size(width, height);
             Bitmap screenshot = new Bitmap(width, height);
-            NativeMethods.GetImage(this.ActiveXInstance, screenshot, System.Drawing.Color.Black);
+            NativeMethods.GetImage(this.ActiveXInstance, screenshot, Color.Black);
             this.Dock = DockStyle.Fill;
             this.ToggleScrollbars(true);
 
-            using (screenshot)
-            {
-                screenshot.Save(@"D:/GDI_SAVE.png");
-            }
+
+            ScreenshotHelper.SaveScreenshot(screenshot, "image.png");
 
 
             bitmap = @"D:/GDI_SAVE.png";
