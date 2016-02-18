@@ -12,13 +12,21 @@ namespace OSIRT.Loggers
         private string fileName = "";
         private string note = "";
 
+
+        public WebpageActionsLog(string url, string action, string hash, string fileName, string note) : base(url, action)
+        {
+            this.Hash = hash;
+            this.FileName = fileName;
+            this.Note = note;
+        }
+
         public string Hash
         {
             get
             {
                 return this.hash;
             }
-            set
+            private set
             {
                 this.hash = value;
             }
@@ -30,7 +38,7 @@ namespace OSIRT.Loggers
             {
                 return this.note;
             }
-            set
+            private set
             {
                 this.note = value;
             }
@@ -42,7 +50,7 @@ namespace OSIRT.Loggers
             {
                 return this.fileName;
             }
-            set
+            private set
             {
                 this.fileName = value;
             }

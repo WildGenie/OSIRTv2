@@ -2,7 +2,10 @@
 using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
+using OSIRT.Database;
 using OSIRT.Helpers;
+using OSIRT.Loggers;
+using OSIRT.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,7 +24,7 @@ namespace OSIRT.Browser
     public class ExtendedBrowser : WebBrowser
     {
 
-        private string bitmap;
+        private Image bitmap;
         private int MaxScrollHeight { get { return 20000; } }
 
         public ExtendedBrowser()
@@ -29,6 +32,16 @@ namespace OSIRT.Browser
             SetLatestIEKeyforWebBrowserControl();
             NativeMethods.DisableClickSounds();
             ScriptErrorsSuppressed = true;
+            DocumentCompleted += ExtendedBrowser_DocumentCompleted;
+        }
+
+        private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
+                return;
+
+            Logger.Log(new WebsiteLog(Url.AbsoluteUri));
+
         }
 
 
@@ -70,7 +83,7 @@ namespace OSIRT.Browser
 
         private async void FullpageScreenshotByScrolling()
         {
-            ((Control)this).Enabled = false;
+            ((Control)this).Enabled = false; //prevent user clicks
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
             int scrollHeight = ScrollHeight();
@@ -81,6 +94,10 @@ namespace OSIRT.Browser
             int count = 0;
             int pageLeft = scrollHeight;
             bool atBottom = false;
+
+            ImageDiskCache cache = new ImageDiskCache();
+
+
             while (!atBottom)
             {
                 if (pageLeft > viewportHeight)
@@ -94,10 +111,12 @@ namespace OSIRT.Browser
                     await PutTaskDelay();
 
 
-                    using (Bitmap snap = GetCurrentViewScreenshot())
-                    {
-                        snap.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
-                    }
+                    cache.AddImage(GetCurrentViewScreenshot());
+
+                    //using (Bitmap snap = GetCurrentViewScreenshot())
+                    //{
+                    //    snap.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
+                    //}
                 }
                 else //TODO: what if it's exactly divisible?
                 {
@@ -120,7 +139,8 @@ namespace OSIRT.Browser
                     using (Graphics g = Graphics.FromImage(target))
                     {
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
-                        target.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
+                        //target.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
+                        cache.AddImage(GetCurrentViewScreenshot());
                     }
 
                 }
@@ -140,14 +160,18 @@ namespace OSIRT.Browser
 
            
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
+            cache.RemoveImagesInCache();
+           ImagePreviewerForm previewer = new ImagePreviewerForm();
+            previewer.Show();
+
          }
 
         private void GetScreenshot(object sender, WaitWindowEventArgs e)
         {
-            DirectoryInfo directory = new DirectoryInfo("D:\\comb");
+            DirectoryInfo directory = new DirectoryInfo(ImageDiskCache.CacheLocation);
             FileSystemInfo[] files = directory.GetFileSystemInfos();
-            bitmap = ScreenshotHelper.CombineScreenshot(files, e);
-           
+            ScreenshotHelper.CombineScreenshot(files, e);
+            
         }
 
 
@@ -169,10 +193,10 @@ namespace OSIRT.Browser
             ScreenshotHelper.SaveScreenshot(screenshot, "image.png");
 
 
-            bitmap = @"D:/GDI_SAVE.png";
+            //bitmap = @"D:/GDI_SAVE.png";
         }
 
-        public string GetFullpageScreenshot()
+        public void GetFullpageScreenshot()
         {
 
             if (ScrollHeight() > MaxScrollHeight)
@@ -183,7 +207,7 @@ namespace OSIRT.Browser
             {
                 FullpageScreenshotGDI();
             }
-            return bitmap;
+            //return bitmap;
 
         }
 

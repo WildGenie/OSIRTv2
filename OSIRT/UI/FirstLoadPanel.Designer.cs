@@ -161,6 +161,7 @@
             this.uiLoadExistingCaseButton.Size = new System.Drawing.Size(177, 144);
             this.uiLoadExistingCaseButton.TabIndex = 1;
             this.uiLoadExistingCaseButton.UseVisualStyleBackColor = false;
+            this.uiLoadExistingCaseButton.Click += new System.EventHandler(this.uiLoadExistingCaseButton_Click);
             this.uiLoadExistingCaseButton.MouseHover += new System.EventHandler(this.uiLoadExistingCaseButton_MouseHover);
             // 
             // uiLoadReportButton

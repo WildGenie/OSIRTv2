@@ -1,19 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Diagnostics;
 using System.Text.RegularExpressions;
 using OSIRT.Extensions;
-using OSIRT.Helpers;
 using OSIRT.Database;
 using System.Threading;
 using Jacksonsoft;
 using System.IO;
+using OSIRT.Helpers;
 
 namespace OSIRT.UI
 {

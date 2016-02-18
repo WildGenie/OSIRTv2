@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
+    <Compile Include="Helpers\ImageDiskCache.cs" />
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
     <Compile Include="Browser\BrowserTab.cs">

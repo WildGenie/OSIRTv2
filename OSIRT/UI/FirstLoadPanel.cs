@@ -14,7 +14,7 @@ namespace OSIRT.UI
     {
 
         public event EventHandler NewCase_Click;
-        //public event EventHandler LoadOldCase_Click;
+        public event EventHandler LoadOldCase_Click;
         //public event EventHandler LoadReport_Click;
 
         public FirstLoadPanel()
@@ -55,6 +55,12 @@ namespace OSIRT.UI
         private void uiImagePanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void uiLoadExistingCaseButton_Click(object sender, EventArgs e)
+        {
+            if (LoadOldCase_Click != null)
+                LoadOldCase_Click(this, e);
         }
     }
 }

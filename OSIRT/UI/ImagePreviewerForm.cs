@@ -1,5 +1,6 @@
 ﻿using Cyotek.Windows.Forms;
 using ImageMagick;
+using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,10 +18,12 @@ namespace OSIRT.UI
     {
 
         private ImageBox imageBox;
+        private Image image;
 
-        public ImagePreviewerForm()
+        public ImagePreviewerForm(/*Image image*/)
         {
             InitializeComponent();
+            //this.image = image;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -28,10 +31,12 @@ namespace OSIRT.UI
             base.OnLoad(e);
             imageBox = new ImageBox();
             imageBox.Dock = DockStyle.Fill;
+         
             uiSplitContainer.Panel2.Controls.Add(imageBox);
 
-            //TODO: very long images cause this to just die.
-            LoadImage(Image.FromFile(@"D:/FinalImage.png"));
+            //TODO: very large images cause this to just die.
+            //LoadImage(Image.FromFile(@"D:/FinalImage.png"));
+            LoadImage(Image.FromFile(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), "temp.png")));
                
         }
 
@@ -47,6 +52,11 @@ namespace OSIRT.UI
         private void ImagePreviewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //imageBox.Image.Dispose();
+        }
+
+        private void ImagePreviewerForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

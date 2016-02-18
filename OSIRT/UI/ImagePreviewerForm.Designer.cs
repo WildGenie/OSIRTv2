@@ -39,7 +39,7 @@
             this.uiSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.uiSplitContainer.Name = "uiSplitContainer";
             this.uiSplitContainer.Size = new System.Drawing.Size(937, 543);
-            this.uiSplitContainer.SplitterDistance = 447;
+            this.uiSplitContainer.SplitterDistance = 348;
             this.uiSplitContainer.TabIndex = 0;
             // 
             // ImagePreviewerForm
@@ -49,9 +49,9 @@
             this.ClientSize = new System.Drawing.Size(937, 543);
             this.Controls.Add(this.uiSplitContainer);
             this.Name = "ImagePreviewerForm";
-            this.Text = "ImagePreviewerForm";
+            this.Text = "Image Previewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImagePreviewerForm_FormClosing);
-            //this.Load += new System.EventHandler(this.ImagePreviewerForm_Load);
+            this.Load += new System.EventHandler(this.ImagePreviewerForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).EndInit();
             this.uiSplitContainer.ResumeLayout(false);
             this.ResumeLayout(false);

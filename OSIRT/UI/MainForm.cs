@@ -2,7 +2,7 @@
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,27 @@ namespace OSIRT
         {
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
             firstLoadPanel.NewCase_Click += firstLoadPanel_NewCase_Click;
+            firstLoadPanel.LoadOldCase_Click += FirstLoadPanel_LoadOldCase_Click;
             this.Controls.Add(firstLoadPanel);
+        }
+
+        private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+                if (result != DialogResult.OK)
+                    return;
+
+                string caseContainer = fbd.SelectedPath;
+
+
+                if(OsirtHelper.ValidCaseContainer(caseContainer))
+                {
+                    MessageBox.Show("Valid");
+                }
+
+            }
         }
 
         void firstLoadPanel_NewCase_Click(object sender, EventArgs e)

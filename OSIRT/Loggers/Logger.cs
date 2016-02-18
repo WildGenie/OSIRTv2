@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using OSIRT.Database;
 
 
@@ -10,21 +11,29 @@ namespace OSIRT.Loggers
         {
 
             Type logType = log.GetType();
+            Dictionary<string, string> toLog = new Dictionary<string, string>();
+            toLog.Add("date", log.Date);
+            toLog.Add("time", log.Time);
+            toLog.Add("action", log.Action);
 
-            if(logType == typeof(WebpageActionsLog))
+            DatabaseHandler handler = new DatabaseHandler();
+
+            if (logType == typeof(WebpageActionsLog))
             {
-
+                //webpage_actions (date TEXT, time TEXT, action TEXT, url TEXT, file_name TEXT, hash TEXT, note TEXT
+                WebpageActionsLog webpageAction = (WebpageActionsLog)log;
+                toLog.Add("url", webpageAction.URL);
+                toLog.Add("file_name", webpageAction.FileName);
+                toLog.Add("hash", webpageAction.Hash);
+                toLog.Add("note", webpageAction.Note);
+                handler.Insert("webpage_log", toLog);
             }
             else if(logType == typeof(WebsiteLog))
             {
-                //((WebsiteLog)log);
-
-                
-
-                //Helpers.DatabaseHandler handler = new DatabaseHandler();
-
-
-            Database.
+                //webpage_log (date TEXT, time TEXT, action TEXT, url TEXT)"
+                WebsiteLog webSiteLog = (WebsiteLog)log;
+                toLog.Add("url", webSiteLog.URL);
+                handler.Insert("webpage_log", toLog);
                 
             }
            

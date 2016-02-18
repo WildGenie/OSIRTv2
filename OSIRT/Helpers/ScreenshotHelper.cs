@@ -1,12 +1,13 @@
 ﻿using ImageMagick;
 using Jacksonsoft;
+using OSIRT.Helpers;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 
-
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     public class ScreenshotHelper
     {
@@ -15,15 +16,15 @@ namespace OSIRT.Helpers
         {
             using (screenshot)
             {
-                screenshot.Save(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetDirectory("screenshots"), name), ImageFormat.Png);
+                screenshot.Save(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name), ImageFormat.Png);
             }
 
         }
 
 
-        public static string CombineScreenshot(FileSystemInfo[] files, WaitWindowEventArgs e)
+        public static void CombineScreenshot(FileSystemInfo[] files, WaitWindowEventArgs e)
         {
-            string imageLocation = @"D:\\FinalImage.png";
+            string screenshotLocation =  Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), "temp.png");
 
             using (MagickImageCollection images = new MagickImageCollection())
             {
@@ -36,14 +37,19 @@ namespace OSIRT.Helpers
                     images.Add(first);
                 }
 
-              
-
                 using (MagickImage result = images.AppendVertically())
                 {
-                    e.Window.Message = "Building Screenshot... Please Wait (This can take a couple of minutes)";
-                    result.Write(imageLocation);
-                    return imageLocation;
+                    e.Window.Message = "Building Screenshot... Please Wait" + System.Environment.NewLine + "This can take a couple of minutes.";
+                    try
+                    {
+                        result.Write(screenshotLocation);
+                    } catch (MagickImageErrorException err)
+                    {
+                        Debug.WriteLine($"Error: {err}");
+                    }
+                   
                 }
+        
             }
         }
     }

@@ -21,11 +21,7 @@ namespace OSIRT.Helpers
         /// </summary>
         public static string ContainerLocation
         {
-            get
-            {
-                return Path.Combine(CasePath + "\\" + CaseContainerName);
-            }
-
+            get { return Path.Combine(CasePath, CaseContainerName); }
         }
 
         public class Directories
@@ -50,17 +46,17 @@ namespace OSIRT.Helpers
 
 
 
-            public static List<string> GetDirectories()
+            public static List<string> GetCaseDirectories()
             {
                 List<string> values = new List<string>(directories.Values);
                 return values;
             }
 
-            public static string GetDirectory(string key)
+            public static string GetSpecifiedCaseDirectory(string key)
             {
                 string value = "";
                 if (!directories.TryGetValue(key, out value))
-                    throw new KeyNotFoundException(String.Format("The key {0} does not exist.", key));
+                    throw new KeyNotFoundException($"The key {key} does not exist.");
 
                 return value;
             }

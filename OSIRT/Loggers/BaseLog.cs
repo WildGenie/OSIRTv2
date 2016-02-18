@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT
+namespace OSIRT.Loggers
 {
     public class BaseLog
     {
@@ -12,6 +12,12 @@ namespace OSIRT
         private string time;
         private string date;
         private string action;
+
+
+        public BaseLog(string action)
+        {
+            Action = action;
+        }
 
         public string Action
         {

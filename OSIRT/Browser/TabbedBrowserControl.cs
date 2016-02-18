@@ -67,12 +67,13 @@ namespace OSIRT.Browser
             uiStatusLabel.Text = CurrentBrowser.StatusText;
         }
 
-        public string GetFullPageScreenshot()
+        public void GetFullPageScreenshot()
         {
             if (CurrentTab == null)
                 throw new NullReferenceException("No tabs to screenshot"); //TODO: Handle this better
 
-            return CurrentTab.Browser.GetFullpageScreenshot();
+            CurrentTab.Browser.GetFullpageScreenshot(); 
+            //return CurrentTab.Browser.GetFullpageScreenshot();
         }
 
         public void NewTab(string url)

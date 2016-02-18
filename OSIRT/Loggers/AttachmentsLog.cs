@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace OSIRT.Loggers
 {
-    class AttachmentsLog
+    class AttachmentsLog : BaseLog
     {
+
+        public AttachmentsLog(string action, string hash, string notes) : base(action)
+        {
+
+        }
 
         public string Hash { get; set; }
         public string Notes { get; set; }

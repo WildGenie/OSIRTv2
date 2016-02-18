@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OSIRT.Loggers
 {
-    public class OsirtActionsLog : BaseLog
+    public class OsirtActionsLog /*: BaseLog */
     {
         private string hash = "";
 
