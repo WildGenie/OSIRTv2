@@ -8,18 +8,19 @@ namespace OSIRT.Helpers
     class ImageDiskCache 
     {
         public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
-        private int count = 0;
         public ImageDiskCache()
         {
             DirectoryInfo dirInfo = Directory.CreateDirectory(CacheLocation);
             dirInfo.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
         }
 
-        public void AddImage(Image image)
+        public void AddImage(int count, Image image)
         {
-            count++;
-            image.Save(Path.Combine(CacheLocation, count + ".png"), ImageFormat.Png);
-            image.Dispose();
+
+            using (image)
+            {
+                image.Save(Path.Combine(CacheLocation, count + ".png"), ImageFormat.Png);
+            }
         }
 
         public void RemoveImagesInCache()

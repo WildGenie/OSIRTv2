@@ -25,7 +25,7 @@ namespace OSIRT.Browser
     {
 
         private Image bitmap;
-        private int MaxScrollHeight { get { return 20000; } }
+        private int MaxScrollHeight { get { return 15000; } }
 
         public ExtendedBrowser()
         {
@@ -109,14 +109,7 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay();
-
-
-                    cache.AddImage(GetCurrentViewScreenshot());
-
-                    //using (Bitmap snap = GetCurrentViewScreenshot())
-                    //{
-                    //    snap.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
-                    //}
+                    cache.AddImage(count, GetCurrentViewScreenshot());
                 }
                 else //TODO: what if it's exactly divisible?
                 {
@@ -140,7 +133,7 @@ namespace OSIRT.Browser
                     {
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
                         //target.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
-                        cache.AddImage(GetCurrentViewScreenshot());
+                        cache.AddImage(count, GetCurrentViewScreenshot());
                     }
 
                 }
@@ -161,8 +154,11 @@ namespace OSIRT.Browser
            
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             cache.RemoveImagesInCache();
-           ImagePreviewerForm previewer = new ImagePreviewerForm();
-            previewer.Show();
+
+            using (ImagePreviewerForm previewer = new ImagePreviewerForm())
+            {
+                previewer.ShowDialog();
+            }
 
          }
 
@@ -190,8 +186,14 @@ namespace OSIRT.Browser
             this.ToggleScrollbars(true);
 
 
-            ScreenshotHelper.SaveScreenshot(screenshot, "image.png");
+            
 
+            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(new Bitmap(screenshot)))
+            {
+                previewForm.ShowDialog();
+            }
+
+            ScreenshotHelper.SaveScreenshot(screenshot, "image.png");
 
             //bitmap = @"D:/GDI_SAVE.png";
         }

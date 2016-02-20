@@ -17,6 +17,8 @@ namespace OSIRT.Loggers
         public BaseLog(string action)
         {
             Action = action;
+            Date = DateTime.Now.ToString("yyyy-MM-dd");
+            Time = DateTime.Now.ToString("HH:mm:ss");
         }
 
         public string Action
@@ -25,7 +27,7 @@ namespace OSIRT.Loggers
             {
                 return this.action;
             }
-            set
+            private set
             {
                 this.action = value;
             }
@@ -34,27 +36,12 @@ namespace OSIRT.Loggers
 
         public string Date
         {
-            get
-            {
-                return DateTime.Now.ToString("yyyy-MM-dd");
-            }
-            set
-            {
-                this.date = value;
-            }
-           
+            get; private set;
         }
 
         public string Time
         {
-            get
-            {
-                return DateTime.Now.ToString("HH:mm:ss");
-            }
-            set
-            {
-                this.time = value;
-            }
+            get;  private set;
         }
 
     }

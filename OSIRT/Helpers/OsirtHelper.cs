@@ -13,28 +13,33 @@ namespace OSIRT.Database
 
         public static bool ValidCaseContainer(string containerFile)
         {
+            var directories = Directory.EnumerateDirectories(containerFile, "*", SearchOption.AllDirectories);
 
-            
             //TODO: Fix this mess!
             string[] files = Directory.GetDirectories(containerFile,"*", SearchOption.AllDirectories);
-
-
-
-
-            List<string> tempFiles = new List<string>();
-
-            foreach (string file in files)
-            {
-                tempFiles.Add(file.Remove(0, containerFile.Length).Trim('\\'));
-            }
-
             string[] expectedFiles = Constants.Directories.GetCaseDirectories().ToArray();
-            Array.Sort(expectedFiles);
-            Array.Sort(tempFiles.ToArray());
 
 
 
-            return Enumerable.SequenceEqual(tempFiles, expectedFiles); ;
+
+
+
+
+            return false;
+            //List<string> tempFiles = new List<string>();
+
+            //foreach (string file in directories)
+            //{
+            //    tempFiles.Add(file.Remove(0, containerFile.Length).Trim('\\'));
+            //}
+
+            //string[] expectedFiles = Constants.Directories.GetCaseDirectories().ToArray();
+            //Array.Sort(expectedFiles);
+            //Array.Sort(tempFiles.ToArray());
+
+
+
+            //return Enumerable.SequenceEqual(tempFiles, expectedFiles); ;
         }
 
     }

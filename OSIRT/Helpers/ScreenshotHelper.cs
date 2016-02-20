@@ -16,7 +16,9 @@ namespace OSIRT.Database
         {
             using (screenshot)
             {
-                screenshot.Save(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name), ImageFormat.Png);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name);
+                Debug.WriteLine("-------PATH----------: " + path);
+                screenshot.Save(path, ImageFormat.Png);
             }
 
         }

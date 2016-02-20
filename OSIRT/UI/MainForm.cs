@@ -17,6 +17,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Compression;
+using OSIRT.Helpers;
+
 namespace OSIRT
 {
     public partial class MainForm : Form
@@ -54,13 +56,19 @@ namespace OSIRT
                 if (result != DialogResult.OK)
                     return;
 
+                //TODO: Validate this is a valid case container
                 string caseContainer = fbd.SelectedPath;
+                DirectoryInfo parentDir = Directory.GetParent(caseContainer);
+                Constants.CasePath = parentDir.FullName;
+                Constants.CaseContainerName = Path.GetFileName(caseContainer);
+
+                ShowBrowserPanel();
 
 
-                if(OsirtHelper.ValidCaseContainer(caseContainer))
-                {
-                    MessageBox.Show("Valid");
-                }
+                //if(OsirtHelper.ValidCaseContainer(caseContainer))
+                //{
+                //    MessageBox.Show("Valid");
+                //}
 
             }
         }
@@ -74,6 +82,11 @@ namespace OSIRT
         }
 
         protected void caseDetailsPanel_NextClick(object sender, EventArgs e)
+        {
+            ShowBrowserPanel();
+        }
+
+        private void ShowBrowserPanel()
         {
             this.Controls.Clear();
             BrowserPanel browserPanel = new BrowserPanel();
