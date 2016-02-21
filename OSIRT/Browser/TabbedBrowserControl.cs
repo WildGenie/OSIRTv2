@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using OSIRT.UI;
+using OSIRT.Helpers;
 
 namespace OSIRT.Browser
 {
@@ -58,8 +61,25 @@ namespace OSIRT.Browser
             uiBrowserTabControl.TabPages.Add(tab);
             uiBrowserTabControl.SelectedTab = tab;
             //TODO: Unsubscribe from this event once tab has closed?
-            //CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
+            CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
+            CurrentBrowser.ThrowEvent += DisplayImagePreviewer;
+
+
             return tab;
+        }
+
+        private void DisplayImagePreviewer(object sender, EventArgs e)
+        {
+            
+
+            ImagePreviewerForm previewForm = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"));
+            DialogResult res =  previewForm.ShowDialog();
+            
+            if(res != DialogResult.OK)
+            {
+
+            }
+
         }
 
         void Browser_StatusTextChanged(object sender, EventArgs e)

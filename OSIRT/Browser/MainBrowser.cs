@@ -24,7 +24,9 @@ namespace OSIRT.Browser
     public class ExtendedBrowser : WebBrowser
     {
 
-        private Image bitmap;
+        public delegate void EventHandler(object sender, EventArgs args);
+        public event EventHandler ThrowEvent = delegate { };
+
         private int MaxScrollHeight { get { return 15000; } }
 
         public ExtendedBrowser()
@@ -43,9 +45,6 @@ namespace OSIRT.Browser
             Logger.Log(new WebsiteLog(Url.AbsoluteUri));
 
         }
-
-
-
 
         /// <summary>
         /// Gets the current viewport of the browser
@@ -123,7 +122,6 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay();
-                    //Thread.Sleep(500);
 
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
@@ -132,7 +130,6 @@ namespace OSIRT.Browser
                     using (Graphics g = Graphics.FromImage(target))
                     {
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
-                        //target.Save(@"D:/comb/" + count + ".png", ImageFormat.Png);
                         cache.AddImage(count, GetCurrentViewScreenshot());
                     }
 
@@ -153,18 +150,14 @@ namespace OSIRT.Browser
 
            
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
-            cache.RemoveImagesInCache();
+            //cache.RemoveImagesInCache();
 
-            using (ImagePreviewerForm previewer = new ImagePreviewerForm())
-            {
-                previewer.ShowDialog();
-            }
-
-         }
+            ThrowEvent(this, new EventArgs());
+        }
 
         private void GetScreenshot(object sender, WaitWindowEventArgs e)
         {
-            DirectoryInfo directory = new DirectoryInfo(ImageDiskCache.CacheLocation);
+            DirectoryInfo directory = new DirectoryInfo(Constants.CacheLocation);
             FileSystemInfo[] files = directory.GetFileSystemInfos();
             ScreenshotHelper.CombineScreenshot(files, e);
             
@@ -176,26 +169,16 @@ namespace OSIRT.Browser
             int width = ScrollWidth();
             int height = ScrollHeight();
 
-            Debug.WriteLine($"FULLPAGE: Width: {width}. Height: {height}");
             this.Dock = DockStyle.None;
             this.ToggleScrollbars(false);
             this.Size = new Size(width, height);
-            Bitmap screenshot = new Bitmap(width, height);
-            NativeMethods.GetImage(this.ActiveXInstance, screenshot, Color.Black);
-            this.Dock = DockStyle.Fill;
-            this.ToggleScrollbars(true);
-
-
-            
-
-            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(new Bitmap(screenshot)))
+            using (Bitmap screenshot = new Bitmap(width, height))
             {
-                previewForm.ShowDialog();
+                NativeMethods.GetImage(this.ActiveXInstance, screenshot, Color.Black);
+                this.Dock = DockStyle.Fill;
+                this.ToggleScrollbars(true);
+                ScreenshotHelper.SaveScreenshotToCache(screenshot);
             }
-
-            ScreenshotHelper.SaveScreenshot(screenshot, "image.png");
-
-            //bitmap = @"D:/GDI_SAVE.png";
         }
 
         public void GetFullpageScreenshot()
@@ -203,14 +186,14 @@ namespace OSIRT.Browser
 
             if (ScrollHeight() > MaxScrollHeight)
             {
-                FullpageScreenshotByScrolling();
+                FullpageScreenshotByScrolling(); 
             }
             else
             {
                 FullpageScreenshotGDI();
+                ThrowEvent(this, new EventArgs());
             }
-            //return bitmap;
-
+            
         }
 
         private void ScrollTo(int x, int y)
@@ -304,7 +287,7 @@ namespace OSIRT.Browser
         {
             string property = toggle ? "visible" : "hidden";
             string attribute = toggle ? "yes" : "no";
-            this.Document.Body.Style = String.Format("overflow:{0}", property);
+            this.Document.Body.Style = string.Format("overflow:{0}", property);
             this.Document.Body.SetAttribute("scroll", attribute);
         }
 

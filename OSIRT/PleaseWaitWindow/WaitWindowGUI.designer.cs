@@ -44,7 +44,7 @@ namespace Jacksonsoft
             // 
             this.Marque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Marque.Location = new System.Drawing.Point(12, 46);
+            this.Marque.Location = new System.Drawing.Point(12, 56);
             this.Marque.MarqueeAnimationSpeed = 1;
             this.Marque.Name = "Marque";
             this.Marque.Size = new System.Drawing.Size(276, 12);
@@ -68,7 +68,7 @@ namespace Jacksonsoft
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(300, 70);
+            this.ClientSize = new System.Drawing.Size(300, 82);
             this.Controls.Add(this.MessageLabel);
             this.Controls.Add(this.Marque);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

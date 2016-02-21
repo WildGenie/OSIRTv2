@@ -148,7 +148,7 @@
             this.uiCaseNotesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiCaseNotesButton.Name = "uiCaseNotesButton";
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
-            this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
+            //this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
             // uiAddTabButton
             // 
@@ -169,7 +169,7 @@
             this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
             this.uiBrowserMenuStrip.Size = new System.Drawing.Size(838, 24);
             this.uiBrowserMenuStrip.TabIndex = 0;
-            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
+            //this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -184,7 +184,7 @@
             this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
             this.newTabToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
-            this.newTabToolStripMenuItem.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
+            //this.newTabToolStripMenuItem.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
             // 
             // uiTabbedBrowserControl
             // 

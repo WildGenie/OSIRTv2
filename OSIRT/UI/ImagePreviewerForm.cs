@@ -48,26 +48,45 @@ namespace OSIRT.UI
             //TODO: very large images cause this to just die.
             //LoadImage(Image.FromFile(@"D:/FinalImage.png"));
             //Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), "temp.png")
-            LoadImage(image);
+
+            int width, height;
+            using(MagickImage image = new MagickImage(imagePath))
+            {
+                width = image.Width;
+                height = image.Height;
+            }
+
+            if(height < 10000)
+            {
+                LoadImage(Image.FromFile(imagePath));
+            }
+            else
+            {
+                LoadImage(Image.FromFile(Path.Combine(Application.StartupPath, "cant.png")));
+            }
+
+
+            
 
         }
 
         private void LoadImage(Image image)
         {
-         
             imageBox.Image = image;
             imageBox.ZoomToFit();
             //imageBox.Refresh();
-            //imageBox.ZoomToFit();
         }
 
+      
 
 
         private void ImagePreviewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             imageBox.Image.Dispose();
-            imageBox.Dispose();
+            //imageBox.Dispose();
         }
+
+     
 
         private void ImagePreviewerForm_Load(object sender, EventArgs e)
         {

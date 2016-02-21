@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace OSIRT.Database
 {
@@ -25,9 +26,11 @@ namespace OSIRT.Database
             CreateCaseDatabase();
             tables.Create();
             AddCaseDetailsToDB();
+
             //let's zip it up
             //CompressContainer();
         }
+
 
         private void CompressContainer()
         {

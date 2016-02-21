@@ -4,19 +4,44 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
+
+        public static FileStream WaitForFile(string fullPath)
+        {
+            for (int numTries = 0; numTries < 10; numTries++)
+            {
+                try
+                {
+                    FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite,FileShare.None);
+
+                    fs.ReadByte();
+                    fs.Seek(0, SeekOrigin.Begin);
+
+                    return fs;
+                }
+                catch (IOException)
+                {
+                    Thread.Sleep(50);
+                }
+            }
+
+            return null;
+        }
+
+
 
         public static bool ValidCaseContainer(string containerFile)
         {
             var directories = Directory.EnumerateDirectories(containerFile, "*", SearchOption.AllDirectories);
 
             //TODO: Fix this mess!
-            string[] files = Directory.GetDirectories(containerFile,"*", SearchOption.AllDirectories);
+            string[] files = Directory.GetDirectories(containerFile, "*", SearchOption.AllDirectories);
             string[] expectedFiles = Constants.Directories.GetCaseDirectories().ToArray();
 
 
