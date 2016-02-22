@@ -24,8 +24,8 @@ namespace OSIRT.Browser
     public class ExtendedBrowser : WebBrowser
     {
 
-        public delegate void EventHandler(object sender, EventArgs args);
-        public event EventHandler ThrowEvent = delegate { };
+        public delegate void EventHandler(object sender, ScreenshotCompletedArgs args);
+        public event EventHandler Screenshot_Completed = delegate { };
 
         private int MaxScrollHeight { get { return 15000; } }
 
@@ -152,7 +152,7 @@ namespace OSIRT.Browser
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             //cache.RemoveImagesInCache();
 
-            ThrowEvent(this, new EventArgs());
+            Screenshot_Completed(this, new ScreenshotCompletedArgs(new ScreenshotDetails("www.example.com", "01/01/1970 11:59", "ABCDEF")));
         }
 
         private void GetScreenshot(object sender, WaitWindowEventArgs e)
@@ -191,7 +191,7 @@ namespace OSIRT.Browser
             else
             {
                 FullpageScreenshotGDI();
-                ThrowEvent(this, new EventArgs());
+                Screenshot_Completed(this, new ScreenshotCompletedArgs(new ScreenshotDetails("www.example.com", "01/01/1970 11:59", "ABCDEF"))); ;
             }
             
         }

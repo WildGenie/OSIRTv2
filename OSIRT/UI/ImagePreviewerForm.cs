@@ -20,6 +20,7 @@ namespace OSIRT.UI
         private ImageBox imageBox;
         private Image image;
         private string imagePath;
+        private ScreenshotDetails details;
 
 
         public ImagePreviewerForm()
@@ -27,9 +28,10 @@ namespace OSIRT.UI
             InitializeComponent();
         }
 
-        public ImagePreviewerForm(string imagePath) : this()
+        public ImagePreviewerForm(string imagePath, ScreenshotDetails details) : this()
         {
             this.imagePath = imagePath;
+            this.details = details;
         }
 
         public ImagePreviewerForm(Image image) : this()
@@ -44,6 +46,11 @@ namespace OSIRT.UI
             
             imageBox.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(imageBox);
+
+            uiURLTextBox.Text = details.URL;
+            uiHashTextBox.Text = details.Hash;
+            uiDateAndTimeTextBox.Text = details.DateAndTime;
+
 
             //TODO: very large images cause this to just die.
             //LoadImage(Image.FromFile(@"D:/FinalImage.png"));
@@ -90,7 +97,25 @@ namespace OSIRT.UI
 
         private void ImagePreviewerForm_Load(object sender, EventArgs e)
         {
+          
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            using (MagickImage image = new MagickImage(imagePath))
+            {
+
+                using (MagickImage watermark = new MagickImage(@"C:\Users\Joe\Documents\ccculogo.gif"))
+                {
+                    image.Composite(watermark, Gravity.Southeast, CompositeOperator.Over);
+
+                    watermark.Evaluate(Channels.Alpha, EvaluateOperator.Divide, 1);
+
+               
+                }
+                image.Format = MagickFormat.Pdf;
+                image.Write(@"C:\Users\Joe\Documents\testimage.pdf");
+            }
         }
     }
 }

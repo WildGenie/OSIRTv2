@@ -126,6 +126,7 @@
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
+    <Compile Include="ScreenshotDetailsWrapper.cs" />
     <Compile Include="UI\AuditLogUI\AuditLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +184,7 @@
     <Compile Include="UI\AuditLogUI\TabbedAuditLogControl.Designer.cs">
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ScreenshotCompletedArgs.cs" />
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
     <EmbeddedResource Include="Browser\TabbedBrowserControl.resx">

@@ -62,17 +62,17 @@ namespace OSIRT.Browser
             uiBrowserTabControl.SelectedTab = tab;
             //TODO: Unsubscribe from this event once tab has closed?
             CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
-            CurrentBrowser.ThrowEvent += DisplayImagePreviewer;
+            CurrentBrowser.Screenshot_Completed += DisplayImagePreviewer;
 
 
             return tab;
         }
 
-        private void DisplayImagePreviewer(object sender, EventArgs e)
+        private void DisplayImagePreviewer(object sender, ScreenshotCompletedArgs e)
         {
-            
+            ScreenshotDetails details = e.ScreenshotDetails;
 
-            ImagePreviewerForm previewForm = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"));
+            ImagePreviewerForm previewForm = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"), details);
             DialogResult res =  previewForm.ShowDialog();
             
             if(res != DialogResult.OK)
