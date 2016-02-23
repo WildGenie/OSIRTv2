@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OSIRT.UI
 {
-    public class ScreenshotCompletedArgs : EventArgs
+    public class ScreenshotCompletedEventArgs : EventArgs
     {
 
-        public ScreenshotCompletedArgs(ScreenshotDetails details)
+        public ScreenshotCompletedEventArgs(ScreenshotDetails details)
         {
             ScreenshotDetails = details;
         } 

@@ -18,7 +18,7 @@ namespace OSIRT.Browser
     public partial class TabbedBrowserControl : UserControl
     {
 
-
+        private ToolStripComboBox addressBar;
 
         public TabbedBrowserControl()
         {
@@ -62,23 +62,33 @@ namespace OSIRT.Browser
             uiBrowserTabControl.SelectedTab = tab;
             //TODO: Unsubscribe from this event once tab has closed?
             CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
-            CurrentBrowser.Screenshot_Completed += DisplayImagePreviewer;
+            CurrentBrowser.Navigated += CurrentBrowser_Navigated;
+            CurrentBrowser.Screenshot_Completed += Screenshot_Completed;
 
 
             return tab;
         }
 
-        private void DisplayImagePreviewer(object sender, ScreenshotCompletedArgs e)
+        private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
+        {
+            //TODO: will need to reset this text when tabs are switched back
+            string url = CurrentBrowser.Url.AbsoluteUri;
+            addressBar.Text = url;
+          
+        }
+
+        private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
         {
             ScreenshotDetails details = e.ScreenshotDetails;
 
             ImagePreviewerForm previewForm = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"), details);
             DialogResult res =  previewForm.ShowDialog();
-            
-            if(res != DialogResult.OK)
-            {
 
-            }
+            if (res != DialogResult.OK)
+                return;
+
+            //Log
+
 
         }
 
@@ -96,8 +106,9 @@ namespace OSIRT.Browser
             //return CurrentTab.Browser.GetFullpageScreenshot();
         }
 
-        public void NewTab(string url)
+        public void NewTab(string url, ToolStripComboBox urlBar)
         {
+            addressBar =  urlBar;
             CreateTab();
             Navigate(url);
         }

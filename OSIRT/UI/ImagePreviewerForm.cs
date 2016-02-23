@@ -1,15 +1,8 @@
 ﻿using Cyotek.Windows.Forms;
 using ImageMagick;
-using OSIRT.Helpers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OSIRT.UI
@@ -49,7 +42,7 @@ namespace OSIRT.UI
 
             uiURLTextBox.Text = details.URL;
             uiHashTextBox.Text = details.Hash;
-            uiDateAndTimeTextBox.Text = details.DateAndTime;
+            uiDateAndTimeTextBox.Text = details.Date + " " + details.Time;
 
 
             //TODO: very large images cause this to just die.
@@ -67,7 +60,7 @@ namespace OSIRT.UI
             {
                 LoadImage(Image.FromFile(imagePath));
             }
-            else
+            else //too big, display a panel with a label and link to open in the system's default application
             {
                 LoadImage(Image.FromFile(Path.Combine(Application.StartupPath, "cant.png")));
             }

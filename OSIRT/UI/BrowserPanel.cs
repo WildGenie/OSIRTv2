@@ -26,14 +26,10 @@ namespace OSIRT.UI
         {
             this.Dock = DockStyle.Fill;
             uiBrowserToolStrip.ImageScalingSize = new Size(32, 32);
+            uiURLComboBox.KeyDown += UiURLComboBox_KeyDown;
         }
 
-        private void uiAddTabButton_Click(object sender, EventArgs e)
-        {
-            uiTabbedBrowserControl.NewTab("http://google.com");
-        }
-
-        private void uiBrowserToolStrip_KeyDown(object sender, KeyEventArgs e)
+        private void UiURLComboBox_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -43,12 +39,16 @@ namespace OSIRT.UI
             }
         }
 
+        private void uiAddTabButton_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.NewTab("http://google.com", uiURLComboBox);
+        }
+
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
             uiTabbedBrowserControl.GetFullPageScreenshot();
         }
 
-  
     }
 }

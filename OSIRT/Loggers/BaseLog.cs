@@ -9,8 +9,6 @@ namespace OSIRT.Loggers
     public class BaseLog
     {
 
-        private string time;
-        private string date;
         private string action;
 
 

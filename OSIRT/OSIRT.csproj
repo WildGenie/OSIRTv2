@@ -126,7 +126,7 @@
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
-    <Compile Include="ScreenshotDetailsWrapper.cs" />
+    <Compile Include="ScreenshotDetails.cs" />
     <Compile Include="UI\AuditLogUI\AuditLog.cs">
       <SubType>Form</SubType>
     </Compile>
