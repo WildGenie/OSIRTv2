@@ -26,7 +26,7 @@ namespace OSIRT.Loggers
                 toLog.Add("file_name", webpageAction.FileName);
                 toLog.Add("hash", webpageAction.Hash);
                 toLog.Add("note", webpageAction.Note);
-                handler.Insert("webpage_log", toLog);
+                handler.Insert("webpage_actions", toLog);
             }
             else if(logType == typeof(WebsiteLog))
             {

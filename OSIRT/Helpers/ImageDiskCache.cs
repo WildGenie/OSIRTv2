@@ -16,9 +16,9 @@ namespace OSIRT.Helpers
                 DirectoryInfo dirInfo = Directory.CreateDirectory(Constants.CacheLocation);
                 dirInfo.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             }
-            catch (Exception e)
+            catch (Exception ex) when (ex is IOException || ex is UnauthorizedAccessException)
             {
-                MessageBox.Show($"Unable to create temporary image cache: {e}");
+                MessageBox.Show($"Unable to create temporary image cache. Reason: {ex}");
             }
 
         }
@@ -27,7 +27,14 @@ namespace OSIRT.Helpers
         {
             using (image)
             {
-                image.Save(Path.Combine(Constants.CacheLocation, name + ".png"), ImageFormat.Png);
+                try
+                {
+                    image.Save(Path.Combine(Constants.CacheLocation, name + ".png"), ImageFormat.Png);
+                }
+                catch (System.Runtime.InteropServices.ExternalException e)
+                {
+                    MessageBox.Show($"Unable to add image temporary image cache. Reason: {e}");
+                }
             }
         }
 

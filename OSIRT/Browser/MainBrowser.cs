@@ -182,7 +182,7 @@ namespace OSIRT.Browser
             }
         }
 
-        public void GetFullpageScreenshot()
+        public void GenerateFullpageScreenshot()
         {
 
             if (ScrollHeight() > MaxScrollHeight)

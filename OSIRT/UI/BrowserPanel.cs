@@ -20,6 +20,7 @@ namespace OSIRT.UI
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
             ConfigureUI();
+            AddNewTab();
         }
 
         private void ConfigureUI()
@@ -27,6 +28,7 @@ namespace OSIRT.UI
             this.Dock = DockStyle.Fill;
             uiBrowserToolStrip.ImageScalingSize = new Size(32, 32);
             uiURLComboBox.KeyDown += UiURLComboBox_KeyDown;
+
         }
 
         private void UiURLComboBox_KeyDown(object sender, KeyEventArgs e)
@@ -41,7 +43,7 @@ namespace OSIRT.UI
 
         private void uiAddTabButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.NewTab("http://google.com", uiURLComboBox);
+            AddNewTab();
         }
 
 
@@ -50,5 +52,14 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.GetFullPageScreenshot();
         }
 
+        private void AddNewTab()
+        {
+            uiTabbedBrowserControl.NewTab("http://google.com", uiURLComboBox);
+        }
+
+        private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 }

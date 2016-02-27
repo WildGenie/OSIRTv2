@@ -11,16 +11,16 @@ namespace OSIRT.Browser
     public class BrowserTab : TabPage
     {
         public ExtendedBrowser Browser { get; private set; }
-       
+        public string CurrentURL { get; set; }
 
         public BrowserTab() : base()
         {
             Browser = new ExtendedBrowser();
             Browser.Dock = DockStyle.Fill;
             Browser.DocumentTitleChanged += Browser_DocumentTitleChanged;
-          
+           
 
-            this.Controls.Add(Browser);
+            Controls.Add(Browser);
         }
 
       

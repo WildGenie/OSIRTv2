@@ -76,7 +76,6 @@
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(838, 25);
             this.uiBrowserToolStrip.TabIndex = 1;
-        
             // 
             // uiHomeButton
             // 
@@ -140,7 +139,6 @@
             // 
             this.uiURLComboBox.Name = "uiURLComboBox";
             this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
-      
             // 
             // uiCaseNotesButton
             // 
@@ -169,7 +167,7 @@
             this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
             this.uiBrowserMenuStrip.Size = new System.Drawing.Size(838, 24);
             this.uiBrowserMenuStrip.TabIndex = 0;
-        
+            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -192,7 +190,6 @@
             this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
             this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
             this.uiTabbedBrowserControl.TabIndex = 2;
-      
             // 
             // BrowserPanel
             // 

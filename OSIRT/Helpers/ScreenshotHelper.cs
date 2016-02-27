@@ -40,10 +40,14 @@ namespace OSIRT.Helpers
             return saved;
         }
 
-
+        /// <summary>
+        /// Combines the screenshots into one contiguous screenshot
+        /// </summary>
+        /// <param name="files">The files (images) to combine</param>
+        /// <param name="e">For UX, an output progress message</param>
         public static void CombineScreenshot(FileSystemInfo[] files, WaitWindowEventArgs e)
         {
-            //string screenshotLocation =  Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), "temp.png");
+           
 
             string screenshotLocation = Path.Combine(Constants.CacheLocation, "temp.png");
 
