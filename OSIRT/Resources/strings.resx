@@ -171,4 +171,22 @@
   <data name="case_location_desc" xml:space="preserve">
     <value>Select the location for the case container</value>
   </data>
+  <data name="AttachmentAction" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="DownloadedAction" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="LoadedAction" xml:space="preserve">
+    <value>Loaded</value>
+  </data>
+  <data name="ScreenshotAction" xml:space="preserve">
+    <value>Screenshot</value>
+  </data>
+  <data name="SnippetAction" xml:space="preserve">
+    <value>Snippet</value>
+  </data>
+  <data name="VideoAction" xml:space="preserve">
+    <value>Video</value>
+  </data>
 </root>

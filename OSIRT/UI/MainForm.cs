@@ -61,14 +61,7 @@ namespace OSIRT
                 DirectoryInfo parentDir = Directory.GetParent(caseContainer);
                 Constants.CasePath = parentDir.FullName;
                 Constants.CaseContainerName = Path.GetFileName(caseContainer);
-
                 ShowBrowserPanel();
-
-
-                //if(OsirtHelper.ValidCaseContainer(caseContainer))
-                //{
-                //    MessageBox.Show("Valid");
-                //}
 
             }
         }

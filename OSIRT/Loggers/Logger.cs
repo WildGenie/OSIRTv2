@@ -7,6 +7,8 @@ namespace OSIRT.Loggers
 {
     public class Logger
     {
+        private Logger() { }
+
         public static void Log(BaseLog log)
         {
 

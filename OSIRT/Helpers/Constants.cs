@@ -12,7 +12,17 @@ namespace OSIRT.Helpers
     public class Constants
     {
 
+        //Actions
+        public static class Actions
+        {
+            public static string Screenshot { get { return strings.ScreenshotAction; } }
+            public static string Loaded { get { return strings.LoadedAction; } }
 
+        }
+
+
+
+        //Case container Directories
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
         public static string DatabaseFileName { get { return @"\\case.db"; } }
@@ -63,23 +73,6 @@ namespace OSIRT.Helpers
 
                 return value;
             }
-
-            //images
-            /*
-            public static string Screenshots { get { return @"\images\screenshots\"; } }
-            public static string Scraped { get { return @"\images\scraped\"; } }
-            public static string Snippet { get { return @"\images\snippets\"; } }
-            public static string Batchsnap { get { return @"\images\batchsnap\"; } }
-            public static string Saved { get { return @"\images\saved\"; } }
-
-
-            public static string Attachment { get { return @"\attachments\"; } }
-            public static string Video { get { return @"\videos\"; } }
-            public static string Download { get { return @"\downloads\"; } }
-            public static string SourceCode { get { return @"\downloads\source_code"; } }
-            public static string Report { get { return @"\reports\"; } }
-             */
-
 
 
         }

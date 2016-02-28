@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using OSIRT.UI;
 using OSIRT.Helpers;
-using System.Drawing.Drawing2D;
 using OSIRT.Loggers;
+using System.Diagnostics;
+using OSIRT.Properties;
 
 namespace OSIRT.Browser
 {
@@ -75,32 +69,33 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            //TODO: will need to reset this text when tabs are switched back
             CurrentTab.CurrentURL = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentURL;
-          
         }
 
         private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
         {
-            ScreenshotDetails details = e.ScreenshotDetails;
+    
+            //Log: Perhaps move this into the ImagePreviewer?
+            //TODO: Get Hash from user settings (fixed as sha1, for now)
+            //TODO: Have the wait window display while hashing
+            
 
-            ImagePreviewerForm previewForm = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"), details);
+            ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
+
+            //Debug.WriteLine("Algo: {0}. Hash: {1} ", Settings.Default.Hash, hash);
+            string tempImgPath = Path.Combine(Constants.CacheLocation, "temp.png");
+            ImagePreviewerForm previewForm = new ImagePreviewerForm(tempImgPath, details);
             DialogResult res =  previewForm.ShowDialog();
 
-            //Will need this check later, disable for now for testing
-               //if (res != DialogResult.OK)
-              //  return;
-
-            //Log: Perhaps move this into the ImagePreviewer?
-            HashService hashService = HashServiceFactory.Create("SHA1");
-            string hash = hashService.ToHex(hashService.ComputeHash(File.OpenRead(Path.Combine(Constants.CacheLocation, "temp.png"))));
-
-            MessageBox.Show("Hash: " + hash);
-
-            Logger.Log(new WebpageActionsLog("www.example.com", "Screenshot", hash, "temp.png", "Blah"));
+         
+            if (res != DialogResult.OK)
+                return;
 
 
+            Logger.Log(new WebpageActionsLog(CurrentBrowser.URL, Constants.Actions.Screenshot, "GET HASH", "temp.png", "This is an example note"));
+
+            //TODO: Delete image cache
         }
 
         void Browser_StatusTextChanged(object sender, EventArgs e)

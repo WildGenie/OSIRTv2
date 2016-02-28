@@ -25,61 +25,61 @@ namespace OSIRT.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string hash {
+        [global::System.Configuration.DefaultSettingValueAttribute("\"http://www.google.co.uk\"")]
+        public string HomeURL {
             get {
-                return ((string)(this["hash"]));
+                return ((string)(this["HomeURL"]));
             }
             set {
-                this["hash"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string url {
-            get {
-                return ((string)(this["url"]));
-            }
-            set {
-                this["url"] = value;
+                this["HomeURL"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool deleteCacheOnClose {
+        public bool DeleteCacheOnClose {
             get {
-                return ((bool)(this["deleteCacheOnClose"]));
+                return ((bool)(this["DeleteCacheOnClose"]));
             }
             set {
-                this["deleteCacheOnClose"] = value;
+                this["DeleteCacheOnClose"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool hashContainerOnClose {
+        public bool HashContainerOnClose {
             get {
-                return ((bool)(this["hashContainerOnClose"]));
+                return ((bool)(this["HashContainerOnClose"]));
             }
             set {
-                this["hashContainerOnClose"] = value;
+                this["HashContainerOnClose"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string hashContainerOnLoad {
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public string HashContainerOnLoad {
             get {
-                return ((string)(this["hashContainerOnLoad"]));
+                return ((string)(this["HashContainerOnLoad"]));
             }
             set {
-                this["hashContainerOnLoad"] = value;
+                this["HashContainerOnLoad"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MD5")]
+        public string Hash {
+            get {
+                return ((string)(this["Hash"]));
+            }
+            set {
+                this["Hash"] = value;
             }
         }
     }

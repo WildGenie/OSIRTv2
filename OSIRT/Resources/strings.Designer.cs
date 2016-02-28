@@ -61,6 +61,15 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Attachment.
+        /// </summary>
+        internal static string AttachmentAction {
+            get {
+                return ResourceManager.GetString("AttachmentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select the location for the case container.
         /// </summary>
         internal static string case_location_desc {
@@ -133,6 +142,15 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        internal static string DownloadedAction {
+            get {
+                return ResourceManager.GetString("DownloadedAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Evidence Reference.
         /// </summary>
         internal static string EvidenceReference {
@@ -196,6 +214,15 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loaded.
+        /// </summary>
+        internal static string LoadedAction {
+            get {
+                return ResourceManager.GetString("LoadedAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Load an OSIRT case to view its report. [NOT IMPLEMENTED].
         /// </summary>
         internal static string LoadReport {
@@ -219,6 +246,33 @@ namespace OSIRT.Resources {
         internal static string OperationName {
             get {
                 return ResourceManager.GetString("OperationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screenshot.
+        /// </summary>
+        internal static string ScreenshotAction {
+            get {
+                return ResourceManager.GetString("ScreenshotAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Snippet.
+        /// </summary>
+        internal static string SnippetAction {
+            get {
+                return ResourceManager.GetString("SnippetAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video.
+        /// </summary>
+        internal static string VideoAction {
+            get {
+                return ResourceManager.GetString("VideoAction", resourceCulture);
             }
         }
     }

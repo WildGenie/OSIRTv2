@@ -9,12 +9,12 @@ namespace OSIRT.UI
     public class ScreenshotCompletedEventArgs : EventArgs
     {
 
-        public ScreenshotCompletedEventArgs(ScreenshotDetails details)
+        public ScreenshotCompletedEventArgs()
         {
-            ScreenshotDetails = details;
+            //ScreenshotDetails = details;
         } 
 
-        public ScreenshotDetails ScreenshotDetails { get; private set; }
+        //public ScreenshotDetails ScreenshotDetails { get; private set; }
 
     }
 }

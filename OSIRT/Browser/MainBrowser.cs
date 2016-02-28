@@ -164,6 +164,14 @@ namespace OSIRT.Browser
             
         }
 
+        public string URL
+        {
+            get {
+                Debug.WriteLine("URL Main Browser: " + Url.AbsoluteUri);
+                return Url.AbsoluteUri;
+            }
+        }
+
 
         private void FullpageScreenshotGDI()
         {
@@ -199,7 +207,7 @@ namespace OSIRT.Browser
 
         private void FireScreenshotCompleteEvent()
         {
-            Screenshot_Completed(this, new ScreenshotCompletedEventArgs(new ScreenshotDetails(Url.AbsoluteUri, "ABCDEF")));
+            Screenshot_Completed(this, new ScreenshotCompletedEventArgs());
         }
 
         private void ScrollTo(int x, int y)

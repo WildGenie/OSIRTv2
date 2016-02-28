@@ -144,6 +144,12 @@
     <Compile Include="UI\BrowserPanel.Designer.cs">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CannotOpenImagePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CannotOpenImagePanel.Designer.cs">
+      <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\CaseDetailsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -201,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CannotOpenImagePanel.resx">
+      <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CaseDetailsPanel.resx">
       <DependentUpon>CaseDetailsPanel.cs</DependentUpon>

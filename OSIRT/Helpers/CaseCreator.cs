@@ -27,6 +27,10 @@ namespace OSIRT.Database
             tables.Create();
             AddCaseDetailsToDB();
 
+            //TODO: Check if this is per case or per application.
+            //Suspect it's per application
+            Properties.Settings.Default.Hash = caseDetails["hash_function"];
+
             //let's zip it up
             //CompressContainer();
         }
