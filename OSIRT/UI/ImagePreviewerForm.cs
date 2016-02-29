@@ -3,8 +3,10 @@ using ImageMagick;
 using OSIRT.Helpers;
 using OSIRT.Properties;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace OSIRT.UI
@@ -16,11 +18,34 @@ namespace OSIRT.UI
         private Image image;
         private string imagePath;
         private ScreenshotDetails details;
+        private readonly int MaxImageSize = 12500;
+        private BackgroundWorker backgroundWorker;
 
 
         public ImagePreviewerForm()
         {
             InitializeComponent();
+      
+        }
+
+        private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            uiHashTextBox.Text = e.Result.ToString();
+            uiHashCalcProgressBar.Visible = false;
+            uiCalculatingHashLabel.Text = $"{Settings.Default.Hash.ToUpperInvariant()} Hash";
+        }
+
+        private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            HashService hashService = HashServiceFactory.Create(Settings.Default.Hash);
+            string hash = "";
+            Thread.Sleep(2000); 
+            using (FileStream fileStream = File.OpenRead(imagePath))
+            {
+                hash = hashService.ToHex(hashService.ComputeHash(fileStream));
+            }
+
+            e.Result = hash;
         }
 
         public ImagePreviewerForm(string imagePath, ScreenshotDetails details) : this()
@@ -34,40 +59,67 @@ namespace OSIRT.UI
             this.image = image;
         }
 
+        private void InitialiseBackgroundWorker()
+        {
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += BackgroundWorker_DoWork;
+            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-           
+            InitialiseBackgroundWorker();
+            PopulateDetails();
+            Size imageSize = GetImageSize();
 
-            uiURLTextBox.Text = details.URL;
-            //uiHashTextBox.Text = details.Hash;
-            uiDateAndTimeTextBox.Text = details.Date + " " + details.Time;
+            if (imageSize.Height < MaxImageSize)
+            {
+                 CreateAnShowImageBox();
+            }
+            else //too big, display a panel with a label and link to open in the system's default application
+            {
+                ShowCannotOpenPanel();
+            }
 
+            backgroundWorker.RunWorkerAsync();
 
-            //TODO: very large images cause this to just die.
-  
+        }
 
+        private Size GetImageSize()
+        {
             int width, height;
-            using(MagickImage image = new MagickImage(imagePath))
+            using (MagickImage image = new MagickImage(imagePath))
             {
                 width = image.Width;
                 height = image.Height;
             }
 
-            if(height < 10000)
-            {
-                //TODO: Display a reduced sized image?
-                imageBox = new ImageBox();
-                imageBox.Dock = DockStyle.Fill;
-                uiSplitContainer.Panel2.Controls.Add(imageBox);
-                LoadImage(Image.FromFile(imagePath));
-            }
-            else //too big, display a panel with a label and link to open in the system's default application
-            {
-                CannotOpenImagePanel cantOpen = new CannotOpenImagePanel();
-                cantOpen.Dock = DockStyle.Fill;
-                uiSplitContainer.Panel2.Controls.Add(cantOpen);
-            }
+            return new Size(width, height);
+        }
+
+        private void PopulateDetails()
+        {
+            uiURLTextBox.Text = details.URL;
+            //uiHashTextBox.Text = details.Hash;
+            uiDateAndTimeTextBox.Text = details.Date + " " + details.Time;
+        }
+
+
+        private void CreateAnShowImageBox()
+        {
+            imageBox = new ImageBox();
+            imageBox.Dock = DockStyle.Fill;
+            uiSplitContainer.Panel2.Controls.Add(imageBox);
+            LoadImage(Image.FromFile(imagePath));
+        }
+
+        private void ShowCannotOpenPanel()
+        {
+            //TODO: Display a reduced sized image?
+            CannotOpenImagePanel cantOpen = new CannotOpenImagePanel();
+            cantOpen.Dock = DockStyle.Fill;
+            uiSplitContainer.Panel2.Controls.Add(cantOpen);
         }
 
         private void LoadImage(Image image)
@@ -77,33 +129,11 @@ namespace OSIRT.UI
             //imageBox.Refresh();
         }
 
-
-        private void uiCalcHashLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            HashService hashService = HashServiceFactory.Create(Settings.Default.Hash);
-            string hash = "";
-            //TODO: Check this is the right image!
-            string tempImgPath = Path.Combine(Constants.CacheLocation, "temp.png");
-            using (FileStream fileStream = File.OpenRead(tempImgPath))
-            {
-                hash = hashService.ToHex(hashService.ComputeHash(fileStream));
-            }
-
-            uiHashTextBox.Text = hash;
-        }
-
         private void ImagePreviewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
        
             imageBox?.Image.Dispose();
             //imageBox.Dispose();
-        }
-
-     
-
-        private void ImagePreviewerForm_Load(object sender, EventArgs e)
-        {
-          
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -120,6 +150,9 @@ namespace OSIRT.UI
             }
         }
 
-     
+        private void ImagePreviewerForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

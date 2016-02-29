@@ -76,19 +76,13 @@ namespace OSIRT.Browser
         private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
         {
     
-            //Log: Perhaps move this into the ImagePreviewer?
-            //TODO: Get Hash from user settings (fixed as sha1, for now)
-            //TODO: Have the wait window display while hashing
-            
-
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
 
             //Debug.WriteLine("Algo: {0}. Hash: {1} ", Settings.Default.Hash, hash);
-            string tempImgPath = Path.Combine(Constants.CacheLocation, "temp.png");
+            string tempImgPath = Path.Combine(Constants.CacheLocation, Constants.TempImgName);
             ImagePreviewerForm previewForm = new ImagePreviewerForm(tempImgPath, details);
             DialogResult res =  previewForm.ShowDialog();
 
-         
             if (res != DialogResult.OK)
                 return;
 
@@ -96,6 +90,7 @@ namespace OSIRT.Browser
             Logger.Log(new WebpageActionsLog(CurrentBrowser.URL, Constants.Actions.Screenshot, "GET HASH", "temp.png", "This is an example note"));
 
             //TODO: Delete image cache
+            //TODO: Display message in status bar to say it has been logged
         }
 
         void Browser_StatusTextChanged(object sender, EventArgs e)

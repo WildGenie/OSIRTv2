@@ -9,6 +9,10 @@ namespace OSIRT.Loggers
     {
         private Logger() { }
 
+        /// <summary>
+        /// Logs the specified 
+        /// </summary>
+        /// <param name="log"></param>
         public static void Log(BaseLog log)
         {
 

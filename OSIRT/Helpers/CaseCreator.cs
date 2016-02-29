@@ -28,9 +28,10 @@ namespace OSIRT.Database
             AddCaseDetailsToDB();
 
             //TODO: Check if this is per case or per application.
-            //Suspect it's per application
+            //Suspect it's per application.
+            //YES- IT'S PER APPLICATION! NEED TO SAVE IT TO THE CASE FILE AGAIN. XML
             Properties.Settings.Default.Hash = caseDetails["hash_function"];
-
+            Properties.Settings.Default.Save();
             //let's zip it up
             //CompressContainer();
         }

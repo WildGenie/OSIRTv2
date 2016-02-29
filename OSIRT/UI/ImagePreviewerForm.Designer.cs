@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             this.uiSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.uiCalculatingHashLabel = new System.Windows.Forms.Label();
+            this.uiHashCalcProgressBar = new System.Windows.Forms.ProgressBar();
+            this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.spellBox1 = new OSIRT.UI.SpellBox();
-            this.hostedComponent1 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -43,8 +44,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiImageNameComboBox = new System.Windows.Forms.ComboBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.uiCalcHashLinkLabel = new System.Windows.Forms.LinkLabel();
-            this.uiHashTextBox = new System.Windows.Forms.TextBox();
+            this.spellBox1 = new OSIRT.UI.SpellBox();
+            this.hostedComponent4 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).BeginInit();
             this.uiSplitContainer.Panel1.SuspendLayout();
             this.uiSplitContainer.SuspendLayout();
@@ -58,8 +59,9 @@
             // 
             // uiSplitContainer.Panel1
             // 
+            this.uiSplitContainer.Panel1.Controls.Add(this.uiCalculatingHashLabel);
+            this.uiSplitContainer.Panel1.Controls.Add(this.uiHashCalcProgressBar);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiHashTextBox);
-            this.uiSplitContainer.Panel1.Controls.Add(this.uiCalcHashLinkLabel);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiCancelButton);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiOKButton);
             this.uiSplitContainer.Panel1.Controls.Add(this.button1);
@@ -74,6 +76,34 @@
             this.uiSplitContainer.Size = new System.Drawing.Size(1067, 589);
             this.uiSplitContainer.SplitterDistance = 370;
             this.uiSplitContainer.TabIndex = 0;
+            // 
+            // uiCalculatingHashLabel
+            // 
+            this.uiCalculatingHashLabel.AutoSize = true;
+            this.uiCalculatingHashLabel.Location = new System.Drawing.Point(12, 166);
+            this.uiCalculatingHashLabel.Name = "uiCalculatingHashLabel";
+            this.uiCalculatingHashLabel.Size = new System.Drawing.Size(96, 13);
+            this.uiCalculatingHashLabel.TabIndex = 16;
+            this.uiCalculatingHashLabel.Text = "Calculating Hash...";
+            // 
+            // uiHashCalcProgressBar
+            // 
+            this.uiHashCalcProgressBar.Location = new System.Drawing.Point(15, 182);
+            this.uiHashCalcProgressBar.MarqueeAnimationSpeed = 30;
+            this.uiHashCalcProgressBar.Name = "uiHashCalcProgressBar";
+            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(324, 20);
+            this.uiHashCalcProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.uiHashCalcProgressBar.TabIndex = 15;
+            // 
+            // uiHashTextBox
+            // 
+            this.uiHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiHashTextBox.Location = new System.Drawing.Point(15, 182);
+            this.uiHashTextBox.Name = "uiHashTextBox";
+            this.uiHashTextBox.ReadOnly = true;
+            this.uiHashTextBox.Size = new System.Drawing.Size(324, 20);
+            this.uiHashTextBox.TabIndex = 14;
             // 
             // uiCancelButton
             // 
@@ -96,7 +126,7 @@
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
             this.uiOKButton.TabIndex = 11;
             this.uiOKButton.Text = "OK";
-            this.ToolTip.SetToolTip(this.uiOKButton, "Log this image");
+            this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
             // 
             // button1
@@ -108,17 +138,6 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // spellBox1
-            // 
-            this.spellBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.spellBox1.Location = new System.Drawing.Point(13, 247);
-            this.spellBox1.Multiline = true;
-            this.spellBox1.Name = "spellBox1";
-            this.spellBox1.Size = new System.Drawing.Size(326, 187);
-            this.spellBox1.TabIndex = 9;
-            this.spellBox1.WordWrap = true;
             // 
             // label5
             // 
@@ -186,26 +205,17 @@
             this.uiImageNameComboBox.Size = new System.Drawing.Size(324, 21);
             this.uiImageNameComboBox.TabIndex = 0;
             // 
-            // uiCalcHashLinkLabel
+            // spellBox1
             // 
-            this.uiCalcHashLinkLabel.AutoSize = true;
-            this.uiCalcHashLinkLabel.Location = new System.Drawing.Point(12, 166);
-            this.uiCalcHashLinkLabel.Name = "uiCalcHashLinkLabel";
-            this.uiCalcHashLinkLabel.Size = new System.Drawing.Size(79, 13);
-            this.uiCalcHashLinkLabel.TabIndex = 13;
-            this.uiCalcHashLinkLabel.TabStop = true;
-            this.uiCalcHashLinkLabel.Text = "Calculate Hash";
-            this.uiCalcHashLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.uiCalcHashLinkLabel_LinkClicked);
-            // 
-            // uiHashTextBox
-            // 
-            this.uiHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.spellBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiHashTextBox.Location = new System.Drawing.Point(15, 182);
-            this.uiHashTextBox.Name = "uiHashTextBox";
-            this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(324, 20);
-            this.uiHashTextBox.TabIndex = 14;
+            this.spellBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.spellBox1.Location = new System.Drawing.Point(13, 247);
+            this.spellBox1.Multiline = true;
+            this.spellBox1.Name = "spellBox1";
+            this.spellBox1.Size = new System.Drawing.Size(326, 187);
+            this.spellBox1.TabIndex = 9;
+            this.spellBox1.WordWrap = true;
             // 
             // ImagePreviewerForm
             // 
@@ -242,8 +252,11 @@
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Button uiOKButton;
         private System.Windows.Controls.TextBox hostedComponent2;
-        private System.Windows.Forms.LinkLabel uiCalcHashLinkLabel;
         private System.Windows.Controls.TextBox hostedComponent1;
         private System.Windows.Forms.TextBox uiHashTextBox;
+        private System.Windows.Controls.TextBox hostedComponent3;
+        private System.Windows.Forms.Label uiCalculatingHashLabel;
+        private System.Windows.Forms.ProgressBar uiHashCalcProgressBar;
+        private System.Windows.Controls.TextBox hostedComponent4;
     }
 }

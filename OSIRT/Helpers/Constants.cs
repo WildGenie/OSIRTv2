@@ -22,11 +22,14 @@ namespace OSIRT.Helpers
 
 
 
+
+
         //Case container Directories
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
         public static string DatabaseFileName { get { return @"\\case.db"; } }
         public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
+        public static readonly string TempImgName = "temp.png";
 
 
         /// <summary>
