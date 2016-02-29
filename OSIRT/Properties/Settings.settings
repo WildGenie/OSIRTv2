@@ -15,7 +15,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Hash" Type="System.String" Scope="User">
-      <Value Profile="(Default)">"MD5"</Value>
+      <Value Profile="(Default)">MD5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

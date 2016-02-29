@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
@@ -37,13 +38,13 @@
             this.uiRefreshButton = new System.Windows.Forms.ToolStripButton();
             this.uiScreenshotButton = new System.Windows.Forms.ToolStripButton();
             this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
+            this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
             this.uiAddTabButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -60,6 +61,14 @@
             this.uiBrowserPanel.Size = new System.Drawing.Size(838, 525);
             this.uiBrowserPanel.TabIndex = 0;
             // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            // 
             // uiBrowserToolStrip
             // 
             this.uiBrowserToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -69,6 +78,7 @@
             this.uiRefreshButton,
             this.uiScreenshotButton,
             this.uiVideoCaptureButton,
+            this.uiAttachmentToolStripButton,
             this.uiURLComboBox,
             this.uiCaseNotesButton,
             this.uiAddTabButton});
@@ -135,6 +145,15 @@
             this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
             this.uiVideoCaptureButton.ToolTipText = "Start Video Capture";
             // 
+            // uiAttachmentToolStripButton
+            // 
+            this.uiAttachmentToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiAttachmentToolStripButton.Image = global::OSIRT.Properties.Resources.attach;
+            this.uiAttachmentToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiAttachmentToolStripButton.Name = "uiAttachmentToolStripButton";
+            this.uiAttachmentToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiAttachmentToolStripButton.ToolTipText = "Attach item to this case";
+            // 
             // uiURLComboBox
             // 
             this.uiURLComboBox.Name = "uiURLComboBox";
@@ -183,14 +202,6 @@
             this.newTabToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
             // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
-            this.uiTabbedBrowserControl.TabIndex = 2;
-            // 
             // BrowserPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,5 +237,6 @@
         private System.Windows.Forms.ToolStripComboBox uiURLComboBox;
         private System.Windows.Forms.ToolStripButton uiCaseNotesButton;
         private System.Windows.Forms.ToolStripButton uiAddTabButton;
+        private System.Windows.Forms.ToolStripButton uiAttachmentToolStripButton;
     }
 }

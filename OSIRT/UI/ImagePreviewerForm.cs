@@ -18,8 +18,8 @@ namespace OSIRT.UI
         private Image image;
         private string imagePath;
         private ScreenshotDetails details;
-        private readonly int MaxImageSize = 12500;
-        private BackgroundWorker backgroundWorker;
+        private readonly int MaxImageHeight = 12500;
+        private BackgroundWorker hashCalcBackgroundWorker;
 
 
         public ImagePreviewerForm()
@@ -39,7 +39,7 @@ namespace OSIRT.UI
         {
             HashService hashService = HashServiceFactory.Create(Settings.Default.Hash);
             string hash = "";
-            Thread.Sleep(2000); 
+            Thread.Sleep(1000); 
             using (FileStream fileStream = File.OpenRead(imagePath))
             {
                 hash = hashService.ToHex(hashService.ComputeHash(fileStream));
@@ -61,9 +61,9 @@ namespace OSIRT.UI
 
         private void InitialiseBackgroundWorker()
         {
-            backgroundWorker = new BackgroundWorker();
-            backgroundWorker.DoWork += BackgroundWorker_DoWork;
-            backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
+            hashCalcBackgroundWorker = new BackgroundWorker();
+            hashCalcBackgroundWorker.DoWork += BackgroundWorker_DoWork;
+            hashCalcBackgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -73,7 +73,7 @@ namespace OSIRT.UI
             PopulateDetails();
             Size imageSize = GetImageSize();
 
-            if (imageSize.Height < MaxImageSize)
+            if (imageSize.Height < MaxImageHeight)
             {
                  CreateAnShowImageBox();
             }
@@ -82,7 +82,7 @@ namespace OSIRT.UI
                 ShowCannotOpenPanel();
             }
 
-            backgroundWorker.RunWorkerAsync();
+            hashCalcBackgroundWorker.RunWorkerAsync();
 
         }
 
