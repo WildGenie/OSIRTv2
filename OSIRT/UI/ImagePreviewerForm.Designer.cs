@@ -36,6 +36,8 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiImageNameComboBox = new System.Windows.Forms.ComboBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.spellBox1 = new OSIRT.UI.SpellBox();
-            this.hostedComponent4 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).BeginInit();
             this.uiSplitContainer.Panel1.SuspendLayout();
             this.uiSplitContainer.SuspendLayout();
@@ -65,7 +65,7 @@
             this.uiSplitContainer.Panel1.Controls.Add(this.uiCancelButton);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiOKButton);
             this.uiSplitContainer.Panel1.Controls.Add(this.button1);
-            this.uiSplitContainer.Panel1.Controls.Add(this.spellBox1);
+            this.uiSplitContainer.Panel1.Controls.Add(this.uiNoteSpellBox);
             this.uiSplitContainer.Panel1.Controls.Add(this.label5);
             this.uiSplitContainer.Panel1.Controls.Add(this.label3);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiURLTextBox);
@@ -128,6 +128,7 @@
             this.uiOKButton.Text = "OK";
             this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
+            this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
             // 
             // button1
             // 
@@ -138,6 +139,18 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // uiNoteSpellBox
+            // 
+            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
+            this.uiNoteSpellBox.Multiline = true;
+            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
+            this.uiNoteSpellBox.TabIndex = 9;
+            this.uiNoteSpellBox.WordWrap = true;
             // 
             // label5
             // 
@@ -205,18 +218,6 @@
             this.uiImageNameComboBox.Size = new System.Drawing.Size(324, 21);
             this.uiImageNameComboBox.TabIndex = 0;
             // 
-            // spellBox1
-            // 
-            this.spellBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.spellBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.spellBox1.Location = new System.Drawing.Point(13, 247);
-            this.spellBox1.Multiline = true;
-            this.spellBox1.Name = "spellBox1";
-            this.spellBox1.Size = new System.Drawing.Size(326, 187);
-            this.spellBox1.TabIndex = 9;
-            this.spellBox1.WordWrap = true;
-            // 
             // ImagePreviewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,7 +246,7 @@
         private System.Windows.Forms.TextBox uiDateAndTimeTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox uiImageNameComboBox;
-        private SpellBox spellBox1;
+        private SpellBox uiNoteSpellBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button uiCancelButton;
@@ -258,5 +259,6 @@
         private System.Windows.Forms.Label uiCalculatingHashLabel;
         private System.Windows.Forms.ProgressBar uiHashCalcProgressBar;
         private System.Windows.Controls.TextBox hostedComponent4;
+        private System.Windows.Controls.TextBox hostedComponent5;
     }
 }

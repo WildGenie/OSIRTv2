@@ -77,7 +77,7 @@ namespace OSIRT.UI
             {
                  CreateAnShowImageBox();
             }
-            else //too big, display a panel with a label and link to open in the system's default application
+            else 
             {
                 ShowCannotOpenPanel();
             }
@@ -140,11 +140,11 @@ namespace OSIRT.UI
         {
             using (MagickImage image = new MagickImage(imagePath))
             {
-                using (MagickImage watermark = new MagickImage(@"C:\Users\Joe\Documents\ccculogo.gif"))
-                {
-                    image.Composite(watermark, Gravity.Southeast, CompositeOperator.Over);
-                    watermark.Evaluate(Channels.Alpha, EvaluateOperator.Divide, 1);
-                }
+                //using (MagickImage watermark = new MagickImage(@"C:\Users\Joe\Documents\ccculogo.gif"))
+                //{
+                //    image.Composite(watermark, Gravity.Southeast, CompositeOperator.Over);
+                //    watermark.Evaluate(Channels.Alpha, EvaluateOperator.Divide, 1);
+                //}
                 image.Format = MagickFormat.Pdf;
                 image.Write(@"C:\Users\Joe\Documents\testimage.pdf");
             }
@@ -153,6 +153,16 @@ namespace OSIRT.UI
         private void ImagePreviewerForm_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void uiOKButton_Click(object sender, EventArgs e)
+        {
+            //get file name
+            //get file type (png/pdf)
+            //check that file name does not already exist
+            //convert to PDF if pdf required
+            //save to directory 
+            //log in database
         }
     }
 }
