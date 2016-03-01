@@ -91,5 +91,10 @@ namespace Jacksonsoft
         {
 
         }
-	}
+
+        private void WaitWindowGUI_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
 }

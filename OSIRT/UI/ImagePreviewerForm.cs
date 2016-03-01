@@ -79,7 +79,7 @@ namespace OSIRT.UI
             }
             else 
             {
-                ShowCannotOpenPanel();
+                ShowCannotOpenPanel(imageSize);
             }
 
             hashCalcBackgroundWorker.RunWorkerAsync();
@@ -114,10 +114,10 @@ namespace OSIRT.UI
             LoadImage(Image.FromFile(imagePath));
         }
 
-        private void ShowCannotOpenPanel()
+        private void ShowCannotOpenPanel(Size originalSize)
         {
             //TODO: Display a reduced sized image?
-            CannotOpenImagePanel cantOpen = new CannotOpenImagePanel();
+            CannotOpenImagePanel cantOpen = new CannotOpenImagePanel(imagePath, originalSize);
             cantOpen.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(cantOpen);
         }

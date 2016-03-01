@@ -44,7 +44,7 @@ namespace Jacksonsoft
             // 
             this.Marque.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Marque.Location = new System.Drawing.Point(12, 56);
+            this.Marque.Location = new System.Drawing.Point(12, 57);
             this.Marque.MarqueeAnimationSpeed = 1;
             this.Marque.Name = "Marque";
             this.Marque.Size = new System.Drawing.Size(276, 12);
@@ -58,7 +58,7 @@ namespace Jacksonsoft
             this.MessageLabel.BackColor = System.Drawing.Color.Transparent;
             this.MessageLabel.Location = new System.Drawing.Point(12, 12);
             this.MessageLabel.Name = "MessageLabel";
-            this.MessageLabel.Size = new System.Drawing.Size(276, 23);
+            this.MessageLabel.Size = new System.Drawing.Size(276, 41);
             this.MessageLabel.TabIndex = 1;
             this.MessageLabel.Text = "Please wait ...";
             this.MessageLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -78,6 +78,7 @@ namespace Jacksonsoft
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "WaitWindowGUI";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.WaitWindowGUI_Load);
             this.ResumeLayout(false);
 
 		}
