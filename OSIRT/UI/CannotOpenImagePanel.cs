@@ -87,7 +87,7 @@ namespace OSIRT.UI
         {
             try
             {
-                Process.Start(Path.Combine(Constants.CacheLocation, "scaled.png"));
+                Process.Start(Path.Combine(Constants.CacheLocation, "temp.png"));
             }
             catch (FileNotFoundException fnf)
             {
