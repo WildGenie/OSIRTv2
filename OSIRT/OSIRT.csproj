@@ -301,6 +301,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\pdf_icon_sm.png" />
+    <None Include="Resources\pdf_icon.png" />
+    <None Include="Resources\ok.png" />
+    <None Include="Resources\file_clash.png" />
     <None Include="Resources\spinner.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

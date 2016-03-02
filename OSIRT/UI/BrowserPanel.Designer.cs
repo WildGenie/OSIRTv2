@@ -166,6 +166,7 @@
             this.uiCaseNotesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiCaseNotesButton.Name = "uiCaseNotesButton";
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
+            this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
             // uiAddTabButton
             // 

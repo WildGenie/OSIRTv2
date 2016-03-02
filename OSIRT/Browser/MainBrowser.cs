@@ -28,6 +28,7 @@ namespace OSIRT.Browser
         public event EventHandler Screenshot_Completed = delegate { };
 
         private int MaxScrollHeight { get { return 15000; } }
+        private readonly int MaxWait = 500;
 
         public ExtendedBrowser()
         {
@@ -77,7 +78,7 @@ namespace OSIRT.Browser
 
         public async Task PutTaskDelay()
         {
-            await Task.Delay(300);
+            await Task.Delay(MaxWait);
         }
 
         private async void FullpageScreenshotByScrolling()

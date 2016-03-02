@@ -62,6 +62,12 @@ namespace OSIRT.UI
 
         }
 
-   
+        private void uiCaseNotesButton_Click(object sender, EventArgs e)
+        {
+            using (ImagePreviewerForm pg = new ImagePreviewerForm(Path.Combine(Constants.CacheLocation, "temp.png"), new ScreenshotDetails("test.com")))
+            {
+                pg.ShowDialog();
+            } 
+        }
     }
 }

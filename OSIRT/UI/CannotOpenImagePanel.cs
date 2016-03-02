@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cyotek.Windows.Forms;
 using ImageMagick;
 using System.IO;
 using OSIRT.Helpers;
-using System.Threading;
 using System.Diagnostics;
 
 namespace OSIRT.UI
@@ -48,8 +42,7 @@ namespace OSIRT.UI
             uiUnableToDisplayImgTableLayout.Controls.Remove(uiScaledImagePanel);
             AddImageBox();
             //TODO: Refactor (duplication)
-            string tempImgPath = Path.Combine(Constants.CacheLocation, "scaled.png");
-            imageBox.Image = Image.FromFile(tempImgPath);
+            imageBox.Image = Image.FromFile(Constants.ScaledImgFile);
         }
 
         private void ScaleImageBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -59,7 +52,7 @@ namespace OSIRT.UI
 
         private void SetLinkLabelText()
         {
-            uiCantOpenLinkLabel.Text = $@"Unable to display this image in full size [Original size: {originalImageSize.Width} x {originalImageSize.Height}]." + System.Environment.NewLine + "Click here to view the image in the system's default image viewing application.";
+            uiCantOpenLinkLabel.Text = $"Unable to display this image in full size [Original size: {originalImageSize.Width} x {originalImageSize.Height}]." + Environment.NewLine + "Click here to view the image in the system's default image viewing application.";
         }
 
         private void AddImageBox()
@@ -72,26 +65,32 @@ namespace OSIRT.UI
      
         private void CreateScaledImage()
         {
-            string tempImgPath = Path.Combine(Constants.CacheLocation, "scaled.png");
+   
             using (MagickImage image = new MagickImage(imagePath))
             {
+                //TODO: Perhaps see what the original size is then scale based on that
+                //Keeping it at 25% may "punish" those images that are barely over the limit
                 image.Scale(new Percentage(25));
-                image.Write(tempImgPath);
+                image.Write(Constants.ScaledImgFile);
             }
-            //TODO: need to release memory from opened image!
-            //imageBox.Image = Image.FromFile(tempImgPath);
+        }
 
+        public void CleanUp()
+        {
+            imageBox?.Image.Dispose();
+            imageBox?.Dispose();
+            Dispose();
         }
 
         private void uiCantOpenLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             try
             {
-                Process.Start(Path.Combine(Constants.CacheLocation, "temp.png"));
+                Process.Start(Constants.TempImgFile);
             }
             catch (FileNotFoundException fnf)
             {
-                MessageBox.Show("Image not found.");
+                MessageBox.Show($"Image not found. Error: {fnf}");
             }
         }
     }

@@ -20,16 +20,10 @@ namespace OSIRT.Helpers
 
         }
 
-
-
-
-
-        //Case container Directories
+        //Case container Directories and files
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
         public static string DatabaseFileName { get { return @"\\case.db"; } }
-        public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
-        public static readonly string TempImgName = "temp.png";
 
 
         /// <summary>
@@ -39,6 +33,18 @@ namespace OSIRT.Helpers
         {
             get { return Path.Combine(CasePath, CaseContainerName); }
         }
+
+
+
+        //Image Cache Constants
+        public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
+        private static readonly string TempImgName = "temp.png";
+        private static readonly string ScaledImgName = "scaled.png";
+        public static readonly string TempImgFile = Path.Combine(CacheLocation, TempImgName);
+        public static readonly string ScaledImgFile = Path.Combine(CacheLocation, ScaledImgName);
+
+
+
 
         public class Directories
         {

@@ -12,6 +12,7 @@ namespace OSIRT.Helpers
     public class OsirtHelper
     {
 
+
         public static FileStream WaitForFile(string fullPath)
         {
             for (int numTries = 0; numTries < 10; numTries++)

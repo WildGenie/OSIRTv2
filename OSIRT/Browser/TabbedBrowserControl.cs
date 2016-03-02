@@ -78,9 +78,8 @@ namespace OSIRT.Browser
     
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
 
-            //Debug.WriteLine("Algo: {0}. Hash: {1} ", Settings.Default.Hash, hash);
-            string tempImgPath = Path.Combine(Constants.CacheLocation, Constants.TempImgName);
-            ImagePreviewerForm previewForm = new ImagePreviewerForm(tempImgPath, details);
+            //TODO: Needlesly passing constant in to imagepreviewer ctor
+            ImagePreviewerForm previewForm = new ImagePreviewerForm(Constants.TempImgFile, details);
             DialogResult res =  previewForm.ShowDialog();
 
             if (res != DialogResult.OK)

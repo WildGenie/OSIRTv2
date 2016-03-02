@@ -14,6 +14,17 @@ namespace OSIRT.Helpers
     public class ScreenshotHelper
     {
 
+
+
+
+
+
+
+        /// <summary>
+        /// Saves the current Image with the specified name as a PNG
+        /// </summary>
+        /// <param name="screenshot">The Image (screenshot) to save</param>
+        /// <param name="name">The name of the image</param>
         public static void SaveScreenshot(Image screenshot, string name)
         {
             using (screenshot)
