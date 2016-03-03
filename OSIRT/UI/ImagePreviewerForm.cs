@@ -211,7 +211,7 @@ namespace OSIRT.UI
                     image.Write(pathToSave);
                 }
             }
-            catch (Exception ex) when (ex is MagickResourceLimitErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
+            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
             {
                 message = "Unable to save as PDF. Reverting to saving as PNG.";
             }
@@ -225,6 +225,7 @@ namespace OSIRT.UI
 
         private void SaveAsPNG(string name)
         {
+            //TODO: This only works if image is in cache. What about screenshots not in cache.
             try
             {
                 string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name + ".png");
