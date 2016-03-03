@@ -122,7 +122,7 @@ namespace OSIRT.Browser
                     atBottom = true;
                     count++;
 
-                    await PutTaskDelay();
+                    await PutTaskDelay(); //may need to place larger delay
 
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
@@ -167,10 +167,7 @@ namespace OSIRT.Browser
 
         public string URL
         {
-            get {
-                Debug.WriteLine("URL Main Browser: " + Url.AbsoluteUri);
-                return Url.AbsoluteUri;
-            }
+            get { return Url.AbsoluteUri; }
         }
 
 

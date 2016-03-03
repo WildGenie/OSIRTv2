@@ -1,5 +1,6 @@
 ﻿using Cyotek.Windows.Forms;
 using ImageMagick;
+using Jacksonsoft;
 using OSIRT.Helpers;
 using OSIRT.Properties;
 using System;
@@ -8,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OSIRT.UI
@@ -143,40 +145,126 @@ namespace OSIRT.UI
         private void ImagePreviewerForm_Load(object sender, EventArgs e)
         {
             uiFileExtensionComboBox.SelectedIndex = 0;
+            uiFileExtensionComboBox.DataSource = Enum.GetValues(typeof(SaveableFileTypes));
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
-            
+
+            if (!IsValidFileName())
+            {
+                //display lable instead. MessageBox for now
+                MessageBox.Show("Please enter a valid file name. This one may already exist");
+                return;
+            }
 
 
-            //get file name
-            //get file type (png/pdf)
-            //check that file name does not already exist
-            //convert to PDF if pdf required
-            //save to directory 
+            if(string.IsNullOrWhiteSpace(Note))
+            {
+                //display lable instead. MessageBox for now
+                MessageBox.Show("Must enter a note.");
+                return;
+            }
+
+                //we're here, we have a valid file name and note.
+              
+                SaveableFileTypes fileType;
+                bool validFileType = Enum.TryParse(uiFileExtensionComboBox.SelectedValue.ToString(), out fileType);
+
+                if(validFileType)
+                {
+                    if(fileType == SaveableFileTypes.PDF)
+                    {
+                        //save as PDF with please wait window
+                        WaitWindow.Show(SaveAsPDF, "Saving as PDF. Please Wait...", FileName);
+                    }
+                    else if (fileType == SaveableFileTypes.PNG)
+                    {
+                    //save as PNG (already have the png, just need to move it from cache)
+                        SaveAsPNG(FileName);
+                    }
+                    else
+                    {
+                    //gone wrong? save as png, anyway.
+                        SaveAsPNG(FileName);
+                    }
+                }
             //log in database
+            //delete cache
+
+
         }
+
+        private void SaveAsPDF(object sender, WaitWindowEventArgs e)
+        {
+            string message = "";
+            string fileName = e.Arguments[0].ToString();
+            try
+            {
+                Debug.WriteLine($"--- Image path in save as pdf: {imagePath}");
+                using (MagickImage image = new MagickImage(imagePath))
+                {
+                    image.Format = MagickFormat.Pdf;
+                    //TODO: may not always be "screenshots" for specified case directory. Enum?
+                    //TODO: Better way to get FileExtension!
+                    string pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), fileName + ".pdf");
+                    image.Write(pathToSave);
+                }
+            }
+            catch (Exception ex) when (ex is MagickResourceLimitErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
+            {
+                message = "Unable to save as PDF. Reverting to saving as PNG.";
+            }
+
+            e.Window.Message = message;
+            Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
+            SaveAsPNG(fileName);
+
+
+        }
+
+        private void SaveAsPNG(string name)
+        {
+            try
+            {
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name + ".png");
+                string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
+                File.Move(sourceFile, destLocation);
+            }
+            catch (IOException ioe)
+            {
+                MessageBox.Show("Can't move file to container due to an IOExcpetion...");
+            }
+            catch (UnauthorizedAccessException uae)
+            {
+                MessageBox.Show("Can't move file to container due to an Unauthorised Access Attempt...");
+            }
+        }
+
 
         private void uiImageNameComboBox_KeyUp(object sender, KeyEventArgs e)
         {
             CheckValidFileName();
         }
 
+        private bool IsValidFileName()
+        {
+            string path = Path.Combine(Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), FileName); //will also need extension
+            return !(File.Exists(path) || string.IsNullOrWhiteSpace(FileName));
+        }
+
 
 
         private void CheckValidFileName()
         {
-            string imageName = uiImageNameComboBox.Text;
-            Debug.WriteLine($"Image name: {imageName}");
-            string path = Path.Combine(Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), imageName); //will also need extension
-            if (File.Exists(path) || string.IsNullOrWhiteSpace(imageName))
+
+            if (IsValidFileName())
             {
-                uiDoesFileExistPictureBox.Image = Properties.Resources.file_clash;
+                uiDoesFileExistPictureBox.Image = Properties.Resources.ok;
             }
             else
             {
-                uiDoesFileExistPictureBox.Image = Properties.Resources.ok;
+                uiDoesFileExistPictureBox.Image = Properties.Resources.file_clash;
             }
         }
 

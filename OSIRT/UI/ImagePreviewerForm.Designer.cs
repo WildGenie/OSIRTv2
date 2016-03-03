@@ -30,13 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.uiSplitContainer = new System.Windows.Forms.SplitContainer();
+            this.uiFileExtensionComboBox = new System.Windows.Forms.ComboBox();
+            this.uiDoesFileExistPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCalculatingHashLabel = new System.Windows.Forms.Label();
             this.uiHashCalcProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent9 = new System.Windows.Controls.TextBox();
+            this.hostedComponent10 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -45,8 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiImageNameComboBox = new System.Windows.Forms.ComboBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.uiDoesFileExistPictureBox = new System.Windows.Forms.PictureBox();
-            this.uiFileExtensionComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).BeginInit();
             this.uiSplitContainer.Panel1.SuspendLayout();
             this.uiSplitContainer.SuspendLayout();
@@ -79,6 +79,28 @@
             this.uiSplitContainer.Size = new System.Drawing.Size(1055, 582);
             this.uiSplitContainer.SplitterDistance = 365;
             this.uiSplitContainer.TabIndex = 0;
+            // 
+            // uiFileExtensionComboBox
+            // 
+            this.uiFileExtensionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiFileExtensionComboBox.FormattingEnabled = true;
+            this.uiFileExtensionComboBox.Items.AddRange(new object[] {
+            ".png",
+            ".pdf"});
+            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(266, 25);
+            this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
+            this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
+            this.uiFileExtensionComboBox.TabIndex = 18;
+            // 
+            // uiDoesFileExistPictureBox
+            // 
+            this.uiDoesFileExistPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(337, 27);
+            this.uiDoesFileExistPictureBox.Name = "uiDoesFileExistPictureBox";
+            this.uiDoesFileExistPictureBox.Size = new System.Drawing.Size(17, 16);
+            this.uiDoesFileExistPictureBox.TabIndex = 17;
+            this.uiDoesFileExistPictureBox.TabStop = false;
+            this.ToolTip.SetToolTip(this.uiDoesFileExistPictureBox, "\r\n");
             // 
             // uiCalculatingHashLabel
             // 
@@ -150,9 +172,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(12, 230);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Notes";
+            this.label5.Text = "Note (Required)";
             // 
             // label3
             // 
@@ -212,28 +234,6 @@
             this.uiImageNameComboBox.TabIndex = 0;
             this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
             // 
-            // uiDoesFileExistPictureBox
-            // 
-            this.uiDoesFileExistPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(337, 27);
-            this.uiDoesFileExistPictureBox.Name = "uiDoesFileExistPictureBox";
-            this.uiDoesFileExistPictureBox.Size = new System.Drawing.Size(17, 16);
-            this.uiDoesFileExistPictureBox.TabIndex = 17;
-            this.uiDoesFileExistPictureBox.TabStop = false;
-            this.ToolTip.SetToolTip(this.uiDoesFileExistPictureBox, "\r\n");
-            // 
-            // uiFileExtensionComboBox
-            // 
-            this.uiFileExtensionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.uiFileExtensionComboBox.FormattingEnabled = true;
-            this.uiFileExtensionComboBox.Items.AddRange(new object[] {
-            ".png",
-            ".pdf"});
-            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(266, 25);
-            this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
-            this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
-            this.uiFileExtensionComboBox.TabIndex = 18;
-            // 
             // ImagePreviewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,5 +282,6 @@
         private System.Windows.Controls.TextBox hostedComponent8;
         private System.Windows.Controls.TextBox hostedComponent9;
         private System.Windows.Forms.ComboBox uiFileExtensionComboBox;
+        private System.Windows.Controls.TextBox hostedComponent10;
     }
 }
