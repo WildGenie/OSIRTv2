@@ -38,7 +38,7 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent10 = new System.Windows.Controls.TextBox();
+            this.hostedComponent11 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -76,18 +76,19 @@
             this.uiSplitContainer.Panel1.Controls.Add(this.uiDateAndTimeTextBox);
             this.uiSplitContainer.Panel1.Controls.Add(this.label1);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiImageNameComboBox);
-            this.uiSplitContainer.Size = new System.Drawing.Size(1055, 582);
-            this.uiSplitContainer.SplitterDistance = 365;
+            this.uiSplitContainer.Size = new System.Drawing.Size(1062, 561);
+            this.uiSplitContainer.SplitterDistance = 367;
             this.uiSplitContainer.TabIndex = 0;
             // 
             // uiFileExtensionComboBox
             // 
+            this.uiFileExtensionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiFileExtensionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiFileExtensionComboBox.FormattingEnabled = true;
             this.uiFileExtensionComboBox.Items.AddRange(new object[] {
             ".png",
             ".pdf"});
-            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(266, 25);
+            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(268, 25);
             this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
             this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
             this.uiFileExtensionComboBox.TabIndex = 18;
@@ -95,7 +96,7 @@
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(337, 27);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(339, 27);
             this.uiDoesFileExistPictureBox.Name = "uiDoesFileExistPictureBox";
             this.uiDoesFileExistPictureBox.Size = new System.Drawing.Size(17, 16);
             this.uiDoesFileExistPictureBox.TabIndex = 17;
@@ -127,14 +128,14 @@
             this.uiHashTextBox.Location = new System.Drawing.Point(15, 182);
             this.uiHashTextBox.Name = "uiHashTextBox";
             this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(319, 20);
+            this.uiHashTextBox.Size = new System.Drawing.Size(321, 20);
             this.uiHashTextBox.TabIndex = 14;
             // 
             // uiCancelButton
             // 
             this.uiCancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.uiCancelButton.Location = new System.Drawing.Point(171, 440);
+            this.uiCancelButton.Location = new System.Drawing.Point(173, 440);
             this.uiCancelButton.Name = "uiCancelButton";
             this.uiCancelButton.Size = new System.Drawing.Size(79, 23);
             this.uiCancelButton.TabIndex = 12;
@@ -146,7 +147,7 @@
             // 
             this.uiOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiOKButton.Location = new System.Drawing.Point(255, 440);
+            this.uiOKButton.Location = new System.Drawing.Point(257, 440);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
             this.uiOKButton.TabIndex = 11;
@@ -163,7 +164,7 @@
             this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
             this.uiNoteSpellBox.Multiline = true;
             this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(321, 187);
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(323, 187);
             this.uiNoteSpellBox.TabIndex = 9;
             this.uiNoteSpellBox.WordWrap = true;
             // 
@@ -192,7 +193,7 @@
             this.uiURLTextBox.Location = new System.Drawing.Point(15, 75);
             this.uiURLTextBox.Name = "uiURLTextBox";
             this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(319, 20);
+            this.uiURLTextBox.Size = new System.Drawing.Size(321, 20);
             this.uiURLTextBox.TabIndex = 4;
             // 
             // label2
@@ -211,7 +212,7 @@
             this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 127);
             this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
             this.uiDateAndTimeTextBox.ReadOnly = true;
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(319, 20);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(321, 20);
             this.uiDateAndTimeTextBox.TabIndex = 2;
             // 
             // label1
@@ -230,7 +231,7 @@
             this.uiImageNameComboBox.FormattingEnabled = true;
             this.uiImageNameComboBox.Location = new System.Drawing.Point(15, 25);
             this.uiImageNameComboBox.Name = "uiImageNameComboBox";
-            this.uiImageNameComboBox.Size = new System.Drawing.Size(245, 21);
+            this.uiImageNameComboBox.Size = new System.Drawing.Size(247, 21);
             this.uiImageNameComboBox.TabIndex = 0;
             this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
             // 
@@ -238,7 +239,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1055, 582);
+            this.ClientSize = new System.Drawing.Size(1062, 561);
             this.Controls.Add(this.uiSplitContainer);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "ImagePreviewerForm";
@@ -283,5 +284,6 @@
         private System.Windows.Controls.TextBox hostedComponent9;
         private System.Windows.Forms.ComboBox uiFileExtensionComboBox;
         private System.Windows.Controls.TextBox hostedComponent10;
+        private System.Windows.Controls.TextBox hostedComponent11;
     }
 }

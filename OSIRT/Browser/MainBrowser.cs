@@ -181,6 +181,7 @@ namespace OSIRT.Browser
             this.Size = new Size(width, height);
             using (Bitmap screenshot = new Bitmap(width, height))
             {
+                //TODO: try catch finally here to reset the scrollbars and dockstyle if this fails
                 NativeMethods.GetImage(this.ActiveXInstance, screenshot, Color.Black);
                 this.Dock = DockStyle.Fill;
                 this.ToggleScrollbars(true);
@@ -203,9 +204,10 @@ namespace OSIRT.Browser
             
         }
 
-        private void FireScreenshotCompleteEvent()
+        private void FireScreenshotCompleteEvent(/*bool isScrollingScreenshot*/)
         {
-            Screenshot_Completed(this, new ScreenshotCompletedEventArgs());
+            //TODO: ad bool event arg to say where this is from a scrolling screenshot or regular one 
+            Screenshot_Completed(this, new ScreenshotCompletedEventArgs(/* isScrollingScreenshot */));
         }
 
         private void ScrollTo(int x, int y)
@@ -222,7 +224,7 @@ namespace OSIRT.Browser
 
             const string BROWSER_EMULATION_KEY = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
 
-            String appname = Process.GetCurrentProcess().ProcessName + ".exe";
+            string appname = Process.GetCurrentProcess().ProcessName + ".exe";
 
             // Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the !DOCTYPE directive.
             const int browserEmulationMode = 11001;

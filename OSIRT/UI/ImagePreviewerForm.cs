@@ -61,11 +61,6 @@ namespace OSIRT.UI
             this.details = details;
         }
 
-        public ImagePreviewerForm(Image image) : this()
-        {
-            this.image = image;
-        }
-
         private void InitialiseBackgroundWorker()
         {
             hashCalcBackgroundWorker = new BackgroundWorker();
