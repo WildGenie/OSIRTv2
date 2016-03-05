@@ -31,7 +31,7 @@ namespace OSIRT.Database
                                                 
         public static void GetImage(object obj, Image destination, Color backgroundColor)
         {
-            
+            //using(destination) //added this, may need to remove
             using (Graphics graphics = Graphics.FromImage(destination))
             {
                 IntPtr deviceContextHandle = IntPtr.Zero;
@@ -48,7 +48,7 @@ namespace OSIRT.Database
 
                     IViewObject viewObject = obj as IViewObject;
                     viewObject.Draw(1, -1, IntPtr.Zero, IntPtr.Zero, IntPtr.Zero, deviceContextHandle, ref rectangle, IntPtr.Zero, IntPtr.Zero, 0);
-                    Debug.WriteLine("here");
+                   
                 }
                 finally
                 {

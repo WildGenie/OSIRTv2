@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -27,13 +28,27 @@ namespace OSIRT.Helpers
         {
             using (image)
             {
+                string path = Path.Combine(Constants.CacheLocation, name + SaveableFileTypes.Png);
+
                 try
                 {
-                    image.Save(Path.Combine(Constants.CacheLocation, name + ".png"), ImageFormat.Png);
+                    if(File.Exists(path))
+                    {
+                        Debug.WriteLine("IN DELETE");
+                        GC.Collect();
+                        GC.WaitForPendingFinalizers();
+                        File.Delete(path);
+                    }
+                    Debug.WriteLine("---------PATH---------" + path);
+                    image.Save(path, ImageFormat.Png);
                 }
                 catch (System.Runtime.InteropServices.ExternalException e)
                 {
                     MessageBox.Show($"Unable to add image temporary image cache. Reason: {e}");
+                }
+                catch(IOException ioe)
+                {
+                    MessageBox.Show(ioe.ToString());
                 }
             }
         }

@@ -49,22 +49,36 @@ namespace OSIRT.Helpers
         public class Directories
         {
 
-            private static readonly Dictionary<string, string> directories = new Dictionary<string, string>
+            //private static readonly Dictionary<string, string> directories = new Dictionary<string, string>
+            //{
+            //    { "images", @"images" },
+            //    { "screenshots", @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
+            //    { "scraped", @"images\scraped" },
+            //    { "snippet", @"images\snippets" },
+            //    { "batchsnap", @"images\batchsnap" },
+            //    { "saved", @"images\saved" },
+            //    { "attachment", @"attachments" },
+            //    { "videos", @"videos" },
+            //    { "downloads", @"downloads" },
+            //    { "source", @"downloads\source_code" },
+            //    { "report", @"reports" },
+            //};
+
+            private static readonly Dictionary<CaseDirectory, string> directories = new Dictionary<CaseDirectory, string>
             {
-                { "images", @"images" },
-                { "screenshots", @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
-                { "scraped", @"images\scraped" },
-                { "snippet", @"images\snippets" },
-                { "batchsnap", @"images\batchsnap" },
-                { "saved", @"images\saved" },
-                { "attachment", @"attachments" },
-                { "videos", @"videos" },
-                { "downloads", @"downloads" },
-                { "source", @"downloads\source_code" },
-                { "report", @"reports" },
+                { CaseDirectory.Images, @"images" },
+                { CaseDirectory.Screenshots, @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
+                { CaseDirectory.Scraped, @"images\scraped" },
+                { CaseDirectory.Snippet, @"images\snippets" },
+                { CaseDirectory.Batchsnap, @"images\batchsnap" },
+                { CaseDirectory.Saved, @"images\saved" },
+                { CaseDirectory.Attachment, @"attachments" },
+                { CaseDirectory.Videos, @"videos" },
+                { CaseDirectory.Downloads, @"downloads" },
+                { CaseDirectory.Source, @"downloads\source_code" },
+                { CaseDirectory.Report, @"reports" },
             };
 
-       
 
 
 
@@ -74,7 +88,7 @@ namespace OSIRT.Helpers
                 return values;
             }
 
-            public static string GetSpecifiedCaseDirectory(string key)
+            public static string GetSpecifiedCaseDirectory(CaseDirectory key)
             {
                 string value = "";
                 if (!directories.TryGetValue(key, out value))

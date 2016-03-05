@@ -102,13 +102,13 @@ namespace OSIRT.Browser
             {
                 if (pageLeft > viewportHeight)
                 {
-                    //if we can scroll using the viewport, let's do that
-                   
-                    this.ScrollTo(0, count * viewportHeight);
-                 
+                   //if we can scroll using the viewport, let's do that
+
+                    ScrollTo(0, count * viewportHeight);
+
                     count++;
 
-                    await PutTaskDelay();
+                    await PutTaskDelay(); //we do need these delays. Some pages, like facebook, may need to load viewport content.
                     cache.AddImage(count, GetCurrentViewScreenshot());
                 }
                 else //TODO: what if it's exactly divisible?
@@ -123,7 +123,7 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay(); //may need to place larger delay
-
+                    //Task.Delay(2000).Wait();
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -144,16 +144,12 @@ namespace OSIRT.Browser
 
             ToggleScrollbars(true);
             ToggleFixedElements(true);
-            //scroll page back to the top
-            Document.Body.ScrollIntoView(true);
+            Document.Body.ScrollIntoView(true);//scroll page back to the top
 
             ((Control)this).Enabled = true;
 
-           
-            WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
-            //cache.RemoveImagesInCache();
 
-            //Screenshot_Completed(this, new ScreenshotCompletedEventArgs(new ScreenshotDetails(this.Url.AbsoluteUri, "ABCDEF")));
+            WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             FireScreenshotCompleteEvent();
         }
 
@@ -162,7 +158,7 @@ namespace OSIRT.Browser
             DirectoryInfo directory = new DirectoryInfo(Constants.CacheLocation);
             FileSystemInfo[] files = directory.GetFileSystemInfos();
             ScreenshotHelper.CombineScreenshot(files, e);
-            
+
         }
 
         public string URL
@@ -182,10 +178,11 @@ namespace OSIRT.Browser
             using (Bitmap screenshot = new Bitmap(width, height))
             {
                 //TODO: try catch finally here to reset the scrollbars and dockstyle if this fails
-                NativeMethods.GetImage(this.ActiveXInstance, screenshot, Color.Black);
-                this.Dock = DockStyle.Fill;
-                this.ToggleScrollbars(true);
+                NativeMethods.GetImage(ActiveXInstance, screenshot, Color.Black);
+                Dock = DockStyle.Fill;
+                ToggleScrollbars(true);
                 ScreenshotHelper.SaveScreenshotToCache(screenshot);
+
             }
         }
 
@@ -194,14 +191,14 @@ namespace OSIRT.Browser
 
             if (ScrollHeight() > MaxScrollHeight)
             {
-                FullpageScreenshotByScrolling(); 
+                FullpageScreenshotByScrolling();
             }
             else
             {
                 FullpageScreenshotGDI();
                 FireScreenshotCompleteEvent();
             }
-            
+
         }
 
         private void FireScreenshotCompleteEvent(/*bool isScrollingScreenshot*/)

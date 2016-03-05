@@ -79,14 +79,11 @@ namespace OSIRT.Browser
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
 
             //TODO: Needlesly passing constant in to imagepreviewer ctor
-            ImagePreviewerForm previewForm = new ImagePreviewerForm(Constants.TempImgFile, details);
-            DialogResult res =  previewForm.ShowDialog();
+            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details))
+            {
+                previewForm.ShowDialog();
+            }
 
-            if (res != DialogResult.OK)
-                return;
-
-
-            Logger.Log(new WebpageActionsLog(CurrentBrowser.URL, Constants.Actions.Screenshot, "GET HASH", "temp.png", "This is an example note"));
 
             //TODO: Delete image cache
             //TODO: Display message in status bar to say it has been logged

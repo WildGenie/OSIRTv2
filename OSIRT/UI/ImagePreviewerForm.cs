@@ -2,12 +2,14 @@
 using ImageMagick;
 using Jacksonsoft;
 using OSIRT.Helpers;
+using OSIRT.Loggers;
 using OSIRT.Properties;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,12 +20,11 @@ namespace OSIRT.UI
     {
 
         private ImageBox imageBox;
-        private Image image;
         private string imagePath;
         private ScreenshotDetails details;
         private readonly int MaxImageHeight = 12500;
         private BackgroundWorker hashCalcBackgroundWorker;
-        private CannotOpenImagePanel cantOpen;
+        private CannotOpenImagePanel cantOpenPanel;
 
         public string FileName { get { return uiImageNameComboBox.Text; } }
         public string FileExtension { get { return uiFileExtensionComboBox.Text; } }
@@ -32,7 +33,7 @@ namespace OSIRT.UI
         public ImagePreviewerForm()
         {
             InitializeComponent();
-      
+
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -46,7 +47,7 @@ namespace OSIRT.UI
         {
             HashService hashService = HashServiceFactory.Create(Settings.Default.Hash);
             string hash = "";
-            Thread.Sleep(1000); 
+            Thread.Sleep(1000);
             using (FileStream fileStream = File.OpenRead(imagePath))
             {
                 hash = hashService.ToHex(hashService.ComputeHash(fileStream));
@@ -55,9 +56,9 @@ namespace OSIRT.UI
             e.Result = hash;
         }
 
-        public ImagePreviewerForm(string imagePath, ScreenshotDetails details) : this()
+        public ImagePreviewerForm(ScreenshotDetails details) : this()
         {
-            this.imagePath = imagePath;
+            this.imagePath = Constants.TempImgFile;
             this.details = details;
         }
 
@@ -77,9 +78,9 @@ namespace OSIRT.UI
 
             if (imageSize.Height < MaxImageHeight)
             {
-                 CreateAnShowImageBox();
+                CreateAndShowImageBox();
             }
-            else 
+            else
             {
                 ShowCannotOpenPanel(imageSize);
             }
@@ -103,25 +104,24 @@ namespace OSIRT.UI
         private void PopulateDetails()
         {
             uiURLTextBox.Text = details.URL;
-            //uiHashTextBox.Text = details.Hash;
             uiDateAndTimeTextBox.Text = details.Date + " " + details.Time;
         }
 
 
-        private void CreateAnShowImageBox()
+        private void CreateAndShowImageBox()
         {
             imageBox = new ImageBox();
             imageBox.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(imageBox);
-            LoadImage(Image.FromFile(imagePath));
+            LoadImage(new Bitmap(Image.FromFile(imagePath)));
         }
 
         private void ShowCannotOpenPanel(Size originalSize)
         {
             //TODO: Display a reduced sized image?
-            cantOpen = new CannotOpenImagePanel(imagePath, originalSize);
-            cantOpen.Dock = DockStyle.Fill;
-            uiSplitContainer.Panel2.Controls.Add(cantOpen);
+            cantOpenPanel = new CannotOpenImagePanel(imagePath, originalSize);
+            cantOpenPanel.Dock = DockStyle.Fill;
+            uiSplitContainer.Panel2.Controls.Add(cantOpenPanel);
         }
 
         private void LoadImage(Image image)
@@ -133,18 +133,27 @@ namespace OSIRT.UI
         private void ImagePreviewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             imageBox?.Image.Dispose();
-            cantOpen?.CleanUp(); 
+            imageBox?.Dispose();
+            cantOpenPanel?.CleanUp();
         }
 
 
         private void ImagePreviewerForm_Load(object sender, EventArgs e)
         {
+            uiFileExtensionComboBox.Items.Add(SaveableFileTypes.Png);
+            uiFileExtensionComboBox.Items.Add(SaveableFileTypes.Pdf);
             uiFileExtensionComboBox.SelectedIndex = 0;
-            uiFileExtensionComboBox.DataSource = Enum.GetValues(typeof(SaveableFileTypes));
+
+            //TODO: Remove extension from file name, too.
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots));
+            string[] files =  Directory.GetFiles(path).Select(p => Path.GetFileName(p)).ToArray();
+            uiImageNameComboBox.Items.AddRange(files);
+
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
+
 
             if (!IsValidFileName())
             {
@@ -154,98 +163,101 @@ namespace OSIRT.UI
             }
 
 
-            if(string.IsNullOrWhiteSpace(Note))
+            if (string.IsNullOrWhiteSpace(Note))
             {
                 //display lable instead. MessageBox for now
                 MessageBox.Show("Must enter a note.");
                 return;
             }
 
-                //we're here, we have a valid file name and note.
-              
-                SaveableFileTypes fileType;
-                bool validFileType = Enum.TryParse(uiFileExtensionComboBox.SelectedValue.ToString(), out fileType);
 
-                if(validFileType)
-                {
-                    if(fileType == SaveableFileTypes.PDF)
-                    {
-                        //save as PDF with please wait window
-                        WaitWindow.Show(SaveAsPDF, "Saving as PDF. Please Wait...", FileName);
-                    }
-                    else if (fileType == SaveableFileTypes.PNG)
-                    {
-                    //save as PNG (already have the png, just need to move it from cache)
-                        SaveAsPNG(FileName);
-                    }
-                    else
-                    {
-                    //gone wrong? save as png, anyway.
-                        SaveAsPNG(FileName);
-                    }
-                }
-            //log in database
-            //delete cache
+            if (FileExtension == SaveableFileTypes.Pdf)
+            {
+                WaitWindow.Show(SaveAsPDF, "Saving as PDF. Please Wait...", FileName);
+            }
+            else if (FileExtension == SaveableFileTypes.Png)
+            {
+                SaveAsPNG(FileName);
+            }
+            else
+            {
+                SaveAsPNG(FileName);
+            }
 
 
+            Log();
+
+            //TODO: delete cache
+            //TODO: trigger dialogresult OK
+
+        }
+
+        private void Log()
+        {
+            string hash = uiHashTextBox.Text;
+            string note = uiNoteSpellBox.Text;
+            Logger.Log(new WebpageActionsLog(details.URL, Constants.Actions.Screenshot, hash, FileName + FileExtension, note));
         }
 
         private void SaveAsPDF(object sender, WaitWindowEventArgs e)
         {
+            //TODO: Will need to rehash
             string message = "";
             string fileName = e.Arguments[0].ToString();
+            string pathToSave = "";
+            bool thrown = false;
             try
             {
-                Debug.WriteLine($"--- Image path in save as pdf: {imagePath}");
                 using (MagickImage image = new MagickImage(imagePath))
                 {
                     image.Format = MagickFormat.Pdf;
-                    //TODO: may not always be "screenshots" for specified case directory. Enum?
-                    //TODO: Better way to get FileExtension!
-                    string pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), fileName + ".pdf");
+                    //TODO: may not always be "screenshots" for specified case directory (may be snippet, for example). Enum?
+                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), fileName + SaveableFileTypes.Pdf);
                     image.Write(pathToSave);
                 }
             }
             catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
             {
+                thrown = true;
                 message = "Unable to save as PDF. Reverting to saving as PNG.";
+                e.Window.Message = message;
+                Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
+                SaveAsPNG(fileName);
             }
-
-            e.Window.Message = message;
-            Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
-            SaveAsPNG(fileName);
+            finally
+            {
+                //delete temp pdf file
+                if (thrown)
+                    File.Delete(pathToSave);
+            }
 
 
         }
 
         private void SaveAsPNG(string name)
         {
-            //TODO: This only works if image is in cache. What about screenshots not in cache.
             try
             {
-                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name + ".png");
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), name + SaveableFileTypes.Png);
                 string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
-                File.Move(sourceFile, destLocation);
+                File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
             }
             catch (IOException ioe)
             {
-                MessageBox.Show("Can't move file to container due to an IOExcpetion...");
+                MessageBox.Show($"Can't move file to container due to an IOExcpetion... {ioe}");
             }
             catch (UnauthorizedAccessException uae)
             {
-                MessageBox.Show("Can't move file to container due to an Unauthorised Access Attempt...");
+                MessageBox.Show($"Can't move file to container due to an Unauthorised Access Attempt... {uae}");
             }
         }
 
 
-        private void uiImageNameComboBox_KeyUp(object sender, KeyEventArgs e)
-        {
-            CheckValidFileName();
-        }
 
         private bool IsValidFileName()
         {
-            string path = Path.Combine(Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), FileName); //will also need extension
+            //TODO: needs to fire when the combobox has changed index
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), FileName + FileExtension);
             return !(File.Exists(path) || string.IsNullOrWhiteSpace(FileName));
         }
 
@@ -262,6 +274,17 @@ namespace OSIRT.UI
             {
                 uiDoesFileExistPictureBox.Image = Properties.Resources.file_clash;
             }
+        }
+
+        private void uiFileExtensionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CheckValidFileName();
+        }
+
+
+        private void uiImageNameComboBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            CheckValidFileName();
         }
 
 

@@ -37,8 +37,6 @@
             this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
-            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent11 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -47,6 +45,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiImageNameComboBox = new System.Windows.Forms.ComboBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent1 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).BeginInit();
             this.uiSplitContainer.Panel1.SuspendLayout();
             this.uiSplitContainer.SuspendLayout();
@@ -85,13 +85,11 @@
             this.uiFileExtensionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiFileExtensionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiFileExtensionComboBox.FormattingEnabled = true;
-            this.uiFileExtensionComboBox.Items.AddRange(new object[] {
-            ".png",
-            ".pdf"});
             this.uiFileExtensionComboBox.Location = new System.Drawing.Point(268, 25);
             this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
             this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
             this.uiFileExtensionComboBox.TabIndex = 18;
+            this.uiFileExtensionComboBox.SelectedIndexChanged += new System.EventHandler(this.uiFileExtensionComboBox_SelectedIndexChanged);
             // 
             // uiDoesFileExistPictureBox
             // 
@@ -146,7 +144,6 @@
             // uiOKButton
             // 
             this.uiOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.uiOKButton.Location = new System.Drawing.Point(257, 440);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
@@ -155,18 +152,6 @@
             this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
-            // 
-            // uiNoteSpellBox
-            // 
-            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
-            this.uiNoteSpellBox.Multiline = true;
-            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(323, 187);
-            this.uiNoteSpellBox.TabIndex = 9;
-            this.uiNoteSpellBox.WordWrap = true;
             // 
             // label5
             // 
@@ -228,12 +213,26 @@
             // 
             this.uiImageNameComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiImageNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.uiImageNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.uiImageNameComboBox.FormattingEnabled = true;
             this.uiImageNameComboBox.Location = new System.Drawing.Point(15, 25);
             this.uiImageNameComboBox.Name = "uiImageNameComboBox";
             this.uiImageNameComboBox.Size = new System.Drawing.Size(247, 21);
             this.uiImageNameComboBox.TabIndex = 0;
             this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
+            // 
+            // uiNoteSpellBox
+            // 
+            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
+            this.uiNoteSpellBox.Multiline = true;
+            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(323, 187);
+            this.uiNoteSpellBox.TabIndex = 9;
+            this.uiNoteSpellBox.WordWrap = true;
             // 
             // ImagePreviewerForm
             // 
@@ -269,21 +268,12 @@
         private System.Windows.Forms.Button uiCancelButton;
         private System.Windows.Forms.ToolTip ToolTip;
         private System.Windows.Forms.Button uiOKButton;
-        private System.Windows.Controls.TextBox hostedComponent2;
-        private System.Windows.Controls.TextBox hostedComponent1;
         private System.Windows.Forms.TextBox uiHashTextBox;
-        private System.Windows.Controls.TextBox hostedComponent3;
         private System.Windows.Forms.Label uiCalculatingHashLabel;
         private System.Windows.Forms.ProgressBar uiHashCalcProgressBar;
-        private System.Windows.Controls.TextBox hostedComponent4;
-        private System.Windows.Controls.TextBox hostedComponent5;
-        private System.Windows.Controls.TextBox hostedComponent6;
-        private System.Windows.Controls.TextBox hostedComponent7;
         private System.Windows.Forms.PictureBox uiDoesFileExistPictureBox;
-        private System.Windows.Controls.TextBox hostedComponent8;
-        private System.Windows.Controls.TextBox hostedComponent9;
         private System.Windows.Forms.ComboBox uiFileExtensionComboBox;
-        private System.Windows.Controls.TextBox hostedComponent10;
-        private System.Windows.Controls.TextBox hostedComponent11;
+        private System.Windows.Controls.TextBox hostedComponent13;
+        private System.Windows.Controls.TextBox hostedComponent1;
     }
 }

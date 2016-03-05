@@ -13,13 +13,7 @@ namespace OSIRT.Helpers
 {
     public class ScreenshotHelper
     {
-
-
-
-
-
-
-
+        
         /// <summary>
         /// Saves the current Image with the specified name as a PNG
         /// </summary>
@@ -29,7 +23,7 @@ namespace OSIRT.Helpers
         {
             using (screenshot)
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory("screenshots"), name);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), name);
                 screenshot.Save(path, ImageFormat.Png);
             }
 

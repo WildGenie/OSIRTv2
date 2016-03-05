@@ -84,6 +84,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaseDirectory.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
     <Compile Include="Helpers\HashService.cs" />
@@ -124,8 +125,8 @@
       <DependentUpon>strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
-    <Compile Include="SaveableFileTypes.cs" />
-    <Compile Include="ScreenshotDetails.cs" />
+    <Compile Include="Enums\SaveableFileTypes.cs" />
+    <Compile Include="Enums\ScreenshotDetails.cs" />
     <Compile Include="UI\AuditLogUI\AuditLog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +305,7 @@
     <None Include="Resources\file_clash.png" />
     <None Include="Resources\spinner.gif" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
