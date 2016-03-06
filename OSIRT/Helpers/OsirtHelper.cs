@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,7 +12,11 @@ namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
-
+        public static bool IsValidFilename(string fileName)
+        {
+            //< > : " / \ | ? *
+            return fileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1;
+        }
 
         public static FileStream WaitForFile(string fullPath)
         {

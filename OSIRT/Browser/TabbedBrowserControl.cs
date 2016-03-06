@@ -31,15 +31,7 @@ namespace OSIRT.Browser
 
         public BrowserTab CurrentTab //active tab
         {
-            get
-            {
-                BrowserTab page = null;
-                if (uiBrowserTabControl.SelectedTab != null)
-                {
-                    page = uiBrowserTabControl.SelectedTab as BrowserTab;
-                }
-                 return page;
-             }
+            get { return uiBrowserTabControl?.SelectedTab as BrowserTab; }
         }
 
         private ExtendedBrowser CurrentBrowser
@@ -78,14 +70,17 @@ namespace OSIRT.Browser
     
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
 
-            //TODO: Needlesly passing constant in to imagepreviewer ctor
+            DialogResult dialogRes;
             using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details))
             {
-                previewForm.ShowDialog();
+                dialogRes = previewForm.ShowDialog();
             }
 
+            if (dialogRes != DialogResult.OK)
+                return;
+        
+            ImageDiskCache.RemoveItemsInCache();
 
-            //TODO: Delete image cache
             //TODO: Display message in status bar to say it has been logged
         }
 

@@ -19,6 +19,7 @@ namespace OSIRT.UI
             box.SpellCheck.IsEnabled = true;
             box.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.Size = new System.Drawing.Size(100, 20);
+           
         }
         public override string Text
         {
@@ -43,6 +44,17 @@ namespace OSIRT.UI
             get { return base.Child; }
             set { /* Do nothing to solve a problem with the serializer !! */ }
         }
+
+        public new event System.Windows.Input.KeyEventHandler KeyUp
+        {
+           
+            add { box.KeyUp += value; }
+            remove { box.KeyUp -= value; }
+        }
+
         private TextBox box;
+
+
+
     }
 }

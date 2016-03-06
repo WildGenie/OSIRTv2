@@ -34,12 +34,12 @@ namespace OSIRT.Helpers
                 {
                     if(File.Exists(path))
                     {
-                        Debug.WriteLine("IN DELETE");
+                        //something may still have a handle on the previous "temp" image
+                        //this forces it to be GC'd
                         GC.Collect();
                         GC.WaitForPendingFinalizers();
                         File.Delete(path);
                     }
-                    Debug.WriteLine("---------PATH---------" + path);
                     image.Save(path, ImageFormat.Png);
                 }
                 catch (System.Runtime.InteropServices.ExternalException e)
@@ -58,11 +58,11 @@ namespace OSIRT.Helpers
             AddImage(count.ToString(), image);
         }
 
-        public void RemoveImagesInCache()
+        public static void RemoveItemsInCache()
         {
             try
             {
-                Directory.Delete(Constants.CacheLocation, true);
+                Array.ForEach(Directory.GetFiles(Constants.CacheLocation), File.Delete);
             }
             catch (IOException ioe)
             {
