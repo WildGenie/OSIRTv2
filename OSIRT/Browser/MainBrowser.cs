@@ -25,7 +25,7 @@ namespace OSIRT.Browser
     {
 
         public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
-        public event EventHandler Screenshot_Completed = delegate { };
+        public event EventHandler Screenshot_Completed = delegate { }; 
 
         private int MaxScrollHeight { get { return 15000; } }
         private readonly int MaxWait = 500;
@@ -201,10 +201,9 @@ namespace OSIRT.Browser
 
         }
 
-        private void FireScreenshotCompleteEvent(/*bool isScrollingScreenshot*/)
+        private void FireScreenshotCompleteEvent()
         {
-            //TODO: ad bool event arg to say where this is from a scrolling screenshot or regular one 
-            Screenshot_Completed(this, new ScreenshotCompletedEventArgs(/* isScrollingScreenshot */));
+            Screenshot_Completed(this, new ScreenshotCompletedEventArgs());
         }
 
         private void ScrollTo(int x, int y)

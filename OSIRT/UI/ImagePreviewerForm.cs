@@ -32,38 +32,32 @@ namespace OSIRT.UI
         public string FileName { get { return uiImageNameComboBox.Text; } }
         public string FileExtension { get { return uiFileExtensionComboBox.Text; } }
         public string Note { get { return uiNoteSpellBox.Text; } }
+        public string Hash { get; private set; }
 
         public ImagePreviewerForm()
         {
             InitializeComponent();
-            
         }
 
 
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            uiHashTextBox.Text = e.Result.ToString();
+            Hash = e.Result.ToString();
+            uiHashTextBox.Text = Hash;
             uiHashCalcProgressBar.Visible = false;
             uiCalculatingHashLabel.Text = $"{Settings.Default.Hash.ToUpperInvariant()} Hash";
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            HashService hashService = HashServiceFactory.Create(Settings.Default.Hash);
-            string hash = "";
-            Thread.Sleep(1000);
-            using (FileStream fileStream = File.OpenRead(imagePath))
-            {
-                hash = hashService.ToHex(hashService.ComputeHash(fileStream));
-            }
-
-            e.Result = hash;
+            Task.Delay(1000).Wait(); //just so user can "see" the image hashing
+            e.Result = OsirtHelper.GetFileHash(imagePath);
         }
 
         public ImagePreviewerForm(ScreenshotDetails details) : this()
         {
-            this.imagePath = Constants.TempImgFile;
+            imagePath = Constants.TempImgFile;
             this.details = details;
             tooltip = new ToolTip();
             uiNoteSpellBox.KeyUp += UiNoteSpellBox_KeyUp;
@@ -127,7 +121,6 @@ namespace OSIRT.UI
 
         private void ShowCannotOpenPanel(Size originalSize)
         {
-            //TODO: Display a reduced sized image?
             cantOpenPanel = new CannotOpenImagePanel(imagePath, originalSize);
             cantOpenPanel.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(cantOpenPanel);
@@ -181,20 +174,12 @@ namespace OSIRT.UI
                 SaveAsPNG(FileName);
             }
 
-
-            Log();
+            Logger.Log(new WebpageActionsLog(details.URL, LoggableAction.Screenshot.ToString(), Hash, FileName + FileExtension, Note));
             DialogResult = DialogResult.OK;
             Close();
 
         }
 
-
-        private void Log()
-        {
-            string hash = uiHashTextBox.Text;
-            string note = uiNoteSpellBox.Text;
-            Logger.Log(new WebpageActionsLog(details.URL, Constants.Actions.Screenshot, hash, FileName + FileExtension, note));
-        }
 
         private void SaveAsPDF(object sender, WaitWindowEventArgs e)
         {
@@ -210,6 +195,9 @@ namespace OSIRT.UI
                     image.Format = MagickFormat.Pdf;
                     pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), fileName + SaveableFileTypes.Pdf);
                     image.Write(pathToSave);
+                    e.Window.Message = "Rehashing PDF";
+                    Hash = OsirtHelper.GetFileHash(pathToSave);
+
                 }
             }
             catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
@@ -257,7 +245,7 @@ namespace OSIRT.UI
         {
             bool valid = false;
             //must check this first, as trying to use Path.Combine with an illegal file char will thrown an argument exception
-            if(!string.IsNullOrWhiteSpace(FileName) && OsirtHelper.IsValidFilename(FileName))
+            if(OsirtHelper.IsValidFilename(FileName))
             {
                 string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), FileName + FileExtension);
                 if (!File.Exists(path))
@@ -268,8 +256,6 @@ namespace OSIRT.UI
             return valid;
         }
 
-
-        //TODO: better name for this method
         private void CheckValidFileName()
         {
             string tootipText = "";

@@ -84,6 +84,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoggableAction.cs" />
     <Compile Include="CaseDirectory.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Helpers\HashServiceFactory.cs" />
     <Compile Include="Helpers\ImageDiskCache.cs" />
     <Compile Include="Helpers\ScreenCapturedEvent.cs" />
-    <Compile Include="Helpers\TaskEx.cs" />
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
     <Compile Include="Browser\BrowserTab.cs">

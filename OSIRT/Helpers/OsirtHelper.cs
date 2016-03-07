@@ -11,11 +11,26 @@ using System.Threading.Tasks;
 namespace OSIRT.Helpers
 {
     public class OsirtHelper
-    {
+    { 
+
+        public static string GetFileHash(string path)
+        {
+            HashService hashService = HashServiceFactory.Create(Properties.Settings.Default.Hash);
+            string hash = "";
+            using (FileStream fileStream = File.OpenRead(path))
+            {
+                hash = hashService.ToHex(hashService.ComputeHash(fileStream));
+            }
+            return hash;
+        }
+
+
         public static bool IsValidFilename(string fileName)
         {
+            
+            
             //< > : " / \ | ? *
-            return fileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1;
+            return !string.IsNullOrWhiteSpace(fileName) && fileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1;
         }
 
         public static FileStream WaitForFile(string fullPath)

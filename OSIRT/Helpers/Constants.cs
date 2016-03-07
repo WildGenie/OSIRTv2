@@ -49,21 +49,6 @@ namespace OSIRT.Helpers
         public class Directories
         {
 
-            //private static readonly Dictionary<string, string> directories = new Dictionary<string, string>
-            //{
-            //    { "images", @"images" },
-            //    { "screenshots", @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
-            //    { "scraped", @"images\scraped" },
-            //    { "snippet", @"images\snippets" },
-            //    { "batchsnap", @"images\batchsnap" },
-            //    { "saved", @"images\saved" },
-            //    { "attachment", @"attachments" },
-            //    { "videos", @"videos" },
-            //    { "downloads", @"downloads" },
-            //    { "source", @"downloads\source_code" },
-            //    { "report", @"reports" },
-            //};
-
             private static readonly Dictionary<CaseDirectory, string> directories = new Dictionary<CaseDirectory, string>
             {
                 { CaseDirectory.Images, @"images" },
@@ -92,7 +77,7 @@ namespace OSIRT.Helpers
             {
                 string value = "";
                 if (!directories.TryGetValue(key, out value))
-                    throw new KeyNotFoundException($"The key {key} does not exist.");
+                    throw new KeyNotFoundException($"The key, {key}, does not exist.");
 
                 return value;
             }
