@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSIRT.Database;
 
 namespace OSIRT.UI
 {
@@ -15,7 +16,16 @@ namespace OSIRT.UI
         public TabbedAuditLogControl()
         {
             InitializeComponent();
-            
+            uiAuditLogTabControl.SelectedIndexChanged += UiAuditLogTabControl_SelectedIndexChanged;
+        }
+
+        private void UiAuditLogTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AuditTab current = (sender as AuditTab);
+
+            DatabaseHandler db = new DatabaseHandler();
+
+           
         }
 
         public AuditTab CurrentTab //active tab
@@ -31,17 +41,14 @@ namespace OSIRT.UI
                     page = uiAuditLogTabControl.SelectedTab as AuditTab;
                 }
 
-
                 return page;
 
             }
         }
 
-        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
-       
+
+
     }
 }

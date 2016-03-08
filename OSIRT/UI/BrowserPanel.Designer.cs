@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
@@ -45,6 +44,8 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
+            this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -60,14 +61,6 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(838, 525);
             this.uiBrowserPanel.TabIndex = 0;
-            // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
-            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // uiBrowserToolStrip
             // 
@@ -192,7 +185,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newTabToolStripMenuItem});
+            this.newTabToolStripMenuItem,
+            this.auditLogToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -200,8 +194,23 @@
             // newTabToolStripMenuItem
             // 
             this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
-            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            // 
+            // auditLogToolStripMenuItem
+            // 
+            this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.auditLogToolStripMenuItem.Text = "Audit Log";
+            this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // BrowserPanel
             // 
@@ -239,5 +248,6 @@
         private System.Windows.Forms.ToolStripButton uiCaseNotesButton;
         private System.Windows.Forms.ToolStripButton uiAddTabButton;
         private System.Windows.Forms.ToolStripButton uiAttachmentToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem auditLogToolStripMenuItem;
     }
 }

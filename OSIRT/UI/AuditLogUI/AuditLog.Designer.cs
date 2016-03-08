@@ -39,7 +39,7 @@
             this.uiAuditLogSplitContainer.Location = new System.Drawing.Point(0, 0);
             this.uiAuditLogSplitContainer.Name = "uiAuditLogSplitContainer";
             this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(1006, 572);
-            this.uiAuditLogSplitContainer.SplitterDistance = 398;
+            this.uiAuditLogSplitContainer.SplitterDistance = 259;
             this.uiAuditLogSplitContainer.TabIndex = 0;
             // 
             // AuditLogForm

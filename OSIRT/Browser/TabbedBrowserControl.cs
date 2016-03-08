@@ -47,7 +47,7 @@ namespace OSIRT.Browser
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             uiBrowserTabControl.SelectedTab = tab;
-            //TODO: Unsubscribe from this event once tab has closed?
+            //TODO: Unsubscribe from these events once tab has closed?
             AddBrowserEvents();
             return tab;
         }
@@ -76,10 +76,13 @@ namespace OSIRT.Browser
                 dialogRes = previewForm.ShowDialog();
             }
 
+            //always want to delete items in cache, regardless of DialogResult.
+            ImageDiskCache.RemoveItemsInCache();
+
             if (dialogRes != DialogResult.OK)
                 return;
         
-            ImageDiskCache.RemoveItemsInCache();
+            
 
             //TODO: Display message in status bar to say it has been logged
         }
@@ -92,7 +95,7 @@ namespace OSIRT.Browser
         public void GetFullPageScreenshot()
         {
             if (CurrentTab == null)
-                throw new NullReferenceException("No tabs to screenshot"); //TODO: Handle this better
+                throw new NullReferenceException("No tabs to screenshot");
 
             CurrentBrowser.GenerateFullpageScreenshot(); 
         }

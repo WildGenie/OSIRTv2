@@ -1,6 +1,7 @@
 ﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
@@ -17,6 +18,24 @@ namespace OSIRT.Database
         public DatabaseHandler()
         {
            connectionString = "Data Source=" + Constants.ContainerLocation + Constants.DatabaseFileName + ";Version=3;";
+        }
+
+        public DataTable GetDataTable(string table)
+        {
+            string query = $"SELECT * FROM {table}";
+            DataTable dataTable = new DataTable();
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    command.CommandText = query;
+                    using(SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+            return dataTable;
         }
 
         

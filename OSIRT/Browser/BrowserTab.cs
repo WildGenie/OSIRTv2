@@ -27,7 +27,7 @@ namespace OSIRT.Browser
 
         void Browser_DocumentTitleChanged(object sender, EventArgs e)
         {
-            this.Text = Browser.DocumentTitle;
+            Text = Browser.DocumentTitle;
         }
 
     }

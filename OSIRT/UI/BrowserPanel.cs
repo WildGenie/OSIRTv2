@@ -69,5 +69,13 @@ namespace OSIRT.UI
                 pg.ShowDialog();
             } 
         }
+
+        private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(AuditLogForm audit = new AuditLogForm())
+            {
+                audit.ShowDialog();
+            }
+        }
     }
 }

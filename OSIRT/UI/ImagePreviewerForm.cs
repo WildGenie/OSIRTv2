@@ -77,6 +77,7 @@ namespace OSIRT.UI
             base.OnLoad(e);
             InitialiseBackgroundWorker();
             PopulateDetails();
+            CheckValidNoteEntry();
             Size imageSize = GetImageSize();
 
             if (imageSize.Height < MaxImageHeight)
@@ -282,7 +283,7 @@ namespace OSIRT.UI
             }
             else
             {
-                tooltip.SetToolTip(uiNotePictureBox, "Note OK");
+                tooltip.SetToolTip(uiNotePictureBox, "Note OK.");
                 uiNotePictureBox.Image = Properties.Resources.ok;
             }
         }
@@ -303,21 +304,9 @@ namespace OSIRT.UI
             CheckValidFileName();
         }
 
-
-        //private void button1_Click(object sender, EventArgs e)
-        //{
-        //    using (MagickImage image = new MagickImage(imagePath))
-        //    {
-        //        //using (MagickImage watermark = new MagickImage(@"C:\Users\Joe\Documents\ccculogo.gif"))
-        //        //{
-        //        //    image.Composite(watermark, Gravity.Southeast, CompositeOperator.Over);
-        //        //    watermark.Evaluate(Channels.Alpha, EvaluateOperator.Divide, 1);
-        //        //}
-        //        image.Format = MagickFormat.Pdf;
-        //        image.Write(@"C:\Users\Joe\Documents\testimage.pdf");
-        //    }
-        //}
-
-
+        private void uiCancelButton_Click(object sender, EventArgs e)
+        {
+         
+        }
     }
 }

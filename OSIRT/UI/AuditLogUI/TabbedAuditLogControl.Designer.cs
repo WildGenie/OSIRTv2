@@ -48,7 +48,6 @@
             this.uiAuditLogTabControl.SelectedIndex = 0;
             this.uiAuditLogTabControl.Size = new System.Drawing.Size(800, 600);
             this.uiAuditLogTabControl.TabIndex = 0;
-            this.uiAuditLogTabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
             // tabPage1
             // 
@@ -59,7 +58,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Websites Loaded ";
             this.tabPage1.UseVisualStyleBackColor = true;
-         
             // 
             // tabPage2
             // 

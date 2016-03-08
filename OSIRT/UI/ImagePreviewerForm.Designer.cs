@@ -38,6 +38,8 @@
             this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
+            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent4 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -46,8 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.uiImageNameComboBox = new System.Windows.Forms.ComboBox();
             this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent3 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiSplitContainer)).BeginInit();
             this.uiSplitContainer.Panel1.SuspendLayout();
             this.uiSplitContainer.SuspendLayout();
@@ -153,6 +153,7 @@
             this.uiCancelButton.Text = "Cancel";
             this.ToolTip.SetToolTip(this.uiCancelButton, "Do not log this image and close the Image Previewer");
             this.uiCancelButton.UseVisualStyleBackColor = true;
+            this.uiCancelButton.Click += new System.EventHandler(this.uiCancelButton_Click);
             // 
             // uiOKButton
             // 
@@ -165,6 +166,18 @@
             this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
+            // 
+            // uiNoteSpellBox
+            // 
+            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
+            this.uiNoteSpellBox.Multiline = true;
+            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
+            this.uiNoteSpellBox.TabIndex = 2;
+            this.uiNoteSpellBox.WordWrap = true;
             // 
             // label5
             // 
@@ -236,18 +249,6 @@
             this.uiImageNameComboBox.TabIndex = 0;
             this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
             // 
-            // uiNoteSpellBox
-            // 
-            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
-            this.uiNoteSpellBox.Multiline = true;
-            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
-            this.uiNoteSpellBox.TabIndex = 2;
-            this.uiNoteSpellBox.WordWrap = true;
-            // 
             // ImagePreviewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -293,5 +294,6 @@
         private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Forms.PictureBox uiNotePictureBox;
         private System.Windows.Controls.TextBox hostedComponent3;
+        private System.Windows.Controls.TextBox hostedComponent4;
     }
 }

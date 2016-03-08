@@ -17,7 +17,7 @@ namespace OSIRT.UI
         {
             AuditLogGrid = new DataGridView();
             AuditLogGrid.Dock = DockStyle.Fill;
-            this.Controls.Add(AuditLogGrid);
+            Controls.Add(AuditLogGrid);
 
           
         }
@@ -25,7 +25,7 @@ namespace OSIRT.UI
         //TODO: For future to populate the gridview... 
         public void PopulateGrid(DataTable dataTable)
         {
-            throw new NotImplementedException();
+            AuditLogGrid.DataSource = dataTable;
         }
 
     }
