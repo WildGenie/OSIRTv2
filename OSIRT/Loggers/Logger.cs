@@ -18,6 +18,7 @@ namespace OSIRT.Loggers
 
             Type logType = log.GetType();
             Dictionary<string, string> toLog = new Dictionary<string, string>();
+            toLog.Add("print", "true"); //This appears to work. Only checked for webpage_actions.
             toLog.Add("date", log.Date);
             toLog.Add("time", log.Time);
             toLog.Add("action", log.Action);

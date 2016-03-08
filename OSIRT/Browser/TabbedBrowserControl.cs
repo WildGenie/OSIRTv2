@@ -122,6 +122,9 @@ namespace OSIRT.Browser
                 addressBar.Text = CurrentTab.CurrentURL;
         }
 
+        private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
     }
 }

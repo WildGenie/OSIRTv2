@@ -20,6 +20,9 @@ namespace OSIRT.Database
            connectionString = "Data Source=" + Constants.ContainerLocation + Constants.DatabaseFileName + ";Version=3;";
         }
 
+
+
+
         public DataTable GetDataTable(string table)
         {
             string query = $"SELECT * FROM {table}";
@@ -28,6 +31,7 @@ namespace OSIRT.Database
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
+                    conn.Open();
                     command.CommandText = query;
                     using(SQLiteDataReader reader = command.ExecuteReader())
                     {

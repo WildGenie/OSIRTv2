@@ -45,7 +45,11 @@ namespace OSIRT.Browser
 
             Logger.Log(new WebsiteLog(Url.AbsoluteUri));
 
+
+            //How to scroll a webpage using the mouse. Perhaps a useful start for a selection capture.
+            //https://social.msdn.microsoft.com/Forums/vstudio/en-US/2c7b0977-7491-4dee-aa5e-c6eceb3b9f52/scroll-up-and-down-by-clicking-and-dragging?forum=csharpgeneral
         }
+
 
         /// <summary>
         /// Gets the current viewport of the browser

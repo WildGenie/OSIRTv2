@@ -65,6 +65,7 @@
             this.uiBrowserStatusStrip.Size = new System.Drawing.Size(800, 22);
             this.uiBrowserStatusStrip.TabIndex = 0;
             this.uiBrowserStatusStrip.Text = "statusStrip1";
+            this.uiBrowserStatusStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserStatusStrip_ItemClicked);
             // 
             // uiStatusLabel
             // 

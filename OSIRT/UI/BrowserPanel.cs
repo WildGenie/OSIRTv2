@@ -54,7 +54,7 @@ namespace OSIRT.UI
 
         private void AddNewTab()
         {
-            uiTabbedBrowserControl.NewTab("http://google.com", uiURLComboBox);
+            uiTabbedBrowserControl.NewTab("http://bbc.co.uk", uiURLComboBox);
         }
 
         private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
