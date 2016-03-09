@@ -62,6 +62,10 @@ namespace OSIRT.Helpers
         {
             try
             {
+                //something may still have a handle on the previous "temp" image
+                //this forces it to be GC'd
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 Array.ForEach(Directory.GetFiles(Constants.CacheLocation), File.Delete);
             }
             catch (IOException ioe)
