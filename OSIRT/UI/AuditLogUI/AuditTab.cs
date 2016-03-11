@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Database;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
@@ -21,31 +22,21 @@ namespace OSIRT.UI
             AuditLogGrid.AllowUserToAddRows = false;
             AuditLogGrid.AllowUserToDeleteRows = false;
             AuditLogGrid.Dock = DockStyle.Fill;
-            //AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
-            AuditLogGrid.DataBindingComplete += AuditLogGrid_DataBindingComplete;
+            AuditLogGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            AuditLogGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
+            AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
+           
 
 
-            Database.DatabaseHandler db = new Database.DatabaseHandler();
+            DatabaseHandler db = new DatabaseHandler();
             DataTable dataTable = db.GetDataTable(table);
             PopulateGrid(dataTable);
 
             Controls.Add(AuditLogGrid);
 
-            
+        
 
 
-        }
-
-        private void AuditLogGrid_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
-        {
-            foreach (DataGridViewColumn column in AuditLogGrid.Columns)
-            {
-                column.ReadOnly = true;
-                if (column.Name == "print")
-                {
-                    column.ReadOnly = false;
-                }
-            }
         }
 
         private void AuditLogGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
@@ -56,7 +47,6 @@ namespace OSIRT.UI
                 column.ReadOnly = true;
                 if (column.Name == "print")
                 {
-                    Debug.WriteLine("IN HERRRRRRRRRRRRRRRRRRRE: COL NAME: " + column.Name);
                     column.ReadOnly = false;
                 }
             }
