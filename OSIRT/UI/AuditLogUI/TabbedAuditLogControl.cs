@@ -37,7 +37,6 @@ namespace OSIRT.UI
             {
                 AuditTab auditTab = new AuditTab(tab.Key, tab.Value);
                 uiAuditLogTabControl.TabPages.Add(auditTab);
-
             }
 
         }
@@ -50,7 +49,6 @@ namespace OSIRT.UI
 
         public AuditTab CurrentTab //active tab
         {
-
             get
             {
                 AuditTab page = null;
@@ -66,5 +64,9 @@ namespace OSIRT.UI
             }
         }
 
+        private void uiAuditLogTabControl_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

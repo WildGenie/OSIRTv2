@@ -127,14 +127,21 @@
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Enums\SaveableFileTypes.cs" />
     <Compile Include="Enums\ScreenshotDetails.cs" />
-    <Compile Include="UI\AuditLogUI\AuditLog.cs">
+    <Compile Include="RowDetails.cs" />
+    <Compile Include="UI\AuditLogUI\AuditLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\AuditLogUI\AuditLog.Designer.cs">
-      <DependentUpon>AuditLog.cs</DependentUpon>
+    <Compile Include="UI\AuditLogUI\AuditLogForm.Designer.cs">
+      <DependentUpon>AuditLogForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuditLogUI\AuditTab.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UI\AuditTabControlPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AuditTabControlPanel.Designer.cs">
+      <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BrowserPanel.cs">
       <SubType>UserControl</SubType>
@@ -200,8 +207,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditLogUI\AuditLog.resx">
-      <DependentUpon>AuditLog.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AuditLogUI\AuditLogForm.resx">
+      <DependentUpon>AuditLogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditTabControlPanel.resx">
+      <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
