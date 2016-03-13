@@ -47,6 +47,11 @@ namespace OSIRT.UI
 
         }
 
+        public TabControl.TabPageCollection AuditTabs
+        {
+            get { return uiAuditLogTabControl.TabPages;}
+        }
+
         public AuditTab CurrentTab //active tab
         {
             get

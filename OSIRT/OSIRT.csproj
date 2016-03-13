@@ -84,6 +84,8 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="IconManager.cs" />
     <Compile Include="LoggableAction.cs" />
     <Compile Include="CaseDirectory.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />

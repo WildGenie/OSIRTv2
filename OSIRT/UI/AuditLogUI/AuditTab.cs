@@ -33,30 +33,19 @@ namespace OSIRT.UI
             PopulateGrid(dataTable);
 
             Controls.Add(AuditLogGrid);
-
-        
-
-
         }
 
         private void AuditLogGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-
-            var collection = AuditLogGrid.Rows;
-
-            //TODO: Trying to think of a sensible way to send this data back to the UI
-            //Problems: Varying columns in each tab. How do you know which string belongs
-            //in which textbox
+            Dictionary<string, string> rowCells = new Dictionary<string, string>();
             int cellCount = AuditLogGrid.Rows[e.RowIndex].Cells.Count;
-            string[] rowDetails = new string[cellCount];
             for (int i = 0; i < cellCount; i++)
             {
-                rowDetails[i] = AuditLogGrid.Rows[e.RowIndex].Cells[i].Value.ToString();
+                rowCells.Add(AuditLogGrid.Columns[i].Name, AuditLogGrid.Rows[e.RowIndex].Cells[i].Value.ToString());
             }
-            //string joinedRowDetails = string.Join(",", rowDetails);
 
-
-            RowEntered?.Invoke(this, e);
+            ExtendedRowEnterEventArgs eventArgs = new ExtendedRowEnterEventArgs(e, rowCells);
+            RowEntered?.Invoke(this, eventArgs);
         }
 
         private void AuditLogGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)

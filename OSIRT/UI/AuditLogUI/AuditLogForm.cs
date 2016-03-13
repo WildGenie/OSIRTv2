@@ -8,6 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSIRT.Extensions;
+using OSIRT.Helpers;
+using System.Windows.Media.Imaging;
+using System.Drawing.Imaging;
+using System.Windows;
 
 namespace OSIRT.UI
 {
@@ -16,39 +21,93 @@ namespace OSIRT.UI
         public AuditLogForm()
         {
             InitializeComponent();
-          
+
         }
 
         private void uiAuditLogForm_Load(object sender, EventArgs e)
         {
-            AuditTabControlPanel auditTabControlPanel = new AuditTabControlPanel(this);
+            AuditTabControlPanel auditTabControlPanel = new AuditTabControlPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
 
+            AttachRowEventHandler(auditTabControlPanel);
 
-            auditTabControlPanel.GetAuditTab().RowEntered += AuditLogForm_RowEntered;
+        }
 
-            //auditTabControlPanel.GetAuditTab().RowEnter += AuditLogForm_RowEnter;
+        private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
+        {
+            var tabs = auditTabControlPanel.GetAuditTabs();
 
+            foreach (AuditTab tab in tabs)
+            {
+                tab.RowEntered += AuditLogForm_RowEntered;
+            }
         }
 
         private void AuditLogForm_RowEntered(object sender, EventArgs e)
         {
 
-            DataGridViewCellEventArgs evt = (DataGridViewCellEventArgs) e;
+            ExtendedRowEnterEventArgs args = (ExtendedRowEnterEventArgs)e;
+            Dictionary<string, string> rowDetails = args.RowDetails;
+            var textBoxes = uiRowDetailsGroupBox.GetChildControls<TextBox>();
 
-            //TODO: When tab switches this event does not fire
-            string rowDetails = "";
-
-            AuditTab audit = (AuditTab)sender;
-            DataGridView dgv = audit.AuditLogGrid;
-
-            for (int i = 0; i < dgv.Rows[evt.RowIndex].Cells.Count; i++)
+            foreach (TextBox textBox in textBoxes)
             {
-                rowDetails += dgv.Rows[evt.RowIndex].Cells[i].Value.ToString() + " ";
+                if (textBox.Tag.ToString() == "dateAndTime")
+                {
+                    textBox.Text = rowDetails["date"] + " " + rowDetails["time"];
+                    continue;
+                }
+
+                string value = "";
+                if (rowDetails.TryGetValue(textBox.Tag.ToString(), out value))
+                {
+                    if(textBox.Tag.ToString() == "file_name")
+                    {
+                        DisplayFileIcon(rowDetails["file_name"]);
+                    }
+                    textBox.Text = value;
+                }
+                else
+                {
+                    textBox.Text = "";
+                }
             }
 
-            Debug.WriteLine("ROW ENTER: -----------------" + rowDetails);
         }
+
+
+        private void DisplayFileIcon(string file)
+        {
+            //Icon icon = NativeMethods.GetFileIcon(file, NativeMethods.IconSize.Large, false);
+
+            IconManager iconManager = new IconManager();
+
+            System.Windows.Media.Imaging.BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
+
+            uiFilePreviewPictureBox.Image = GetBitmap(icon);
+            //TODO: Display more details about this file.
+            //TODO: Tidy up code in NativeMethods and the GetBitmap method (below) - move to helper class.
+        }
+
+        Bitmap GetBitmap(BitmapSource source)
+        {
+            Bitmap bmp = new Bitmap(
+              source.PixelWidth,
+              source.PixelHeight,
+              PixelFormat.Format32bppPArgb);
+            BitmapData data = bmp.LockBits(
+              new Rectangle(System.Drawing.Point.Empty, bmp.Size),
+              ImageLockMode.WriteOnly,
+              PixelFormat.Format32bppPArgb);
+            source.CopyPixels(
+              Int32Rect.Empty,
+              data.Scan0,
+              data.Height * data.Stride,
+              data.Stride);
+            bmp.UnlockBits(data);
+            return bmp;
+        }
+
 
 
     }
