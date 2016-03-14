@@ -26,23 +26,32 @@ namespace OSIRT.UI
             tabbedAuditLog = new TabbedAuditLogControl();
             tabbedAuditLog.Dock = DockStyle.Fill;
             uiGridViewPanel.Controls.Add(tabbedAuditLog);
-
-           
-
-
         }
 
-        public TabControl.TabPageCollection GetAuditTabs()
+        public TabControl.TabPageCollection AuditTabs
         {
-            //tabbedAuditLog
-
-            //return (tabbedAuditLog.CurrentTab as AuditTab);
-            return tabbedAuditLog.AuditTabs;
+             get { return tabbedAuditLog.AuditTabs; }
         }
 
-        private void uiGridViewPanel_Paint(object sender, PaintEventArgs e)
-        {
 
+        int count = 0; //TODO: best place to put this logic.
+                        //probably in the AuditTab.
+        private void uiNextPageButton_Click(object sender, EventArgs e)
+        {
+            //if count < max pages?
+            count++;
+            tabbedAuditLog.CurrentTab.NextPage(count);
+            
+            
+        }
+
+        private void uiPreviousPageButton_Click(object sender, EventArgs e)
+        {
+            if(count > 1)
+                count--;
+
+            tabbedAuditLog.CurrentTab.NextPage(count);
+            
         }
     }
 }

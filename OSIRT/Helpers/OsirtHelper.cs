@@ -1,21 +1,40 @@
 ﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace OSIRT.Helpers
 {
     public class OsirtHelper
-    { 
+    {
 
-        public static string GetFileHash(string path)
+        public static Bitmap GetBitmap(BitmapSource source)
         {
-            HashService hashService = HashServiceFactory.Create(Properties.Settings.Default.Hash);
+            Bitmap bmp = new Bitmap(source.PixelWidth, source.PixelHeight, PixelFormat.Format32bppPArgb);
+            BitmapData data = bmp.LockBits(new Rectangle(System.Drawing.Point.Empty, bmp.Size), ImageLockMode.WriteOnly, PixelFormat.Format32bppPArgb);
+            source.CopyPixels(Int32Rect.Empty, data.Scan0, data.Height * data.Stride, data.Stride);
+            bmp.UnlockBits(data);
+            return bmp;
+        }
+
+        /// <summary>
+        /// Obtains a file's hash using the specified hash
+        /// </summary>
+        /// <param name="path">The location of the file required to be hashed</param>
+        /// <param name="hashWanted">The hash alogorithm required</param>
+        /// <returns>Hash of the file</returns>
+        public static string GetFileHash(string path, string hashWanted)
+        {
+            HashService hashService = HashServiceFactory.Create(hashWanted);
             string hash = "";
             using (FileStream fileStream = File.OpenRead(path))
             {
@@ -24,11 +43,21 @@ namespace OSIRT.Helpers
             return hash;
         }
 
+        /// <summary>
+        /// Obtains a file's hash using the saved hash setting
+        /// </summary>
+        /// <param name="path">The location of the file required to be hashed</param>
+        /// <returns>Hash of the file</returns>
+        public static string GetFileHash(string path)
+        {
+            return  GetFileHash(path, Properties.Settings.Default.Hash);
+        }
+
 
         public static bool IsValidFilename(string fileName)
         {
-            
-            
+
+
             //< > : " / \ | ? *
             return !string.IsNullOrWhiteSpace(fileName) && fileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1;
         }
@@ -39,7 +68,7 @@ namespace OSIRT.Helpers
             {
                 try
                 {
-                    FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite,FileShare.None);
+                    FileStream fs = new FileStream(fullPath, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
 
                     fs.ReadByte();
                     fs.Seek(0, SeekOrigin.Begin);

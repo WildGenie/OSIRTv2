@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,19 @@ namespace OSIRT.Database
         }
 
 
-
-
-        public DataTable GetDataTable(string table)
+        public DataTable GetDataTable(string table, int page)
         {
-            string query = $"SELECT * FROM {table}";
+            string query = "";
+            if (page == 1)
+            {
+                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT be a user option
+            }
+            else
+            {
+                int offset = page * 25;
+                query = $"SELECT * FROM {table} LIMIT {offset}, 25"; //get 25 rows after page (e.g; 75).
+            }
+
             DataTable dataTable = new DataTable();
             using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
             {
@@ -39,6 +48,7 @@ namespace OSIRT.Database
                     }
                 }
             }
+            Debug.WriteLine($"---- ROW COUNT for Table {table}: ------" + dataTable.Rows.Count);
             return dataTable;
         }
 

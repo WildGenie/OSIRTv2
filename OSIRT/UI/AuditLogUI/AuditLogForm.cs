@@ -35,7 +35,7 @@ namespace OSIRT.UI
 
         private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
         {
-            var tabs = auditTabControlPanel.GetAuditTabs();
+            var tabs = auditTabControlPanel.AuditTabs;
 
             foreach (AuditTab tab in tabs)
             {
@@ -81,33 +81,14 @@ namespace OSIRT.UI
             //Icon icon = NativeMethods.GetFileIcon(file, NativeMethods.IconSize.Large, false);
 
             IconManager iconManager = new IconManager();
+            BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
 
-            System.Windows.Media.Imaging.BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
-
-            uiFilePreviewPictureBox.Image = GetBitmap(icon);
+            uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
             //TODO: Display more details about this file.
             //TODO: Tidy up code in NativeMethods and the GetBitmap method (below) - move to helper class.
         }
 
-        Bitmap GetBitmap(BitmapSource source)
-        {
-            Bitmap bmp = new Bitmap(
-              source.PixelWidth,
-              source.PixelHeight,
-              PixelFormat.Format32bppPArgb);
-            BitmapData data = bmp.LockBits(
-              new Rectangle(System.Drawing.Point.Empty, bmp.Size),
-              ImageLockMode.WriteOnly,
-              PixelFormat.Format32bppPArgb);
-            source.CopyPixels(
-              Int32Rect.Empty,
-              data.Scan0,
-              data.Height * data.Stride,
-              data.Stride);
-            bmp.UnlockBits(data);
-            return bmp;
-        }
-
+        
 
 
     }

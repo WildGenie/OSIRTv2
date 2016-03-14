@@ -15,6 +15,7 @@ namespace OSIRT.UI
 
         public DataGridView AuditLogGrid { get; private set; }
         public event EventHandler RowEntered;
+        public string Table { get; private set; }
 
         public AuditTab(string title, string table) : base(title) 
         {
@@ -26,10 +27,11 @@ namespace OSIRT.UI
             AuditLogGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
             AuditLogGrid.RowEnter += AuditLogGrid_RowEnter;
+            Table = table;
 
 
             DatabaseHandler db = new DatabaseHandler();
-            DataTable dataTable = db.GetDataTable(table);
+            DataTable dataTable = db.GetDataTable(table, 1);
             PopulateGrid(dataTable);
 
             Controls.Add(AuditLogGrid);
@@ -61,7 +63,14 @@ namespace OSIRT.UI
             }
         }
 
-        //TODO: For future to populate the gridview... 
+        public void NextPage(int page)
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            DataTable dataTable = db.GetDataTable(Table, page);
+            PopulateGrid(dataTable);
+        }
+
+       
         public void PopulateGrid(DataTable dataTable)
         {
             AuditLogGrid.DataSource = dataTable;
