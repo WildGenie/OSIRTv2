@@ -15,7 +15,11 @@ namespace OSIRT.UI
 
         public DataGridView AuditLogGrid { get; private set; }
         public event EventHandler RowEntered;
-        public string Table { get; private set; }
+        public string TableName { get; private set; }
+        public DataTable Table { get; private set; }
+        public int Page { get; private set; } 
+        public int MaxPages { get { return 25; } }
+        private int totalRowCount = 0;
 
         public AuditTab(string title, string table) : base(title) 
         {
@@ -27,14 +31,33 @@ namespace OSIRT.UI
             AuditLogGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
             AuditLogGrid.RowEnter += AuditLogGrid_RowEnter;
-            Table = table;
+            TableName = table;
 
-
+            //TODO: Refactor this, DRY.
             DatabaseHandler db = new DatabaseHandler();
-            DataTable dataTable = db.GetDataTable(table, 1);
-            PopulateGrid(dataTable);
+            Table = db.GetDataTable(table, 1);
+            PopulateGrid(Table);
 
             Controls.Add(AuditLogGrid);
+
+            totalRowCount = TotalRowCount();
+            Page = 1;
+        }
+
+
+        public int NumberOfPages
+        {
+            get { return TotalRowCount() / MaxPages; }
+        }
+
+        /// <summary>
+        /// Gets the number of rows for this particular tab in the DataGridView
+        /// </summary>
+        public int TotalRowCount()
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            int count = db.GetTotalRowsFromTable(TableName);
+            return count;    
         }
 
         private void AuditLogGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -63,11 +86,57 @@ namespace OSIRT.UI
             }
         }
 
-        public void NextPage(int page)
+        
+
+        public string PageDescription()
+        {
+            return $"Page {Page} of {NumberOfPages}";
+        }
+
+
+        public bool CanGoToNextPage()
+        {
+            return Page < NumberOfPages;
+        }
+
+        public bool CanGoToPreviousPage()
+        {
+            return Page > 1;
+        }
+
+        public void NextPage()
+        {
+            if (CanGoToNextPage())
+                Page++;
+
+            GoToPage(Page);
+        }
+
+        public void PreviousPage()
+        {
+            if (CanGoToPreviousPage())
+                Page--;
+
+            GoToPage(Page);
+        }
+
+        public void FirstPage()
+        {
+            Page = 1;
+            GoToPage(Page);
+        }
+
+        public void LastPage()
+        {
+            Page = NumberOfPages;
+            GoToPage(Page);
+        }
+
+        private void GoToPage(int page)
         {
             DatabaseHandler db = new DatabaseHandler();
-            DataTable dataTable = db.GetDataTable(Table, page);
-            PopulateGrid(dataTable);
+            Table = db.GetDataTable(TableName, page);
+            PopulateGrid(Table);
         }
 
        

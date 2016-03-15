@@ -22,6 +22,28 @@ namespace OSIRT.Database
         }
 
 
+        public int GetTotalRowsFromTable(string table)
+        {
+            //TODO: DRY! Strip out the datatable query (using statements) to their own method
+            string query = $"SELECT * FROM {table}";
+            DataTable dataTable = new DataTable();
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    conn.Open();
+                    command.CommandText = query;
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        dataTable.Load(reader);
+                    }
+                }
+            }
+            int count = dataTable.Rows.Count;
+            return count;
+
+        }
+
         public DataTable GetDataTable(string table, int page)
         {
             string query = "";
