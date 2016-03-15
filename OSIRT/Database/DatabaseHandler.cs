@@ -53,7 +53,7 @@ namespace OSIRT.Database
             }
             else
             {
-                int offset = page * 25;
+                int offset = (page - 1) * 25;
                 query = $"SELECT * FROM {table} LIMIT {offset}, 25"; //get 25 rows after page (e.g; 75).
             }
 

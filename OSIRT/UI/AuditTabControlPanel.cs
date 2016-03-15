@@ -54,18 +54,15 @@ namespace OSIRT.UI
             {
                 tabbedAuditLog.CurrentTab.NextPage();
                 uiPreviousPageButton.Enabled = true;
-                uiLastPageButton.Enabled = true;
                 if (tabbedAuditLog.CurrentTab.Page == tabbedAuditLog.CurrentTab.NumberOfPages)
                 {
                     uiNextPageButton.Enabled = false;
-                    uiLastPageButton.Enabled = false;
                 }
             }
             else
             {
                 uiNextPageButton.Enabled = false;
-                uiLastPageButton.Enabled = false;
-            }
+        }
 
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription();
 

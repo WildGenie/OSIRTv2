@@ -96,6 +96,7 @@
             this.uiLastPageButton.TabIndex = 3;
             this.uiLastPageButton.Text = ">>";
             this.uiLastPageButton.UseVisualStyleBackColor = true;
+            this.uiLastPageButton.Visible = false;
             this.uiLastPageButton.Click += new System.EventHandler(this.uiLastPageButton_Click);
             // 
             // uiNextPageButton
@@ -129,6 +130,7 @@
             this.uiFirstPageButton.TabIndex = 0;
             this.uiFirstPageButton.Text = "<<";
             this.uiFirstPageButton.UseVisualStyleBackColor = true;
+            this.uiFirstPageButton.Visible = false;
             this.uiFirstPageButton.Click += new System.EventHandler(this.uiFirstPageButton_Click);
             // 
             // uiSearchPanel

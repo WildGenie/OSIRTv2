@@ -85,11 +85,23 @@ namespace OSIRT.UI
 
             uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
             //TODO: Display more details about this file.
-            //TODO: Tidy up code in NativeMethods and the GetBitmap method (below) - move to helper class.
         }
 
-        
+        private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //re-update the database so print is all true again
+            //perhaps wrap this in a wait window... "performing audit log closing functions... etc"
+
+            Database.DatabaseHandler db = new Database.DatabaseHandler();
+            db.ExecuteNonQuery($"UPDATE webpage_log SET print = 'true'");
+            db.ExecuteNonQuery($"UPDATE webpage_actions SET print = 'true'");
+            db.ExecuteNonQuery($"UPDATE osirt_actions SET print = 'true'");
+            db.ExecuteNonQuery($"UPDATE attachments SET print = 'true'");
+            //can't UPDATE multiple tables... look into transactions:
+            //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
 
 
+
+        }
     }
 }

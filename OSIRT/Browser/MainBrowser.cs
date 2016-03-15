@@ -264,7 +264,8 @@ namespace OSIRT.Browser
         public int ScrollHeight()
         {
             int scrollHeight = 0;
-
+            //TODO: If this is a PDF (or non webpage) it throws an exception.
+            //The same for Width, I'd imagine.
             Rectangle bounds = this.Document.Body.ScrollRectangle;
             IHTMLElement2 body = this.Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (this.Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;

@@ -17,11 +17,11 @@ namespace OSIRT.UI
         public event EventHandler RowEntered;
         public string TableName { get; private set; }
         public DataTable Table { get; private set; }
-        public int Page { get; private set; } 
+        public int Page { get; private set; }
         public int MaxPages { get { return 25; } }
         private int totalRowCount = 0;
 
-        public AuditTab(string title, string table) : base(title) 
+        public AuditTab(string title, string table) : base(title)
         {
             AuditLogGrid = new DataGridView();
             AuditLogGrid.AllowUserToAddRows = false;
@@ -31,11 +31,13 @@ namespace OSIRT.UI
             AuditLogGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
             AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
             AuditLogGrid.RowEnter += AuditLogGrid_RowEnter;
+            AuditLogGrid.CellClick += AuditLogGrid_CellClick;
+
             TableName = table;
 
             //TODO: Refactor this, DRY.
             DatabaseHandler db = new DatabaseHandler();
-            Table = db.GetDataTable(table, 1);
+            Table = db.GetDataTable(TableName, 1);
             PopulateGrid(Table);
 
             Controls.Add(AuditLogGrid);
@@ -44,10 +46,41 @@ namespace OSIRT.UI
             Page = 1;
         }
 
+        private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Don't want this to run when the column header is clicked
+            //let's get outta here
+            if (e.RowIndex < 0)
+                return;
 
+            if (AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
+            {
+                DataGridViewCheckBoxCell column = AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+                if (column.Value != null)
+                {
+                    bool isChecked = (bool) column.Value;
+                    string id = AuditLogGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                    DatabaseHandler db = new DatabaseHandler();
+                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
+                    db.ExecuteNonQuery(query); //TODO: Perhaps place an Update method in the db handler   
+                }
+            }
+        }
+
+        //TODO: Now we have row ids, check this out
+        //http://www.codeproject.com/Articles/211551/A-Simple-way-for-Paging-in-DataGridView-in-WinForm
         public int NumberOfPages
         {
-            get { return TotalRowCount() / MaxPages; }
+            get
+            {
+                int rowCount = totalRowCount;
+                int numPages = rowCount / MaxPages;
+                if(rowCount % MaxPages > 0)
+                {
+                    numPages++;
+                }
+                return numPages;
+            }
         }
 
         /// <summary>
@@ -57,7 +90,7 @@ namespace OSIRT.UI
         {
             DatabaseHandler db = new DatabaseHandler();
             int count = db.GetTotalRowsFromTable(TableName);
-            return count;    
+            return count;
         }
 
         private void AuditLogGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -86,7 +119,7 @@ namespace OSIRT.UI
             }
         }
 
-        
+
 
         public string PageDescription()
         {
@@ -132,6 +165,9 @@ namespace OSIRT.UI
             GoToPage(Page);
         }
 
+        //TODO: Cache this datatable, because re-creating it
+        //causes loss of what was checked to print and not
+        //See: http://stackoverflow.com/questions/2787458/how-to-select-top-n-rows-from-a-datatable-dataview-in-asp-net
         private void GoToPage(int page)
         {
             DatabaseHandler db = new DatabaseHandler();
@@ -139,7 +175,7 @@ namespace OSIRT.UI
             PopulateGrid(Table);
         }
 
-       
+
         public void PopulateGrid(DataTable dataTable)
         {
             AuditLogGrid.DataSource = dataTable;

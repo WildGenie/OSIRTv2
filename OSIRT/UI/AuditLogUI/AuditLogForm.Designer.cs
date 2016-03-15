@@ -250,6 +250,7 @@
             this.Controls.Add(this.uiAuditLogSplitContainer);
             this.Name = "AuditLogForm";
             this.Text = "Audit Log";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AuditLogForm_FormClosing);
             this.Load += new System.EventHandler(this.uiAuditLogForm_Load);
             this.uiAuditLogSplitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiAuditLogSplitContainer)).EndInit();
