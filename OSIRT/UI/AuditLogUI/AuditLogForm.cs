@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSIRT.Extensions;
 using OSIRT.Helpers;
 using System.Windows.Media.Imaging;
-using System.Drawing.Imaging;
-using System.Windows;
+
 
 namespace OSIRT.UI
 {
@@ -21,7 +13,6 @@ namespace OSIRT.UI
         public AuditLogForm()
         {
             InitializeComponent();
-
         }
 
         private void uiAuditLogForm_Load(object sender, EventArgs e)
@@ -85,6 +76,7 @@ namespace OSIRT.UI
 
             uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
             //TODO: Display more details about this file.
+            //In order to display more details, we require the relative path
         }
 
         private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -99,6 +91,7 @@ namespace OSIRT.UI
             db.ExecuteNonQuery($"UPDATE attachments SET print = 'true'");
             //can't UPDATE multiple tables... look into transactions:
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
+            //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
 
 
 

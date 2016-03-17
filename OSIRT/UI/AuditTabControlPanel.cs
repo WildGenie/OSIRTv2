@@ -46,6 +46,11 @@ namespace OSIRT.UI
              get { return tabbedAuditLog.AuditTabs; }
         }
 
+        private void uiSearchButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
         private void uiNextPageButton_Click(object sender, EventArgs e)
         {
@@ -111,6 +116,12 @@ namespace OSIRT.UI
         private void uiGridViewPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void uiSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string searchText = uiSearchTextBox.Text;
+            tabbedAuditLog.CurrentTab.Search(searchText);
         }
     }
 }

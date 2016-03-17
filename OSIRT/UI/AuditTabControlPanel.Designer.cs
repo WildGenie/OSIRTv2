@@ -31,11 +31,11 @@
             this.uiAuditTabsPanel = new System.Windows.Forms.Panel();
             this.uiGridViewPanel = new System.Windows.Forms.Panel();
             this.uiPaginationPanel = new System.Windows.Forms.Panel();
-            this.uiPageNumberLabel = new System.Windows.Forms.Label();
             this.uiLastPageButton = new System.Windows.Forms.Button();
             this.uiNextPageButton = new System.Windows.Forms.Button();
             this.uiPreviousPageButton = new System.Windows.Forms.Button();
             this.uiFirstPageButton = new System.Windows.Forms.Button();
+            this.uiPageNumberLabel = new System.Windows.Forms.Label();
             this.uiSearchPanel = new System.Windows.Forms.Panel();
             this.uiSearchButton = new System.Windows.Forms.Button();
             this.uiSearchTextBox = new System.Windows.Forms.TextBox();
@@ -76,16 +76,6 @@
             this.uiPaginationPanel.Name = "uiPaginationPanel";
             this.uiPaginationPanel.Size = new System.Drawing.Size(948, 31);
             this.uiPaginationPanel.TabIndex = 0;
-            // 
-            // uiPageNumberLabel
-            // 
-            this.uiPageNumberLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPageNumberLabel.Location = new System.Drawing.Point(0, 0);
-            this.uiPageNumberLabel.Name = "uiPageNumberLabel";
-            this.uiPageNumberLabel.Size = new System.Drawing.Size(948, 31);
-            this.uiPageNumberLabel.TabIndex = 4;
-            this.uiPageNumberLabel.Text = "Page 1 of 10";
-            this.uiPageNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiLastPageButton
             // 
@@ -133,6 +123,16 @@
             this.uiFirstPageButton.Visible = false;
             this.uiFirstPageButton.Click += new System.EventHandler(this.uiFirstPageButton_Click);
             // 
+            // uiPageNumberLabel
+            // 
+            this.uiPageNumberLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPageNumberLabel.Location = new System.Drawing.Point(0, 0);
+            this.uiPageNumberLabel.Name = "uiPageNumberLabel";
+            this.uiPageNumberLabel.Size = new System.Drawing.Size(948, 31);
+            this.uiPageNumberLabel.TabIndex = 4;
+            this.uiPageNumberLabel.Text = "Page 1 of 10";
+            this.uiPageNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // uiSearchPanel
             // 
             this.uiSearchPanel.Controls.Add(this.uiSearchButton);
@@ -152,6 +152,7 @@
             this.uiSearchButton.TabIndex = 1;
             this.uiSearchButton.Text = "Search";
             this.uiSearchButton.UseVisualStyleBackColor = true;
+            this.uiSearchButton.Click += new System.EventHandler(this.uiSearchButton_Click);
             // 
             // uiSearchTextBox
             // 
@@ -160,6 +161,7 @@
             this.uiSearchTextBox.Name = "uiSearchTextBox";
             this.uiSearchTextBox.Size = new System.Drawing.Size(213, 20);
             this.uiSearchTextBox.TabIndex = 0;
+            this.uiSearchTextBox.TextChanged += new System.EventHandler(this.uiSearchTextBox_TextChanged);
             // 
             // AuditTabControlPanel
             // 

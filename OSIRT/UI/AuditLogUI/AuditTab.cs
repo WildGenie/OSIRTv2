@@ -20,6 +20,7 @@ namespace OSIRT.UI
         public int Page { get; private set; }
         public int MaxPages { get { return 25; } }
         private int totalRowCount = 0;
+        private List<string> columnNames;
 
         public AuditTab(string title, string table) : base(title)
         {
@@ -44,12 +45,54 @@ namespace OSIRT.UI
 
             totalRowCount = TotalRowCount();
             Page = 1;
+            SetColumnNames();
         }
+
+        private void SetColumnNames()
+        {
+            columnNames = Table.Columns.Cast<DataColumn>()
+                                 .Select(x => x.ColumnName)
+                                 .ToList();
+
+            columnNames.Remove("id");
+            columnNames.Remove("print");
+        }
+
+        private string BuildQueryString(string pattern)
+        {
+            StringBuilder sb = new StringBuilder();
+            string lastItem = columnNames.Last();
+            string or = "OR";
+
+            foreach (string item in columnNames)
+            {
+                if (item == lastItem)
+                    or = "";
+
+                sb.Append($"{item} LIKE '%{pattern}%' {or} ");
+            }
+
+           return sb.ToString();
+
+        }
+
+
+        //TODO: This only deals with the page user is on.
+        public void Search(string pattern)
+        {
+            DataTable data = null;
+            DataRow[] dataRows = Table.Select(BuildQueryString(pattern));
+            if (dataRows.Count() > 0) //can't copy to dataTable if there are no DataRows
+            {
+                data = dataRows.CopyToDataTable();
+            }
+            PopulateGrid(data);
+        }
+
 
         private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Don't want this to run when the column header is clicked
-            //let's get outta here
+            //Don't want this to execute when the column header is clicked (OOB)
             if (e.RowIndex < 0)
                 return;
 
@@ -58,7 +101,7 @@ namespace OSIRT.UI
                 DataGridViewCheckBoxCell column = AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
                 if (column.Value != null)
                 {
-                    bool isChecked = (bool) column.Value;
+                    bool isChecked = (bool)column.Value;
                     string id = AuditLogGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
                     DatabaseHandler db = new DatabaseHandler();
                     string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
@@ -66,16 +109,16 @@ namespace OSIRT.UI
                 }
             }
         }
-
-        //TODO: Now we have row ids, check this out
-        //http://www.codeproject.com/Articles/211551/A-Simple-way-for-Paging-in-DataGridView-in-WinForm
+        /// <summary>
+        /// Gets the number of pages as an integer of the DataTable
+        /// </summary>
         public int NumberOfPages
         {
             get
             {
                 int rowCount = totalRowCount;
                 int numPages = rowCount / MaxPages;
-                if(rowCount % MaxPages > 0)
+                if (rowCount % MaxPages > 0)
                 {
                     numPages++;
                 }
