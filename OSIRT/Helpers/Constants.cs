@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using OSIRT.Enums;
 
 namespace OSIRT.Helpers
 {
@@ -13,12 +14,13 @@ namespace OSIRT.Helpers
     {
 
         //Actions
-        public static class Actions
-        {
-            public static string Screenshot { get { return strings.ScreenshotAction; } }
-            public static string Loaded { get { return strings.LoadedAction; } }
+        //Using Enum instead
+        //public static class Actions
+        //{
+        //    //public static string Screenshot { get { return strings.ScreenshotAction; } }
+        //    //public static string Loaded { get { return strings.LoadedAction; } }
 
-        }
+        //}
 
         //Case container Directories and files
         public static string CasePath { get; set; }
@@ -52,14 +54,14 @@ namespace OSIRT.Helpers
             private static readonly Dictionary<CaseDirectory, string> directories = new Dictionary<CaseDirectory, string>
             {
                 { CaseDirectory.Images, @"images" },
-                { CaseDirectory.Screenshots, @"images\screenshots" }, //removed leading and trailing slashes in order to use Path.Combine
+                { CaseDirectory.Screenshot, @"images\screenshots" }, //remove leading and trailing slashes in order to use Path.Combine
                 { CaseDirectory.Scraped, @"images\scraped" },
                 { CaseDirectory.Snippet, @"images\snippets" },
                 { CaseDirectory.Batchsnap, @"images\batchsnap" },
                 { CaseDirectory.Saved, @"images\saved" },
                 { CaseDirectory.Attachment, @"attachments" },
-                { CaseDirectory.Videos, @"videos" },
-                { CaseDirectory.Downloads, @"downloads" },
+                { CaseDirectory.Video, @"videos" },
+                { CaseDirectory.Download, @"downloads" },
                 { CaseDirectory.Source, @"downloads\source_code" },
                 { CaseDirectory.Report, @"reports" },
             };

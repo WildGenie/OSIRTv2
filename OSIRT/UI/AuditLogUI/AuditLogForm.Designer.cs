@@ -30,11 +30,12 @@
         {
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.uiFileDetailsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiFileDetailsLabel = new System.Windows.Forms.Label();
             this.uiFilePreviewPictureBox = new System.Windows.Forms.PictureBox();
             this.uiRowDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.uiDateAndTimetextBox = new System.Windows.Forms.TextBox();
+            this.uiDateAndTimeTextBox = new System.Windows.Forms.TextBox();
             this.uiNoteTextBox = new System.Windows.Forms.TextBox();
             this.uiActionTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,8 +44,7 @@
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.uiFileDetailsLabel = new System.Windows.Forms.Label();
+            this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiAuditLogSplitContainer)).BeginInit();
             this.uiAuditLogSplitContainer.Panel1.SuspendLayout();
             this.uiAuditLogSplitContainer.SuspendLayout();
@@ -87,6 +87,15 @@
             this.uiFileDetailsGroupBox.TabStop = false;
             this.uiFileDetailsGroupBox.Text = "File Previewer";
             // 
+            // uiFileDetailsLabel
+            // 
+            this.uiFileDetailsLabel.AutoSize = true;
+            this.uiFileDetailsLabel.Location = new System.Drawing.Point(15, 204);
+            this.uiFileDetailsLabel.Name = "uiFileDetailsLabel";
+            this.uiFileDetailsLabel.Size = new System.Drawing.Size(35, 13);
+            this.uiFileDetailsLabel.TabIndex = 1;
+            this.uiFileDetailsLabel.Text = "label7";
+            // 
             // uiFilePreviewPictureBox
             // 
             this.uiFilePreviewPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -104,7 +113,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiRowDetailsGroupBox.Controls.Add(this.label1);
             this.uiRowDetailsGroupBox.Controls.Add(this.label6);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiDateAndTimetextBox);
+            this.uiRowDetailsGroupBox.Controls.Add(this.uiDateAndTimeTextBox);
             this.uiRowDetailsGroupBox.Controls.Add(this.uiNoteTextBox);
             this.uiRowDetailsGroupBox.Controls.Add(this.uiActionTextBox);
             this.uiRowDetailsGroupBox.Controls.Add(this.label5);
@@ -113,7 +122,7 @@
             this.uiRowDetailsGroupBox.Controls.Add(this.uiURLTextBox);
             this.uiRowDetailsGroupBox.Controls.Add(this.label4);
             this.uiRowDetailsGroupBox.Controls.Add(this.label3);
-            this.uiRowDetailsGroupBox.Controls.Add(this.textBox1);
+            this.uiRowDetailsGroupBox.Controls.Add(this.uiFileNameTextBox);
             this.uiRowDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiRowDetailsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.uiRowDetailsGroupBox.Name = "uiRowDetailsGroupBox";
@@ -140,16 +149,16 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Note";
             // 
-            // uiDateAndTimetextBox
+            // uiDateAndTimeTextBox
             // 
-            this.uiDateAndTimetextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.uiDateAndTimeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDateAndTimetextBox.Location = new System.Drawing.Point(15, 34);
-            this.uiDateAndTimetextBox.Name = "uiDateAndTimetextBox";
-            this.uiDateAndTimetextBox.ReadOnly = true;
-            this.uiDateAndTimetextBox.Size = new System.Drawing.Size(272, 20);
-            this.uiDateAndTimetextBox.TabIndex = 0;
-            this.uiDateAndTimetextBox.Tag = "dateAndTime";
+            this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 34);
+            this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
+            this.uiDateAndTimeTextBox.ReadOnly = true;
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiDateAndTimeTextBox.TabIndex = 0;
+            this.uiDateAndTimeTextBox.Tag = "dateAndTime";
             // 
             // uiNoteTextBox
             // 
@@ -233,25 +242,16 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "URL";
             // 
-            // textBox1
+            // uiFileNameTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.uiFileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(15, 151);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(272, 20);
-            this.textBox1.TabIndex = 6;
-            this.textBox1.Tag = "file_name";
-            // 
-            // uiFileDetailsLabel
-            // 
-            this.uiFileDetailsLabel.AutoSize = true;
-            this.uiFileDetailsLabel.Location = new System.Drawing.Point(15, 204);
-            this.uiFileDetailsLabel.Name = "uiFileDetailsLabel";
-            this.uiFileDetailsLabel.Size = new System.Drawing.Size(35, 13);
-            this.uiFileDetailsLabel.TabIndex = 1;
-            this.uiFileDetailsLabel.Text = "label7";
+            this.uiFileNameTextBox.Location = new System.Drawing.Point(15, 151);
+            this.uiFileNameTextBox.Name = "uiFileNameTextBox";
+            this.uiFileNameTextBox.ReadOnly = true;
+            this.uiFileNameTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiFileNameTextBox.TabIndex = 6;
+            this.uiFileNameTextBox.Tag = "file_name";
             // 
             // AuditLogForm
             // 
@@ -281,13 +281,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox uiActionTextBox;
-        private System.Windows.Forms.TextBox uiDateAndTimetextBox;
+        private System.Windows.Forms.TextBox uiDateAndTimeTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox uiNoteTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox uiHashTextBox;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox uiFileNameTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox uiURLTextBox;
         private System.Windows.Forms.GroupBox uiRowDetailsGroupBox;

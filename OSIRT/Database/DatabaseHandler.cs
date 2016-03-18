@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class DatabaseHandler 
     {
@@ -49,7 +49,7 @@ namespace OSIRT.Database
             string query = "";
             if (page == 1)
             {
-                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT be a user option
+                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT 25 be a user option
             }
             else
             {
@@ -70,7 +70,6 @@ namespace OSIRT.Database
                     }
                 }
             }
-            Debug.WriteLine($"---- ROW COUNT for Table {table}: ------" + dataTable.Rows.Count);
             return dataTable;
         }
 

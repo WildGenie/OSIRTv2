@@ -4,12 +4,18 @@ using System.Windows.Forms;
 using OSIRT.Extensions;
 using OSIRT.Helpers;
 using System.Windows.Media.Imaging;
-
+using OSIRT.Enums;
+using System.Diagnostics;
+using System.IO;
 
 namespace OSIRT.UI
 {
     public partial class AuditLogForm : Form
     {
+
+        private string filePath = "";
+        private ToolTip tooltip = new ToolTip();
+
         public AuditLogForm()
         {
             InitializeComponent();
@@ -22,6 +28,30 @@ namespace OSIRT.UI
 
             AttachRowEventHandler(auditTabControlPanel);
 
+            //TODO: don't want this to display or be clickable if there isn't a file in the previewer
+            uiFilePreviewPictureBox.MouseClick += FilePreviewPictureBox_MouseClick;
+            uiFilePreviewPictureBox.Cursor = Cursors.Hand;
+            tooltip.SetToolTip(uiFilePreviewPictureBox, "Click to open file in the system's default application.");
+        }
+
+
+        private void FilePreviewPictureBox_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (filePath == "")
+                return;
+
+            try
+            {
+                Process.Start(filePath);
+            }
+            catch(FileNotFoundException)
+            {
+                MessageBox.Show($"Unable to open file ({filePath}) as the file is not found");
+            }
+            catch(System.ComponentModel.Win32Exception we)
+            {
+                MessageBox.Show($"Unable to open file ({filePath}). Reason: {we} ");
+            }
         }
 
         private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
@@ -41,42 +71,54 @@ namespace OSIRT.UI
             Dictionary<string, string> rowDetails = args.RowDetails;
             var textBoxes = uiRowDetailsGroupBox.GetChildControls<TextBox>();
 
+            uiDateAndTimeTextBox.Text = rowDetails["date"] + " " + rowDetails["time"];
+
             foreach (TextBox textBox in textBoxes)
             {
-                if (textBox.Tag.ToString() == "dateAndTime")
-                {
-                    textBox.Text = rowDetails["date"] + " " + rowDetails["time"];
+                if (textBox == uiDateAndTimeTextBox)
                     continue;
-                }
+             
 
                 string value = "";
-                if (rowDetails.TryGetValue(textBox.Tag.ToString(), out value))
+                string key = textBox.Tag.ToString();
+                if (rowDetails.TryGetValue(key, out value))
                 {
-                    if(textBox.Tag.ToString() == "file_name")
+                    if(textBox == uiFileNameTextBox)
                     {
-                        DisplayFileIcon(rowDetails["file_name"]);
+                        CaseDirectory directory;
+                        Enum.TryParse(rowDetails["action"], true, out directory);
+                        DisplayFileIconWithFileSize(rowDetails["file_name"], directory);
                     }
-                    textBox.Text = value;
+                    else
+                    {
+                        ClearFilePreviewer();
+                        filePath = "";
+                    }
+                    
                 }
-                else
-                {
-                    textBox.Text = "";
-                }
+                textBox.Text = value;
             }
+        }
 
+        private void ClearFilePreviewer()
+        {
+            uiFilePreviewPictureBox.Image = null;
+            uiFileDetailsLabel.Text = "";
         }
 
 
-        private void DisplayFileIcon(string file)
-        {
-            //Icon icon = NativeMethods.GetFileIcon(file, NativeMethods.IconSize.Large, false);
 
+
+        private void DisplayFileIconWithFileSize(string file, CaseDirectory caseDirectory)
+        {
             IconManager iconManager = new IconManager();
             BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
-
             uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
-            //TODO: Display more details about this file.
-            //In order to display more details, we require the relative path
+            string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);
+            filePath = Path.Combine(Constants.ContainerLocation, caseDir, file);
+            FileInfo fileInfo = new FileInfo(filePath);
+
+            uiFileDetailsLabel.Text = $"File size: {(fileInfo.Length / 1024 /*KB*/).ToString()} KB. File type: {fileInfo.Extension.ToUpperInvariant()}";
         }
 
         private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -84,7 +126,7 @@ namespace OSIRT.UI
             //re-update the database so print is all true again
             //perhaps wrap this in a wait window... "performing audit log closing functions... etc"
 
-            Database.DatabaseHandler db = new Database.DatabaseHandler();
+            DatabaseHandler db = new DatabaseHandler();
             db.ExecuteNonQuery($"UPDATE webpage_log SET print = 'true'");
             db.ExecuteNonQuery($"UPDATE webpage_actions SET print = 'true'");
             db.ExecuteNonQuery($"UPDATE osirt_actions SET print = 'true'");

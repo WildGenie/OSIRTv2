@@ -2,7 +2,6 @@
 using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
-using OSIRT.Database;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
 using OSIRT.UI;

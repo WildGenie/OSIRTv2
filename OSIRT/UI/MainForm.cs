@@ -2,7 +2,7 @@
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;

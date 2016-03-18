@@ -1,4 +1,4 @@
-﻿using OSIRT.Database;
+﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,11 +18,22 @@ namespace OSIRT.UI
         public string TableName { get; private set; }
         public DataTable Table { get; private set; }
         public int Page { get; private set; }
-        public int MaxPages { get { return 25; } }
+        public int MaxPages { get { return 25; } } //TODO: this will be a user setting
         private int totalRowCount = 0;
         private List<string> columnNames;
 
         public AuditTab(string title, string table) : base(title)
+        {
+            InitialiseDataGridView();
+            TableName = table;
+            GoToPage(1);
+
+            totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
+            Page = 1;
+            SetColumnNames();
+        }
+
+        private void InitialiseDataGridView()
         {
             AuditLogGrid = new DataGridView();
             AuditLogGrid.AllowUserToAddRows = false;
@@ -33,19 +44,7 @@ namespace OSIRT.UI
             AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
             AuditLogGrid.RowEnter += AuditLogGrid_RowEnter;
             AuditLogGrid.CellClick += AuditLogGrid_CellClick;
-
-            TableName = table;
-
-            //TODO: Refactor this, DRY.
-            DatabaseHandler db = new DatabaseHandler();
-            Table = db.GetDataTable(TableName, 1);
-            PopulateGrid(Table);
-
             Controls.Add(AuditLogGrid);
-
-            totalRowCount = TotalRowCount();
-            Page = 1;
-            SetColumnNames();
         }
 
         private void SetColumnNames()
@@ -77,7 +76,7 @@ namespace OSIRT.UI
         }
 
 
-        //TODO: This only deals with the page user is on.
+        //TODO: This only deals with the page user is on. (that is, the top _n_ rows)
         public void Search(string pattern)
         {
             DataTable data = null;
@@ -129,7 +128,7 @@ namespace OSIRT.UI
         /// <summary>
         /// Gets the number of rows for this particular tab in the DataGridView
         /// </summary>
-        public int TotalRowCount()
+        private int TotalRowCount()
         {
             DatabaseHandler db = new DatabaseHandler();
             int count = db.GetTotalRowsFromTable(TableName);
@@ -163,8 +162,7 @@ namespace OSIRT.UI
         }
 
 
-
-        public string PageDescription()
+        public string PagesLeftDescription()
         {
             return $"Page {Page} of {NumberOfPages}";
         }
@@ -208,9 +206,6 @@ namespace OSIRT.UI
             GoToPage(Page);
         }
 
-        //TODO: Cache this datatable, because re-creating it
-        //causes loss of what was checked to print and not
-        //See: http://stackoverflow.com/questions/2787458/how-to-select-top-n-rows-from-a-datatable-dataview-in-asp-net
         private void GoToPage(int page)
         {
             DatabaseHandler db = new DatabaseHandler();

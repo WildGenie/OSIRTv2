@@ -4,19 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT
+namespace OSIRT.Enums
 {
+    //TODO: these can be used as actions, too.
+    //We have const strings that store actions in Constants.cs
+    //Bit Silly, let's just use this.
     public enum CaseDirectory
     {
         Images,
-        Screenshots,
+        Screenshot,
         Scraped,
         Snippet,
         Batchsnap,
         Saved,
         Attachment,
-        Videos,
-        Downloads,
+        Video,
+        Download,
         Source,
         Report
 

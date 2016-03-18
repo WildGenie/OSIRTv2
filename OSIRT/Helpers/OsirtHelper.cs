@@ -16,6 +16,17 @@ namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
+        /// <summary>
+        /// Returns the assoicated Enum from a String.
+        /// </summary>
+        /// <typeparam name="T">The Enum type to parse to</typeparam>
+        /// <param name="value">The string you want to parse to Enum<T></param>
+        /// <returns>An Enum of type T</returns>
+        public static T ParseEnum<T>(string value)
+        {
+            return (T)Enum.Parse(typeof(T), value, true);
+        }
+
 
         public static Bitmap GetBitmap(BitmapSource source)
         {

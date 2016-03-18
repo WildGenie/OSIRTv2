@@ -29,7 +29,8 @@ namespace OSIRT.UI
             uiGridViewPanel.Controls.Add(tabbedAuditLog);
             InitialiseTooltips();
 
-            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription();
+            //TODO: when tab changes, need to update pages left desc!
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription(); 
             uiPreviousPageButton.Enabled = false;
         }
 
@@ -43,12 +44,13 @@ namespace OSIRT.UI
 
         public TabControl.TabPageCollection AuditTabs
         {
-             get { return tabbedAuditLog.AuditTabs; }
+            get { return tabbedAuditLog.AuditTabs; }
         }
 
         private void uiSearchButton_Click(object sender, EventArgs e)
         {
-
+            string searchText = uiSearchTextBox.Text;
+            tabbedAuditLog.CurrentTab.Search(searchText);
         }
 
 
@@ -67,9 +69,9 @@ namespace OSIRT.UI
             else
             {
                 uiNextPageButton.Enabled = false;
-        }
+            }
 
-            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription();
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
 
         }
 
@@ -96,21 +98,21 @@ namespace OSIRT.UI
                 uiFirstPageButton.Enabled = false;
             }
 
-            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription();
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
 
         }
 
         private void uiFirstPageButton_Click(object sender, EventArgs e)
         {
             tabbedAuditLog.CurrentTab.FirstPage();
-            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription(); 
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
         }
 
         private void uiLastPageButton_Click(object sender, EventArgs e)
         {
-     
+
             tabbedAuditLog.CurrentTab.LastPage();
-            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PageDescription();
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
         }
 
         private void uiGridViewPanel_Paint(object sender, PaintEventArgs e)

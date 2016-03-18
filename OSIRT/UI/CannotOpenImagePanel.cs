@@ -41,7 +41,6 @@ namespace OSIRT.UI
         {
             uiUnableToDisplayImgTableLayout.Controls.Remove(uiScaledImagePanel);
             AddImageBox();
-            //TODO: Refactor (duplication)
             imageBox.Image = Image.FromFile(Constants.ScaledImgFile);
         }
 

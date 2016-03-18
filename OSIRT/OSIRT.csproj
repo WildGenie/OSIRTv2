@@ -87,7 +87,7 @@
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="LoggableAction.cs" />
-    <Compile Include="CaseDirectory.cs" />
+    <Compile Include="Enums\CaseDirectory.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
     <Compile Include="Helpers\HashService.cs" />
@@ -139,10 +139,10 @@
     <Compile Include="UI\AuditLogUI\AuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\AuditTabControlPanel.cs">
+    <Compile Include="UI\AuditLogUI\AuditTabControlPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\AuditTabControlPanel.Designer.cs">
+    <Compile Include="UI\AuditLogUI\AuditTabControlPanel.Designer.cs">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BrowserPanel.cs">
@@ -212,7 +212,7 @@
     <EmbeddedResource Include="UI\AuditLogUI\AuditLogForm.resx">
       <DependentUpon>AuditLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditTabControlPanel.resx">
+    <EmbeddedResource Include="UI\AuditLogUI\AuditTabControlPanel.resx">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">

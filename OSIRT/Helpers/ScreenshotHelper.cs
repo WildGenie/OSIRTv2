@@ -1,5 +1,6 @@
 ﻿using ImageMagick;
 using Jacksonsoft;
+using OSIRT.Enums;
 using OSIRT.Helpers;
 using System.Diagnostics;
 using System.Drawing;
@@ -23,7 +24,7 @@ namespace OSIRT.Helpers
         {
             using (screenshot)
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), name);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), name);
                 screenshot.Save(path, ImageFormat.Png);
             }
 

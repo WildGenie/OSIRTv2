@@ -1,6 +1,4 @@
-﻿using OSIRT.Database;
-using OSIRT.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
@@ -11,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class CaseCreator
     {
@@ -27,7 +25,6 @@ namespace OSIRT.Database
             tables.Create();
             AddCaseDetailsToDB();
 
-            //TODO: Check if this is per case or per application.
             //Suspect it's per application.
             //YES- IT'S PER APPLICATION! NEED TO SAVE IT TO THE CASE FILE AGAIN. XML
             Properties.Settings.Default.Hash = caseDetails["hash_function"];

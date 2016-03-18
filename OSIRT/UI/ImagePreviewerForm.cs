@@ -1,6 +1,7 @@
 ﻿using Cyotek.Windows.Forms;
 using ImageMagick;
 using Jacksonsoft;
+using OSIRT.Enums;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
 using OSIRT.Properties;
@@ -153,7 +154,7 @@ namespace OSIRT.UI
 
         private void PopulateComboboxWithFiles()
         {
-            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots));
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot));
             string[] files = Directory.GetFiles(path).Select(p => Path.GetFileNameWithoutExtension(p)).ToArray();
             uiImageNameComboBox.Items.AddRange(files);
         }
@@ -184,7 +185,6 @@ namespace OSIRT.UI
 
         private void SaveAsPDF(object sender, WaitWindowEventArgs e)
         {
-            //TODO: Will need to rehash
             string message = "";
             string fileName = e.Arguments[0].ToString();
             string pathToSave = "";
@@ -194,7 +194,7 @@ namespace OSIRT.UI
                 using (MagickImage image = new MagickImage(imagePath))
                 {
                     image.Format = MagickFormat.Pdf;
-                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), fileName + SaveableFileTypes.Pdf);
+                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), fileName + SaveableFileTypes.Pdf);
                     image.Write(pathToSave);
                     e.Window.Message = "Rehashing PDF";
                     Hash = OsirtHelper.GetFileHash(pathToSave);
@@ -226,7 +226,7 @@ namespace OSIRT.UI
         {
             try
             {
-                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), name + SaveableFileTypes.Png);
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), name + SaveableFileTypes.Png);
                 string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
                 File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
             }
@@ -248,7 +248,7 @@ namespace OSIRT.UI
             //must check this first, as trying to use Path.Combine with an illegal file char will thrown an argument exception
             if(OsirtHelper.IsValidFilename(FileName))
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshots), FileName + FileExtension);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), FileName + FileExtension);
                 if (!File.Exists(path))
                 {
                     valid = true;
