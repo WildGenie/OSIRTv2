@@ -116,9 +116,8 @@ namespace OSIRT.UI
             uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
             string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);
             filePath = Path.Combine(Constants.ContainerLocation, caseDir, file);
-            FileInfo fileInfo = new FileInfo(filePath);
 
-            uiFileDetailsLabel.Text = $"File size: {(fileInfo.Length / 1024 /*KB*/).ToString()} KB. File type: {fileInfo.Extension.ToUpperInvariant()}";
+            uiFileDetailsLabel.Text = $"File size: {OsirtHelper.GetHumanReadableFileSize(filePath)}. File type: {Path.GetExtension(filePath.ToUpperInvariant())}";
         }
 
         private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)
