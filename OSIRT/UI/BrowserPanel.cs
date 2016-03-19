@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
 using OSIRT.Helpers;
-
+using OSIRT.UI.Attachment;
 
 namespace OSIRT.UI
 {
@@ -75,6 +75,14 @@ namespace OSIRT.UI
             using(AuditLogForm audit = new AuditLogForm())
             {
                 audit.ShowDialog();
+            }
+        }
+
+        private void uiAttachmentToolStripButton_Click(object sender, EventArgs e)
+        {
+            using(AttachmentForm attachment = new AttachmentForm())
+            {
+                attachment.ShowDialog();
             }
         }
     }

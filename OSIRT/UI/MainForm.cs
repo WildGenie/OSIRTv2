@@ -17,7 +17,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Compression;
-using OSIRT.Helpers;
 
 namespace OSIRT
 {

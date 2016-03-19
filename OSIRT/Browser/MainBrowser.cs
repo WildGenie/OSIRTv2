@@ -79,6 +79,18 @@ namespace OSIRT.Browser
 
         }
 
+        public bool Enable
+        {
+            get
+            {
+                return ((Control)this).Enabled;
+            }
+            set
+            {
+                ((Control)this).Enabled = value;
+            }
+        }
+
         public async Task PutTaskDelay()
         {
             await Task.Delay(MaxWait);
@@ -86,7 +98,8 @@ namespace OSIRT.Browser
 
         private async void FullpageScreenshotByScrolling()
         {
-            ((Control)this).Enabled = false; //prevent user clicks
+            //((Control)this).Enabled = false; //prevent user clicks
+            Enable = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
             int scrollHeight = ScrollHeight();
@@ -126,7 +139,7 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay(); //may need to place larger delay
-                    //Task.Delay(2000).Wait();
+                    //TODO: This isn't working correctly on Win 10... Was fine on Win 7.
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -175,16 +188,21 @@ namespace OSIRT.Browser
             int width = ScrollWidth();
             int height = ScrollHeight();
 
-            this.Dock = DockStyle.None;
-            this.ToggleScrollbars(false);
-            this.Size = new Size(width, height);
+            Dock = DockStyle.None;
+            ToggleScrollbars(false);
+            Size = new Size(width, height);
             using (Bitmap screenshot = new Bitmap(width, height))
             {
-                //TODO: try catch finally here to reset the scrollbars and dockstyle if this fails
-                NativeMethods.GetImage(ActiveXInstance, screenshot, Color.Black);
-                Dock = DockStyle.Fill;
-                ToggleScrollbars(true);
-                ScreenshotHelper.SaveScreenshotToCache(screenshot);
+                try
+                {
+                    NativeMethods.GetImage(ActiveXInstance, screenshot, Color.Black);
+                    ScreenshotHelper.SaveScreenshotToCache(screenshot);
+                }
+                finally
+                {
+                    Dock = DockStyle.Fill;
+                    ToggleScrollbars(true);
+                }
 
             }
         }

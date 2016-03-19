@@ -16,6 +16,23 @@ namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
+
+        //http://stackoverflow.com/questions/281640/how-do-i-get-a-human-readable-file-size-in-bytes-abbreviation-using-net
+        public static string GetHumanReadableFileSize(string fileName)
+        {
+            string[] sizes = { "B", "KB", "MB", "GB" };
+            double len = new FileInfo(fileName).Length;
+            int order = 0;
+            while (len >= 1024 && order + 1 < sizes.Length)
+            {
+                order++;
+                len = len / 1024;
+            }
+
+            return string.Format("{0:0.##} {1}", len, sizes[order]); ;
+        }
+
+
         /// <summary>
         /// Returns the assoicated Enum from a String.
         /// </summary>

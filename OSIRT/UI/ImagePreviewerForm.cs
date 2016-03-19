@@ -198,13 +198,13 @@ namespace OSIRT.UI
                     image.Write(pathToSave);
                     e.Window.Message = "Rehashing PDF";
                     Hash = OsirtHelper.GetFileHash(pathToSave);
-
                 }
             }
             catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
             {
                 thrown = true;
                 message = "Unable to save as PDF. Reverting to saving as PNG.";
+                Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
                 e.Window.Message = message;
                 Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
                 SaveAsPNG(fileName);
@@ -245,7 +245,7 @@ namespace OSIRT.UI
         private bool IsValidFileName()
         {
             bool valid = false;
-            //must check this first, as trying to use Path.Combine with an illegal file char will thrown an argument exception
+            //must check this first, as trying to use Path.Combine with an illegal file char will throw an argument exception
             if(OsirtHelper.IsValidFilename(FileName))
             {
                 string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), FileName + FileExtension);

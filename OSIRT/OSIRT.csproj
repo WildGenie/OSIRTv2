@@ -130,19 +130,25 @@
     <Compile Include="Enums\SaveableFileTypes.cs" />
     <Compile Include="Enums\ScreenshotDetails.cs" />
     <Compile Include="RowDetails.cs" />
-    <Compile Include="UI\AuditLogUI\AuditLogForm.cs">
+    <Compile Include="UI\Attachment\AttachmentForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\AuditLogUI\AuditLogForm.Designer.cs">
+    <Compile Include="UI\Attachment\AttachmentForm.Designer.cs">
+      <DependentUpon>AttachmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AuditLog\AuditLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AuditLog\AuditLogForm.Designer.cs">
       <DependentUpon>AuditLogForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\AuditLogUI\AuditTab.cs">
+    <Compile Include="UI\AuditLog\AuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="UI\AuditLogUI\AuditTabControlPanel.cs">
+    <Compile Include="UI\AuditLog\AuditTabControlPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\AuditLogUI\AuditTabControlPanel.Designer.cs">
+    <Compile Include="UI\AuditLog\AuditTabControlPanel.Designer.cs">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BrowserPanel.cs">
@@ -193,10 +199,10 @@
     <Compile Include="UI\ImagePreviewerForm.Designer.cs">
       <DependentUpon>ImagePreviewerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\AuditLogUI\TabbedAuditLogControl.cs">
+    <Compile Include="UI\AuditLog\TabbedAuditLogControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\AuditLogUI\TabbedAuditLogControl.Designer.cs">
+    <Compile Include="UI\AuditLog\TabbedAuditLogControl.Designer.cs">
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ScreenshotCompletedArgs.cs" />
@@ -209,10 +215,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditLogUI\AuditLogForm.resx">
+    <EmbeddedResource Include="UI\Attachment\AttachmentForm.resx">
+      <DependentUpon>AttachmentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditLog\AuditLogForm.resx">
       <DependentUpon>AuditLogForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditLogUI\AuditTabControlPanel.resx">
+    <EmbeddedResource Include="UI\AuditLog\AuditTabControlPanel.resx">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
@@ -241,7 +250,7 @@
     <EmbeddedResource Include="UI\ImagePreviewerForm.resx">
       <DependentUpon>ImagePreviewerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditLogUI\TabbedAuditLogControl.resx">
+    <EmbeddedResource Include="UI\AuditLog\TabbedAuditLogControl.resx">
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="fontawesome-webfont.ttf" />

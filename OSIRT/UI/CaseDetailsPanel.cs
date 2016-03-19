@@ -7,7 +7,6 @@ using OSIRT.Helpers;
 using System.Threading;
 using Jacksonsoft;
 using System.IO;
-using OSIRT.Helpers;
 using System.Diagnostics;
 
 namespace OSIRT.UI
