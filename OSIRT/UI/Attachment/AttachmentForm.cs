@@ -62,6 +62,8 @@ namespace OSIRT.UI.Attachment
         private void AttachmentForm_Load(object sender, EventArgs e)
         {
             uiAttachFileProgressPanel.Visible = false;
+           
+            uiFileDetailsLabel.Text = "Click 'Browse...' to select a file to attach.";
         }
 
         private void uiAttachButton_Click(object sender, EventArgs e)
@@ -94,11 +96,10 @@ namespace OSIRT.UI.Attachment
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             Logger.Log(new AttachmentsLog(Actions.Attachment, file, hash, note));
-            uiFileCopyDetailLabel.Text = $"File [{file}] successfully attached to case.";
+            uiFileCopyDetailLabel.Text = $"File successfully attached to case.";
             uiFilePathTextBox.Text = "";
             uiFileDetailsLabel.Text = "";
             uiNoteSpellBox.Text = "";
-            //uiFileIconPictureBox.Image = null;
         }
 
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)

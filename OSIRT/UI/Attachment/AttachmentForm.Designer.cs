@@ -82,7 +82,7 @@
             this.uiCancelButton.Name = "uiCancelButton";
             this.uiCancelButton.Size = new System.Drawing.Size(75, 23);
             this.uiCancelButton.TabIndex = 4;
-            this.uiCancelButton.Text = "Cancel";
+            this.uiCancelButton.Text = "Close";
             this.uiCancelButton.UseVisualStyleBackColor = true;
             // 
             // uiFileDetailsGroupBox
@@ -107,7 +107,6 @@
             this.uiFileDetailsLabel.Size = new System.Drawing.Size(35, 13);
             this.uiFileDetailsLabel.TabIndex = 1;
             this.uiFileDetailsLabel.Text = "label2";
-            this.uiFileDetailsLabel.Visible = false;
             // 
             // uiFileIconPictureBox
             // 
@@ -146,7 +145,7 @@
             // 
             this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyDetailLabel);
             this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyingProgressBar);
-            this.uiAttachFileProgressPanel.Location = new System.Drawing.Point(75, 19);
+            this.uiAttachFileProgressPanel.Location = new System.Drawing.Point(80, 19);
             this.uiAttachFileProgressPanel.Name = "uiAttachFileProgressPanel";
             this.uiAttachFileProgressPanel.Size = new System.Drawing.Size(272, 40);
             this.uiAttachFileProgressPanel.TabIndex = 6;
