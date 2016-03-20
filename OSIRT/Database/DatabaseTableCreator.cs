@@ -21,9 +21,9 @@ namespace OSIRT.Helpers
             tables.Add(@"CREATE TABLE IF NOT EXISTS case_details (investigating_officer TEXT, investigating_agency TEXT, 
                         operation_name TEXT, case_reference TEXT PRIMARY KEY, evidence_reference TEXT, hash_function TEXT, notes TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_log (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT)");
-            tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT, file_name TEXT, hash TEXT, note TEXT)");
+            tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT, file TEXT, hash TEXT, note TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)");
-            tables.Add(@"CREATE TABLE IF NOT EXISTS attachments (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, file TEXT, hash TEXT, notes TEXT)");
+            tables.Add(@"CREATE TABLE IF NOT EXISTS attachments (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, file TEXT, hash TEXT, note TEXT)");
 
             DatabaseHandler handler = new DatabaseHandler();
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,13 +11,13 @@ namespace OSIRT.Loggers
     {
         private string url = "";
 
-        public WebsiteLog(string loadedURL, string action) : base(action)
+        public WebsiteLog(string loadedURL, Actions action) : base(action)
         {
             this.URL = loadedURL;
 
         }
 
-        public WebsiteLog(string loadedURL) : this(loadedURL, "Loaded") { }
+        public WebsiteLog(string loadedURL) : this(loadedURL, Actions.Loaded) { }
        
 
 

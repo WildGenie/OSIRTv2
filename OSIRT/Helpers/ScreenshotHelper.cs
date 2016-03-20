@@ -24,7 +24,7 @@ namespace OSIRT.Helpers
         {
             using (screenshot)
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(CaseDirectory.Screenshot), name);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), name);
                 screenshot.Save(path, ImageFormat.Png);
             }
 

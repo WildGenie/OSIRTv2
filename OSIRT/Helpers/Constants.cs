@@ -51,19 +51,19 @@ namespace OSIRT.Helpers
         public class Directories
         {
 
-            private static readonly Dictionary<CaseDirectory, string> directories = new Dictionary<CaseDirectory, string>
+            private static readonly Dictionary<Enums.Actions, string> directories = new Dictionary<Enums.Actions, string>
             {
-                { CaseDirectory.Images, @"images" },
-                { CaseDirectory.Screenshot, @"images\screenshots" }, //remove leading and trailing slashes in order to use Path.Combine
-                { CaseDirectory.Scraped, @"images\scraped" },
-                { CaseDirectory.Snippet, @"images\snippets" },
-                { CaseDirectory.Batchsnap, @"images\batchsnap" },
-                { CaseDirectory.Saved, @"images\saved" },
-                { CaseDirectory.Attachment, @"attachments" },
-                { CaseDirectory.Video, @"videos" },
-                { CaseDirectory.Download, @"downloads" },
-                { CaseDirectory.Source, @"downloads\source_code" },
-                { CaseDirectory.Report, @"reports" },
+                { Enums.Actions.Images, @"images" },
+                { Enums.Actions.Screenshot, @"images\screenshots" }, //remove leading and trailing slashes in order to use Path.Combine
+                { Enums.Actions.Scraped, @"images\scraped" },
+                { Enums.Actions.Snippet, @"images\snippets" },
+                { Enums.Actions.Batchsnap, @"images\batchsnap" },
+                { Enums.Actions.Saved, @"images\saved" },
+                { Enums.Actions.Attachment, @"attachments" },
+                { Enums.Actions.Video, @"videos" },
+                { Enums.Actions.Download, @"downloads" },
+                { Enums.Actions.Source, @"downloads\source_code" },
+                { Enums.Actions.Report, @"reports" },
             };
 
 
@@ -75,7 +75,7 @@ namespace OSIRT.Helpers
                 return values;
             }
 
-            public static string GetSpecifiedCaseDirectory(CaseDirectory key)
+            public static string GetSpecifiedCaseDirectory(Enums.Actions key)
             {
                 string value = "";
                 if (!directories.TryGetValue(key, out value))

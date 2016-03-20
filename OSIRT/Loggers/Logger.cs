@@ -18,10 +18,10 @@ namespace OSIRT.Loggers
 
             Type logType = log.GetType();
             Dictionary<string, string> toLog = new Dictionary<string, string>();
-            toLog.Add("print", "true"); //This appears to work. Only checked for webpage_actions.
+            toLog.Add("print", "true");
             toLog.Add("date", log.Date);
             toLog.Add("time", log.Time);
-            toLog.Add("action", log.Action);
+            toLog.Add("action", log.Action.ToString());
 
             DatabaseHandler handler = new DatabaseHandler();
 
@@ -30,24 +30,34 @@ namespace OSIRT.Loggers
                 //webpage_actions (date TEXT, time TEXT, action TEXT, url TEXT, file_name TEXT, hash TEXT, note TEXT
                 WebpageActionsLog webpageAction = (WebpageActionsLog)log;
                 toLog.Add("url", webpageAction.URL);
-                toLog.Add("file_name", webpageAction.FileName);
+                toLog.Add("file", webpageAction.File);
                 toLog.Add("hash", webpageAction.Hash);
                 toLog.Add("note", webpageAction.Note);
                 handler.Insert("webpage_actions", toLog);
             }
-            else if(logType == typeof(WebsiteLog))
+            else if (logType == typeof(WebsiteLog))
             {
                 //webpage_log (date TEXT, time TEXT, action TEXT, url TEXT)"
                 WebsiteLog webSiteLog = (WebsiteLog)log;
                 toLog.Add("url", webSiteLog.URL);
                 handler.Insert("webpage_log", toLog);
-                
-            }
-           
-                    
-           
 
-          
+            }
+            else if (logType == typeof(AttachmentsLog))
+            {
+                //date TEXT, time TEXT, action, file TEXT , hash TEXT, notes TEXT)
+                AttachmentsLog attachLog = (AttachmentsLog)log;
+                toLog.Add("file", attachLog.File);
+                toLog.Add("hash", attachLog.Hash);
+                toLog.Add("note", attachLog.Note);
+                handler.Insert("attachments", toLog);
+            }
+
+
+
+
+
+
         }
 
 

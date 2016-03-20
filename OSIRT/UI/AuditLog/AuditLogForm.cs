@@ -85,9 +85,9 @@ namespace OSIRT.UI
                 {
                     if(textBox == uiFileNameTextBox)
                     {
-                        CaseDirectory directory;
+                        Enums.Actions directory;
                         Enum.TryParse(rowDetails["action"], true, out directory);
-                        DisplayFileIconWithFileSize(rowDetails["file_name"], directory);
+                        DisplayFileIconWithFileSize(rowDetails["file"], directory);
                     }
                     else
                     {
@@ -109,7 +109,7 @@ namespace OSIRT.UI
 
 
 
-        private void DisplayFileIconWithFileSize(string file, CaseDirectory caseDirectory)
+        private void DisplayFileIconWithFileSize(string file, Enums.Actions caseDirectory)
         {
             IconManager iconManager = new IconManager();
             BitmapSource icon = IconManager.GetLargeIcon(file, true, false);

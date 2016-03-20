@@ -87,7 +87,7 @@
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="LoggableAction.cs" />
-    <Compile Include="Enums\CaseDirectory.cs" />
+    <Compile Include="Enums\Actions.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
     <Compile Include="Helpers\HashService.cs" />

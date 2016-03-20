@@ -251,7 +251,7 @@
             this.uiFileNameTextBox.ReadOnly = true;
             this.uiFileNameTextBox.Size = new System.Drawing.Size(272, 20);
             this.uiFileNameTextBox.TabIndex = 6;
-            this.uiFileNameTextBox.Tag = "file_name";
+            this.uiFileNameTextBox.Tag = "file";
             // 
             // AuditLogForm
             // 
