@@ -33,17 +33,18 @@
             this.uiAttachButton = new System.Windows.Forms.Button();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiFileDetailsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiAttachFileProgressPanel = new System.Windows.Forms.Panel();
+            this.uiFileCopyDetailLabel = new System.Windows.Forms.Label();
+            this.uiFileCopyingProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiFileDetailsLabel = new System.Windows.Forms.Label();
             this.uiFileIconPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.uiFileCopyingProgressBar = new System.Windows.Forms.ProgressBar();
-            this.uiFileCopyDetailLabel = new System.Windows.Forms.Label();
-            this.uiAttachFileProgressPanel = new System.Windows.Forms.Panel();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent3 = new System.Windows.Controls.TextBox();
+            this.hostedComponent4 = new System.Windows.Controls.TextBox();
+            this.uiAddANotherFileLable = new System.Windows.Forms.Label();
             this.uiFileDetailsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).BeginInit();
             this.uiAttachFileProgressPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // uiFilePathTextBox
@@ -99,6 +100,32 @@
             this.uiFileDetailsGroupBox.TabStop = false;
             this.uiFileDetailsGroupBox.Text = "File Details";
             // 
+            // uiAttachFileProgressPanel
+            // 
+            this.uiAttachFileProgressPanel.Controls.Add(this.uiAddANotherFileLable);
+            this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyDetailLabel);
+            this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyingProgressBar);
+            this.uiAttachFileProgressPanel.Location = new System.Drawing.Point(80, 19);
+            this.uiAttachFileProgressPanel.Name = "uiAttachFileProgressPanel";
+            this.uiAttachFileProgressPanel.Size = new System.Drawing.Size(272, 64);
+            this.uiAttachFileProgressPanel.TabIndex = 6;
+            // 
+            // uiFileCopyDetailLabel
+            // 
+            this.uiFileCopyDetailLabel.AutoSize = true;
+            this.uiFileCopyDetailLabel.Location = new System.Drawing.Point(3, 4);
+            this.uiFileCopyDetailLabel.Name = "uiFileCopyDetailLabel";
+            this.uiFileCopyDetailLabel.Size = new System.Drawing.Size(80, 13);
+            this.uiFileCopyDetailLabel.TabIndex = 5;
+            this.uiFileCopyDetailLabel.Text = "Attaching File...";
+            // 
+            // uiFileCopyingProgressBar
+            // 
+            this.uiFileCopyingProgressBar.Location = new System.Drawing.Point(3, 21);
+            this.uiFileCopyingProgressBar.Name = "uiFileCopyingProgressBar";
+            this.uiFileCopyingProgressBar.Size = new System.Drawing.Size(267, 15);
+            this.uiFileCopyingProgressBar.TabIndex = 4;
+            // 
             // uiFileDetailsLabel
             // 
             this.uiFileDetailsLabel.AutoSize = true;
@@ -125,40 +152,25 @@
             this.label1.TabIndex = 3;
             this.label1.Text = "Note (Required)";
             // 
-            // uiFileCopyingProgressBar
-            // 
-            this.uiFileCopyingProgressBar.Location = new System.Drawing.Point(3, 21);
-            this.uiFileCopyingProgressBar.Name = "uiFileCopyingProgressBar";
-            this.uiFileCopyingProgressBar.Size = new System.Drawing.Size(267, 15);
-            this.uiFileCopyingProgressBar.TabIndex = 4;
-            // 
-            // uiFileCopyDetailLabel
-            // 
-            this.uiFileCopyDetailLabel.AutoSize = true;
-            this.uiFileCopyDetailLabel.Location = new System.Drawing.Point(3, 4);
-            this.uiFileCopyDetailLabel.Name = "uiFileCopyDetailLabel";
-            this.uiFileCopyDetailLabel.Size = new System.Drawing.Size(80, 13);
-            this.uiFileCopyDetailLabel.TabIndex = 5;
-            this.uiFileCopyDetailLabel.Text = "Attaching File...";
-            // 
-            // uiAttachFileProgressPanel
-            // 
-            this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyDetailLabel);
-            this.uiAttachFileProgressPanel.Controls.Add(this.uiFileCopyingProgressBar);
-            this.uiAttachFileProgressPanel.Location = new System.Drawing.Point(80, 19);
-            this.uiAttachFileProgressPanel.Name = "uiAttachFileProgressPanel";
-            this.uiAttachFileProgressPanel.Size = new System.Drawing.Size(272, 40);
-            this.uiAttachFileProgressPanel.TabIndex = 6;
-            // 
             // uiNoteSpellBox
             // 
             this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.uiNoteSpellBox.Location = new System.Drawing.Point(21, 173);
+            this.uiNoteSpellBox.Multiline = true;
             this.uiNoteSpellBox.Name = "uiNoteSpellBox";
             this.uiNoteSpellBox.Size = new System.Drawing.Size(354, 166);
             this.uiNoteSpellBox.TabIndex = 2;
+            // 
+            // uiAddANotherFileLable
+            // 
+            this.uiAddANotherFileLable.AutoSize = true;
+            this.uiAddANotherFileLable.Location = new System.Drawing.Point(3, 39);
+            this.uiAddANotherFileLable.Name = "uiAddANotherFileLable";
+            this.uiAddANotherFileLable.Size = new System.Drawing.Size(35, 13);
+            this.uiAddANotherFileLable.TabIndex = 6;
+            this.uiAddANotherFileLable.Text = "label2";
             // 
             // AttachmentForm
             // 
@@ -178,9 +190,9 @@
             this.Load += new System.EventHandler(this.AttachmentForm_Load);
             this.uiFileDetailsGroupBox.ResumeLayout(false);
             this.uiFileDetailsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).EndInit();
             this.uiAttachFileProgressPanel.ResumeLayout(false);
             this.uiAttachFileProgressPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -203,5 +215,7 @@
         private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Controls.TextBox hostedComponent3;
         private System.Windows.Forms.Panel uiAttachFileProgressPanel;
+        private System.Windows.Controls.TextBox hostedComponent4;
+        private System.Windows.Forms.Label uiAddANotherFileLable;
     }
 }

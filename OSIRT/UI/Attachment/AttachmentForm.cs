@@ -42,16 +42,26 @@ namespace OSIRT.UI.Attachment
                 fileWithPath = openFile.FileName;
                 file = openFile.SafeFileName;
                 hash =  OsirtHelper.GetFileHash(fileWithPath);
-                tooltip.SetToolTip(uiFileDetailsLabel, "Hash: " + hash);
-                uiFilePathTextBox.Text = fileWithPath;
-                uiFileDetailsLabel.Text = $"{file}{Environment.NewLine}{OsirtHelper.GetHumanReadableFileSize(fileWithPath)}{Environment.NewLine}{TrimHash(hash)}";
-                uiFileDetailsLabel.Visible = true;
 
-                IconManager iconManager = new IconManager();
-                BitmapSource icon = IconManager.GetLargeIcon(fileWithPath, false, false);
-                uiFileIconPictureBox.Image = OsirtHelper.GetBitmap(icon);
+                UpdateFileDetailsUI();
+                DisplayIcon();
 
             }
+        }
+
+        private void UpdateFileDetailsUI()
+        {
+            tooltip.SetToolTip(uiFileDetailsLabel, "Hash: " + hash);
+            uiFilePathTextBox.Text = fileWithPath;
+            uiFileDetailsLabel.Text = $"{file}{Environment.NewLine}{OsirtHelper.GetHumanReadableFileSize(fileWithPath)}{Environment.NewLine}{TrimHash(hash)}";
+            uiFileDetailsLabel.Visible = true;
+        }
+
+        private void DisplayIcon()
+        {
+            IconManager iconManager = new IconManager();
+            BitmapSource icon = IconManager.GetLargeIcon(fileWithPath, false, false);
+            uiFileIconPictureBox.Image = OsirtHelper.GetBitmap(icon);
         }
 
         private string TrimHash(string hash)
@@ -64,6 +74,7 @@ namespace OSIRT.UI.Attachment
             uiAttachFileProgressPanel.Visible = false;
            
             uiFileDetailsLabel.Text = "Click 'Browse...' to select a file to attach.";
+            uiFileIconPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
         }
 
         private void uiAttachButton_Click(object sender, EventArgs e)
@@ -97,15 +108,17 @@ namespace OSIRT.UI.Attachment
         {
             Logger.Log(new AttachmentsLog(Actions.Attachment, file, hash, note));
             uiFileCopyDetailLabel.Text = $"File successfully attached to case.";
+            uiAddANotherFileLable.Text = $"Click 'Browse...' to select another file{Environment.NewLine}or 'Cancel' to close this window.";
             uiFilePathTextBox.Text = "";
             uiFileDetailsLabel.Text = "";
             uiNoteSpellBox.Text = "";
+            uiFileIconPictureBox.Image = Properties.Resources.tick_32;
+            //uiFileIconPictureBox = 
         }
 
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             uiFileCopyingProgressBar.Value = e.ProgressPercentage;
-
         }
     }
 }

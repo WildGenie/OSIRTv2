@@ -320,6 +320,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\tick_32.png" />
+    <None Include="Resources\tick.png" />
+    <None Include="Resources\tick.bmp" />
+    <None Include="Resources\new_tab.png" />
     <None Include="Resources\pdf_icon_sm.png" />
     <None Include="Resources\pdf_icon.png" />
     <None Include="Resources\ok.png" />

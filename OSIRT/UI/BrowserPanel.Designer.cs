@@ -32,6 +32,11 @@
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
+            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
             this.uiForwardButton = new System.Windows.Forms.ToolStripButton();
@@ -39,13 +44,8 @@
             this.uiScreenshotButton = new System.Windows.Forms.ToolStripButton();
             this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
             this.uiAddTabButton = new System.Windows.Forms.ToolStripButton();
-            this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -87,6 +87,43 @@
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(838, 25);
             this.uiBrowserToolStrip.TabIndex = 1;
+            // 
+            // uiURLComboBox
+            // 
+            this.uiURLComboBox.Name = "uiURLComboBox";
+            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
+            // 
+            // uiBrowserMenuStrip
+            // 
+            this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.uiBrowserMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
+            this.uiBrowserMenuStrip.Size = new System.Drawing.Size(838, 24);
+            this.uiBrowserMenuStrip.TabIndex = 0;
+            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newTabToolStripMenuItem,
+            this.auditLogToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // newTabToolStripMenuItem
+            // 
+            this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
+            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.newTabToolStripMenuItem.Text = "New Tab";
+            // 
+            // auditLogToolStripMenuItem
+            // 
+            this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.auditLogToolStripMenuItem.Text = "Audit Log";
+            this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // uiHomeButton
             // 
@@ -134,7 +171,7 @@
             this.uiScreenshotButton.Name = "uiScreenshotButton";
             this.uiScreenshotButton.Size = new System.Drawing.Size(23, 22);
             this.uiScreenshotButton.Text = "toolStripButton1";
-            this.uiScreenshotButton.ToolTipText = "Capture Screenshot";
+            this.uiScreenshotButton.ToolTipText = "Capture screenshot";
             this.uiScreenshotButton.Click += new System.EventHandler(this.uiScreenshotButton_Click);
             // 
             // uiVideoCaptureButton
@@ -144,7 +181,7 @@
             this.uiVideoCaptureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiVideoCaptureButton.Name = "uiVideoCaptureButton";
             this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
-            this.uiVideoCaptureButton.ToolTipText = "Start Video Capture";
+            this.uiVideoCaptureButton.ToolTipText = "Start video capture";
             // 
             // uiAttachmentToolStripButton
             // 
@@ -155,11 +192,6 @@
             this.uiAttachmentToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.uiAttachmentToolStripButton.ToolTipText = "Attach item to this case";
             this.uiAttachmentToolStripButton.Click += new System.EventHandler(this.uiAttachmentToolStripButton_Click);
-            // 
-            // uiURLComboBox
-            // 
-            this.uiURLComboBox.Name = "uiURLComboBox";
-            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
             // 
             // uiCaseNotesButton
             // 
@@ -173,45 +205,13 @@
             // uiAddTabButton
             // 
             this.uiAddTabButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiAddTabButton.Image = ((System.Drawing.Image)(resources.GetObject("uiAddTabButton.Image")));
+            this.uiAddTabButton.Image = global::OSIRT.Properties.Resources.new_tab;
             this.uiAddTabButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiAddTabButton.Name = "uiAddTabButton";
             this.uiAddTabButton.Size = new System.Drawing.Size(23, 22);
             this.uiAddTabButton.Text = "toolStripButton1";
-            this.uiAddTabButton.ToolTipText = "Add a new tab";
+            this.uiAddTabButton.ToolTipText = "Open a new tab";
             this.uiAddTabButton.Click += new System.EventHandler(this.uiAddTabButton_Click);
-            // 
-            // uiBrowserMenuStrip
-            // 
-            this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.uiBrowserMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
-            this.uiBrowserMenuStrip.Size = new System.Drawing.Size(838, 24);
-            this.uiBrowserMenuStrip.TabIndex = 0;
-            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newTabToolStripMenuItem,
-            this.auditLogToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // newTabToolStripMenuItem
-            // 
-            this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
-            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.newTabToolStripMenuItem.Text = "New Tab";
-            // 
-            // auditLogToolStripMenuItem
-            // 
-            this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
-            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
-            this.auditLogToolStripMenuItem.Text = "Audit Log";
-            this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // BrowserPanel
             // 

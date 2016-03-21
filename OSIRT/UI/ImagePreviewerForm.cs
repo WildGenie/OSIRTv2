@@ -259,6 +259,7 @@ namespace OSIRT.UI
 
         private void CheckValidFileName()
         {
+            //TODO: Invalid entry (red cross) resource was deleted. Re-add.
             string tootipText = "";
             if (IsValidFileName())
             {
@@ -267,7 +268,7 @@ namespace OSIRT.UI
             }
             else
             {
-                uiDoesFileExistPictureBox.Image = Properties.Resources.invalid_entry;
+                //uiDoesFileExistPictureBox.Image = Properties.Resources.invalid_entry;
                 tootipText = "Filename is not valid. File with that name may already exists, or filename contains illegal characters.";
             }
 
@@ -279,7 +280,7 @@ namespace OSIRT.UI
             if (string.IsNullOrWhiteSpace(Note))
             {
                 tooltip.SetToolTip(uiNotePictureBox, "You must enter a note.");
-                uiNotePictureBox.Image = Properties.Resources.invalid_entry;
+                //uiNotePictureBox.Image = Properties.Resources.invalid_entry;
             }
             else
             {
