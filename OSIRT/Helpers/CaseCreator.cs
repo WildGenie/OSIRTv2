@@ -29,6 +29,7 @@ namespace OSIRT.Helpers
             //YES- IT'S PER APPLICATION! NEED TO SAVE IT TO THE CASE FILE AGAIN. XML
             Properties.Settings.Default.Hash = caseDetails["hash_function"];
             Properties.Settings.Default.Save();
+
             //let's zip it up
             //CompressContainer();
         }
@@ -63,7 +64,6 @@ namespace OSIRT.Helpers
             if (!File.Exists(casePath))
             {
                 SQLiteConnection.CreateFile(casePath);
-             
             } 
         }
 

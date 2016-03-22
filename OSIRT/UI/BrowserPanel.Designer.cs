@@ -32,11 +32,6 @@
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
-            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
             this.uiForwardButton = new System.Windows.Forms.ToolStripButton();
@@ -44,8 +39,13 @@
             this.uiScreenshotButton = new System.Windows.Forms.ToolStripButton();
             this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
             this.uiAddTabButton = new System.Windows.Forms.ToolStripButton();
+            this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -88,10 +88,101 @@
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(838, 25);
             this.uiBrowserToolStrip.TabIndex = 1;
             // 
+            // uiHomeButton
+            // 
+            this.uiHomeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiHomeButton.Image = global::OSIRT.Properties.Resources.house;
+            this.uiHomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiHomeButton.Name = "uiHomeButton";
+            this.uiHomeButton.Size = new System.Drawing.Size(23, 22);
+            this.uiHomeButton.ToolTipText = "Home";
+            // 
+            // uiLBackButton
+            // 
+            this.uiLBackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiLBackButton.Image = global::OSIRT.Properties.Resources.arrow_left;
+            this.uiLBackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiLBackButton.Name = "uiLBackButton";
+            this.uiLBackButton.Size = new System.Drawing.Size(23, 22);
+            this.uiLBackButton.ToolTipText = "Go Back";
+            this.uiLBackButton.Click += new System.EventHandler(this.uiLBackButton_Click);
+            // 
+            // uiForwardButton
+            // 
+            this.uiForwardButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiForwardButton.Image = global::OSIRT.Properties.Resources.arrow_right;
+            this.uiForwardButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiForwardButton.Name = "uiForwardButton";
+            this.uiForwardButton.Size = new System.Drawing.Size(23, 22);
+            this.uiForwardButton.Text = "uiRightButton";
+            this.uiForwardButton.ToolTipText = "Go Forward";
+            this.uiForwardButton.Click += new System.EventHandler(this.uiForwardButton_Click);
+            // 
+            // uiRefreshButton
+            // 
+            this.uiRefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiRefreshButton.Image = global::OSIRT.Properties.Resources.arrow_rotate_clockwise;
+            this.uiRefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiRefreshButton.Name = "uiRefreshButton";
+            this.uiRefreshButton.Size = new System.Drawing.Size(23, 22);
+            this.uiRefreshButton.Text = "toolStripButton4";
+            this.uiRefreshButton.ToolTipText = "Refresh Page";
+            this.uiRefreshButton.Click += new System.EventHandler(this.uiRefreshButton_Click);
+            // 
+            // uiScreenshotButton
+            // 
+            this.uiScreenshotButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiScreenshotButton.Image = global::OSIRT.Properties.Resources.camera;
+            this.uiScreenshotButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiScreenshotButton.Name = "uiScreenshotButton";
+            this.uiScreenshotButton.Size = new System.Drawing.Size(23, 22);
+            this.uiScreenshotButton.Text = "toolStripButton1";
+            this.uiScreenshotButton.ToolTipText = "Capture screenshot";
+            this.uiScreenshotButton.Click += new System.EventHandler(this.uiScreenshotButton_Click);
+            // 
+            // uiVideoCaptureButton
+            // 
+            this.uiVideoCaptureButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiVideoCaptureButton.Image = global::OSIRT.Properties.Resources.film;
+            this.uiVideoCaptureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiVideoCaptureButton.Name = "uiVideoCaptureButton";
+            this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
+            this.uiVideoCaptureButton.ToolTipText = "Start video capture";
+            // 
+            // uiAttachmentToolStripButton
+            // 
+            this.uiAttachmentToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiAttachmentToolStripButton.Image = global::OSIRT.Properties.Resources.attach;
+            this.uiAttachmentToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiAttachmentToolStripButton.Name = "uiAttachmentToolStripButton";
+            this.uiAttachmentToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiAttachmentToolStripButton.ToolTipText = "Attach item to this case";
+            this.uiAttachmentToolStripButton.Click += new System.EventHandler(this.uiAttachmentToolStripButton_Click);
+            // 
             // uiURLComboBox
             // 
             this.uiURLComboBox.Name = "uiURLComboBox";
             this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
+            // 
+            // uiCaseNotesButton
+            // 
+            this.uiCaseNotesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiCaseNotesButton.Image = ((System.Drawing.Image)(resources.GetObject("uiCaseNotesButton.Image")));
+            this.uiCaseNotesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiCaseNotesButton.Name = "uiCaseNotesButton";
+            this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
+            this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
+            // 
+            // uiAddTabButton
+            // 
+            this.uiAddTabButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiAddTabButton.Image = global::OSIRT.Properties.Resources.new_tab;
+            this.uiAddTabButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiAddTabButton.Name = "uiAddTabButton";
+            this.uiAddTabButton.Size = new System.Drawing.Size(23, 22);
+            this.uiAddTabButton.Text = "toolStripButton1";
+            this.uiAddTabButton.ToolTipText = "Open a new tab";
+            this.uiAddTabButton.Click += new System.EventHandler(this.uiAddTabButton_Click);
             // 
             // uiBrowserMenuStrip
             // 
@@ -124,94 +215,6 @@
             this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
-            // 
-            // uiHomeButton
-            // 
-            this.uiHomeButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiHomeButton.Image = global::OSIRT.Properties.Resources.house;
-            this.uiHomeButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiHomeButton.Name = "uiHomeButton";
-            this.uiHomeButton.Size = new System.Drawing.Size(23, 22);
-            this.uiHomeButton.ToolTipText = "Home";
-            // 
-            // uiLBackButton
-            // 
-            this.uiLBackButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiLBackButton.Image = global::OSIRT.Properties.Resources.arrow_left;
-            this.uiLBackButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiLBackButton.Name = "uiLBackButton";
-            this.uiLBackButton.Size = new System.Drawing.Size(23, 22);
-            this.uiLBackButton.ToolTipText = "Go Back";
-            // 
-            // uiForwardButton
-            // 
-            this.uiForwardButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiForwardButton.Image = global::OSIRT.Properties.Resources.arrow_right;
-            this.uiForwardButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiForwardButton.Name = "uiForwardButton";
-            this.uiForwardButton.Size = new System.Drawing.Size(23, 22);
-            this.uiForwardButton.Text = "uiRightButton";
-            this.uiForwardButton.ToolTipText = "Go Forward";
-            // 
-            // uiRefreshButton
-            // 
-            this.uiRefreshButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiRefreshButton.Image = global::OSIRT.Properties.Resources.arrow_rotate_clockwise;
-            this.uiRefreshButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiRefreshButton.Name = "uiRefreshButton";
-            this.uiRefreshButton.Size = new System.Drawing.Size(23, 22);
-            this.uiRefreshButton.Text = "toolStripButton4";
-            this.uiRefreshButton.ToolTipText = "Refresh Page";
-            // 
-            // uiScreenshotButton
-            // 
-            this.uiScreenshotButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiScreenshotButton.Image = global::OSIRT.Properties.Resources.camera;
-            this.uiScreenshotButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiScreenshotButton.Name = "uiScreenshotButton";
-            this.uiScreenshotButton.Size = new System.Drawing.Size(23, 22);
-            this.uiScreenshotButton.Text = "toolStripButton1";
-            this.uiScreenshotButton.ToolTipText = "Capture screenshot";
-            this.uiScreenshotButton.Click += new System.EventHandler(this.uiScreenshotButton_Click);
-            // 
-            // uiVideoCaptureButton
-            // 
-            this.uiVideoCaptureButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiVideoCaptureButton.Image = global::OSIRT.Properties.Resources.film;
-            this.uiVideoCaptureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiVideoCaptureButton.Name = "uiVideoCaptureButton";
-            this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
-            this.uiVideoCaptureButton.ToolTipText = "Start video capture";
-            // 
-            // uiAttachmentToolStripButton
-            // 
-            this.uiAttachmentToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiAttachmentToolStripButton.Image = global::OSIRT.Properties.Resources.attach;
-            this.uiAttachmentToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiAttachmentToolStripButton.Name = "uiAttachmentToolStripButton";
-            this.uiAttachmentToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiAttachmentToolStripButton.ToolTipText = "Attach item to this case";
-            this.uiAttachmentToolStripButton.Click += new System.EventHandler(this.uiAttachmentToolStripButton_Click);
-            // 
-            // uiCaseNotesButton
-            // 
-            this.uiCaseNotesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiCaseNotesButton.Image = ((System.Drawing.Image)(resources.GetObject("uiCaseNotesButton.Image")));
-            this.uiCaseNotesButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiCaseNotesButton.Name = "uiCaseNotesButton";
-            this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
-            this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
-            // 
-            // uiAddTabButton
-            // 
-            this.uiAddTabButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiAddTabButton.Image = global::OSIRT.Properties.Resources.new_tab;
-            this.uiAddTabButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiAddTabButton.Name = "uiAddTabButton";
-            this.uiAddTabButton.Size = new System.Drawing.Size(23, 22);
-            this.uiAddTabButton.Text = "toolStripButton1";
-            this.uiAddTabButton.ToolTipText = "Open a new tab";
-            this.uiAddTabButton.Click += new System.EventHandler(this.uiAddTabButton_Click);
             // 
             // BrowserPanel
             // 

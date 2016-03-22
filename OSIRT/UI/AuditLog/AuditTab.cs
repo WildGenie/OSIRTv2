@@ -39,7 +39,7 @@ namespace OSIRT.UI
             else
             {
                 NoRecordsToShowPanel noRecordsPanel = new NoRecordsToShowPanel();
-                noRecordsPanel.Dock = DockStyle.Fill; //TODO: make sure the user control has this property set (the panel does, but not the underlying control).
+                noRecordsPanel.Dock = DockStyle.Fill; //TODO: make sure the user control has this property set instead (the panel does, but not the underlying control).
                 Controls.Add(noRecordsPanel);
             }
         }

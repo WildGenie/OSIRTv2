@@ -129,13 +129,12 @@ namespace OSIRT.UI
             if (!isValid)
                 return;
 
-            //Create the case container
-            //Thread out? Background worker?
+        
             Dictionary<string,string> caseDetails = GetCaseDetails();
-            WaitWindow.Show(this.CreateCase, Resources.strings.creating_case_wait, caseDetails);
+            WaitWindow.Show(CreateCase, Resources.strings.creating_case_wait, caseDetails);
 
-            if (this.NextClick != null)
-                this.NextClick(this, e);
+            if (NextClick != null)
+                NextClick(this, e);
            
         }
 
@@ -160,13 +159,6 @@ namespace OSIRT.UI
             uiCasePathTextBox.Text = Constants.CasePath;
         }
 
-        private void uiCaseDetailsPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-  
-
         private void uiHashHelpLabel_Click(object sender, EventArgs e)
         {
             ToolTip tooltip = new ToolTip();
@@ -184,11 +176,9 @@ namespace OSIRT.UI
             tooltip.Show(Resources.strings.field_can_only_contain_valid_directory_char, caseReferenceTB, 150, -50, 7000);
         }
 
-      
+        private void uiCaseDetailsPanel_Paint(object sender, PaintEventArgs e)
+        {
 
-    
-
-       
-
+        }
     }
 }

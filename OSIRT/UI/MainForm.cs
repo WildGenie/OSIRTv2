@@ -1,4 +1,5 @@
 ﻿using ImageMagick;
+using Ionic.Zip;
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
@@ -16,7 +17,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO.Compression;
 
 namespace OSIRT
 {
@@ -27,49 +27,88 @@ namespace OSIRT
         public MainForm()
         {
             InitializeComponent();
-            this.FormClosing += MainForm_FormClosing;
+            FormClosing += MainForm_FormClosing;
 
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //Check file exists before creating the zip
-            //using a file extension that is not .zip seems fine, but not checked unzipping
-
-            //ZipFile.CreateFromDirectory(Path.Combine(Constants.Directories.CasePath + "\\" + Constants.Directories.CaseContainerName), @"D:/joe.osirt", CompressionLevel.NoCompression, true);
+            //TODO: re-enabled this when we can handle an open case
+            //WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait");
         }
+
+        private void ClosingOperations(object sender, WaitWindowEventArgs e)
+        {
+            //clear IE cache if required
+
+            //zip container
+            //TODO: make sure a case has actually been opened first
+            e.Window.Message = "Archiving container.";
+            using (ZipFile zip = new ZipFile())
+            {
+                //zip.Password = "123456";
+                zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
+                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + ".osr"));
+            }
+        }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
             firstLoadPanel.NewCase_Click += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCase_Click += FirstLoadPanel_LoadOldCase_Click;
-            this.Controls.Add(firstLoadPanel);
+            Controls.Add(firstLoadPanel);
         }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
+            string filenameWithPath = "";
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                DialogResult result = fbd.ShowDialog();
+                openFileDialog.Filter = "OSR Files|*.osr";
+                DialogResult result = openFileDialog.ShowDialog();
                 if (result != DialogResult.OK)
                     return;
 
-                //TODO: Validate this is a valid case container
-                string caseContainer = fbd.SelectedPath;
-                DirectoryInfo parentDir = Directory.GetParent(caseContainer);
-                Constants.CasePath = parentDir.FullName;
-                Constants.CaseContainerName = Path.GetFileName(caseContainer);
-                ShowBrowserPanel();
-
+                filenameWithPath = openFileDialog.FileName;
             }
+            WaitWindow.Show(LoadCase, "Extracting case... Please Wait", filenameWithPath);
+            
+            ShowBrowserPanel();
+        }
+
+        private void LoadCase(object sender, WaitWindowEventArgs e)
+        {
+            string filenameWithPath = e.Arguments[0].ToString();
+
+            //TODO: tidy this, just a test.
+            DirectoryInfo parentDir = Directory.GetParent(filenameWithPath);
+            using (ZipFile zip = ZipFile.Read(filenameWithPath))
+            {
+                //zip.Password = "123456";
+                zip.ExtractAll(parentDir.FullName, ExtractExistingFileAction.OverwriteSilently);
+            }
+
+            try
+            {
+                //TODO: disabled for testing. Remember to re-enable.
+                //File.Delete(filenameWithPath);
+            }
+            catch (IOException io)
+            {
+                MessageBox.Show($"unable to delete: {io}");
+            }
+
+            Constants.CasePath = parentDir.FullName;
+            Constants.CaseContainerName = Path.GetFileName(filenameWithPath.Replace(".osr", ""));
         }
 
         void firstLoadPanel_NewCase_Click(object sender, EventArgs e)
         {
-            this.Controls.Clear();
+            Controls.Clear();
             CaseDetailsPanel caseDetailsPanel = new CaseDetailsPanel();
-            this.Controls.Add(caseDetailsPanel);
+            Controls.Add(caseDetailsPanel);
             caseDetailsPanel.NextClick += new EventHandler(caseDetailsPanel_NextClick);
         }
 
@@ -80,13 +119,11 @@ namespace OSIRT
 
         private void ShowBrowserPanel()
         {
-            this.Controls.Clear();
+            Controls.Clear();
             BrowserPanel browserPanel = new BrowserPanel();
-            this.Controls.Add(browserPanel);
-            this.WindowState = FormWindowState.Maximized;
+            Controls.Add(browserPanel);
+            WindowState = FormWindowState.Maximized;
         }
 
-  
-
-     }
+    }
 }

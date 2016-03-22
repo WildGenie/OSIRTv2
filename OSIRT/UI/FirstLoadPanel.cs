@@ -33,8 +33,8 @@ namespace OSIRT.UI
 
         private void uiNewCaseButton_Click(object sender, EventArgs e)
         {
-            if (this.NewCase_Click != null)
-                this.NewCase_Click(this, e);
+            if (NewCase_Click != null)
+                NewCase_Click(this, e);
         }
 
         private void uiNewCaseButton_MouseHover(object sender, EventArgs e)

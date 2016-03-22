@@ -64,10 +64,7 @@ namespace OSIRT.UI
 
         private void uiCaseNotesButton_Click(object sender, EventArgs e)
         {
-            using (ImagePreviewerForm pg = new ImagePreviewerForm(new ScreenshotDetails("test.com")))
-            {
-                pg.ShowDialog();
-            } 
+           //add a case note
         }
 
         private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)
@@ -84,6 +81,23 @@ namespace OSIRT.UI
             {
                 attachment.ShowDialog();
             }
+        }
+
+        private void uiLBackButton_Click(object sender, EventArgs e)
+        {
+            //TODO: check if can back
+            uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
+        }
+
+        private void uiForwardButton_Click(object sender, EventArgs e)
+        {
+            //TODO: check if can go forward
+            uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
+        }
+
+        private void uiRefreshButton_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
         }
     }
 }
