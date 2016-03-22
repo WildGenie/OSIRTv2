@@ -25,13 +25,22 @@ namespace OSIRT.UI
             base.OnLoad(e);
             Dock = DockStyle.Fill;
             tabbedAuditLog = new TabbedAuditLogControl();
+            tabbedAuditLog.TabChanged += TabbedAuditLog_TabChanged;
             tabbedAuditLog.Dock = DockStyle.Fill;
             uiGridViewPanel.Controls.Add(tabbedAuditLog);
             InitialiseTooltips();
 
-            //TODO: when tab changes, need to update pages left desc!
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription(); 
             uiPreviousPageButton.Enabled = false;
+        }
+
+        private void TabbedAuditLog_TabChanged(object sender, EventArgs e)
+        {
+            uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
+            //TODO: next/prev page buttons still doing some voodoo stuff.
+            NextPage();
+            PreviousPage();
+
         }
 
         private void InitialiseTooltips()
@@ -53,10 +62,8 @@ namespace OSIRT.UI
             tabbedAuditLog.CurrentTab.Search(searchText);
         }
 
-
-        private void uiNextPageButton_Click(object sender, EventArgs e)
+        private void NextPage()
         {
-
             if (tabbedAuditLog.CurrentTab.CanGoToNextPage())
             {
                 tabbedAuditLog.CurrentTab.NextPage();
@@ -72,12 +79,9 @@ namespace OSIRT.UI
             }
 
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
-
         }
 
-        //TODO: Disable buttons when user can't go back/forward anymore.
-        //Works for next and previous, but first and last needs work.
-        private void uiPreviousPageButton_Click(object sender, EventArgs e)
+        private void PreviousPage()
         {
             if (tabbedAuditLog.CurrentTab.CanGoToPreviousPage())
             {
@@ -99,7 +103,19 @@ namespace OSIRT.UI
             }
 
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
+        }
 
+
+        private void uiNextPageButton_Click(object sender, EventArgs e)
+        {
+            NextPage();
+        }
+
+        //TODO: Disable buttons when user can't go back/forward anymore.
+        //Works for next and previous, but first and last needs work.
+        private void uiPreviousPageButton_Click(object sender, EventArgs e)
+        {
+            PreviousPage();
         }
 
         private void uiFirstPageButton_Click(object sender, EventArgs e)

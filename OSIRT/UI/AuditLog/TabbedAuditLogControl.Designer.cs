@@ -39,7 +39,6 @@
             this.uiAuditLogTabControl.SelectedIndex = 0;
             this.uiAuditLogTabControl.Size = new System.Drawing.Size(800, 600);
             this.uiAuditLogTabControl.TabIndex = 0;
-            this.uiAuditLogTabControl.SelectedIndexChanged += new System.EventHandler(this.uiAuditLogTabControl_SelectedIndexChanged_1);
             // 
             // TabbedAuditLogControl
             // 

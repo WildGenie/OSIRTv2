@@ -14,6 +14,8 @@ namespace OSIRT.UI
 {
     public partial class TabbedAuditLogControl : UserControl
     {
+        public event EventHandler TabChanged;
+
         private Dictionary<string, string> tabs = new Dictionary<string, string>()
         {
             {"Websites Loaded", "webpage_log"},
@@ -26,7 +28,7 @@ namespace OSIRT.UI
         public TabbedAuditLogControl()
         {
             InitializeComponent();
-            uiAuditLogTabControl.SelectedIndexChanged += UiAuditLogTabControl_SelectedIndexChanged;
+            uiAuditLogTabControl.SelectedIndexChanged += AuditLogTabControl_SelectedIndexChanged;
             CreateTabs();
 
         }
@@ -41,9 +43,9 @@ namespace OSIRT.UI
 
         }
 
-        private void UiAuditLogTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        private void AuditLogTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TabPage current = (sender as TabControl).SelectedTab;
+            TabChanged?.Invoke(this, e);
 
         }
 
@@ -69,9 +71,5 @@ namespace OSIRT.UI
             }
         }
 
-        private void uiAuditLogTabControl_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }

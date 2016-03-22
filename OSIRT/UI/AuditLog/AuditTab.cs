@@ -24,13 +24,24 @@ namespace OSIRT.UI
 
         public AuditTab(string title, string table) : base(title)
         {
-            InitialiseDataGridView();
+            
             TableName = table;
-            GoToPage(1);
-
             totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
-            Page = 1;
-            SetColumnNames();
+
+            //TODO: look at shifting some of this to load
+            if (totalRowCount > 0)
+            {
+                InitialiseDataGridView();
+                Page = 1;
+                GoToPage(Page);
+                SetColumnNames();
+            }
+            else
+            {
+                NoRecordsToShowPanel noRecordsPanel = new NoRecordsToShowPanel();
+                noRecordsPanel.Dock = DockStyle.Fill; //TODO: make sure the user control has this property set (the panel does, but not the underlying control).
+                Controls.Add(noRecordsPanel);
+            }
         }
 
         private void InitialiseDataGridView()
@@ -164,7 +175,16 @@ namespace OSIRT.UI
 
         public string PagesLeftDescription()
         {
-            return $"Page {Page} of {NumberOfPages}";
+            string desc = "";
+            if (NumberOfPages > 0)
+            {
+                desc = $"Page {Page} of {NumberOfPages}";
+            }
+            else
+            {
+                desc = $"No records";
+            }
+            return desc;
         }
 
 

@@ -86,7 +86,6 @@
   <ItemGroup>
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="IconManager.cs" />
-    <Compile Include="LoggableAction.cs" />
     <Compile Include="Enums\Actions.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
     <Compile Include="Database\DatabaseTableCreator.cs" />
@@ -183,6 +182,12 @@
     </Compile>
     <Compile Include="Helpers\NativeMethods.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
+    <Compile Include="UI\NoRecordsToShowPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\NoRecordsToShowPanel.Designer.cs">
+      <DependentUpon>NoRecordsToShowPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\PleaseWaitWindow\WaitWindow.cs" />
     <Compile Include="UI\PleaseWaitWindow\WaitWindowEventArgs.cs" />
     <Compile Include="UI\PleaseWaitWindow\WaitWindowGUI.cs">
@@ -238,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NoRecordsToShowPanel.resx">
+      <DependentUpon>NoRecordsToShowPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PleaseWaitWindow\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
