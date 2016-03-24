@@ -47,6 +47,7 @@ namespace OSIRT
             using (ZipFile zip = new ZipFile())
             {
                 //zip.Password = "123456";
+                //zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + ".osr"));
             }
@@ -73,9 +74,15 @@ namespace OSIRT
 
                 filenameWithPath = openFileDialog.FileName;
             }
-            WaitWindow.Show(LoadCase, "Extracting case... Please Wait", filenameWithPath);
-            
-            ShowBrowserPanel();
+
+            //show LoadExistingCasePanel
+            Controls.Clear();
+            LoadExistingCasePanel exisitingCasePanel = new LoadExistingCasePanel(new FileInfo(filenameWithPath));
+            Controls.Add(exisitingCasePanel);
+
+
+            //WaitWindow.Show(LoadCase, "Extracting case... Please Wait", filenameWithPath);
+            //ShowBrowserPanel();
         }
 
         private void LoadCase(object sender, WaitWindowEventArgs e)

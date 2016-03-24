@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace OSIRT.Helpers
 {
+    //TODO: May need to put this "in memory" so we can have a self-container
+    //container: http://stackoverflow.com/questions/11383775/memory-stream-as-db
     public class DatabaseHandler 
     {
 
@@ -60,6 +62,7 @@ namespace OSIRT.Helpers
             DataTable dataTable = new DataTable();
             using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
             {
+               
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
                     conn.Open();

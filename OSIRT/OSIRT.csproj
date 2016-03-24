@@ -89,6 +89,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
@@ -178,6 +179,12 @@
     <Compile Include="UI\FirstLoadPanel.Designer.cs">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\LoadExistingCasePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\LoadExistingCasePanel.Designer.cs">
+      <DependentUpon>LoadExistingCasePanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\LoadExistingCasePanel.resx">
+      <DependentUpon>LoadExistingCasePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
