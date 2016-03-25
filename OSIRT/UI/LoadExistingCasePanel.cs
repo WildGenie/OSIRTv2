@@ -16,7 +16,10 @@ namespace OSIRT.UI
 {
     public partial class LoadExistingCasePanel : UserControl
     {
-        FileInfo file;
+
+        public event EventHandler PasswordCheckClick;
+
+        private FileInfo file;
 
         public LoadExistingCasePanel(FileInfo file)
         {
@@ -56,7 +59,7 @@ namespace OSIRT.UI
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
-
+         
         }
 
         private void uiOpenCaseButton_Click(object sender, EventArgs e)
@@ -64,14 +67,15 @@ namespace OSIRT.UI
             //Check password zip: http://stackoverflow.com/questions/30071304/how-to-check-if-file-is-password-protected-password-passed-by-user-is-correct
 
             string enteredPassword = uiPasswordTextBox.Text;
-            var hash = SecurePasswordHasher.Hash(enteredPassword);
+            string hash = SecurePasswordHasher.Hash(enteredPassword);
             if (ZipFile.CheckZipPassword(file.FullName, enteredPassword))
             {
-                MessageBox.Show("Passwords match: " + hash);
-                var result = SecurePasswordHasher.Verify(enteredPassword, hash);
-                Debug.WriteLine("RESULT: " + result);
+                //TODO: does verify know the salt?
+                //TODO: Use the background worker
+                //var result = SecurePasswordHasher.Verify(enteredPassword, hash);
                 //store the hash in the database so we can validate it at the end.
-                //Load Browser Panel
+                //extract archive to current location
+                PasswordCheckClick?.Invoke(this, e);
             }
             else
             {

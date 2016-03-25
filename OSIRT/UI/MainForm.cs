@@ -79,9 +79,16 @@ namespace OSIRT
             Controls.Clear();
             LoadExistingCasePanel exisitingCasePanel = new LoadExistingCasePanel(new FileInfo(filenameWithPath));
             Controls.Add(exisitingCasePanel);
-
+            exisitingCasePanel.PasswordCheckClick += ExisitingCasePanel_PasswordCheckClick;
 
             //WaitWindow.Show(LoadCase, "Extracting case... Please Wait", filenameWithPath);
+            //ShowBrowserPanel();
+        }
+
+        private void ExisitingCasePanel_PasswordCheckClick(object sender, EventArgs e)
+        {
+            //This will show the browser panel, but need to make sure the case is properly extracted
+            //before we do so (in LoadExistingCasePanel).
             //ShowBrowserPanel();
         }
 
