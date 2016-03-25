@@ -11,6 +11,7 @@ using System.IO;
 using OSIRT.Helpers;
 using Ionic.Zip;
 using System.Diagnostics;
+using Jacksonsoft;
 
 namespace OSIRT.UI
 {
@@ -38,6 +39,7 @@ namespace OSIRT.UI
             Dock = DockStyle.Fill;
             uiPasswordTextBox.Focus();
             InitialiseFileDetailFields();
+            uiPasswordTextBox.UseSystemPasswordChar = true;
             BackgroundWorker backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
@@ -62,28 +64,64 @@ namespace OSIRT.UI
          
         }
 
+
+
         private void uiOpenCaseButton_Click(object sender, EventArgs e)
         {
             //Check password zip: http://stackoverflow.com/questions/30071304/how-to-check-if-file-is-password-protected-password-passed-by-user-is-correct
 
             string enteredPassword = uiPasswordTextBox.Text;
-            string hash = SecurePasswordHasher.Hash(enteredPassword);
-            if (ZipFile.CheckZipPassword(file.FullName, enteredPassword))
+
+            bool isCorrectPassword = (bool) WaitWindow.Show(VerifyPassword, "Verifying password... Please Wait", enteredPassword);
+
+            if (isCorrectPassword)
             {
-                //TODO: does verify know the salt?
-                //TODO: Use the background worker
                 //var result = SecurePasswordHasher.Verify(enteredPassword, hash);
-                //store the hash in the database so we can validate it at the end.
-                //extract archive to current location
+                //TODO: store the hash in the database so we can validate it at the end. (Put the in waitwindow)
+
+                //string hash = SecurePasswordHasher.Hash(enteredPassword);
+                WaitWindow.Show(LoadCase, "Extracting case... Please Wait", enteredPassword);
                 PasswordCheckClick?.Invoke(this, e);
             }
             else
             {
                 MessageBox.Show("BAD PASSWORD");
-                //5 strikes and close that app for security?
+            }
+    
+        }
+
+        private void VerifyPassword(object sender, WaitWindowEventArgs e)
+        {
+            string password = e.Arguments[0].ToString();
+            e.Result = ZipFile.CheckZipPassword(file.FullName, password);
+        }
+
+        private void LoadCase(object sender, WaitWindowEventArgs e)
+        {
+            string password = e.Arguments[0].ToString();
+
+            //TODO: tidy this, just a test.
+            DirectoryInfo parentDir = Directory.GetParent(file.FullName);
+            using (ZipFile zip = ZipFile.Read(file.FullName))
+            {
+                zip.Password = password;
+                zip.ExtractAll(parentDir.FullName, ExtractExistingFileAction.OverwriteSilently);
             }
 
+            try
+            {
+                //TODO: disabled for testing. Remember to re-enable.
+                //File.Delete(filenameWithPath);
+            }
+            catch (IOException io)
+            {
+                MessageBox.Show($"unable to delete: {io}");
+            }
 
+            Constants.CasePath = parentDir.FullName;
+            Constants.CaseContainerName = Path.GetFileName(file.FullName.Replace(".osr", ""));
         }
+
+
     }
 }

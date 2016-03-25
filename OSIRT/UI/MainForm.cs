@@ -75,48 +75,18 @@ namespace OSIRT
                 filenameWithPath = openFileDialog.FileName;
             }
 
-            //show LoadExistingCasePanel
             Controls.Clear();
             LoadExistingCasePanel exisitingCasePanel = new LoadExistingCasePanel(new FileInfo(filenameWithPath));
             Controls.Add(exisitingCasePanel);
             exisitingCasePanel.PasswordCheckClick += ExisitingCasePanel_PasswordCheckClick;
 
-            //WaitWindow.Show(LoadCase, "Extracting case... Please Wait", filenameWithPath);
-            //ShowBrowserPanel();
         }
 
         private void ExisitingCasePanel_PasswordCheckClick(object sender, EventArgs e)
         {
-            //This will show the browser panel, but need to make sure the case is properly extracted
-            //before we do so (in LoadExistingCasePanel).
-            //ShowBrowserPanel();
+            ShowBrowserPanel();
         }
 
-        private void LoadCase(object sender, WaitWindowEventArgs e)
-        {
-            string filenameWithPath = e.Arguments[0].ToString();
-
-            //TODO: tidy this, just a test.
-            DirectoryInfo parentDir = Directory.GetParent(filenameWithPath);
-            using (ZipFile zip = ZipFile.Read(filenameWithPath))
-            {
-                //zip.Password = "123456";
-                zip.ExtractAll(parentDir.FullName, ExtractExistingFileAction.OverwriteSilently);
-            }
-
-            try
-            {
-                //TODO: disabled for testing. Remember to re-enable.
-                //File.Delete(filenameWithPath);
-            }
-            catch (IOException io)
-            {
-                MessageBox.Show($"unable to delete: {io}");
-            }
-
-            Constants.CasePath = parentDir.FullName;
-            Constants.CaseContainerName = Path.GetFileName(filenameWithPath.Replace(".osr", ""));
-        }
 
         void firstLoadPanel_NewCase_Click(object sender, EventArgs e)
         {
