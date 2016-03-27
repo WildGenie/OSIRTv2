@@ -52,7 +52,13 @@ namespace OSIRT.Loggers
                 toLog.Add("note", attachLog.Note);
                 handler.Insert("attachments", toLog);
             }
-
+            else if(logType == typeof(OsirtActionsLog))
+            {
+                //osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)"
+                OsirtActionsLog osirtAction = (OsirtActionsLog)log;
+                toLog.Add("hash", osirtAction.Hash);
+                handler.Insert("osirt_actions", toLog);
+            }
 
 
 

@@ -19,7 +19,7 @@ namespace OSIRT.Helpers
             List<string> tables = new List<string>();
 
             tables.Add(@"CREATE TABLE IF NOT EXISTS case_details (investigating_officer TEXT, investigating_agency TEXT, 
-                        operation_name TEXT, case_reference TEXT PRIMARY KEY, evidence_reference TEXT, hash_function TEXT, notes TEXT)");
+                        operation_name TEXT, case_reference TEXT PRIMARY KEY, evidence_reference TEXT, hash_function TEXT, notes TEXT, hashed_password TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_log (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT, file TEXT, hash TEXT, note TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)");

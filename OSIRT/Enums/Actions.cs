@@ -22,8 +22,9 @@ namespace OSIRT.Enums
         Download,
         Source,
         Report,
-        Loaded
-
+        Loaded,
+        CaseLoaded,
+        CaseClosed,
 
     }
 }

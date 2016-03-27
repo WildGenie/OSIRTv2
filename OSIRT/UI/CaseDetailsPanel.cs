@@ -112,6 +112,7 @@ namespace OSIRT.UI
                 }
 
             }
+            details.Add("hashed_password", "");
             return details;
          }
 

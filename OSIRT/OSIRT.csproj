@@ -173,6 +173,12 @@
     <Compile Include="UI\CaseDetailsPanel.designer.cs">
       <DependentUpon>CaseDetailsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CaseNotes\CaseNotesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\CaseNotes\CaseNotesForm.Designer.cs">
+      <DependentUpon>CaseNotesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -248,6 +254,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CaseDetailsPanel.resx">
       <DependentUpon>CaseDetailsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CaseNotes\CaseNotesForm.resx">
+      <DependentUpon>CaseNotesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
@@ -342,6 +351,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <None Include="Resources\notepad.png" />
     <None Include="Resources\tick_32.png" />
     <None Include="Resources\tick.png" />
     <None Include="Resources\tick.bmp" />

@@ -12,6 +12,8 @@ using OSIRT.Helpers;
 using Ionic.Zip;
 using System.Diagnostics;
 using Jacksonsoft;
+using OSIRT.Loggers;
+using OSIRT.Enums;
 
 namespace OSIRT.UI
 {
@@ -59,33 +61,23 @@ namespace OSIRT.UI
             e.Result = OsirtHelper.GetFileHash(file.FullName);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-         
-        }
-
-
 
         private void uiOpenCaseButton_Click(object sender, EventArgs e)
         {
             //Check password zip: http://stackoverflow.com/questions/30071304/how-to-check-if-file-is-password-protected-password-passed-by-user-is-correct
 
             string enteredPassword = uiPasswordTextBox.Text;
-
             bool isCorrectPassword = (bool) WaitWindow.Show(VerifyPassword, "Verifying password... Please Wait", enteredPassword);
 
             if (isCorrectPassword)
             {
-                //var result = SecurePasswordHasher.Verify(enteredPassword, hash);
-                //TODO: store the hash in the database so we can validate it at the end. (Put the in waitwindow)
-
-                //string hash = SecurePasswordHasher.Hash(enteredPassword);
                 WaitWindow.Show(LoadCase, "Extracting case... Please Wait", enteredPassword);
                 PasswordCheckClick?.Invoke(this, e);
             }
             else
             {
-                MessageBox.Show("BAD PASSWORD");
+                uiInvalidPasswordLabel.Visible = true;
+                uiPasswordTextBox.Focus();
             }
     
         }
@@ -99,12 +91,11 @@ namespace OSIRT.UI
         private void LoadCase(object sender, WaitWindowEventArgs e)
         {
             string password = e.Arguments[0].ToString();
-
-            //TODO: tidy this, just a test.
             DirectoryInfo parentDir = Directory.GetParent(file.FullName);
             using (ZipFile zip = ZipFile.Read(file.FullName))
             {
                 zip.Password = password;
+                //zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.ExtractAll(parentDir.FullName, ExtractExistingFileAction.OverwriteSilently);
             }
 
@@ -120,6 +111,25 @@ namespace OSIRT.UI
 
             Constants.CasePath = parentDir.FullName;
             Constants.CaseContainerName = Path.GetFileName(file.FullName.Replace(".osr", ""));
+
+            e.Window.Message = "Re-encrypting password... Please Wait";
+            string hash = SecurePasswordHasher.Hash(password);
+            UpdateCaseTableWithPassword(hash);
+
+            //TODO: put the hash as a property rather than directly from textbox
+            Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text));
+
+        }
+
+        private void UpdateCaseTableWithPassword(string hash)
+        {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            dbHandler.ExecuteNonQuery($"UPDATE case_details SET hashed_password = '{hash}'");
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
         }
 
 

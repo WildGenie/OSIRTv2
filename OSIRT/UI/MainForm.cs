@@ -23,6 +23,7 @@ namespace OSIRT
     public partial class MainForm : Form
     {
 
+        private bool caseOpened = false;
    
         public MainForm()
         {
@@ -34,20 +35,23 @@ namespace OSIRT
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             //TODO: re-enabled this when we can handle an open case
-            //WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait");
+            if (caseOpened)
+            {
+                WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait");
+            }
         }
 
         private void ClosingOperations(object sender, WaitWindowEventArgs e)
         {
-            //clear IE cache if required
+            //TODO: clear IE cache if required
 
+            Thread.Sleep(500); //just to see the window
             //zip container
-            //TODO: make sure a case has actually been opened first
             e.Window.Message = "Archiving container.";
             using (ZipFile zip = new ZipFile())
             {
-                //zip.Password = "123456";
-                //zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+                zip.Password = "123456";
+                zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + ".osr"));
             }
@@ -85,6 +89,7 @@ namespace OSIRT
         private void ExisitingCasePanel_PasswordCheckClick(object sender, EventArgs e)
         {
             ShowBrowserPanel();
+            caseOpened = true;
         }
 
 
@@ -99,6 +104,7 @@ namespace OSIRT
         protected void caseDetailsPanel_NextClick(object sender, EventArgs e)
         {
             ShowBrowserPanel();
+            caseOpened = true;
         }
 
         private void ShowBrowserPanel()

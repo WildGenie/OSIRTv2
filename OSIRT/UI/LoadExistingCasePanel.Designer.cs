@@ -32,6 +32,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.uiHashProgressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -39,10 +40,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.uiLastModifiedTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.uiInvalidPasswordLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.uiOpenCaseButton = new System.Windows.Forms.Button();
             this.uiPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.uiHashProgressBar = new System.Windows.Forms.ProgressBar();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -59,7 +60,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(997, 630);
             this.panel1.TabIndex = 0;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel3
             // 
@@ -69,6 +69,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(997, 77);
             this.panel3.TabIndex = 15;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // panel2
             // 
@@ -95,6 +96,15 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Case Container Details";
+            // 
+            // uiHashProgressBar
+            // 
+            this.uiHashProgressBar.Location = new System.Drawing.Point(6, 98);
+            this.uiHashProgressBar.MarqueeAnimationSpeed = 10;
+            this.uiHashProgressBar.Name = "uiHashProgressBar";
+            this.uiHashProgressBar.Size = new System.Drawing.Size(588, 19);
+            this.uiHashProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.uiHashProgressBar.TabIndex = 12;
             // 
             // label1
             // 
@@ -154,6 +164,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.uiInvalidPasswordLabel);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.uiOpenCaseButton);
             this.groupBox1.Controls.Add(this.uiPasswordTextBox);
@@ -163,6 +174,17 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Case Container Password";
+            // 
+            // uiInvalidPasswordLabel
+            // 
+            this.uiInvalidPasswordLabel.AutoSize = true;
+            this.uiInvalidPasswordLabel.ForeColor = System.Drawing.Color.Red;
+            this.uiInvalidPasswordLabel.Location = new System.Drawing.Point(103, 108);
+            this.uiInvalidPasswordLabel.Name = "uiInvalidPasswordLabel";
+            this.uiInvalidPasswordLabel.Size = new System.Drawing.Size(87, 13);
+            this.uiInvalidPasswordLabel.TabIndex = 6;
+            this.uiInvalidPasswordLabel.Text = "Invalid Password";
+            this.uiInvalidPasswordLabel.Visible = false;
             // 
             // label2
             // 
@@ -189,15 +211,6 @@
             this.uiPasswordTextBox.Name = "uiPasswordTextBox";
             this.uiPasswordTextBox.Size = new System.Drawing.Size(244, 20);
             this.uiPasswordTextBox.TabIndex = 3;
-            // 
-            // uiHashProgressBar
-            // 
-            this.uiHashProgressBar.Location = new System.Drawing.Point(6, 98);
-            this.uiHashProgressBar.MarqueeAnimationSpeed = 10;
-            this.uiHashProgressBar.Name = "uiHashProgressBar";
-            this.uiHashProgressBar.Size = new System.Drawing.Size(588, 19);
-            this.uiHashProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.uiHashProgressBar.TabIndex = 12;
             // 
             // LoadExistingCasePanel
             // 
@@ -233,5 +246,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar uiHashProgressBar;
+        private System.Windows.Forms.Label uiInvalidPasswordLabel;
     }
 }

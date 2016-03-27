@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,21 +7,16 @@ using System.Threading.Tasks;
 
 namespace OSIRT.Loggers
 {
-    public class OsirtActionsLog /*: BaseLog */
+    public class OsirtActionsLog : BaseLog 
     {
-        private string hash = "";
+       
 
-        public string Hash
+        public OsirtActionsLog(Actions action, string hash) : base(action)
         {
-            get
-            {
-                return this.hash;
-            }
-            set
-            {
-                this.hash = value;
-            }
+            Hash = hash;
         }
+
+        public string Hash{ get; set; }
 
     }
 }

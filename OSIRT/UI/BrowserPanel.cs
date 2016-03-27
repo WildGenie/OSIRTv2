@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.IO;
 using OSIRT.Helpers;
 using OSIRT.UI.Attachment;
+using OSIRT.UI.CaseNotes;
 
 namespace OSIRT.UI
 {
@@ -64,7 +65,10 @@ namespace OSIRT.UI
 
         private void uiCaseNotesButton_Click(object sender, EventArgs e)
         {
-           //add a case note
+            CaseNotesForm caseNotes = new CaseNotesForm();
+            caseNotes.Show();
+
+            
         }
 
         private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)

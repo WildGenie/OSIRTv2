@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Loggers;
+using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
@@ -29,6 +30,9 @@ namespace OSIRT.Helpers
             //YES- IT'S PER APPLICATION! NEED TO SAVE IT TO THE CASE FILE AGAIN. XML
             Properties.Settings.Default.Hash = caseDetails["hash_function"];
             Properties.Settings.Default.Save();
+
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "EXAMPLE HASH"));
+
 
             //let's zip it up
             //CompressContainer();
