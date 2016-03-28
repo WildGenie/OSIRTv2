@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     public class CaseCreator
     {

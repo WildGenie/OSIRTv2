@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using OSIRT.Extensions;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using System.Windows.Media.Imaging;
 using OSIRT.Enums;
 using System.Diagnostics;

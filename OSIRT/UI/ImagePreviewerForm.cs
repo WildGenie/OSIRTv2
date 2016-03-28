@@ -2,7 +2,7 @@
 using ImageMagick;
 using Jacksonsoft;
 using OSIRT.Enums;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using OSIRT.Loggers;
 using OSIRT.Properties;
 using System;

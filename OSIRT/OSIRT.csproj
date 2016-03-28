@@ -16,7 +16,7 @@
     </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -84,11 +84,20 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TuesPechkin, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TuesPechkin.2.1.1\lib\net20\TuesPechkin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="TuesPechkin.Wkhtmltox.Win32, Version=0.12.2.1, Culture=neutral, processorArchitecture=x86">
+      <HintPath>..\packages\TuesPechkin.Wkhtmltox.Win32.0.12.2.1\lib\net20\TuesPechkin.Wkhtmltox.Win32.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
@@ -351,6 +360,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FodyWeavers.xml" />
+    <Content Include="libeay32.dll" />
+    <Content Include="libgcc_s_dw2-1.dll" />
+    <Content Include="mingwm10.dll" />
+    <Content Include="ssleay32.dll" />
+    <Content Include="wkhtmltox.dll" />
+    <None Include="Resources\printer.png" />
+    <None Include="Resources\txt_file.png" />
     <None Include="Resources\notepad.png" />
     <None Include="Resources\tick_32.png" />
     <None Include="Resources\tick.png" />

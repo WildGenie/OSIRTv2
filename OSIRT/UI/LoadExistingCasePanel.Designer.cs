@@ -173,13 +173,12 @@
             this.groupBox1.Size = new System.Drawing.Size(303, 133);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Case Container Password";
             // 
             // uiInvalidPasswordLabel
             // 
             this.uiInvalidPasswordLabel.AutoSize = true;
             this.uiInvalidPasswordLabel.ForeColor = System.Drawing.Color.Red;
-            this.uiInvalidPasswordLabel.Location = new System.Drawing.Point(103, 108);
+            this.uiInvalidPasswordLabel.Location = new System.Drawing.Point(103, 101);
             this.uiInvalidPasswordLabel.Name = "uiInvalidPasswordLabel";
             this.uiInvalidPasswordLabel.Size = new System.Drawing.Size(87, 13);
             this.uiInvalidPasswordLabel.TabIndex = 6;
@@ -189,7 +188,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(114, 37);
+            this.label2.Location = new System.Drawing.Point(116, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 13);
             this.label2.TabIndex = 4;
@@ -197,7 +196,7 @@
             // 
             // uiOpenCaseButton
             // 
-            this.uiOpenCaseButton.Location = new System.Drawing.Point(107, 79);
+            this.uiOpenCaseButton.Location = new System.Drawing.Point(107, 72);
             this.uiOpenCaseButton.Name = "uiOpenCaseButton";
             this.uiOpenCaseButton.Size = new System.Drawing.Size(75, 23);
             this.uiOpenCaseButton.TabIndex = 5;
@@ -207,7 +206,7 @@
             // 
             // uiPasswordTextBox
             // 
-            this.uiPasswordTextBox.Location = new System.Drawing.Point(31, 53);
+            this.uiPasswordTextBox.Location = new System.Drawing.Point(31, 46);
             this.uiPasswordTextBox.Name = "uiPasswordTextBox";
             this.uiPasswordTextBox.Size = new System.Drawing.Size(244, 20);
             this.uiPasswordTextBox.TabIndex = 3;

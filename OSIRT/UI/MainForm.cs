@@ -3,7 +3,7 @@ using Ionic.Zip;
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;

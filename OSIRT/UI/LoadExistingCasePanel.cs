@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using Ionic.Zip;
 using System.Diagnostics;
 using Jacksonsoft;
@@ -64,8 +64,8 @@ namespace OSIRT.UI
 
         private void uiOpenCaseButton_Click(object sender, EventArgs e)
         {
-            //Check password zip: http://stackoverflow.com/questions/30071304/how-to-check-if-file-is-password-protected-password-passed-by-user-is-correct
-
+          
+            //TODO: use secure string?
             string enteredPassword = uiPasswordTextBox.Text;
             bool isCorrectPassword = (bool) WaitWindow.Show(VerifyPassword, "Verifying password... Please Wait", enteredPassword);
 

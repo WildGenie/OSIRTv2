@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using OSIRT.UI;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using OSIRT.Loggers;
 using System.Diagnostics;
 using OSIRT.Properties;

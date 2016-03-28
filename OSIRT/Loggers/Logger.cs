@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using OSIRT.Helpers;
+using OSIRT.Database;
 
 
 namespace OSIRT.Loggers

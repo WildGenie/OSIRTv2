@@ -1,4 +1,4 @@
-﻿using OSIRT.Helpers;
+﻿using OSIRT.Database;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     //TODO: May need to put this "in memory" so we can have a self-container
     //container: http://stackoverflow.com/questions/11383775/memory-stream-as-db
@@ -26,8 +26,44 @@ namespace OSIRT.Helpers
 
         public int GetTotalRowsFromTable(string table)
         {
-            //TODO: DRY! Strip out the datatable query (using statements) to their own method
             string query = $"SELECT * FROM {table}";
+            int count = GetDataTableFromQuery(query).Rows.Count;
+            return count;
+
+        }
+
+        public DataTable GetPaginatedDataTable(string table, int page)
+        {
+            string query = "";
+            if (page == 1)
+            {
+                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT 25 be a user option
+            }
+            else
+            {
+                int offset = (page - 1) * 25;
+                query = $"SELECT * FROM {table} LIMIT {offset}, 25"; //get 25 rows after page (e.g; 75).
+            }
+
+            return GetDataTableFromQuery(query);
+        }
+
+
+        public DataTable GetAllColumnsDataTable(string table)
+        {
+            string query = $"SELECT * FROM {table}";
+            return GetDataTableFromQuery(query);
+        }
+
+        public DataTable GetSpecifiedColumnsDataTable(string table, params string[] columns)
+        {
+            string joinedColumn = string.Join(",", columns);
+            string query = $"SELECT {joinedColumn} FROM {table}";
+            return GetDataTableFromQuery(query);
+        }
+        
+        private DataTable GetDataTableFromQuery(string query)
+        {
             DataTable dataTable = new DataTable();
             using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
             {
@@ -41,40 +77,8 @@ namespace OSIRT.Helpers
                     }
                 }
             }
-            int count = dataTable.Rows.Count;
-            return count;
-
-        }
-
-        public DataTable GetDataTable(string table, int page)
-        {
-            string query = "";
-            if (page == 1)
-            {
-                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT 25 be a user option
-            }
-            else
-            {
-                int offset = (page - 1) * 25;
-                query = $"SELECT * FROM {table} LIMIT {offset}, 25"; //get 25 rows after page (e.g; 75).
-            }
-
-            DataTable dataTable = new DataTable();
-            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
-            {
-               
-                using (SQLiteCommand command = new SQLiteCommand(conn))
-                {
-                    conn.Open();
-                    command.CommandText = query;
-                    using(SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        dataTable.Load(reader);
-                    }
-                }
-            }
             return dataTable;
-        }
+        }  
 
         
         public int ExecuteNonQuery(string sql)

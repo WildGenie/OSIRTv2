@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Cyotek.Windows.Forms;
 using ImageMagick;
 using System.IO;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using System.Diagnostics;
 
 namespace OSIRT.UI

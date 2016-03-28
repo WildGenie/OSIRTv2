@@ -1,4 +1,4 @@
-﻿using OSIRT.Helpers;
+﻿using OSIRT.Database;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -229,7 +229,7 @@ namespace OSIRT.UI
         private void GoToPage(int page)
         {
             DatabaseHandler db = new DatabaseHandler();
-            Table = db.GetDataTable(TableName, page);
+            Table = db.GetPaginatedDataTable(TableName, page);
             PopulateGrid(Table);
         }
 

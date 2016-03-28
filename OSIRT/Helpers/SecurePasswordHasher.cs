@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     //http://stackoverflow.com/questions/4181198/how-to-hash-a-password
     public sealed class SecurePasswordHasher

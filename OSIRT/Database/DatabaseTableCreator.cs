@@ -1,11 +1,11 @@
-﻿using OSIRT.Helpers;
+﻿using OSIRT.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     public class DatabaseTableCreator
     {
@@ -24,6 +24,7 @@ namespace OSIRT.Helpers
             tables.Add(@"CREATE TABLE IF NOT EXISTS webpage_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT, file TEXT, hash TEXT, note TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)");
             tables.Add(@"CREATE TABLE IF NOT EXISTS attachments (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, file TEXT, hash TEXT, note TEXT)");
+            tables.Add(@"CREATE TABLE IF NOT EXISTS case_notes (id INTEGER PRIMARY KEY, date TEXT, time TEXT, note TEXT)");
 
             DatabaseHandler handler = new DatabaseHandler();
 

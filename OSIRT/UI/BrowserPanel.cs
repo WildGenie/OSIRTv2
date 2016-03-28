@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using OSIRT.UI.Attachment;
 using OSIRT.UI.CaseNotes;
 

@@ -5,7 +5,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
     class ImageDiskCache 
     {

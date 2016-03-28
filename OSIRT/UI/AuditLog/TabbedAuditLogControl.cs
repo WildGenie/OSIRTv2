@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using System.Diagnostics;
 
 namespace OSIRT.UI

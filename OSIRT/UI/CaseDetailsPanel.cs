@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
 using OSIRT.Extensions;
-using OSIRT.Helpers;
+using OSIRT.Database;
 using System.Threading;
 using Jacksonsoft;
 using System.IO;
