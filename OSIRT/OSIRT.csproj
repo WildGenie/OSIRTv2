@@ -96,6 +96,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CaseNotesToHtml.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
@@ -353,7 +354,7 @@
     <None Include="Resources\add-folder-128.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\documents-128.png" />
+    <EmbeddedResource Include="Resources\documents-128.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\view-details-128.png" />
@@ -363,6 +364,8 @@
     <Content Include="libeay32.dll" />
     <Content Include="libgcc_s_dw2-1.dll" />
     <Content Include="mingwm10.dll" />
+    <None Include="Resources\pdf_icon1.png" />
+    <EmbeddedResource Include="Resources\casenotes.html" />
     <Content Include="ssleay32.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />

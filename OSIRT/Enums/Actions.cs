@@ -25,6 +25,7 @@ namespace OSIRT.Enums
         Loaded,
         CaseLoaded,
         CaseClosed,
+        CaseNotes
 
     }
 }

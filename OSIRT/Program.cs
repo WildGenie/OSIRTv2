@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +17,8 @@ namespace OSIRT
         [STAThread]
         static void Main()
         {
+
+         
             /* 
             * 
             * TODO: If the application ended abruptly before, check the log (CREATE THE LOG)

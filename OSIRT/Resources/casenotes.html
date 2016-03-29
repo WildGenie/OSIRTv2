@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=utf-8 />
+    <title>Case Notes</title>
+    <style>
+        body, p {
+            padding: 0;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        .underline {
+            margin-top: 5px;
+        }
+
+        .date-time {
+            margin-top: 15px;
+            margin-left: 15px;
+            font-weight: bold;
+        }
+
+        .note {
+            margin-left: 15px;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        h1 {
+            background: cornflowerblue;
+            color: white;
+            padding: 5px;
+            font-size: 150%;
+        }
+
+        #case-details {
+            width: 600px;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        #case-details img {
+            margin-right: 15px;
+            float: left;
+        }
+
+        #case-notes {
+            page-break-inside: avoid;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Case Notes</h1>
+    <div id='case-details'>
+        <img src='C:\Users\Joe\Desktop\kent.gif' alt="" />
+        <h3>Case Details</h3>
+        <%%CASE_DETAILS%%>
+    </div>
+    <div id='case-notes'>
+        <%%CASE_NOTES%%>
+    </div>
+</body>
+</html>

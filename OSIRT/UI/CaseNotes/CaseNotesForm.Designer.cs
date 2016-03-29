@@ -32,13 +32,13 @@
             this.uiCaseNotesTextBox = new System.Windows.Forms.TextBox();
             this.uiButtonPanel = new System.Windows.Forms.Panel();
             this.uiAddNoteButton = new System.Windows.Forms.Button();
-            this.uiEnteredNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent2 = new System.Windows.Controls.TextBox();
             this.uiOptionsToolStrip = new System.Windows.Forms.ToolStrip();
-            this.uiPrintToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.uiPrintToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiExportAsPDFToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiExportTxtToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiEnteredNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent3 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -100,19 +100,6 @@
             this.uiAddNoteButton.UseVisualStyleBackColor = true;
             this.uiAddNoteButton.Click += new System.EventHandler(this.uiAddNoteButton_Click);
             // 
-            // uiEnteredNoteSpellBox
-            // 
-            this.uiEnteredNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiEnteredNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiEnteredNoteSpellBox.Location = new System.Drawing.Point(0, 0);
-            this.uiEnteredNoteSpellBox.Multiline = true;
-            this.uiEnteredNoteSpellBox.Name = "uiEnteredNoteSpellBox";
-            this.uiEnteredNoteSpellBox.Size = new System.Drawing.Size(696, 121);
-            this.uiEnteredNoteSpellBox.TabIndex = 0;
-            this.uiEnteredNoteSpellBox.WordWrap = true;
-            // 
             // uiOptionsToolStrip
             // 
             this.uiOptionsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -126,9 +113,15 @@
             this.uiOptionsToolStrip.TabIndex = 1;
             this.uiOptionsToolStrip.Text = "toolStrip1";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // uiPrintToolStripButton
             // 
             this.uiPrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiPrintToolStripButton.Enabled = false;
             this.uiPrintToolStripButton.Image = global::OSIRT.Properties.Resources.printer;
             this.uiPrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiPrintToolStripButton.Name = "uiPrintToolStripButton";
@@ -136,15 +129,10 @@
             this.uiPrintToolStripButton.Text = "toolStripButton2";
             this.uiPrintToolStripButton.ToolTipText = "Print case notes";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // uiExportAsPDFToolStripButton
             // 
             this.uiExportAsPDFToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiExportAsPDFToolStripButton.Image = global::OSIRT.Properties.Resources.pdf_icon_sm;
+            this.uiExportAsPDFToolStripButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
             this.uiExportAsPDFToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiExportAsPDFToolStripButton.Name = "uiExportAsPDFToolStripButton";
             this.uiExportAsPDFToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -155,12 +143,26 @@
             // uiExportTxtToolStripButton
             // 
             this.uiExportTxtToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiExportTxtToolStripButton.Enabled = false;
             this.uiExportTxtToolStripButton.Image = global::OSIRT.Properties.Resources.txt_file;
             this.uiExportTxtToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiExportTxtToolStripButton.Name = "uiExportTxtToolStripButton";
             this.uiExportTxtToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.uiExportTxtToolStripButton.Text = "toolStripButton2";
             this.uiExportTxtToolStripButton.ToolTipText = "Export as plain text";
+            // 
+            // uiEnteredNoteSpellBox
+            // 
+            this.uiEnteredNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiEnteredNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiEnteredNoteSpellBox.Location = new System.Drawing.Point(0, 0);
+            this.uiEnteredNoteSpellBox.Multiline = true;
+            this.uiEnteredNoteSpellBox.Name = "uiEnteredNoteSpellBox";
+            this.uiEnteredNoteSpellBox.Size = new System.Drawing.Size(696, 121);
+            this.uiEnteredNoteSpellBox.TabIndex = 0;
+            this.uiEnteredNoteSpellBox.WordWrap = true;
             // 
             // CaseNotesForm
             // 
@@ -172,6 +174,7 @@
             this.Name = "CaseNotesForm";
             this.Text = "Case Notes";
             this.Load += new System.EventHandler(this.CaseNotesForm_Load);
+            this.Shown += new System.EventHandler(this.CaseNotesForm_Shown);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -198,5 +201,6 @@
         private System.Windows.Forms.Panel uiButtonPanel;
         private System.Windows.Forms.Button uiAddNoteButton;
         private System.Windows.Controls.TextBox hostedComponent2;
+        private System.Windows.Controls.TextBox hostedComponent3;
     }
 }

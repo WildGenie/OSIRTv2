@@ -1,5 +1,7 @@
-﻿using OSIRT.Database;
+﻿using Jacksonsoft;
+using OSIRT.Database;
 using OSIRT.Helpers;
+using OSIRT.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,8 +31,19 @@ namespace OSIRT.UI.CaseNotes
             uiOptionsToolStrip.ImageScalingSize = new Size(32, 32);
             uiOptionsToolStrip.Width = Width;
             uiEnteredNoteSpellBox.Select();
+            uiCaseNotesTextBox.VisibleChanged += uiCaseNotesTextBox_VisibleChanged;
             uiCaseNotesTextBox.Text = GetExistingCaseNotes();
 
+         
+        }
+
+        private void uiCaseNotesTextBox_VisibleChanged(object sender, EventArgs e)
+        {
+            if (uiCaseNotesTextBox.Visible)
+            {
+                uiCaseNotesTextBox.SelectionStart = uiCaseNotesTextBox.TextLength;
+                uiCaseNotesTextBox.ScrollToCaret();
+            }
         }
 
         private string GetExistingCaseNotes()
@@ -61,21 +74,41 @@ namespace OSIRT.UI.CaseNotes
             notes.Add("note", uiEnteredNoteSpellBox.Text);
             new DatabaseHandler().Insert("case_notes", notes);
             uiCaseNotesTextBox.AppendText($"{date}  {time}{Environment.NewLine}{uiEnteredNoteSpellBox.Text}{Environment.NewLine}{Environment.NewLine}");
-
+            uiEnteredNoteSpellBox.ResetText();
+            uiEnteredNoteSpellBox.Select();
         }
 
         private void uiExportAsPDFToolStripButton_Click(object sender, EventArgs e)
         {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            saveDialog.Filter = "PDF files|*.pdf";
+            saveDialog.AddExtension = true;
+            saveDialog.RestoreDirectory = true;
 
+            if (saveDialog.ShowDialog() != DialogResult.OK)
+                return;
 
+            string file = saveDialog.FileName;
+            WaitWindow.Show(CreatePDF, "Generating PDF. Please wait...", file);
+            System.Diagnostics.Process.Start(file); //TODO: have as an option
+        }
 
-            //TODO: Put this PDF HTML to PDF creation in it's own class.
-            //Singleton could work well, here.
+        private void CreatePDF(object sender, WaitWindowEventArgs e)
+        {
+            string path = e.Arguments[0].ToString();
+            DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_notes", "date", "time", "note");
+            string html = CaseNotesToHtml.CreateHtml(table);
+            HTMLtoPDF.SaveHTMLToPDF(html, "Case Notes", path);
 
-            //File.WriteAllBytes(@"D:\hello.pdf", result);
-            HTMLtoPDF.SaveHTMLToPDF("<p>example</p>", "Case Notes", @"D:/hello2.pdf");
+            string hash = OsirtHelper.GetFileHash(path);
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash));
 
+        }
 
+        private void CaseNotesForm_Shown(object sender, EventArgs e)
+        {
+            uiCaseNotesTextBox.SelectionStart = uiCaseNotesTextBox.Text.Length;
+            uiCaseNotesTextBox.ScrollToCaret();
         }
     }
 }
