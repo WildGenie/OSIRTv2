@@ -98,7 +98,7 @@ namespace OSIRT.Browser
 
         private async void FullpageScreenshotByScrolling()
         {
-            //((Control)this).Enabled = false; //prevent user clicks
+            
             Enable = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
@@ -110,6 +110,8 @@ namespace OSIRT.Browser
             int count = 0;
             int pageLeft = scrollHeight;
             bool atBottom = false;
+
+            Debug.WriteLine($"OUTSIDE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
 
             ImageDiskCache cache = new ImageDiskCache();
 
@@ -139,7 +141,7 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay(); //may need to place larger delay
-                    //TODO: This isn't working correctly on Win 10... Was fine on Win 7.
+                
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -147,15 +149,13 @@ namespace OSIRT.Browser
                     using (Graphics g = Graphics.FromImage(target))
                     {
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
-                        cache.AddImage(count, GetCurrentViewScreenshot());
+                        cache.AddImage(count, target);
                     }
-
+                    
                 }
 
                 pageLeft = pageLeft - viewportHeight;
                 ToggleFixedElements(false);
-
-
             }//end while
 
             ToggleScrollbars(true);

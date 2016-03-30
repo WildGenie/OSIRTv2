@@ -118,6 +118,7 @@ namespace OSIRT.UI
             imageBox = new ImageBox();
             imageBox.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(imageBox);
+            //TODO: This can fail on large images, still. (30/03/2016)
             LoadImage(new Bitmap(Image.FromFile(imagePath)));
         }
 

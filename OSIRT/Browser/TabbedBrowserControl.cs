@@ -83,6 +83,8 @@ namespace OSIRT.Browser
                 return;
         
             
+            
+
 
             //TODO: Display message in status bar to say it has been logged
         }

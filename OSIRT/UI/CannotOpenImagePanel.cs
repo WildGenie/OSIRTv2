@@ -79,6 +79,9 @@ namespace OSIRT.UI
             imageBox?.Image.Dispose();
             imageBox?.Dispose();
             Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            Debug.WriteLine("CLEAN UP CALLED");
         }
 
         private void uiCantOpenLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

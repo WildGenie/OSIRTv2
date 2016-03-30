@@ -96,13 +96,10 @@ namespace OSIRT.UI.CaseNotes
         private void CreatePDF(object sender, WaitWindowEventArgs e)
         {
             string path = e.Arguments[0].ToString();
-            DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_notes", "date", "time", "note");
-            string html = CaseNotesToHtml.CreateHtml(table);
+            string html = CaseNotesToHtml.CreateHtml();
             HTMLtoPDF.SaveHTMLToPDF(html, "Case Notes", path);
-
             string hash = OsirtHelper.GetFileHash(path);
             Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash));
-
         }
 
         private void CaseNotesForm_Shown(object sender, EventArgs e)
