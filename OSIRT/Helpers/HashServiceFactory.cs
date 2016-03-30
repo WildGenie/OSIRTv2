@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class HashServiceFactory
     {

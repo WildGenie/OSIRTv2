@@ -1,4 +1,4 @@
-﻿using OSIRT.Database;
+﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,10 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
-    //TODO: May need to put this "in memory" so we can have a self-container
-    //container: http://stackoverflow.com/questions/11383775/memory-stream-as-db
+
     public class DatabaseHandler 
     {
 
@@ -35,14 +34,15 @@ namespace OSIRT.Database
         public DataTable GetPaginatedDataTable(string table, int page)
         {
             string query = "";
+            int limit = UserSettings.Load().numberOfRowsPerPage;
             if (page == 1)
             {
-                query = $"SELECT * FROM {table} LIMIT 25"; //TODO: have LIMIT 25 be a user option
+                query = $"SELECT * FROM {table} LIMIT {limit}"; 
             }
             else
             {
                 int offset = (page - 1) * 25;
-                query = $"SELECT * FROM {table} LIMIT {offset}, 25"; //get 25 rows after page (e.g; 75).
+                query = $"SELECT * FROM {table} LIMIT {offset}, {limit}"; //get 25 rows after page (e.g; 75).
             }
 
             return GetDataTableFromQuery(query);

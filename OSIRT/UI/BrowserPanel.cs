@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.IO;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.UI.Attachment;
 using OSIRT.UI.CaseNotes;
 
@@ -50,12 +50,14 @@ namespace OSIRT.UI
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
+            //uiScreenshotButton.Enabled = false;
             uiTabbedBrowserControl.GetFullPageScreenshot();
+            //uiScreenshotButton.Enabled = true;
         }
 
         private void AddNewTab()
         {
-            uiTabbedBrowserControl.NewTab("http://bbc.co.uk", uiURLComboBox);
+            uiTabbedBrowserControl.NewTab(UserSettings.Load().homepage, uiURLComboBox);
         }
 
         private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -67,8 +69,6 @@ namespace OSIRT.UI
         {
             CaseNotesForm caseNotes = new CaseNotesForm();
             caseNotes.Show();
-
-            
         }
 
         private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)

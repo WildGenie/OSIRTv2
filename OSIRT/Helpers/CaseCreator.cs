@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class CaseCreator
     {
@@ -26,16 +26,12 @@ namespace OSIRT.Database
             tables.Create();
             AddCaseDetailsToDB();
 
-            //Suspect it's per application.
-            //YES- IT'S PER APPLICATION! NEED TO SAVE IT TO THE CASE FILE AGAIN. XML
-            Properties.Settings.Default.Hash = caseDetails["hash_function"];
-            Properties.Settings.Default.Save();
+            UserSettings settings = UserSettings.Load();
+            settings.hash = caseDetails["hash_function"];
+            settings.Save();
 
             Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "EXAMPLE HASH"));
 
-
-            //let's zip it up
-            //CompressContainer();
         }
 
 

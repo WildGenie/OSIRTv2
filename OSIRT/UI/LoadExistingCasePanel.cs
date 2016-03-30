@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using Ionic.Zip;
 using System.Diagnostics;
 using Jacksonsoft;

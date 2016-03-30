@@ -2,7 +2,7 @@
 using ImageMagick;
 using Jacksonsoft;
 using OSIRT.Enums;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.Loggers;
 using OSIRT.Properties;
 using System;
@@ -47,7 +47,7 @@ namespace OSIRT.UI
             Hash = e.Result.ToString();
             uiHashTextBox.Text = Hash;
             uiHashCalcProgressBar.Visible = false;
-            uiCalculatingHashLabel.Text = $"{Settings.Default.Hash.ToUpperInvariant()} Hash";
+            uiCalculatingHashLabel.Text = $"{UserSettings.Load().hash.ToUpperInvariant()} Hash";
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -119,6 +119,7 @@ namespace OSIRT.UI
             imageBox.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(imageBox);
             //TODO: This can fail on large images, still. (30/03/2016)
+            //Memory leaks within the WebBrowser control seem to be the cause.
             LoadImage(new Bitmap(Image.FromFile(imagePath)));
         }
 

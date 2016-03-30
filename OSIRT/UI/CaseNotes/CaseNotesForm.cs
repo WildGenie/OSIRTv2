@@ -1,5 +1,4 @@
 ﻿using Jacksonsoft;
-using OSIRT.Database;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
 using System;

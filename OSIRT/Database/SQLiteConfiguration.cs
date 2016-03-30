@@ -9,7 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class SQLiteConfiguration : DbConfiguration
     {

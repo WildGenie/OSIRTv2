@@ -8,7 +8,7 @@ using System.IO;
 using System.Windows.Forms;
 using OSIRT.Enums;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class Constants
     {

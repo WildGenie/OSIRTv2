@@ -32,6 +32,8 @@
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiBrowserStatusStrip = new System.Windows.Forms.StatusStrip();
             this.uiStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.uiActionLoggedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,9 @@
             // uiBrowserStatusStrip
             // 
             this.uiBrowserStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiStatusLabel});
+            this.uiStatusLabel,
+            this.toolStripStatusLabel1,
+            this.uiActionLoggedToolStripStatusLabel});
             this.uiBrowserStatusStrip.Location = new System.Drawing.Point(0, 593);
             this.uiBrowserStatusStrip.Name = "uiBrowserStatusStrip";
             this.uiBrowserStatusStrip.Size = new System.Drawing.Size(800, 22);
@@ -71,6 +75,17 @@
             // 
             this.uiStatusLabel.Name = "uiStatusLabel";
             this.uiStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(754, 17);
+            this.toolStripStatusLabel1.Spring = true;
+            // 
+            // uiActionLoggedToolStripStatusLabel
+            // 
+            this.uiActionLoggedToolStripStatusLabel.Name = "uiActionLoggedToolStripStatusLabel";
+            this.uiActionLoggedToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
             // 
             // TabbedBrowserControl
             // 
@@ -93,5 +108,7 @@
         private System.Windows.Forms.Panel uiBrowserPanel;
         private System.Windows.Forms.StatusStrip uiBrowserStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel uiStatusLabel;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel uiActionLoggedToolStripStatusLabel;
     }
 }

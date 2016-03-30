@@ -3,7 +3,7 @@ using Ionic.Zip;
 using Jacksonsoft;
 using mshtml;
 using OSIRT.Browser;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,6 @@ namespace OSIRT
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //TODO: re-enabled this when we can handle an open case
             if (caseOpened)
             {
                 WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait");

@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class NativeMethods
     {

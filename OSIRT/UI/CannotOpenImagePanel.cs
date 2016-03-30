@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using Cyotek.Windows.Forms;
 using ImageMagick;
 using System.IO;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using System.Diagnostics;
 
 namespace OSIRT.UI
@@ -64,7 +64,6 @@ namespace OSIRT.UI
      
         private void CreateScaledImage()
         {
-   
             using (MagickImage image = new MagickImage(imagePath))
             {
                 //TODO: Perhaps see what the original size is then scale based on that

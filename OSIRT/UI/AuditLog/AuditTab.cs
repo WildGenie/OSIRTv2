@@ -1,4 +1,4 @@
-﻿using OSIRT.Database;
+﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -18,7 +18,7 @@ namespace OSIRT.UI
         public string TableName { get; private set; }
         public DataTable Table { get; private set; }
         public int Page { get; private set; }
-        public int MaxPages { get { return 25; } } //TODO: this will be a user setting
+        public int MaxPages { get { return UserSettings.Load().numberOfRowsPerPage; } } 
         private int totalRowCount = 0;
         private List<string> columnNames;
 
@@ -28,7 +28,7 @@ namespace OSIRT.UI
             TableName = table;
             totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
 
-            //TODO: look at shifting some of this to load
+            //TODO: look at shifting some of this to load event
             if (totalRowCount > 0)
             {
                 InitialiseDataGridView();

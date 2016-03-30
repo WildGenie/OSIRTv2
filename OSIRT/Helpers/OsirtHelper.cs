@@ -1,4 +1,4 @@
-﻿using OSIRT.Database;
+﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Imaging;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
@@ -78,7 +78,7 @@ namespace OSIRT.Database
         /// <returns>Hash of the file</returns>
         public static string GetFileHash(string path)
         {
-            return  GetFileHash(path, Properties.Settings.Default.Hash);
+            return  GetFileHash(path, UserSettings.Load().hash);
         }
 
 
@@ -110,39 +110,6 @@ namespace OSIRT.Database
             }
 
             return null;
-        }
-
-
-
-        public static bool ValidCaseContainer(string containerFile)
-        {
-            var directories = Directory.EnumerateDirectories(containerFile, "*", SearchOption.AllDirectories);
-
-            //TODO: Fix this mess!
-            string[] files = Directory.GetDirectories(containerFile, "*", SearchOption.AllDirectories);
-            string[] expectedFiles = Constants.Directories.GetCaseDirectories().ToArray();
-
-
-
-
-
-
-
-            return false;
-            //List<string> tempFiles = new List<string>();
-
-            //foreach (string file in directories)
-            //{
-            //    tempFiles.Add(file.Remove(0, containerFile.Length).Trim('\\'));
-            //}
-
-            //string[] expectedFiles = Constants.Directories.GetCaseDirectories().ToArray();
-            //Array.Sort(expectedFiles);
-            //Array.Sort(tempFiles.ToArray());
-
-
-
-            //return Enumerable.SequenceEqual(tempFiles, expectedFiles); ;
         }
 
     }

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.IO;
 using OSIRT.UI;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.Loggers;
 using System.Diagnostics;
 using OSIRT.Properties;
@@ -69,11 +69,12 @@ namespace OSIRT.Browser
         {
     
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
-
             DialogResult dialogRes;
+            string fileName = "";
             using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details))
             {
                 dialogRes = previewForm.ShowDialog();
+                fileName = previewForm.FileName + previewForm.FileExtension;
             }
 
             //always want to delete items in cache, regardless of DialogResult.
@@ -81,12 +82,14 @@ namespace OSIRT.Browser
 
             if (dialogRes != DialogResult.OK)
                 return;
-        
-            
-            
 
+            uiActionLoggedToolStripStatusLabel.Text = $"{fileName} logged at {12}";
 
-            //TODO: Display message in status bar to say it has been logged
+            Timer timer = new Timer();
+            timer.Interval = 3500;
+            timer.Start();
+            timer.Tick += (s, evt) => { uiActionLoggedToolStripStatusLabel.Text = ""; timer.Stop(); };
+
         }
 
         void Browser_StatusTextChanged(object sender, EventArgs e)

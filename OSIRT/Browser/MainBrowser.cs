@@ -2,7 +2,7 @@
 using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
-using OSIRT.Database;
+using OSIRT.Helpers;
 using OSIRT.Loggers;
 using OSIRT.UI;
 using System;
@@ -127,7 +127,10 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay(); //we do need these delays. Some pages, like facebook, may need to load viewport content.
-                    cache.AddImage(count, GetCurrentViewScreenshot());
+                    using (Bitmap image = GetCurrentViewScreenshot())
+                    {
+                        cache.AddImage(count, image);
+                    }
                 }
                 else //TODO: what if it's exactly divisible?
                 {
@@ -141,7 +144,7 @@ namespace OSIRT.Browser
                     count++;
 
                     await PutTaskDelay(); //may need to place larger delay
-                
+
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -151,20 +154,19 @@ namespace OSIRT.Browser
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
                         cache.AddImage(count, target);
                     }
-                    
+
                 }
 
                 pageLeft = pageLeft - viewportHeight;
                 ToggleFixedElements(false);
+                Debug.WriteLine($"IN WHILE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
             }//end while
 
             ToggleScrollbars(true);
             ToggleFixedElements(true);
             Document.Body.ScrollIntoView(true);//scroll page back to the top
 
-            ((Control)this).Enabled = true;
-
-
+            Enable = true;
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             FireScreenshotCompleteEvent();
         }
@@ -209,7 +211,8 @@ namespace OSIRT.Browser
 
         public void GenerateFullpageScreenshot()
         {
-
+            //TODO: perhaps put this in a try catch
+            //It's potentially volatile. 
             if (ScrollHeight() > MaxScrollHeight)
             {
                 FullpageScreenshotByScrolling();
@@ -265,8 +268,8 @@ namespace OSIRT.Browser
         public void ToggleFixedElements(bool toggle)
         {
             string property = toggle ? "visible" : "hidden";
-            HtmlElement h = this.Document.GetElementsByTagName("head")[0];
-            HtmlElement s = this.Document.CreateElement("script");
+            HtmlElement h = Document.GetElementsByTagName("head")[0];
+            HtmlElement s = Document.CreateElement("script");
             IHTMLScriptElement el = (IHTMLScriptElement)s.DomElement;
             el.text = "javascript: var f = function() { var elements =	document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if(position === 'fixed') { elements[i].style.visibility = '" + property + "';  } }	 }; f();";
             h.AppendChild(s);

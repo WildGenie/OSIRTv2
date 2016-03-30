@@ -1,11 +1,11 @@
-﻿using OSIRT.Database;
+﻿using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OSIRT.Database
+namespace OSIRT.Helpers
 {
     public class DatabaseTableCreator
     {
