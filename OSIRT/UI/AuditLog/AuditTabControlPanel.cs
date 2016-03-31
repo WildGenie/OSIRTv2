@@ -14,7 +14,7 @@ namespace OSIRT.UI
     {
         private TabbedAuditLogControl tabbedAuditLog;
         private ToolTip toolTip = new ToolTip();
-
+        
         public AuditTabControlPanel()
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace OSIRT.UI
 
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription(); 
             uiPreviousPageButton.Enabled = false;
+            uiSearchSelectionComboBox.SelectedIndex = 0;
         }
 
         private void TabbedAuditLog_TabChanged(object sender, EventArgs e)
@@ -58,8 +59,32 @@ namespace OSIRT.UI
 
         private void uiSearchButton_Click(object sender, EventArgs e)
         {
+            //get combo box value (this tab/all tabs/current page)
+            //create search tab, this allows us access to pagination in AuditTab.
+            //will need to have an AddTab method in TabbedAuditLogControl
+            //switch to search tab (may need a "searching" spinner, like the imagepreviewer)
+
+            tabbedAuditLog.AddSearchTab();
+
+            string searchRequired = uiSearchSelectionComboBox.Text;
             string searchText = uiSearchTextBox.Text;
-            tabbedAuditLog.CurrentTab.Search(searchText);
+
+            if (string.IsNullOrWhiteSpace(searchText))
+                return;
+
+            if (searchRequired == "Current Tab")
+            {
+                //tabbedAuditLog.CurrentTab.SearchCurrentTab(searchText);
+            }
+            else
+            {
+                //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
+            }
+
+
+
+            
+           
         }
 
         private void NextPage()
@@ -138,8 +163,8 @@ namespace OSIRT.UI
 
         private void uiSearchTextBox_TextChanged(object sender, EventArgs e)
         {
-            string searchText = uiSearchTextBox.Text;
-            tabbedAuditLog.CurrentTab.Search(searchText);
+            //string searchText = uiSearchTextBox.Text;
+            //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
         }
     }
 }

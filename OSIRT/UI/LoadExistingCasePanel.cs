@@ -58,7 +58,9 @@ namespace OSIRT.UI
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            e.Result = OsirtHelper.GetFileHash(file.FullName);
+            //We haven't extracted the case container, so we don't know the user setting.
+            //We'll use SHA512 as the default for hashing and verifying containers.
+            e.Result = OsirtHelper.GetFileHash(file.FullName, "SHA512");
         }
 
 
@@ -132,6 +134,10 @@ namespace OSIRT.UI
 
         }
 
-
+        private void uiWhySha512Label_Click(object sender, EventArgs e)
+        {
+            string message = @"When the case is loaded and closed, OSIRT uses SHA512 to verify the integrity of the container. This ignores the user setting for specified hashing algorithm in this instance.";
+            MessageBox.Show(message, "Why SHA512?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

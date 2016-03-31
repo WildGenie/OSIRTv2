@@ -49,7 +49,7 @@ namespace OSIRT.Helpers
         }
 
 
-        public DataTable GetAllColumnsDataTable(string table)
+        public DataTable GetAllRowsDataTable(string table)
         {
             string query = $"SELECT * FROM {table}";
             return GetDataTableFromQuery(query);

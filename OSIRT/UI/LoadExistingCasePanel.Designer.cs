@@ -37,13 +37,14 @@
             this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uiFileHashTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.uiHashLabel = new System.Windows.Forms.Label();
             this.uiLastModifiedTextBox = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.uiInvalidPasswordLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.uiOpenCaseButton = new System.Windows.Forms.Button();
             this.uiPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.uiWhySha512Label = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -83,12 +84,13 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.uiWhySha512Label);
             this.groupBox2.Controls.Add(this.uiHashProgressBar);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.uiFileNameTextBox);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.uiFileHashTextBox);
-            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.uiHashLabel);
             this.groupBox2.Controls.Add(this.uiLastModifiedTextBox);
             this.groupBox2.Location = new System.Drawing.Point(211, 298);
             this.groupBox2.Name = "groupBox2";
@@ -142,14 +144,14 @@
             this.uiFileHashTextBox.Size = new System.Drawing.Size(588, 20);
             this.uiFileHashTextBox.TabIndex = 7;
             // 
-            // label3
+            // uiHashLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 82);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(32, 13);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Hash";
+            this.uiHashLabel.AutoSize = true;
+            this.uiHashLabel.Location = new System.Drawing.Point(6, 82);
+            this.uiHashLabel.Name = "uiHashLabel";
+            this.uiHashLabel.Size = new System.Drawing.Size(81, 13);
+            this.uiHashLabel.TabIndex = 10;
+            this.uiHashLabel.Text = "Hash [SHA512]";
             // 
             // uiLastModifiedTextBox
             // 
@@ -211,6 +213,17 @@
             this.uiPasswordTextBox.Size = new System.Drawing.Size(244, 20);
             this.uiPasswordTextBox.TabIndex = 3;
             // 
+            // uiWhySha512Label
+            // 
+            this.uiWhySha512Label.AutoSize = true;
+            this.uiWhySha512Label.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiWhySha512Label.Location = new System.Drawing.Point(575, 82);
+            this.uiWhySha512Label.Name = "uiWhySha512Label";
+            this.uiWhySha512Label.Size = new System.Drawing.Size(19, 13);
+            this.uiWhySha512Label.TabIndex = 13;
+            this.uiWhySha512Label.Text = "[?]";
+            this.uiWhySha512Label.Click += new System.EventHandler(this.uiWhySha512Label_Click);
+            // 
             // LoadExistingCasePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,9 +255,10 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label uiHashLabel;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar uiHashProgressBar;
         private System.Windows.Forms.Label uiInvalidPasswordLabel;
+        private System.Windows.Forms.Label uiWhySha512Label;
     }
 }

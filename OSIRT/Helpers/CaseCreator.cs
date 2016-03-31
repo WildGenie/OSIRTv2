@@ -30,16 +30,10 @@ namespace OSIRT.Helpers
             settings.hash = caseDetails["hash_function"];
             settings.Save();
 
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "EXAMPLE HASH"));
-
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "[No Hash - Case Created]"));
         }
 
 
-        private void CompressContainer()
-        {
-            ZipFile.CreateFromDirectory(Constants.ContainerLocation, Constants.ContainerLocation + ".osirt", CompressionLevel.Fastest, false);
-            CleanUp();
-        }
 
         private void CleanUp()
         {

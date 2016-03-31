@@ -17,8 +17,11 @@ namespace OSIRT
         [STAThread]
         static void Main()
         {
+            //TODO: SCALING: http://www.telerik.com/blogs/winforms-scaling-at-large-dpi-settings-is-it-even-possible-
 
-         
+            //Double Check sharex source, they appear to remove AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            //from theur [Form].Designer.cs
+
             /* 
             * 
             * TODO: If the application ended abruptly before, check the log (CREATE THE LOG)

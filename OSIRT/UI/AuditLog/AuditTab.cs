@@ -22,12 +22,17 @@ namespace OSIRT.UI
         private int totalRowCount = 0;
         private List<string> columnNames;
 
+
+        public AuditTab(string title) : this(title, "") { }
+        
+
         public AuditTab(string title, string table) : base(title)
         {
-            
+
+         
             TableName = table;
             totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
-
+       
             //TODO: look at shifting some of this to load event
             if (totalRowCount > 0)
             {
@@ -87,8 +92,21 @@ namespace OSIRT.UI
         }
 
 
-        //TODO: This only deals with the page user is on. (that is, the top _n_ rows)
-        public void Search(string pattern)
+        public void SearchCurrentTab(string pattern)
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            DataTable table = db.GetAllRowsDataTable(TableName);
+            DataRow[] dataRows = table.Select(BuildQueryString(pattern));
+
+            //if (dataRows.Count() > 0) //can't copy to dataTable if there are no DataRows
+            //{
+            //    data = dataRows.CopyToDataTable();
+            //}
+            //PopulateGrid(data);
+        }
+
+
+        public void SearchCurrentPage(string pattern)
         {
             DataTable data = null;
             DataRow[] dataRows = Table.Select(BuildQueryString(pattern));
@@ -159,6 +177,7 @@ namespace OSIRT.UI
             RowEntered?.Invoke(this, eventArgs);
         }
 
+        //Makes the print column selectable, and keeps other columns readonly
         private void AuditLogGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
             if (e.Column is DataGridViewColumn)

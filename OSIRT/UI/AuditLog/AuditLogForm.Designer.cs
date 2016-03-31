@@ -68,8 +68,8 @@
             // uiAuditLogSplitContainer.Panel2
             // 
             this.uiAuditLogSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(1019, 630);
-            this.uiAuditLogSplitContainer.SplitterDistance = 333;
+            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(1017, 658);
+            this.uiAuditLogSplitContainer.SplitterDistance = 332;
             this.uiAuditLogSplitContainer.TabIndex = 0;
             // 
             // uiFileDetailsGroupBox
@@ -82,7 +82,7 @@
             this.uiFileDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.uiFileDetailsGroupBox.Location = new System.Drawing.Point(12, 355);
             this.uiFileDetailsGroupBox.Name = "uiFileDetailsGroupBox";
-            this.uiFileDetailsGroupBox.Size = new System.Drawing.Size(307, 263);
+            this.uiFileDetailsGroupBox.Size = new System.Drawing.Size(306, 291);
             this.uiFileDetailsGroupBox.TabIndex = 13;
             this.uiFileDetailsGroupBox.TabStop = false;
             this.uiFileDetailsGroupBox.Text = "File Previewer";
@@ -90,7 +90,7 @@
             // uiFileDetailsLabel
             // 
             this.uiFileDetailsLabel.AutoSize = true;
-            this.uiFileDetailsLabel.Location = new System.Drawing.Point(15, 204);
+            this.uiFileDetailsLabel.Location = new System.Drawing.Point(16, 204);
             this.uiFileDetailsLabel.Name = "uiFileDetailsLabel";
             this.uiFileDetailsLabel.Size = new System.Drawing.Size(35, 13);
             this.uiFileDetailsLabel.TabIndex = 1;
@@ -102,7 +102,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiFilePreviewPictureBox.Location = new System.Drawing.Point(15, 19);
             this.uiFilePreviewPictureBox.Name = "uiFilePreviewPictureBox";
-            this.uiFilePreviewPictureBox.Size = new System.Drawing.Size(272, 178);
+            this.uiFilePreviewPictureBox.Size = new System.Drawing.Size(271, 183);
             this.uiFilePreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.uiFilePreviewPictureBox.TabIndex = 0;
             this.uiFilePreviewPictureBox.TabStop = false;
@@ -126,7 +126,7 @@
             this.uiRowDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiRowDetailsGroupBox.Location = new System.Drawing.Point(12, 12);
             this.uiRowDetailsGroupBox.Name = "uiRowDetailsGroupBox";
-            this.uiRowDetailsGroupBox.Size = new System.Drawing.Size(307, 337);
+            this.uiRowDetailsGroupBox.Size = new System.Drawing.Size(306, 337);
             this.uiRowDetailsGroupBox.TabIndex = 12;
             this.uiRowDetailsGroupBox.TabStop = false;
             this.uiRowDetailsGroupBox.Text = "Row Details";
@@ -156,7 +156,7 @@
             this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 34);
             this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
             this.uiDateAndTimeTextBox.ReadOnly = true;
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(271, 20);
             this.uiDateAndTimeTextBox.TabIndex = 0;
             this.uiDateAndTimeTextBox.Tag = "dateAndTime";
             // 
@@ -169,7 +169,7 @@
             this.uiNoteTextBox.Name = "uiNoteTextBox";
             this.uiNoteTextBox.ReadOnly = true;
             this.uiNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.uiNoteTextBox.Size = new System.Drawing.Size(272, 98);
+            this.uiNoteTextBox.Size = new System.Drawing.Size(271, 98);
             this.uiNoteTextBox.TabIndex = 10;
             this.uiNoteTextBox.Tag = "note";
             // 
@@ -180,7 +180,7 @@
             this.uiActionTextBox.Location = new System.Drawing.Point(15, 73);
             this.uiActionTextBox.Name = "uiActionTextBox";
             this.uiActionTextBox.ReadOnly = true;
-            this.uiActionTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiActionTextBox.Size = new System.Drawing.Size(271, 20);
             this.uiActionTextBox.TabIndex = 1;
             this.uiActionTextBox.Tag = "action";
             // 
@@ -209,7 +209,7 @@
             this.uiHashTextBox.Location = new System.Drawing.Point(15, 190);
             this.uiHashTextBox.Name = "uiHashTextBox";
             this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiHashTextBox.Size = new System.Drawing.Size(271, 20);
             this.uiHashTextBox.TabIndex = 8;
             this.uiHashTextBox.Tag = "hash";
             // 
@@ -220,7 +220,7 @@
             this.uiURLTextBox.Location = new System.Drawing.Point(15, 112);
             this.uiURLTextBox.Name = "uiURLTextBox";
             this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiURLTextBox.Size = new System.Drawing.Size(271, 20);
             this.uiURLTextBox.TabIndex = 4;
             this.uiURLTextBox.Tag = "url";
             // 
@@ -249,7 +249,7 @@
             this.uiFileNameTextBox.Location = new System.Drawing.Point(15, 151);
             this.uiFileNameTextBox.Name = "uiFileNameTextBox";
             this.uiFileNameTextBox.ReadOnly = true;
-            this.uiFileNameTextBox.Size = new System.Drawing.Size(272, 20);
+            this.uiFileNameTextBox.Size = new System.Drawing.Size(271, 20);
             this.uiFileNameTextBox.TabIndex = 6;
             this.uiFileNameTextBox.Tag = "file";
             // 
@@ -257,8 +257,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1019, 630);
+            this.ClientSize = new System.Drawing.Size(1017, 658);
             this.Controls.Add(this.uiAuditLogSplitContainer);
+            this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "AuditLogForm";
             this.Text = "Audit Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AuditLogForm_FormClosing);

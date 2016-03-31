@@ -78,7 +78,7 @@ namespace OSIRT.Helpers
         /// <returns>Hash of the file</returns>
         public static string GetFileHash(string path)
         {
-            return  GetFileHash(path, UserSettings.Load().hash);
+            return GetFileHash(path, UserSettings.Load().hash);
         }
 
 

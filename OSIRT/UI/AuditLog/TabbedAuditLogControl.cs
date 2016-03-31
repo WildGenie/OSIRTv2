@@ -43,10 +43,22 @@ namespace OSIRT.UI
 
         }
 
+        public bool SearchTabCreated()
+        {
+            return false;
+        }
+
+        public void AddSearchTab()
+        {
+            //if search tab already open, use that instead.
+            AuditTab tab = new AuditTab("Search");
+            uiAuditLogTabControl.TabPages.Add(tab);
+            uiAuditLogTabControl.SelectedTab = tab;
+        }
+
         private void AuditLogTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             TabChanged?.Invoke(this, e);
-
         }
 
         public TabControl.TabPageCollection AuditTabs
