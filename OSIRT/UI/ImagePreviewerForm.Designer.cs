@@ -39,7 +39,7 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent4 = new System.Windows.Controls.TextBox();
+            this.hostedComponent6 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -79,14 +79,14 @@
             this.uiSplitContainer.Panel1.Controls.Add(this.uiDateAndTimeTextBox);
             this.uiSplitContainer.Panel1.Controls.Add(this.label1);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiImageNameComboBox);
-            this.uiSplitContainer.Size = new System.Drawing.Size(1072, 598);
-            this.uiSplitContainer.SplitterDistance = 370;
+            this.uiSplitContainer.Size = new System.Drawing.Size(1004, 592);
+            this.uiSplitContainer.SplitterDistance = 346;
             this.uiSplitContainer.TabIndex = 0;
             // 
             // uiNotePictureBox
             // 
             this.uiNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNotePictureBox.Location = new System.Drawing.Point(342, 418);
+            this.uiNotePictureBox.Location = new System.Drawing.Point(318, 418);
             this.uiNotePictureBox.Name = "uiNotePictureBox";
             this.uiNotePictureBox.Size = new System.Drawing.Size(17, 16);
             this.uiNotePictureBox.TabIndex = 19;
@@ -98,7 +98,7 @@
             this.uiFileExtensionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiFileExtensionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiFileExtensionComboBox.FormattingEnabled = true;
-            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(271, 25);
+            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(247, 25);
             this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
             this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
             this.uiFileExtensionComboBox.TabIndex = 1;
@@ -107,7 +107,7 @@
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(342, 27);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(318, 27);
             this.uiDoesFileExistPictureBox.Name = "uiDoesFileExistPictureBox";
             this.uiDoesFileExistPictureBox.Size = new System.Drawing.Size(17, 16);
             this.uiDoesFileExistPictureBox.TabIndex = 17;
@@ -128,7 +128,7 @@
             this.uiHashCalcProgressBar.Location = new System.Drawing.Point(15, 182);
             this.uiHashCalcProgressBar.MarqueeAnimationSpeed = 30;
             this.uiHashCalcProgressBar.Name = "uiHashCalcProgressBar";
-            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(324, 20);
+            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(300, 20);
             this.uiHashCalcProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.uiHashCalcProgressBar.TabIndex = 15;
             // 
@@ -139,14 +139,14 @@
             this.uiHashTextBox.Location = new System.Drawing.Point(15, 182);
             this.uiHashTextBox.Name = "uiHashTextBox";
             this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(324, 20);
+            this.uiHashTextBox.Size = new System.Drawing.Size(300, 20);
             this.uiHashTextBox.TabIndex = 14;
             // 
             // uiCancelButton
             // 
             this.uiCancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.uiCancelButton.Location = new System.Drawing.Point(176, 440);
+            this.uiCancelButton.Location = new System.Drawing.Point(152, 440);
             this.uiCancelButton.Name = "uiCancelButton";
             this.uiCancelButton.Size = new System.Drawing.Size(79, 23);
             this.uiCancelButton.TabIndex = 12;
@@ -158,7 +158,7 @@
             // uiOKButton
             // 
             this.uiOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiOKButton.Location = new System.Drawing.Point(260, 440);
+            this.uiOKButton.Location = new System.Drawing.Point(236, 440);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
             this.uiOKButton.TabIndex = 3;
@@ -175,7 +175,7 @@
             this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 247);
             this.uiNoteSpellBox.Multiline = true;
             this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(302, 187);
             this.uiNoteSpellBox.TabIndex = 2;
             this.uiNoteSpellBox.WordWrap = true;
             // 
@@ -204,7 +204,7 @@
             this.uiURLTextBox.Location = new System.Drawing.Point(15, 75);
             this.uiURLTextBox.Name = "uiURLTextBox";
             this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(324, 20);
+            this.uiURLTextBox.Size = new System.Drawing.Size(300, 20);
             this.uiURLTextBox.TabIndex = 4;
             // 
             // label2
@@ -223,7 +223,7 @@
             this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 127);
             this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
             this.uiDateAndTimeTextBox.ReadOnly = true;
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(324, 20);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(300, 20);
             this.uiDateAndTimeTextBox.TabIndex = 5;
             // 
             // label1
@@ -245,7 +245,7 @@
             this.uiImageNameComboBox.Location = new System.Drawing.Point(15, 25);
             this.uiImageNameComboBox.MaxLength = 128;
             this.uiImageNameComboBox.Name = "uiImageNameComboBox";
-            this.uiImageNameComboBox.Size = new System.Drawing.Size(250, 21);
+            this.uiImageNameComboBox.Size = new System.Drawing.Size(226, 21);
             this.uiImageNameComboBox.TabIndex = 0;
             this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
             // 
@@ -253,9 +253,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1072, 598);
+            this.ClientSize = new System.Drawing.Size(1004, 592);
             this.Controls.Add(this.uiSplitContainer);
-            this.MinimumSize = new System.Drawing.Size(800, 600);
+            this.MinimumSize = new System.Drawing.Size(800, 454);
             this.Name = "ImagePreviewerForm";
             this.Text = "Image Previewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImagePreviewerForm_FormClosing);
@@ -295,5 +295,7 @@
         private System.Windows.Forms.PictureBox uiNotePictureBox;
         private System.Windows.Controls.TextBox hostedComponent3;
         private System.Windows.Controls.TextBox hostedComponent4;
+        private System.Windows.Controls.TextBox hostedComponent5;
+        private System.Windows.Controls.TextBox hostedComponent6;
     }
 }

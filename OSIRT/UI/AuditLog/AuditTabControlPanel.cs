@@ -78,13 +78,8 @@ namespace OSIRT.UI
             }
             else
             {
-                //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
+                tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
             }
-
-
-
-            
-           
         }
 
         private void NextPage()

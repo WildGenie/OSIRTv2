@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
@@ -44,7 +45,6 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -60,6 +60,15 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(838, 525);
             this.uiBrowserPanel.TabIndex = 0;
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            this.uiTabbedBrowserControl.Load += new System.EventHandler(this.uiTabbedBrowserControl_Load);
             // 
             // uiBrowserToolStrip
             // 
@@ -207,18 +216,11 @@
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 49);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(838, 476);
-            this.uiTabbedBrowserControl.TabIndex = 2;
-            // 
             // BrowserPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.uiBrowserPanel);
             this.Name = "BrowserPanel";
             this.Size = new System.Drawing.Size(838, 525);

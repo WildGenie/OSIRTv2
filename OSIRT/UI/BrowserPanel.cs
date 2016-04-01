@@ -103,5 +103,10 @@ namespace OSIRT.UI
         {
             uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
         }
+
+        private void uiTabbedBrowserControl_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

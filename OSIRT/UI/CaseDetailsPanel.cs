@@ -30,7 +30,7 @@ namespace OSIRT.UI
             errorProvider = new ErrorProvider();
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             uiHashFunctionComboBox.SelectedIndex = 0;
-            uiOfficerTextBox.Focus();
+            uiInvestigatingOfficer.Focus();
         }
 
 
@@ -50,7 +50,7 @@ namespace OSIRT.UI
             foreach (TextBox tb in allTextBoxes)
             {
                 
-                if (String.IsNullOrWhiteSpace(tb.Text))
+                if (string.IsNullOrWhiteSpace(tb.Text))
                 {
                     errorProvider.SetError(tb, Resources.strings.field_is_required);
                     isValid = false;
@@ -66,7 +66,7 @@ namespace OSIRT.UI
                 }
                 else
                 {
-                    errorProvider.SetError(tb, String.Empty);
+                    errorProvider.SetError(tb, string.Empty);
                 }
             }
 
@@ -119,8 +119,8 @@ namespace OSIRT.UI
 
         private void uiBackButton_Click(object sender, EventArgs e)
         {
-            if (this.BackClick != null)
-                this.BackClick(this, e);
+            if (BackClick != null)
+                BackClick(this, e);
         }
 
         private void uiNextButton_Click(object sender, EventArgs e)
@@ -146,20 +146,6 @@ namespace OSIRT.UI
             Thread.Sleep(500);
         }
 
-        private void uiBrowseButton_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog();
-            fbd.ShowNewFolderButton = false;
-            fbd.Description = Resources.strings.case_location_desc;
-            DialogResult result = fbd.ShowDialog();
-
-            if (result != DialogResult.OK)
-                return;
-
-            Constants.CasePath = fbd.SelectedPath;
-            uiCasePathTextBox.Text = Constants.CasePath;
-        }
-
         private void uiHashHelpLabel_Click(object sender, EventArgs e)
         {
             ToolTip tooltip = new ToolTip();
@@ -180,6 +166,20 @@ namespace OSIRT.UI
         private void uiCaseDetailsPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void uiBrowsButton_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.ShowNewFolderButton = false;
+            fbd.Description = Resources.strings.case_location_desc;
+            DialogResult result = fbd.ShowDialog();
+
+            if (result != DialogResult.OK)
+                return;
+
+            Constants.CasePath = fbd.SelectedPath;
+            uiCasePathTextBox.Text = Constants.CasePath;
         }
     }
 }

@@ -18,21 +18,20 @@ namespace OSIRT.UI
         public string TableName { get; private set; }
         public DataTable Table { get; private set; }
         public int Page { get; private set; }
-        public int MaxPages { get { return UserSettings.Load().numberOfRowsPerPage; } } 
+        public int MaxPages { get { return UserSettings.Load().numberOfRowsPerPage; } }
         private int totalRowCount = 0;
         private List<string> columnNames;
 
-
-        public AuditTab(string title) : this(title, "") { }
-        
-
-        public AuditTab(string title, string table) : base(title)
+        public AuditTab(string title, string table) /*: base(title)*/
         {
 
-         
+            Text = title;
+            TableName = table;
+
+            Text = title;
             TableName = table;
             totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
-       
+
             //TODO: look at shifting some of this to load event
             if (totalRowCount > 0)
             {
@@ -63,6 +62,27 @@ namespace OSIRT.UI
             Controls.Add(AuditLogGrid);
         }
 
+
+        private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Don't want this to execute when the column header is clicked (OOB)
+            if (e.RowIndex < 0)
+                return;
+
+            if (AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
+            {
+                DataGridViewCheckBoxCell column = AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+                if (column.Value != null)
+                {
+                    bool isChecked = (bool)column.Value;
+                    string id = AuditLogGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
+                    DatabaseHandler db = new DatabaseHandler();
+                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
+                    db.ExecuteNonQuery(query); //TODO: Perhaps place an Update method in the db handler   
+                }
+            }
+        }
+
         private void SetColumnNames()
         {
             columnNames = Table.Columns.Cast<DataColumn>()
@@ -87,7 +107,7 @@ namespace OSIRT.UI
                 sb.Append($"{item} LIKE '%{pattern}%' {or} ");
             }
 
-           return sb.ToString();
+            return sb.ToString();
 
         }
 
@@ -118,28 +138,10 @@ namespace OSIRT.UI
         }
 
 
-        private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Don't want this to execute when the column header is clicked (OOB)
-            if (e.RowIndex < 0)
-                return;
 
-            if (AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
-            {
-                DataGridViewCheckBoxCell column = AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
-                if (column.Value != null)
-                {
-                    bool isChecked = (bool)column.Value;
-                    string id = AuditLogGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                    DatabaseHandler db = new DatabaseHandler();
-                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
-                    db.ExecuteNonQuery(query); //TODO: Perhaps place an Update method in the db handler   
-                }
-            }
-        }
-        /// <summary>
-        /// Gets the number of pages as an integer of the DataTable
-        /// </summary>
+        ///// <summary>
+        ///// Gets the number of pages as an integer of the DataTable
+        ///// </summary>
         public int NumberOfPages
         {
             get

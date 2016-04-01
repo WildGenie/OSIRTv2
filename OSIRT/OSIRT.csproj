@@ -101,6 +101,9 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseAuditTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CaseNotesToHtml.cs" />
     <Compile Include="CaseSettings.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
@@ -170,6 +173,18 @@
     </Compile>
     <Compile Include="UI\AuditLog\AuditTabControlPanel.Designer.cs">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AuditLog\RowDetailsPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AuditLog\RowDetailsPanel.Designer.cs">
+      <DependentUpon>RowDetailsPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AuditLog\TempSearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AuditLog\TempSearchPanel.Designer.cs">
+      <DependentUpon>TempSearchPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BrowserPanel.cs">
       <SubType>UserControl</SubType>
@@ -244,6 +259,12 @@
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ScreenshotCompletedArgs.cs" />
+    <Compile Include="UI\AuditLog\SearchPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AuditLog\SearchPanel.Designer.cs">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
     <Compile Include="UserSettings.cs" />
@@ -262,6 +283,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\AuditTabControlPanel.resx">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditLog\RowDetailsPanel.resx">
+      <DependentUpon>RowDetailsPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditLog\TempSearchPanel.resx">
+      <DependentUpon>TempSearchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
@@ -300,6 +327,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\TabbedAuditLogControl.resx">
       <DependentUpon>TabbedAuditLogControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditLog\SearchPanel.resx">
+      <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="fontawesome-webfont.ttf" />
@@ -374,6 +404,9 @@
     <Content Include="mingwm10.dll" />
     <None Include="Resources\pdf_icon1.png" />
     <EmbeddedResource Include="Resources\casenotes.html" />
+    <None Include="Resources\html.png" />
+    <None Include="Resources\search.png" />
+    <None Include="Resources\magnify.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />

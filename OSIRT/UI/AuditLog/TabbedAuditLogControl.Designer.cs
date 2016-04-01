@@ -39,11 +39,13 @@
             this.uiAuditLogTabControl.SelectedIndex = 0;
             this.uiAuditLogTabControl.Size = new System.Drawing.Size(800, 600);
             this.uiAuditLogTabControl.TabIndex = 0;
+            this.uiAuditLogTabControl.SelectedIndexChanged += new System.EventHandler(this.uiAuditLogTabControl_SelectedIndexChanged);
             // 
             // TabbedAuditLogControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.uiAuditLogTabControl);
             this.Name = "TabbedAuditLogControl";
             this.Size = new System.Drawing.Size(800, 600);

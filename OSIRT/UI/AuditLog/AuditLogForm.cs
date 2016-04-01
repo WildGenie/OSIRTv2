@@ -7,14 +7,14 @@ using System.Windows.Media.Imaging;
 using OSIRT.Enums;
 using System.Diagnostics;
 using System.IO;
+using OSIRT.UI.AuditLog;
 
 namespace OSIRT.UI
 {
     public partial class AuditLogForm : Form
     {
 
-        private string filePath = "";
-        private ToolTip tooltip = new ToolTip();
+        private RowDetailsPanel rowDetailsPanel;
 
         public AuditLogForm()
         {
@@ -25,34 +25,28 @@ namespace OSIRT.UI
         {
             AuditTabControlPanel auditTabControlPanel = new AuditTabControlPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
-
             AttachRowEventHandler(auditTabControlPanel);
-
-            //TODO: don't want this to display or be clickable if there isn't a file in the previewer
-            uiFilePreviewPictureBox.MouseClick += FilePreviewPictureBox_MouseClick;
-            uiFilePreviewPictureBox.Cursor = Cursors.Hand;
-            tooltip.SetToolTip(uiFilePreviewPictureBox, "Click to open file in the system's default application.");
+            rowDetailsPanel = new RowDetailsPanel();
+            uiAuditLogSplitContainer.Panel1.Controls.Add(rowDetailsPanel);
         }
 
-
-        private void FilePreviewPictureBox_MouseClick(object sender, MouseEventArgs e)
+        private void uiSearchToolStripButton_Click(object sender, EventArgs e)
         {
-            if (filePath == "")
-                return;
 
-            try
-            {
-                Process.Start(filePath);
-            }
-            catch(FileNotFoundException)
-            {
-                MessageBox.Show($"Unable to open file ({filePath}) as the file is not found");
-            }
-            catch(System.ComponentModel.Win32Exception we)
-            {
-                MessageBox.Show($"Unable to open file ({filePath}). Reason: {we} ");
-            }
+            uiAuditLogSplitContainer.Panel1.Controls.Remove(rowDetailsPanel);
+
+            SearchPanel searchPanel = new SearchPanel();
+            uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
+            uiAuditLogSplitContainer.Panel2.Controls.Clear();
+            uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel());
+
+            //swap left panel out with search criteria
+            //swap right panel out, ready to accept search results
+            //get all tables from database with search text
+            //display datatable in gridview
         }
+
+
 
         private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
         {
@@ -66,58 +60,9 @@ namespace OSIRT.UI
 
         private void AuditLogForm_RowEntered(object sender, EventArgs e)
         {
-
             ExtendedRowEnterEventArgs args = (ExtendedRowEnterEventArgs)e;
             Dictionary<string, string> rowDetails = args.RowDetails;
-            var textBoxes = uiRowDetailsGroupBox.GetChildControls<TextBox>();
-
-            uiDateAndTimeTextBox.Text = rowDetails["date"] + " " + rowDetails["time"];
-
-            foreach (TextBox textBox in textBoxes)
-            {
-                if (textBox == uiDateAndTimeTextBox)
-                    continue;
-             
-
-                string value = "";
-                string key = textBox.Tag.ToString();
-                if (rowDetails.TryGetValue(key, out value))
-                {
-                    if(textBox == uiFileNameTextBox)
-                    {
-                        Enums.Actions directory;
-                        Enum.TryParse(rowDetails["action"], true, out directory);
-                        DisplayFileIconWithFileSize(rowDetails["file"], directory);
-                    }
-                    else
-                    {
-                        ClearFilePreviewer();
-                        filePath = "";
-                    }
-                    
-                }
-                textBox.Text = value;
-            }
-        }
-
-        private void ClearFilePreviewer()
-        {
-            uiFilePreviewPictureBox.Image = null;
-            uiFileDetailsLabel.Text = "";
-        }
-
-
-
-
-        private void DisplayFileIconWithFileSize(string file, Enums.Actions caseDirectory)
-        {
-            IconManager iconManager = new IconManager();
-            BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
-            uiFilePreviewPictureBox.Image = OsirtHelper.GetBitmap(icon);
-            string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);
-            filePath = Path.Combine(Constants.ContainerLocation, caseDir, file);
-
-            uiFileDetailsLabel.Text = $"File size: {OsirtHelper.GetHumanReadableFileSize(filePath)}. File type: {Path.GetExtension(filePath.ToUpperInvariant())}";
+            rowDetailsPanel.PopulateTextBoxes(rowDetails);
         }
 
         private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -133,9 +78,8 @@ namespace OSIRT.UI
             //can't UPDATE multiple tables... look into transactions:
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
-
-
-
         }
+
+    
     }
 }

@@ -28,272 +28,127 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditLogForm));
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
-            this.uiFileDetailsGroupBox = new System.Windows.Forms.GroupBox();
-            this.uiFileDetailsLabel = new System.Windows.Forms.Label();
-            this.uiFilePreviewPictureBox = new System.Windows.Forms.PictureBox();
-            this.uiRowDetailsGroupBox = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.uiDateAndTimeTextBox = new System.Windows.Forms.TextBox();
-            this.uiNoteTextBox = new System.Windows.Forms.TextBox();
-            this.uiActionTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.uiHashTextBox = new System.Windows.Forms.TextBox();
-            this.uiURLTextBox = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
+            this.uiAuditOptionsToolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.uiSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiExportReportPDFToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.uiExportAsOSRFileToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.uiAuditLogSplitContainer)).BeginInit();
-            this.uiAuditLogSplitContainer.Panel1.SuspendLayout();
             this.uiAuditLogSplitContainer.SuspendLayout();
-            this.uiFileDetailsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFilePreviewPictureBox)).BeginInit();
-            this.uiRowDetailsGroupBox.SuspendLayout();
+            this.uiAuditOptionsToolStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiAuditLogSplitContainer
             // 
-            this.uiAuditLogSplitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiAuditLogSplitContainer.Location = new System.Drawing.Point(0, 0);
+            this.uiAuditLogSplitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiAuditLogSplitContainer.Location = new System.Drawing.Point(0, 38);
             this.uiAuditLogSplitContainer.Name = "uiAuditLogSplitContainer";
             // 
             // uiAuditLogSplitContainer.Panel1
             // 
             this.uiAuditLogSplitContainer.Panel1.BackColor = System.Drawing.Color.SteelBlue;
-            this.uiAuditLogSplitContainer.Panel1.Controls.Add(this.uiFileDetailsGroupBox);
-            this.uiAuditLogSplitContainer.Panel1.Controls.Add(this.uiRowDetailsGroupBox);
             // 
             // uiAuditLogSplitContainer.Panel2
             // 
             this.uiAuditLogSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(1017, 658);
-            this.uiAuditLogSplitContainer.SplitterDistance = 332;
+            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(967, 638);
+            this.uiAuditLogSplitContainer.SplitterDistance = 315;
             this.uiAuditLogSplitContainer.TabIndex = 0;
             // 
-            // uiFileDetailsGroupBox
+            // uiAuditOptionsToolStrip
             // 
-            this.uiFileDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFileDetailsGroupBox.Controls.Add(this.uiFileDetailsLabel);
-            this.uiFileDetailsGroupBox.Controls.Add(this.uiFilePreviewPictureBox);
-            this.uiFileDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.uiFileDetailsGroupBox.Location = new System.Drawing.Point(12, 355);
-            this.uiFileDetailsGroupBox.Name = "uiFileDetailsGroupBox";
-            this.uiFileDetailsGroupBox.Size = new System.Drawing.Size(306, 291);
-            this.uiFileDetailsGroupBox.TabIndex = 13;
-            this.uiFileDetailsGroupBox.TabStop = false;
-            this.uiFileDetailsGroupBox.Text = "File Previewer";
+            this.uiAuditOptionsToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.uiAuditOptionsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiSearchToolStripButton,
+            this.toolStripSeparator1,
+            this.uiExportReportPDFToolStripButton,
+            this.toolStripButton1,
+            this.uiExportAsOSRFileToolStripButton});
+            this.uiAuditOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
+            this.uiAuditOptionsToolStrip.Name = "uiAuditOptionsToolStrip";
+            this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 25);
+            this.uiAuditOptionsToolStrip.TabIndex = 14;
+            this.uiAuditOptionsToolStrip.Text = "toolStrip1";
             // 
-            // uiFileDetailsLabel
+            // toolStripSeparator1
             // 
-            this.uiFileDetailsLabel.AutoSize = true;
-            this.uiFileDetailsLabel.Location = new System.Drawing.Point(16, 204);
-            this.uiFileDetailsLabel.Name = "uiFileDetailsLabel";
-            this.uiFileDetailsLabel.Size = new System.Drawing.Size(35, 13);
-            this.uiFileDetailsLabel.TabIndex = 1;
-            this.uiFileDetailsLabel.Text = "label7";
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // uiFilePreviewPictureBox
+            // uiSearchToolStripButton
             // 
-            this.uiFilePreviewPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFilePreviewPictureBox.Location = new System.Drawing.Point(15, 19);
-            this.uiFilePreviewPictureBox.Name = "uiFilePreviewPictureBox";
-            this.uiFilePreviewPictureBox.Size = new System.Drawing.Size(271, 183);
-            this.uiFilePreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.uiFilePreviewPictureBox.TabIndex = 0;
-            this.uiFilePreviewPictureBox.TabStop = false;
+            this.uiSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiSearchToolStripButton.Image = global::OSIRT.Properties.Resources.search;
+            this.uiSearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiSearchToolStripButton.Name = "uiSearchToolStripButton";
+            this.uiSearchToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiSearchToolStripButton.Text = "Search";
+            this.uiSearchToolStripButton.Click += new System.EventHandler(this.uiSearchToolStripButton_Click);
             // 
-            // uiRowDetailsGroupBox
+            // uiExportReportPDFToolStripButton
             // 
-            this.uiRowDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiRowDetailsGroupBox.Controls.Add(this.label1);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label6);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiDateAndTimeTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiNoteTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiActionTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label5);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label2);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiHashTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiURLTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label4);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label3);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiFileNameTextBox);
-            this.uiRowDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiRowDetailsGroupBox.Location = new System.Drawing.Point(12, 12);
-            this.uiRowDetailsGroupBox.Name = "uiRowDetailsGroupBox";
-            this.uiRowDetailsGroupBox.Size = new System.Drawing.Size(306, 337);
-            this.uiRowDetailsGroupBox.TabIndex = 12;
-            this.uiRowDetailsGroupBox.TabStop = false;
-            this.uiRowDetailsGroupBox.Text = "Row Details";
+            this.uiExportReportPDFToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiExportReportPDFToolStripButton.Enabled = false;
+            this.uiExportReportPDFToolStripButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
+            this.uiExportReportPDFToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiExportReportPDFToolStripButton.Name = "uiExportReportPDFToolStripButton";
+            this.uiExportReportPDFToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiExportReportPDFToolStripButton.Text = "Export report as PDF";
             // 
-            // label1
+            // toolStripButton1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 18);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Date and Time";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Enabled = false;
+            this.toolStripButton1.Image = global::OSIRT.Properties.Resources.html;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Export Report as HTML";
             // 
-            // label6
+            // uiExportAsOSRFileToolStripButton
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(15, 213);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(30, 13);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Note";
-            // 
-            // uiDateAndTimeTextBox
-            // 
-            this.uiDateAndTimeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 34);
-            this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
-            this.uiDateAndTimeTextBox.ReadOnly = true;
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(271, 20);
-            this.uiDateAndTimeTextBox.TabIndex = 0;
-            this.uiDateAndTimeTextBox.Tag = "dateAndTime";
-            // 
-            // uiNoteTextBox
-            // 
-            this.uiNoteTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteTextBox.Location = new System.Drawing.Point(15, 229);
-            this.uiNoteTextBox.Multiline = true;
-            this.uiNoteTextBox.Name = "uiNoteTextBox";
-            this.uiNoteTextBox.ReadOnly = true;
-            this.uiNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.uiNoteTextBox.Size = new System.Drawing.Size(271, 98);
-            this.uiNoteTextBox.TabIndex = 10;
-            this.uiNoteTextBox.Tag = "note";
-            // 
-            // uiActionTextBox
-            // 
-            this.uiActionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiActionTextBox.Location = new System.Drawing.Point(15, 73);
-            this.uiActionTextBox.Name = "uiActionTextBox";
-            this.uiActionTextBox.ReadOnly = true;
-            this.uiActionTextBox.Size = new System.Drawing.Size(271, 20);
-            this.uiActionTextBox.TabIndex = 1;
-            this.uiActionTextBox.Tag = "action";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(15, 174);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(32, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Hash";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(37, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Action";
-            // 
-            // uiHashTextBox
-            // 
-            this.uiHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiHashTextBox.Location = new System.Drawing.Point(15, 190);
-            this.uiHashTextBox.Name = "uiHashTextBox";
-            this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(271, 20);
-            this.uiHashTextBox.TabIndex = 8;
-            this.uiHashTextBox.Tag = "hash";
-            // 
-            // uiURLTextBox
-            // 
-            this.uiURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiURLTextBox.Location = new System.Drawing.Point(15, 112);
-            this.uiURLTextBox.Name = "uiURLTextBox";
-            this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(271, 20);
-            this.uiURLTextBox.TabIndex = 4;
-            this.uiURLTextBox.Tag = "url";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 135);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "File";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 96);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 13);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "URL";
-            // 
-            // uiFileNameTextBox
-            // 
-            this.uiFileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFileNameTextBox.Location = new System.Drawing.Point(15, 151);
-            this.uiFileNameTextBox.Name = "uiFileNameTextBox";
-            this.uiFileNameTextBox.ReadOnly = true;
-            this.uiFileNameTextBox.Size = new System.Drawing.Size(271, 20);
-            this.uiFileNameTextBox.TabIndex = 6;
-            this.uiFileNameTextBox.Tag = "file";
+            this.uiExportAsOSRFileToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiExportAsOSRFileToolStripButton.Enabled = false;
+            this.uiExportAsOSRFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("uiExportAsOSRFileToolStripButton.Image")));
+            this.uiExportAsOSRFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiExportAsOSRFileToolStripButton.Name = "uiExportAsOSRFileToolStripButton";
+            this.uiExportAsOSRFileToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiExportAsOSRFileToolStripButton.Text = "Export as OSR case file";
             // 
             // AuditLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1017, 658);
+            this.ClientSize = new System.Drawing.Size(967, 676);
+            this.Controls.Add(this.uiAuditOptionsToolStrip);
             this.Controls.Add(this.uiAuditLogSplitContainer);
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "AuditLogForm";
             this.Text = "Audit Log";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AuditLogForm_FormClosing);
             this.Load += new System.EventHandler(this.uiAuditLogForm_Load);
-            this.uiAuditLogSplitContainer.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiAuditLogSplitContainer)).EndInit();
             this.uiAuditLogSplitContainer.ResumeLayout(false);
-            this.uiFileDetailsGroupBox.ResumeLayout(false);
-            this.uiFileDetailsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFilePreviewPictureBox)).EndInit();
-            this.uiRowDetailsGroupBox.ResumeLayout(false);
-            this.uiRowDetailsGroupBox.PerformLayout();
+            this.uiAuditOptionsToolStrip.ResumeLayout(false);
+            this.uiAuditOptionsToolStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.SplitContainer uiAuditLogSplitContainer;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox uiActionTextBox;
-        private System.Windows.Forms.TextBox uiDateAndTimeTextBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox uiNoteTextBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox uiHashTextBox;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox uiFileNameTextBox;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox uiURLTextBox;
-        private System.Windows.Forms.GroupBox uiRowDetailsGroupBox;
-        private System.Windows.Forms.GroupBox uiFileDetailsGroupBox;
-        private System.Windows.Forms.PictureBox uiFilePreviewPictureBox;
-        private System.Windows.Forms.Label uiFileDetailsLabel;
+        private System.Windows.Forms.ToolStrip uiAuditOptionsToolStrip;
+        private System.Windows.Forms.ToolStripButton uiSearchToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton uiExportReportPDFToolStripButton;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton uiExportAsOSRFileToolStripButton;
     }
 }

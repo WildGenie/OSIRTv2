@@ -35,6 +35,7 @@ namespace OSIRT.Browser
             NativeMethods.DisableClickSounds();
             ScriptErrorsSuppressed = true;
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
+           
         }
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
