@@ -35,6 +35,11 @@ namespace OSIRT.UI
             uiSearchSelectionComboBox.SelectedIndex = 0;
         }
 
+        public Dictionary<string, string> Tabs()
+        {
+            return tabbedAuditLog.Tabs();
+        }
+
         private void TabbedAuditLog_TabChanged(object sender, EventArgs e)
         {
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
@@ -78,7 +83,7 @@ namespace OSIRT.UI
             }
             else
             {
-                tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
+                //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
             }
         }
 
@@ -88,7 +93,7 @@ namespace OSIRT.UI
             {
                 tabbedAuditLog.CurrentTab.NextPage();
                 uiPreviousPageButton.Enabled = true;
-                if (tabbedAuditLog.CurrentTab.Page == tabbedAuditLog.CurrentTab.NumberOfPages)
+                if (tabbedAuditLog.CurrentTab.Page() == tabbedAuditLog.CurrentTab.NumberOfPages())
                 {
                     uiNextPageButton.Enabled = false;
                 }
@@ -109,7 +114,7 @@ namespace OSIRT.UI
                 uiNextPageButton.Enabled = true;
                 uiFirstPageButton.Enabled = true;
 
-                if (tabbedAuditLog.CurrentTab.Page == 1)
+                if (tabbedAuditLog.CurrentTab.Page() == 1)
                 {
                     uiPreviousPageButton.Enabled = false;
                     uiFirstPageButton.Enabled = false;

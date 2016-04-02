@@ -43,6 +43,11 @@ namespace OSIRT.UI
 
         }
 
+        public Dictionary<string, string> Tabs()
+        {
+            return tabs;
+        }
+
         public bool SearchTabCreated()
         {
             return false;

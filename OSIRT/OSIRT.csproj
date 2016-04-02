@@ -101,6 +101,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuditLogSearcher.cs" />
     <Compile Include="BaseAuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -158,6 +159,9 @@
     </Compile>
     <Compile Include="UI\Attachment\AttachmentForm.Designer.cs">
       <DependentUpon>AttachmentForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AuditGridView.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\AuditLog\AuditLogForm.cs">
       <SubType>Form</SubType>

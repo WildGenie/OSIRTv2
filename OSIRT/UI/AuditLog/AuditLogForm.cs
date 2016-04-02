@@ -15,6 +15,7 @@ namespace OSIRT.UI
     {
 
         private RowDetailsPanel rowDetailsPanel;
+        private AuditTabControlPanel auditTabControlPanel;
 
         public AuditLogForm()
         {
@@ -23,7 +24,7 @@ namespace OSIRT.UI
 
         private void uiAuditLogForm_Load(object sender, EventArgs e)
         {
-            AuditTabControlPanel auditTabControlPanel = new AuditTabControlPanel();
+            auditTabControlPanel = new AuditTabControlPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
             AttachRowEventHandler(auditTabControlPanel);
             rowDetailsPanel = new RowDetailsPanel();
@@ -35,7 +36,7 @@ namespace OSIRT.UI
 
             uiAuditLogSplitContainer.Panel1.Controls.Remove(rowDetailsPanel);
 
-            SearchPanel searchPanel = new SearchPanel();
+            SearchPanel searchPanel = new SearchPanel(auditTabControlPanel.Tabs());
             uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
             uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel());
@@ -54,15 +55,14 @@ namespace OSIRT.UI
 
             foreach (AuditTab tab in tabs)
             {
-                tab.RowEntered += AuditLogForm_RowEntered;
+                tab.AuditLogGrid.RowEntered += AuditLogForm_RowEntered;
             }
         }
 
         private void AuditLogForm_RowEntered(object sender, EventArgs e)
         {
             ExtendedRowEnterEventArgs args = (ExtendedRowEnterEventArgs)e;
-            Dictionary<string, string> rowDetails = args.RowDetails;
-            rowDetailsPanel.PopulateTextBoxes(rowDetails);
+            rowDetailsPanel.PopulateTextBoxes(args.RowDetails);
         }
 
         private void AuditLogForm_FormClosing(object sender, FormClosingEventArgs e)

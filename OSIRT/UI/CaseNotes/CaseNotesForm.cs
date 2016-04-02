@@ -47,7 +47,7 @@ namespace OSIRT.UI.CaseNotes
 
         private string GetExistingCaseNotes()
         {
-            DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_notes", "date", "time", "note");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_notes", "date", "time", "note");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {

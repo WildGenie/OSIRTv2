@@ -13,252 +13,72 @@ namespace OSIRT.UI
     public class AuditTab : TabPage
     {
 
-        public DataGridView AuditLogGrid { get; private set; }
-        public event EventHandler RowEntered;
-        public string TableName { get; private set; }
-        public DataTable Table { get; private set; }
-        public int Page { get; private set; }
-        public int MaxPages { get { return UserSettings.Load().numberOfRowsPerPage; } }
-        private int totalRowCount = 0;
-        private List<string> columnNames;
+        public AuditGridView AuditLogGrid { get; private set; }
 
-        public AuditTab(string title, string table) /*: base(title)*/
+        public AuditTab(string title, string table) 
         {
-
+            AuditLogGrid = new AuditGridView(table);
             Text = title;
-            TableName = table;
 
-            Text = title;
-            TableName = table;
-            totalRowCount = TotalRowCount(); //do this to "cache" the total row count. It can't change once this has loaded, anyway.
-
-            //TODO: look at shifting some of this to load event
-            if (totalRowCount > 0)
+            if (AuditLogGrid.TotalRows > 0)
             {
-                InitialiseDataGridView();
-                Page = 1;
-                GoToPage(Page);
-                SetColumnNames();
+                Controls.Add(AuditLogGrid);
             }
             else
             {
                 NoRecordsToShowPanel noRecordsPanel = new NoRecordsToShowPanel();
-                noRecordsPanel.Dock = DockStyle.Fill; //TODO: make sure the user control has this property set instead (the panel does, but not the underlying control).
                 Controls.Add(noRecordsPanel);
             }
         }
 
-        private void InitialiseDataGridView()
+        #region pagination methods
+        public int NumberOfPages()
         {
-            AuditLogGrid = new DataGridView();
-            AuditLogGrid.AllowUserToAddRows = false;
-            AuditLogGrid.AllowUserToDeleteRows = false;
-            AuditLogGrid.Dock = DockStyle.Fill;
-            AuditLogGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            AuditLogGrid.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-            AuditLogGrid.ColumnAdded += AuditLogGrid_ColumnAdded;
-            AuditLogGrid.RowEnter += AuditLogGrid_RowEnter;
-            AuditLogGrid.CellClick += AuditLogGrid_CellClick;
-            Controls.Add(AuditLogGrid);
+            return AuditLogGrid.NumberOfPages;
         }
-
-
-        private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            //Don't want this to execute when the column header is clicked (OOB)
-            if (e.RowIndex < 0)
-                return;
-
-            if (AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
-            {
-                DataGridViewCheckBoxCell column = AuditLogGrid.Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
-                if (column.Value != null)
-                {
-                    bool isChecked = (bool)column.Value;
-                    string id = AuditLogGrid.Rows[e.RowIndex].Cells["id"].Value.ToString();
-                    DatabaseHandler db = new DatabaseHandler();
-                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
-                    db.ExecuteNonQuery(query); //TODO: Perhaps place an Update method in the db handler   
-                }
-            }
-        }
-
-        private void SetColumnNames()
-        {
-            columnNames = Table.Columns.Cast<DataColumn>()
-                                 .Select(x => x.ColumnName)
-                                 .ToList();
-
-            columnNames.Remove("id");
-            columnNames.Remove("print");
-        }
-
-        private string BuildQueryString(string pattern)
-        {
-            StringBuilder sb = new StringBuilder();
-            string lastItem = columnNames.Last();
-            string or = "OR";
-
-            foreach (string item in columnNames)
-            {
-                if (item == lastItem)
-                    or = "";
-
-                sb.Append($"{item} LIKE '%{pattern}%' {or} ");
-            }
-
-            return sb.ToString();
-
-        }
-
-
-        public void SearchCurrentTab(string pattern)
-        {
-            DatabaseHandler db = new DatabaseHandler();
-            DataTable table = db.GetAllRowsDataTable(TableName);
-            DataRow[] dataRows = table.Select(BuildQueryString(pattern));
-
-            //if (dataRows.Count() > 0) //can't copy to dataTable if there are no DataRows
-            //{
-            //    data = dataRows.CopyToDataTable();
-            //}
-            //PopulateGrid(data);
-        }
-
-
-        public void SearchCurrentPage(string pattern)
-        {
-            DataTable data = null;
-            DataRow[] dataRows = Table.Select(BuildQueryString(pattern));
-            if (dataRows.Count() > 0) //can't copy to dataTable if there are no DataRows
-            {
-                data = dataRows.CopyToDataTable();
-            }
-            PopulateGrid(data);
-        }
-
-
-
-        ///// <summary>
-        ///// Gets the number of pages as an integer of the DataTable
-        ///// </summary>
-        public int NumberOfPages
-        {
-            get
-            {
-                int rowCount = totalRowCount;
-                int numPages = rowCount / MaxPages;
-                if (rowCount % MaxPages > 0)
-                {
-                    numPages++;
-                }
-                return numPages;
-            }
-        }
-
-        /// <summary>
-        /// Gets the number of rows for this particular tab in the DataGridView
-        /// </summary>
-        private int TotalRowCount()
-        {
-            DatabaseHandler db = new DatabaseHandler();
-            int count = db.GetTotalRowsFromTable(TableName);
-            return count;
-        }
-
-        private void AuditLogGrid_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            Dictionary<string, string> rowCells = new Dictionary<string, string>();
-            int cellCount = AuditLogGrid.Rows[e.RowIndex].Cells.Count;
-            for (int i = 0; i < cellCount; i++)
-            {
-                rowCells.Add(AuditLogGrid.Columns[i].Name, AuditLogGrid.Rows[e.RowIndex].Cells[i].Value.ToString());
-            }
-
-            ExtendedRowEnterEventArgs eventArgs = new ExtendedRowEnterEventArgs(e, rowCells);
-            RowEntered?.Invoke(this, eventArgs);
-        }
-
-        //Makes the print column selectable, and keeps other columns readonly
-        private void AuditLogGrid_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            if (e.Column is DataGridViewColumn)
-            {
-                DataGridViewColumn column = e.Column as DataGridViewColumn;
-                column.ReadOnly = true;
-                if (column.Name == "print")
-                {
-                    column.ReadOnly = false;
-                }
-            }
-        }
-
 
         public string PagesLeftDescription()
         {
-            string desc = "";
-            if (NumberOfPages > 0)
-            {
-                desc = $"Page {Page} of {NumberOfPages}";
-            }
-            else
-            {
-                desc = $"No records";
-            }
-            return desc;
+            return AuditLogGrid.PagesLeftDescription();
         }
 
 
         public bool CanGoToNextPage()
         {
-            return Page < NumberOfPages;
+            return AuditLogGrid.CanGoToNextPage();
         }
 
         public bool CanGoToPreviousPage()
         {
-            return Page > 1;
+            return AuditLogGrid.CanGoToPreviousPage();
         }
 
         public void NextPage()
         {
-            if (CanGoToNextPage())
-                Page++;
-
-            GoToPage(Page);
+            AuditLogGrid.NextPage();
         }
 
         public void PreviousPage()
         {
-            if (CanGoToPreviousPage())
-                Page--;
-
-            GoToPage(Page);
+            AuditLogGrid.PreviousPage();
         }
 
         public void FirstPage()
         {
-            Page = 1;
-            GoToPage(Page);
+            AuditLogGrid.FirstPage();
         }
 
         public void LastPage()
         {
-            Page = NumberOfPages;
-            GoToPage(Page);
+            AuditLogGrid.LastPage();
         }
 
-        private void GoToPage(int page)
+        public int Page()
         {
-            DatabaseHandler db = new DatabaseHandler();
-            Table = db.GetPaginatedDataTable(TableName, page);
-            PopulateGrid(Table);
+            return AuditLogGrid.Page;
         }
 
-
-        public void PopulateGrid(DataTable dataTable)
-        {
-            AuditLogGrid.DataSource = dataTable;
-        }
+        #endregion
 
     }
 }

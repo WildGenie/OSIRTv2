@@ -41,7 +41,7 @@ namespace OSIRT.Helpers
             }
             else
             {
-                int offset = (page - 1) * 25;
+                int offset = (page - 1) * limit;
                 query = $"SELECT * FROM {table} LIMIT {offset}, {limit}"; //get 25 rows after page (e.g; 75).
             }
 
@@ -49,13 +49,13 @@ namespace OSIRT.Helpers
         }
 
 
-        public DataTable GetAllRowsDataTable(string table)
+        public DataTable GetAllRows(string table)
         {
             string query = $"SELECT * FROM {table}";
             return GetDataTableFromQuery(query);
         }
 
-        public DataTable GetSpecifiedColumnsDataTable(string table, params string[] columns)
+        public DataTable GetRowsFromColumns(string table, params string[] columns)
         {
             string joinedColumn = string.Join(",", columns);
             string query = $"SELECT {joinedColumn} FROM {table}";

@@ -15,6 +15,7 @@ namespace OSIRT.UI
         public NoRecordsToShowPanel()
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
         }
     }
 }

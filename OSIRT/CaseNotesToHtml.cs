@@ -28,7 +28,7 @@ namespace OSIRT
 
         private static string GetCaseNotesToHtml()
         {
-            DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_notes", "date", "time", "note");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_notes", "date", "time", "note");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
@@ -47,7 +47,7 @@ namespace OSIRT
         private static string CaseDetailsToHtml()
         {
             
-            DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_details", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
