@@ -40,14 +40,21 @@ namespace OSIRT.UI
             uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
             uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel());
-
-            //swap left panel out with search criteria
-            //swap right panel out, ready to accept search results
-            //get all tables from database with search text
-            //display datatable in gridview
+            searchPanel.SearchCompleted += SearchPanel_SearchCompleted; 
         }
 
+        private void SearchPanel_SearchCompleted(object sender, EventArgs e)
+        {
+            SearchCompletedEventArgs args = (SearchCompletedEventArgs)e;
+            uiAuditLogSplitContainer.Panel2.Controls.Clear();
 
+            //TODO: find a way to use AuditGridView with this
+            DataGridView grid = new DataGridView();
+            grid.DataSource = args.SearchTable;
+            grid.Dock = DockStyle.Fill;
+            uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
+
+        }
 
         private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
         {

@@ -17,57 +17,43 @@ namespace OSIRT.Helpers
     public class OsirtHelper
     {
 
-
-        //http://stackoverflow.com/questions/12278978/combining-n-datatables-into-a-single-datatable
-        public static DataTable MergeAll(IList<DataTable> tables, string primaryKeyColumn)
+        //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
+        public enum PasswordScore
         {
-            if (!tables.Any())
-                throw new ArgumentException("Tables must not be empty", "tables");
-            if (primaryKeyColumn != null)
-                foreach (DataTable t in tables)
-                    if (!t.Columns.Contains(primaryKeyColumn))
-                        throw new ArgumentException("All tables must have the specified primarykey column " + primaryKeyColumn, "primaryKeyColumn");
-
-            if (tables.Count == 1)
-                return tables[0];
-
-            DataTable table = new DataTable("TblUnion");
-            table.BeginLoadData(); // Turns off notifications, index maintenance, and constraints while loading data
-            foreach (DataTable t in tables)
-            {
-                table.Merge(t); // same as table.Merge(t, false, MissingSchemaAction.Add);
-            }
-            table.EndLoadData();
-
-            if (primaryKeyColumn != null)
-            {
-                // since we might have no real primary keys defined, the rows now might have repeating fields
-                // so now we're going to "join" these rows ...
-                var pkGroups = table.AsEnumerable()
-                    .GroupBy(r => r[primaryKeyColumn]);
-                var dupGroups = pkGroups.Where(g => g.Count() > 1);
-                foreach (var grpDup in dupGroups)
-                {
-                    // use first row and modify it
-                    DataRow firstRow = grpDup.First();
-                    foreach (DataColumn c in table.Columns)
-                    {
-                        if (firstRow.IsNull(c))
-                        {
-                            DataRow firstNotNullRow = grpDup.Skip(1).FirstOrDefault(r => !r.IsNull(c));
-                            if (firstNotNullRow != null)
-                                firstRow[c] = firstNotNullRow[c];
-                        }
-                    }
-                    // remove all but first row
-                    var rowsToRemove = grpDup.Skip(1);
-                    foreach (DataRow rowToRemove in rowsToRemove)
-                        table.Rows.Remove(rowToRemove);
-                }
-            }
-
-            return table;
+            Blank = 0,
+            VeryWeak = 1,
+            Weak = 2,
+            Medium = 3,
+            Strong = 4,
+            VeryStrong = 5
         }
+
+      
+        public static PasswordScore CheckStrength(string password)
+        {
+            int score = 0;
+
+            if (password.Length < 1)
+                return PasswordScore.Blank;
+            if (password.Length < 4)
+                return PasswordScore.VeryWeak;
+
+            if (password.Length >= 8)
+                score++;
+            if (password.Length >= 12)
+                score++;
+            if (Regex.Match(password, @"\d+", RegexOptions.ECMAScript).Success)
+                score++;
+            if (Regex.Match(password, @"[a-z]", RegexOptions.ECMAScript).Success &&
+                Regex.Match(password, @"[A-Z]", RegexOptions.ECMAScript).Success)
+                score++;
+            if (Regex.Match(password, @".[!,@,#,$,%,^,&,*,?,_,~,-,£,(,)]", RegexOptions.ECMAScript).Success)
+                score++;
+
+            return (PasswordScore)score;
+        }
+        
+
 
 
 

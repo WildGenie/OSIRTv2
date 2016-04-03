@@ -63,6 +63,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _lock {
+            get {
+                object obj = ResourceManager.GetObject("lock", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_folder_128 {
             get {
                 object obj = ResourceManager.GetObject("add-folder-128", resourceCulture);
@@ -166,6 +176,16 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap html {
             get {
                 object obj = ResourceManager.GetObject("html", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lock_sm {
+            get {
+                object obj = ResourceManager.GetObject("lock_sm", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

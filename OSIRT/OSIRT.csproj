@@ -184,6 +184,7 @@
     <Compile Include="UI\AuditLog\RowDetailsPanel.Designer.cs">
       <DependentUpon>RowDetailsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AuditLog\SearchCompletedEventArgs.cs" />
     <Compile Include="UI\AuditLog\TempSearchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,17 +203,23 @@
     <Compile Include="UI\CannotOpenImagePanel.Designer.cs">
       <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\CaseDetailsPanel.cs">
+    <Compile Include="UI\CaseDetailsPanel2.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\CaseDetailsPanel.designer.cs">
-      <DependentUpon>CaseDetailsPanel.cs</DependentUpon>
+    <Compile Include="UI\CaseDetailsPanel2.Designer.cs">
+      <DependentUpon>CaseDetailsPanel2.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CaseNotes\CaseNotesForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\CaseNotes\CaseNotesForm.Designer.cs">
       <DependentUpon>CaseNotesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\CloseCasePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CloseCasePanel.Designer.cs">
+      <DependentUpon>CloseCasePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
@@ -300,11 +307,14 @@
     <EmbeddedResource Include="UI\CannotOpenImagePanel.resx">
       <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\CaseDetailsPanel.resx">
-      <DependentUpon>CaseDetailsPanel.cs</DependentUpon>
+    <EmbeddedResource Include="UI\CaseDetailsPanel2.resx">
+      <DependentUpon>CaseDetailsPanel2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CaseNotes\CaseNotesForm.resx">
       <DependentUpon>CaseNotesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CloseCasePanel.resx">
+      <DependentUpon>CloseCasePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
@@ -411,6 +421,8 @@
     <None Include="Resources\html.png" />
     <None Include="Resources\search.png" />
     <None Include="Resources\magnify.png" />
+    <None Include="Resources\lock.png" />
+    <None Include="Resources\lock_sm.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />

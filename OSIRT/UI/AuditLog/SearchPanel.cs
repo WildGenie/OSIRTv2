@@ -9,12 +9,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSIRT.Helpers;
 using System.Diagnostics;
+using OSIRT.UI.AuditLog;
 
 namespace OSIRT.UI
 {
     public partial class SearchPanel : UserControl
     {
-        public event EventHandler SearchCompleted;
+        public delegate void EventHandler(object sender, SearchCompletedEventArgs args);
+        public event EventHandler SearchCompleted = delegate { };
         private Dictionary<string, string> tabs;
 
         public SearchPanel(Dictionary<string, string> tabs)
@@ -36,61 +38,27 @@ namespace OSIRT.UI
             //get text from textbox
             string searchText = uiSearchTextTextBox.Text;
             string tableToSearch = uiTabletoSearchComboBox.SelectedValue.ToString();
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            DataTable table = dbHandler.GetAllRows(tableToSearch); //limit this using pages?
-            SetColumnNames(table);
-            DataRow[] dataRows = table.Select(BuildQueryString(searchText));
 
-            if (dataRows.Count() > 0) //can't copy to dataTable if there are no DataRows
-            {
-                table = dataRows.CopyToDataTable();
-            }
-            
+            Debug.WriteLine("TABLE TO SEARCH: " + tableToSearch);
+            Debug.WriteLine("SEARCH TEXT: " + searchText);
+
+            DataTable table = AuditLogSearcher.Search(tableToSearch, searchText);
+            SearchCompleted(this, new SearchCompletedEventArgs(table));
+
+
+
+
             //grid view = table
 
             //remove temp search panel
             //add data grid view.
             //populate datagridview
 
-            
+
 
         }
 
 
-        //TODO: DUPLICATION HERE AND AUDIT TAB. MOVE THIS INTO A "SEARCH" CLASS.
-
-        //Get all column names that aren't ID or print
-        //This is for when we do a text search, we only want
-        //rows the user will understand
-
-
-        List<string> columnNames = new List<string>();
-        private void SetColumnNames(DataTable Table)
-        {
-            columnNames = Table.Columns.Cast<DataColumn>()
-                                 .Select(x => x.ColumnName)
-                                 .ToList();
-
-            columnNames.Remove("id");
-            columnNames.Remove("print");
-        }
-
-        private string BuildQueryString(string pattern)
-        {
-            StringBuilder sb = new StringBuilder();
-            string lastItem = columnNames.Last();
-            string or = "OR";
-
-            foreach (string item in columnNames)
-            {
-                if (item == lastItem)
-                    or = "";
-
-                sb.Append($"{item} LIKE '%{pattern}%' {or} ");
-            }
-
-            return sb.ToString();
-
-        }
+   
     }
 }

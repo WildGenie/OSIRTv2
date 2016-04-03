@@ -95,7 +95,7 @@ namespace OSIRT
         void firstLoadPanel_NewCase_Click(object sender, EventArgs e)
         {
             Controls.Clear();
-            CaseDetailsPanel caseDetailsPanel = new CaseDetailsPanel();
+            CaseDetailsPanel2 caseDetailsPanel = new CaseDetailsPanel2();
             Controls.Add(caseDetailsPanel);
             caseDetailsPanel.NextClick += new EventHandler(caseDetailsPanel_NextClick);
         }
@@ -112,7 +112,14 @@ namespace OSIRT
             BrowserPanel browserPanel = new BrowserPanel();
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
+            browserPanel.CaseClosing += BrowserPanel_CaseClosing;
         }
 
+        private void BrowserPanel_CaseClosing(object sender, EventArgs e)
+        {
+            Controls.Clear();
+            CloseCasePanel closePanel = new CloseCasePanel();
+            Controls.Add(closePanel);
+        }
     }
 }

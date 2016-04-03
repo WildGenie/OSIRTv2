@@ -12,6 +12,8 @@ namespace OSIRT.UI
     public partial class BrowserPanel : UserControl
     {
 
+        public event EventHandler CaseClosing;
+
         public BrowserPanel()
         {
             InitializeComponent();
@@ -107,6 +109,16 @@ namespace OSIRT.UI
         private void uiTabbedBrowserControl_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void newTabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CaseClosing?.Invoke(this, e);
         }
     }
 }

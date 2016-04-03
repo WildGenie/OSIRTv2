@@ -45,6 +45,8 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newTabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -198,7 +200,9 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newTabToolStripMenuItem,
-            this.auditLogToolStripMenuItem});
+            this.auditLogToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.closeCaseToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -206,20 +210,31 @@
             // newTabToolStripMenuItem
             // 
             this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
-            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
+            this.newTabToolStripMenuItem.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
             // 
             // auditLogToolStripMenuItem
             // 
             this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
-            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // closeCaseToolStripMenuItem
+            // 
+            this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
+            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeCaseToolStripMenuItem.Text = "Close Case";
+            this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
+            // 
             // BrowserPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.uiBrowserPanel);
             this.Name = "BrowserPanel";
@@ -254,5 +269,7 @@
         private System.Windows.Forms.ToolStripButton uiAddTabButton;
         private System.Windows.Forms.ToolStripButton uiAttachmentToolStripButton;
         private System.Windows.Forms.ToolStripMenuItem auditLogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem closeCaseToolStripMenuItem;
     }
 }

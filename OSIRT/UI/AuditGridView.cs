@@ -21,11 +21,10 @@ namespace OSIRT.UI
         private int totalRowCount = 0;
 
 
-        public AuditGridView(string table) 
+        public AuditGridView(string table)
             : this(new DatabaseHandler().GetAllRows(table))
-        {
-            
-        }
+        { }
+     
 
         public AuditGridView(DataTable table)
         {
