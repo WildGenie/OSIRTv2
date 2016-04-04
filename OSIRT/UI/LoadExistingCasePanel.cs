@@ -104,7 +104,7 @@ namespace OSIRT.UI
             try
             {
                 //TODO: disabled for testing. Remember to re-enable.
-                //File.Delete(filenameWithPath);
+                File.Delete(file.FullName);
             }
             catch (IOException io)
             {

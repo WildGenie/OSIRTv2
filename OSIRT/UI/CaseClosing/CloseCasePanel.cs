@@ -27,6 +27,7 @@ namespace OSIRT.UI
         private void CloseCasePanel_Load(object sender, EventArgs e)
         {
             Dock = DockStyle.Fill;
+            uiPasswordTextBox.UseSystemPasswordChar = true;
             uiPasswordTextBox.Focus();
         }
 
@@ -43,6 +44,13 @@ namespace OSIRT.UI
             {
                 PasswordCorrect?.Invoke(this, new CaseClosingEventArgs(password));
             }
+        }
+
+        private void uiPasswordHelpLabel_Click(object sender, EventArgs e)
+        {
+            string message = "This is password entered when the case was first created.";
+            MessageBox.Show(message, "Password Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
     }
 }

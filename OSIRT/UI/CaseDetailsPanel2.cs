@@ -164,6 +164,8 @@ namespace OSIRT.UI
             errorProvider.BlinkStyle = ErrorBlinkStyle.NeverBlink;
             uiHashFunctionComboBox.SelectedIndex = 0;
             uiInvestigatingOfficer.Focus();
+            uiConfirmPasswordTextBox.UseSystemPasswordChar = true;
+            uiFirstPasswordTextBox.UseSystemPasswordChar = true;
         }
 
         private void uiNextButton_Click(object sender, EventArgs e)
@@ -205,6 +207,11 @@ namespace OSIRT.UI
 
             Constants.CasePath = fbd.SelectedPath;
             uiCasePathTextBox.Text = Constants.CasePath;
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -58,7 +58,7 @@
             this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent2 = new System.Windows.Controls.TextBox();
+            this.hostedComponent3 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
@@ -416,6 +416,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1049, 71);
             this.panel1.TabIndex = 62;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
@@ -501,5 +502,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label uiHelpLabelLabel;
         private System.Windows.Controls.TextBox hostedComponent2;
+        private System.Windows.Controls.TextBox hostedComponent3;
     }
 }

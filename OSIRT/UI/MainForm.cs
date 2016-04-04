@@ -30,6 +30,7 @@ namespace OSIRT
         {
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
+            
 
         }
 
@@ -58,8 +59,9 @@ namespace OSIRT
                 zip.Password = e.Arguments[0].ToString(); 
                 zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
-                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName, Constants.ContainerExtension));
+                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
+            Directory.Delete(Path.Combine(Constants.CasePath, Constants.CaseContainerName), true);
         }
 
 
