@@ -29,6 +29,14 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.uiPasswordGroupBox = new System.Windows.Forms.GroupBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.uiPasswordStrengthProgressBar = new System.Windows.Forms.ProgressBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.uiConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.uiFirstPasswordTextBox = new System.Windows.Forms.TextBox();
             this.uiCaseDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.uiEvidenceReferenceTextBox = new System.Windows.Forms.TextBox();
@@ -40,6 +48,7 @@
             this.uiAgencyTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiInvestigatingOfficer = new System.Windows.Forms.TextBox();
+            this.uiNextButton = new System.Windows.Forms.Button();
             this.uiCaseOptionsGroupBox = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -48,27 +57,18 @@
             this.uiBrowsButton = new System.Windows.Forms.Button();
             this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
-            this.uiPasswordGroupBox = new System.Windows.Forms.GroupBox();
-            this.uiFirstPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.uiConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.uiPasswordStrengthProgressBar = new System.Windows.Forms.ProgressBar();
-            this.label11 = new System.Windows.Forms.Label();
+            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent2 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.uiNextButton = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
-            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent1 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.uiPasswordGroupBox.SuspendLayout();
             this.uiCaseDetailsGroupBox.SuspendLayout();
             this.uiCaseOptionsGroupBox.SuspendLayout();
-            this.uiPasswordGroupBox.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,7 +84,6 @@
             // 
             this.splitContainer1.Panel1.Controls.Add(this.uiPasswordGroupBox);
             this.splitContainer1.Panel1.Controls.Add(this.uiCaseDetailsGroupBox);
-            this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
             // 
@@ -93,6 +92,88 @@
             this.splitContainer1.Size = new System.Drawing.Size(1049, 537);
             this.splitContainer1.SplitterDistance = 484;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // uiPasswordGroupBox
+            // 
+            this.uiPasswordGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiPasswordGroupBox.Controls.Add(this.label12);
+            this.uiPasswordGroupBox.Controls.Add(this.label11);
+            this.uiPasswordGroupBox.Controls.Add(this.uiPasswordStrengthProgressBar);
+            this.uiPasswordGroupBox.Controls.Add(this.label10);
+            this.uiPasswordGroupBox.Controls.Add(this.uiConfirmPasswordTextBox);
+            this.uiPasswordGroupBox.Controls.Add(this.label9);
+            this.uiPasswordGroupBox.Controls.Add(this.uiFirstPasswordTextBox);
+            this.uiPasswordGroupBox.Location = new System.Drawing.Point(3, 290);
+            this.uiPasswordGroupBox.Name = "uiPasswordGroupBox";
+            this.uiPasswordGroupBox.Size = new System.Drawing.Size(459, 159);
+            this.uiPasswordGroupBox.TabIndex = 58;
+            this.uiPasswordGroupBox.TabStop = false;
+            this.uiPasswordGroupBox.Text = "Container Password";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(344, 14);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(109, 91);
+            this.label12.TabIndex = 6;
+            this.label12.Text = "Always follow your \r\norganisations official \r\npassword policy.\r\n\r\nThe strength me" +
+    "ter is \r\nto be used as \r\na guide only.";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(7, 114);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 13);
+            this.label11.TabIndex = 5;
+            this.label11.Text = "Password Strength";
+            // 
+            // uiPasswordStrengthProgressBar
+            // 
+            this.uiPasswordStrengthProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiPasswordStrengthProgressBar.Location = new System.Drawing.Point(5, 130);
+            this.uiPasswordStrengthProgressBar.Maximum = 5;
+            this.uiPasswordStrengthProgressBar.Name = "uiPasswordStrengthProgressBar";
+            this.uiPasswordStrengthProgressBar.Size = new System.Drawing.Size(448, 23);
+            this.uiPasswordStrengthProgressBar.Step = 1;
+            this.uiPasswordStrengthProgressBar.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 69);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(91, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "Confirm Password";
+            // 
+            // uiConfirmPasswordTextBox
+            // 
+            this.uiConfirmPasswordTextBox.Location = new System.Drawing.Point(5, 85);
+            this.uiConfirmPasswordTextBox.Name = "uiConfirmPasswordTextBox";
+            this.uiConfirmPasswordTextBox.Size = new System.Drawing.Size(230, 20);
+            this.uiConfirmPasswordTextBox.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(7, 20);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Password";
+            // 
+            // uiFirstPasswordTextBox
+            // 
+            this.uiFirstPasswordTextBox.Location = new System.Drawing.Point(5, 36);
+            this.uiFirstPasswordTextBox.Name = "uiFirstPasswordTextBox";
+            this.uiFirstPasswordTextBox.Size = new System.Drawing.Size(230, 20);
+            this.uiFirstPasswordTextBox.TabIndex = 0;
+            this.uiFirstPasswordTextBox.TextChanged += new System.EventHandler(this.uiFirstPasswordTextBox_TextChanged);
             // 
             // uiCaseDetailsGroupBox
             // 
@@ -211,6 +292,17 @@
             this.uiInvestigatingOfficer.TabIndex = 48;
             this.uiInvestigatingOfficer.Tag = "investigating_officer";
             // 
+            // uiNextButton
+            // 
+            this.uiNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNextButton.Location = new System.Drawing.Point(469, 511);
+            this.uiNextButton.Name = "uiNextButton";
+            this.uiNextButton.Size = new System.Drawing.Size(79, 23);
+            this.uiNextButton.TabIndex = 61;
+            this.uiNextButton.Text = "Next";
+            this.uiNextButton.UseVisualStyleBackColor = true;
+            this.uiNextButton.Click += new System.EventHandler(this.uiNextButton_Click);
+            // 
             // uiCaseOptionsGroupBox
             // 
             this.uiCaseOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -303,76 +395,18 @@
             this.uiHashFunctionComboBox.TabIndex = 54;
             this.uiHashFunctionComboBox.Tag = "hash_function";
             // 
-            // uiPasswordGroupBox
+            // uiNotesTextBox
             // 
-            this.uiPasswordGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiPasswordGroupBox.Controls.Add(this.label12);
-            this.uiPasswordGroupBox.Controls.Add(this.label11);
-            this.uiPasswordGroupBox.Controls.Add(this.uiPasswordStrengthProgressBar);
-            this.uiPasswordGroupBox.Controls.Add(this.label10);
-            this.uiPasswordGroupBox.Controls.Add(this.uiConfirmPasswordTextBox);
-            this.uiPasswordGroupBox.Controls.Add(this.label9);
-            this.uiPasswordGroupBox.Controls.Add(this.uiFirstPasswordTextBox);
-            this.uiPasswordGroupBox.Location = new System.Drawing.Point(3, 290);
-            this.uiPasswordGroupBox.Name = "uiPasswordGroupBox";
-            this.uiPasswordGroupBox.Size = new System.Drawing.Size(459, 159);
-            this.uiPasswordGroupBox.TabIndex = 58;
-            this.uiPasswordGroupBox.TabStop = false;
-            this.uiPasswordGroupBox.Text = "Container Password";
-            // 
-            // uiFirstPasswordTextBox
-            // 
-            this.uiFirstPasswordTextBox.Location = new System.Drawing.Point(5, 36);
-            this.uiFirstPasswordTextBox.Name = "uiFirstPasswordTextBox";
-            this.uiFirstPasswordTextBox.Size = new System.Drawing.Size(230, 20);
-            this.uiFirstPasswordTextBox.TabIndex = 0;
-            this.uiFirstPasswordTextBox.TextChanged += new System.EventHandler(this.uiFirstPasswordTextBox_TextChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Password";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 69);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(91, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "Confirm Password";
-            // 
-            // uiConfirmPasswordTextBox
-            // 
-            this.uiConfirmPasswordTextBox.Location = new System.Drawing.Point(5, 85);
-            this.uiConfirmPasswordTextBox.Name = "uiConfirmPasswordTextBox";
-            this.uiConfirmPasswordTextBox.Size = new System.Drawing.Size(230, 20);
-            this.uiConfirmPasswordTextBox.TabIndex = 2;
-            // 
-            // uiPasswordStrengthProgressBar
-            // 
-            this.uiPasswordStrengthProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiPasswordStrengthProgressBar.Location = new System.Drawing.Point(5, 130);
-            this.uiPasswordStrengthProgressBar.Maximum = 5;
-            this.uiPasswordStrengthProgressBar.Name = "uiPasswordStrengthProgressBar";
-            this.uiPasswordStrengthProgressBar.Size = new System.Drawing.Size(448, 23);
-            this.uiPasswordStrengthProgressBar.Step = 1;
-            this.uiPasswordStrengthProgressBar.TabIndex = 4;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 114);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 13);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "Password Strength";
+            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNotesTextBox.Location = new System.Drawing.Point(3, 138);
+            this.uiNotesTextBox.Multiline = true;
+            this.uiNotesTextBox.Name = "uiNotesTextBox";
+            this.uiNotesTextBox.Size = new System.Drawing.Size(503, 296);
+            this.uiNotesTextBox.TabIndex = 53;
+            this.uiNotesTextBox.Tag = "notes";
+            this.uiNotesTextBox.WordWrap = true;
             // 
             // panel1
             // 
@@ -393,28 +427,6 @@
             this.panel2.Size = new System.Drawing.Size(1049, 72);
             this.panel2.TabIndex = 59;
             // 
-            // uiNextButton
-            // 
-            this.uiNextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNextButton.Location = new System.Drawing.Point(469, 511);
-            this.uiNextButton.Name = "uiNextButton";
-            this.uiNextButton.Size = new System.Drawing.Size(79, 23);
-            this.uiNextButton.TabIndex = 61;
-            this.uiNextButton.Text = "Next";
-            this.uiNextButton.UseVisualStyleBackColor = true;
-            this.uiNextButton.Click += new System.EventHandler(this.uiNextButton_Click);
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(344, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 91);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Always follow your \r\norganisations official \r\npassword policy.\r\n\r\nThe strength me" +
-    "ter is \r\nto be used as \r\na guide only.";
-            // 
             // uiHelpLabelLabel
             // 
             this.uiHelpLabelLabel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -426,19 +438,6 @@
             this.uiHelpLabelLabel.TabIndex = 1;
             this.uiHelpLabelLabel.Text = "Create New Case";
             this.uiHelpLabelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // uiNotesTextBox
-            // 
-            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNotesTextBox.Location = new System.Drawing.Point(3, 138);
-            this.uiNotesTextBox.Multiline = true;
-            this.uiNotesTextBox.Name = "uiNotesTextBox";
-            this.uiNotesTextBox.Size = new System.Drawing.Size(503, 296);
-            this.uiNotesTextBox.TabIndex = 53;
-            this.uiNotesTextBox.Tag = "notes";
-            this.uiNotesTextBox.WordWrap = true;
             // 
             // CaseDetailsPanel2
             // 
@@ -454,12 +453,12 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.uiPasswordGroupBox.ResumeLayout(false);
+            this.uiPasswordGroupBox.PerformLayout();
             this.uiCaseDetailsGroupBox.ResumeLayout(false);
             this.uiCaseDetailsGroupBox.PerformLayout();
             this.uiCaseOptionsGroupBox.ResumeLayout(false);
             this.uiCaseOptionsGroupBox.PerformLayout();
-            this.uiPasswordGroupBox.ResumeLayout(false);
-            this.uiPasswordGroupBox.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -501,5 +500,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label uiHelpLabelLabel;
+        private System.Windows.Controls.TextBox hostedComponent2;
     }
 }

@@ -26,6 +26,7 @@ namespace OSIRT.Helpers
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
         public static string DatabaseFileName { get { return @"\\case.db"; } }
+        public static string ContainerExtension { get { return ".osr"; } }
 
 
         /// <summary>

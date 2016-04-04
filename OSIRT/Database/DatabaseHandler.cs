@@ -78,6 +78,19 @@ namespace OSIRT.Helpers
                 }
             }
             return dataTable;
+        }
+        
+        public string GetPasswordHash()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    conn.Open();
+                    command.CommandText = "SELECT hashed_password FROM case_details";
+                    return command.ExecuteScalar().ToString();
+                }
+            }
         }  
 
         

@@ -5,6 +5,7 @@ using mshtml;
 using OSIRT.Browser;
 using OSIRT.Helpers;
 using OSIRT.UI;
+using OSIRT.UI.CaseClosing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -34,9 +35,14 @@ namespace OSIRT
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //CloseOSIRT();
+        }
+
+        private void CloseOSIRT(string password)
+        {
             if (caseOpened)
             {
-                WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait");
+                WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait", password);
             }
         }
 
@@ -49,10 +55,10 @@ namespace OSIRT
             e.Window.Message = "Archiving container.";
             using (ZipFile zip = new ZipFile())
             {
-                zip.Password = "123456";
+                zip.Password = e.Arguments[0].ToString(); 
                 zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
-                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + ".osr"));
+                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName, Constants.ContainerExtension));
             }
         }
 
@@ -120,6 +126,14 @@ namespace OSIRT
             Controls.Clear();
             CloseCasePanel closePanel = new CloseCasePanel();
             Controls.Add(closePanel);
+            closePanel.PasswordCorrect += ClosePanel_PasswordCorrect;
+        }
+
+        private void ClosePanel_PasswordCorrect(object sender, CaseClosingEventArgs e)
+        {
+            Controls.Clear();
+            CloseOSIRT(e.Password);
+            Close();
         }
     }
 }

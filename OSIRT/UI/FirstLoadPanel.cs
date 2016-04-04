@@ -62,5 +62,10 @@ namespace OSIRT.UI
             if (LoadOldCase_Click != null)
                 LoadOldCase_Click(this, e);
         }
+
+        private void uiLoadReportButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("COMING SOON");
+        }
     }
 }

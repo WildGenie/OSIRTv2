@@ -175,6 +175,7 @@
             this.uiLoadReportButton.Size = new System.Drawing.Size(173, 144);
             this.uiLoadReportButton.TabIndex = 2;
             this.uiLoadReportButton.UseVisualStyleBackColor = false;
+            this.uiLoadReportButton.Click += new System.EventHandler(this.uiLoadReportButton_Click);
             this.uiLoadReportButton.MouseHover += new System.EventHandler(this.uiLoadReportButton_MouseHover);
             // 
             // label1

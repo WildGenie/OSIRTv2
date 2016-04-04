@@ -144,26 +144,15 @@ namespace OSIRT.UI
                     continue;
 
                 }
-                else if(control.Name == "uiConfirmPasswordTextBox")
+                else if(control.Name == "uiConfirmPasswordTextBox" || control.Name == "uiCasePathTextBox" )
                 {
                     continue;
                 }
-                if (control is TextBox && control.Name != "uiCasePathTextBox")
-                {
-                    TextBox textbox = control as TextBox;
-                    details.Add(textbox.Tag.ToString(), textbox.Text);
-                }
-                else if (control is ComboBox) //our hash function
-                {
-                    ComboBox comboBox = control as ComboBox;
-                    details.Add(comboBox.Tag.ToString(), comboBox.SelectedItem.ToString());
-                }
-                else if (control is SpellBox)
-                {
-                    SpellBox spellbox = control as SpellBox;
-                    details.Add(spellbox.Tag.ToString(), spellbox.Text);
-                }
 
+                if (control is ComboBox || control is TextBox || control is SpellBox)
+                {
+                     details.Add(control.Tag.ToString(), control.Text);
+                }
             }
             return details;
         }
@@ -216,11 +205,6 @@ namespace OSIRT.UI
 
             Constants.CasePath = fbd.SelectedPath;
             uiCasePathTextBox.Text = Constants.CasePath;
-        }
-
-        private void splitContainer1_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }
