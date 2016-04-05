@@ -145,6 +145,7 @@
             // uiVideoCaptureButton
             // 
             this.uiVideoCaptureButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiVideoCaptureButton.Enabled = false;
             this.uiVideoCaptureButton.Image = global::OSIRT.Properties.Resources.film;
             this.uiVideoCaptureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiVideoCaptureButton.Name = "uiVideoCaptureButton";
@@ -210,26 +211,26 @@
             // newTabToolStripMenuItem
             // 
             this.newTabToolStripMenuItem.Name = "newTabToolStripMenuItem";
-            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newTabToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.newTabToolStripMenuItem.Text = "New Tab";
             this.newTabToolStripMenuItem.Click += new System.EventHandler(this.newTabToolStripMenuItem_Click);
             // 
             // auditLogToolStripMenuItem
             // 
             this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
-            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
             // 
             // closeCaseToolStripMenuItem
             // 
             this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
-            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 

@@ -39,7 +39,7 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent6 = new System.Windows.Controls.TextBox();
+            this.hostedComponent7 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -63,6 +63,7 @@
             // 
             // uiSplitContainer.Panel1
             // 
+            this.uiSplitContainer.Panel1.BackColor = System.Drawing.Color.SteelBlue;
             this.uiSplitContainer.Panel1.Controls.Add(this.uiNotePictureBox);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiFileExtensionComboBox);
             this.uiSplitContainer.Panel1.Controls.Add(this.uiDoesFileExistPictureBox);
@@ -117,6 +118,7 @@
             // uiCalculatingHashLabel
             // 
             this.uiCalculatingHashLabel.AutoSize = true;
+            this.uiCalculatingHashLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.uiCalculatingHashLabel.Location = new System.Drawing.Point(12, 166);
             this.uiCalculatingHashLabel.Name = "uiCalculatingHashLabel";
             this.uiCalculatingHashLabel.Size = new System.Drawing.Size(96, 13);
@@ -162,7 +164,7 @@
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
             this.uiOKButton.TabIndex = 3;
-            this.uiOKButton.Text = "OK";
+            this.uiOKButton.Text = "Log";
             this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
@@ -182,6 +184,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label5.Location = new System.Drawing.Point(12, 230);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 13);
@@ -191,6 +194,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label3.Location = new System.Drawing.Point(12, 59);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
@@ -210,6 +214,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(12, 111);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
@@ -229,6 +234,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(67, 13);
@@ -297,5 +303,6 @@
         private System.Windows.Controls.TextBox hostedComponent4;
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Controls.TextBox hostedComponent6;
+        private System.Windows.Controls.TextBox hostedComponent7;
     }
 }

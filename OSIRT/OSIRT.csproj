@@ -248,6 +248,12 @@
     <Compile Include="UI\NoRecordsToShowPanel.Designer.cs">
       <DependentUpon>NoRecordsToShowPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Options\OptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Options\OptionsForm.Designer.cs">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\PleaseWaitWindow\WaitWindow.cs" />
     <Compile Include="UI\PleaseWaitWindow\WaitWindowEventArgs.cs" />
     <Compile Include="UI\PleaseWaitWindow\WaitWindowGUI.cs">
@@ -328,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\NoRecordsToShowPanel.resx">
       <DependentUpon>NoRecordsToShowPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Options\OptionsForm.resx">
+      <DependentUpon>OptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\PleaseWaitWindow\WaitWindowGUI.resx">
       <DependentUpon>WaitWindowGUI.cs</DependentUpon>
@@ -424,6 +433,7 @@
     <None Include="Resources\magnify.png" />
     <None Include="Resources\lock.png" />
     <None Include="Resources\lock_sm.png" />
+    <None Include="Resources\table.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />

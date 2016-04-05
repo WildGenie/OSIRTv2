@@ -54,7 +54,7 @@ namespace OSIRT
                 return;
             }
 
-            DialogResult result = MessageBox.Show("In order to safely close a case, you need to enter the case password. Would you like to enter the case password now?", "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show("In order to safely close a case, you are required to enter the case password. Would you like to enter the case password now?", "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.Cancel || result == DialogResult.No)
             {

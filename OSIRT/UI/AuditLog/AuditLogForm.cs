@@ -8,6 +8,7 @@ using OSIRT.Enums;
 using System.Diagnostics;
 using System.IO;
 using OSIRT.UI.AuditLog;
+using System.Drawing;
 
 namespace OSIRT.UI
 {
@@ -16,6 +17,9 @@ namespace OSIRT.UI
 
         private RowDetailsPanel rowDetailsPanel;
         private AuditTabControlPanel auditTabControlPanel;
+        private SearchPanel searchPanel;
+        private TempSearchPanel rightSearchPanel;
+        private bool searching = false;
 
         public AuditLogForm()
         {
@@ -29,18 +33,32 @@ namespace OSIRT.UI
             AttachRowEventHandler(auditTabControlPanel);
             rowDetailsPanel = new RowDetailsPanel();
             uiAuditLogSplitContainer.Panel1.Controls.Add(rowDetailsPanel);
+
+            searchPanel = new SearchPanel(auditTabControlPanel.Tabs());
+            uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
+            searchPanel.SearchCompleted += SearchPanel_SearchCompleted;
+            rightSearchPanel = new TempSearchPanel();
+            uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
+
+            rightSearchPanel.Visible = false;
+            searchPanel.Visible = false;
+
         }
 
         private void uiSearchToolStripButton_Click(object sender, EventArgs e)
         {
+            SwapPanels(searching);
+            searching = !searching;
+        }
 
-            uiAuditLogSplitContainer.Panel1.Controls.Remove(rowDetailsPanel);
+        private void SwapPanels(bool on)
+        {
+            rowDetailsPanel.Visible = on;
+            auditTabControlPanel.Visible = on;
+            rightSearchPanel.Visible = !on;
+            searchPanel.Visible = !on;
 
-            SearchPanel searchPanel = new SearchPanel(auditTabControlPanel.Tabs());
-            uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
-            uiAuditLogSplitContainer.Panel2.Controls.Clear();
-            uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel());
-            searchPanel.SearchCompleted += SearchPanel_SearchCompleted; 
+            uiSearchToolStripButton.Image = !on ? Properties.Resources.table : Properties.Resources.search;
         }
 
         private void SearchPanel_SearchCompleted(object sender, EventArgs e)
