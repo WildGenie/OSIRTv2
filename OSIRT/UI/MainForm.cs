@@ -25,18 +25,48 @@ namespace OSIRT
     {
 
         private bool caseOpened = false;
-   
+        private bool caseClosed = false;
+
+        //http://stackoverflow.com/questions/2612487/how-to-fix-the-flickering-in-user-controls
+        //TODO@ need to look at this for hosted controls
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var parms = base.CreateParams;
+                parms.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
+                return parms;
+            }
+        }
+
+
         public MainForm()
         {
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
-            
-
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //CloseOSIRT();
+            if (!caseOpened || caseClosed)
+            {
+                e.Cancel = false;
+                return;
+            }
+
+            DialogResult result = MessageBox.Show("In order to safely close a case, you need to enter the case password. Would you like to enter the case password now?", "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Cancel || result == DialogResult.No)
+            {
+                e.Cancel = true;
+                return;
+            }
+            else 
+            {
+                e.Cancel = true;
+                caseClosed = true;
+                ClosingOSIRT();
+            }
         }
 
         private void CloseOSIRT(string password)
@@ -53,7 +83,7 @@ namespace OSIRT
 
             Thread.Sleep(500); //just to see the window
             //zip container
-            e.Window.Message = "Archiving container.";
+            e.Window.Message = "Encrypting container... Please Wait";
             using (ZipFile zip = new ZipFile())
             {
                 zip.Password = e.Arguments[0].ToString(); 
@@ -61,6 +91,7 @@ namespace OSIRT
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
+            e.Window.Message = "Performing clean up operations... Please Wait";
             Directory.Delete(Path.Combine(Constants.CasePath, Constants.CaseContainerName), true);
         }
 
@@ -123,7 +154,14 @@ namespace OSIRT
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;
         }
 
+        //event from menu item
         private void BrowserPanel_CaseClosing(object sender, EventArgs e)
+        {
+            caseClosed = true;
+            ClosingOSIRT();
+        }
+
+        private void ClosingOSIRT()
         {
             Controls.Clear();
             CloseCasePanel closePanel = new CloseCasePanel();

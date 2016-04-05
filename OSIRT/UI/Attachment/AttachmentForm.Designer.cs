@@ -34,14 +34,14 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiFileDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.uiAttachFileProgressPanel = new System.Windows.Forms.Panel();
+            this.uiAddANotherFileLable = new System.Windows.Forms.Label();
             this.uiFileCopyDetailLabel = new System.Windows.Forms.Label();
             this.uiFileCopyingProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiFileDetailsLabel = new System.Windows.Forms.Label();
             this.uiFileIconPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent4 = new System.Windows.Controls.TextBox();
-            this.uiAddANotherFileLable = new System.Windows.Forms.Label();
+            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             this.uiFileDetailsGroupBox.SuspendLayout();
             this.uiAttachFileProgressPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).BeginInit();
@@ -110,6 +110,15 @@
             this.uiAttachFileProgressPanel.Size = new System.Drawing.Size(272, 64);
             this.uiAttachFileProgressPanel.TabIndex = 6;
             // 
+            // uiAddANotherFileLable
+            // 
+            this.uiAddANotherFileLable.AutoSize = true;
+            this.uiAddANotherFileLable.Location = new System.Drawing.Point(3, 39);
+            this.uiAddANotherFileLable.Name = "uiAddANotherFileLable";
+            this.uiAddANotherFileLable.Size = new System.Drawing.Size(35, 13);
+            this.uiAddANotherFileLable.TabIndex = 6;
+            this.uiAddANotherFileLable.Text = "label2";
+            // 
             // uiFileCopyDetailLabel
             // 
             this.uiFileCopyDetailLabel.AutoSize = true;
@@ -163,15 +172,6 @@
             this.uiNoteSpellBox.Size = new System.Drawing.Size(354, 166);
             this.uiNoteSpellBox.TabIndex = 2;
             // 
-            // uiAddANotherFileLable
-            // 
-            this.uiAddANotherFileLable.AutoSize = true;
-            this.uiAddANotherFileLable.Location = new System.Drawing.Point(3, 39);
-            this.uiAddANotherFileLable.Name = "uiAddANotherFileLable";
-            this.uiAddANotherFileLable.Size = new System.Drawing.Size(35, 13);
-            this.uiAddANotherFileLable.TabIndex = 6;
-            this.uiAddANotherFileLable.Text = "label2";
-            // 
             // AttachmentForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,5 +217,6 @@
         private System.Windows.Forms.Panel uiAttachFileProgressPanel;
         private System.Windows.Controls.TextBox hostedComponent4;
         private System.Windows.Forms.Label uiAddANotherFileLable;
+        private System.Windows.Controls.TextBox hostedComponent5;
     }
 }
