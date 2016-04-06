@@ -37,6 +37,7 @@ namespace OSIRT.UI
             searchPanel = new SearchPanel(auditTabControlPanel.Tabs());
             uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
             searchPanel.SearchCompleted += SearchPanel_SearchCompleted;
+
             rightSearchPanel = new TempSearchPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
 
@@ -59,6 +60,8 @@ namespace OSIRT.UI
             searchPanel.Visible = !on;
 
             uiSearchToolStripButton.Image = !on ? Properties.Resources.table : Properties.Resources.search;
+            string tooltip = !on ? "Audit Log" : "Search";
+            uiSearchToolStripButton.ToolTipText = tooltip;
         }
 
         private void SearchPanel_SearchCompleted(object sender, EventArgs e)
@@ -67,10 +70,12 @@ namespace OSIRT.UI
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
 
             //TODO: find a way to use AuditGridView with this
-            DataGridView grid = new DataGridView();
-            grid.DataSource = args.SearchTable;
-            grid.Dock = DockStyle.Fill;
-            uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
+            //disabling this for now, as panel switching is not quite there
+
+            //DataGridView grid = new DataGridView();
+            //grid.DataSource = args.SearchTable;
+            //grid.Dock = DockStyle.Fill;
+            //uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
 
         }
 

@@ -92,7 +92,16 @@ namespace OSIRT
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
             e.Window.Message = "Performing clean up operations... Please Wait";
-            Directory.Delete(Path.Combine(Constants.CasePath, Constants.CaseContainerName), true);
+            try
+            {
+                GC.Collect();
+                Directory.Delete(Path.Combine(Constants.CasePath, Constants.CaseContainerName), true);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
+
         }
 
 

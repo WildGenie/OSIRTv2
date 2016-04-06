@@ -118,9 +118,24 @@ namespace OSIRT.UI
             imageBox = new ImageBox();
             imageBox.Dock = DockStyle.Fill;
             uiSplitContainer.Panel2.Controls.Add(imageBox);
-            //TODO: This can fail on large images, still. (30/03/2016)
-            //Memory leaks within the WebBrowser control seem to be the cause.
-            LoadImage(new Bitmap(Image.FromFile(imagePath)));
+            try
+            {
+                Image image = Image.FromFile(imagePath);
+                LoadImage(new Bitmap(image));
+            }
+            catch (OutOfMemoryException oom)
+            {
+                MessageBox.Show(@"Debugging: Known issue. Webpage takes a large chunk of memory, causing the image loading in the previewer to fail. 
+                                The image is still saved/logged/hashed, it just can't be previewed. Further debug info:  " + oom.ToString());
+                //we can carry on, show the previewer so they can name the image and leave a note.
+                //TODO: put a friendly message on the right, and a link to the image currently residing in the cache
+                //so they can see it.
+            }
+            catch(FileNotFoundException fnf)
+            {
+                MessageBox.Show($"Unable to find the image file! Debug: {fnf}");
+                //safely close OSIRT, here???
+            }
         }
 
         private void ShowCannotOpenPanel(Size originalSize)
@@ -138,7 +153,7 @@ namespace OSIRT.UI
 
         private void ImagePreviewerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            imageBox?.Image.Dispose();
+            imageBox?.Image?.Dispose(); //the image box can be not null, but the image CAN be null!
             imageBox?.Dispose();
             cantOpenPanel?.CleanUp();
         }

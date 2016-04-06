@@ -58,7 +58,7 @@
             this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent3 = new System.Windows.Controls.TextBox();
+            this.hostedComponent4 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
@@ -92,6 +92,7 @@
             this.splitContainer1.Size = new System.Drawing.Size(1049, 537);
             this.splitContainer1.SplitterDistance = 484;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
             // 
             // uiPasswordGroupBox
             // 
@@ -156,7 +157,7 @@
             this.uiConfirmPasswordTextBox.Location = new System.Drawing.Point(5, 85);
             this.uiConfirmPasswordTextBox.Name = "uiConfirmPasswordTextBox";
             this.uiConfirmPasswordTextBox.Size = new System.Drawing.Size(230, 20);
-            this.uiConfirmPasswordTextBox.TabIndex = 2;
+            this.uiConfirmPasswordTextBox.TabIndex = 6;
             // 
             // label9
             // 
@@ -172,7 +173,7 @@
             this.uiFirstPasswordTextBox.Location = new System.Drawing.Point(5, 36);
             this.uiFirstPasswordTextBox.Name = "uiFirstPasswordTextBox";
             this.uiFirstPasswordTextBox.Size = new System.Drawing.Size(230, 20);
-            this.uiFirstPasswordTextBox.TabIndex = 0;
+            this.uiFirstPasswordTextBox.TabIndex = 5;
             this.uiFirstPasswordTextBox.TextChanged += new System.EventHandler(this.uiFirstPasswordTextBox_TextChanged);
             // 
             // uiCaseDetailsGroupBox
@@ -212,7 +213,7 @@
             this.uiEvidenceReferenceTextBox.Location = new System.Drawing.Point(6, 241);
             this.uiEvidenceReferenceTextBox.Name = "uiEvidenceReferenceTextBox";
             this.uiEvidenceReferenceTextBox.Size = new System.Drawing.Size(419, 20);
-            this.uiEvidenceReferenceTextBox.TabIndex = 56;
+            this.uiEvidenceReferenceTextBox.TabIndex = 4;
             this.uiEvidenceReferenceTextBox.Tag = "evidence_reference";
             // 
             // label4
@@ -231,7 +232,7 @@
             this.uiCaseReferenceTextBox.Location = new System.Drawing.Point(6, 190);
             this.uiCaseReferenceTextBox.Name = "uiCaseReferenceTextBox";
             this.uiCaseReferenceTextBox.Size = new System.Drawing.Size(419, 20);
-            this.uiCaseReferenceTextBox.TabIndex = 54;
+            this.uiCaseReferenceTextBox.TabIndex = 3;
             this.uiCaseReferenceTextBox.Tag = "case_reference";
             this.uiCaseReferenceTextBox.Enter += new System.EventHandler(this.uiCaseReferenceTextBox_Enter);
             // 
@@ -251,7 +252,7 @@
             this.uiOperationTextBox.Location = new System.Drawing.Point(6, 138);
             this.uiOperationTextBox.Name = "uiOperationTextBox";
             this.uiOperationTextBox.Size = new System.Drawing.Size(419, 20);
-            this.uiOperationTextBox.TabIndex = 52;
+            this.uiOperationTextBox.TabIndex = 2;
             this.uiOperationTextBox.Tag = "operation_name";
             // 
             // label2
@@ -270,7 +271,7 @@
             this.uiAgencyTextBox.Location = new System.Drawing.Point(6, 90);
             this.uiAgencyTextBox.Name = "uiAgencyTextBox";
             this.uiAgencyTextBox.Size = new System.Drawing.Size(419, 20);
-            this.uiAgencyTextBox.TabIndex = 50;
+            this.uiAgencyTextBox.TabIndex = 1;
             this.uiAgencyTextBox.Tag = "investigating_agency";
             // 
             // label1
@@ -289,7 +290,7 @@
             this.uiInvestigatingOfficer.Location = new System.Drawing.Point(6, 40);
             this.uiInvestigatingOfficer.Name = "uiInvestigatingOfficer";
             this.uiInvestigatingOfficer.Size = new System.Drawing.Size(419, 20);
-            this.uiInvestigatingOfficer.TabIndex = 48;
+            this.uiInvestigatingOfficer.TabIndex = 0;
             this.uiInvestigatingOfficer.Tag = "investigating_officer";
             // 
             // uiNextButton
@@ -298,7 +299,7 @@
             this.uiNextButton.Location = new System.Drawing.Point(469, 511);
             this.uiNextButton.Name = "uiNextButton";
             this.uiNextButton.Size = new System.Drawing.Size(79, 23);
-            this.uiNextButton.TabIndex = 61;
+            this.uiNextButton.TabIndex = 10;
             this.uiNextButton.Text = "Next";
             this.uiNextButton.UseVisualStyleBackColor = true;
             this.uiNextButton.Click += new System.EventHandler(this.uiNextButton_Click);
@@ -356,6 +357,7 @@
             this.uiCasePathTextBox.ReadOnly = true;
             this.uiCasePathTextBox.Size = new System.Drawing.Size(351, 20);
             this.uiCasePathTextBox.TabIndex = 57;
+            this.uiCasePathTextBox.TabStop = false;
             this.uiCasePathTextBox.Tag = "case_location";
             // 
             // uiBrowsButton
@@ -363,7 +365,7 @@
             this.uiBrowsButton.Location = new System.Drawing.Point(363, 35);
             this.uiBrowsButton.Name = "uiBrowsButton";
             this.uiBrowsButton.Size = new System.Drawing.Size(67, 23);
-            this.uiBrowsButton.TabIndex = 56;
+            this.uiBrowsButton.TabIndex = 7;
             this.uiBrowsButton.Text = "Browse...";
             this.uiBrowsButton.UseVisualStyleBackColor = true;
             this.uiBrowsButton.Click += new System.EventHandler(this.uiBrowsButton_Click);
@@ -392,7 +394,7 @@
             this.uiHashFunctionComboBox.Location = new System.Drawing.Point(6, 89);
             this.uiHashFunctionComboBox.Name = "uiHashFunctionComboBox";
             this.uiHashFunctionComboBox.Size = new System.Drawing.Size(124, 21);
-            this.uiHashFunctionComboBox.TabIndex = 54;
+            this.uiHashFunctionComboBox.TabIndex = 8;
             this.uiHashFunctionComboBox.Tag = "hash_function";
             // 
             // uiNotesTextBox
@@ -404,7 +406,7 @@
             this.uiNotesTextBox.Multiline = true;
             this.uiNotesTextBox.Name = "uiNotesTextBox";
             this.uiNotesTextBox.Size = new System.Drawing.Size(503, 296);
-            this.uiNotesTextBox.TabIndex = 53;
+            this.uiNotesTextBox.TabIndex = 9;
             this.uiNotesTextBox.Tag = "notes";
             this.uiNotesTextBox.WordWrap = true;
             // 
@@ -503,5 +505,6 @@
         private System.Windows.Forms.Label uiHelpLabelLabel;
         private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Controls.TextBox hostedComponent3;
+        private System.Windows.Controls.TextBox hostedComponent4;
     }
 }

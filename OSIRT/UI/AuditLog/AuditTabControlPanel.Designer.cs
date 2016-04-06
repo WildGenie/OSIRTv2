@@ -37,9 +37,9 @@
             this.uiFirstPageButton = new System.Windows.Forms.Button();
             this.uiPageNumberLabel = new System.Windows.Forms.Label();
             this.uiSearchPanel = new System.Windows.Forms.Panel();
+            this.uiSearchSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.uiSearchButton = new System.Windows.Forms.Button();
             this.uiSearchTextBox = new System.Windows.Forms.TextBox();
-            this.uiSearchSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.uiAuditTabsPanel.SuspendLayout();
             this.uiPaginationPanel.SuspendLayout();
             this.uiSearchPanel.SuspendLayout();
@@ -145,26 +145,6 @@
             this.uiSearchPanel.Size = new System.Drawing.Size(898, 33);
             this.uiSearchPanel.TabIndex = 0;
             // 
-            // uiSearchButton
-            // 
-            this.uiSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiSearchButton.Location = new System.Drawing.Point(804, 6);
-            this.uiSearchButton.Name = "uiSearchButton";
-            this.uiSearchButton.Size = new System.Drawing.Size(75, 21);
-            this.uiSearchButton.TabIndex = 1;
-            this.uiSearchButton.Text = "Search";
-            this.uiSearchButton.UseVisualStyleBackColor = true;
-            this.uiSearchButton.Click += new System.EventHandler(this.uiSearchButton_Click);
-            // 
-            // uiSearchTextBox
-            // 
-            this.uiSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiSearchTextBox.Location = new System.Drawing.Point(436, 6);
-            this.uiSearchTextBox.Name = "uiSearchTextBox";
-            this.uiSearchTextBox.Size = new System.Drawing.Size(255, 20);
-            this.uiSearchTextBox.TabIndex = 0;
-            this.uiSearchTextBox.TextChanged += new System.EventHandler(this.uiSearchTextBox_TextChanged);
-            // 
             // uiSearchSelectionComboBox
             // 
             this.uiSearchSelectionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -178,11 +158,32 @@
             this.uiSearchSelectionComboBox.Name = "uiSearchSelectionComboBox";
             this.uiSearchSelectionComboBox.Size = new System.Drawing.Size(101, 21);
             this.uiSearchSelectionComboBox.TabIndex = 2;
+            this.uiSearchSelectionComboBox.Visible = false;
+            // 
+            // uiSearchButton
+            // 
+            this.uiSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiSearchButton.Location = new System.Drawing.Point(804, 6);
+            this.uiSearchButton.Name = "uiSearchButton";
+            this.uiSearchButton.Size = new System.Drawing.Size(75, 21);
+            this.uiSearchButton.TabIndex = 1;
+            this.uiSearchButton.Text = "Search";
+            this.uiSearchButton.UseVisualStyleBackColor = true;
+            this.uiSearchButton.Visible = false;
+            this.uiSearchButton.Click += new System.EventHandler(this.uiSearchButton_Click);
+            // 
+            // uiSearchTextBox
+            // 
+            this.uiSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiSearchTextBox.Location = new System.Drawing.Point(436, 6);
+            this.uiSearchTextBox.Name = "uiSearchTextBox";
+            this.uiSearchTextBox.Size = new System.Drawing.Size(255, 20);
+            this.uiSearchTextBox.TabIndex = 0;
+            this.uiSearchTextBox.Visible = false;
+            this.uiSearchTextBox.TextChanged += new System.EventHandler(this.uiSearchTextBox_TextChanged);
             // 
             // AuditTabControlPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            //this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.Controls.Add(this.uiAuditTabsPanel);
             this.Name = "AuditTabControlPanel";
