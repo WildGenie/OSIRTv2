@@ -1,12 +1,8 @@
-﻿using OSIRT.Helpers;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSIRT.Database;
 
 namespace OSIRT.UI
 {
@@ -17,8 +13,8 @@ namespace OSIRT.UI
         private string TableName { get; }
         public DataTable Table { get; private set; }
         public int Page { get; private set; }
-        public int MaxPages { get { return UserSettings.Load().numberOfRowsPerPage; } }
-        private int totalRowCount = 0;
+        public int MaxPages => UserSettings.Load().NumberOfRowsPerPage;
+        private readonly int totalRowCount;
 
 
         public AuditGridView(string table)
@@ -70,15 +66,13 @@ namespace OSIRT.UI
         //Makes the print column selectable, and keeps other columns readonly
         private void AuditGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
         {
-            if (e.Column is DataGridViewColumn)
+            DataGridViewColumn column = e.Column;
+            column.ReadOnly = true;
+            if (column.Name == "print")
             {
-                DataGridViewColumn column = e.Column as DataGridViewColumn;
-                column.ReadOnly = true;
-                if (column.Name == "print")
-                {
-                    column.ReadOnly = false;
-                }
+                column.ReadOnly = false;
             }
+
         }
 
         private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -89,7 +83,7 @@ namespace OSIRT.UI
 
             if (Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
             {
-                DataGridViewCheckBoxCell column = Rows[e.RowIndex].Cells[e.ColumnIndex] as DataGridViewCheckBoxCell;
+                DataGridViewCheckBoxCell column = (DataGridViewCheckBoxCell) Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (column.Value != null)
                 {
                     bool isChecked = (bool)column.Value;
@@ -111,10 +105,7 @@ namespace OSIRT.UI
             return count;
         }
 
-        public int TotalRows
-        {
-            get { return totalRowCount; }
-        }
+        public int TotalRows => totalRowCount;
 
         //PAGINATION
 
@@ -137,15 +128,7 @@ namespace OSIRT.UI
 
         public string PagesLeftDescription()
         {
-            string desc = "";
-            if (NumberOfPages > 0)
-            {
-                desc = $"Page {Page} of {NumberOfPages}";
-            }
-            else
-            {
-                desc = $"No records";
-            }
+            var desc = NumberOfPages > 0 ? $"Page {Page} of {NumberOfPages}" : "No records";
             return desc;
         }
 

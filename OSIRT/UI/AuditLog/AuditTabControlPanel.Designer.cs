@@ -1,4 +1,4 @@
-﻿namespace OSIRT.UI
+﻿namespace OSIRT.UI.AuditLog
 {
     partial class AuditTabControlPanel
     {

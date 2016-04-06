@@ -1,23 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OSIRT.Helpers;
 using System.Diagnostics;
-using OSIRT.UI.AuditLog;
+using System.Windows.Forms;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.AuditLog
 {
     public partial class SearchPanel : UserControl
     {
         public delegate void EventHandler(object sender, SearchCompletedEventArgs args);
         public event EventHandler SearchCompleted = delegate { };
-        private Dictionary<string, string> tabs;
+        private readonly Dictionary<string, string> tabs;
 
         public SearchPanel(Dictionary<string, string> tabs)
         {

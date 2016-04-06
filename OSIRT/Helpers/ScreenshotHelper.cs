@@ -1,14 +1,11 @@
 ﻿using ImageMagick;
 using Jacksonsoft;
 using OSIRT.Enums;
-using OSIRT.Helpers;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace OSIRT.Helpers
 {

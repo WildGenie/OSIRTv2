@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OSIRT
+﻿namespace OSIRT
 {
     public class UserSettings : CaseSettings<UserSettings>
     {
-        public string homepage = "http://google.com";
-        public string hash = "MD5";
-        public bool clearCacheOnClose = false;
-        public bool defaultSaveAsPDF = false;
-        public bool hashContainerOnClose = false;
-        public bool auditLogNewestFirst = false;
-        public int numberOfRowsPerPage = 25;
+        public string Homepage = "http://google.com";
+        public string Hash = "MD5";
+        public bool ClearCacheOnClose = false;
+        public bool DefaultSaveAsPdf = false;
+        public bool HashContainerOnClose = false;
+        public bool AuditLogNewestFirst = false;
+        public int NumberOfRowsPerPage = 25;
 
     }
 }

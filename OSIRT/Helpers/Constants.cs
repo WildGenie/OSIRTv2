@@ -1,12 +1,6 @@
-﻿using OSIRT.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using OSIRT.Enums;
 
 namespace OSIRT.Helpers
 {
@@ -25,8 +19,8 @@ namespace OSIRT.Helpers
         //Case container Directories and files
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
-        public static string DatabaseFileName { get { return @"\\case.db"; } }
-        public static string ContainerExtension { get { return ".osr"; } }
+        public static string DatabaseFileName => @"\\case.db";
+        public static string ContainerExtension => ".osr";
 
 
         /// <summary>

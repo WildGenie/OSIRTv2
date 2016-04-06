@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using OSIRT.Helpers;
 using Ionic.Zip;
-using System.Diagnostics;
 using Jacksonsoft;
+using OSIRT.Database;
 using OSIRT.Loggers;
 using OSIRT.Enums;
 
@@ -136,7 +130,7 @@ namespace OSIRT.UI
 
         private void uiWhySha512Label_Click(object sender, EventArgs e)
         {
-            string message = @"When the case is loaded and closed, OSIRT uses SHA512 to verify the integrity of the container. This ignores the user setting for specified hashing algorithm in this instance.";
+            string message = "When the case is loaded and closed, OSIRT uses SHA512 to verify the integrity of the container. This ignores the user setting for specified hashing algorithm in this instance.";
             MessageBox.Show(message, "Why SHA512?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

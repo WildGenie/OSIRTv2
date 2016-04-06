@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using OSIRT.Database;
 using OSIRT.Helpers;
-using System.Diagnostics;
-using OSIRT.UI.CaseClosing;
+using OSIRT.Resources;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.CaseClosing
 {
     public partial class CloseCasePanel : UserControl
     {
@@ -49,7 +42,7 @@ namespace OSIRT.UI
         private void uiPasswordHelpLabel_Click(object sender, EventArgs e)
         {
             string message = "This is password entered when the case was first created.";
-            MessageBox.Show(message, "Password Help", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message, strings.CloseCasePanel_uiPasswordHelpLabel_Click_Password_Help, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
     }

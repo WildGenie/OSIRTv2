@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OSIRT.UI
@@ -13,14 +6,14 @@ namespace OSIRT.UI
     public partial class FirstLoadPanel : UserControl
     {
 
-        public event EventHandler NewCase_Click;
-        public event EventHandler LoadOldCase_Click;
+        public event EventHandler NewCaseClick;
+        public event EventHandler LoadOldCaseClick;
         //public event EventHandler LoadReport_Click;
 
         public FirstLoadPanel()
         {
             InitializeComponent();
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
            
         }
 
@@ -33,8 +26,7 @@ namespace OSIRT.UI
 
         private void uiNewCaseButton_Click(object sender, EventArgs e)
         {
-            if (NewCase_Click != null)
-                NewCase_Click(this, e);
+            NewCaseClick?.Invoke(this, e);
         }
 
         private void uiNewCaseButton_MouseHover(object sender, EventArgs e)
@@ -59,8 +51,7 @@ namespace OSIRT.UI
 
         private void uiLoadExistingCaseButton_Click(object sender, EventArgs e)
         {
-            if (LoadOldCase_Click != null)
-                LoadOldCase_Click(this, e);
+            LoadOldCaseClick?.Invoke(this, e);
         }
 
         private void uiLoadReportButton_Click(object sender, EventArgs e)

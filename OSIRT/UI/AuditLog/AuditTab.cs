@@ -1,14 +1,6 @@
-﻿using OSIRT.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.AuditLog
 {
     public class AuditTab : TabPage
     {
@@ -29,6 +21,12 @@ namespace OSIRT.UI
                 NoRecordsToShowPanel noRecordsPanel = new NoRecordsToShowPanel();
                 Controls.Add(noRecordsPanel);
             }
+        }
+
+        public sealed override string Text
+        {
+            get { return base.Text; }
+            set { base.Text = value; }
         }
 
         #region pagination methods

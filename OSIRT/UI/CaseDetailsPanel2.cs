@@ -1,18 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSIRT.Helpers;
-using System.Diagnostics;
 using OSIRT.Extensions;
 using System.IO;
 using System.Text.RegularExpressions;
 using Jacksonsoft;
+using OSIRT.Database;
 
 namespace OSIRT.UI
 {
@@ -190,8 +184,7 @@ namespace OSIRT.UI
 
         private void uiCaseReferenceTextBox_Enter(object sender, EventArgs e)
         {
-            ToolTip tooltip = new ToolTip();
-            tooltip.IsBalloon = true;
+            ToolTip tooltip = new ToolTip {IsBalloon = true};
             tooltip.Show(Resources.strings.field_can_only_contain_valid_directory_char, sender as TextBox, 150, -50, 7000);
         }
 

@@ -1,22 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using OSIRT.Helpers;
-using System.Diagnostics;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.AuditLog
 {
     public partial class TabbedAuditLogControl : UserControl
     {
         public event EventHandler TabChanged;
 
-        private Dictionary<string, string> tabs = new Dictionary<string, string>()
+        private readonly Dictionary<string, string> tabs = new Dictionary<string, string>()
         {
             {"Websites Loaded", "webpage_log"},
             {"Websites Actions", "webpage_actions"},

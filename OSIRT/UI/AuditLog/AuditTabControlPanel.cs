@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.AuditLog
 {
     public partial class AuditTabControlPanel : UserControl
     {
@@ -57,10 +51,7 @@ namespace OSIRT.UI
             toolTip.SetToolTip(uiLastPageButton, "Go to last page");
         }
 
-        public TabControl.TabPageCollection AuditTabs
-        {
-            get { return tabbedAuditLog.AuditTabs; }
-        }
+        public TabControl.TabPageCollection AuditTabs => tabbedAuditLog.AuditTabs;
 
         private void uiSearchButton_Click(object sender, EventArgs e)
         {

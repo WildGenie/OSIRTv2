@@ -1,21 +1,16 @@
-﻿using OSIRT.Helpers;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using OSIRT.Helpers;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
 
     public class DatabaseHandler 
     {
 
-        private string connectionString = ""; 
+        private readonly string connectionString; 
         
         public DatabaseHandler()
         {
@@ -34,7 +29,7 @@ namespace OSIRT.Helpers
         public DataTable GetPaginatedDataTable(string table, int page)
         {
             string query = "";
-            int limit = UserSettings.Load().numberOfRowsPerPage;
+            int limit = UserSettings.Load().NumberOfRowsPerPage;
             if (page == 1)
             {
                 query = $"SELECT * FROM {table} LIMIT {limit}"; 
@@ -139,14 +134,7 @@ namespace OSIRT.Helpers
                         sbCol.Append(kv.Key);
                         sbCol.Append("`");
 
-                        if (sbVal.Length == 0)
-                        {
-                            sbVal.Append(" values(");
-                        }
-                        else
-                        {
-                            sbVal.Append(", ");
-                        }
+                        sbVal.Append(sbVal.Length == 0 ? " values(" : ", ");
 
                         sbVal.Append("@v");
                         sbVal.Append(kv.Key);

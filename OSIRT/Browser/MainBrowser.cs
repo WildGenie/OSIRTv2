@@ -1,20 +1,13 @@
-﻿using ImageMagick;
-using Jacksonsoft;
+﻿using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
 using OSIRT.UI;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,9 +17,9 @@ namespace OSIRT.Browser
     {
 
         public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
-        public event EventHandler Screenshot_Completed = delegate { }; 
+        public event EventHandler ScreenshotCompleted = delegate { }; 
 
-        private int MaxScrollHeight { get { return 15000; } }
+        private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
 
         public ExtendedBrowser()
@@ -40,7 +33,7 @@ namespace OSIRT.Browser
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
-            if (e.Url.AbsolutePath != (sender as WebBrowser).Url.AbsolutePath)
+            if (e.Url.AbsolutePath != ((WebBrowser) sender).Url.AbsolutePath)
                 return;
 
             Logger.Log(new WebsiteLog(Url.AbsoluteUri));
@@ -104,7 +97,6 @@ namespace OSIRT.Browser
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
             int scrollHeight = ScrollHeight();
-            int scrollWidth = ScrollWidth();
             ToggleScrollbars(false);
 
 
@@ -180,13 +172,10 @@ namespace OSIRT.Browser
 
         }
 
-        public string URL
-        {
-            get { return Url.AbsoluteUri; }
-        }
+        public string URL => Url.AbsoluteUri;
 
 
-        private void FullpageScreenshotGDI()
+        private void FullpageScreenshotGdi()
         {
             int width = ScrollWidth();
             int height = ScrollHeight();
@@ -220,7 +209,7 @@ namespace OSIRT.Browser
             }
             else
             {
-                FullpageScreenshotGDI();
+                FullpageScreenshotGdi();
                 FireScreenshotCompleteEvent();
             }
 
@@ -228,7 +217,7 @@ namespace OSIRT.Browser
 
         private void FireScreenshotCompleteEvent()
         {
-            Screenshot_Completed(this, new ScreenshotCompletedEventArgs());
+            ScreenshotCompleted(this, new ScreenshotCompletedEventArgs());
         }
 
         private void ScrollTo(int x, int y)
@@ -284,14 +273,14 @@ namespace OSIRT.Browser
         /// <returns>The document's current Height</returns>
         public int ScrollHeight()
         {
-            int scrollHeight = 0;
             //TODO: If this is a PDF (or non webpage) it throws an exception.
             //The same for Width, I'd imagine.
-            Rectangle bounds = this.Document.Body.ScrollRectangle;
-            IHTMLElement2 body = this.Document.Body.DomElement as IHTMLElement2;
-            IHTMLElement2 doc = (this.Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
+     
+            Rectangle bounds = Document.Body.ScrollRectangle;
+            IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
+            IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
 
-            scrollHeight = new[] { body.scrollHeight, bounds.Height, doc.scrollHeight, this.Document.Body.OffsetRectangle.Height, doc.clientHeight }.Max();
+            int scrollHeight = new[] { body.scrollHeight, bounds.Height, doc.scrollHeight, Document.Body.OffsetRectangle.Height, doc.clientHeight }.Max();
 
             return scrollHeight;
         }
@@ -306,11 +295,11 @@ namespace OSIRT.Browser
         {
             int scrollWidth = 0;
 
-            Rectangle bounds = this.Document.Body.ScrollRectangle;
-            IHTMLElement2 body = this.Document.Body.DomElement as IHTMLElement2;
-            IHTMLElement2 doc = (this.Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
+            Rectangle bounds = Document.Body.ScrollRectangle;
+            IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
+            IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
 
-            scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, this.Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
+            scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
 
             return scrollWidth;
         }
@@ -323,8 +312,8 @@ namespace OSIRT.Browser
         {
             string property = toggle ? "visible" : "hidden";
             string attribute = toggle ? "yes" : "no";
-            this.Document.Body.Style = string.Format("overflow:{0}", property);
-            this.Document.Body.SetAttribute("scroll", attribute);
+            Document.Body.Style = $"overflow:{property}";
+            Document.Body.SetAttribute("scroll", attribute);
         }
 
 

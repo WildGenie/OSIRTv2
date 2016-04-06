@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using OSIRT.Helpers;
+using OSIRT.Database;
 
 
 namespace OSIRT.Loggers
@@ -17,11 +17,13 @@ namespace OSIRT.Loggers
         {
 
             Type logType = log.GetType();
-            Dictionary<string, string> toLog = new Dictionary<string, string>();
-            toLog.Add("print", "true");
-            toLog.Add("date", log.Date);
-            toLog.Add("time", log.Time);
-            toLog.Add("action", log.Action.ToString());
+            Dictionary<string, string> toLog = new Dictionary<string, string>
+            {
+                {"print", "true"},
+                {"date", log.Date},
+                {"time", log.Time},
+                {"action", log.Action.ToString()}
+            };
 
             DatabaseHandler handler = new DatabaseHandler();
 
@@ -29,7 +31,7 @@ namespace OSIRT.Loggers
             {
                 //webpage_actions (date TEXT, time TEXT, action TEXT, url TEXT, file_name TEXT, hash TEXT, note TEXT
                 WebpageActionsLog webpageAction = (WebpageActionsLog)log;
-                toLog.Add("url", webpageAction.URL);
+                toLog.Add("url", webpageAction.Url);
                 toLog.Add("file", webpageAction.File);
                 toLog.Add("hash", webpageAction.Hash);
                 toLog.Add("note", webpageAction.Note);
@@ -39,7 +41,7 @@ namespace OSIRT.Loggers
             {
                 //webpage_log (date TEXT, time TEXT, action TEXT, url TEXT)"
                 WebsiteLog webSiteLog = (WebsiteLog)log;
-                toLog.Add("url", webSiteLog.URL);
+                toLog.Add("url", webSiteLog.Url);
                 handler.Insert("webpage_log", toLog);
 
             }

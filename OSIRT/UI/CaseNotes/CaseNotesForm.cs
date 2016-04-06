@@ -3,16 +3,11 @@ using OSIRT.Helpers;
 using OSIRT.Loggers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Drawing.Printing;
-using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TuesPechkin;
+using OSIRT.Database;
 
 namespace OSIRT.UI.CaseNotes
 {
@@ -54,7 +49,7 @@ namespace OSIRT.UI.CaseNotes
                 foreach (DataColumn column in table.Columns)
                 {
                     string cellValue = row[column].ToString();
-                    string toAppend = column.ColumnName == "note" ? (Environment.NewLine + cellValue) : (cellValue + " ");
+                    string toAppend = column.ColumnName == "note" ? Environment.NewLine + cellValue : cellValue + " ";
                     stringBuilder.Append(toAppend);
                 }
                 stringBuilder.Append(Environment.NewLine + Environment.NewLine);
@@ -96,7 +91,7 @@ namespace OSIRT.UI.CaseNotes
         {
             string path = e.Arguments[0].ToString();
             string html = CaseNotesToHtml.CreateHtml();
-            HTMLtoPDF.SaveHTMLToPDF(html, "Case Notes", path);
+            HtmLtoPdf.SaveHtmltoPdf(html, "Case Notes", path);
             string hash = OsirtHelper.GetFileHash(path);
             Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash));
         }

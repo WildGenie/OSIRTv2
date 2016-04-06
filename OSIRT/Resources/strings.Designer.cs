@@ -61,11 +61,30 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File successfully attached to case..
+        /// </summary>
+        internal static string AttacFile_successfully_attached_to_case_ {
+            get {
+                return ResourceManager.GetString("AttacFile_successfully_attached_to_case_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attachment.
         /// </summary>
         internal static string AttachmentAction {
             get {
                 return ResourceManager.GetString("AttachmentAction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click here to view the image in the system&apos;s default image viewing application..
+        /// </summary>
+        internal static string CannotOpenImagePanel_SetLinkLabelText_Click_here_to_view_the_image_in_the_system_s_default_image_viewing_application_ {
+            get {
+                return ResourceManager.GetString("CannotOpenImagePanel_SetLinkLabelText_Click_here_to_view_the_image_in_the_system_" +
+                        "s_default_image_viewing_application_", resourceCulture);
             }
         }
         
@@ -120,6 +139,15 @@ namespace OSIRT.Resources {
         internal static string CaseReference {
             get {
                 return ResourceManager.GetString("CaseReference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password Help.
+        /// </summary>
+        internal static string CloseCasePanel_uiPasswordHelpLabel_Click_Password_Help {
+            get {
+                return ResourceManager.GetString("CloseCasePanel_uiPasswordHelpLabel_Click_Password_Help", resourceCulture);
             }
         }
         
@@ -187,11 +215,30 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File with this name already exists in the attachment folder..
+        /// </summary>
+        internal static string File_with_this_name_already_exists_in_the_attachment_folder {
+            get {
+                return ResourceManager.GetString("File_with_this_name_already_exists_in_the_attachment_folder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hash Funtion.
         /// </summary>
         internal static string HashFunction {
             get {
                 return ResourceManager.GetString("HashFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In order to safely close a case, you are required to enter the case password. Would you like to enter the case password now?.
+        /// </summary>
+        internal static string In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_ {
+            get {
+                return ResourceManager.GetString("In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Wou" +
+                        "ld_you_like_to_enter_the_case_password_now_", resourceCulture);
             }
         }
         
@@ -246,6 +293,15 @@ namespace OSIRT.Resources {
         internal static string OperationName {
             get {
                 return ResourceManager.GetString("OperationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a note..
+        /// </summary>
+        internal static string Please_enter_a_note {
+            get {
+                return ResourceManager.GetString("Please_enter_a_note", resourceCulture);
             }
         }
         

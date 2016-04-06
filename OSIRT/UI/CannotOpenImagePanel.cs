@@ -7,6 +7,7 @@ using ImageMagick;
 using System.IO;
 using OSIRT.Helpers;
 using System.Diagnostics;
+using OSIRT.Resources;
 
 namespace OSIRT.UI
 {
@@ -51,7 +52,7 @@ namespace OSIRT.UI
 
         private void SetLinkLabelText()
         {
-            uiCantOpenLinkLabel.Text = $"Unable to display this image in full size [Original size: {originalImageSize.Width} x {originalImageSize.Height}]." + Environment.NewLine + "Click here to view the image in the system's default image viewing application.";
+            uiCantOpenLinkLabel.Text = $"Unable to display this image in full size [Original size: {originalImageSize.Width} x {originalImageSize.Height}]." + Environment.NewLine + strings.CannotOpenImagePanel_SetLinkLabelText_Click_here_to_view_the_image_in_the_system_s_default_image_viewing_application_;
         }
 
         private void AddImageBox()

@@ -1,31 +1,21 @@
-﻿using ImageMagick;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading;
+using System.Windows.Forms;
 using Ionic.Zip;
 using Jacksonsoft;
-using mshtml;
-using OSIRT.Browser;
 using OSIRT.Helpers;
-using OSIRT.UI;
+using OSIRT.Resources;
 using OSIRT.UI.CaseClosing;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
-namespace OSIRT
+namespace OSIRT.UI
 {
     public partial class MainForm : Form
     {
 
-        private bool caseOpened = false;
-        private bool caseClosed = false;
+        private bool caseOpened;
+        private bool caseClosed;
 
         //http://stackoverflow.com/questions/2612487/how-to-fix-the-flickering-in-user-controls
         //TODO@ need to look at this for hosted controls
@@ -54,22 +44,21 @@ namespace OSIRT
                 return;
             }
 
-            DialogResult result = MessageBox.Show("In order to safely close a case, you are required to enter the case password. Would you like to enter the case password now?", "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(strings.In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_, "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.Cancel || result == DialogResult.No)
             {
                 e.Cancel = true;
-                return;
             }
             else 
             {
                 e.Cancel = true;
                 caseClosed = true;
-                ClosingOSIRT();
+                ClosingOsirt();
             }
         }
 
-        private void CloseOSIRT(string password)
+        private void CloseOsirt(string password)
         {
             if (caseOpened)
             {
@@ -108,8 +97,8 @@ namespace OSIRT
         private void Form1_Load(object sender, EventArgs e)
         {
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
-            firstLoadPanel.NewCase_Click += firstLoadPanel_NewCase_Click;
-            firstLoadPanel.LoadOldCase_Click += FirstLoadPanel_LoadOldCase_Click;
+            firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
+            firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             Controls.Add(firstLoadPanel);
         }
 
@@ -167,10 +156,10 @@ namespace OSIRT
         private void BrowserPanel_CaseClosing(object sender, EventArgs e)
         {
             caseClosed = true;
-            ClosingOSIRT();
+            ClosingOsirt();
         }
 
-        private void ClosingOSIRT()
+        private void ClosingOsirt()
         {
             Controls.Clear();
             CloseCasePanel closePanel = new CloseCasePanel();
@@ -181,7 +170,7 @@ namespace OSIRT
         private void ClosePanel_PasswordCorrect(object sender, CaseClosingEventArgs e)
         {
             Controls.Clear();
-            CloseOSIRT(e.Password);
+            CloseOsirt(e.Password);
             Close();
         }
     }

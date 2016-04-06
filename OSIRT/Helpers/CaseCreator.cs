@@ -1,14 +1,8 @@
 ﻿using OSIRT.Loggers;
-using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using OSIRT.Database;
 
 namespace OSIRT.Helpers
 {
@@ -24,21 +18,16 @@ namespace OSIRT.Helpers
             CreateCaseContainer();
             CreateCaseDatabase();
             tables.Create();
-            AddCaseDetailsToDB();
+            AddCaseDetailsToDb();
 
             UserSettings settings = UserSettings.Load();
-            settings.hash = caseDetails["hash_function"];
+            settings.Hash = caseDetails["hash_function"];
             settings.Save();
 
             Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "[No Hash - Case Created]"));
         }
 
 
-
-        private void CleanUp()
-        {
-            Directory.Delete(Constants.ContainerLocation, true);
-        }
 
         private void CreateCaseContainer()
         {
@@ -61,7 +50,7 @@ namespace OSIRT.Helpers
             } 
         }
 
-        private void AddCaseDetailsToDB()
+        private void AddCaseDetailsToDb()
         {
             DatabaseHandler handler = new DatabaseHandler();
             handler.Insert("case_details", caseDetails);

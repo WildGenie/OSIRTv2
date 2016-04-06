@@ -189,4 +189,22 @@
   <data name="VideoAction" xml:space="preserve">
     <value>Video</value>
   </data>
+  <data name="CannotOpenImagePanel_SetLinkLabelText_Click_here_to_view_the_image_in_the_system_s_default_image_viewing_application_" xml:space="preserve">
+    <value>Click here to view the image in the system's default image viewing application.</value>
+  </data>
+  <data name="CloseCasePanel_uiPasswordHelpLabel_Click_Password_Help" xml:space="preserve">
+    <value>Password Help</value>
+  </data>
+  <data name="In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_" xml:space="preserve">
+    <value>In order to safely close a case, you are required to enter the case password. Would you like to enter the case password now?</value>
+  </data>
+  <data name="AttacFile_successfully_attached_to_case_" xml:space="preserve">
+    <value>File successfully attached to case.</value>
+  </data>
+  <data name="File_with_this_name_already_exists_in_the_attachment_folder" xml:space="preserve">
+    <value>File with this name already exists in the attachment folder.</value>
+  </data>
+  <data name="Please_enter_a_note" xml:space="preserve">
+    <value>Please enter a note.</value>
+  </data>
 </root>

@@ -4,16 +4,11 @@ using Jacksonsoft;
 using OSIRT.Enums;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
-using OSIRT.Properties;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -47,7 +42,7 @@ namespace OSIRT.UI
             Hash = e.Result.ToString();
             uiHashTextBox.Text = Hash;
             uiHashCalcProgressBar.Visible = false;
-            uiCalculatingHashLabel.Text = $"{UserSettings.Load().hash.ToUpperInvariant()} Hash";
+            uiCalculatingHashLabel.Text = $"{UserSettings.Load().Hash.ToUpperInvariant()} Hash";
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -108,7 +103,7 @@ namespace OSIRT.UI
 
         private void PopulateDetails()
         {
-            uiURLTextBox.Text = details.URL;
+            uiURLTextBox.Text = details.Url;
             uiDateAndTimeTextBox.Text = details.Date + " " + details.Time;
         }
 
@@ -171,8 +166,8 @@ namespace OSIRT.UI
 
         private void PopulateComboboxWithFiles()
         {
-            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Screenshot));
-            string[] files = Directory.GetFiles(path).Select(p => Path.GetFileNameWithoutExtension(p)).ToArray();
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot));
+            string[] files = Directory.GetFiles(path).Select(Path.GetFileNameWithoutExtension).ToArray();
             uiImageNameComboBox.Items.AddRange(files);
         }
 
@@ -182,7 +177,7 @@ namespace OSIRT.UI
 
             if (FileExtension == SaveableFileTypes.Pdf)
             {
-                WaitWindow.Show(SaveAsPDF, "Saving as PDF. Please Wait...", FileName);
+                WaitWindow.Show(SaveAsPdf, "Saving as PDF. Please Wait...", FileName);
             }
             else if (FileExtension == SaveableFileTypes.Png)
             {
@@ -193,16 +188,15 @@ namespace OSIRT.UI
                 SaveAsPNG(FileName);
             }
 
-            Logger.Log(new WebpageActionsLog(details.URL, Actions.Screenshot, Hash, FileName + FileExtension, Note));
+            Logger.Log(new WebpageActionsLog(details.Url, Actions.Screenshot, Hash, FileName + FileExtension, Note));
             DialogResult = DialogResult.OK;
             Close();
 
         }
 
 
-        private void SaveAsPDF(object sender, WaitWindowEventArgs e)
+        private void SaveAsPdf(object sender, WaitWindowEventArgs e)
         {
-            string message = "";
             string fileName = e.Arguments[0].ToString();
             string pathToSave = "";
             bool thrown = false;
@@ -211,7 +205,7 @@ namespace OSIRT.UI
                 using (MagickImage image = new MagickImage(imagePath))
                 {
                     image.Format = MagickFormat.Pdf;
-                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Screenshot), fileName + SaveableFileTypes.Pdf);
+                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), fileName + SaveableFileTypes.Pdf);
                     image.Write(pathToSave);
                     e.Window.Message = "Rehashing PDF";
                     Hash = OsirtHelper.GetFileHash(pathToSave);
@@ -220,7 +214,7 @@ namespace OSIRT.UI
             catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
             {
                 thrown = true;
-                message = "Unable to save as PDF. Reverting to saving as PNG.";
+                var message = "Unable to save as PDF. Reverting to saving as PNG.";
                 Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
                 e.Window.Message = message;
                 Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead

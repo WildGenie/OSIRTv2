@@ -30,23 +30,23 @@
         {
             this.uiFileDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.uiFileDetailsLabel = new System.Windows.Forms.Label();
-            this.uiFilePreviewPictureBox = new System.Windows.Forms.PictureBox();
-            this.uiRowDetailsGroupBox = new System.Windows.Forms.GroupBox();
+            this.FilePreviewImage = new System.Windows.Forms.PictureBox();
+            this.RowDetailsGroupBox = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.uiDateAndTimeTextBox = new System.Windows.Forms.TextBox();
-            this.uiNoteTextBox = new System.Windows.Forms.TextBox();
-            this.uiActionTextBox = new System.Windows.Forms.TextBox();
+            this.DateTimeTextBox = new System.Windows.Forms.TextBox();
+            this.NotesTextBox = new System.Windows.Forms.TextBox();
+            this.ActionTextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.uiHashTextBox = new System.Windows.Forms.TextBox();
-            this.uiURLTextBox = new System.Windows.Forms.TextBox();
+            this.HashTextBox = new System.Windows.Forms.TextBox();
+            this.UrlTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
+            this.FileTextBox = new System.Windows.Forms.TextBox();
             this.uiFileDetailsGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFilePreviewPictureBox)).BeginInit();
-            this.uiRowDetailsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FilePreviewImage)).BeginInit();
+            this.RowDetailsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiFileDetailsGroupBox
@@ -55,7 +55,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiFileDetailsGroupBox.Controls.Add(this.uiFileDetailsLabel);
-            this.uiFileDetailsGroupBox.Controls.Add(this.uiFilePreviewPictureBox);
+            this.uiFileDetailsGroupBox.Controls.Add(this.FilePreviewImage);
             this.uiFileDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.uiFileDetailsGroupBox.Location = new System.Drawing.Point(9, 361);
             this.uiFileDetailsGroupBox.Name = "uiFileDetailsGroupBox";
@@ -75,38 +75,38 @@
             // 
             // uiFilePreviewPictureBox
             // 
-            this.uiFilePreviewPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.FilePreviewImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFilePreviewPictureBox.Location = new System.Drawing.Point(15, 19);
-            this.uiFilePreviewPictureBox.Name = "uiFilePreviewPictureBox";
-            this.uiFilePreviewPictureBox.Size = new System.Drawing.Size(254, 183);
-            this.uiFilePreviewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.uiFilePreviewPictureBox.TabIndex = 0;
-            this.uiFilePreviewPictureBox.TabStop = false;
+            this.FilePreviewImage.Location = new System.Drawing.Point(15, 19);
+            this.FilePreviewImage.Name = "FilePreviewImage";
+            this.FilePreviewImage.Size = new System.Drawing.Size(254, 183);
+            this.FilePreviewImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.FilePreviewImage.TabIndex = 0;
+            this.FilePreviewImage.TabStop = false;
             // 
             // uiRowDetailsGroupBox
             // 
-            this.uiRowDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.RowDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiRowDetailsGroupBox.Controls.Add(this.label1);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label6);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiDateAndTimeTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiNoteTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiActionTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label5);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label2);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiHashTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiURLTextBox);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label4);
-            this.uiRowDetailsGroupBox.Controls.Add(this.label3);
-            this.uiRowDetailsGroupBox.Controls.Add(this.uiFileNameTextBox);
-            this.uiRowDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiRowDetailsGroupBox.Location = new System.Drawing.Point(9, 18);
-            this.uiRowDetailsGroupBox.Name = "uiRowDetailsGroupBox";
-            this.uiRowDetailsGroupBox.Size = new System.Drawing.Size(289, 337);
-            this.uiRowDetailsGroupBox.TabIndex = 16;
-            this.uiRowDetailsGroupBox.TabStop = false;
-            this.uiRowDetailsGroupBox.Text = "Row Details";
+            this.RowDetailsGroupBox.Controls.Add(this.label1);
+            this.RowDetailsGroupBox.Controls.Add(this.label6);
+            this.RowDetailsGroupBox.Controls.Add(this.DateTimeTextBox);
+            this.RowDetailsGroupBox.Controls.Add(this.NotesTextBox);
+            this.RowDetailsGroupBox.Controls.Add(this.ActionTextBox);
+            this.RowDetailsGroupBox.Controls.Add(this.label5);
+            this.RowDetailsGroupBox.Controls.Add(this.label2);
+            this.RowDetailsGroupBox.Controls.Add(this.HashTextBox);
+            this.RowDetailsGroupBox.Controls.Add(this.UrlTextBox);
+            this.RowDetailsGroupBox.Controls.Add(this.label4);
+            this.RowDetailsGroupBox.Controls.Add(this.label3);
+            this.RowDetailsGroupBox.Controls.Add(this.FileTextBox);
+            this.RowDetailsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.RowDetailsGroupBox.Location = new System.Drawing.Point(9, 18);
+            this.RowDetailsGroupBox.Name = "RowDetailsGroupBox";
+            this.RowDetailsGroupBox.Size = new System.Drawing.Size(289, 337);
+            this.RowDetailsGroupBox.TabIndex = 16;
+            this.RowDetailsGroupBox.TabStop = false;
+            this.RowDetailsGroupBox.Text = "Row Details";
             // 
             // label1
             // 
@@ -128,38 +128,38 @@
             // 
             // uiDateAndTimeTextBox
             // 
-            this.uiDateAndTimeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.DateTimeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 34);
-            this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
-            this.uiDateAndTimeTextBox.ReadOnly = true;
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(254, 20);
-            this.uiDateAndTimeTextBox.TabIndex = 0;
-            this.uiDateAndTimeTextBox.Tag = "dateAndTime";
+            this.DateTimeTextBox.Location = new System.Drawing.Point(15, 34);
+            this.DateTimeTextBox.Name = "DateTimeTextBox";
+            this.DateTimeTextBox.ReadOnly = true;
+            this.DateTimeTextBox.Size = new System.Drawing.Size(254, 20);
+            this.DateTimeTextBox.TabIndex = 0;
+            this.DateTimeTextBox.Tag = "dateAndTime";
             // 
             // uiNoteTextBox
             // 
-            this.uiNoteTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.NotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteTextBox.Location = new System.Drawing.Point(15, 229);
-            this.uiNoteTextBox.Multiline = true;
-            this.uiNoteTextBox.Name = "uiNoteTextBox";
-            this.uiNoteTextBox.ReadOnly = true;
-            this.uiNoteTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.uiNoteTextBox.Size = new System.Drawing.Size(254, 98);
-            this.uiNoteTextBox.TabIndex = 10;
-            this.uiNoteTextBox.Tag = "note";
+            this.NotesTextBox.Location = new System.Drawing.Point(15, 229);
+            this.NotesTextBox.Multiline = true;
+            this.NotesTextBox.Name = "NotesTextBox";
+            this.NotesTextBox.ReadOnly = true;
+            this.NotesTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.NotesTextBox.Size = new System.Drawing.Size(254, 98);
+            this.NotesTextBox.TabIndex = 10;
+            this.NotesTextBox.Tag = "note";
             // 
             // uiActionTextBox
             // 
-            this.uiActionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ActionTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiActionTextBox.Location = new System.Drawing.Point(15, 73);
-            this.uiActionTextBox.Name = "uiActionTextBox";
-            this.uiActionTextBox.ReadOnly = true;
-            this.uiActionTextBox.Size = new System.Drawing.Size(254, 20);
-            this.uiActionTextBox.TabIndex = 1;
-            this.uiActionTextBox.Tag = "action";
+            this.ActionTextBox.Location = new System.Drawing.Point(15, 73);
+            this.ActionTextBox.Name = "ActionTextBox";
+            this.ActionTextBox.ReadOnly = true;
+            this.ActionTextBox.Size = new System.Drawing.Size(254, 20);
+            this.ActionTextBox.TabIndex = 1;
+            this.ActionTextBox.Tag = "action";
             // 
             // label5
             // 
@@ -181,25 +181,25 @@
             // 
             // uiHashTextBox
             // 
-            this.uiHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.HashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiHashTextBox.Location = new System.Drawing.Point(15, 190);
-            this.uiHashTextBox.Name = "uiHashTextBox";
-            this.uiHashTextBox.ReadOnly = true;
-            this.uiHashTextBox.Size = new System.Drawing.Size(254, 20);
-            this.uiHashTextBox.TabIndex = 8;
-            this.uiHashTextBox.Tag = "hash";
+            this.HashTextBox.Location = new System.Drawing.Point(15, 190);
+            this.HashTextBox.Name = "HashTextBox";
+            this.HashTextBox.ReadOnly = true;
+            this.HashTextBox.Size = new System.Drawing.Size(254, 20);
+            this.HashTextBox.TabIndex = 8;
+            this.HashTextBox.Tag = "hash";
             // 
             // uiURLTextBox
             // 
-            this.uiURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.UrlTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiURLTextBox.Location = new System.Drawing.Point(15, 112);
-            this.uiURLTextBox.Name = "uiURLTextBox";
-            this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(254, 20);
-            this.uiURLTextBox.TabIndex = 4;
-            this.uiURLTextBox.Tag = "url";
+            this.UrlTextBox.Location = new System.Drawing.Point(15, 112);
+            this.UrlTextBox.Name = "URLTextBox";
+            this.UrlTextBox.ReadOnly = true;
+            this.UrlTextBox.Size = new System.Drawing.Size(254, 20);
+            this.UrlTextBox.TabIndex = 4;
+            this.UrlTextBox.Tag = "url";
             // 
             // label4
             // 
@@ -221,14 +221,14 @@
             // 
             // uiFileNameTextBox
             // 
-            this.uiFileNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.FileTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFileNameTextBox.Location = new System.Drawing.Point(15, 151);
-            this.uiFileNameTextBox.Name = "uiFileNameTextBox";
-            this.uiFileNameTextBox.ReadOnly = true;
-            this.uiFileNameTextBox.Size = new System.Drawing.Size(254, 20);
-            this.uiFileNameTextBox.TabIndex = 6;
-            this.uiFileNameTextBox.Tag = "file";
+            this.FileTextBox.Location = new System.Drawing.Point(15, 151);
+            this.FileTextBox.Name = "FileTextBox";
+            this.FileTextBox.ReadOnly = true;
+            this.FileTextBox.Size = new System.Drawing.Size(254, 20);
+            this.FileTextBox.TabIndex = 6;
+            this.FileTextBox.Tag = "file";
             // 
             // RowDetailsPanel
             // 
@@ -236,15 +236,15 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
             this.Controls.Add(this.uiFileDetailsGroupBox);
-            this.Controls.Add(this.uiRowDetailsGroupBox);
+            this.Controls.Add(this.RowDetailsGroupBox);
             this.Name = "RowDetailsPanel";
             this.Size = new System.Drawing.Size(307, 691);
             this.Load += new System.EventHandler(this.RowDetailsPanel_Load);
             this.uiFileDetailsGroupBox.ResumeLayout(false);
             this.uiFileDetailsGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiFilePreviewPictureBox)).EndInit();
-            this.uiRowDetailsGroupBox.ResumeLayout(false);
-            this.uiRowDetailsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.FilePreviewImage)).EndInit();
+            this.RowDetailsGroupBox.ResumeLayout(false);
+            this.RowDetailsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,19 +253,11 @@
 
         private System.Windows.Forms.GroupBox uiFileDetailsGroupBox;
         private System.Windows.Forms.Label uiFileDetailsLabel;
-        private System.Windows.Forms.PictureBox uiFilePreviewPictureBox;
-        private System.Windows.Forms.GroupBox uiRowDetailsGroupBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox uiDateAndTimeTextBox;
-        private System.Windows.Forms.TextBox uiNoteTextBox;
-        private System.Windows.Forms.TextBox uiActionTextBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox uiHashTextBox;
-        private System.Windows.Forms.TextBox uiURLTextBox;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox uiFileNameTextBox;
     }
 }

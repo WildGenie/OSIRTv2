@@ -1,4 +1,4 @@
-﻿namespace OSIRT
+﻿namespace OSIRT.UI
 {
     partial class MainForm
     {

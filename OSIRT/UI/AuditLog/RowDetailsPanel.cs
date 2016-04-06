@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSIRT.Extensions;
 using OSIRT.Enums;
@@ -27,14 +22,14 @@ namespace OSIRT.UI.AuditLog
             InitializeComponent();
         }
 
-        public TextBox DateTimeTextBox { get { return uiDateAndTimeTextBox; } }
-        public TextBox ActionTextBox { get { return uiActionTextBox; } }
-        public TextBox URLTextBox { get { return uiURLTextBox; } }
-        public TextBox FileTextBox { get { return uiFileNameTextBox; } }
-        public TextBox HashTextBox { get { return uiHashTextBox; } }
-        public TextBox NotesTextBox { get { return uiNoteTextBox; } }
-        public GroupBox RowDetailsGroupBox { get { return uiRowDetailsGroupBox; } }
-        public PictureBox FilePreviewImage { get { return uiFilePreviewPictureBox; } }
+        public TextBox DateTimeTextBox { get; private set; }
+        public TextBox ActionTextBox { get; private set; }
+        public TextBox UrlTextBox { get; private set; }
+        public TextBox FileTextBox { get; private set; }
+        public TextBox HashTextBox { get; private set; }
+        public TextBox NotesTextBox { get; private set; }
+        public GroupBox RowDetailsGroupBox { get; private set; }
+        public PictureBox FilePreviewImage { get; private set; }
 
         private void SetFileLabelText(string text)
         {
@@ -43,7 +38,7 @@ namespace OSIRT.UI.AuditLog
 
         public void ClearFilePreviewer()
         {
-            uiFilePreviewPictureBox.Image = null;
+            FilePreviewImage.Image = null;
             uiFileDetailsLabel.Text = "";
         }
 
@@ -83,7 +78,7 @@ namespace OSIRT.UI.AuditLog
 
         private void DisplayFileIconWithFileSize(string file, Actions caseDirectory)
         {
-            IconManager iconManager = new IconManager();
+           
             BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
             FilePreviewImage.Image = OsirtHelper.GetBitmap(icon);
             string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);

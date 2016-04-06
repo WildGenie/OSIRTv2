@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.IO;
-using OSIRT.Helpers;
 using OSIRT.UI.Attachment;
+using OSIRT.UI.AuditLog;
 using OSIRT.UI.CaseNotes;
 
 namespace OSIRT.UI
@@ -22,13 +21,13 @@ namespace OSIRT.UI
 
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
-            ConfigureUI();
+            ConfigureUi();
             AddNewTab();
         }
 
-        private void ConfigureUI()
+        private void ConfigureUi()
         {
-            this.Dock = DockStyle.Fill;
+            Dock = DockStyle.Fill;
             uiBrowserToolStrip.ImageScalingSize = new Size(32, 32);
             uiURLComboBox.KeyDown += UiURLComboBox_KeyDown;
 
@@ -59,7 +58,7 @@ namespace OSIRT.UI
 
         private void AddNewTab()
         {
-            uiTabbedBrowserControl.NewTab(UserSettings.Load().homepage, uiURLComboBox);
+            uiTabbedBrowserControl.NewTab(UserSettings.Load().Homepage, uiURLComboBox);
         }
 
         private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

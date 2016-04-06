@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OSIRT.Browser
@@ -11,12 +6,11 @@ namespace OSIRT.Browser
     public class BrowserTab : TabPage
     {
         public ExtendedBrowser Browser { get; private set; }
-        public string CurrentURL { get; set; }
+        public string CurrentUrl { get; set; }
 
-        public BrowserTab() : base()
+        public BrowserTab()
         {
-            Browser = new ExtendedBrowser();
-            Browser.Dock = DockStyle.Fill;
+            Browser = new ExtendedBrowser {Dock = DockStyle.Fill};
             Browser.DocumentTitleChanged += Browser_DocumentTitleChanged;
            
 

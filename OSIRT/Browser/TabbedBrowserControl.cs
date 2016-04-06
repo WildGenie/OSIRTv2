@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.IO;
+using OSIRT.Enums;
 using OSIRT.UI;
 using OSIRT.Helpers;
-using OSIRT.Loggers;
-using System.Diagnostics;
-using OSIRT.Properties;
 
 namespace OSIRT.Browser
 {
@@ -29,18 +26,8 @@ namespace OSIRT.Browser
            
         }
 
-        public BrowserTab CurrentTab //active tab
-        {
-            get { return uiBrowserTabControl?.SelectedTab as BrowserTab; }
-        }
-
-        private ExtendedBrowser CurrentBrowser
-        {
-            get
-            {
-                return CurrentTab.Browser;
-            }
-        }
+        public BrowserTab CurrentTab => uiBrowserTabControl?.SelectedTab as BrowserTab;
+        private ExtendedBrowser CurrentBrowser => CurrentTab.Browser;
 
         private BrowserTab CreateTab()
         {
@@ -56,13 +43,13 @@ namespace OSIRT.Browser
         {
             CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
             CurrentBrowser.Navigated += CurrentBrowser_Navigated;
-            CurrentBrowser.Screenshot_Completed += Screenshot_Completed;
+            CurrentBrowser.ScreenshotCompleted += Screenshot_Completed;
         }
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            CurrentTab.CurrentURL = CurrentBrowser.Url.AbsoluteUri;
-            addressBar.Text = CurrentTab.CurrentURL;
+            CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
+            addressBar.Text = CurrentTab.CurrentUrl;
         }
 
         private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
@@ -85,8 +72,7 @@ namespace OSIRT.Browser
 
             uiActionLoggedToolStripStatusLabel.Text = $"{fileName} logged at {12}";
 
-            Timer timer = new Timer();
-            timer.Interval = 3500;
+            Timer timer = new Timer {Interval = 3500};
             timer.Start();
             timer.Tick += (s, evt) => { uiActionLoggedToolStripStatusLabel.Text = ""; timer.Stop(); };
 
@@ -124,7 +110,7 @@ namespace OSIRT.Browser
         {
 
             if(CurrentTab.Browser != null)
-                addressBar.Text = CurrentTab.CurrentURL;
+                addressBar.Text = CurrentTab.CurrentUrl;
         }
 
         private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

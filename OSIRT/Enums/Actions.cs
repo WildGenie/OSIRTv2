@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OSIRT.Enums
+﻿namespace OSIRT.Enums
 {
     //TODO: these can be used as actions, too.
     //We have const strings that store actions in Constants.cs

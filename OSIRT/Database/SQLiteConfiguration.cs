@@ -1,21 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Core.Common;
 using System.Data.SQLite;
 using System.Data.SQLite.EF6;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace OSIRT.Helpers
+namespace OSIRT.Database
 {
-    public class SQLiteConfiguration : DbConfiguration
+    public class SqLiteConfiguration : DbConfiguration
     {
-        public SQLiteConfiguration()
+        public SqLiteConfiguration()
         {
-            SetDefaultConnectionFactory(new SQLiteConnectionFactory());
+            SetDefaultConnectionFactory(new SqLiteConnectionFactory());
             SetProviderFactory("System.Data.SQLite", SQLiteFactory.Instance);
             SetProviderFactory("System.Data.SQLite.EF6", SQLiteProviderFactory.Instance);
             Type t = Type.GetType("System.Data.SQLite.EF6.SQLiteProviderServices, System.Data.SQLite.EF6");

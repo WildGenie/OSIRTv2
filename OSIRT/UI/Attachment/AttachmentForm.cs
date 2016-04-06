@@ -2,18 +2,12 @@
 using OSIRT.Helpers;
 using OSIRT.Loggers;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
+using OSIRT.Resources;
 
 namespace OSIRT.UI.Attachment
 {
@@ -43,13 +37,13 @@ namespace OSIRT.UI.Attachment
                 file = openFile.SafeFileName;
                 hash =  OsirtHelper.GetFileHash(fileWithPath);
 
-                UpdateFileDetailsUI();
+                UpdateFileDetailsUi();
                 DisplayIcon();
 
             }
         }
 
-        private void UpdateFileDetailsUI()
+        private void UpdateFileDetailsUi()
         {
             tooltip.SetToolTip(uiFileDetailsLabel, "Hash: " + hash);
             uiFilePathTextBox.Text = fileWithPath;
@@ -59,14 +53,13 @@ namespace OSIRT.UI.Attachment
 
         private void DisplayIcon()
         {
-            IconManager iconManager = new IconManager();
             BitmapSource icon = IconManager.GetLargeIcon(fileWithPath, false, false);
             uiFileIconPictureBox.Image = OsirtHelper.GetBitmap(icon);
         }
 
-        private string TrimHash(string hash)
+        private string TrimHash(string hashToTrim)
         {
-            return hash.Substring(0, 30) + "...";
+            return hashToTrim.Substring(0, 30) + "...";
         }
 
         private void AttachmentForm_Load(object sender, EventArgs e)
@@ -82,14 +75,14 @@ namespace OSIRT.UI.Attachment
             //TODO: Remove these mesageboxes
             if (string.IsNullOrWhiteSpace(uiNoteSpellBox.Text))
             {
-                MessageBox.Show("Please enter a note.");
+                MessageBox.Show(strings.Please_enter_a_note);
                 return;
             }
             note = uiNoteSpellBox.Text;
             string destination = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Attachment), Path.GetFileName(fileWithPath));
             if(File.Exists(destination))
             {
-                MessageBox.Show("File with this name already exists in the attachment folder.");
+                MessageBox.Show(strings.File_with_this_name_already_exists_in_the_attachment_folder);
                 return;
             }
             uiAttachFileProgressPanel.Visible = true;
@@ -107,7 +100,7 @@ namespace OSIRT.UI.Attachment
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
             Logger.Log(new AttachmentsLog(Actions.Attachment, file, hash, note));
-            uiFileCopyDetailLabel.Text = $"File successfully attached to case.";
+            uiFileCopyDetailLabel.Text = strings.AttacFile_successfully_attached_to_case_;
             uiAddANotherFileLable.Text = $"Click 'Browse...' to select another file{Environment.NewLine}or 'Cancel' to close this window.";
             uiFilePathTextBox.Text = "";
             uiFileDetailsLabel.Text = "";

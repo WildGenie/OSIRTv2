@@ -4,7 +4,6 @@ using System.ComponentModel.Design.Serialization;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
-using System.Windows.Forms.Design;
 
 namespace OSIRT.UI
 {

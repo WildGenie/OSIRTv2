@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OSIRT.Helpers
 {
@@ -45,7 +41,7 @@ namespace OSIRT.Helpers
             var base64Hash = Convert.ToBase64String(hashBytes);
 
             //format hash with extra information
-            return string.Format("$MYHASH$V1${0}${1}", iterations, base64Hash);
+            return $"$MYHASH$V1${iterations}${base64Hash}";
         }
         /// <summary>
         /// Creates a hash from a password with 10000 iterations

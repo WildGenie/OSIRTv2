@@ -1,16 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using OSIRT.Extensions;
-using OSIRT.Helpers;
-using System.Windows.Media.Imaging;
-using OSIRT.Enums;
-using System.Diagnostics;
-using System.IO;
-using OSIRT.UI.AuditLog;
-using System.Drawing;
+using OSIRT.Database;
 
-namespace OSIRT.UI
+namespace OSIRT.UI.AuditLog
 {
     public partial class AuditLogForm : Form
     {
@@ -19,7 +11,7 @@ namespace OSIRT.UI
         private AuditTabControlPanel auditTabControlPanel;
         private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
-        private bool searching = false;
+        private bool searching;
 
         public AuditLogForm()
         {
@@ -79,9 +71,9 @@ namespace OSIRT.UI
 
         }
 
-        private void AttachRowEventHandler(AuditTabControlPanel auditTabControlPanel)
+        private void AttachRowEventHandler(AuditTabControlPanel pAuditTabControlPanel)
         {
-            var tabs = auditTabControlPanel.AuditTabs;
+            var tabs = pAuditTabControlPanel.AuditTabs;
 
             foreach (AuditTab tab in tabs)
             {
