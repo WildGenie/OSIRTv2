@@ -1,27 +1,63 @@
 ﻿using Jacksonsoft;
 using Microsoft.Win32;
 using mshtml;
+using OSIRT.Browser.DownloadManager;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
-using OSIRT.UI;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System;
+using System.Runtime.InteropServices;
 
 namespace OSIRT.Browser
 {
     public class ExtendedBrowser : WebBrowser
     {
 
+        #region Download Manager
+        protected sealed class WebBrowserControlSite : WebBrowserSite, DownloadManager.IServiceProvider
+        {
+            private IDownloadManager manager;
+
+            public WebBrowserControlSite(WebBrowser host) : base(host)
+            {
+                manager = new BrowserDownloadManager();
+            }
+
+            [return: MarshalAs(UnmanagedType.I4)]
+            public int QueryService([In] ref Guid guidService, [In] ref Guid riid, [Out] out IntPtr ppvObject)
+            {
+                Guid SID_SDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
+                Guid IID_IDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
+
+                if ((guidService == IID_IDownloadManager && riid == IID_IDownloadManager))
+                {
+                    ppvObject = Marshal.GetComInterfaceForObject(manager, typeof(IDownloadManager));
+                    return 0; //S_OK
+                }
+                ppvObject = IntPtr.Zero;
+                return unchecked((int)0x80004002); //NON_INTERFACE
+            }
+        }
+
+        protected override WebBrowserSiteBase CreateWebBrowserSiteBase()
+        {
+            return new WebBrowserControlSite(this);
+        }
+
+        #endregion
+
+
         public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
         public event EventHandler ScreenshotCompleted = delegate { }; 
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
-
+    
         public ExtendedBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
@@ -131,7 +167,7 @@ namespace OSIRT.Browser
                     //if it's the last image, we're going to need to crop what we need, as it'll take
                     //a capture of the entire viewport.
 
-                    Navigate("javascript:var s = function() { window.scrollBy(0," + pageLeft.ToString() + "); }; s();");
+                    Navigate("javascript:var s = function() { window.scrollBy(0," + pageLeft + "); }; s();");
 
                     atBottom = true;
                     count++;

@@ -55,6 +55,9 @@ namespace OSIRT.Helpers
         //http://stackoverflow.com/questions/281640/how-do-i-get-a-human-readable-file-size-in-bytes-abbreviation-using-net
         public static string GetHumanReadableFileSize(string fileName)
         {
+            if (fileName == null)
+                throw new ArgumentException("File name must not be null");
+
             string[] sizes = { "B", "KB", "MB", "GB" };
             double len = new FileInfo(fileName).Length;
             int order = 0;
@@ -98,7 +101,7 @@ namespace OSIRT.Helpers
         public static string GetFileHash(string path, string hashWanted)
         {
             HashService hashService = HashServiceFactory.Create(hashWanted);
-            string hash = "";
+            string hash;
             using (FileStream fileStream = File.OpenRead(path))
             {
                 hash = hashService.ToHex(hashService.ComputeHash(fileStream));

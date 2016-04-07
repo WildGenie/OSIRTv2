@@ -105,6 +105,17 @@
     <Compile Include="BaseAuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Browser\DownloadManager\BrowserDownloadManager.cs" />
+    <Compile Include="Browser\DownloadManager\IDownloadManager.cs" />
+    <Compile Include="Browser\DownloadManager\IServiceProvider.cs" />
+    <Compile Include="Browser\WebDownloader\HttpDownloadClient.cs" />
+    <Compile Include="Browser\WebDownloader\HttpDownloadClientStatus.cs" />
+    <Compile Include="Browser\WebDownloader\HttpDownloadCompletedEventArgs.cs" />
+    <Compile Include="Browser\WebDownloader\HttpDownloadProgressChangedEventArgs.cs" />
+    <Compile Include="Browser\WebDownloader\WebDownload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Browser\WebDownloader\WebDownload.designer.cs" />
     <Compile Include="CaseNotesToHtml.cs" />
     <Compile Include="CaseSettings.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
@@ -289,6 +300,7 @@
     <EmbeddedResource Include="Browser\TabbedBrowserControl.resx">
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Browser\WebDownloader\WebDownload.resx" />
     <EmbeddedResource Include="Resources\strings.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>strings.Designer.cs</LastGenOutput>
@@ -434,6 +446,7 @@
     <None Include="Resources\lock.png" />
     <None Include="Resources\lock_sm.png" />
     <None Include="Resources\table.png" />
+    <None Include="Resources\cross.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />

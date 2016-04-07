@@ -121,7 +121,7 @@ namespace OSIRT.UI
             catch (OutOfMemoryException oom)
             {
                 MessageBox.Show(@"Debugging: Known issue. Webpage takes a large chunk of memory, causing the image loading in the previewer to fail. 
-                                The image is still saved/logged/hashed, it just can't be previewed. Further debug info:  " + oom.ToString());
+                                The image is still saved/logged/hashed, it just can't be previewed. Further debug info:  " + oom);
                 //we can carry on, show the previewer so they can name the image and leave a note.
                 //TODO: put a friendly message on the right, and a link to the image currently residing in the cache
                 //so they can see it.
@@ -181,11 +181,11 @@ namespace OSIRT.UI
             }
             else if (FileExtension == SaveableFileTypes.Png)
             {
-                SaveAsPNG(FileName);
+                SaveAsPng(FileName);
             }
             else
             {
-                SaveAsPNG(FileName);
+                SaveAsPng(FileName);
             }
 
             Logger.Log(new WebpageActionsLog(details.Url, Actions.Screenshot, Hash, FileName + FileExtension, Note));
@@ -218,7 +218,7 @@ namespace OSIRT.UI
                 Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
                 e.Window.Message = message;
                 Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
-                SaveAsPNG(fileName);
+                SaveAsPng(fileName);
             }
             finally
             {
@@ -233,11 +233,11 @@ namespace OSIRT.UI
             }
         }
 
-        private void SaveAsPNG(string name)
+        private void SaveAsPng(string name)
         {
             try
             {
-                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Screenshot), name + SaveableFileTypes.Png);
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), name + SaveableFileTypes.Png);
                 string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
                 File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
             }
@@ -259,7 +259,7 @@ namespace OSIRT.UI
             //must check this first, as trying to use Path.Combine with an illegal file char will throw an argument exception
             if(OsirtHelper.IsValidFilename(FileName))
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Screenshot), FileName + FileExtension);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), FileName + FileExtension);
                 if (!File.Exists(path))
                 {
                     valid = true;
@@ -271,7 +271,7 @@ namespace OSIRT.UI
         private void CheckValidFileName()
         {
             //TODO: Invalid entry (red cross) resource was deleted. Re-add.
-            string tootipText = "";
+            string tootipText;
             if (IsValidFileName())
             {
                 uiDoesFileExistPictureBox.Image = Properties.Resources.ok;

@@ -8,6 +8,7 @@ using System.Windows.Media.Imaging;
 using OSIRT.Helpers;
 using System.IO;
 using System.Diagnostics;
+using System.Linq;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -49,13 +50,9 @@ namespace OSIRT.UI.AuditLog
 
             DateTimeTextBox.Text = rowDetails["date"] + " " + rowDetails["time"];
 
-            foreach (TextBox textBox in textBoxes)
+            foreach (TextBox textBox in textBoxes.Where(textBox => textBox != DateTimeTextBox))
             {
-                if (textBox == DateTimeTextBox)
-                    continue;
-
-
-                string value = "";
+                string value;
                 string key = textBox.Tag.ToString();
                 if (rowDetails.TryGetValue(key, out value))
                 {

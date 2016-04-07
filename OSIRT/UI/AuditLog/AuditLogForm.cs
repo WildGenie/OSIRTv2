@@ -93,10 +93,10 @@ namespace OSIRT.UI.AuditLog
             //perhaps wrap this in a wait window... "performing audit log closing functions... etc"
 
             DatabaseHandler db = new DatabaseHandler();
-            db.ExecuteNonQuery($"UPDATE webpage_log SET print = 'true'");
-            db.ExecuteNonQuery($"UPDATE webpage_actions SET print = 'true'");
-            db.ExecuteNonQuery($"UPDATE osirt_actions SET print = 'true'");
-            db.ExecuteNonQuery($"UPDATE attachments SET print = 'true'");
+            db.ExecuteNonQuery("UPDATE webpage_log SET print = 'true'");
+            db.ExecuteNonQuery("UPDATE webpage_actions SET print = 'true'");
+            db.ExecuteNonQuery("UPDATE osirt_actions SET print = 'true'");
+            db.ExecuteNonQuery("UPDATE attachments SET print = 'true'");
             //can't UPDATE multiple tables... look into transactions:
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/

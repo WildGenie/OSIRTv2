@@ -104,7 +104,7 @@ namespace OSIRT.UI
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
         {
-            string filenameWithPath = "";
+            string filenameWithPath;
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "OSR Files|*.osr";

@@ -143,7 +143,7 @@ namespace OSIRT.Database
                     sbCol.Append(") ");
                     sbVal.Append(");");
 
-                    command.CommandText = sbCol.ToString() + sbVal.ToString();
+                    command.CommandText = sbCol + sbVal.ToString();
 
                     foreach (KeyValuePair<string, string> kv in dataToInsert)
                     {

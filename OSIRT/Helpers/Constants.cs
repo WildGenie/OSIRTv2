@@ -72,7 +72,7 @@ namespace OSIRT.Helpers
 
             public static string GetSpecifiedCaseDirectory(Enums.Actions key)
             {
-                string value = "";
+                string value;
                 if (!directories.TryGetValue(key, out value))
                     throw new KeyNotFoundException($"The key, {key}, does not exist.");
 
