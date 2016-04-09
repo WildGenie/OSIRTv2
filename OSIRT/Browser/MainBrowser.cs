@@ -18,38 +18,6 @@ namespace OSIRT.Browser
     public class ExtendedBrowser : WebBrowser
     {
 
-        #region Download Manager
-        protected sealed class WebBrowserControlSite : WebBrowserSite, DownloadManager.IServiceProvider
-        {
-            private IDownloadManager manager;
-
-            public WebBrowserControlSite(WebBrowser host) : base(host)
-            {
-                manager = new BrowserDownloadManager();
-            }
-
-            [return: MarshalAs(UnmanagedType.I4)]
-            public int QueryService([In] ref Guid guidService, [In] ref Guid riid, [Out] out IntPtr ppvObject)
-            {
-                Guid SID_SDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
-                Guid IID_IDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
-
-                if ((guidService == IID_IDownloadManager && riid == IID_IDownloadManager))
-                {
-                    ppvObject = Marshal.GetComInterfaceForObject(manager, typeof(IDownloadManager));
-                    return 0; //S_OK
-                }
-                ppvObject = IntPtr.Zero;
-                return unchecked((int)0x80004002); //NON_INTERFACE
-            }
-        }
-
-        protected override WebBrowserSiteBase CreateWebBrowserSiteBase()
-        {
-            return new WebBrowserControlSite(this);
-        }
-
-        #endregion
 
 
         public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
@@ -237,16 +205,21 @@ namespace OSIRT.Browser
 
         public void GenerateFullpageScreenshot()
         {
-            //TODO: perhaps put this in a try catch
-            //It's potentially volatile. 
-            if (ScrollHeight() > MaxScrollHeight)
+            try
+            {
+                if (ScrollHeight() > MaxScrollHeight)
+                {
+                    FullpageScreenshotByScrolling();
+                }
+                else
+                {
+                    FullpageScreenshotGdi();
+                    FireScreenshotCompleteEvent();
+                }
+            }
+            catch //so many edge cases, let's try scrolling.
             {
                 FullpageScreenshotByScrolling();
-            }
-            else
-            {
-                FullpageScreenshotGdi();
-                FireScreenshotCompleteEvent();
             }
 
         }
@@ -352,6 +325,40 @@ namespace OSIRT.Browser
             Document.Body.SetAttribute("scroll", attribute);
         }
 
+
+
+        #region Download Manager
+        protected sealed class WebBrowserControlSite : WebBrowserSite, DownloadManager.IServiceProvider
+        {
+            private IDownloadManager manager;
+
+            public WebBrowserControlSite(WebBrowser host) : base(host)
+            {
+                manager = new BrowserDownloadManager();
+            }
+
+            [return: MarshalAs(UnmanagedType.I4)]
+            public int QueryService([In] ref Guid guidService, [In] ref Guid riid, [Out] out IntPtr ppvObject)
+            {
+                Guid SID_SDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
+                Guid IID_IDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
+
+                if ((guidService == IID_IDownloadManager && riid == IID_IDownloadManager))
+                {
+                    ppvObject = Marshal.GetComInterfaceForObject(manager, typeof(IDownloadManager));
+                    return 0; //S_OK
+                }
+                ppvObject = IntPtr.Zero;
+                return unchecked((int)0x80004002); //NON_INTERFACE
+            }
+        }
+
+        protected override WebBrowserSiteBase CreateWebBrowserSiteBase()
+        {
+            return new WebBrowserControlSite(this);
+        }
+
+        #endregion
 
     }
 }

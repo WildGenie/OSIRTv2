@@ -13,6 +13,7 @@ namespace OSIRT.UI
 
         public event EventHandler CaseClosing;
 
+
         public BrowserPanel()
         {
             InitializeComponent();
@@ -24,7 +25,12 @@ namespace OSIRT.UI
         {
             ConfigureUi();
             AddNewTab();
-            //uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
+            uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
+        }
+
+        private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
+        {
+            uiScreenshotButton.Enabled = true;
         }
 
         private void ConfigureUi()
@@ -54,7 +60,7 @@ namespace OSIRT.UI
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
             uiScreenshotButton.Enabled = false;
-            uiTabbedBrowserControl.GetFullPageScreenshot();
+            uiTabbedBrowserControl.FullPageScreenshot();
             //uiScreenshotButton.Enabled = true;
         }
 

@@ -29,6 +29,7 @@ namespace OSIRT.UI
         public string FileExtension { get { return uiFileExtensionComboBox.Text; } }
         public string Note { get { return uiNoteSpellBox.Text; } }
         public string Hash { get; private set; }
+        public string DateAndTime { get { return uiDateAndTimeTextBox.Text; } }
 
         public ImagePreviewerForm()
         {

@@ -15,7 +15,8 @@ namespace OSIRT.Browser
     {
 
         private ToolStripComboBox addressBar;
-        private ExtendedBrowser CurrentBrowser => CurrentTab.Browser;
+        private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
+        public event EventHandler ScreenshotComplete;
 
         public BrowserTab CurrentTab
         {
@@ -70,32 +71,32 @@ namespace OSIRT.Browser
 
         private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
         {
-    
+            ScreenshotComplete?.Invoke(this, new EventArgs());
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
             DialogResult dialogRes;
-            string fileName = "";
+            string fileName;
+            string dateAndtime;
             using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details))
             {
                 dialogRes = previewForm.ShowDialog();
                 fileName = previewForm.FileName + previewForm.FileExtension;
+                dateAndtime = previewForm.DateAndTime;
             }
 
             //always want to delete items in cache, regardless of DialogResult.
             ImageDiskCache.RemoveItemsInCache();
-
+         
             if (dialogRes != DialogResult.OK)
                 return;
 
-            //TODO: get time. Get it from fired event?
-            DisplaySavedLabel(fileName, "12:00");
-
+            DisplaySavedLabel(fileName, dateAndtime);
         }
 
         private void DisplaySavedLabel(string fileName, string dateTime)
         {
             uiActionLoggedToolStripStatusLabel.Text = $"{fileName} logged at {dateTime}";
 
-            Timer timer = new Timer { Interval = 3500 };
+            Timer timer = new Timer { Interval = 5000 };
             timer.Start();
             timer.Tick += (s, e) => { uiActionLoggedToolStripStatusLabel.Text = ""; timer.Stop(); };
         }
@@ -105,11 +106,8 @@ namespace OSIRT.Browser
             uiStatusLabel.Text = CurrentBrowser.StatusText;
         }
 
-        public void GetFullPageScreenshot()
+        public void FullPageScreenshot()
         {
-            if (CurrentTab == null)
-                throw new NullReferenceException("No tabs to screenshot");
-
             CurrentBrowser.GenerateFullpageScreenshot(); 
         }
 

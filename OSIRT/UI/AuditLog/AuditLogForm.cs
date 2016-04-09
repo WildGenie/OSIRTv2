@@ -11,7 +11,7 @@ namespace OSIRT.UI.AuditLog
         private AuditTabControlPanel auditTabControlPanel;
         private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
-        private bool searching;
+        private bool isSearchPanel;
 
         public AuditLogForm()
         {
@@ -40,8 +40,8 @@ namespace OSIRT.UI.AuditLog
 
         private void uiSearchToolStripButton_Click(object sender, EventArgs e)
         {
-            SwapPanels(searching);
-            searching = !searching;
+            SwapPanels(isSearchPanel);
+            isSearchPanel = !isSearchPanel;
         }
 
         private void SwapPanels(bool on)
@@ -102,6 +102,9 @@ namespace OSIRT.UI.AuditLog
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
         }
 
-    
+        private void uiExportReportPDFToolStripButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditLogForm));
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.uiAuditOptionsToolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.uiSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.uiExportReportPDFToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.uiExportAsOSRFileToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -71,24 +71,25 @@
             this.uiExportAsOSRFileToolStripButton});
             this.uiAuditOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiAuditOptionsToolStrip.Name = "uiAuditOptionsToolStrip";
-            this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 25);
+            this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 39);
             this.uiAuditOptionsToolStrip.TabIndex = 14;
             this.uiAuditOptionsToolStrip.Text = "toolStrip1";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // uiSearchToolStripButton
             // 
             this.uiSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiSearchToolStripButton.Enabled = false;
             this.uiSearchToolStripButton.Image = global::OSIRT.Properties.Resources.search;
             this.uiSearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiSearchToolStripButton.Name = "uiSearchToolStripButton";
-            this.uiSearchToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiSearchToolStripButton.Size = new System.Drawing.Size(36, 36);
             this.uiSearchToolStripButton.Text = "Search";
             this.uiSearchToolStripButton.Click += new System.EventHandler(this.uiSearchToolStripButton_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // uiExportReportPDFToolStripButton
             // 
@@ -97,8 +98,9 @@
             this.uiExportReportPDFToolStripButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
             this.uiExportReportPDFToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiExportReportPDFToolStripButton.Name = "uiExportReportPDFToolStripButton";
-            this.uiExportReportPDFToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiExportReportPDFToolStripButton.Size = new System.Drawing.Size(36, 36);
             this.uiExportReportPDFToolStripButton.Text = "Export report as PDF";
+            this.uiExportReportPDFToolStripButton.Click += new System.EventHandler(this.uiExportReportPDFToolStripButton_Click);
             // 
             // toolStripButton1
             // 
@@ -107,7 +109,7 @@
             this.toolStripButton1.Image = global::OSIRT.Properties.Resources.html;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(36, 36);
             this.toolStripButton1.Text = "Export Report as HTML";
             // 
             // uiExportAsOSRFileToolStripButton
@@ -117,7 +119,7 @@
             this.uiExportAsOSRFileToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("uiExportAsOSRFileToolStripButton.Image")));
             this.uiExportAsOSRFileToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiExportAsOSRFileToolStripButton.Name = "uiExportAsOSRFileToolStripButton";
-            this.uiExportAsOSRFileToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiExportAsOSRFileToolStripButton.Size = new System.Drawing.Size(36, 36);
             this.uiExportAsOSRFileToolStripButton.Text = "Export as OSR case file";
             // 
             // AuditLogForm
