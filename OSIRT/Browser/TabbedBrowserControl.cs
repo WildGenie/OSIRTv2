@@ -52,7 +52,7 @@ namespace OSIRT.Browser
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-            Navigate(UserSettings.Load().Homepage);
+            Navigate(/*UserSettings.Load().Homepage*/ "http://google.co.uk");
         }
 
         private void AddBrowserEvents()
@@ -127,6 +127,11 @@ namespace OSIRT.Browser
         }
 
         private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void uiBrowserTabControl_Click(object sender, EventArgs e)
         {
 
         }

@@ -121,5 +121,10 @@ namespace OSIRT.UI
         {
             CaseClosing?.Invoke(this, e);
         }
+
+        private void uiBrowserPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

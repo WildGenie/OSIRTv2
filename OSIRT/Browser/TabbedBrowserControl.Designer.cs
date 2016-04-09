@@ -80,13 +80,16 @@
             // uiBrowserTabControl
             // 
             this.uiBrowserTabControl.AllowDrop = true;
-            this.uiBrowserTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiBrowserTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
             this.uiBrowserTabControl.Name = "uiBrowserTabControl";
             this.uiBrowserTabControl.NewTabButton = true;
-            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 593);
+            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 596);
             this.uiBrowserTabControl.TabIndex = 1;
             this.uiBrowserTabControl.Text = "chromeTabControl1";
+            this.uiBrowserTabControl.Click += new System.EventHandler(this.uiBrowserTabControl_Click);
             // 
             // TabbedBrowserControl
             // 

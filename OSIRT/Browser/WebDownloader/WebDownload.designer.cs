@@ -160,7 +160,6 @@
             this.Controls.Add(this.prgDownload);
             this.Name = "WebDownload";
             this.Text = "Downloader";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

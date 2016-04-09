@@ -83,10 +83,7 @@ namespace WebDownloader
             {
                 string filename = string.Empty;
                 client.CheckUrl(out filename);
-                Debug.WriteLine("FILENAME: " + filename);
-
                 string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), client.Url.Segments.Last());
-                Debug.WriteLine("FILENAME: " + path);
 
                 if (string.IsNullOrEmpty(filename))
                 {
@@ -183,7 +180,7 @@ namespace WebDownloader
         /// </summary>
         void StatusChanged(object sender, EventArgs e)
         {
-            this.Invoke(new UIStatusChangedHandler(StatusChangedHanlder));
+            Invoke(new UIStatusChangedHandler(StatusChangedHanlder));
         }
 
         void StatusChangedHanlder()
@@ -278,9 +275,6 @@ namespace WebDownloader
 
             Invoke(new UIDownloadCompletedHanlder(DownloadCompletedHanlder), e);
             Logger.Log(new WebpageActionsLog(tbURL.Text, Actions.Download, OsirtHelper.GetFileHash(DownloadPath), Path.GetFileName(tbURL.Text), "Test note"));
-
-            //var pe = new PageEvent(tbURL.Text, facade.GetDate(), facade.GetTime(), Actions.DOWNLOAD, facade.getMD5Hash(DownloadPath), DirConstants.DOWNLOAD + Path.GetFileName(tbURL.Text), Actions.BLANK, Actions.BLANK);
-            //facade.WritePageEvent(pe);
         }
 
         void DownloadCompletedHanlder(HttpDownloadCompletedEventArgs e)
@@ -337,7 +331,9 @@ namespace WebDownloader
             isPaused = !isPaused;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+
+
+        private void WebDownload_Load(object sender, EventArgs e)
         {
 
         }

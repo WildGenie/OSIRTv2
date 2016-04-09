@@ -82,16 +82,23 @@ namespace OSIRT.UI
             }
             e.Window.Message = "Performing clean up operations... Please Wait";
 
-
-            try
+            while(true)
             {
-                OsirtHelper.DeleteDirectory(Path.Combine(Constants.CasePath, Constants.CaseContainerName));
+                int attempts = 0;
+                try
+                {
+                    OsirtHelper.DeleteDirectory(Path.Combine(Constants.CasePath, Constants.CaseContainerName));
+                    if(!Directory.Exists(Path.Combine(Constants.CasePath, Constants.CaseContainerName)) || attempts == 5)
+                    {
+                        break;
+                    }
+                }
+                catch
+                {
+                    attempts++;
+                }
             }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex.ToString());
-            }
-
+            
         }
 
 
