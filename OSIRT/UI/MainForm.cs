@@ -81,10 +81,11 @@ namespace OSIRT.UI
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
             e.Window.Message = "Performing clean up operations... Please Wait";
+
+
             try
             {
-                GC.Collect();
-                Directory.Delete(Path.Combine(Constants.CasePath, Constants.CaseContainerName), true);
+                OsirtHelper.DeleteDirectory(Path.Combine(Constants.CasePath, Constants.CaseContainerName));
             }
             catch (Exception ex)
             {

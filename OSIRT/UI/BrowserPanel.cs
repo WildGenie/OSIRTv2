@@ -16,6 +16,7 @@ namespace OSIRT.UI
         public BrowserPanel()
         {
             InitializeComponent();
+            uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
         }
 
 
@@ -23,6 +24,7 @@ namespace OSIRT.UI
         {
             ConfigureUi();
             AddNewTab();
+            //uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
         }
 
         private void ConfigureUi()
@@ -45,20 +47,20 @@ namespace OSIRT.UI
 
         private void uiAddTabButton_Click(object sender, EventArgs e)
         {
-            AddNewTab();
+            //AddNewTab();
         }
 
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
-            //uiScreenshotButton.Enabled = false;
+            uiScreenshotButton.Enabled = false;
             uiTabbedBrowserControl.GetFullPageScreenshot();
             //uiScreenshotButton.Enabled = true;
         }
 
         private void AddNewTab()
         {
-            uiTabbedBrowserControl.NewTab(UserSettings.Load().Homepage, uiURLComboBox);
+            //uiTabbedBrowserControl.NewTab(UserSettings.Load().Homepage, uiURLComboBox);
         }
 
         private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

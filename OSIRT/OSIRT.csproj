@@ -132,7 +132,7 @@
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
     <Compile Include="Browser\BrowserTab.cs">
-      <SubType>Component</SubType>
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Browser\MainBrowser.cs">
       <SubType>Component</SubType>
@@ -233,6 +233,9 @@
     <Compile Include="UI\CaseClosing\CloseCasePanel.Designer.cs">
       <DependentUpon>CloseCasePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ChromeTabControl\ChromeTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -297,6 +300,9 @@
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
     <Compile Include="UserSettings.cs" />
+    <EmbeddedResource Include="Browser\BrowserTab.resx">
+      <DependentUpon>BrowserTab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Browser\TabbedBrowserControl.resx">
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </EmbeddedResource>

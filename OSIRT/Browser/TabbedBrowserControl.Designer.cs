@@ -28,25 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uiBrowserTabControl = new System.Windows.Forms.TabControl();
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiBrowserStatusStrip = new System.Windows.Forms.StatusStrip();
             this.uiStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiActionLoggedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.uiBrowserTabControl = new DotNetChromeTabs.ChromeTabControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserStatusStrip.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // uiBrowserTabControl
-            // 
-            this.uiBrowserTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
-            this.uiBrowserTabControl.Name = "uiBrowserTabControl";
-            this.uiBrowserTabControl.SelectedIndex = 0;
-            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 593);
-            this.uiBrowserTabControl.TabIndex = 0;
-            this.uiBrowserTabControl.SelectedIndexChanged += new System.EventHandler(this.uiBrowserTabControl_SelectedIndexChanged);
             // 
             // uiBrowserPanel
             // 
@@ -79,13 +69,24 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(754, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(785, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // uiActionLoggedToolStripStatusLabel
             // 
             this.uiActionLoggedToolStripStatusLabel.Name = "uiActionLoggedToolStripStatusLabel";
             this.uiActionLoggedToolStripStatusLabel.Size = new System.Drawing.Size(0, 17);
+            // 
+            // uiBrowserTabControl
+            // 
+            this.uiBrowserTabControl.AllowDrop = true;
+            this.uiBrowserTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
+            this.uiBrowserTabControl.Name = "uiBrowserTabControl";
+            this.uiBrowserTabControl.NewTabButton = true;
+            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 593);
+            this.uiBrowserTabControl.TabIndex = 1;
+            this.uiBrowserTabControl.Text = "chromeTabControl1";
             // 
             // TabbedBrowserControl
             // 
@@ -103,12 +104,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl uiBrowserTabControl;
         private System.Windows.Forms.Panel uiBrowserPanel;
         private System.Windows.Forms.StatusStrip uiBrowserStatusStrip;
         private System.Windows.Forms.ToolStripStatusLabel uiStatusLabel;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel uiActionLoggedToolStripStatusLabel;
+        private DotNetChromeTabs.ChromeTabControl uiBrowserTabControl;
     }
 }
