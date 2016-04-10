@@ -236,6 +236,7 @@
     <Compile Include="UI\ChromeTabControl\ChromeTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\ChromeTabControl\TabChangedEventArgs.cs" />
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

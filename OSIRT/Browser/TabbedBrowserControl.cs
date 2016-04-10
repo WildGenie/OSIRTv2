@@ -39,7 +39,28 @@ namespace OSIRT.Browser
         {
             InitializeComponent();
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
+            uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             CreateTab();
+        }
+
+        private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)
+        {
+            //TODO: had a play in ChromeTabControl.
+            //Not had time to fully inspect ramifications of this event.
+            //It's not quite 100%, so needs work.
+            addressBar.Text = CurrentTab?.CurrentUrl;
+        }
+
+        private void uiBrowserTabControl_TabIndexChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("2");
+        }
+
+        private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
+        {
+            Debug.WriteLine("HEYO");
+            if (CurrentTab.Browser != null)
+                addressBar.Text = CurrentTab.CurrentUrl;
         }
 
         void control_NewTabClicked(object sender, EventArgs e)
@@ -65,6 +86,7 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
+            
             CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentUrl;
         }
@@ -119,9 +141,9 @@ namespace OSIRT.Browser
 
         private void uiBrowserTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-            if(CurrentTab.Browser != null)
-                addressBar.Text = CurrentTab.CurrentUrl;
+            //Debug.WriteLine("HEYO");
+            //if(CurrentTab.Browser != null)
+            //    addressBar.Text = CurrentTab.CurrentUrl;
         }
 
         private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

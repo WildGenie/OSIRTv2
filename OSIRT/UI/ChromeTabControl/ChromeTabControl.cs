@@ -24,6 +24,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using OSIRT.UI.ChromeTabControl;
 
 namespace DotNetChromeTabs
 {
@@ -116,6 +117,11 @@ namespace DotNetChromeTabs
         /// </summary>
         public event NewTabClickedEventHandler NewTabClicked;
         public delegate void NewTabClickedEventHandler(object sender, EventArgs e);
+
+        //TODO: Added.
+        public event TabSwitched SelectedIndexChange;
+        public delegate void TabSwitched(object sender, TabChangedEventArgs e);
+
 
         #endregion
 
@@ -957,6 +963,10 @@ namespace DotNetChromeTabs
             if (e.Button != System.Windows.Forms.MouseButtons.Left)
                 return;
 
+
+            //TODO: Added
+            SelectedIndexChange?.Invoke(this, new TabChangedEventArgs(TabPages.SelectedIndex));
+
             // Check to see if we clicked the new tab button
             if (_hoverTabIndex == _tabPages.Count && NewTabButton)
                 if (NewTabClicked != null)
@@ -969,6 +979,8 @@ namespace DotNetChromeTabs
                     if (HoverTabCloseDownIndex < _tabPages.Count - 1)
                         _dontUpdateTabWidth = true;
                     TabPages.RemoveAt(HoverTabCloseDownIndex);
+                    //TODO: Added below
+                    SelectedIndexChange?.Invoke(this, new TabChangedEventArgs(TabPages.SelectedIndex));
                 }
             }
             if (HoverTrayDownIndex > -1 && HoverTrayIndex == HoverTrayDownIndex && HoverTrayIndex < _trayItems.Count)

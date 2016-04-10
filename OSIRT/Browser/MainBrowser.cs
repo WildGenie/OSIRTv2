@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
 using System.Runtime.InteropServices;
+using System.ComponentModel;
 
 namespace OSIRT.Browser
 {
@@ -22,9 +23,13 @@ namespace OSIRT.Browser
 
         public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
         public event EventHandler ScreenshotCompleted = delegate { }; 
-
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
+        private ContextMenuStrip contextMenu;
+        private HtmlElement element;
+        private bool firstLoad = true;
+
+
     
         public ExtendedBrowser()
         {
@@ -32,11 +37,28 @@ namespace OSIRT.Browser
             NativeMethods.DisableClickSounds();
             ScriptErrorsSuppressed = true;
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
-           
+            InitialiseConextMenu();
         }
+
+        private void InitialiseConextMenu()
+        {
+            contextMenu = new ContextMenuStrip();
+
+            contextMenu.Items.Add("Save Image As...", null, SaveImageAs_Click);
+            contextMenu.Items.Add("Save Page Source", null, SaveSource_Click);
+            contextMenu.Items.Add("View Page Source", null, ViewSource_Click);
+
+            contextMenu.Items[0].Enabled = false;
+            contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
+            ContextMenuStrip = contextMenu;
+        }
+
+     
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
+            if (firstLoad) AttachMouseEventHandlers();
+
             if (e.Url.AbsolutePath != ((WebBrowser) sender).Url.AbsolutePath)
                 return;
 
@@ -45,6 +67,13 @@ namespace OSIRT.Browser
 
             //How to scroll a webpage using the mouse. Perhaps a useful start for a selection capture.
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/2c7b0977-7491-4dee-aa5e-c6eceb3b9f52/scroll-up-and-down-by-clicking-and-dragging?forum=csharpgeneral
+        }
+
+        private void AttachMouseEventHandlers()
+        {
+            Document.MouseDown += new HtmlElementEventHandler(Document_MouseDown);
+            Document.MouseMove += new HtmlElementEventHandler(Document_MouseMove);
+            firstLoad = false;
         }
 
 
@@ -73,8 +102,6 @@ namespace OSIRT.Browser
                 }
                 return new Bitmap(image);
             }
-
-
         }
 
         public bool Enable
@@ -356,6 +383,69 @@ namespace OSIRT.Browser
         protected override WebBrowserSiteBase CreateWebBrowserSiteBase()
         {
             return new WebBrowserControlSite(this);
+        }
+
+        #endregion
+
+        #region context menu events
+
+        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
+        {
+            if (element == null)
+                return;
+
+            if (element.TagName == "IMG")
+                contextMenu.Items[0].Enabled = true;
+            else
+                contextMenu.Items[0].Enabled = false;
+        }
+
+
+        private void SaveImageAs_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not yet implemented");
+        }
+
+        private void SaveSource_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not yet implemented");
+        }
+
+        private void ViewSource_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Not yet implemented");
+        }
+
+
+
+        #endregion
+
+        #region mouse events
+        private void Document_MouseDown(object sender, HtmlElementEventArgs e)
+        {
+            try
+            {
+                if (e.MouseButtonsPressed == MouseButtons.Right && element.TagName == "INPUT")
+                {
+                    IsWebBrowserContextMenuEnabled = true;
+                }
+                else
+                {
+                    IsWebBrowserContextMenuEnabled = false;
+                }
+
+
+                element = Document.GetElementFromPoint(PointToClient(MousePosition));
+            }
+            catch
+            {
+                //just swallow this exception, too many edge cases.
+            }
+        }
+
+        private void Document_MouseMove(object sender, HtmlElementEventArgs e)
+        {
+            element = Document.GetElementFromPoint(PointToClient(MousePosition));
         }
 
         #endregion

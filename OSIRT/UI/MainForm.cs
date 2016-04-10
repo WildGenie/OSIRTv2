@@ -82,23 +82,23 @@ namespace OSIRT.UI
             }
             e.Window.Message = "Performing clean up operations... Please Wait";
 
+            //TODO: A handle is being left on the directory... What to do?
             while(true)
             {
                 int attempts = 0;
                 try
                 {
-                    OsirtHelper.DeleteDirectory(Path.Combine(Constants.CasePath, Constants.CaseContainerName));
-                    if(!Directory.Exists(Path.Combine(Constants.CasePath, Constants.CaseContainerName)) || attempts == 5)
-                    {
-                        break;
-                    }
+                    string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
+                    OsirtHelper.DeleteDirectory(directory);
+                    if (!Directory.Exists(directory) || attempts == 5) break;
                 }
                 catch
                 {
                     attempts++;
                 }
+      
             }
-            
+            Environment.Exit(0);
         }
 
 
