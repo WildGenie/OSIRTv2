@@ -77,8 +77,8 @@ namespace OSIRT.UI
 
         private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //Don't want this to execute when the column header is clicked (OOB)
-            if (e.RowIndex < 0)
+            //Don't want this to execute when the column header/row is clicked (OOB)
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
                 return;
 
             if (Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
