@@ -26,9 +26,25 @@ namespace OSIRT
             * Couple of answers here (no code, but some advice): http://stackoverflow.com/questions/2481047/executing-code-on-application-crash
             **/
 
+
+            //All you now need is a static class FatalExceptionHandler that includes your top-level exception handling in its Handle method.
+
+            //And really, any application developer knows there are really just two things to do there:
+
+            //Show/log the exception like you see fit
+            //Make sure you exit/kill the application process
+            //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
+
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new MainForm());
+        
+
+          
         }
+
+       
+       
+
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Net;
 
 namespace OSIRT.Browser
 {
@@ -20,9 +21,10 @@ namespace OSIRT.Browser
     {
 
 
+        public event EventHandler ScreenshotCompleted = delegate { };
+        public event EventHandler DownloadingProgress = delegate { };
+        public event EventHandler DownloadComplete = delegate { };
 
-        public delegate void EventHandler(object sender, ScreenshotCompletedEventArgs args);
-        public event EventHandler ScreenshotCompleted = delegate { }; 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private ContextMenuStrip contextMenu;
@@ -38,17 +40,39 @@ namespace OSIRT.Browser
             ScriptErrorsSuppressed = true;
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
             InitialiseConextMenu();
+            DisableNewWindowsOpening();
+        }
+
+        public void DisableNewWindowsOpening()
+        {
+
+            var activex = (SHDocVw.WebBrowser_V1)ActiveXInstance;
+            activex.NewWindow += delegate (string URL, int Flags, string TargetFrameName, ref object PostData, string Headers, ref bool Processed)
+            {
+                Processed = true;
+                object flags = Flags;
+                object targetFrame = Type.Missing;
+                object postData = PostData != null ? PostData : Type.Missing;
+                object headers = !string.IsNullOrEmpty(Headers) ? Headers.ToString() : Type.Missing;
+                activex.Navigate(URL, ref flags, ref targetFrame, ref postData, ref headers);
+            };
+
+
         }
 
         private void InitialiseConextMenu()
         {
             contextMenu = new ContextMenuStrip();
 
-            contextMenu.Items.Add("Save Image As...", null, SaveImageAs_Click);
-            contextMenu.Items.Add("Save Page Source", null, SaveSource_Click);
-            contextMenu.Items.Add("View Page Source", null, ViewSource_Click);
-
+            
+            contextMenu.Items.Add("Save image as...", null, SaveImageAs_Click);
+            contextMenu.Items.Add("Save page source", null, SaveSource_Click);
+            contextMenu.Items.Add("View page source", null, ViewSource_Click);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Open link in new tab.", null, OpenNewTab_Click);
+           
             contextMenu.Items[0].Enabled = false;
+            contextMenu.Items[4].Enabled = false;
             contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
             ContextMenuStrip = contextMenu;
         }
@@ -394,17 +418,25 @@ namespace OSIRT.Browser
             if (element == null)
                 return;
 
-            if (element.TagName == "IMG")
-                contextMenu.Items[0].Enabled = true;
-            else
-                contextMenu.Items[0].Enabled = false;
+            contextMenu.Items[0].Enabled = (element.TagName == "IMG");
+            contextMenu.Items[4].Enabled = (element.TagName == "A");
+
+
+        }
+
+        private void  OpenNewTab_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("HELLO");
         }
 
 
         private void SaveImageAs_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            string path = element.GetAttribute("src");
+            DownloadFile(path);
         }
+
+      
 
         private void SaveSource_Click(object sender, EventArgs e)
         {
@@ -417,6 +449,25 @@ namespace OSIRT.Browser
         }
 
 
+        private void DownloadFile(string path)
+        {
+            WebClient webClient = new WebClient();
+            webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
+            webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
+
+            webClient.DownloadFileAsync(new Uri(path), Constants.TempImgFile);
+        }
+
+        private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
+        {
+            DownloadComplete?.Invoke(this, e);
+        }
+
+        private void webClient_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            DownloadingProgress?.Invoke(this, e);
+        }
+
 
         #endregion
 
@@ -425,6 +476,8 @@ namespace OSIRT.Browser
         {
             try
             {
+                element = Document.GetElementFromPoint(PointToClient(MousePosition));
+
                 if (e.MouseButtonsPressed == MouseButtons.Right && element.TagName == "INPUT")
                 {
                     IsWebBrowserContextMenuEnabled = true;
@@ -434,8 +487,19 @@ namespace OSIRT.Browser
                     IsWebBrowserContextMenuEnabled = false;
                 }
 
+                if(e.MouseButtonsPressed == MouseButtons.Middle)
+                {
+                    //TODO: Just testing this
+                    if(element.TagName == "A")
+                    {
+                        string path = element.GetAttribute("href");
+                        MessageBox.Show(path);
+                        e.BubbleEvent = false;
+                    }
+                }
 
-                element = Document.GetElementFromPoint(PointToClient(MousePosition));
+
+              
             }
             catch
             {

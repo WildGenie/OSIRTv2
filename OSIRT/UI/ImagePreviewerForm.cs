@@ -24,6 +24,7 @@ namespace OSIRT.UI
         private BackgroundWorker hashCalcBackgroundWorker;
         private CannotOpenImagePanel cantOpenPanel;
         private ToolTip tooltip;
+        private Actions action;
 
         public string FileName { get { return uiImageNameComboBox.Text; } }
         public string FileExtension { get { return uiFileExtensionComboBox.Text; } }
@@ -52,9 +53,10 @@ namespace OSIRT.UI
             e.Result = OsirtHelper.GetFileHash(imagePath);
         }
 
-        public ImagePreviewerForm(ScreenshotDetails details) : this()
+        public ImagePreviewerForm(ScreenshotDetails details, Actions action) : this()
         {
             imagePath = Constants.TempImgFile;
+            this.action = action;
             this.details = details;
             tooltip = new ToolTip();
             uiNoteSpellBox.KeyUp += UiNoteSpellBox_KeyUp;
@@ -167,7 +169,7 @@ namespace OSIRT.UI
 
         private void PopulateComboboxWithFiles()
         {
-            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot));
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action));
             string[] files = Directory.GetFiles(path).Select(Path.GetFileNameWithoutExtension).ToArray();
             uiImageNameComboBox.Items.AddRange(files);
         }
@@ -189,7 +191,7 @@ namespace OSIRT.UI
                 SaveAsPng(FileName);
             }
 
-            Logger.Log(new WebpageActionsLog(details.Url, Actions.Screenshot, Hash, FileName + FileExtension, Note));
+            Logger.Log(new WebpageActionsLog(details.Url, action, Hash, FileName + FileExtension, Note));
             DialogResult = DialogResult.OK;
             Close();
 
@@ -206,7 +208,7 @@ namespace OSIRT.UI
                 using (MagickImage image = new MagickImage(imagePath))
                 {
                     image.Format = MagickFormat.Pdf;
-                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), fileName + SaveableFileTypes.Pdf);
+                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + SaveableFileTypes.Pdf);
                     image.Write(pathToSave);
                     e.Window.Message = "Rehashing PDF";
                     Hash = OsirtHelper.GetFileHash(pathToSave);
@@ -238,9 +240,12 @@ namespace OSIRT.UI
         {
             try
             {
-                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), name + SaveableFileTypes.Png);
-                string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
-                File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
+                if (CheckValidFileName())
+                {
+                    string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
+                    string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
+                    File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
+                }
             }
             catch (IOException ioe)
             {
@@ -260,7 +265,7 @@ namespace OSIRT.UI
             //must check this first, as trying to use Path.Combine with an illegal file char will throw an argument exception
             if(OsirtHelper.IsValidFilename(FileName))
             {
-                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Screenshot), FileName + FileExtension);
+                string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension);
                 if (!File.Exists(path))
                 {
                     valid = true;
@@ -269,22 +274,25 @@ namespace OSIRT.UI
             return valid;
         }
 
-        private void CheckValidFileName()
+        private bool CheckValidFileName()
         {
             //TODO: Invalid entry (red cross) resource was deleted. Re-add.
             string tootipText;
+            bool isValid = false;
             if (IsValidFileName())
             {
                 uiDoesFileExistPictureBox.Image = Properties.Resources.ok;
                 tootipText = "Filename OK";
+                isValid = true;
             }
             else
             {
-                //uiDoesFileExistPictureBox.Image = Properties.Resources.invalid_entry;
+                uiDoesFileExistPictureBox.Image = Properties.Resources.cross;
                 tootipText = "Filename is not valid. File with that name may already exists, or filename contains illegal characters.";
             }
 
             tooltip.SetToolTip(uiDoesFileExistPictureBox, tootipText);
+            return isValid;
         }
 
         private void CheckValidNoteEntry()

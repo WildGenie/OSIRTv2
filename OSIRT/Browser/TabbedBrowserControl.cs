@@ -6,6 +6,8 @@ using OSIRT.Helpers;
 using System.Drawing;
 using System.Diagnostics;
 using System.Collections.Generic;
+using System.Net;
+using System.ComponentModel;
 
 namespace OSIRT.Browser
 {
@@ -40,6 +42,10 @@ namespace OSIRT.Browser
             InitializeComponent();
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
+           
+
+
+            uiDownloadProgressBar.Visible = false;
             CreateTab();
         }
 
@@ -82,6 +88,23 @@ namespace OSIRT.Browser
             CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
             CurrentBrowser.Navigated += CurrentBrowser_Navigated;
             CurrentBrowser.ScreenshotCompleted += Screenshot_Completed;
+            CurrentBrowser.DownloadingProgress += currentBrowser_DownloadingProgress;
+            CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
+        }
+
+        private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)
+        {
+            uiDownloadProgressBar.Visible = false;
+            ShowImagePreviewer(Actions.Saved);
+        }
+
+        private void currentBrowser_DownloadingProgress(object sender, EventArgs e)
+        {
+            if(!uiDownloadProgressBar.Visible)
+                uiDownloadProgressBar.Visible = true;
+
+            int progress =  ((DownloadProgressChangedEventArgs)e).ProgressPercentage;
+            uiDownloadProgressBar.Value = progress;
         }
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
@@ -91,27 +114,31 @@ namespace OSIRT.Browser
             addressBar.Text = CurrentTab.CurrentUrl;
         }
 
-        private void Screenshot_Completed(object sender, ScreenshotCompletedEventArgs e)
+        private void Screenshot_Completed(object sender, EventArgs e)
         {
             ScreenshotComplete?.Invoke(this, new EventArgs());
+            ShowImagePreviewer(Actions.Screenshot);
+        }
+
+        private void ShowImagePreviewer(Actions action)
+        {
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
             DialogResult dialogRes;
             string fileName;
             string dateAndtime;
-            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details))
+            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details, action))
             {
                 dialogRes = previewForm.ShowDialog();
                 fileName = previewForm.FileName + previewForm.FileExtension;
                 dateAndtime = previewForm.DateAndTime;
             }
 
-            //always want to delete items in cache, regardless of DialogResult.
             ImageDiskCache.RemoveItemsInCache();
-         
             if (dialogRes != DialogResult.OK)
                 return;
 
             DisplaySavedLabel(fileName, dateAndtime);
+           
         }
 
         private void DisplaySavedLabel(string fileName, string dateTime)

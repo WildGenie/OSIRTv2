@@ -41,7 +41,7 @@
             this.uiFileIconPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent5 = new System.Windows.Controls.TextBox();
+            this.hostedComponent6 = new System.Windows.Controls.TextBox();
             this.uiFileDetailsGroupBox.SuspendLayout();
             this.uiAttachFileProgressPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).BeginInit();
@@ -85,6 +85,7 @@
             this.uiCancelButton.TabIndex = 4;
             this.uiCancelButton.Text = "Close";
             this.uiCancelButton.UseVisualStyleBackColor = true;
+            this.uiCancelButton.Click += new System.EventHandler(this.uiCancelButton_Click);
             // 
             // uiFileDetailsGroupBox
             // 
@@ -218,5 +219,6 @@
         private System.Windows.Controls.TextBox hostedComponent4;
         private System.Windows.Forms.Label uiAddANotherFileLable;
         private System.Windows.Controls.TextBox hostedComponent5;
+        private System.Windows.Controls.TextBox hostedComponent6;
     }
 }

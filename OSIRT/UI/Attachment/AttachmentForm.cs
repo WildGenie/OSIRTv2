@@ -86,6 +86,7 @@ namespace OSIRT.UI.Attachment
                 return;
             }
             uiAttachFileProgressPanel.Visible = true;
+            uiCancelButton.Enabled = false;
             CopyFile(fileWithPath, destination);
         }
 
@@ -101,17 +102,22 @@ namespace OSIRT.UI.Attachment
         {
             Logger.Log(new AttachmentsLog(Actions.Attachment, file, hash, note));
             uiFileCopyDetailLabel.Text = strings.AttacFile_successfully_attached_to_case_;
-            uiAddANotherFileLable.Text = $"Click 'Browse...' to select another file{Environment.NewLine}or 'Cancel' to close this window.";
+            uiAddANotherFileLable.Text = $"Click 'Browse...' to select another file{Environment.NewLine}or 'Close' to close this window.";
             uiFilePathTextBox.Text = "";
             uiFileDetailsLabel.Text = "";
             uiNoteSpellBox.Text = "";
             uiFileIconPictureBox.Image = Properties.Resources.tick_32;
-            //uiFileIconPictureBox = 
+            uiCancelButton.Enabled = true;
         }
 
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             uiFileCopyingProgressBar.Value = e.ProgressPercentage;
+        }
+
+        private void uiCancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

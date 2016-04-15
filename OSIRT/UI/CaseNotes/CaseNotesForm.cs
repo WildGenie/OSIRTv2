@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using OSIRT.Database;
+using System.Windows.Input;
 
 namespace OSIRT.UI.CaseNotes
 {
@@ -26,10 +27,21 @@ namespace OSIRT.UI.CaseNotes
             uiOptionsToolStrip.Width = Width;
             uiEnteredNoteSpellBox.Select();
             uiCaseNotesTextBox.VisibleChanged += uiCaseNotesTextBox_VisibleChanged;
+            uiEnteredNoteSpellBox.KeyUp += uiEnteredNoteSpellBox_KeyUp;
             uiCaseNotesTextBox.Text = GetExistingCaseNotes();
 
          
         }
+
+        private void uiEnteredNoteSpellBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                AddNote();
+                e.Handled = true;
+            }
+        }
+
 
         private void uiCaseNotesTextBox_VisibleChanged(object sender, EventArgs e)
         {
@@ -59,7 +71,11 @@ namespace OSIRT.UI.CaseNotes
 
         private void uiAddNoteButton_Click(object sender, EventArgs e)
         {
-            //DataTable table = new DatabaseHandler().GetSpecifiedColumnsDataTable("case_notes", "date", "time", "note");
+            AddNote();
+        }
+
+        private void AddNote()
+        {
             Dictionary<string, string> notes = new Dictionary<string, string>();
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             string time = DateTime.Now.ToString("HH:mm:ss");

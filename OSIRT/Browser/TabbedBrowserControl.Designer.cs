@@ -34,6 +34,7 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiActionLoggedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiBrowserTabControl = new DotNetChromeTabs.ChromeTabControl();
+            this.uiDownloadProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -53,7 +54,8 @@
             this.uiBrowserStatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiStatusLabel,
             this.toolStripStatusLabel1,
-            this.uiActionLoggedToolStripStatusLabel});
+            this.uiActionLoggedToolStripStatusLabel,
+            this.uiDownloadProgressBar});
             this.uiBrowserStatusStrip.Location = new System.Drawing.Point(0, 593);
             this.uiBrowserStatusStrip.Name = "uiBrowserStatusStrip";
             this.uiBrowserStatusStrip.Size = new System.Drawing.Size(800, 22);
@@ -69,7 +71,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(785, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(652, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // uiActionLoggedToolStripStatusLabel
@@ -90,6 +92,11 @@
             this.uiBrowserTabControl.TabIndex = 1;
             this.uiBrowserTabControl.Text = "chromeTabControl1";
             this.uiBrowserTabControl.Click += new System.EventHandler(this.uiBrowserTabControl_Click);
+            // 
+            // uiDownloadProgressBar
+            // 
+            this.uiDownloadProgressBar.Name = "uiDownloadProgressBar";
+            this.uiDownloadProgressBar.Size = new System.Drawing.Size(100, 16);
             // 
             // TabbedBrowserControl
             // 
@@ -113,5 +120,6 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripStatusLabel uiActionLoggedToolStripStatusLabel;
         private DotNetChromeTabs.ChromeTabControl uiBrowserTabControl;
+        private System.Windows.Forms.ToolStripProgressBar uiDownloadProgressBar;
     }
 }
