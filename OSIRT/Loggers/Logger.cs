@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using OSIRT.Database;
+using OSIRT.Extensions;
 
 
 namespace OSIRT.Loggers
@@ -22,7 +23,7 @@ namespace OSIRT.Loggers
                 {"print", "true"},
                 {"date", log.Date},
                 {"time", log.Time},
-                {"action", log.Action.ToString()}
+                {"action", log.Action.ToString().SplitAtCapitalLetter()}
             };
 
             DatabaseHandler handler = new DatabaseHandler();

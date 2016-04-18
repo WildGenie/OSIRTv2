@@ -8,6 +8,7 @@ using Jacksonsoft;
 using OSIRT.Helpers;
 using OSIRT.Resources;
 using OSIRT.UI.CaseClosing;
+using OSIRT.Loggers;
 
 namespace OSIRT.UI
 {
@@ -70,6 +71,8 @@ namespace OSIRT.UI
         {
             //TODO: clear IE cache if required
 
+            //TODO:  Export hash.
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, "[Case Closed - Hash exported as hash.txt]"));
             Thread.Sleep(500); //just to see the window
             //zip container
             e.Window.Message = "Encrypting container... Please Wait";
@@ -80,6 +83,7 @@ namespace OSIRT.UI
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
+        
             e.Window.Message = "Performing clean up operations... Please Wait";
 
             //TODO: A handle is being left on the directory... What to do?
@@ -88,12 +92,14 @@ namespace OSIRT.UI
                 int attempts = 0;
                 try
                 {
+                    Debug.WriteLine($"Attempts: {attempts}.");
                     string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
                     OsirtHelper.DeleteDirectory(directory);
                     if (!Directory.Exists(directory) || attempts == 5) break;
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Debug.WriteLine($"Attempts: {attempts}. Exception: {ex.InnerException.ToString()}");
                     attempts++;
                 }
       

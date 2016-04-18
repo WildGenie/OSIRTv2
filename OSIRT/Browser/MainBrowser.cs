@@ -19,8 +19,6 @@ namespace OSIRT.Browser
 {
     public class ExtendedBrowser : WebBrowser
     {
-
-
         public event EventHandler ScreenshotCompleted = delegate { };
         public event EventHandler DownloadingProgress = delegate { };
         public event EventHandler DownloadComplete = delegate { };
@@ -31,8 +29,6 @@ namespace OSIRT.Browser
         private HtmlElement element;
         private bool firstLoad = true;
 
-
-    
         public ExtendedBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
@@ -43,28 +39,11 @@ namespace OSIRT.Browser
             DisableNewWindowsOpening();
         }
 
-        public void DisableNewWindowsOpening()
-        {
-
-            var activex = (SHDocVw.WebBrowser_V1)ActiveXInstance;
-            activex.NewWindow += delegate (string URL, int Flags, string TargetFrameName, ref object PostData, string Headers, ref bool Processed)
-            {
-                Processed = true;
-                object flags = Flags;
-                object targetFrame = Type.Missing;
-                object postData = PostData != null ? PostData : Type.Missing;
-                object headers = !string.IsNullOrEmpty(Headers) ? Headers.ToString() : Type.Missing;
-                activex.Navigate(URL, ref flags, ref targetFrame, ref postData, ref headers);
-            };
-
-
-        }
 
         private void InitialiseConextMenu()
         {
             contextMenu = new ContextMenuStrip();
 
-            
             contextMenu.Items.Add("Save image as...", null, SaveImageAs_Click);
             contextMenu.Items.Add("Save page source", null, SaveSource_Click);
             contextMenu.Items.Add("View page source", null, ViewSource_Click);
@@ -224,7 +203,6 @@ namespace OSIRT.Browser
             DirectoryInfo directory = new DirectoryInfo(Constants.CacheLocation);
             FileSystemInfo[] files = directory.GetFileSystemInfos();
             ScreenshotHelper.CombineScreenshot(files, e);
-
         }
 
         public string URL => Url.AbsoluteUri;
@@ -376,6 +354,19 @@ namespace OSIRT.Browser
             Document.Body.SetAttribute("scroll", attribute);
         }
 
+        public void DisableNewWindowsOpening()
+        {
+            var activex = (SHDocVw.WebBrowser_V1)ActiveXInstance;
+            activex.NewWindow += delegate (string URL, int Flags, string TargetFrameName, ref object PostData, string Headers, ref bool Processed)
+            {
+                Processed = true;
+                object flags = Flags;
+                object targetFrame = Type.Missing;
+                object postData = PostData != null ? PostData : Type.Missing;
+                object headers = !string.IsNullOrEmpty(Headers) ? Headers.ToString() : Type.Missing;
+                activex.Navigate(URL, ref flags, ref targetFrame, ref postData, ref headers);
+            };
+        }
 
 
         #region Download Manager
@@ -424,7 +415,7 @@ namespace OSIRT.Browser
 
         }
 
-        private void  OpenNewTab_Click(object sender, EventArgs e)
+        private void OpenNewTab_Click(object sender, EventArgs e)
         {
             MessageBox.Show("HELLO");
         }
@@ -497,9 +488,6 @@ namespace OSIRT.Browser
                         e.BubbleEvent = false;
                     }
                 }
-
-
-              
             }
             catch
             {

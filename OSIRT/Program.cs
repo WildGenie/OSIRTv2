@@ -35,7 +35,7 @@ namespace OSIRT
             //Make sure you exit/kill the application process
             //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
 
-            Application.EnableVisualStyles();
+                Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
         

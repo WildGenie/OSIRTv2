@@ -60,6 +60,7 @@ namespace OSIRT.UI
             this.details = details;
             tooltip = new ToolTip();
             uiNoteSpellBox.KeyUp += UiNoteSpellBox_KeyUp;
+            SetMessage(uiDoesFileExistPictureBox, Properties.Resources.cross, "Filename is not valid.File with that name may already exists, or filename contains illegal characters.", false);
         }
 
 
@@ -240,12 +241,9 @@ namespace OSIRT.UI
         {
             try
             {
-                if (CheckValidFileName())
-                {
-                    string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
-                    string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
-                    File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
-                }
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
+                string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
+                File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
             }
             catch (IOException ioe)
             {
@@ -276,37 +274,36 @@ namespace OSIRT.UI
 
         private bool CheckValidFileName()
         {
-            //TODO: Invalid entry (red cross) resource was deleted. Re-add.
-            string tootipText;
             bool isValid = false;
             if (IsValidFileName())
             {
-                uiDoesFileExistPictureBox.Image = Properties.Resources.ok;
-                tootipText = "Filename OK";
+                SetMessage(uiDoesFileExistPictureBox, Properties.Resources.ok, "Filename OK", true);
                 isValid = true;
             }
             else
             {
-                uiDoesFileExistPictureBox.Image = Properties.Resources.cross;
-                tootipText = "Filename is not valid. File with that name may already exists, or filename contains illegal characters.";
+                SetMessage(uiDoesFileExistPictureBox, Properties.Resources.cross, "Filename is not valid. File with that name may already exists, or filename contains illegal characters.", false);
             }
-
-            tooltip.SetToolTip(uiDoesFileExistPictureBox, tootipText);
             return isValid;
         }
 
         private void CheckValidNoteEntry()
         {
-            if (string.IsNullOrWhiteSpace(Note))
+            if (!string.IsNullOrWhiteSpace(Note))
             {
-                tooltip.SetToolTip(uiNotePictureBox, "You must enter a note.");
-                //uiNotePictureBox.Image = Properties.Resources.invalid_entry;
+                SetMessage(uiNotePictureBox, Properties.Resources.ok, "Note OK", true);
             }
             else
             {
-                tooltip.SetToolTip(uiNotePictureBox, "Note OK.");
-                uiNotePictureBox.Image = Properties.Resources.ok;
+                SetMessage(uiNotePictureBox, Properties.Resources.cross, "You must enter a note.", false);
             }
+        }
+
+        private void SetMessage(PictureBox picturebox, Bitmap resource, string message, bool enableLogBtn)
+        {
+            tooltip.SetToolTip(picturebox, message);
+            picturebox.Image = resource;
+            uiOKButton.Enabled = enableLogBtn;
         }
 
         private void UiNoteSpellBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
