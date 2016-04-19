@@ -14,7 +14,6 @@ namespace OSIRT.UI
 {
     public partial class MainForm : Form
     {
-
         private bool caseOpened;
         private bool caseClosed;
 
@@ -45,15 +44,11 @@ namespace OSIRT.UI
                 return;
             }
 
+            e.Cancel = true;
             DialogResult result = MessageBox.Show(strings.In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_, "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            if (result == DialogResult.Cancel || result == DialogResult.No)
+            if (result != DialogResult.Cancel || result != DialogResult.No)
             {
-                e.Cancel = true;
-            }
-            else 
-            {
-                e.Cancel = true;
                 caseClosed = true;
                 ClosingOsirt();
             }
@@ -63,7 +58,12 @@ namespace OSIRT.UI
         {
             if (caseOpened)
             {
-                WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait", password);
+                bool closeSuccessful = (bool) WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait", password);
+                if(closeSuccessful)
+                {
+                    OsirtLogWriter.Write(Constants.ContainerLocation, true);
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -104,7 +104,7 @@ namespace OSIRT.UI
                 }
       
             }
-            Environment.Exit(0);
+            e.Result = true; 
         }
 
 
@@ -138,8 +138,7 @@ namespace OSIRT.UI
 
         private void ExisitingCasePanel_PasswordCheckClick(object sender, EventArgs e)
         {
-            ShowBrowserPanel();
-            caseOpened = true;
+            ShowBrowserPanelAndLogOpening();
         }
 
 
@@ -153,8 +152,14 @@ namespace OSIRT.UI
 
         protected void caseDetailsPanel_NextClick(object sender, EventArgs e)
         {
+            ShowBrowserPanelAndLogOpening();
+        }
+
+        private void ShowBrowserPanelAndLogOpening()
+        {
             ShowBrowserPanel();
             caseOpened = true;
+            OsirtLogWriter.Write(Constants.ContainerLocation, false);
         }
 
         private void ShowBrowserPanel()

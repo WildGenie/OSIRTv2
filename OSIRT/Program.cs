@@ -26,25 +26,47 @@ namespace OSIRT
             * Couple of answers here (no code, but some advice): http://stackoverflow.com/questions/2481047/executing-code-on-application-crash
             **/
 
+            try
+            {
+#if !DEBUG
+                AppDomain.CurrentDomain.UnhandledException += (sender, e)
+                => FatalExceptionObject(e.ExceptionObject);
 
-            //All you now need is a static class FatalExceptionHandler that includes your top-level exception handling in its Handle method.
+                Application.ThreadException += (sender, e)
+                => FatalExceptionHandler.Handle(e.Exception);
 
-            //And really, any application developer knows there are really just two things to do there:
-
-            //Show/log the exception like you see fit
-            //Make sure you exit/kill the application process
-            //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
-
+#endif
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
-        
 
-          
+            }
+            catch (Exception e)
+            {
+#if !DEBUG
+                FatalExceptionHandler.Handle(e);
+#endif 
+            }
+
+
+        }//main
+
+        //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
+        static void FatalExceptionObject(object exceptionObject)
+        {
+            var huh = exceptionObject as Exception;
+            if (huh == null)
+            {
+                huh = new NotSupportedException(
+                  "Unhandled exception doesn't derive from System.Exception: "
+                   + exceptionObject.ToString()
+                );
+            }
+            FatalExceptionHandler.Handle(huh);
         }
 
-       
-       
+
+
 
     }
 }

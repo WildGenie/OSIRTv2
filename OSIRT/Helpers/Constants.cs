@@ -7,15 +7,6 @@ namespace OSIRT.Helpers
     public class Constants
     {
 
-        //Actions
-        //Using Enum instead
-        //public static class Actions
-        //{
-        //    //public static string Screenshot { get { return strings.ScreenshotAction; } }
-        //    //public static string Loaded { get { return strings.LoadedAction; } }
-
-        //}
-
         //Case container Directories and files
         public static string CasePath { get; set; }
         public static string CaseContainerName { get; set; }
@@ -35,6 +26,7 @@ namespace OSIRT.Helpers
 
         //Image Cache Constants
         public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
+        public static readonly string ApplicationLog = Path.Combine(Application.StartupPath, "log.config");
         private static readonly string TempImgName = "temp.png";
         private static readonly string ScaledImgName = "scaled.png";
         public static readonly string TempImgFile = Path.Combine(CacheLocation, TempImgName);

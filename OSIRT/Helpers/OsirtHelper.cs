@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -56,6 +57,7 @@ namespace OSIRT.Helpers
         /// </summary>
         public static void DeleteDirectory(string path)
         {
+            Thread.Sleep(1); //TODO: added this sleep, does it matter?
             foreach (string directory in Directory.GetDirectories(path))
             {
                 DeleteDirectory(directory);
@@ -67,10 +69,12 @@ namespace OSIRT.Helpers
             }
             catch (IOException)
             {
+                Debug.WriteLine("IOEXC");
                 Directory.Delete(path, true);
             }
             catch (UnauthorizedAccessException)
             {
+                Debug.WriteLine("UNAUTH");
                 Directory.Delete(path, true);
             }
         }
@@ -147,8 +151,6 @@ namespace OSIRT.Helpers
 
         public static bool IsValidFilename(string fileName)
         {
-
-
             //< > : " / \ | ? *
             return !string.IsNullOrWhiteSpace(fileName) && fileName.IndexOfAny(Path.GetInvalidFileNameChars()) == -1;
         }

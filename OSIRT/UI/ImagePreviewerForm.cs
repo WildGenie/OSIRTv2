@@ -60,7 +60,7 @@ namespace OSIRT.UI
             this.details = details;
             tooltip = new ToolTip();
             uiNoteSpellBox.KeyUp += UiNoteSpellBox_KeyUp;
-            SetMessage(uiDoesFileExistPictureBox, Properties.Resources.cross, "Filename is not valid.File with that name may already exists, or filename contains illegal characters.", false);
+            SetMessage(uiDoesFileExistPictureBox, Properties.Resources.cross, "Filename is not valid. File with that name may already exists, or filename contains illegal characters.", false);
         }
 
 

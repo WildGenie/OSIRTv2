@@ -97,12 +97,11 @@ namespace OSIRT.UI
 
             try
             {
-                //TODO: disabled for testing. Remember to re-enable.
                 File.Delete(file.FullName);
             }
             catch (IOException io)
             {
-                MessageBox.Show($"unable to delete: {io}");
+                MessageBox.Show($"Unable to delete: {io}");
             }
 
             Constants.CasePath = parentDir.FullName;

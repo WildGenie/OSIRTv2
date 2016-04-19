@@ -119,7 +119,9 @@
     <Compile Include="CaseNotesToHtml.cs" />
     <Compile Include="CaseSettings.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="FatalExceptionHandler.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
+    <Compile Include="Helpers\OsirtLogWriter.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
@@ -374,7 +376,6 @@
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
-    <None Include="fontawesome-webfont.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
