@@ -57,14 +57,8 @@ namespace OSIRT.Browser
             addressBar.Text = CurrentTab?.CurrentUrl;
         }
 
-        private void uiBrowserTabControl_TabIndexChanged(object sender, EventArgs e)
-        {
-            Debug.WriteLine("2");
-        }
-
         private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
         {
-            Debug.WriteLine("HEYO");
             if (CurrentTab.Browser != null)
                 addressBar.Text = CurrentTab.CurrentUrl;
         }
@@ -75,12 +69,12 @@ namespace OSIRT.Browser
         }
 
         
-        private void CreateTab()
+        private void CreateTab(string url = "http://google.co.uk")
         {
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-            Navigate(/*UserSettings.Load().Homepage*/ "http://google.co.uk");
+            Navigate(/*UserSettings.Load().Homepage*/ url);
         }
 
         private void AddBrowserEvents()
@@ -90,6 +84,12 @@ namespace OSIRT.Browser
             CurrentBrowser.ScreenshotCompleted += Screenshot_Completed;
             CurrentBrowser.DownloadingProgress += currentBrowser_DownloadingProgress;
             CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
+            CurrentBrowser.NewTab += CurrentBrowser_NewTab;
+        }
+
+        private void CurrentBrowser_NewTab(object sender, EventArgs e)
+        {
+            CreateTab(((NewTabEventArgs)e).Url);
         }
 
         private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)

@@ -14,6 +14,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Net;
+using OSIRT.Extensions;
 
 namespace OSIRT.Browser
 {
@@ -22,6 +23,7 @@ namespace OSIRT.Browser
         public event EventHandler ScreenshotCompleted = delegate { };
         public event EventHandler DownloadingProgress = delegate { };
         public event EventHandler DownloadComplete = delegate { };
+        public event EventHandler NewTab = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
@@ -48,7 +50,7 @@ namespace OSIRT.Browser
             contextMenu.Items.Add("Save page source", null, SaveSource_Click);
             contextMenu.Items.Add("View page source", null, ViewSource_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Open link in new tab.", null, OpenNewTab_Click);
+            contextMenu.Items.Add("Open link in new tab", null, OpenNewTab_Click);
            
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;
@@ -264,6 +266,7 @@ namespace OSIRT.Browser
         }
 
 
+
         /// <summary>
         /// Inspects the registry and uses the latest version of IE
         /// </summary>
@@ -409,15 +412,28 @@ namespace OSIRT.Browser
             if (element == null)
                 return;
 
-            contextMenu.Items[0].Enabled = (element.TagName == "IMG");
-            contextMenu.Items[4].Enabled = (element.TagName == "A");
+           
 
+            contextMenu.Items[0].Enabled = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
+
+
+
+            
+
+            //contextMenu.Items[4].Enabled = (element.ContainsAnchor()) /*|| element.NextSibling.TagName == "A" */;
+            
 
         }
 
         private void OpenNewTab_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("HELLO");
+
+            
+
+            //TODO: Validate this url!
+            string url = element.GetAttribute("href");
+            Debug.WriteLine(url);
+            NewTab?.Invoke(this, new NewTabEventArgs(url));
         }
 
 
@@ -436,7 +452,7 @@ namespace OSIRT.Browser
 
         private void ViewSource_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            MessageBox.Show("Not yet implemented!");
         }
 
 

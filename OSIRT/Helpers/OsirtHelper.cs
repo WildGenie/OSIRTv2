@@ -49,6 +49,18 @@ namespace OSIRT.Helpers
             return (PasswordScore)score;
         }
 
+        public static string StripQueryFromPath(string path)
+        {
+            Uri uri = new Uri(path);
+            if(uri.Query != "")
+            {
+                return uri.OriginalString.Replace(uri.Query, "");
+            }
+            return uri.OriginalString;
+        }
+
+
+
 
         /// <summary>
         /// Depth-first recursive delete, with handling for descendant 
