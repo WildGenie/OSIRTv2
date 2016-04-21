@@ -76,6 +76,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Web" />
@@ -95,6 +96,18 @@
     </Reference>
     <Reference Include="TuesPechkin.Wkhtmltox.Win32, Version=0.12.2.1, Culture=neutral, processorArchitecture=x86">
       <HintPath>..\packages\TuesPechkin.Wkhtmltox.Win32.0.12.2.1\lib\net20\TuesPechkin.Wkhtmltox.Win32.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core, Version=2.1.124.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=x86">
+      <HintPath>..\packages\Vlc.DotNet.Core.2.1.124\lib\net45\x86\Vlc.DotNet.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Core.Interops, Version=2.1.124.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=x86">
+      <HintPath>..\packages\Vlc.DotNet.Core.Interops.2.1.124\lib\net45\x86\Vlc.DotNet.Core.Interops.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Vlc.DotNet.Forms, Version=2.1.124.0, Culture=neutral, PublicKeyToken=84529da31f4eb963, processorArchitecture=x86">
+      <HintPath>..\packages\Vlc.DotNet.Forms.2.1.124\lib\net45\x86\Vlc.DotNet.Forms.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -303,7 +316,14 @@
     </Compile>
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
+    <Compile Include="UI\VideoPreviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VideoPreviewer.Designer.cs">
+      <DependentUpon>VideoPreviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSettings.cs" />
+    <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <EmbeddedResource Include="Browser\BrowserTab.resx">
       <DependentUpon>BrowserTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -375,6 +395,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VideoPreviewer.resx">
+      <DependentUpon>VideoPreviewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
@@ -455,7 +478,10 @@
     <None Include="Resources\lock_sm.png" />
     <None Include="Resources\table.png" />
     <None Include="Resources\cross.png" />
+    <None Include="Resources\stop_rec.png" />
+    <None Include="Resources\start_rec.png" />
     <Content Include="ssleay32.dll" />
+    <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
     <None Include="Resources\printer.png" />
     <None Include="Resources\txt_file.png" />

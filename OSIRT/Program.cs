@@ -26,6 +26,7 @@ namespace OSIRT
             * Couple of answers here (no code, but some advice): http://stackoverflow.com/questions/2481047/executing-code-on-application-crash
             **/
 
+
             try
             {
 #if !DEBUG

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using OSIRT.UI.Attachment;
 using OSIRT.UI.AuditLog;
 using OSIRT.UI.CaseNotes;
+using OSIRT.VideoCapture;
 
 namespace OSIRT.UI
 {
@@ -130,7 +131,31 @@ namespace OSIRT.UI
 
         private void uiBrowserPanel_Paint(object sender, PaintEventArgs e)
         {
-
+            
         }
+
+        private void uiVideoCaptureButton_Click(object sender, EventArgs e)
+        {
+            if (!OsirtVideoCapture.IsRecording())
+            {
+               
+                OsirtVideoCapture.StartCapture(Width, Height);
+                uiVideoCaptureButton.Image = Properties.Resources.stop_rec;
+                uiVideoCaptureButton.ToolTipText = "Stop screen capture";
+            }
+            else
+            {
+                OsirtVideoCapture.StopCapture();
+                uiVideoCaptureButton.Image = Properties.Resources.start_rec;
+                uiVideoCaptureButton.ToolTipText = "Start screen capture";
+            }
+        }
+
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            new VideoPreviewer().ShowDialog();
+        }
+
     }
 }

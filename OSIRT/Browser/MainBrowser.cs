@@ -412,24 +412,13 @@ namespace OSIRT.Browser
             if (element == null)
                 return;
 
-           
-
             contextMenu.Items[0].Enabled = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
-
-
-
-            
-
+            contextMenu.Items[4].Enabled = (element.TagName == "A");
             //contextMenu.Items[4].Enabled = (element.ContainsAnchor()) /*|| element.NextSibling.TagName == "A" */;
-            
-
         }
 
         private void OpenNewTab_Click(object sender, EventArgs e)
         {
-
-            
-
             //TODO: Validate this url!
             string url = element.GetAttribute("href");
             Debug.WriteLine(url);

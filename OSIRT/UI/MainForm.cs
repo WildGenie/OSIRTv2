@@ -9,6 +9,7 @@ using OSIRT.Helpers;
 using OSIRT.Resources;
 using OSIRT.UI.CaseClosing;
 using OSIRT.Loggers;
+using System.Drawing;
 
 namespace OSIRT.UI
 {
@@ -114,7 +115,7 @@ namespace OSIRT.UI
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             Controls.Add(firstLoadPanel);
-        }
+    }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
         {

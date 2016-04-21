@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
@@ -39,6 +40,7 @@
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +80,8 @@
             this.uiVideoCaptureButton,
             this.uiAttachmentToolStripButton,
             this.uiURLComboBox,
-            this.uiCaseNotesButton});
+            this.uiCaseNotesButton,
+            this.toolStripButton1});
             this.uiBrowserToolStrip.Location = new System.Drawing.Point(0, 24);
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(1089, 25);
@@ -139,12 +142,12 @@
             // uiVideoCaptureButton
             // 
             this.uiVideoCaptureButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiVideoCaptureButton.Enabled = false;
-            this.uiVideoCaptureButton.Image = global::OSIRT.Properties.Resources.film;
+            this.uiVideoCaptureButton.Image = global::OSIRT.Properties.Resources.start_rec;
             this.uiVideoCaptureButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiVideoCaptureButton.Name = "uiVideoCaptureButton";
             this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
             this.uiVideoCaptureButton.ToolTipText = "Start video capture";
+            this.uiVideoCaptureButton.Click += new System.EventHandler(this.uiVideoCaptureButton_Click);
             // 
             // uiAttachmentToolStripButton
             // 
@@ -170,6 +173,16 @@
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // uiBrowserMenuStrip
             // 
             this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -193,19 +206,19 @@
             // auditLogToolStripMenuItem
             // 
             this.auditLogToolStripMenuItem.Name = "auditLogToolStripMenuItem";
-            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.auditLogToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.auditLogToolStripMenuItem.Text = "Audit Log";
             this.auditLogToolStripMenuItem.Click += new System.EventHandler(this.auditLogToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(128, 6);
             // 
             // closeCaseToolStripMenuItem
             // 
             this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
-            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 
@@ -296,5 +309,6 @@
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
