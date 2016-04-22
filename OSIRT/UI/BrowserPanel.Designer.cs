@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
@@ -40,7 +39,6 @@
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +65,6 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(1089, 698);
             this.uiBrowserPanel.TabIndex = 0;
-            this.uiBrowserPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.uiBrowserPanel_Paint);
             // 
             // uiBrowserToolStrip
             // 
@@ -80,8 +77,7 @@
             this.uiVideoCaptureButton,
             this.uiAttachmentToolStripButton,
             this.uiURLComboBox,
-            this.uiCaseNotesButton,
-            this.toolStripButton1});
+            this.uiCaseNotesButton});
             this.uiBrowserToolStrip.Location = new System.Drawing.Point(0, 24);
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(1089, 25);
@@ -172,16 +168,6 @@
             this.uiCaseNotesButton.Name = "uiCaseNotesButton";
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // uiBrowserMenuStrip
             // 
@@ -309,6 +295,5 @@
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }

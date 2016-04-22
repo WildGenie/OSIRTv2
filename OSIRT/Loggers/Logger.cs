@@ -62,6 +62,15 @@ namespace OSIRT.Loggers
                 toLog.Add("hash", osirtAction.Hash);
                 handler.Insert("osirt_actions", toLog);
             }
+            else if (logType == typeof(VideoLog))
+            {
+                //date TEXT, time TEXT, action, file TEXT , hash TEXT, notes TEXT)
+                VideoLog attachLog = (VideoLog)log;
+                toLog.Add("file", attachLog.File);
+                toLog.Add("hash", attachLog.Hash);
+                toLog.Add("note", attachLog.Note);
+                handler.Insert("videos", toLog);
+            }
 
 
 

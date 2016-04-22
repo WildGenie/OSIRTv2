@@ -14,6 +14,7 @@ namespace OSIRT.UI.AuditLog
             {"Websites Actions", "webpage_actions"},
             {"OSIRT Actions", "osirt_actions" },
             {"Attachments", "attachments" },
+            {"Videos", "videos" },
         };
 
 

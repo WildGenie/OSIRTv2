@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OSIRT.Helpers;
+using OSIRT.UI;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,10 +17,15 @@ namespace OSIRT.VideoCapture
 
         private static Capture captureThreadEntry;
         private static Thread captureThread;
+        private static ToolStripButton button;
+        public static event EventHandler VideoCaptureComplete;
 
 
         public static void StopCapture()
         {
+            button.Image = Properties.Resources.start_rec;
+            button.ToolTipText = "Start screen capture";
+
             if (captureThreadEntry == null || captureThread == null)
             {
                 MessageBox.Show("No capture in progress");
@@ -30,6 +37,9 @@ namespace OSIRT.VideoCapture
 
             captureThread = null;
             captureThreadEntry = null;
+
+
+            VideoCaptureComplete?.Invoke(null, new VideoCaptureCompleteEventArgs());
         }
 
         public static bool IsRecording()
@@ -41,10 +51,13 @@ namespace OSIRT.VideoCapture
         }
 
 
-        public static void StartCapture(int width, int height)
+        public static void StartCapture(int width, int height, ToolStripButton button, uint handle)
         {
+            OsirtVideoCapture.button = button;
+            Debug.WriteLine($"CAPTURE WIDTH: {width} , CAPTURE HEIGHT: {height}");
+
             captureThreadEntry = new Capture();
-            captureThreadEntry.WindowHandle = (uint)Process.GetCurrentProcess().MainWindowHandle;
+            captureThreadEntry.WindowHandle = handle; /*(uint)Process.GetCurrentProcess().MainWindowHandle*/;
             captureThreadEntry.WholeWindow = 1;
             captureThreadEntry.X = 0;
             captureThreadEntry.Y = 0;
@@ -53,7 +66,7 @@ namespace OSIRT.VideoCapture
             captureThreadEntry.BitRate = 20000000;
             captureThreadEntry.FrameRate = 30;
             captureThreadEntry.Audio = 0xFFFFFFFF;
-            captureThreadEntry.Filename = @"D:/test.mp4";
+            captureThreadEntry.Filename = Constants.TempVideoFile; //TODO: Remember to delete video file.
 
             captureThread = new Thread(new ThreadStart(captureThreadEntry.Start));
             captureThread.Start();
@@ -63,6 +76,10 @@ namespace OSIRT.VideoCapture
 
             if (captureThreadEntry.VideoCaptureStarted)
             {
+
+                button.Image = Properties.Resources.stop_rec;
+                button.ToolTipText = "Stop screen capture";
+
                 //StartButton.Enabled = false;
                 //StopButton.Enabled = true;
 

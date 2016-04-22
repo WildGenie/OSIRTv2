@@ -29,8 +29,10 @@ namespace OSIRT.Helpers
         public static readonly string ApplicationLog = Path.Combine(Application.StartupPath, "log.config");
         private static readonly string TempImgName = "temp.png";
         private static readonly string ScaledImgName = "scaled.png";
+        private static readonly string TempVideoName = "temp.mp4";
         public static readonly string TempImgFile = Path.Combine(CacheLocation, TempImgName);
         public static readonly string ScaledImgFile = Path.Combine(CacheLocation, ScaledImgName);
+        public static readonly string TempVideoFile = Path.Combine(CacheLocation, TempVideoName);
 
 
 

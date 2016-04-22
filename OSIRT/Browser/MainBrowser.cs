@@ -31,6 +31,8 @@ namespace OSIRT.Browser
         private HtmlElement element;
         private bool firstLoad = true;
 
+
+        PictureBox pic = new PictureBox();
         public ExtendedBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
@@ -39,8 +41,26 @@ namespace OSIRT.Browser
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
             InitialiseConextMenu();
             DisableNewWindowsOpening();
+
+
+            //pic.MouseMove += Pic_MouseMove;
+            
+            pic.BackColor = Color.Red;
+           
+            pic.Size = new Size(12, 12);
+            Controls.Add(pic);
         }
 
+        protected override void OnMouseMove(MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+        }
+
+        private void Pic_MouseMove(object sender, MouseEventArgs e)
+        {
+            PictureBox b = ((PictureBox)sender);
+            b.Location = new Point(b.Left + e.X, b.Top + e.Y);
+        }
 
         private void InitialiseConextMenu()
         {
@@ -503,6 +523,10 @@ namespace OSIRT.Browser
         private void Document_MouseMove(object sender, HtmlElementEventArgs e)
         {
             element = Document.GetElementFromPoint(PointToClient(MousePosition));
+            Point p = PointToClient(MousePosition);
+            pic.Location = new Point(p.X + 5, p.Y + 5);
+
+
         }
 
         #endregion

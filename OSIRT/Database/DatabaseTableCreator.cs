@@ -15,6 +15,7 @@ namespace OSIRT.Database
                 @"CREATE TABLE IF NOT EXISTS webpage_log (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT)",
                 @"CREATE TABLE IF NOT EXISTS webpage_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, url TEXT, file TEXT, hash TEXT, note TEXT)",
                 @"CREATE TABLE IF NOT EXISTS osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)",
+                @"CREATE TABLE IF NOT EXISTS videos (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, file TEXT, hash TEXT, note TEXT)",
                 @"CREATE TABLE IF NOT EXISTS attachments (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, file TEXT, hash TEXT, note TEXT)",
                 @"CREATE TABLE IF NOT EXISTS case_notes (id INTEGER PRIMARY KEY, date TEXT, time TEXT, note TEXT)"
             };

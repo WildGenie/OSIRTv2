@@ -31,10 +31,12 @@ namespace OSIRT.UI
         }
 
 
+       
         public MainForm()
         {
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
+
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)

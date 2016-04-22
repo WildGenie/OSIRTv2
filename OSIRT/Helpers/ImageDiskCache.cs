@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
 using OSIRT.Enums;
+using System.Linq;
 
 namespace OSIRT.Helpers
 {
@@ -66,7 +67,13 @@ namespace OSIRT.Helpers
                 //this forces it to be GC'd
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                Array.ForEach(Directory.GetFiles(Constants.CacheLocation), File.Delete);
+                //Array.ForEach(Directory.GetFiles(Constants.CacheLocation), File.Delete);
+
+                DirectoryInfo di = new DirectoryInfo(Constants.CacheLocation);
+                FileInfo[] images = di.GetFiles("*.png");
+                foreach (var img in images)
+                    img.Delete();
+
             }
             catch (IOException ioe)
             {

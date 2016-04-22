@@ -27,6 +27,7 @@ namespace OSIRT.UI
             ConfigureUi();
             AddNewTab();
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
+            OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
         }
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
@@ -114,47 +115,28 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
         }
 
-        private void uiTabbedBrowserControl_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void newTabToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             CaseClosing?.Invoke(this, e);
         }
 
-        private void uiBrowserPanel_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
             if (!OsirtVideoCapture.IsRecording())
-            {
-               
-                OsirtVideoCapture.StartCapture(Width, Height);
-                uiVideoCaptureButton.Image = Properties.Resources.stop_rec;
-                uiVideoCaptureButton.ToolTipText = "Stop screen capture";
-            }
+                OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)Handle);
             else
-            {
                 OsirtVideoCapture.StopCapture();
-                uiVideoCaptureButton.Image = Properties.Resources.start_rec;
-                uiVideoCaptureButton.ToolTipText = "Start screen capture";
-            }
         }
 
-
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private void osirtVideoCapture_VideoCaptureComplete(object sender, EventArgs e)
         {
-            new VideoPreviewer().ShowDialog();
+            VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
+
+            using (VideoPreviewer vidPreviewer = new VideoPreviewer(ev.DateAndTime))
+            {
+                vidPreviewer.ShowDialog();
+            }
         }
 
     }
