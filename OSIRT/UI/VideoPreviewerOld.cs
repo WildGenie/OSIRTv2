@@ -9,12 +9,12 @@ using OSIRT.Loggers;
 
 namespace OSIRT.UI
 {
-    public partial class VideoPreviewer : Form
+    public partial class VideoPreviewerOld : Form
     {
         private BackgroundWorker hashCalcBackgroundWorker;
         public string Hash { get; private set; }
 
-        public VideoPreviewer(string dateAndTime)
+        public VideoPreviewerOld(string dateAndTime)
         {
             InitializeComponent();
             uiDateAndTimeTextBox.Text = dateAndTime;
@@ -73,11 +73,13 @@ namespace OSIRT.UI
         {
             try
             {
+
                 File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Video), uiVideoNameComboBox.Text + ".mp4"));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 File.Delete(Constants.TempVideoFile);
 
+                //TODO: A lot of similarities between Image and Video Previewer. DRY!
                 Logger.Log(new VideoLog(Enums.Actions.Video, uiVideoNameComboBox.Text + ".mp4" ,uiHashTextBox.Text, "Test note"));
             }
             catch(Exception ex)

@@ -123,6 +123,9 @@ namespace OSIRT.UI
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
+
+            uiTabbedBrowserControl.CurrentTab.Browser.ShowMouseTrail = false;
+
             if (!OsirtVideoCapture.IsRecording())
                 OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)Handle);
             else
@@ -133,7 +136,7 @@ namespace OSIRT.UI
         {
             VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
 
-            using (VideoPreviewer vidPreviewer = new VideoPreviewer(ev.DateAndTime))
+            using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
             {
                 vidPreviewer.ShowDialog();
             }

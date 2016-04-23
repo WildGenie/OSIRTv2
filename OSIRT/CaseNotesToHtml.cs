@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 using OSIRT.Database;
+using OSIRT.Helpers;
 
 namespace OSIRT
 {
@@ -15,7 +16,7 @@ namespace OSIRT
         {
             string caseDetails = CaseDetailsToHtml();
             string caseNotes = GetCaseNotesToHtml();
-            string htmlResource = GetHtmlResource();
+            string htmlResource = OsirtHelper.GetResource("casenotes.html");
             htmlResource = htmlResource.Replace("<%%CASE_NOTES%%>", caseNotes)
                                        .Replace("<%%CASE_DETAILS%%>", caseDetails);
             return htmlResource;
@@ -56,23 +57,23 @@ namespace OSIRT
             return stringBuilder.ToString();
         }
 
-        ////TODO: move this into helpers, change name to GetHtmlResourceFromFile(string file //E.g; casenotes.html)
-        //(Remember to change Build Action to "Embedded rsource" when adding a new resource (casenotes.html is done)
-        private static string GetHtmlResource() 
-        {
-            var assembly = Assembly.GetExecutingAssembly();
-            var resourceName = "OSIRT.Resources.casenotes.html";
-            string result;
+        //////TODO: move this into helpers, change name to GetHtmlResourceFromFile(string file //E.g; casenotes.html)
+        ////(Remember to change Build Action to "Embedded rsource" when adding a new resource (casenotes.html is done)
+        //private static string GetHtmlResource() 
+        //{
+        //    var assembly = Assembly.GetExecutingAssembly();
+        //    var resourceName = "OSIRT.Resources.casenotes.html";
+        //    string result;
 
-            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                result = reader.ReadToEnd();
-            }
+        //    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+        //    using (StreamReader reader = new StreamReader(stream))
+        //    {
+        //        result = reader.ReadToEnd();
+        //    }
 
-            return result;
+        //    return result;
 
-        }
+        //}
 
 
     }

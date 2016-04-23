@@ -39,7 +39,7 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent7 = new System.Windows.Controls.TextBox();
+            this.hostedComponent8 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
@@ -103,7 +103,6 @@
             this.uiFileExtensionComboBox.Name = "uiFileExtensionComboBox";
             this.uiFileExtensionComboBox.Size = new System.Drawing.Size(64, 21);
             this.uiFileExtensionComboBox.TabIndex = 1;
-            this.uiFileExtensionComboBox.SelectedIndexChanged += new System.EventHandler(this.uiFileExtensionComboBox_SelectedIndexChanged);
             // 
             // uiDoesFileExistPictureBox
             // 
@@ -155,7 +154,6 @@
             this.uiCancelButton.Text = "Cancel";
             this.ToolTip.SetToolTip(this.uiCancelButton, "Do not log this image and close the Image Previewer");
             this.uiCancelButton.UseVisualStyleBackColor = true;
-            this.uiCancelButton.Click += new System.EventHandler(this.uiCancelButton_Click);
             // 
             // uiOKButton
             // 
@@ -167,7 +165,6 @@
             this.uiOKButton.Text = "Log";
             this.ToolTip.SetToolTip(this.uiOKButton, "Log this image and associated details");
             this.uiOKButton.UseVisualStyleBackColor = true;
-            this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
             // 
             // uiNoteSpellBox
             // 
@@ -253,7 +250,6 @@
             this.uiImageNameComboBox.Name = "uiImageNameComboBox";
             this.uiImageNameComboBox.Size = new System.Drawing.Size(226, 21);
             this.uiImageNameComboBox.TabIndex = 0;
-            this.uiImageNameComboBox.KeyUp += new System.Windows.Forms.KeyEventHandler(this.uiImageNameComboBox_KeyUp);
             // 
             // ImagePreviewerForm
             // 
@@ -264,7 +260,6 @@
             this.MinimumSize = new System.Drawing.Size(800, 454);
             this.Name = "ImagePreviewerForm";
             this.Text = "Image Previewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ImagePreviewerForm_FormClosing);
             this.Load += new System.EventHandler(this.ImagePreviewerForm_Load);
             this.uiSplitContainer.Panel1.ResumeLayout(false);
             this.uiSplitContainer.Panel1.PerformLayout();
@@ -304,5 +299,6 @@
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Controls.TextBox hostedComponent6;
         private System.Windows.Controls.TextBox hostedComponent7;
+        private System.Windows.Controls.TextBox hostedComponent8;
     }
 }

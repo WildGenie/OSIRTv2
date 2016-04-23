@@ -1,6 +1,6 @@
 ﻿namespace OSIRT.UI
 {
-    partial class VideoPreviewer
+    partial class VideoPreviewerOld
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoPreviewer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoPreviewerOld));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiDoesFileExistPictureBox = new System.Windows.Forms.PictureBox();
             this.uiVideoNameComboBox = new System.Windows.Forms.ComboBox();
@@ -36,7 +36,7 @@
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent2 = new System.Windows.Controls.TextBox();
+            this.hostedComponent3 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.uiCalculatingHashLabel = new System.Windows.Forms.Label();
             this.uiHashCalcProgressBar = new System.Windows.Forms.ProgressBar();
@@ -87,7 +87,7 @@
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(297, 34);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(299, 30);
             this.uiDoesFileExistPictureBox.Name = "uiDoesFileExistPictureBox";
             this.uiDoesFileExistPictureBox.Size = new System.Drawing.Size(17, 16);
             this.uiDoesFileExistPictureBox.TabIndex = 29;
@@ -100,7 +100,7 @@
             this.uiVideoNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.uiVideoNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.uiVideoNameComboBox.FormattingEnabled = true;
-            this.uiVideoNameComboBox.Location = new System.Drawing.Point(12, 29);
+            this.uiVideoNameComboBox.Location = new System.Drawing.Point(14, 25);
             this.uiVideoNameComboBox.MaxLength = 128;
             this.uiVideoNameComboBox.Name = "uiVideoNameComboBox";
             this.uiVideoNameComboBox.Size = new System.Drawing.Size(279, 21);
@@ -109,7 +109,7 @@
             // uiNotePictureBox
             // 
             this.uiNotePictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNotePictureBox.Location = new System.Drawing.Point(319, 366);
+            this.uiNotePictureBox.Location = new System.Drawing.Point(319, 356);
             this.uiNotePictureBox.Name = "uiNotePictureBox";
             this.uiNotePictureBox.Size = new System.Drawing.Size(17, 16);
             this.uiNotePictureBox.TabIndex = 26;
@@ -119,7 +119,7 @@
             // 
             this.uiCancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiCancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.uiCancelButton.Location = new System.Drawing.Point(153, 388);
+            this.uiCancelButton.Location = new System.Drawing.Point(153, 378);
             this.uiCancelButton.Name = "uiCancelButton";
             this.uiCancelButton.Size = new System.Drawing.Size(79, 23);
             this.uiCancelButton.TabIndex = 25;
@@ -129,7 +129,7 @@
             // uiOKButton
             // 
             this.uiOKButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiOKButton.Location = new System.Drawing.Point(237, 388);
+            this.uiOKButton.Location = new System.Drawing.Point(237, 378);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(79, 23);
             this.uiOKButton.TabIndex = 23;
@@ -142,7 +142,7 @@
             this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNoteSpellBox.Location = new System.Drawing.Point(15, 195);
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(15, 185);
             this.uiNoteSpellBox.Multiline = true;
             this.uiNoteSpellBox.Name = "uiNoteSpellBox";
             this.uiNoteSpellBox.Size = new System.Drawing.Size(301, 187);
@@ -153,7 +153,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label5.Location = new System.Drawing.Point(14, 178);
+            this.label5.Location = new System.Drawing.Point(14, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(82, 13);
             this.label5.TabIndex = 24;
@@ -163,7 +163,7 @@
             // 
             this.uiCalculatingHashLabel.AutoSize = true;
             this.uiCalculatingHashLabel.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.uiCalculatingHashLabel.Location = new System.Drawing.Point(12, 124);
+            this.uiCalculatingHashLabel.Location = new System.Drawing.Point(12, 113);
             this.uiCalculatingHashLabel.Name = "uiCalculatingHashLabel";
             this.uiCalculatingHashLabel.Size = new System.Drawing.Size(96, 13);
             this.uiCalculatingHashLabel.TabIndex = 21;
@@ -171,7 +171,7 @@
             // 
             // uiHashCalcProgressBar
             // 
-            this.uiHashCalcProgressBar.Location = new System.Drawing.Point(15, 140);
+            this.uiHashCalcProgressBar.Location = new System.Drawing.Point(15, 129);
             this.uiHashCalcProgressBar.MarqueeAnimationSpeed = 30;
             this.uiHashCalcProgressBar.Name = "uiHashCalcProgressBar";
             this.uiHashCalcProgressBar.Size = new System.Drawing.Size(300, 20);
@@ -182,7 +182,7 @@
             // 
             this.uiHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiHashTextBox.Location = new System.Drawing.Point(15, 140);
+            this.uiHashTextBox.Location = new System.Drawing.Point(15, 129);
             this.uiHashTextBox.Name = "uiHashTextBox";
             this.uiHashTextBox.ReadOnly = true;
             this.uiHashTextBox.Size = new System.Drawing.Size(299, 20);
@@ -192,7 +192,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(12, 69);
+            this.label2.Location = new System.Drawing.Point(12, 58);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 17;
@@ -202,7 +202,7 @@
             // 
             this.uiDateAndTimeTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 85);
+            this.uiDateAndTimeTextBox.Location = new System.Drawing.Point(15, 74);
             this.uiDateAndTimeTextBox.Name = "uiDateAndTimeTextBox";
             this.uiDateAndTimeTextBox.ReadOnly = true;
             this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(299, 20);
@@ -212,7 +212,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(12, 13);
+            this.label1.Location = new System.Drawing.Point(14, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 1;
@@ -268,5 +268,6 @@
         private System.Windows.Forms.PictureBox uiDoesFileExistPictureBox;
         private System.Windows.Forms.ComboBox uiVideoNameComboBox;
         private System.Windows.Controls.TextBox hostedComponent2;
+        private System.Windows.Controls.TextBox hostedComponent3;
     }
 }

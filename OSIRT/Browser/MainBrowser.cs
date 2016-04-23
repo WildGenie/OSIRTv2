@@ -25,6 +25,8 @@ namespace OSIRT.Browser
         public event EventHandler DownloadComplete = delegate { };
         public event EventHandler NewTab = delegate { };
 
+        public bool ShowMouseTrail { get; set; }
+
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private ContextMenuStrip contextMenu;
@@ -32,7 +34,6 @@ namespace OSIRT.Browser
         private bool firstLoad = true;
 
 
-        PictureBox pic = new PictureBox();
         public ExtendedBrowser()
         {
             SetLatestIEKeyforWebBrowserControl();
@@ -43,24 +44,13 @@ namespace OSIRT.Browser
             DisableNewWindowsOpening();
 
 
-            //pic.MouseMove += Pic_MouseMove;
-            
-            pic.BackColor = Color.Red;
-           
-            pic.Size = new Size(12, 12);
-            Controls.Add(pic);
+
+            //TODO: tidy this,it does follow mouse nicely.
+            //pic.BackColor = Color.Red;
+            //pic.Size = new Size(12, 12);
+            //Controls.Add(pic);
         }
 
-        protected override void OnMouseMove(MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-        }
-
-        private void Pic_MouseMove(object sender, MouseEventArgs e)
-        {
-            PictureBox b = ((PictureBox)sender);
-            b.Location = new Point(b.Left + e.X, b.Top + e.Y);
-        }
 
         private void InitialiseConextMenu()
         {
@@ -78,7 +68,8 @@ namespace OSIRT.Browser
             ContextMenuStrip = contextMenu;
         }
 
-     
+        
+
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -520,13 +511,16 @@ namespace OSIRT.Browser
             }
         }
 
+
+        private PictureBox pic = new PictureBox();
         private void Document_MouseMove(object sender, HtmlElementEventArgs e)
         {
-            element = Document.GetElementFromPoint(PointToClient(MousePosition));
-            Point p = PointToClient(MousePosition);
-            pic.Location = new Point(p.X + 5, p.Y + 5);
-
-
+            //element = Document.GetElementFromPoint(PointToClient(MousePosition));
+            if (ShowMouseTrail)
+            {
+                Point p = PointToClient(MousePosition);
+                pic.Location = new Point(p.X + 5, p.Y + 5);
+            }
         }
 
         #endregion

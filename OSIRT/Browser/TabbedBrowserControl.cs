@@ -126,7 +126,8 @@ namespace OSIRT.Browser
             DialogResult dialogRes;
             string fileName;
             string dateAndtime;
-            using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details, action))
+
+            using(Previewer previewForm = new ImagePrevEx(action, CurrentBrowser.URL))
             {
                 dialogRes = previewForm.ShowDialog();
                 fileName = previewForm.FileName + previewForm.FileExtension;
@@ -138,7 +139,21 @@ namespace OSIRT.Browser
                 return;
 
             DisplaySavedLabel(fileName, dateAndtime);
-           
+
+
+            //using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details, action))
+            //{
+            //    dialogRes = previewForm.ShowDialog();
+            //    fileName = previewForm.FileName + previewForm.FileExtension;
+            //    dateAndtime = previewForm.DateAndTime;
+            //}
+
+            //ImageDiskCache.RemoveItemsInCache();
+            //if (dialogRes != DialogResult.OK)
+            //    return;
+
+            //DisplaySavedLabel(fileName, dateAndtime);
+
         }
 
         private void DisplaySavedLabel(string fileName, string dateTime)

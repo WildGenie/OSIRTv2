@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
@@ -60,7 +61,22 @@ namespace OSIRT.Helpers
         }
 
 
+        //(Remember to change Build Action to "Embedded rsource" when adding a new resource (casenotes.html is done)
+        public static string GetResource(string resource)
+        {
+            var assembly = Assembly.GetExecutingAssembly();
+            var resourceName = $"OSIRT.Resources.{resource}";
+            string result;
 
+            using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+            using (StreamReader reader = new StreamReader(stream))
+            {
+                result = reader.ReadToEnd();
+            }
+
+            return result;
+
+        }
 
         /// <summary>
         /// Depth-first recursive delete, with handling for descendant 

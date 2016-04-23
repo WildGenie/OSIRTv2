@@ -248,6 +248,12 @@
     <Compile Include="UI\FirstLoadPanel.Designer.cs">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ImagePrevEx.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ImagePrevEx.Designer.cs">
+      <DependentUpon>ImagePrevEx.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\LoadExistingCasePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -303,17 +309,29 @@
     <Compile Include="UI\AuditLog\SearchPanel.Designer.cs">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\SpellBox.cs" />
-    <Compile Include="Loggers\WebsiteLog.cs" />
-    <Compile Include="UI\VideoPreviewer.cs">
+    <Compile Include="UI\Previewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\VideoPreviewer.Designer.cs">
-      <DependentUpon>VideoPreviewer.cs</DependentUpon>
+    <Compile Include="UI\Previewer.Designer.cs">
+      <DependentUpon>Previewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SpellBox.cs" />
+    <Compile Include="Loggers\WebsiteLog.cs" />
+    <Compile Include="UI\VideoPreviewerOld.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VideoPreviewerOld.Designer.cs">
+      <DependentUpon>VideoPreviewerOld.cs</DependentUpon>
     </Compile>
     <Compile Include="UserSettings.cs" />
     <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <Compile Include="VideoCapture\VideoCaptureCompleteEventArgs.cs" />
+    <Compile Include="VideoPreviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoPreviewer.Designer.cs">
+      <DependentUpon>VideoPreviewer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Browser\BrowserTab.resx">
       <DependentUpon>BrowserTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -357,6 +375,9 @@
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ImagePrevEx.resx">
+      <DependentUpon>ImagePrevEx.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\LoadExistingCasePanel.resx">
       <DependentUpon>LoadExistingCasePanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -386,7 +407,13 @@
     <EmbeddedResource Include="UI\AuditLog\SearchPanel.resx">
       <DependentUpon>SearchPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\VideoPreviewer.resx">
+    <EmbeddedResource Include="UI\Previewer.resx">
+      <DependentUpon>Previewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VideoPreviewerOld.resx">
+      <DependentUpon>VideoPreviewerOld.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPreviewer.resx">
       <DependentUpon>VideoPreviewer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
@@ -487,6 +514,8 @@
     <None Include="Resources\cross.png" />
     <None Include="Resources\stop_rec.png" />
     <None Include="Resources\start_rec.png" />
+    <EmbeddedResource Include="Resources\ImageSaveableTypes.txt" />
+    <EmbeddedResource Include="Resources\VideoSaveableFileTypes.txt" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
