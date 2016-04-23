@@ -127,7 +127,7 @@ namespace OSIRT.Browser
             string fileName;
             string dateAndtime;
 
-            using(Previewer previewForm = new ImagePrevEx(action, CurrentBrowser.URL))
+            using(Previewer previewForm = new ImagePreviewer(action, CurrentBrowser.URL))
             {
                 dialogRes = previewForm.ShowDialog();
                 fileName = previewForm.FileName + previewForm.FileExtension;

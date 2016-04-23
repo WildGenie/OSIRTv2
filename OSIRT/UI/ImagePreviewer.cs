@@ -17,14 +17,14 @@ using System.Windows.Forms;
 
 namespace OSIRT.UI
 {
-    public partial class ImagePrevEx : Previewer
+    public partial class ImagePreviewer : Previewer
     {
         private ImageBox imageBox;
         private readonly int MaxImageHeight = 12500;
         private CannotOpenImagePanel cantOpenPanel;
         private string Url;
 
-        public ImagePrevEx(Actions a, string url) : base(a)
+        public ImagePreviewer(Actions a, string url) : base(a)
         {
             InitializeComponent();
             filePath = Constants.TempImgFile;
