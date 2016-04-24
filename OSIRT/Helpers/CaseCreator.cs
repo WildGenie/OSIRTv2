@@ -12,13 +12,13 @@ namespace OSIRT.Helpers
         
         private Dictionary<string, string> caseDetails;
      
-        public CaseCreator(Dictionary<string,string> caseDetails, DatabaseTableCreator tables)
+        public CaseCreator(Dictionary<string,string> caseDetails, DatabaseTableHelper tables)
         {
             this.caseDetails = caseDetails;
             Constants.CaseContainerName = caseDetails["case_reference"];
             CreateCaseContainer();
             CreateCaseDatabase();
-            tables.Create();
+            tables.CreateTables();
             AddCaseDetailsToDb();
 
             UserSettings settings = UserSettings.Load();

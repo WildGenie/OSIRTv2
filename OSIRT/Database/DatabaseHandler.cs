@@ -10,7 +10,7 @@ namespace OSIRT.Database
     public class DatabaseHandler 
     {
 
-        private readonly string connectionString; 
+        private readonly string connectionString;
         
         public DatabaseHandler()
         {
@@ -50,13 +50,16 @@ namespace OSIRT.Database
             return GetDataTableFromQuery(query);
         }
 
-        public DataTable GetRowsFromColumns(string table, params string[] columns)
+        public DataTable GetRowsFromColumns(string table, string where = "WHERE print = 'true'", params string[] columns)
         {
             string joinedColumn = string.Join(",", columns);
-            string query = $"SELECT {joinedColumn} FROM {table}";
+            //TODO: added where clause for audit export, but not checked ramifications for other dependants of this method.
+            //AFFECTS CASE NOTES: THERE IS NO PRINT COLUMN
+            string query = $"SELECT {joinedColumn} FROM {table} {where}"; 
             return GetDataTableFromQuery(query);
         }
         
+
         private DataTable GetDataTableFromQuery(string query)
         {
             DataTable dataTable = new DataTable();

@@ -179,7 +179,7 @@ namespace OSIRT.UI
 
         private void CreateCase(object sender, WaitWindowEventArgs e)
         {
-            new CaseCreator((Dictionary<string, string>)e.Arguments[0], new DatabaseTableCreator());
+            new CaseCreator((Dictionary<string, string>)e.Arguments[0], new DatabaseTableHelper());
         }
 
         private void uiCaseReferenceTextBox_Enter(object sender, EventArgs e)

@@ -37,13 +37,13 @@
             this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
+            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent4 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.uiDateAndTimeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiFileNameComboBox = new System.Windows.Forms.ComboBox();
-            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent3 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiPreviewerSplitContainer)).BeginInit();
             this.uiPreviewerSplitContainer.Panel1.SuspendLayout();
             this.uiPreviewerSplitContainer.SuspendLayout();
@@ -156,6 +156,18 @@
             this.uiOKButton.Text = "Log";
             this.uiOKButton.UseVisualStyleBackColor = true;
             // 
+            // uiNoteSpellBox
+            // 
+            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 207);
+            this.uiNoteSpellBox.Multiline = true;
+            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
+            this.uiNoteSpellBox.TabIndex = 23;
+            this.uiNoteSpellBox.WordWrap = true;
+            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -200,7 +212,7 @@
             // 
             this.uiFileNameComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFileNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.uiFileNameComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.uiFileNameComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.uiFileNameComboBox.FormattingEnabled = true;
             this.uiFileNameComboBox.Location = new System.Drawing.Point(15, 25);
@@ -208,18 +220,6 @@
             this.uiFileNameComboBox.Name = "uiFileNameComboBox";
             this.uiFileNameComboBox.Size = new System.Drawing.Size(253, 21);
             this.uiFileNameComboBox.TabIndex = 20;
-            // 
-            // uiNoteSpellBox
-            // 
-            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 207);
-            this.uiNoteSpellBox.Multiline = true;
-            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
-            this.uiNoteSpellBox.TabIndex = 23;
-            this.uiNoteSpellBox.WordWrap = true;
             // 
             // Previewer
             // 
@@ -259,5 +259,6 @@
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.ComboBox uiFileNameComboBox;
         protected System.Windows.Controls.TextBox hostedComponent3;
+        protected System.Windows.Controls.TextBox hostedComponent4;
     }
 }

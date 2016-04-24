@@ -27,9 +27,10 @@ namespace OSIRT
             **/
 
 
+#if !DEBUG            
             try
             {
-#if !DEBUG
+
                 AppDomain.CurrentDomain.UnhandledException += (sender, e)
                 => FatalExceptionObject(e.ExceptionObject);
 
@@ -40,14 +41,15 @@ namespace OSIRT
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainForm());
-
+#if !DEBUG
             }
             catch (Exception e)
             {
-#if !DEBUG
+
                 FatalExceptionHandler.Handle(e);
-#endif 
-            }
+
+        }
+#endif
 
 
         }//main

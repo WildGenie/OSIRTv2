@@ -128,7 +128,7 @@
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
-    <Compile Include="Database\DatabaseTableCreator.cs" />
+    <Compile Include="Database\DatabaseTableHelper.cs" />
     <Compile Include="Helpers\HashService.cs" />
     <Compile Include="Helpers\HashServiceFactory.cs" />
     <Compile Include="Helpers\ImageDiskCache.cs" />
@@ -194,6 +194,7 @@
     <Compile Include="UI\AuditLog\AuditTabControlPanel.Designer.cs">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AuditLog\DatatableToHtml.cs" />
     <Compile Include="UI\AuditLog\RowDetailsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -498,6 +499,7 @@
     <None Include="Resources\start_rec.png" />
     <EmbeddedResource Include="Resources\ImageSaveableTypes.txt" />
     <EmbeddedResource Include="Resources\VideoSaveableFileTypes.txt" />
+    <EmbeddedResource Include="Resources\auditlog.html" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

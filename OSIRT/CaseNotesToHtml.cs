@@ -24,7 +24,7 @@ namespace OSIRT
 
         private static string GetCaseNotesToHtml()
         {
-            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_notes", "date", "time", "note");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_notes", "", "date", "time", "note");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
@@ -57,23 +57,6 @@ namespace OSIRT
             return stringBuilder.ToString();
         }
 
-        //////TODO: move this into helpers, change name to GetHtmlResourceFromFile(string file //E.g; casenotes.html)
-        ////(Remember to change Build Action to "Embedded rsource" when adding a new resource (casenotes.html is done)
-        //private static string GetHtmlResource() 
-        //{
-        //    var assembly = Assembly.GetExecutingAssembly();
-        //    var resourceName = "OSIRT.Resources.casenotes.html";
-        //    string result;
-
-        //    using (Stream stream = assembly.GetManifestResourceStream(resourceName))
-        //    using (StreamReader reader = new StreamReader(stream))
-        //    {
-        //        result = reader.ReadToEnd();
-        //    }
-
-        //    return result;
-
-        //}
 
 
     }

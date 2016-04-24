@@ -27,19 +27,20 @@ namespace OSIRT.UI
         public ImagePreviewer(Actions a, string url) : base(a)
         {
             InitializeComponent();
-            filePath = Constants.TempImgFile;
+
             uiURLTextBox.Text = url;
+            FormClosing += ImagePrevEx_FormClosing;
+            Url = url;
         }
 
         private void ImagePrevEx_Load(object sender, EventArgs e)
         {
-    
+            filePath = Constants.TempImgFile;
         }
 
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            FormClosing += ImagePrevEx_FormClosing;
 
 
             Size imageSize = GetImageSize();
@@ -121,11 +122,26 @@ namespace OSIRT.UI
 
         private Size GetImageSize()
         {
-            int width, height;
-            using (MagickImage image = new MagickImage(filePath))
+            int width = 0, height = 0;
+            try
             {
-                width = image.Width;
-                height = image.Height;
+                using (MagickImage image = new MagickImage(filePath))
+                {
+                    width = image.Width;
+                    height = image.Height;
+                }
+            }
+            catch(MagickCoderErrorException cex)
+            {
+                System.Diagnostics.Debug.WriteLine(cex.ToString());
+            }
+            catch (MagickCorruptImageErrorException mic)
+            {
+                MessageBox.Show("CORRUPT: " + mic);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("EX: " + e.ToString());
             }
 
             return new Size(width, height);
@@ -189,7 +205,7 @@ namespace OSIRT.UI
                 SaveAsPng(FileName);
             }
 
-            Logger.Log(new WebpageActionsLog(/*details.Url*/ "http://example.com", action, Hash, FileName + FileExtension, Note));
+            Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
             DialogResult = DialogResult.OK;
             Close();
         }

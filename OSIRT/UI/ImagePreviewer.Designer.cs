@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImagePreviewer));
-            this.hostedComponent5 = new System.Windows.Controls.TextBox();
+            this.hostedComponent7 = new System.Windows.Controls.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiPreviewerSplitContainer)).BeginInit();
@@ -53,42 +53,50 @@
             // uiNotePictureBox
             // 
             this.uiNotePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiNotePictureBox.Image")));
-            this.uiNotePictureBox.Location = new System.Drawing.Point(347, 413);
+            this.uiNotePictureBox.Location = new System.Drawing.Point(337, 413);
             // 
             // uiFileExtensionComboBox
             // 
             this.uiFileExtensionComboBox.Items.AddRange(new object[] {
             "",
             "",
+            "",
+            "",
             ""});
-            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(277, 25);
+            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(267, 25);
             // 
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiDoesFileExistPictureBox.Image")));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(347, 30);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(337, 30);
+            // 
+            // uiCalculatingHashLabel
+            // 
+            this.uiCalculatingHashLabel.Location = new System.Drawing.Point(12, 110);
             // 
             // uiHashCalcProgressBar
             // 
-            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(331, 20);
+            this.uiHashCalcProgressBar.Location = new System.Drawing.Point(15, 126);
+            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(321, 20);
             // 
             // uiHashTextBox
             // 
-            this.uiHashTextBox.Size = new System.Drawing.Size(331, 20);
+            this.uiHashTextBox.Location = new System.Drawing.Point(15, 126);
+            this.uiHashTextBox.Size = new System.Drawing.Size(321, 20);
             // 
             // uiCancelButton
             // 
-            this.uiCancelButton.Location = new System.Drawing.Point(177, 435);
+            this.uiCancelButton.Location = new System.Drawing.Point(172, 435);
             // 
             // uiOKButton
             // 
-            this.uiOKButton.Location = new System.Drawing.Point(262, 435);
+            this.uiOKButton.Location = new System.Drawing.Point(257, 435);
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
             // 
             // uiNoteSpellBox
             // 
             this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 242);
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(328, 187);
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(323, 187);
             // 
             // label5
             // 
@@ -96,17 +104,17 @@
             // 
             // uiDateAndTimeTextBox
             // 
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(331, 20);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(321, 20);
             // 
             // uiFileNameComboBox
             // 
-            this.uiFileNameComboBox.Size = new System.Drawing.Size(256, 21);
+            this.uiFileNameComboBox.Size = new System.Drawing.Size(246, 21);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(12, 169);
+            this.label3.Location = new System.Drawing.Point(12, 164);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 36;
@@ -116,19 +124,19 @@
             // 
             this.uiURLTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiURLTextBox.Location = new System.Drawing.Point(15, 185);
+            this.uiURLTextBox.Location = new System.Drawing.Point(15, 180);
             this.uiURLTextBox.Name = "uiURLTextBox";
             this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(331, 20);
+            this.uiURLTextBox.Size = new System.Drawing.Size(321, 20);
             this.uiURLTextBox.TabIndex = 37;
             // 
-            // ImagePrevEx
+            // ImagePreviewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1058, 553);
-            this.Name = "ImagePrevEx";
-            this.Text = "ImagePrevEx";
+            this.Name = "ImagePreviewer";
+            this.Text = "Image Previewer";
             this.Load += new System.EventHandler(this.ImagePrevEx_Load);
             this.uiPreviewerSplitContainer.Panel1.ResumeLayout(false);
             this.uiPreviewerSplitContainer.Panel1.PerformLayout();
@@ -149,5 +157,7 @@
         protected System.Windows.Controls.TextBox hostedComponent3;
         protected System.Windows.Controls.TextBox hostedComponent4;
         protected System.Windows.Controls.TextBox hostedComponent5;
+        protected System.Windows.Controls.TextBox hostedComponent6;
+        protected System.Windows.Controls.TextBox hostedComponent7;
     }
 }

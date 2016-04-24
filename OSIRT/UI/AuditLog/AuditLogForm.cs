@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using OSIRT.Database;
+using OSIRT.Helpers;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -12,6 +13,7 @@ namespace OSIRT.UI.AuditLog
         private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
         private bool isSearchPanel;
+
 
         public AuditLogForm()
         {
@@ -97,6 +99,7 @@ namespace OSIRT.UI.AuditLog
             db.ExecuteNonQuery("UPDATE webpage_actions SET print = 'true'");
             db.ExecuteNonQuery("UPDATE osirt_actions SET print = 'true'");
             db.ExecuteNonQuery("UPDATE attachments SET print = 'true'");
+            db.ExecuteNonQuery("UPDATE videos SET print = 'true'");
             //can't UPDATE multiple tables... look into transactions:
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
@@ -105,6 +108,27 @@ namespace OSIRT.UI.AuditLog
         private void uiExportReportPDFToolStripButton_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void uiExportAsHtmlToolStripButton_Click(object sender, EventArgs e)
+        {
+            //string webpage = DatatableToHtml.ConvertToHtml(new DatabaseHandler().GetRowsFromColumns("webpage_log", "date", "time", "action", "url"));
+
+            DatabaseHandler db = new DatabaseHandler();
+            string auditHtml = OsirtHelper.GetResource("auditlog.html");
+            string save = "";
+            foreach (var kv in DatabaseTableHelper.GetTablesWithColumns())
+            {
+                string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: kv.Key, columns: kv.Value));
+                System.Diagnostics.Debug.WriteLine(page);
+                save = auditHtml.Replace("<%%AUDIT_LOH%%>", page);
+                System.IO.File.WriteAllText($@"D:\{kv.Key}.htm", save);
+            }
+
+
+           
+            //auditHtml = auditHtml.Replace("<%%AUDIT_LOH%%>", webpage);
+           // System.IO.File.WriteAllText(@"D:\test.htm", auditHtml);
         }
     }
 }

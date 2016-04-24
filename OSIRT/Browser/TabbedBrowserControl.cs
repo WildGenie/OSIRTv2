@@ -42,7 +42,6 @@ namespace OSIRT.Browser
             InitializeComponent();
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
-           
 
 
             uiDownloadProgressBar.Visible = false;
@@ -54,6 +53,7 @@ namespace OSIRT.Browser
             //TODO: had a play in ChromeTabControl.
             //Not had time to fully inspect ramifications of this event.
             //It's not quite 100%, so needs work.
+            //Problems arise when drag-moving tab
             addressBar.Text = CurrentTab?.CurrentUrl;
         }
 

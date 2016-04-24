@@ -25,7 +25,7 @@ namespace OSIRT.UI
         public string FileExtension { get { return uiFileExtensionComboBox.Text; } }
         public string Note { get { return uiNoteSpellBox.Text; } }
         public string Hash { get; protected set; }
-        public string DateAndTime { get { return uiDateAndTimeTextBox.Text; } }
+        public string DateAndTime { get; private set; }
 
 
         public Previewer()
@@ -33,12 +33,13 @@ namespace OSIRT.UI
             InitializeComponent();
         }
 
-        public Previewer(/*string dateAndTime,*/ Actions action) : this()
+        public Previewer(Actions action) : this()
         {
             this.action = action;
-            uiDateAndTimeTextBox.Text = $"{DateTime.Now.ToString("yyyy-MM-dd")} {DateTime.Now.ToString("HH:mm:ss")}";
+            DateAndTime = $"{DateTime.Now.ToString("yyyy-MM-dd")} {DateTime.Now.ToString("HH:mm:ss")}";
+            uiDateAndTimeTextBox.Text = DateAndTime;
+            uiFileNameComboBox.Text = System.Text.RegularExpressions.Regex.Replace(DateAndTime, @"[-|:|\s]", "_");
 
-      
             //uiDateAndTimeTextBox.Text = dateAndTime;
         }
 

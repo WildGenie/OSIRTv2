@@ -29,29 +29,32 @@ namespace OSIRT
         {
             try
             {
-                uiVideoMediaPlayer.URL = filePath;
+                uiVideoMediaPlayer.URL = filePath; 
             }
-            catch
-            {
-                //this thing seems to throw exceptions for fun.
-            }
+            catch {  /*this thing seems to throw exceptions for fun.*/ }
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
             try
             {
-
-                File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Video), FileName + FileExtension));
+                uiVideoMediaPlayer.Ctlcontrols.stop();
+                File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 File.Delete(Constants.TempVideoFile);
 
-                Logger.Log(new VideoLog(Actions.Video, FileName + FileExtension, Hash, Note));
+                Logger.Log(new VideoLog(action, FileName + FileExtension, Hash, Note));
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch(UnauthorizedAccessException uex)
+            {
+                MessageBox.Show("Unauthorized Access Exception: " + uex.ToString());
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can't move video. Reason: " + ex.InnerException);
+                MessageBox.Show("Can't move video. Reason: " + ex.ToString());
             }
         }
     }
