@@ -195,6 +195,12 @@
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuditLog\DatatableToHtml.cs" />
+    <Compile Include="UI\AuditLog\ExportAuditOptions.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\AuditLog\ExportAuditOptions.Designer.cs">
+      <DependentUpon>ExportAuditOptions.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\AuditLog\RowDetailsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -339,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\AuditTabControlPanel.resx">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuditLog\ExportAuditOptions.resx">
+      <DependentUpon>ExportAuditOptions.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\RowDetailsPanel.resx">
       <DependentUpon>RowDetailsPanel.cs</DependentUpon>

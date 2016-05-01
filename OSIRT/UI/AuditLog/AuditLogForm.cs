@@ -112,23 +112,21 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsHtmlToolStripButton_Click(object sender, EventArgs e)
         {
-            //string webpage = DatatableToHtml.ConvertToHtml(new DatabaseHandler().GetRowsFromColumns("webpage_log", "date", "time", "action", "url"));
 
             DatabaseHandler db = new DatabaseHandler();
             string auditHtml = OsirtHelper.GetResource("auditlog.html");
             string save = "";
             foreach (var kv in DatabaseTableHelper.GetTablesWithColumns())
             {
-                string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: kv.Key, columns: kv.Value));
-                System.Diagnostics.Debug.WriteLine(page);
-                save = auditHtml.Replace("<%%AUDIT_LOH%%>", page);
-                System.IO.File.WriteAllText($@"D:\{kv.Key}.htm", save);
+                string page = DatatableToHtml.ConvertToHtml(  db.GetRowsFromColumns(table: kv.Key, columns: kv.Value));
+                save = auditHtml.Replace("<%%AUDIT_LOG%%>", page);
+                System.IO.File.WriteAllText($@"D:\report\{kv.Key}.html", save);
+                //HtmLtoPdf.SaveHtmltoPdf(save, kv.Key, $@"D:\report\{kv.Key}.pdf");
             }
 
+            
 
-           
-            //auditHtml = auditHtml.Replace("<%%AUDIT_LOH%%>", webpage);
-           // System.IO.File.WriteAllText(@"D:\test.htm", auditHtml);
+
         }
     }
 }

@@ -57,7 +57,6 @@ namespace OSIRT.Helpers
 
 
 
-
             public static List<string> GetCaseDirectories()
             {
                 List<string> values = new List<string>(directories.Values);

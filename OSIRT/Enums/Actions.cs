@@ -19,7 +19,8 @@
         Loaded,
         CaseLoaded,
         CaseClosed,
-        CaseNotes
+        CaseNotes,
+        Artefacts
 
     }
 }
