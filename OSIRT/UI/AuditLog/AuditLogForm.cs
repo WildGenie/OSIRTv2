@@ -12,6 +12,7 @@ namespace OSIRT.UI.AuditLog
         private AuditTabControlPanel auditTabControlPanel;
         private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
+        private ExportAuditOptionsPanel exportReportOptions;
         private bool isSearchPanel;
 
 
@@ -35,8 +36,12 @@ namespace OSIRT.UI.AuditLog
             rightSearchPanel = new TempSearchPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
 
+            exportReportOptions = new ExportAuditOptionsPanel();
+            uiAuditLogSplitContainer.Panel1.Controls.Add(exportReportOptions);
+
             rightSearchPanel.Visible = false;
             searchPanel.Visible = false;
+            exportReportOptions.Visible = false;
 
         }
 
@@ -105,28 +110,17 @@ namespace OSIRT.UI.AuditLog
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
         }
 
-        private void uiExportReportPDFToolStripButton_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void uiExportAsHtmlToolStripButton_Click(object sender, EventArgs e)
         {
-
-            DatabaseHandler db = new DatabaseHandler();
-            string auditHtml = OsirtHelper.GetResource("auditlog.html");
-            string save = "";
-            foreach (var kv in DatabaseTableHelper.GetTablesWithColumns())
-            {
-                string page = DatatableToHtml.ConvertToHtml(  db.GetRowsFromColumns(table: kv.Key, columns: kv.Value));
-                save = auditHtml.Replace("<%%AUDIT_LOG%%>", page);
-                System.IO.File.WriteAllText($@"D:\report\{kv.Key}.html", save);
-                //HtmLtoPdf.SaveHtmltoPdf(save, kv.Key, $@"D:\report\{kv.Key}.pdf");
-            }
-
             
+        }
 
-
+        private void uiExportReportToolStripButton_Click(object sender, EventArgs e)
+        {
+            exportReportOptions.Visible = true;
+            searchPanel.Visible = false;
+            rowDetailsPanel.Visible = false;
         }
     }
 }

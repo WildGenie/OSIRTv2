@@ -195,11 +195,11 @@
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuditLog\DatatableToHtml.cs" />
-    <Compile Include="UI\AuditLog\ExportAuditOptions.cs">
+    <Compile Include="UI\AuditLog\ExportAuditOptionsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\AuditLog\ExportAuditOptions.Designer.cs">
-      <DependentUpon>ExportAuditOptions.cs</DependentUpon>
+    <Compile Include="UI\AuditLog\ExportAuditOptionsPanel.Designer.cs">
+      <DependentUpon>ExportAuditOptionsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuditLog\RowDetailsPanel.cs">
       <SubType>UserControl</SubType>
@@ -346,8 +346,8 @@
     <EmbeddedResource Include="UI\AuditLog\AuditTabControlPanel.resx">
       <DependentUpon>AuditTabControlPanel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\AuditLog\ExportAuditOptions.resx">
-      <DependentUpon>ExportAuditOptions.cs</DependentUpon>
+    <EmbeddedResource Include="UI\AuditLog\ExportAuditOptionsPanel.resx">
+      <DependentUpon>ExportAuditOptionsPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\RowDetailsPanel.resx">
       <DependentUpon>RowDetailsPanel.cs</DependentUpon>
@@ -509,6 +509,7 @@
     <EmbeddedResource Include="Resources\ImageSaveableTypes.txt" />
     <EmbeddedResource Include="Resources\VideoSaveableFileTypes.txt" />
     <EmbeddedResource Include="Resources\auditlog.html" />
+    <None Include="Resources\report.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

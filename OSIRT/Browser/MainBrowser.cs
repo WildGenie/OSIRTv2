@@ -496,13 +496,20 @@ namespace OSIRT.Browser
 
                 if(e.MouseButtonsPressed == MouseButtons.Middle)
                 {
-                    //TODO: Just testing this
-                    if(element.TagName == "A")
+                    HtmlElement element = Document.GetElementFromPoint(PointToClient(MousePosition));
+                    //I assume I need to check if this element has child elements that contain a TagName "A"
+               
+                    if (element.TagName == "A" && !string.IsNullOrEmpty(element.GetAttribute("href")))//it means we have deal with href
                     {
-                        string path = element.GetAttribute("href");
-                        MessageBox.Show(path);
-                        e.BubbleEvent = false;
+                        Debug.WriteLine("Get link location, open in new tab.");
+                        var url = element.GetAttribute("href");
+                        Debug.WriteLine(url);
                     }
+                    else
+                        Debug.WriteLine(element.TagName);
+                 
+
+                    
                 }
             }
             catch
