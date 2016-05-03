@@ -1,5 +1,6 @@
 ﻿using OSIRT.Enums;
 using OSIRT.Helpers;
+using OSIRT.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -15,9 +16,6 @@ namespace OSIRT.UI.AuditLog
     class DatatableToHtml
     {
 
-  
-
-
         //http://stackoverflow.com/questions/19682996/datatable-to-html-table
         public static string ConvertToHtml(DataTable table, string exportPath)
         {
@@ -28,10 +26,7 @@ namespace OSIRT.UI.AuditLog
             foreach (string directory in directories)
             {
                 Directory.CreateDirectory(Path.Combine($"{exportPath}", $"report_{Constants.CaseContainerName}", "artefacts", directory));
-                //Debug.WriteLine("DIRECTORY: " + Path.Combine($"{exportPath}", $"report_{Constants.CaseContainerName}", "artefacts", directory));
             }
-
-
 
 
             string html = "<table>";
@@ -42,6 +37,8 @@ namespace OSIRT.UI.AuditLog
             }
             html += "</tr>";
 
+
+            int count = 0;
             foreach (DataRow row in table.Rows)
             {
                 html += "</tr>";
@@ -50,40 +47,40 @@ namespace OSIRT.UI.AuditLog
                     string cellValue = row[column] != null ? row[column].ToString() : "";
                     string columnName = column.ColumnName; 
 
-
                     if(columnName == "file")
                     {
+                        count++;
                         Actions action = (Actions) Enum.Parse(typeof(Actions), row["action"].ToString());
                         string location = Constants.Directories.GetSpecifiedCaseDirectory(action);
                         string sourceFile = Path.Combine(Constants.ContainerLocation, location, cellValue);
                         string relativePath = Path.Combine("artefacts", location, cellValue);
-                        string destination = Path.Combine( $"{exportPath}", $"report_{Constants.CaseContainerName}", relativePath); //TODO: use relative paths
+                        string destination = Path.Combine( $"{exportPath}", $"report_{Constants.CaseContainerName}", relativePath);
                         File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
 
-                        //TODO: Add previewer
-                        switch (action)
+                        if(cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)
                         {
-                            case Actions.Screenshot:
-                            case Actions.Snippet:
-                            case Actions.Scraped:
-
-                                break;
+                            html += $@"<td><a href='{relativePath}' onmouseover=showImageOnMouseOver('{relativePath.Replace(@"\", @"\\")}','{count}'); onmouseout=resetImage('{count}');> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=' id='place-holder-{count}' style='zindex: 100; position: absolute;'/>{cellValue}</a></td>";
                         }
-
-                        html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                        else if(cellValue.HasVideoExtension() && UserSettings.Load().ShowVideosInReport)
+                        {
+                            html += $@"<td><video width='300' height='200' controls> <source src='{relativePath}' type='video/mp4'><a href='{relativePath}'>{cellValue}</a></video>";
+                        }
+                        else 
+                        {
+                            html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                        }
                     }
                     else
                     {
                         html += "<td>" + cellValue + "</td>";
                     }
-                    
-
                 }
                 html += "</tr>";
             }
             html += "</table>";
             return html;
         }
+
 
     }
 }

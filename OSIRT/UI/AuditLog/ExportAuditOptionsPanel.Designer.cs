@@ -36,18 +36,20 @@
             this.uiWebActionsCheckBox = new System.Windows.Forms.CheckBox();
             this.uiLoadedCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportOptionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.uiGSCPComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiOpenReportCheckBox = new System.Windows.Forms.CheckBox();
             this.uiPrintNotesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiDisplayImagesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiExportAsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiReportExportHelpLabel = new System.Windows.Forms.Label();
             this.uiBrowseButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.uiPathTextBox = new System.Windows.Forms.TextBox();
             this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
             this.uiExportAsPdfButton = new System.Windows.Forms.Button();
             this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
+            this.uiDisplayVideosCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
@@ -156,7 +158,8 @@
             // 
             this.uiReportOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiReportOptionsGroupBox.Controls.Add(this.comboBox1);
+            this.uiReportOptionsGroupBox.Controls.Add(this.uiDisplayVideosCheckBox);
+            this.uiReportOptionsGroupBox.Controls.Add(this.uiGSCPComboBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.label1);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiOpenReportCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiPrintNotesCheckBox);
@@ -164,24 +167,28 @@
             this.uiReportOptionsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiReportOptionsGroupBox.Location = new System.Drawing.Point(3, 149);
             this.uiReportOptionsGroupBox.Name = "uiReportOptionsGroupBox";
-            this.uiReportOptionsGroupBox.Size = new System.Drawing.Size(310, 157);
+            this.uiReportOptionsGroupBox.Size = new System.Drawing.Size(310, 175);
             this.uiReportOptionsGroupBox.TabIndex = 1;
             this.uiReportOptionsGroupBox.TabStop = false;
             this.uiReportOptionsGroupBox.Text = "Report Options";
             // 
-            // comboBox1
+            // uiGSCPComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(6, 122);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(298, 21);
-            this.comboBox1.TabIndex = 4;
+            this.uiGSCPComboBox.FormattingEnabled = true;
+            this.uiGSCPComboBox.Items.AddRange(new object[] {
+            "Top Secret",
+            "Secret",
+            "Official"});
+            this.uiGSCPComboBox.Location = new System.Drawing.Point(6, 143);
+            this.uiGSCPComboBox.Name = "uiGSCPComboBox";
+            this.uiGSCPComboBox.Size = new System.Drawing.Size(298, 21);
+            this.uiGSCPComboBox.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(6, 106);
+            this.label1.Location = new System.Drawing.Point(6, 127);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(72, 13);
             this.label1.TabIndex = 3;
@@ -191,7 +198,7 @@
             // 
             this.uiOpenReportCheckBox.AutoSize = true;
             this.uiOpenReportCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiOpenReportCheckBox.Location = new System.Drawing.Point(6, 66);
+            this.uiOpenReportCheckBox.Location = new System.Drawing.Point(6, 86);
             this.uiOpenReportCheckBox.Name = "uiOpenReportCheckBox";
             this.uiOpenReportCheckBox.Size = new System.Drawing.Size(150, 17);
             this.uiOpenReportCheckBox.TabIndex = 2;
@@ -201,6 +208,8 @@
             // uiPrintNotesCheckBox
             // 
             this.uiPrintNotesCheckBox.AutoSize = true;
+            this.uiPrintNotesCheckBox.Checked = true;
+            this.uiPrintNotesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiPrintNotesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiPrintNotesCheckBox.Location = new System.Drawing.Point(202, 28);
             this.uiPrintNotesCheckBox.Name = "uiPrintNotesCheckBox";
@@ -208,10 +217,13 @@
             this.uiPrintNotesCheckBox.TabIndex = 1;
             this.uiPrintNotesCheckBox.Text = "Print audit notes";
             this.uiPrintNotesCheckBox.UseVisualStyleBackColor = true;
+            this.uiPrintNotesCheckBox.CheckedChanged += new System.EventHandler(this.uiPrintNotesCheckBox_CheckedChanged);
             // 
             // uiDisplayImagesCheckBox
             // 
             this.uiDisplayImagesCheckBox.AutoSize = true;
+            this.uiDisplayImagesCheckBox.Checked = true;
+            this.uiDisplayImagesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiDisplayImagesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiDisplayImagesCheckBox.Location = new System.Drawing.Point(6, 28);
             this.uiDisplayImagesCheckBox.Name = "uiDisplayImagesCheckBox";
@@ -219,11 +231,13 @@
             this.uiDisplayImagesCheckBox.TabIndex = 0;
             this.uiDisplayImagesCheckBox.Text = "Display images in report";
             this.uiDisplayImagesCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisplayImagesCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayImagesCheckBox_CheckedChanged);
             // 
             // uiExportAsGroupBox
             // 
             this.uiExportAsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiExportAsGroupBox.Controls.Add(this.uiReportExportHelpLabel);
             this.uiExportAsGroupBox.Controls.Add(this.uiBrowseButton);
             this.uiExportAsGroupBox.Controls.Add(this.label2);
             this.uiExportAsGroupBox.Controls.Add(this.uiPathTextBox);
@@ -231,12 +245,22 @@
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsPdfButton);
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsHtmlButton);
             this.uiExportAsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 312);
+            this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 330);
             this.uiExportAsGroupBox.Name = "uiExportAsGroupBox";
-            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 172);
+            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 206);
             this.uiExportAsGroupBox.TabIndex = 2;
             this.uiExportAsGroupBox.TabStop = false;
             this.uiExportAsGroupBox.Text = "Export Report";
+            // 
+            // uiReportExportHelpLabel
+            // 
+            this.uiReportExportHelpLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.uiReportExportHelpLabel.Location = new System.Drawing.Point(3, 180);
+            this.uiReportExportHelpLabel.Name = "uiReportExportHelpLabel";
+            this.uiReportExportHelpLabel.Size = new System.Drawing.Size(304, 23);
+            this.uiReportExportHelpLabel.TabIndex = 6;
+            this.uiReportExportHelpLabel.Text = "Export report as HTML";
+            this.uiReportExportHelpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uiBrowseButton
             // 
@@ -270,31 +294,48 @@
             // uiExportAsCaseFileButton
             // 
             this.uiExportAsCaseFileButton.Image = global::OSIRT.Properties.Resources.table;
-            this.uiExportAsCaseFileButton.Location = new System.Drawing.Point(227, 80);
+            this.uiExportAsCaseFileButton.Location = new System.Drawing.Point(244, 80);
             this.uiExportAsCaseFileButton.Name = "uiExportAsCaseFileButton";
-            this.uiExportAsCaseFileButton.Size = new System.Drawing.Size(73, 78);
+            this.uiExportAsCaseFileButton.Size = new System.Drawing.Size(60, 56);
             this.uiExportAsCaseFileButton.TabIndex = 2;
             this.uiExportAsCaseFileButton.UseVisualStyleBackColor = true;
+            this.uiExportAsCaseFileButton.MouseHover += new System.EventHandler(this.uiExportAsCaseFileButton_MouseHover);
             // 
             // uiExportAsPdfButton
             // 
             this.uiExportAsPdfButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
-            this.uiExportAsPdfButton.Location = new System.Drawing.Point(118, 80);
+            this.uiExportAsPdfButton.Location = new System.Drawing.Point(123, 80);
             this.uiExportAsPdfButton.Name = "uiExportAsPdfButton";
-            this.uiExportAsPdfButton.Size = new System.Drawing.Size(73, 78);
+            this.uiExportAsPdfButton.Size = new System.Drawing.Size(60, 56);
             this.uiExportAsPdfButton.TabIndex = 1;
             this.uiExportAsPdfButton.UseVisualStyleBackColor = true;
             this.uiExportAsPdfButton.Click += new System.EventHandler(this.uiExportAsPdfButton_Click);
+            this.uiExportAsPdfButton.MouseHover += new System.EventHandler(this.uiExportAsPdfButton_MouseHover);
             // 
             // uiExportAsHtmlButton
             // 
             this.uiExportAsHtmlButton.Image = global::OSIRT.Properties.Resources.html;
-            this.uiExportAsHtmlButton.Location = new System.Drawing.Point(9, 80);
+            this.uiExportAsHtmlButton.Location = new System.Drawing.Point(6, 80);
             this.uiExportAsHtmlButton.Name = "uiExportAsHtmlButton";
-            this.uiExportAsHtmlButton.Size = new System.Drawing.Size(73, 78);
+            this.uiExportAsHtmlButton.Size = new System.Drawing.Size(60, 56);
             this.uiExportAsHtmlButton.TabIndex = 0;
             this.uiExportAsHtmlButton.UseVisualStyleBackColor = true;
             this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
+            this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
+            // 
+            // uiDisplayVideosCheckBox
+            // 
+            this.uiDisplayVideosCheckBox.AutoSize = true;
+            this.uiDisplayVideosCheckBox.Checked = true;
+            this.uiDisplayVideosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiDisplayVideosCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiDisplayVideosCheckBox.Location = new System.Drawing.Point(6, 57);
+            this.uiDisplayVideosCheckBox.Name = "uiDisplayVideosCheckBox";
+            this.uiDisplayVideosCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.uiDisplayVideosCheckBox.TabIndex = 5;
+            this.uiDisplayVideosCheckBox.Text = "Display videos in report";
+            this.uiDisplayVideosCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisplayVideosCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayVideosCheckBox_CheckedChanged);
             // 
             // ExportAuditOptionsPanel
             // 
@@ -305,7 +346,7 @@
             this.Controls.Add(this.uiReportOptionsGroupBox);
             this.Controls.Add(this.uiReportSelectionGroupBox);
             this.Name = "ExportAuditOptionsPanel";
-            this.Size = new System.Drawing.Size(316, 620);
+            this.Size = new System.Drawing.Size(316, 636);
             this.Load += new System.EventHandler(this.ExportAuditOptions_Load);
             this.uiReportSelectionGroupBox.ResumeLayout(false);
             this.uiReportSelectionGroupBox.PerformLayout();
@@ -326,7 +367,7 @@
         private System.Windows.Forms.CheckBox uiWebActionsCheckBox;
         private System.Windows.Forms.CheckBox uiLoadedCheckBox;
         private System.Windows.Forms.GroupBox uiReportOptionsGroupBox;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox uiGSCPComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox uiOpenReportCheckBox;
         private System.Windows.Forms.CheckBox uiPrintNotesCheckBox;
@@ -339,5 +380,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox uiPathTextBox;
         private System.Windows.Forms.Button uiExportAsCaseFileButton;
+        private System.Windows.Forms.Label uiReportExportHelpLabel;
+        private System.Windows.Forms.CheckBox uiDisplayVideosCheckBox;
     }
 }

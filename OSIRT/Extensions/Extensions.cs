@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -25,6 +28,27 @@ namespace OSIRT.Extensions
         {
             string fileName = Path.GetExtension(path);
             return validExtensions.Contains(fileName.ToLower());
+        }
+
+        private static readonly string[] validVideoExtensions = { ".mp4" };
+        public static bool HasVideoExtension(this string path)
+        {
+            string fileName = Path.GetExtension(path);
+            return validVideoExtensions.Contains(fileName.ToLower());
+        }
+
+
+        public static string ToBase64Encoded(this Image image)
+        {
+            using (MemoryStream m = new MemoryStream())
+            {
+                image.Save(m, ImageFormat.Png);
+                byte[] imageBytes = m.ToArray();
+
+                // Convert byte[] to Base64 String
+                string base64String = Convert.ToBase64String(imageBytes);
+                return base64String;
+            }
         }
 
         public static bool ContainsAnchor(this HtmlElement element)

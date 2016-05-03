@@ -510,6 +510,7 @@
     <EmbeddedResource Include="Resources\VideoSaveableFileTypes.txt" />
     <EmbeddedResource Include="Resources\auditlog.html" />
     <None Include="Resources\report.png" />
+    <EmbeddedResource Include="Resources\trans.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

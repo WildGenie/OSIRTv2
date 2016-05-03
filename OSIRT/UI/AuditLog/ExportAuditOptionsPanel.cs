@@ -42,9 +42,7 @@ namespace OSIRT.UI.AuditLog
             DatabaseHandler db = new DatabaseHandler();
             string auditHtml = OsirtHelper.GetResource("auditlog.html");
             string save = "";
-
             var checkboxes = uiReportSelectionGroupBox.GetChildControls<CheckBox>();
-
 
             foreach (CheckBox cb in checkboxes)
             {
@@ -103,6 +101,43 @@ namespace OSIRT.UI.AuditLog
         {
             if(!string.IsNullOrWhiteSpace(ExportPath))
                 ToggleExportFileButtons(true);
+        }
+
+        private void uiExportAsHtmlButton_MouseHover(object sender, EventArgs e)
+        {
+            uiReportExportHelpLabel.Text = "Export report as HTML";
+        }
+
+        private void uiExportAsPdfButton_MouseHover(object sender, EventArgs e)
+        {
+            uiReportExportHelpLabel.Text = "Export report as PDF";
+        }
+
+        private void uiExportAsCaseFileButton_MouseHover(object sender, EventArgs e)
+        {
+            uiReportExportHelpLabel.Text = "Export report as OSRR file";
+        }
+
+        private void uiDisplayImagesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
+            UserSettings settings = UserSettings.Load();
+            settings.PrintImagesInReport = uiDisplayImagesCheckBox.Checked;
+            settings.Save();
+        }
+
+        private void uiPrintNotesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UserSettings settings = UserSettings.Load();
+            settings.PrintAuditNotes = uiPrintNotesCheckBox.Checked;
+            settings.Save();
+        }
+
+        private void uiDisplayVideosCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            UserSettings settings = UserSettings.Load();
+            settings.ShowVideosInReport = uiDisplayVideosCheckBox.Checked;
+            settings.Save();
         }
     }
 }

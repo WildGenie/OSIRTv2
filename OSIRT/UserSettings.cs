@@ -10,5 +10,11 @@
         public bool AuditLogNewestFirst = false;
         public int NumberOfRowsPerPage = 25;
 
+        //reporting
+        public bool PrintImagesInReport = true;
+        public bool PrintAuditNotes = true;
+        public bool ShowVideosInReport = true;
+
+
     }
 }

@@ -3,6 +3,22 @@
 <head>
     <meta charset=utf-8 />
     <title><%%TITLE%%></title>
+    <script>
+        function showImageOnMouseOver(imagePath, num)
+        {
+            console.log("IMAGE PATH: " + imagePath);
+            document.getElementById('place-holder-'+num).src=imagePath;
+            document.getElementById('place-holder-'+num).style.width = '30%';
+            document.getElementById('place-holder-'+num).style.height = 'auto';
+        }
+
+        function resetImage(num)
+        {
+            document.getElementById('place-holder-'+num).setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=');
+            document.getElementById('place-holder-'+num).style.width = '1px';
+            document.getElementById('place-holder-'+num).style.height = '1px';
+        }
+    </script>
     <style>
      body {
          font-family: Arial;
