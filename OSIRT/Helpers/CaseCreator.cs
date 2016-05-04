@@ -25,7 +25,7 @@ namespace OSIRT.Helpers
             settings.Hash = caseDetails["hash_function"];
             settings.Save();
 
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "[No Hash - Case Created]"));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseLoaded, "[No Hash - Case Created]", Constants.CaseContainerName));
         }
 
 

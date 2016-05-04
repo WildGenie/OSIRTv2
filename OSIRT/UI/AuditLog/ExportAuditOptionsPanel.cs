@@ -8,6 +8,8 @@ using OSIRT.Extensions;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.IO;
+using OSIRT.Loggers;
+using System.Data;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -27,14 +29,7 @@ namespace OSIRT.UI.AuditLog
             ToggleExportFileButtons(false);
         }
 
-        private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
-        {
-            foreach (var value in GetHtml())
-            {
-                string savePath = Path.Combine(ExportPath, $"report_{Constants.CaseContainerName}", $"{value.Item1}.html");
-                File.WriteAllText(savePath, value.Item2);
-            }
-        }
+ 
 
 
         private IEnumerable<Tuple<string, string>> GetHtml()
@@ -58,22 +53,51 @@ namespace OSIRT.UI.AuditLog
 
         private void uiToggleCheckedButton_Click(object sender, EventArgs e)
         {
+        }
 
+        private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
+        {
+            foreach (var value in GetHtml())
+            {
+                string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
+                File.WriteAllText(savePath, value.Item2);
+            }
+
+            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+        }
+
+        private DataTable GetMergedDataTable()
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            DataTable merged = new DataTable();
+            //TODO: the order in which these checkboxes are grabbed is a bit weird (from a user perspective)
+            foreach (var checkbox in uiReportSelectionGroupBox.GetChildControls<CheckBox>())
+            {
+                if (!checkbox.Checked) continue;
+
+                string table = checkbox.Tag.ToString();
+                string columns = DatabaseTableHelper.GetTableColumns(table);
+                DataTable dt = db.GetRowsFromColumns(table: table, columns: columns);
+                merged.Merge(dt, true, MissingSchemaAction.Add);
+            }
+            merged.TableName = "merged";
+            DataView view = new DataView(merged);
+            view.Sort = "date asc, time asc";
+            DataTable sortedTable = view.ToTable();
+            return sortedTable;
         }
 
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
 
+            string auditHtml = OsirtHelper.GetResource("auditlog.html");
+            string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
+            string save = auditHtml.Replace("<%%AUDIT_LOG%%>", page);
 
-            foreach (var value in GetHtml())
-            {
-                string savePath = Path.Combine(ExportPath, $"report_{Constants.CaseContainerName}", $"{value.Item1}.pdf");
-                HtmLtoPdf.SaveHtmltoPdf(value.Item2, value.Item1, savePath);
-            }
-
-            //TODO: not hardcoded path and LOG report export
-
-
+            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
+            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
         }
 
         private void uiBrowseButton_Click(object sender, EventArgs e)

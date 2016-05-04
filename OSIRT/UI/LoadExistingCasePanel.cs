@@ -112,7 +112,7 @@ namespace OSIRT.UI
             UpdateCaseTableWithPassword(hash);
 
             //TODO: put the hash as a property rather than directly from textbox
-            Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text));
+            Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text, Constants.CaseContainerName));
 
         }
 

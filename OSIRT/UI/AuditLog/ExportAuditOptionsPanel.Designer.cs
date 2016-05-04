@@ -36,6 +36,7 @@
             this.uiWebActionsCheckBox = new System.Windows.Forms.CheckBox();
             this.uiLoadedCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportOptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiDisplayVideosCheckBox = new System.Windows.Forms.CheckBox();
             this.uiGSCPComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiOpenReportCheckBox = new System.Windows.Forms.CheckBox();
@@ -49,7 +50,7 @@
             this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
             this.uiExportAsPdfButton = new System.Windows.Forms.Button();
             this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
-            this.uiDisplayVideosCheckBox = new System.Windows.Forms.CheckBox();
+            this.uiChronOrderCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
@@ -158,6 +159,7 @@
             // 
             this.uiReportOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiReportOptionsGroupBox.Controls.Add(this.uiChronOrderCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiDisplayVideosCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiGSCPComboBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.label1);
@@ -171,6 +173,20 @@
             this.uiReportOptionsGroupBox.TabIndex = 1;
             this.uiReportOptionsGroupBox.TabStop = false;
             this.uiReportOptionsGroupBox.Text = "Report Options";
+            // 
+            // uiDisplayVideosCheckBox
+            // 
+            this.uiDisplayVideosCheckBox.AutoSize = true;
+            this.uiDisplayVideosCheckBox.Checked = true;
+            this.uiDisplayVideosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiDisplayVideosCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiDisplayVideosCheckBox.Location = new System.Drawing.Point(6, 57);
+            this.uiDisplayVideosCheckBox.Name = "uiDisplayVideosCheckBox";
+            this.uiDisplayVideosCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.uiDisplayVideosCheckBox.TabIndex = 5;
+            this.uiDisplayVideosCheckBox.Text = "Display videos in report";
+            this.uiDisplayVideosCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisplayVideosCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayVideosCheckBox_CheckedChanged);
             // 
             // uiGSCPComboBox
             // 
@@ -211,7 +227,7 @@
             this.uiPrintNotesCheckBox.Checked = true;
             this.uiPrintNotesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiPrintNotesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiPrintNotesCheckBox.Location = new System.Drawing.Point(202, 28);
+            this.uiPrintNotesCheckBox.Location = new System.Drawing.Point(190, 28);
             this.uiPrintNotesCheckBox.Name = "uiPrintNotesCheckBox";
             this.uiPrintNotesCheckBox.Size = new System.Drawing.Size(102, 17);
             this.uiPrintNotesCheckBox.TabIndex = 1;
@@ -323,19 +339,18 @@
             this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
             this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
             // 
-            // uiDisplayVideosCheckBox
+            // uiChronOrderCheckBox
             // 
-            this.uiDisplayVideosCheckBox.AutoSize = true;
-            this.uiDisplayVideosCheckBox.Checked = true;
-            this.uiDisplayVideosCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.uiDisplayVideosCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiDisplayVideosCheckBox.Location = new System.Drawing.Point(6, 57);
-            this.uiDisplayVideosCheckBox.Name = "uiDisplayVideosCheckBox";
-            this.uiDisplayVideosCheckBox.Size = new System.Drawing.Size(135, 17);
-            this.uiDisplayVideosCheckBox.TabIndex = 5;
-            this.uiDisplayVideosCheckBox.Text = "Display videos in report";
-            this.uiDisplayVideosCheckBox.UseVisualStyleBackColor = true;
-            this.uiDisplayVideosCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayVideosCheckBox_CheckedChanged);
+            this.uiChronOrderCheckBox.AutoSize = true;
+            this.uiChronOrderCheckBox.Checked = true;
+            this.uiChronOrderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiChronOrderCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiChronOrderCheckBox.Location = new System.Drawing.Point(190, 57);
+            this.uiChronOrderCheckBox.Name = "uiChronOrderCheckBox";
+            this.uiChronOrderCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.uiChronOrderCheckBox.TabIndex = 6;
+            this.uiChronOrderCheckBox.Text = "Chronological order";
+            this.uiChronOrderCheckBox.UseVisualStyleBackColor = true;
             // 
             // ExportAuditOptionsPanel
             // 
@@ -382,5 +397,6 @@
         private System.Windows.Forms.Button uiExportAsCaseFileButton;
         private System.Windows.Forms.Label uiReportExportHelpLabel;
         private System.Windows.Forms.CheckBox uiDisplayVideosCheckBox;
+        private System.Windows.Forms.CheckBox uiChronOrderCheckBox;
     }
 }

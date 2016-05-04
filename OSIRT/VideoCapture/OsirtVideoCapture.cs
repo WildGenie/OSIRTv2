@@ -3,6 +3,7 @@ using OSIRT.UI;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -50,11 +51,53 @@ namespace OSIRT.VideoCapture
             return captureThread.IsAlive;
         }
 
+        //List<AudioCaptureDeviceInfo> _AudioList;
+        public static void PrintAudioDevices()
+        {
+            VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
+            String[] allLines = null;
+            try
+            {
+                String loadFilename = "AudioCaptureDevices.txt";
+                allLines = File.ReadAllLines(loadFilename);
+                FileInfo loadedFileInfo = new FileInfo(loadFilename);
+                loadedFileInfo.Delete();
+            }
+            catch { }
+            if (allLines == null)
+            {
+                MessageBox.Show("Failed to read list of audio devices!");
+            }
+            else
+            {
+
+                foreach (string line in allLines)
+                {
+                    Debug.WriteLine("AUDIO: " + line);
+                }
+
+                //int deviceCount = Convert.ToInt32(allLines[0]);
+                //_AudioList = new List<AudioCaptureDeviceInfo>();
+                //for (int lineIndex = 1; lineIndex < allLines.Length; lineIndex++)
+                //{
+                //    String curLine = allLines[lineIndex];
+                //    String[] curWords = curLine.Split('\t');
+                //    if (curWords.Length == 2)
+                //    {
+                //        AudioCaptureDeviceInfo NewAudio = new AudioCaptureDeviceInfo();
+                //        NewAudio.Index = Convert.ToUInt32(curWords[0]);
+                //        NewAudio.Description = curWords[1];
+                //        _AudioList.Add(NewAudio);
+                //    }
+                //}
+
+            }
+        }
+
 
         public static void StartCapture(int width, int height, ToolStripButton button, uint handle)
         {
             OsirtVideoCapture.button = button;
-            Debug.WriteLine($"CAPTURE WIDTH: {width} , CAPTURE HEIGHT: {height}");
 
             captureThreadEntry = new Capture();
             captureThreadEntry.WindowHandle = handle; /*(uint)Process.GetCurrentProcess().MainWindowHandle*/;
@@ -79,10 +122,6 @@ namespace OSIRT.VideoCapture
 
                 button.Image = Properties.Resources.stop_rec;
                 button.ToolTipText = "Stop screen capture";
-
-                //StartButton.Enabled = false;
-                //StopButton.Enabled = true;
-
             }
             else
             {

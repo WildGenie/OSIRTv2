@@ -57,9 +57,10 @@ namespace OSIRT.Loggers
             }
             else if(logType == typeof(OsirtActionsLog))
             {
-                //osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, hash TEXT)"
+                //osirt_actions (id INTEGER PRIMARY KEY, print BOOLEAN, date TEXT, time TEXT, action TEXT, file TEXT, hash TEXT)"
                 OsirtActionsLog osirtAction = (OsirtActionsLog)log;
                 toLog.Add("hash", osirtAction.Hash);
+                toLog.Add("file", osirtAction.File);
                 handler.Insert("osirt_actions", toLog);
             }
             else if (logType == typeof(VideoLog))

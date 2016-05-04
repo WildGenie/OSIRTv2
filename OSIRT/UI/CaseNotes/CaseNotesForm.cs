@@ -105,11 +105,12 @@ namespace OSIRT.UI.CaseNotes
 
         private void CreatePDF(object sender, WaitWindowEventArgs e)
         {
+            //TODO: When audit log is exported and case notes are then exported (or vice-verca) as PDF, the application hangs...
             string path = e.Arguments[0].ToString();
             string html = CaseNotesToHtml.CreateHtml();
             HtmLtoPdf.SaveHtmltoPdf(html, "Case Notes", path);
             string hash = OsirtHelper.GetFileHash(path);
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash, System.IO.Path.GetFileName(path))); //TODO: Will probably just want name of this file, not whole path
         }
 
         private void CaseNotesForm_Shown(object sender, EventArgs e)

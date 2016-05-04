@@ -75,7 +75,8 @@ namespace OSIRT.UI
             //TODO: clear IE cache if required
 
             //TODO:  Export hash.
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, "[Case Closed - Hash exported as hash.txt]"));
+            //Need this log here, as  database entry.
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt", Constants.CaseContainerName));
             Thread.Sleep(500); //just to see the window
             //zip container
             e.Window.Message = "Encrypting container... Please Wait";
@@ -86,7 +87,12 @@ namespace OSIRT.UI
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
-        
+
+            //now we can hash and export it, case zipped.
+            string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
+            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{Constants.CaseContainerName}_hash.txt", hash);
+            //TODO: have hash save location as an option
+
             e.Window.Message = "Performing clean up operations... Please Wait";
 
             //TODO: A handle is being left on the directory... What to do?
@@ -117,6 +123,9 @@ namespace OSIRT.UI
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             Controls.Add(firstLoadPanel);
+
+
+            VideoCapture.OsirtVideoCapture.PrintAudioDevices();
     }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)

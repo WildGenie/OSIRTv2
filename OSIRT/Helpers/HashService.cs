@@ -29,6 +29,16 @@ namespace OSIRT.Helpers
 
         }
 
+        public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)
+        {
+            return HashAlgorithm.TransformBlock(inputBuffer, inputOffset, inputCount, outputBuffer, outputOffset);
+        }
+
+        public byte[] TransformFinalBlock(byte[] inputBuffer, int inputOffset, int inputCount)
+        {
+            return HashAlgorithm.TransformFinalBlock(inputBuffer, inputOffset, inputCount);
+        }
+
         public byte[] ComputeHash(byte[] buffer)
         {
             return HashAlgorithm.ComputeHash(buffer);

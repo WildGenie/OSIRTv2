@@ -46,28 +46,36 @@ namespace OSIRT.UI.AuditLog
                 {
                     string cellValue = row[column] != null ? row[column].ToString() : "";
                     string columnName = column.ColumnName; 
-
-                    if(columnName == "file")
+                                                                                     //for when we merge the tables   
+                    if(columnName == "file" && table.TableName != "osirt_actions" && cellValue != "")
                     {
                         count++;
-                        Actions action = (Actions) Enum.Parse(typeof(Actions), row["action"].ToString());
-                        string location = Constants.Directories.GetSpecifiedCaseDirectory(action);
-                        string sourceFile = Path.Combine(Constants.ContainerLocation, location, cellValue);
-                        string relativePath = Path.Combine("artefacts", location, cellValue);
-                        string destination = Path.Combine( $"{exportPath}", $"report_{Constants.CaseContainerName}", relativePath);
-                        File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
+                        string rowAction = row["action"].ToString();
+                        if (Path.HasExtension(cellValue) &&  rowAction != "Case Notes")  
+                        {
+                            Actions action = (Actions)Enum.Parse(typeof(Actions), rowAction);
+                            string location = Constants.Directories.GetSpecifiedCaseDirectory(action);
+                            string sourceFile = Path.Combine(Constants.ContainerLocation, location, cellValue);
+                            string relativePath = Path.Combine("artefacts", location, cellValue);
+                            string destination = Path.Combine($"{exportPath}", Constants.ReportContainerName, relativePath);
+                            File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
 
-                        if(cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)
-                        {
-                            html += $@"<td><a href='{relativePath}' onmouseover=showImageOnMouseOver('{relativePath.Replace(@"\", @"\\")}','{count}'); onmouseout=resetImage('{count}');> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=' id='place-holder-{count}' style='zindex: 100; position: absolute;'/>{cellValue}</a></td>";
+                            if (cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)
+                            {
+                                html += $@"<td><a href='{relativePath}' onmouseover=showImageOnMouseOver('{relativePath.Replace(@"\", @"\\")}','{count}'); onmouseout=resetImage('{count}');> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=' id='place-holder-{count}' style='zindex: 100; position: absolute;'/>{cellValue}</a></td>";
+                            }
+                            else if (cellValue.HasVideoExtension() && UserSettings.Load().ShowVideosInReport)
+                            {
+                                html += $@"<td><video width='300' height='200' controls> <source src='{relativePath}' type='video/mp4'><a href='{relativePath}'>{cellValue}</a></video>";
+                            }
+                            else
+                            {
+                                html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                            }
                         }
-                        else if(cellValue.HasVideoExtension() && UserSettings.Load().ShowVideosInReport)
+                        else
                         {
-                            html += $@"<td><video width='300' height='200' controls> <source src='{relativePath}' type='video/mp4'><a href='{relativePath}'>{cellValue}</a></video>";
-                        }
-                        else 
-                        {
-                            html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                            html += "<td>" + cellValue + "</td>";
                         }
                     }
                     else

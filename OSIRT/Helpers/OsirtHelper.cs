@@ -8,6 +8,9 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Linq;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace OSIRT.Helpers
 {
@@ -61,7 +64,36 @@ namespace OSIRT.Helpers
         }
 
 
-        //(Remember to change Build Action to "Embedded rsource" when adding a new resource (casenotes.html is done)
+        public static string CreateHashForFolder(string path)
+        {
+            var files = Directory.GetFiles(path, "*.*", SearchOption.AllDirectories)
+                         .OrderBy(p => p).ToList();
+
+            //When we use the hash factory, we get exceptions. This is better than no hash at all.
+            SHA512 hash = SHA512.Create(); 
+
+            for (int i = 0; i < files.Count; i++)
+            {
+                string file = files[i];
+
+                // hash path
+                string relativePath = file.Substring(path.Length + 1);
+                byte[] pathBytes = Encoding.UTF8.GetBytes(relativePath.ToLower());
+                hash.TransformBlock(pathBytes, 0, pathBytes.Length, pathBytes, 0);
+
+                // hash contents
+                byte[] contentBytes = File.ReadAllBytes(file);
+                if (i == files.Count - 1)
+                    hash.TransformFinalBlock(contentBytes, 0, contentBytes.Length);
+                else
+                    hash.TransformBlock(contentBytes, 0, contentBytes.Length, contentBytes, 0);
+            }
+
+            return BitConverter.ToString(hash.Hash).Replace("-", "").ToUpper();
+        }
+
+
+        //(Remember to change Build Action to "Embedded rsource" when adding a new resource
         public static string GetResource(string resource)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -112,19 +144,26 @@ namespace OSIRT.Helpers
         //http://stackoverflow.com/questions/281640/how-do-i-get-a-human-readable-file-size-in-bytes-abbreviation-using-net
         public static string GetHumanReadableFileSize(string fileName)
         {
-            if (fileName == null)
-                throw new ArgumentException("File name must not be null");
+            try {
+                if (fileName == null)
+                    throw new ArgumentException("File name must not be null");
 
-            string[] sizes = { "B", "KB", "MB", "GB" };
-            double len = new FileInfo(fileName).Length;
-            int order = 0;
-            while (len >= 1024 && order + 1 < sizes.Length)
+                string[] sizes = { "B", "KB", "MB", "GB" };
+                double len = new FileInfo(fileName).Length;
+                int order = 0;
+                while (len >= 1024 && order + 1 < sizes.Length)
+                {
+                    order++;
+                    len = len / 1024;
+                }
+
+                return $"{len:0.##} {sizes[order]}";
+
+            } catch(Exception e)
             {
-                order++;
-                len = len / 1024;
+                MessageBox.Show(e.ToString());
             }
-
-            return $"{len:0.##} {sizes[order]}"; ;
+            return "";
         }
 
 

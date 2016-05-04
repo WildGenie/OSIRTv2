@@ -59,8 +59,16 @@ namespace OSIRT.UI.AuditLog
                     if (textBox == FileTextBox)
                     {
                         Actions directory;
-                        Enum.TryParse(rowDetails["action"], true, out directory);
-                        DisplayFileIconWithFileSize(rowDetails["file"], directory);
+                        Enum.TryParse(rowDetails["action"].Replace(" ", ""), true, out directory);
+                        if (Path.HasExtension(rowDetails["file"]) && directory != Actions.CaseNotes)
+                        {
+                            DisplayFileIconWithFileSize(rowDetails["file"], directory);
+                        }
+                        else
+                        {
+                            ClearFilePreviewer();
+                            filePath = "";
+                        }
                     }
                     else
                     {
