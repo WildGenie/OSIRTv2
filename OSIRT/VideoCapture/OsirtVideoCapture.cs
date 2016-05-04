@@ -51,48 +51,6 @@ namespace OSIRT.VideoCapture
             return captureThread.IsAlive;
         }
 
-        //List<AudioCaptureDeviceInfo> _AudioList;
-        public static void PrintAudioDevices()
-        {
-            VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
-            String[] allLines = null;
-            try
-            {
-                String loadFilename = "AudioCaptureDevices.txt";
-                allLines = File.ReadAllLines(loadFilename);
-                FileInfo loadedFileInfo = new FileInfo(loadFilename);
-                loadedFileInfo.Delete();
-            }
-            catch { }
-            if (allLines == null)
-            {
-                MessageBox.Show("Failed to read list of audio devices!");
-            }
-            else
-            {
-
-                foreach (string line in allLines)
-                {
-                    Debug.WriteLine("AUDIO: " + line);
-                }
-
-                //int deviceCount = Convert.ToInt32(allLines[0]);
-                //_AudioList = new List<AudioCaptureDeviceInfo>();
-                //for (int lineIndex = 1; lineIndex < allLines.Length; lineIndex++)
-                //{
-                //    String curLine = allLines[lineIndex];
-                //    String[] curWords = curLine.Split('\t');
-                //    if (curWords.Length == 2)
-                //    {
-                //        AudioCaptureDeviceInfo NewAudio = new AudioCaptureDeviceInfo();
-                //        NewAudio.Index = Convert.ToUInt32(curWords[0]);
-                //        NewAudio.Description = curWords[1];
-                //        _AudioList.Add(NewAudio);
-                //    }
-                //}
-
-            }
-        }
 
 
         public static void StartCapture(int width, int height, ToolStripButton button, uint handle)
@@ -108,7 +66,7 @@ namespace OSIRT.VideoCapture
             captureThreadEntry.Height = (uint)height;
             captureThreadEntry.BitRate = 20000000;
             captureThreadEntry.FrameRate = 30;
-            captureThreadEntry.Audio = 0xFFFFFFFF;
+            captureThreadEntry.Audio = HasSteroMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0.
             captureThreadEntry.Filename = Constants.TempVideoFile; //TODO: Remember to delete video file.
 
             captureThread = new Thread(new ThreadStart(captureThreadEntry.Start));
@@ -130,6 +88,25 @@ namespace OSIRT.VideoCapture
                 captureThreadEntry = null;
             }
 
+        }
+
+        private static bool HasSteroMix()
+        {
+            VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
+            string[] allLines = null;
+            try
+            {
+                string loadFilename = "AudioCaptureDevices.txt";
+                allLines = File.ReadAllLines(loadFilename);
+                FileInfo loadedFileInfo = new FileInfo(loadFilename);
+                loadedFileInfo.Delete();
+            }
+            catch { }
+            foreach (string line in allLines)
+            {
+                if (line.Contains("Stero Mix")) return true; 
+            }
+            return false;
         }
 
 

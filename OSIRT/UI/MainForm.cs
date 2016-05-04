@@ -123,9 +123,6 @@ namespace OSIRT.UI
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             Controls.Add(firstLoadPanel);
-
-
-            VideoCapture.OsirtVideoCapture.PrintAudioDevices();
     }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
