@@ -36,6 +36,7 @@
             this.uiWebActionsCheckBox = new System.Windows.Forms.CheckBox();
             this.uiLoadedCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportOptionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiChronOrderCheckBox = new System.Windows.Forms.CheckBox();
             this.uiDisplayVideosCheckBox = new System.Windows.Forms.CheckBox();
             this.uiGSCPComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,7 +51,6 @@
             this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
             this.uiExportAsPdfButton = new System.Windows.Forms.Button();
             this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
-            this.uiChronOrderCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
@@ -83,7 +83,7 @@
             this.uiOsirtActionsCheckBox.Location = new System.Drawing.Point(6, 92);
             this.uiOsirtActionsCheckBox.Name = "uiOsirtActionsCheckBox";
             this.uiOsirtActionsCheckBox.Size = new System.Drawing.Size(96, 17);
-            this.uiOsirtActionsCheckBox.TabIndex = 6;
+            this.uiOsirtActionsCheckBox.TabIndex = 2;
             this.uiOsirtActionsCheckBox.Tag = "osirt_actions";
             this.uiOsirtActionsCheckBox.Text = "OSIRT actions";
             this.uiOsirtActionsCheckBox.UseVisualStyleBackColor = true;
@@ -136,7 +136,7 @@
             this.uiWebActionsCheckBox.Location = new System.Drawing.Point(6, 60);
             this.uiWebActionsCheckBox.Name = "uiWebActionsCheckBox";
             this.uiWebActionsCheckBox.Size = new System.Drawing.Size(110, 17);
-            this.uiWebActionsCheckBox.TabIndex = 2;
+            this.uiWebActionsCheckBox.TabIndex = 1;
             this.uiWebActionsCheckBox.Tag = "webpage_actions";
             this.uiWebActionsCheckBox.Text = "Webpage actions";
             this.uiWebActionsCheckBox.UseVisualStyleBackColor = true;
@@ -173,6 +173,19 @@
             this.uiReportOptionsGroupBox.TabIndex = 1;
             this.uiReportOptionsGroupBox.TabStop = false;
             this.uiReportOptionsGroupBox.Text = "Report Options";
+            // 
+            // uiChronOrderCheckBox
+            // 
+            this.uiChronOrderCheckBox.AutoSize = true;
+            this.uiChronOrderCheckBox.Checked = true;
+            this.uiChronOrderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiChronOrderCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiChronOrderCheckBox.Location = new System.Drawing.Point(190, 57);
+            this.uiChronOrderCheckBox.Name = "uiChronOrderCheckBox";
+            this.uiChronOrderCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.uiChronOrderCheckBox.TabIndex = 6;
+            this.uiChronOrderCheckBox.Text = "Chronological order";
+            this.uiChronOrderCheckBox.UseVisualStyleBackColor = true;
             // 
             // uiDisplayVideosCheckBox
             // 
@@ -338,19 +351,6 @@
             this.uiExportAsHtmlButton.UseVisualStyleBackColor = true;
             this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
             this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
-            // 
-            // uiChronOrderCheckBox
-            // 
-            this.uiChronOrderCheckBox.AutoSize = true;
-            this.uiChronOrderCheckBox.Checked = true;
-            this.uiChronOrderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.uiChronOrderCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiChronOrderCheckBox.Location = new System.Drawing.Point(190, 57);
-            this.uiChronOrderCheckBox.Name = "uiChronOrderCheckBox";
-            this.uiChronOrderCheckBox.Size = new System.Drawing.Size(117, 17);
-            this.uiChronOrderCheckBox.TabIndex = 6;
-            this.uiChronOrderCheckBox.Text = "Chronological order";
-            this.uiChronOrderCheckBox.UseVisualStyleBackColor = true;
             // 
             // ExportAuditOptionsPanel
             // 

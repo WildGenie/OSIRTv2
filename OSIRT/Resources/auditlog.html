@@ -26,7 +26,12 @@
         
      tr:nth-child(even) {
          background-color: #DDD;
-    }   
+    } 
+     
+     tr 
+     {
+         page-break-inside:avoid; page-break-after:auto; 
+     }  
         
      th {
          border-bottom: 1px solid;
@@ -43,13 +48,55 @@
        border-spacing: 0;
        border-collapse: collapse;
        table-layout:fixed;
-       font-size: 80%;
+       font-size: 70%;
+       page-break-inside:auto; 
     }
+
+    #title-page 
+    {
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+        
+    ul 
+    {
+        list-style: none;
+    }
+        
+
+    #case-details img {
+        margin-right: 15px;
+        float: left;
+    }
+        
+    #when-printed
+    {
+        margin-left: 10px;
+        font-weight: bold;
+    }
+        
+    #log-title
+    {
+        background-color: #ddd;
+        text-align: center;
+        padding: 0;
+        margin: 0;
+    }    
     </style>
 
 </head>
 <body>
-    <h1>Audit Log</h1>
+
+    <div id='case-details'>
+        <hr>
+        <h2 id="log-title">Audit Log</h2>
+        <img src='C:\Users\Joe\Desktop\kent.gif' alt="" />
+        <%%CASE_DETAILS%%>
+        <br />
+        <p id="when-printed">Printed: <%%DATE_TIME%%></p>
+        <hr>
+    </div>
+    <p style="page-break-after:always;"><!-- pagebreak --></p> 
      <%%AUDIT_LOG%%>   
 </body>
 </html>

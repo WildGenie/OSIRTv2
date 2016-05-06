@@ -88,6 +88,7 @@ namespace OSIRT.UI
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }
 
+            e.Window.Message = "Hashing case container... Please Wait";
             //now we can hash and export it, case zipped.
             string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{Constants.CaseContainerName}_hash.txt", hash);
@@ -96,6 +97,7 @@ namespace OSIRT.UI
             e.Window.Message = "Performing clean up operations... Please Wait";
 
             //TODO: A handle is being left on the directory... What to do?
+            //Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
             while(true)
             {
                 int attempts = 0;

@@ -89,6 +89,19 @@ namespace OSIRT.Database
                     return command.ExecuteScalar().ToString();
                 }
             }
+        }
+        
+        public bool TableIsEmpty(string table)
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    conn.Open();
+                    command.CommandText = $"SELECT Count(*) FROM {table}";
+                    return (int.Parse(command.ExecuteScalar().ToString())) == 0;
+                }
+            }
         }  
 
         

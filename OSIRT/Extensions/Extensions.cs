@@ -14,7 +14,7 @@ namespace OSIRT.Extensions
         public static IEnumerable<TControl> GetChildControls<TControl>(this Control control) where TControl : Control
         {
             var children = control.Controls.OfType<TControl>();
-            return children.SelectMany(c => GetChildControls<TControl>(c)).Concat(children);
+            return children.SelectMany(c => GetChildControls<TControl>(c)).Concat(children).OrderBy(c => c.TabIndex); //Added this orderby on 06/05.
         }
 
         public static string SplitAtCapitalLetter(this string toSplit)

@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.IO;
 using OSIRT.Loggers;
 using System.Data;
+using System.Text;
+using System.Globalization;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -29,8 +31,27 @@ namespace OSIRT.UI.AuditLog
             ToggleExportFileButtons(false);
         }
 
- 
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            EnableTablesToPrint();
+            Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        }
+
+        private void EnableTablesToPrint()
+        {
+            DatabaseHandler dbHandler = new DatabaseHandler();
+            var checkboxes = uiReportSelectionGroupBox.GetChildControls<CheckBox>();
+            foreach (CheckBox cb in checkboxes)
+            {
+                if (dbHandler.TableIsEmpty(cb.Tag.ToString()))
+                {
+                    cb.Enabled = false;
+                    cb.Checked = false;
+                }
+            }
+        }
 
         private IEnumerable<Tuple<string, string>> GetHtml()
         {
@@ -46,7 +67,9 @@ namespace OSIRT.UI.AuditLog
                 string table = cb.Tag.ToString();
                 string columns = DatabaseTableHelper.GetTableColumns(table);
                 string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: table, columns: columns), ExportPath);
-                save = auditHtml.Replace("<%%AUDIT_LOG%%>", page);
+                save = auditHtml.Replace("<%%AUDIT_LOG%%>", page)
+                                .Replace("<%%CASE_DETAILS%%>", HtmlHelper.GetCaseDetails())
+                                .Replace("<%%DATE_TIME%%>", $"{DateTime.Now.ToString("yyyy-MM-dd")} {DateTime.Now.ToString("HH:mm:ss")} ({ TimeZone.CurrentTimeZone.StandardName}) ");
                 yield return Tuple.Create(table, save);
             }
         }
@@ -75,7 +98,7 @@ namespace OSIRT.UI.AuditLog
             foreach (var checkbox in uiReportSelectionGroupBox.GetChildControls<CheckBox>())
             {
                 if (!checkbox.Checked) continue;
-
+                
                 string table = checkbox.Tag.ToString();
                 string columns = DatabaseTableHelper.GetTableColumns(table);
                 DataTable dt = db.GetRowsFromColumns(table: table, columns: columns);
@@ -88,12 +111,13 @@ namespace OSIRT.UI.AuditLog
             return sortedTable;
         }
 
+
+
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
-
             string auditHtml = OsirtHelper.GetResource("auditlog.html");
             string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
-            string save = auditHtml.Replace("<%%AUDIT_LOG%%>", page);
+            string save = auditHtml.Replace("<%%AUDIT_LOG%%>", page).Replace("<%%CASE_DETAILS%%>", HtmlHelper.GetCaseDetails());
 
             HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));

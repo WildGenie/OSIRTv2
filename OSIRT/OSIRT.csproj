@@ -122,6 +122,7 @@
     <Compile Include="CaseSettings.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
+    <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\OsirtLogWriter.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
@@ -511,6 +512,7 @@
     <EmbeddedResource Include="Resources\auditlog.html" />
     <None Include="Resources\report.png" />
     <EmbeddedResource Include="Resources\trans.png" />
+    <EmbeddedResource Include="Resources\report-title-page.html" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

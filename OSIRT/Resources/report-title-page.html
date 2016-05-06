@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Audit Log</title>
+	<style>
+        body 
+        {
+            font-family: Arial;
+        }
+        
+        #title-page 
+        {
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+        }
+        
+        ul 
+        {
+            list-style: none;
+        }
+        
+        #case-details 
+        {
+            width: 650px;
+            height: 400px;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+
+        #case-details img {
+            margin-right: 15px;
+            float: left;
+        }
+        
+        #when-printed
+        {
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        #log-title
+        {
+            background-color: #ddd;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+        }    
+    </style>
+
+</head>
+<body>
+       
+    <div id='case-details'>
+        <hr>
+        <h2 id="log-title">Audit Log</h2>
+        <img src='C:\Users\Joe\Desktop\kent.gif' alt="" />
+        <%%CASE_DETAILS%%>
+        <br/>
+        <p id="when-printed">Printed: 10/10/10 @ 11:57:31 (BST)</p>
+        <hr>
+    </div>
+  
+</body>
+</html>

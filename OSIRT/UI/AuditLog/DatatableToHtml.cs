@@ -28,12 +28,16 @@ namespace OSIRT.UI.AuditLog
                 Directory.CreateDirectory(Path.Combine($"{exportPath}", $"report_{Constants.CaseContainerName}", "artefacts", directory));
             }
 
-
+            string columnName;
             string html = "<table>";
             html += "<tr>";
             for (int i = 0; i < table.Columns.Count; i++)
             {
-                html += "<th>" + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(table.Columns[i].ColumnName) + "</th>";
+                columnName = table.Columns[i].ColumnName;
+                if (columnName == "note" && !UserSettings.Load().PrintAuditNotes)
+                    continue;
+
+                html += "<th>" + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(columnName) + "</th>";
             }
             html += "</tr>";
 
@@ -45,7 +49,14 @@ namespace OSIRT.UI.AuditLog
                 foreach (DataColumn column in table.Columns)
                 {
                     string cellValue = row[column] != null ? row[column].ToString() : "";
-                    string columnName = column.ColumnName; 
+                    columnName = column.ColumnName;
+
+                    Debug.WriteLine($"COL: {columnName}. Print: {UserSettings.Load().PrintAuditNotes}");
+                    if (columnName == "note" && !UserSettings.Load().PrintAuditNotes)
+                    {
+                        Debug.WriteLine("---- in here -----");
+                        continue;
+                    }
                                                                                      //for when we merge the tables   
                     if(columnName == "file" && table.TableName != "osirt_actions" && cellValue != "")
                     {

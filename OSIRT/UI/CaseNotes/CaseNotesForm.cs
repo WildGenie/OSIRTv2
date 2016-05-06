@@ -110,7 +110,7 @@ namespace OSIRT.UI.CaseNotes
             string html = CaseNotesToHtml.CreateHtml();
             HtmLtoPdf.SaveHtmltoPdf(html, "Case Notes", path);
             string hash = OsirtHelper.GetFileHash(path);
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash, System.IO.Path.GetFileName(path))); //TODO: Will probably just want name of this file, not whole path
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseNotes, hash, System.IO.Path.GetFileName(path)));
         }
 
         private void CaseNotesForm_Shown(object sender, EventArgs e)
