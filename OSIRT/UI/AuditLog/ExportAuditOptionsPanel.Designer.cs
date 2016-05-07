@@ -97,6 +97,7 @@
             this.uiToggleCheckedButton.TabIndex = 5;
             this.uiToggleCheckedButton.Text = "Toggle Checked";
             this.uiToggleCheckedButton.UseVisualStyleBackColor = true;
+            this.uiToggleCheckedButton.Visible = false;
             this.uiToggleCheckedButton.Click += new System.EventHandler(this.uiToggleCheckedButton_Click);
             // 
             // uiAttachmentCheckBox
@@ -186,6 +187,7 @@
             this.uiChronOrderCheckBox.TabIndex = 6;
             this.uiChronOrderCheckBox.Text = "Chronological order";
             this.uiChronOrderCheckBox.UseVisualStyleBackColor = true;
+            this.uiChronOrderCheckBox.Visible = false;
             // 
             // uiDisplayVideosCheckBox
             // 
@@ -195,14 +197,15 @@
             this.uiDisplayVideosCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiDisplayVideosCheckBox.Location = new System.Drawing.Point(6, 57);
             this.uiDisplayVideosCheckBox.Name = "uiDisplayVideosCheckBox";
-            this.uiDisplayVideosCheckBox.Size = new System.Drawing.Size(135, 17);
+            this.uiDisplayVideosCheckBox.Size = new System.Drawing.Size(121, 17);
             this.uiDisplayVideosCheckBox.TabIndex = 5;
-            this.uiDisplayVideosCheckBox.Text = "Display videos in report";
+            this.uiDisplayVideosCheckBox.Text = "Link videos in report";
             this.uiDisplayVideosCheckBox.UseVisualStyleBackColor = true;
             this.uiDisplayVideosCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayVideosCheckBox_CheckedChanged);
             // 
             // uiGSCPComboBox
             // 
+            this.uiGSCPComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiGSCPComboBox.FormattingEnabled = true;
             this.uiGSCPComboBox.Items.AddRange(new object[] {
             "Top Secret",
@@ -212,6 +215,7 @@
             this.uiGSCPComboBox.Name = "uiGSCPComboBox";
             this.uiGSCPComboBox.Size = new System.Drawing.Size(298, 21);
             this.uiGSCPComboBox.TabIndex = 4;
+            this.uiGSCPComboBox.SelectedIndexChanged += new System.EventHandler(this.uiGSCPComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -256,9 +260,9 @@
             this.uiDisplayImagesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiDisplayImagesCheckBox.Location = new System.Drawing.Point(6, 28);
             this.uiDisplayImagesCheckBox.Name = "uiDisplayImagesCheckBox";
-            this.uiDisplayImagesCheckBox.Size = new System.Drawing.Size(137, 17);
+            this.uiDisplayImagesCheckBox.Size = new System.Drawing.Size(123, 17);
             this.uiDisplayImagesCheckBox.TabIndex = 0;
-            this.uiDisplayImagesCheckBox.Text = "Display images in report";
+            this.uiDisplayImagesCheckBox.Text = "Link images in report";
             this.uiDisplayImagesCheckBox.UseVisualStyleBackColor = true;
             this.uiDisplayImagesCheckBox.CheckedChanged += new System.EventHandler(this.uiDisplayImagesCheckBox_CheckedChanged);
             // 

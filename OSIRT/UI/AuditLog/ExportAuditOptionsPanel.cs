@@ -19,6 +19,7 @@ namespace OSIRT.UI.AuditLog
     {
 
         public string ExportPath { get; private set; }
+        public string GSCP { get; private set; }
 
 
         public ExportAuditOptionsPanel()
@@ -29,6 +30,7 @@ namespace OSIRT.UI.AuditLog
         private void ExportAuditOptions_Load(object sender, EventArgs e)
         {
             ToggleExportFileButtons(false);
+            GSCP = "";
         }
 
 
@@ -55,23 +57,24 @@ namespace OSIRT.UI.AuditLog
 
         private IEnumerable<Tuple<string, string>> GetHtml()
         {
-            DatabaseHandler db = new DatabaseHandler();
-            string auditHtml = OsirtHelper.GetResource("auditlog.html");
-            string save = "";
-            var checkboxes = uiReportSelectionGroupBox.GetChildControls<CheckBox>();
+            foreach (string table in GetSelectedTables())
+            {
+                string save = HtmlHelper.GetFormattedPage(table, ExportPath, GSCP, true);
+                yield return Tuple.Create(table, save);
+            }
+        }
 
+        public List<string> GetSelectedTables()
+        {
+            List<string> selectedTables = new List<string>();
+            var checkboxes = uiReportSelectionGroupBox.GetChildControls<CheckBox>();
             foreach (CheckBox cb in checkboxes)
             {
                 if (!cb.Checked) continue;
 
-                string table = cb.Tag.ToString();
-                string columns = DatabaseTableHelper.GetTableColumns(table);
-                string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: table, columns: columns), ExportPath);
-                save = auditHtml.Replace("<%%AUDIT_LOG%%>", page)
-                                .Replace("<%%CASE_DETAILS%%>", HtmlHelper.GetCaseDetails())
-                                .Replace("<%%DATE_TIME%%>", $"{DateTime.Now.ToString("yyyy-MM-dd")} {DateTime.Now.ToString("HH:mm:ss")} ({ TimeZone.CurrentTimeZone.StandardName}) ");
-                yield return Tuple.Create(table, save);
+                selectedTables.Add(cb.Tag.ToString());
             }
+            return selectedTables;
         }
 
         private void uiToggleCheckedButton_Click(object sender, EventArgs e)
@@ -80,10 +83,23 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
         {
+
+            //TODO: working on adding nav for html report.
+            //This can probably go in htmlhelper class
+            StringBuilder navBuilder = new StringBuilder();
+            navBuilder.Append("<ul>");
+            foreach (string table in GetSelectedTables())
+            {
+                navBuilder.Append($"<li><a href={table}.html>{table}</a></li>");
+            }
+            navBuilder.Append("</ul>");
+
+
             foreach (var value in GetHtml())
             {
                 string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
-                File.WriteAllText(savePath, value.Item2);
+                string page = value.Item2;
+                File.WriteAllText(savePath, page);
             }
 
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
@@ -94,12 +110,8 @@ namespace OSIRT.UI.AuditLog
         {
             DatabaseHandler db = new DatabaseHandler();
             DataTable merged = new DataTable();
-            //TODO: the order in which these checkboxes are grabbed is a bit weird (from a user perspective)
-            foreach (var checkbox in uiReportSelectionGroupBox.GetChildControls<CheckBox>())
+            foreach (string table in GetSelectedTables())
             {
-                if (!checkbox.Checked) continue;
-                
-                string table = checkbox.Tag.ToString();
                 string columns = DatabaseTableHelper.GetTableColumns(table);
                 DataTable dt = db.GetRowsFromColumns(table: table, columns: columns);
                 merged.Merge(dt, true, MissingSchemaAction.Add);
@@ -115,9 +127,8 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
-            string auditHtml = OsirtHelper.GetResource("auditlog.html");
             string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
-            string save = auditHtml.Replace("<%%AUDIT_LOG%%>", page).Replace("<%%CASE_DETAILS%%>", HtmlHelper.GetCaseDetails());
+            string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
 
             HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
@@ -186,6 +197,11 @@ namespace OSIRT.UI.AuditLog
             UserSettings settings = UserSettings.Load();
             settings.ShowVideosInReport = uiDisplayVideosCheckBox.Checked;
             settings.Save();
+        }
+
+        private void uiGSCPComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GSCP = uiGSCPComboBox.Text;
         }
     }
 }

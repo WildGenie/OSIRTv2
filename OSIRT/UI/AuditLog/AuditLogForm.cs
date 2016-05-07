@@ -12,8 +12,9 @@ namespace OSIRT.UI.AuditLog
         private AuditTabControlPanel auditTabControlPanel;
         private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
-        private ExportAuditOptionsPanel exportReportOptions;
+        private ExportAuditOptionsPanel exportReportOptionsPanel;
         private bool isSearchPanel;
+        private bool isReportExportPanel;
 
 
         public AuditLogForm()
@@ -36,13 +37,23 @@ namespace OSIRT.UI.AuditLog
             rightSearchPanel = new TempSearchPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
 
-            exportReportOptions = new ExportAuditOptionsPanel();
-            uiAuditLogSplitContainer.Panel1.Controls.Add(exportReportOptions);
+            exportReportOptionsPanel = new ExportAuditOptionsPanel();
+            uiAuditLogSplitContainer.Panel1.Controls.Add(exportReportOptionsPanel);
 
             rightSearchPanel.Visible = false;
             searchPanel.Visible = false;
-            exportReportOptions.Visible = false;
+            exportReportOptionsPanel.Visible = false;
 
+        }
+
+
+        private void uiExportReportToolStripButton_Click(object sender, EventArgs e)
+        {
+            exportReportOptionsPanel.Visible = !isReportExportPanel;
+            searchPanel.Visible = isReportExportPanel;
+            rowDetailsPanel.Visible = isReportExportPanel;
+            isReportExportPanel = !isReportExportPanel;
+            uiExportReportToolStripButton.Image = isReportExportPanel ? Properties.Resources.table : Properties.Resources.report;
         }
 
         private void uiSearchToolStripButton_Click(object sender, EventArgs e)
@@ -55,6 +66,7 @@ namespace OSIRT.UI.AuditLog
         {
             rowDetailsPanel.Visible = on;
             auditTabControlPanel.Visible = on;
+
             rightSearchPanel.Visible = !on;
             searchPanel.Visible = !on;
 
@@ -116,11 +128,5 @@ namespace OSIRT.UI.AuditLog
             
         }
 
-        private void uiExportReportToolStripButton_Click(object sender, EventArgs e)
-        {
-            exportReportOptions.Visible = true;
-            searchPanel.Visible = false;
-            rowDetailsPanel.Visible = false;
-        }
     }
 }

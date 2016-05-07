@@ -1,7 +1,9 @@
 ﻿using OSIRT.Database;
+using OSIRT.UI.AuditLog;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -26,6 +28,61 @@ namespace OSIRT.Helpers
                 }
             }
             return stringBuilder.ToString();
+        }
+
+        //public static string GetHtmlNavBar()
+        //{
+            
+        //}
+
+        public static string GetFormattedPage(string table, string exportPath, string gscp, bool isHtmlReport)
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            string columns = DatabaseTableHelper.GetTableColumns(table);
+            string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: table, columns: columns), exportPath);
+
+            return ReplaceReportDetails(page, gscp, isHtmlReport);
+
+        }
+
+        public static string ReplaceReportDetails(string auditLog, string gscp, bool isHtmlReport)
+        {
+            string auditHtml = OsirtHelper.GetResource("auditlog.html");
+            string timeZone = TimeZone.CurrentTimeZone.IsDaylightSavingTime(DateTime.Now) ? TimeZone.CurrentTimeZone.DaylightName : TimeZone.CurrentTimeZone.StandardName;
+            string dateAndTime = $"{DateTime.Now.ToString("yyyy-MM-dd")}  {DateTime.Now.ToString("HH:mm:ss")} ({timeZone})";
+            
+                            
+
+            string caseDetails = "";
+            if (!isHtmlReport)
+            {
+                caseDetails = CaseDetailsHtml();
+            }
+
+            string save = auditHtml.Replace("<%%AUDIT_LOG%%>", auditLog)
+                                   .Replace("<%%CASE_DETAILS%%>", caseDetails);
+            string save2 = save.Replace("<%%MORE_DETAILS%%>", GetCaseDetails())
+                .Replace("<%%DATE_TIME%%>", dateAndTime)
+                .Replace("<%%_GSCP_%%>", gscp);
+
+            return save2;
+        }
+
+        private static string CaseDetailsHtml()
+        {
+            string html = 
+                $@"<div id='case-details'>
+                <hr>
+                <h2 id='log-title'>Audit Log <%%_GSCP_%%></h2>
+                <img src='C:\Users\Joe\Desktop\kent.gif' alt='' />
+                <%%MORE_DETAILS%%>
+                <br>
+                <p id='when-printed'>Printed: <%%DATE_TIME%%></p>
+                <hr>
+            </div>
+            <p style='page-break-after:always; '><!-- pagebreak --></p>";
+
+            return html;
         }
 
 
