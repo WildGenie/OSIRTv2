@@ -39,6 +39,8 @@
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
+            this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.auditLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,7 +79,9 @@
             this.uiVideoCaptureButton,
             this.uiAttachmentToolStripButton,
             this.uiURLComboBox,
-            this.uiCaseNotesButton});
+            this.uiCaseNotesButton,
+            this.uiAuditLogToolStripButton,
+            this.uiOptionsToolStripButton});
             this.uiBrowserToolStrip.Location = new System.Drawing.Point(0, 24);
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(1089, 25);
@@ -168,6 +172,29 @@
             this.uiCaseNotesButton.Name = "uiCaseNotesButton";
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
+            // 
+            // uiAuditLogToolStripButton
+            // 
+            this.uiAuditLogToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.table;
+            this.uiAuditLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiAuditLogToolStripButton.Name = "uiAuditLogToolStripButton";
+            this.uiAuditLogToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiAuditLogToolStripButton.Text = "Audit Log";
+            this.uiAuditLogToolStripButton.ToolTipText = "Display audit log";
+            this.uiAuditLogToolStripButton.Click += new System.EventHandler(this.uiAuditLogToolStripButton_Click);
+            // 
+            // uiOptionsToolStripButton
+            // 
+            this.uiOptionsToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiOptionsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiOptionsToolStripButton.Image = global::OSIRT.Properties.Resources.options;
+            this.uiOptionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiOptionsToolStripButton.Name = "uiOptionsToolStripButton";
+            this.uiOptionsToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiOptionsToolStripButton.Text = "Options";
+            this.uiOptionsToolStripButton.Click += new System.EventHandler(this.uiOptionsToolStripButton_Click);
             // 
             // uiBrowserMenuStrip
             // 
@@ -295,5 +322,7 @@
         private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
         private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
+        private System.Windows.Forms.ToolStripButton uiAuditLogToolStripButton;
+        private System.Windows.Forms.ToolStripButton uiOptionsToolStripButton;
     }
 }

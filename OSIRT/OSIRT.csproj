@@ -513,6 +513,8 @@
     <None Include="Resources\report.png" />
     <EmbeddedResource Include="Resources\trans.png" />
     <EmbeddedResource Include="Resources\report-title-page.html" />
+    <None Include="Resources\options.png" />
+    <None Include="Resources\mouse-halo.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

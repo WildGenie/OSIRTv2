@@ -51,9 +51,13 @@
             this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
             this.uiExportAsPdfButton = new System.Windows.Forms.Button();
             this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
+            this.uiReportExportProgressBar = new System.Windows.Forms.ProgressBar();
+            this.uiProgressGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiReportExportLabel = new System.Windows.Forms.Label();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
+            this.uiProgressGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiReportSelectionGroupBox
@@ -280,7 +284,7 @@
             this.uiExportAsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 330);
             this.uiExportAsGroupBox.Name = "uiExportAsGroupBox";
-            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 206);
+            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 165);
             this.uiExportAsGroupBox.TabIndex = 2;
             this.uiExportAsGroupBox.TabStop = false;
             this.uiExportAsGroupBox.Text = "Export Report";
@@ -288,7 +292,7 @@
             // uiReportExportHelpLabel
             // 
             this.uiReportExportHelpLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiReportExportHelpLabel.Location = new System.Drawing.Point(3, 180);
+            this.uiReportExportHelpLabel.Location = new System.Drawing.Point(3, 139);
             this.uiReportExportHelpLabel.Name = "uiReportExportHelpLabel";
             this.uiReportExportHelpLabel.Size = new System.Drawing.Size(304, 23);
             this.uiReportExportHelpLabel.TabIndex = 6;
@@ -356,11 +360,41 @@
             this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
             this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
             // 
+            // uiReportExportProgressBar
+            // 
+            this.uiReportExportProgressBar.Location = new System.Drawing.Point(6, 34);
+            this.uiReportExportProgressBar.MarqueeAnimationSpeed = 10;
+            this.uiReportExportProgressBar.Name = "uiReportExportProgressBar";
+            this.uiReportExportProgressBar.Size = new System.Drawing.Size(298, 23);
+            this.uiReportExportProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.uiReportExportProgressBar.TabIndex = 3;
+            // 
+            // uiProgressGroupBox
+            // 
+            this.uiProgressGroupBox.Controls.Add(this.uiReportExportLabel);
+            this.uiProgressGroupBox.Controls.Add(this.uiReportExportProgressBar);
+            this.uiProgressGroupBox.Location = new System.Drawing.Point(3, 501);
+            this.uiProgressGroupBox.Name = "uiProgressGroupBox";
+            this.uiProgressGroupBox.Size = new System.Drawing.Size(310, 63);
+            this.uiProgressGroupBox.TabIndex = 5;
+            this.uiProgressGroupBox.TabStop = false;
+            this.uiProgressGroupBox.Visible = false;
+            // 
+            // uiReportExportLabel
+            // 
+            this.uiReportExportLabel.AutoSize = true;
+            this.uiReportExportLabel.Location = new System.Drawing.Point(6, 16);
+            this.uiReportExportLabel.Name = "uiReportExportLabel";
+            this.uiReportExportLabel.Size = new System.Drawing.Size(90, 13);
+            this.uiReportExportLabel.TabIndex = 4;
+            this.uiReportExportLabel.Text = "Exporting report...";
+            // 
             // ExportAuditOptionsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
+            this.Controls.Add(this.uiProgressGroupBox);
             this.Controls.Add(this.uiExportAsGroupBox);
             this.Controls.Add(this.uiReportOptionsGroupBox);
             this.Controls.Add(this.uiReportSelectionGroupBox);
@@ -373,6 +407,8 @@
             this.uiReportOptionsGroupBox.PerformLayout();
             this.uiExportAsGroupBox.ResumeLayout(false);
             this.uiExportAsGroupBox.PerformLayout();
+            this.uiProgressGroupBox.ResumeLayout(false);
+            this.uiProgressGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -402,5 +438,8 @@
         private System.Windows.Forms.Label uiReportExportHelpLabel;
         private System.Windows.Forms.CheckBox uiDisplayVideosCheckBox;
         private System.Windows.Forms.CheckBox uiChronOrderCheckBox;
+        private System.Windows.Forms.ProgressBar uiReportExportProgressBar;
+        private System.Windows.Forms.GroupBox uiProgressGroupBox;
+        private System.Windows.Forms.Label uiReportExportLabel;
     }
 }

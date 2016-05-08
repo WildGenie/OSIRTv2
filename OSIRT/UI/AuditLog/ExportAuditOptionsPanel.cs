@@ -12,6 +12,9 @@ using OSIRT.Loggers;
 using System.Data;
 using System.Text;
 using System.Globalization;
+using Jacksonsoft;
+using System.ComponentModel;
+using System.Threading;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -47,7 +50,8 @@ namespace OSIRT.UI.AuditLog
             var checkboxes = uiReportSelectionGroupBox.GetChildControls<CheckBox>();
             foreach (CheckBox cb in checkboxes)
             {
-                if (dbHandler.TableIsEmpty(cb.Tag.ToString()))
+                string table = cb.Tag.ToString();
+                if (dbHandler.TableIsEmpty(table))
                 {
                     cb.Enabled = false;
                     cb.Checked = false;
@@ -83,28 +87,58 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
         {
-
-            //TODO: working on adding nav for html report.
-            //This can probably go in htmlhelper class
-            StringBuilder navBuilder = new StringBuilder();
-            navBuilder.Append("<ul>");
-            foreach (string table in GetSelectedTables())
+            var backgroundWorker = new BackgroundWorker();
+            uiProgressGroupBox.Show();
+            EnableOptionsGroupboxes(false);
+            backgroundWorker.DoWork += delegate
             {
-                navBuilder.Append($"<li><a href={table}.html>{table}</a></li>");
-            }
-            navBuilder.Append("</ul>");
-
-
-            foreach (var value in GetHtml())
+                ExportAsHtml();
+            };
+            backgroundWorker.RunWorkerCompleted += delegate
             {
-                string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
-                string page = value.Item2;
-                File.WriteAllText(savePath, page);
-            }
+                uiProgressGroupBox.Hide();
+                EnableOptionsGroupboxes(true);
+                MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+            backgroundWorker.RunWorkerAsync();
+        }
 
+        private void ExportAsPdf()
+        {
+            string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
+            string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
+            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
         }
+
+        private void EnableOptionsGroupboxes(bool enabled)
+        {
+            uiExportAsGroupBox.Enabled = enabled;
+            uiReportOptionsGroupBox.Enabled = enabled;
+            uiExportAsGroupBox.Enabled = enabled;
+            uiReportSelectionGroupBox.Enabled = enabled;
+            uiProgressGroupBox.Enabled = !enabled;
+        }
+
+        private void ExportAsHtml()
+        {
+            
+            foreach (var value in GetHtml())
+            {
+                string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
+                string page = value.Item2.Replace("<%%NAV%%>", HtmlHelper.GetHtmlNavBar(GetSelectedTables()));
+                File.WriteAllText(savePath, page);
+            }
+            //combined
+            string combined = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
+            string save = HtmlHelper.ReplaceReportDetails(combined, GSCP, true);
+            File.WriteAllText(Path.Combine(ExportPath, Constants.ReportContainerName, "combined.html"), save);
+            Thread.Sleep(750);
+            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+        }
+
 
         private DataTable GetMergedDataTable()
         {
@@ -127,12 +161,19 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
-            string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
-            string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
-
-            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
-            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
-            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+            var backgroundWorker = new BackgroundWorker();
+            uiReportExportProgressBar.Show();
+            backgroundWorker.DoWork += delegate
+            {
+                ExportAsPdf();
+            };
+            backgroundWorker.RunWorkerCompleted += delegate
+            {
+                uiReportExportLabel.Hide();
+                uiReportExportProgressBar.Hide();
+                MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            };
+            backgroundWorker.RunWorkerAsync();
         }
 
         private void uiBrowseButton_Click(object sender, EventArgs e)

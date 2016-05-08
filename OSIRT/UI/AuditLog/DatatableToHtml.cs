@@ -37,7 +37,7 @@ namespace OSIRT.UI.AuditLog
                 if (columnName == "note" && !UserSettings.Load().PrintAuditNotes)
                     continue;
 
-                html += "<th>" + CultureInfo.CurrentCulture.TextInfo.ToTitleCase(columnName) + "</th>";
+                html += "<th>" + columnName.ToTitleCase() + "</th>";
             }
             html += "</tr>";
 
@@ -51,13 +51,8 @@ namespace OSIRT.UI.AuditLog
                     string cellValue = row[column] != null ? row[column].ToString() : "";
                     columnName = column.ColumnName;
 
-                    Debug.WriteLine($"COL: {columnName}. Print: {UserSettings.Load().PrintAuditNotes}");
-                    if (columnName == "note" && !UserSettings.Load().PrintAuditNotes)
-                    {
-                        Debug.WriteLine("---- in here -----");
-                        continue;
-                    }
-                                                                                     //for when we merge the tables   
+                    if (columnName == "note" && !UserSettings.Load().PrintAuditNotes) continue;
+
                     if(columnName == "file" && table.TableName != "osirt_actions" && cellValue != "")
                     {
                         count++;

@@ -15,6 +15,7 @@
         public bool PrintAuditNotes = true;
         public bool ShowVideosInReport = true;
 
-
+        //video recording
+        public bool ShowMouseTrail = false;
     }
 }

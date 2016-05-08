@@ -66,7 +66,7 @@ namespace OSIRT.VideoCapture
             captureThreadEntry.Height = (uint)height;
             captureThreadEntry.BitRate = 20000000;
             captureThreadEntry.FrameRate = 30;
-            captureThreadEntry.Audio = HasSteroMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0.
+            captureThreadEntry.Audio = HasSteroMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0. Audio is screwed- does record, but sped up?
             captureThreadEntry.Filename = Constants.TempVideoFile; //TODO: Remember to delete video file.
 
             captureThread = new Thread(new ThreadStart(captureThreadEntry.Start));
@@ -104,7 +104,8 @@ namespace OSIRT.VideoCapture
             catch { }
             foreach (string line in allLines)
             {
-                if (line.Contains("Stero Mix")) return true; 
+                Debug.WriteLine(line);
+                if (line.Contains("Stereo Mix")) return true; 
             }
             return false;
         }

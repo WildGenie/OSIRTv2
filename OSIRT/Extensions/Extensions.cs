@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,6 +22,14 @@ namespace OSIRT.Extensions
         {
             var r = new Regex(@"(?<=[A-Z])(?=[A-Z][a-z]) | (?<=[^A-Z])(?=[A-Z]) | (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
             return r.Replace(toSplit, " ");
+        }
+
+        public static string ToTitleCase(this string toTitle)
+        {
+            if (toTitle.Contains("_")) //database tables joined by '_'
+                toTitle = toTitle.Replace("_", " ");
+
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(toTitle);
         }
 
         private static readonly string[] validExtensions = { ".jpg", ".jpeg", ".tiff", ".bmp", ".gif", ".png" };

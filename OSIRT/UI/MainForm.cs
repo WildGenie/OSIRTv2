@@ -97,7 +97,9 @@ namespace OSIRT.UI
             e.Window.Message = "Performing clean up operations... Please Wait";
 
             //TODO: A handle is being left on the directory... What to do?
+            //Or is it? Could be the WaitWindow, you know... Use background worker to test!
             //Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
+
             while(true)
             {
                 int attempts = 0;

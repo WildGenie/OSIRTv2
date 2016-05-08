@@ -1,4 +1,5 @@
 ﻿using OSIRT.Database;
+using OSIRT.Extensions;
 using OSIRT.UI.AuditLog;
 using System;
 using System.Collections.Generic;
@@ -30,10 +31,18 @@ namespace OSIRT.Helpers
             return stringBuilder.ToString();
         }
 
-        //public static string GetHtmlNavBar()
-        //{
-            
-        //}
+        public static string GetHtmlNavBar(List<string> tables)
+        {
+            StringBuilder navBuilder = new StringBuilder();
+            navBuilder.Append("<ul id='nav'>");
+            foreach (string table in tables)
+            {
+                navBuilder.Append($"<li><a href={table}.html>{table.ToTitleCase()}</a></li>");
+            }
+            navBuilder.Append($"<li><a href=combined.html>Combined</a></li>");
+            navBuilder.Append("</ul>");
+            return navBuilder.ToString();
+        }
 
         public static string GetFormattedPage(string table, string exportPath, string gscp, bool isHtmlReport)
         {
@@ -50,13 +59,12 @@ namespace OSIRT.Helpers
             string auditHtml = OsirtHelper.GetResource("auditlog.html");
             string timeZone = TimeZone.CurrentTimeZone.IsDaylightSavingTime(DateTime.Now) ? TimeZone.CurrentTimeZone.DaylightName : TimeZone.CurrentTimeZone.StandardName;
             string dateAndTime = $"{DateTime.Now.ToString("yyyy-MM-dd")}  {DateTime.Now.ToString("HH:mm:ss")} ({timeZone})";
-            
-                            
 
             string caseDetails = "";
             if (!isHtmlReport)
             {
                 caseDetails = CaseDetailsHtml();
+                auditHtml = auditHtml.Replace("<%%NAV%%>", "");
             }
 
             string save = auditHtml.Replace("<%%AUDIT_LOG%%>", auditLog)
