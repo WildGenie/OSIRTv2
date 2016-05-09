@@ -6,6 +6,8 @@ using OSIRT.UI.AuditLog;
 using OSIRT.UI.CaseNotes;
 using OSIRT.VideoCapture;
 using OSIRT.UI.Options;
+using OSIRT.UI.SnippetTool;
+using OSIRT.Helpers;
 
 namespace OSIRT.UI
 {
@@ -27,7 +29,6 @@ namespace OSIRT.UI
         {
             ConfigureUi();
             AddNewTab();
-            uiAuditLogToolStripButton.Alignment = ToolStripItemAlignment.Right;
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
         }
@@ -84,14 +85,6 @@ namespace OSIRT.UI
             caseNotes.Show();
         }
 
-        private void auditLogToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //using(AuditLogForm audit = new AuditLogForm())
-            //{
-            //    audit.ShowDialog();
-            //}
-        }
-
         private void uiAttachmentToolStripButton_Click(object sender, EventArgs e)
         {
             using(AttachmentForm attachment = new AttachmentForm())
@@ -125,8 +118,7 @@ namespace OSIRT.UI
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
-
-            uiTabbedBrowserControl.CurrentTab.Browser.ShowMouseTrail = true;
+            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail; 
 
             if (!OsirtVideoCapture.IsRecording())
                 OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)Handle);
@@ -136,7 +128,7 @@ namespace OSIRT.UI
 
         private void osirtVideoCapture_VideoCaptureComplete(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.ShowMouseTrail = false;
+            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = false;
             VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
 
             using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
@@ -159,6 +151,19 @@ namespace OSIRT.UI
             {
                 options.ShowDialog();
             }
+        }
+
+        private void snippetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!SnippingTool.Snip())
+                return;
+            
+            using (Previewer imagePreviewer = new ImagePreviewer(Enums.Actions.Snippet, uiTabbedBrowserControl.CurrentTab.Browser.URL))
+            {
+                imagePreviewer.ShowDialog();
+            }
+            ImageDiskCache.RemoveItemsInCache();
+
         }
     }
 }

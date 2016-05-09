@@ -101,12 +101,15 @@ namespace OSIRT.UI
             switch (action)
             {
                 case Actions.Screenshot:
-                case Actions.Saved:
                 case Actions.Scraped:
+                case Actions.Snippet:
                     extensionsCsv = OsirtHelper.GetResource("ImageSaveableTypes.txt");
                     break;
                 case Actions.Video:
                     extensionsCsv = OsirtHelper.GetResource("VideoSaveableFileTypes.txt");
+                    break;
+                case Actions.Saved: //TODO: Give this its own case, as saved images can have many file extensions
+                    extensionsCsv = Path.GetExtension(filePath);
                     break;
             }
 

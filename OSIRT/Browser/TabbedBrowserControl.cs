@@ -94,8 +94,11 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)
         {
+            AsyncCompletedEventArgs evt = (AsyncCompletedEventArgs)e;
+            string filename = evt.UserState.ToString();
+            Debug.WriteLine("DOWNLOAD COMPLETE: " + filename);
             uiDownloadProgressBar.Visible = false;
-            ShowImagePreviewer(Actions.Saved);
+            ShowImagePreviewer(Actions.Saved, filename);
         }
 
         private void currentBrowser_DownloadingProgress(object sender, EventArgs e)
@@ -109,7 +112,6 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            
             CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentUrl;
         }
@@ -117,17 +119,17 @@ namespace OSIRT.Browser
         private void Screenshot_Completed(object sender, EventArgs e)
         {
             ScreenshotComplete?.Invoke(this, new EventArgs());
-            ShowImagePreviewer(Actions.Screenshot);
+            ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
         }
 
-        private void ShowImagePreviewer(Actions action)
+        private void ShowImagePreviewer(Actions action, string imagePath)
         {
             ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
             DialogResult dialogRes;
             string fileName;
             string dateAndtime;
 
-            using(Previewer previewForm = new ImagePreviewer(action, CurrentBrowser.URL))
+            using(Previewer previewForm = new ImagePreviewer(action, CurrentBrowser.URL, imagePath))
             {
                 dialogRes = previewForm.ShowDialog();
                 fileName = previewForm.FileName + previewForm.FileExtension;
@@ -139,21 +141,6 @@ namespace OSIRT.Browser
                 return;
 
             DisplaySavedLabel(fileName, dateAndtime);
-
-
-            //using (ImagePreviewerForm previewForm = new ImagePreviewerForm(details, action))
-            //{
-            //    dialogRes = previewForm.ShowDialog();
-            //    fileName = previewForm.FileName + previewForm.FileExtension;
-            //    dateAndtime = previewForm.DateAndTime;
-            //}
-
-            //ImageDiskCache.RemoveItemsInCache();
-            //if (dialogRes != DialogResult.OK)
-            //    return;
-
-            //DisplaySavedLabel(fileName, dateAndtime);
-
         }
 
         private void DisplaySavedLabel(string fileName, string dateTime)

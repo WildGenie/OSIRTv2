@@ -29,6 +29,7 @@ namespace OSIRT.Browser
         private readonly int MaxWait = 500;
         private ContextMenuStrip contextMenu;
         private HtmlElement element;
+        private PictureBox mouseTrail = new PictureBox();
         private bool firstLoad = true;
 
 
@@ -40,14 +41,28 @@ namespace OSIRT.Browser
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
             InitialiseConextMenu();
             DisableNewWindowsOpening();
+            InitialiseMouseTrail();
+        }
 
+        public bool MouseTrailVisible
+        {
+            get
+            {
+                return mouseTrail.Visible;
+            }
+            set
+            {
+                mouseTrail.Visible = value;
+            }
 
+        }
 
-            //TODO: tidy this,it does follow mouse nicely.
-            pic.BackColor = Color.Red;
-            pic.Size = new Size(12, 12);
-            //pic.Image = Properties.Resources.mouse_halo;
-            Controls.Add(pic);
+        private void InitialiseMouseTrail()
+        {
+            mouseTrail.BackColor = Color.Red;
+            mouseTrail.Size = new Size(12, 12);
+            Controls.Add(mouseTrail);
+            MouseTrailVisible = false;
         }
 
 
@@ -105,7 +120,6 @@ namespace OSIRT.Browser
             {
                 using (Graphics graphics = Graphics.FromImage(image))
                 {
-
                     Point p, upperLeftDestination;
                     Point upperLeftSource = new Point(0, 0);
                     p = new Point(0, 0);
@@ -436,11 +450,6 @@ namespace OSIRT.Browser
         }
 
 
-        private void SaveImageAs_Click(object sender, EventArgs e)
-        {
-            string path = element.GetAttribute("src");
-            DownloadFile(path);
-        }
 
       
 
@@ -455,13 +464,20 @@ namespace OSIRT.Browser
         }
 
 
+
+        private void SaveImageAs_Click(object sender, EventArgs e)
+        {
+            string path = element.GetAttribute("src");
+            DownloadFile(path);
+        }
+
         private void DownloadFile(string path)
         {
             WebClient webClient = new WebClient();
             webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
 
-            webClient.DownloadFileAsync(new Uri(path), Constants.TempImgFile);
+            webClient.DownloadFileAsync(new Uri(path), Path.Combine(Constants.CacheLocation, Path.GetFileName(path)), Path.Combine(Constants.CacheLocation, Path.GetFileName(path)));
         }
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
@@ -518,13 +534,16 @@ namespace OSIRT.Browser
         }
 
 
-        private PictureBox pic = new PictureBox();
+        
+
+
+
         private void Document_MouseMove(object sender, HtmlElementEventArgs e)
         {
             if (UserSettings.Load().ShowMouseTrail)
             {
                 Point p = PointToClient(MousePosition);
-                pic.Location = new Point(p.X + 5, p.Y + 5);
+                mouseTrail.Location = new Point(p.X + 5, p.Y + 5);
                 
             }
         }

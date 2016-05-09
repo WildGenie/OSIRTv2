@@ -59,6 +59,13 @@ namespace OSIRT.Helpers
             AddImage(count.ToString(), image);
         }
 
+
+        public static void RemoveSpecificItemFromCache(string file)
+        {
+
+        }
+        
+
         public static void RemoveItemsInCache()
         {
             try

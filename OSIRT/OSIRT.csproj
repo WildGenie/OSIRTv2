@@ -250,6 +250,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UI\ChromeTabControl\TabChangedEventArgs.cs" />
+    <Compile Include="UI\DownloadClient\DownloadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DownloadClient\DownloadForm.Designer.cs">
+      <DependentUpon>DownloadForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -317,6 +323,12 @@
     <Compile Include="UI\Previewer.Designer.cs">
       <DependentUpon>Previewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\SnippetTool\SnippingTool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SnippetTool\SnippingTool.designer.cs">
+      <DependentUpon>SnippingTool.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
     <Compile Include="UserSettings.cs" />
@@ -371,6 +383,9 @@
     <EmbeddedResource Include="UI\CaseClosing\CloseCasePanel.resx">
       <DependentUpon>CloseCasePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\DownloadClient\DownloadForm.resx">
+      <DependentUpon>DownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -405,6 +420,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Previewer.resx">
       <DependentUpon>Previewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SnippetTool\SnippingTool.resx">
+      <DependentUpon>SnippingTool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VideoPreviewer.resx">
       <DependentUpon>VideoPreviewer.cs</DependentUpon>

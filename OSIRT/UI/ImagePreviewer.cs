@@ -8,7 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,18 +26,22 @@ namespace OSIRT.UI
         private CannotOpenImagePanel cantOpenPanel;
         private string Url;
 
-        public ImagePreviewer(Actions a, string url) : base(a)
+        public ImagePreviewer(Actions a, string url) : this(a, url, Constants.TempImgFile) { }
+
+        public ImagePreviewer(Actions a, string url, string filePath) : base(a)
         {
             InitializeComponent();
 
             uiURLTextBox.Text = url;
             FormClosing += ImagePrevEx_FormClosing;
             Url = url;
+            this.filePath = filePath;
+
         }
 
         private void ImagePrevEx_Load(object sender, EventArgs e)
         {
-            filePath = Constants.TempImgFile;
+            //filePath = Constants.TempImgFile;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -119,6 +125,8 @@ namespace OSIRT.UI
             }
         }
 
+  
+
 
         private Size GetImageSize()
         {
@@ -170,6 +178,10 @@ namespace OSIRT.UI
                 MessageBox.Show($"Unable to find the image file! Debug: {fnf}");
                 //safely close OSIRT, here???
             }
+            catch(Exception e)
+            {
+                MessageBox.Show($"Unable to load image file! Debug: {e}");
+            }
         }
 
         private void ShowCannotOpenPanel(Size originalSize)
@@ -190,6 +202,28 @@ namespace OSIRT.UI
 
         }
 
+        private void SaveAs()
+        {
+            try
+            {
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), Path.GetFileName(filePath));
+                string sourceFile = Path.Combine(filePath);
+                File.Copy(sourceFile, destLocation); //Will need to delete this from the cache
+            }
+            catch (IOException ioe)
+            {
+                MessageBox.Show($"Can't move file to container due to an IOExcpetion... {ioe}");
+            }
+            catch (UnauthorizedAccessException uae)
+            {
+                MessageBox.Show($"Can't move file to container due to an Unauthorised Access Attempt... {uae}");
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show($"General... {e}");
+            }
+        }
+
         private void uiOKButton_Click(object sender, EventArgs e)
         {
             if (FileExtension == SaveableFileTypes.Pdf)
@@ -202,8 +236,14 @@ namespace OSIRT.UI
             }
             else
             {
-                SaveAsPng(FileName);
+                Debug.WriteLine(filePath);
+                //TODO: need to set the file name for when it's logged
+                //at the moment it's taking the file name from the combobox
+                //but it's saved using the file name from the download using Path.GetFileName(filePath)
+                SaveAs();
             }
+
+           
 
             Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
             DialogResult = DialogResult.OK;
