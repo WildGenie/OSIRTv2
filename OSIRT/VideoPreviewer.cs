@@ -17,10 +17,10 @@ namespace OSIRT
 {
     public partial class VideoPreviewer : Previewer
     {
-        public VideoPreviewer(Actions a) : base(a)
+        public VideoPreviewer(Actions a) : base(a, Constants.TempVideoFile)
         {
             InitializeComponent();
-            filePath = Constants.TempVideoFile;
+            //filePath = Constants.TempVideoFile;
         }
 
 

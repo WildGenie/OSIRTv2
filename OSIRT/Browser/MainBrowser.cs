@@ -450,9 +450,6 @@ namespace OSIRT.Browser
         }
 
 
-
-      
-
         private void SaveSource_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Not yet implemented");
@@ -477,7 +474,8 @@ namespace OSIRT.Browser
             webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
             webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
 
-            webClient.DownloadFileAsync(new Uri(path), Path.Combine(Constants.CacheLocation, Path.GetFileName(path)), Path.Combine(Constants.CacheLocation, Path.GetFileName(path)));
+            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+            webClient.DownloadFileAsync(new Uri(path), file, file);
         }
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

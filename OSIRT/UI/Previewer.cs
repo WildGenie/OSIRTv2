@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -33,14 +34,24 @@ namespace OSIRT.UI
             InitializeComponent();
         }
 
-        public Previewer(Actions action) : this()
+        public Previewer(Actions action, string file) : this()
         {
+            filePath = file;
             this.action = action;
             DateAndTime = $"{DateTime.Now.ToString("yyyy-MM-dd")} {DateTime.Now.ToString("HH:mm:ss")}";
             uiDateAndTimeTextBox.Text = DateAndTime;
-            uiFileNameComboBox.Text = System.Text.RegularExpressions.Regex.Replace(DateAndTime, @"[-|:|\s]", "_");
-
-            //uiDateAndTimeTextBox.Text = dateAndTime;
+            string appendDateStamp = System.Text.RegularExpressions.Regex.Replace(DateAndTime, @"[-|:|\s]", "_");
+            if (action == Actions.Saved)
+            {
+                string extension = Path.GetExtension(filePath);
+                uiFileNameComboBox.Text = Path.GetFileNameWithoutExtension(filePath) + "_" + appendDateStamp + extension;
+                uiFileNameComboBox.Enabled = false;
+                uiFileExtensionComboBox.Visible = false;
+            }
+            else
+            {
+                uiFileNameComboBox.Text = appendDateStamp;
+            }
         }
 
         protected override void OnLoad(EventArgs e)
@@ -101,16 +112,16 @@ namespace OSIRT.UI
             switch (action)
             {
                 case Actions.Screenshot:
-                case Actions.Scraped:
+                case Actions.Scraped: //Scraped won't use previewer?
                 case Actions.Snippet:
                     extensionsCsv = OsirtHelper.GetResource("ImageSaveableTypes.txt");
                     break;
                 case Actions.Video:
                     extensionsCsv = OsirtHelper.GetResource("VideoSaveableFileTypes.txt");
                     break;
-                case Actions.Saved: //TODO: Give this its own case, as saved images can have many file extensions
-                    extensionsCsv = Path.GetExtension(filePath);
-                    break;
+                //case Actions.Saved: //TODO: Give this its own case, as saved images can have many file extensions
+                //    extensionsCsv = Path.GetExtension(filePath);
+                //    break;
             }
 
             if (extensionsCsv.Contains(","))

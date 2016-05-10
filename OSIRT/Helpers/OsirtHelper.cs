@@ -93,12 +93,14 @@ namespace OSIRT.Helpers
 
         public static string StripQueryFromPath(string path)
         {
+            //Uri uri = new Uri(path);
+            //if (uri.Query != "")
+            //{
+            //    return uri.OriginalString.Replace(uri.Query, "");
+            //}
+            //return uri.OriginalString;
             Uri uri = new Uri(path);
-            if(uri.Query != "")
-            {
-                return uri.OriginalString.Replace(uri.Query, "");
-            }
-            return uri.OriginalString;
+            return uri.GetLeftPart(UriPartial.Path);
         }
 
 

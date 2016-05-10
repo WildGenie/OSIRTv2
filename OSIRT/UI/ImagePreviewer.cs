@@ -28,14 +28,14 @@ namespace OSIRT.UI
 
         public ImagePreviewer(Actions a, string url) : this(a, url, Constants.TempImgFile) { }
 
-        public ImagePreviewer(Actions a, string url, string filePath) : base(a)
+        public ImagePreviewer(Actions a, string url, string filePath) : base(a, filePath)
         {
             InitializeComponent();
 
             uiURLTextBox.Text = url;
             FormClosing += ImagePrevEx_FormClosing;
             Url = url;
-            this.filePath = filePath;
+            //this.filePath = filePath;
 
         }
 
@@ -149,7 +149,7 @@ namespace OSIRT.UI
             }
             catch(Exception e)
             {
-                MessageBox.Show("EX: " + e.ToString());
+                //MessageBox.Show("EX: " + e.ToString());
             }
 
             return new Size(width, height);
@@ -180,7 +180,8 @@ namespace OSIRT.UI
             }
             catch(Exception e)
             {
-                MessageBox.Show($"Unable to load image file! Debug: {e}");
+                //MessageBox.Show($"Unable to load image file! Debug: {e}");
+                Debug.WriteLine("--- General exception ---");
             }
         }
 
@@ -206,9 +207,10 @@ namespace OSIRT.UI
         {
             try
             {
-                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), Path.GetFileName(filePath));
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName);
                 string sourceFile = Path.Combine(filePath);
                 File.Copy(sourceFile, destLocation); //Will need to delete this from the cache
+                ImageDiskCache.RemoveSpecificItemFromCache(filePath);
             }
             catch (IOException ioe)
             {

@@ -62,9 +62,27 @@ namespace OSIRT.Helpers
 
         public static void RemoveSpecificItemFromCache(string file)
         {
+            try
+            {
+                //something may still have a handle on the previous "temp" image
+                //this forces it to be GC'd
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+
+                File.Delete(file);
+            }
+            catch (IOException ioe)
+            {
+                MessageBox.Show($"Unable to delete cache. Error: {ioe}");
+            }
+            catch (UnauthorizedAccessException uae)
+            {
+                MessageBox.Show($"Unable to delete cache. Error: {uae}");
+            }
 
         }
-        
+
+
 
         public static void RemoveItemsInCache()
         {
@@ -74,10 +92,9 @@ namespace OSIRT.Helpers
                 //this forces it to be GC'd
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                //Array.ForEach(Directory.GetFiles(Constants.CacheLocation), File.Delete);
 
                 DirectoryInfo di = new DirectoryInfo(Constants.CacheLocation);
-                FileInfo[] images = di.GetFiles("*.png");
+                FileInfo[] images = di.GetFiles("*.png"); //don't want to delete video from cache
                 foreach (var img in images)
                     img.Delete();
 
