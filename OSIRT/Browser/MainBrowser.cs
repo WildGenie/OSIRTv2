@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Net;
 using OSIRT.Extensions;
+using OSIRT.UI.DownloadClient;
 
 namespace OSIRT.Browser
 {
@@ -75,7 +76,9 @@ namespace OSIRT.Browser
             contextMenu.Items.Add("View page source", null, ViewSource_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add("Open link in new tab", null, OpenNewTab_Click);
-           
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Download all images", null, DownloadAllImages_Click);
+
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;
             contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
@@ -449,6 +452,17 @@ namespace OSIRT.Browser
             NewTab?.Invoke(this, new NewTabEventArgs(url));
         }
 
+        private void DownloadAllImages_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Not yet implemented");
+            var files = new WebImageDownloader(URL).GetSafeUrls();
+            using(var downloader = new DownloadForm(files, Enums.Actions.Scraped))
+            {
+                downloader.ShowDialog();
+            }
+
+
+        }
 
         private void SaveSource_Click(object sender, EventArgs e)
         {

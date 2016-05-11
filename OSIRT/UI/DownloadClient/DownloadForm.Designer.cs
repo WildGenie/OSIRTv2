@@ -81,6 +81,7 @@
             this.Name = "DownloadForm";
             this.Text = "Download Form";
             this.Load += new System.EventHandler(this.DownloadForm_Load);
+            this.Shown += new System.EventHandler(this.DownloadForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 
