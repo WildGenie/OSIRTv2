@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AttachmentForm));
             this.uiFilePathTextBox = new System.Windows.Forms.TextBox();
             this.uiBrowseButton = new System.Windows.Forms.Button();
             this.uiAttachButton = new System.Windows.Forms.Button();
@@ -41,7 +42,7 @@
             this.uiFileIconPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent6 = new System.Windows.Controls.TextBox();
+            this.hostedComponent7 = new System.Windows.Controls.TextBox();
             this.uiFileDetailsGroupBox.SuspendLayout();
             this.uiAttachFileProgressPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiFileIconPictureBox)).BeginInit();
@@ -185,6 +186,7 @@
             this.Controls.Add(this.uiBrowseButton);
             this.Controls.Add(this.uiFilePathTextBox);
             this.Controls.Add(this.uiFileDetailsGroupBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(406, 395);
             this.Name = "AttachmentForm";
             this.Text = "Attach File to Case";
@@ -220,5 +222,6 @@
         private System.Windows.Forms.Label uiAddANotherFileLable;
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Controls.TextBox hostedComponent6;
+        private System.Windows.Controls.TextBox hostedComponent7;
     }
 }

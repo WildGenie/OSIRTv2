@@ -4,6 +4,7 @@
     {
         public string Homepage = "http://google.com";
         public string Hash = "MD5";
+        public string IconAsBase64 = "";
         public bool ClearCacheOnClose = false;
         public bool DefaultSaveAsPdf = false;
         public bool HashContainerOnClose = false;

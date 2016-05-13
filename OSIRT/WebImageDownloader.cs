@@ -37,7 +37,7 @@ namespace OSIRT
             foreach (string url in urls)
             {
                 string fullUrl = GetSafeUrl(url);
-                string filename = Path.GetFileName(fullUrl);
+                string filename = GetSafeFilename(Path.GetFileName(fullUrl));
 
 
                 if (files.ContainsKey(fullUrl)) continue;
@@ -60,14 +60,17 @@ namespace OSIRT
                 url = "http://" + new Uri(url).Host + url;
             }
 
+            //url = Helpers.OsirtHelper.StripQueryFromPath(url);
+
             return url;
         }
 
         private string GetSafeFilename(string file)
         {
+
             if(!Helpers.OsirtHelper.IsValidFilename(file))
             {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff",
+                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff",
                                         CultureInfo.InvariantCulture);
                 file = timestamp.Replace(@"/", "_").Replace(":", "_").Replace(" ", "_").Replace(".", "_").Replace(" ", "") + ".png";
             }

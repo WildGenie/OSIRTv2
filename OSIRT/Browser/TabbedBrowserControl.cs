@@ -96,7 +96,6 @@ namespace OSIRT.Browser
         {
             AsyncCompletedEventArgs evt = (AsyncCompletedEventArgs)e;
             string filename = evt.UserState.ToString();
-            Debug.WriteLine("DOWNLOAD COMPLETE: " + filename);
             uiDownloadProgressBar.Visible = false;
             ShowImagePreviewer(Actions.Saved, filename);
         }

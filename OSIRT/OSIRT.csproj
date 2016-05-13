@@ -231,6 +231,12 @@
     <Compile Include="UI\CannotOpenImagePanel.Designer.cs">
       <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CaseClosing\CaseClosingCleanUpPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CaseClosing\CaseClosingCleanUpPanel.Designer.cs">
+      <DependentUpon>CaseClosingCleanUpPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\CaseClosing\CaseClosingEventArgs.cs" />
     <Compile Include="UI\CaseDetailsPanel2.cs">
       <SubType>UserControl</SubType>
@@ -378,6 +384,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CannotOpenImagePanel.resx">
       <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\CaseClosing\CaseClosingCleanUpPanel.resx">
+      <DependentUpon>CaseClosingCleanUpPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CaseDetailsPanel2.resx">
       <DependentUpon>CaseDetailsPanel2.cs</DependentUpon>

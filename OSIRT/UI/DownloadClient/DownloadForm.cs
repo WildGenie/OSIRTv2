@@ -4,7 +4,7 @@ using OSIRT.Loggers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -21,29 +21,44 @@ namespace OSIRT.UI.DownloadClient
         private string filename;
         private string url;
         private WebClient client;
-
-        public object Debug { get; private set; }
+        private int count;
+        private int numFiles;
 
         public DownloadForm(Dictionary<string, string> files, Actions action)
         {
             InitializeComponent();
             this.files = files;
             this.action = action;
+            numFiles = files.Count;
+        }
+
+        private void Download()
+        {
+            filename = files.First().Value;
+            savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), filename);
+            url = files.First().Key;
+
+            Debug.WriteLine("FILENAME: " + filename);
+            try
+            {
+                client.DownloadFileAsync(new Uri(url), savePath);
+                count++;
+            }
+            catch (Exception e)
+            {
+                count++;
+            }
         }
 
         private void StartDownload()
         {
-            //TODO: refactor this
-            if(files.Count > 0)
-            {
-                client = new WebClient();
-                client.DownloadProgressChanged += Client_DownloadProgressChanged;
-                client.DownloadFileCompleted += Client_DownloadFileCompleted;
+            client = new WebClient();
+            client.DownloadProgressChanged += Client_DownloadProgressChanged;
+            client.DownloadFileCompleted += Client_DownloadFileCompleted;
 
-                savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), files.First().Value);
-                url = files.First().Key;
-                filename = files.First().Value;
-                client.DownloadFileAsync(new Uri(url), savePath);
+            if (files.Count > 0)
+            {
+                Download();
             }
         }
 
@@ -58,8 +73,7 @@ namespace OSIRT.UI.DownloadClient
             files.Remove(files.First().Key);
             if (files.Count > 0)
             {
-                client.DownloadFileAsync(new Uri(files.First().Key), savePath);
-                filename = files.First().Value;
+                Download();
             }
         }
 
@@ -67,7 +81,7 @@ namespace OSIRT.UI.DownloadClient
         {
             uiDownloadProgressBar.Value = e.ProgressPercentage;
             uiFileLabel.Text = $"Downloading { filename }";
-            uiCompleteLabel.Text = $"Downloading [9] of [100] images";
+            uiCompleteLabel.Text = $"Downloading {count} of {numFiles} images";
         }
 
         private void DownloadForm_Load(object sender, EventArgs e)
@@ -78,6 +92,11 @@ namespace OSIRT.UI.DownloadClient
         private void DownloadForm_Shown(object sender, EventArgs e)
         {
             StartDownload();
+        }
+
+        private void uiCompleteLabel_SizeChanged(object sender, EventArgs e)
+        {
+            uiCompleteLabel.Left = (ClientSize.Width - uiCompleteLabel.Size.Width) / 2;
         }
     }
 }

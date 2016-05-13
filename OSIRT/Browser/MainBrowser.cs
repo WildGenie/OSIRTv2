@@ -456,7 +456,13 @@ namespace OSIRT.Browser
         {
             //MessageBox.Show("Not yet implemented");
             var files = new WebImageDownloader(URL).GetSafeUrls();
-            using(var downloader = new DownloadForm(files, Enums.Actions.Scraped))
+
+            if (files.Count == 0)
+            {
+                MessageBox.Show("There are either no images to download from this page, or OSIRT is unable to download them.", "No Images to Download", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
+            }
+            using (var downloader = new DownloadForm(files, Enums.Actions.Scraped))
             {
                 downloader.ShowDialog();
             }

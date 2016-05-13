@@ -38,16 +38,36 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.uiShowMouseTrailCheckBox = new System.Windows.Forms.CheckBox();
             this.uiAudioGroupBox = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.uiHomePageTextBox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.uiDeleteCacheOnCloseCheckBox = new System.Windows.Forms.CheckBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
+            this.uiBrowseIconButton = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
             this.uiOptionsTabControl.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.uiRecordingOptionsGroupBox.SuspendLayout();
             this.uiCaptureGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiOptionsTabControl
             // 
             this.uiOptionsTabControl.Controls.Add(this.tabPage1);
             this.uiOptionsTabControl.Controls.Add(this.tabPage2);
+            this.uiOptionsTabControl.Controls.Add(this.tabPage3);
             this.uiOptionsTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiOptionsTabControl.Location = new System.Drawing.Point(0, 0);
             this.uiOptionsTabControl.Name = "uiOptionsTabControl";
@@ -57,12 +77,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(483, 371);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.Text = "Browser";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -148,21 +169,165 @@
             this.uiAudioGroupBox.TabStop = false;
             this.uiAudioGroupBox.Text = "Audio";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
+            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.uiHomePageTextBox);
+            this.groupBox1.Location = new System.Drawing.Point(9, 7);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(466, 121);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "General ";
+            // 
+            // uiHomePageTextBox
+            // 
+            this.uiHomePageTextBox.Enabled = false;
+            this.uiHomePageTextBox.Location = new System.Drawing.Point(6, 39);
+            this.uiHomePageTextBox.Name = "uiHomePageTextBox";
+            this.uiHomePageTextBox.Size = new System.Drawing.Size(364, 20);
+            this.uiHomePageTextBox.TabIndex = 0;
+            this.uiHomePageTextBox.Text = "(Currently Disabled)";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Homepage";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(376, 36);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "OK";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // uiDeleteCacheOnCloseCheckBox
+            // 
+            this.uiDeleteCacheOnCloseCheckBox.AutoSize = true;
+            this.uiDeleteCacheOnCloseCheckBox.Location = new System.Drawing.Point(10, 88);
+            this.uiDeleteCacheOnCloseCheckBox.Name = "uiDeleteCacheOnCloseCheckBox";
+            this.uiDeleteCacheOnCloseCheckBox.Size = new System.Drawing.Size(133, 17);
+            this.uiDeleteCacheOnCloseCheckBox.TabIndex = 3;
+            this.uiDeleteCacheOnCloseCheckBox.Text = "Delete cache on close";
+            this.uiDeleteCacheOnCloseCheckBox.UseVisualStyleBackColor = true;
+            this.uiDeleteCacheOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiDeleteCacheOnCloseCheckBox_CheckedChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.groupBox2);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(483, 371);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "General";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.uiBrowseIconButton);
+            this.groupBox2.Controls.Add(this.uiConstabularyIconPictureBox);
+            this.groupBox2.Location = new System.Drawing.Point(8, 13);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(467, 167);
+            this.groupBox2.TabIndex = 0;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Constabulary Icon";
+            // 
+            // uiConstabularyIconPictureBox
+            // 
+            this.uiConstabularyIconPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.uiConstabularyIconPictureBox.Location = new System.Drawing.Point(311, 15);
+            this.uiConstabularyIconPictureBox.Name = "uiConstabularyIconPictureBox";
+            this.uiConstabularyIconPictureBox.Size = new System.Drawing.Size(150, 142);
+            this.uiConstabularyIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.uiConstabularyIconPictureBox.TabIndex = 0;
+            this.uiConstabularyIconPictureBox.TabStop = false;
+            // 
+            // uiBrowseIconButton
+            // 
+            this.uiBrowseIconButton.Location = new System.Drawing.Point(230, 134);
+            this.uiBrowseIconButton.Name = "uiBrowseIconButton";
+            this.uiBrowseIconButton.Size = new System.Drawing.Size(75, 23);
+            this.uiBrowseIconButton.TabIndex = 1;
+            this.uiBrowseIconButton.Text = "Browse...";
+            this.uiBrowseIconButton.UseVisualStyleBackColor = true;
+            this.uiBrowseIconButton.Click += new System.EventHandler(this.uiBrowseIconButton_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label4);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Location = new System.Drawing.Point(9, 187);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(466, 67);
+            this.groupBox3.TabIndex = 1;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Hash Export Location";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(373, 20);
+            this.textBox1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(385, 17);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Browse...";
+            this.button2.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(275, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Select where the hash file is saved after closing the case";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 397);
             this.Controls.Add(this.uiOptionsTabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OptionsForm";
             this.Text = "Options Form";
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.uiOptionsTabControl.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.uiRecordingOptionsGroupBox.ResumeLayout(false);
             this.uiRecordingOptionsGroupBox.PerformLayout();
             this.uiCaptureGroupBox.ResumeLayout(false);
             this.uiCaptureGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -179,5 +344,18 @@
         private System.Windows.Forms.GroupBox uiRecordingOptionsGroupBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox uiDeleteCacheOnCloseCheckBox;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox uiHomePageTextBox;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button uiBrowseIconButton;
+        private System.Windows.Forms.PictureBox uiConstabularyIconPictureBox;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

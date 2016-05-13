@@ -72,52 +72,52 @@ namespace OSIRT.UI
 
         private void ClosingOperations(object sender, WaitWindowEventArgs e)
         {
-            //TODO: clear IE cache if required
+            ////TODO: clear IE cache if required
 
-            //TODO:  Export hash.
-            //Need this log here, as  database entry.
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt", Constants.CaseContainerName));
-            Thread.Sleep(500); //just to see the window
-            //zip container
-            e.Window.Message = "Encrypting container... Please Wait";
-            using (ZipFile zip = new ZipFile())
-            {
-                zip.Password = e.Arguments[0].ToString(); 
-                zip.Encryption = EncryptionAlgorithm.WinZipAes256;
-                zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
-                zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
-            }
+            ////TODO:  Export hash.
+            ////Need this log here, as  database entry.
+            //Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt", Constants.CaseContainerName));
+            //Thread.Sleep(500); //just to see the window
+            ////zip container
+            //e.Window.Message = "Encrypting container... Please Wait";
+            //using (ZipFile zip = new ZipFile())
+            //{
+            //    zip.Password = e.Arguments[0].ToString(); 
+            //    zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+            //    zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
+            //    zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
+            //}
 
-            e.Window.Message = "Hashing case container... Please Wait";
-            //now we can hash and export it, case zipped.
-            string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
-            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{Constants.CaseContainerName}_hash.txt", hash);
-            //TODO: have hash save location as an option
+            //e.Window.Message = "Hashing case container... Please Wait";
+            ////now we can hash and export it, case zipped.
+            //string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
+            //File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{Constants.CaseContainerName}_hash.txt", hash);
+            ////TODO: have hash save location as an option
 
-            e.Window.Message = "Performing clean up operations... Please Wait";
+            //e.Window.Message = "Performing clean up operations... Please Wait";
 
-            //TODO: A handle is being left on the directory... What to do?
-            //Or is it? Could be the WaitWindow, you know... Use background worker to test!
-            //Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
+            ////TODO: A handle is being left on the directory... What to do?
+            ////Or is it? Could be the WaitWindow, you know... Use background worker to test!
+            ////Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
 
-            while(true)
-            {
-                int attempts = 0;
-                try
-                {
-                    Debug.WriteLine($"Attempts: {attempts}.");
-                    string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
-                    OsirtHelper.DeleteDirectory(directory);
-                    if (!Directory.Exists(directory) || attempts == 5) break;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Attempts: {attempts}. Exception: {ex.InnerException.ToString()}");
-                    attempts++;
-                }
+            //while(true)
+            //{
+            //    int attempts = 0;
+            //    try
+            //    {
+            //        Debug.WriteLine($"Attempts: {attempts}.");
+            //        string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
+            //        OsirtHelper.DeleteDirectory(directory);
+            //        if (!Directory.Exists(directory) || attempts == 5) break;
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        Debug.WriteLine($"Attempts: {attempts}. Exception: {ex.InnerException.ToString()}");
+            //        attempts++;
+            //    }
       
-            }
-            e.Result = true; 
+            //}
+            //e.Result = true; 
         }
 
 
@@ -202,8 +202,12 @@ namespace OSIRT.UI
         private void ClosePanel_PasswordCorrect(object sender, CaseClosingEventArgs e)
         {
             Controls.Clear();
-            CloseOsirt(e.Password);
-            Close();
+            //add new closing panel
+            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(e.Password);
+            Controls.Add(cleanUpPanel);
+
+            //CloseOsirt(e.Password);
+            //Close();
         }
     }
 }

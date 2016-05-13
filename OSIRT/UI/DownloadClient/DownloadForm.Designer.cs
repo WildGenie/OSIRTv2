@@ -58,6 +58,7 @@
             this.uiCompleteLabel.Size = new System.Drawing.Size(35, 13);
             this.uiCompleteLabel.TabIndex = 2;
             this.uiCompleteLabel.Text = "label1";
+            this.uiCompleteLabel.SizeChanged += new System.EventHandler(this.uiCompleteLabel_SizeChanged);
             // 
             // uiCloseButton
             // 
@@ -72,7 +73,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 159);
+            this.ClientSize = new System.Drawing.Size(540, 154);
             this.Controls.Add(this.uiCloseButton);
             this.Controls.Add(this.uiCompleteLabel);
             this.Controls.Add(this.uiFileLabel);

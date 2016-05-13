@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoPreviewer));
-            this.hostedComponent1 = new System.Windows.Controls.TextBox();
+            this.hostedComponent2 = new System.Windows.Controls.TextBox();
             this.uiVideoMediaPlayer = new AxWMPLib.AxWindowsMediaPlayer();
             ((System.ComponentModel.ISupportInitialize)(this.uiPreviewerSplitContainer)).BeginInit();
             this.uiPreviewerSplitContainer.Panel1.SuspendLayout();
@@ -52,36 +52,37 @@
             // uiNotePictureBox
             // 
             this.uiNotePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiNotePictureBox.Image")));
-            this.uiNotePictureBox.Location = new System.Drawing.Point(346, 354);
+            this.uiNotePictureBox.Location = new System.Drawing.Point(348, 354);
             // 
             // uiFileExtensionComboBox
             // 
             this.uiFileExtensionComboBox.Items.AddRange(new object[] {
+            "",
             ""});
-            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(275, 25);
+            this.uiFileExtensionComboBox.Location = new System.Drawing.Point(277, 25);
             // 
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiDoesFileExistPictureBox.Image")));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(346, 30);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(348, 30);
             // 
             // uiHashTextBox
             // 
-            this.uiHashTextBox.Size = new System.Drawing.Size(325, 20);
+            this.uiHashTextBox.Size = new System.Drawing.Size(327, 20);
             // 
             // uiCancelButton
             // 
-            this.uiCancelButton.Location = new System.Drawing.Point(175, 376);
+            this.uiCancelButton.Location = new System.Drawing.Point(177, 376);
             // 
             // uiOKButton
             // 
-            this.uiOKButton.Location = new System.Drawing.Point(260, 376);
+            this.uiOKButton.Location = new System.Drawing.Point(262, 376);
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
             // 
             // uiNoteSpellBox
             // 
             this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 183);
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(327, 187);
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(329, 187);
             // 
             // label5
             // 
@@ -89,11 +90,11 @@
             // 
             // uiDateAndTimeTextBox
             // 
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(325, 20);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(327, 20);
             // 
             // uiFileNameComboBox
             // 
-            this.uiFileNameComboBox.Size = new System.Drawing.Size(254, 21);
+            this.uiFileNameComboBox.Size = new System.Drawing.Size(256, 21);
             // 
             // uiVideoMediaPlayer
             // 
@@ -110,6 +111,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1076, 535);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "VideoPreviewer";
             this.Text = "VideoPreviewer";
             this.Load += new System.EventHandler(this.VideoPreviewer_Load);
@@ -129,5 +131,6 @@
 
         protected System.Windows.Controls.TextBox hostedComponent1;
         private AxWMPLib.AxWindowsMediaPlayer uiVideoMediaPlayer;
+        protected System.Windows.Controls.TextBox hostedComponent2;
     }
 }
