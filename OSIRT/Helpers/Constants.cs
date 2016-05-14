@@ -13,6 +13,7 @@ namespace OSIRT.Helpers
         public static string DatabaseFileName => @"\\case.db";
         public static string PdfReportName => "report.pdf";
         public static string ContainerExtension => ".osr";
+        public static string Artefacts => "artefacts";
 
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace OSIRT.Helpers
             get { return Path.Combine(CasePath, CaseContainerName); }
         }
 
-        public static string ReportContainerName => "report_" + CaseContainerName; 
+        public static string ReportContainerName => $"report_{CaseContainerName}"; 
 
 
         //Image Cache Constants
