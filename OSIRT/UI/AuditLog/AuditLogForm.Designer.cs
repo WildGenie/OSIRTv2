@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditLogForm));
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.uiAuditOptionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -103,6 +104,7 @@
             this.ClientSize = new System.Drawing.Size(967, 676);
             this.Controls.Add(this.uiAuditOptionsToolStrip);
             this.Controls.Add(this.uiAuditLogSplitContainer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(800, 600);
             this.Name = "AuditLogForm";
             this.Text = "Audit Log";

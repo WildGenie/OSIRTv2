@@ -34,6 +34,7 @@ namespace OSIRT.UI
         {
             Dock = DockStyle.Fill;
             uiPasswordTextBox.Focus();
+            uiPasswordTextBox.Enabled = !ZipFile.CheckZipPassword(file.FullName, "");
             InitialiseFileDetailFields();
             uiPasswordTextBox.UseSystemPasswordChar = true;
             BackgroundWorker backgroundWorker = new BackgroundWorker();
@@ -61,7 +62,6 @@ namespace OSIRT.UI
         private void uiOpenCaseButton_Click(object sender, EventArgs e)
         {
           
-            //TODO: use secure string?
             string enteredPassword = uiPasswordTextBox.Text;
             bool isCorrectPassword = (bool) WaitWindow.Show(VerifyPassword, "Verifying password... Please Wait", enteredPassword);
 
@@ -91,7 +91,6 @@ namespace OSIRT.UI
             using (ZipFile zip = ZipFile.Read(file.FullName))
             {
                 zip.Password = password;
-                //zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 zip.ExtractAll(parentDir.FullName, ExtractExistingFileAction.OverwriteSilently);
             }
 
@@ -107,9 +106,12 @@ namespace OSIRT.UI
             Constants.CasePath = parentDir.FullName;
             Constants.CaseContainerName = Path.GetFileName(file.FullName.Replace(".osr", ""));
 
-            e.Window.Message = "Re-encrypting password... Please Wait";
-            string hash = SecurePasswordHasher.Hash(password);
-            UpdateCaseTableWithPassword(hash);
+            if (password != "")
+            {
+                e.Window.Message = "Re-encrypting password... Please Wait";
+                string hash = SecurePasswordHasher.Hash(password);
+                UpdateCaseTableWithPassword(hash);
+            }
 
             //TODO: put the hash as a property rather than directly from textbox
             Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text, Constants.CaseContainerName));

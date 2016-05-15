@@ -43,7 +43,6 @@ namespace OSIRT.UI.AuditLog
             rightSearchPanel.Visible = false;
             searchPanel.Visible = false;
             exportReportOptionsPanel.Visible = false;
-
         }
 
 

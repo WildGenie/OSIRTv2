@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SQLite;
 using System.Text;
 using OSIRT.Helpers;
+using System.Diagnostics;
 
 namespace OSIRT.Database
 {
@@ -100,6 +101,21 @@ namespace OSIRT.Database
                     conn.Open();
                     command.CommandText = $"SELECT Count(*) FROM {table}";
                     return (int.Parse(command.ExecuteScalar().ToString())) == 0;
+                }
+            }
+        }
+        
+        public bool CaseHasPassword()
+        {
+            using (SQLiteConnection conn = new SQLiteConnection(connectionString, true))
+            {
+                using (SQLiteCommand command = new SQLiteCommand(conn))
+                {
+                    conn.Open();
+                    command.CommandText = "SELECT hashed_password FROM case_details";
+                    string result = command.ExecuteScalar().ToString();
+                    Debug.WriteLine("RESULT: " + result);
+                    return result != "";
                 }
             }
         }  

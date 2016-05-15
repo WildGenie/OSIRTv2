@@ -19,7 +19,9 @@ namespace OSIRT.UI.CaseClosing
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+            uiInfoLabel.Text = "Cleaning up... Please Wait";
             backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
@@ -46,11 +48,11 @@ namespace OSIRT.UI.CaseClosing
 
         private void CleanUp(string password)
         {
+            
             UpdateLabel("Deleting browser cache... Please Wait");
             DeleteCache();
             //Need this log here, as database entry.
             Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt", Constants.CaseContainerName));
-
             UpdateLabel("Encrypting container... Please Wait");
             ZipContainer(password);
             UpdateLabel("Hashing case container... Please Wait");
@@ -61,6 +63,7 @@ namespace OSIRT.UI.CaseClosing
 
         private void UpdateLabel(string message)
         {
+            System.Threading.Thread.Sleep(600);
             Invoke((MethodInvoker)(() => uiInfoLabel.Text = message));
         }
 
@@ -70,23 +73,16 @@ namespace OSIRT.UI.CaseClosing
             //TODO: A handle is being left on the directory... What to do?
             //Or is it? Could be the WaitWindow, you know... Use background worker to test!
             //Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
-            while (true)
-            {
-                int attempts = 0;
-                try
-                {
-                    Debug.WriteLine($"Attempts: {attempts}.");
-                    string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
-                    OsirtHelper.DeleteDirectory(directory);
-                    if (!Directory.Exists(directory) || attempts == 5) break;
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Attempts: {attempts}. Exception: {ex.InnerException.ToString()}");
-                    attempts++;
-                }
 
-            }
+            int attempts = 0;
+            Timer timer = new Timer { Interval = 1000 };
+            timer.Start();
+            timer.Tick += (s, e) => 
+            {
+                attempts++;
+                string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
+                if (!Directory.Exists(directory) || attempts == 5) timer.Stop();
+            };
         }
 
         private void DeleteCache()
@@ -105,8 +101,22 @@ namespace OSIRT.UI.CaseClosing
         {
             using (ZipFile zip = new ZipFile())
             {
-                zip.Password = password;
-                zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+
+                //zip.Password = password;
+                //zip.Encryption = password != "" ? EncryptionAlgorithm.WinZipAes256 : EncryptionAlgorithm.None;
+
+
+                if (password != "")
+                {
+                    zip.Password = password;
+                    zip.Encryption = EncryptionAlgorithm.WinZipAes256;
+                }
+                else
+                {
+                    zip.Password = ""; //need to ensure blank password is reset
+                }
+
+
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);
                 zip.Save(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             }

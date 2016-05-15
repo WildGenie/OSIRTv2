@@ -23,9 +23,9 @@ namespace OSIRT.UI
 
         private void uiFirstPasswordTextBox_TextChanged(object sender, EventArgs e)
         {
-            string password = uiFirstPasswordTextBox.Text;
-            OsirtHelper.PasswordScore strength = OsirtHelper.CheckStrength(password);
-            uiPasswordStrengthProgressBar.Value = (int)strength;
+            //string password = uiFirstPasswordTextBox.Text;
+            //OsirtHelper.PasswordScore strength = OsirtHelper.CheckStrength(password);
+            //uiPasswordStrengthProgressBar.Value = (int)strength;
         }
 
 
@@ -79,6 +79,10 @@ namespace OSIRT.UI
 
         private bool ValidPasswords()
         {
+            if (!uiRequiresPasswordCheckbox.Checked)
+                return true;
+
+
             string first = uiFirstPasswordTextBox.Text;
             string second = uiConfirmPasswordTextBox.Text;
             bool isValid = true;
@@ -127,25 +131,35 @@ namespace OSIRT.UI
             var allControls = splitContainer1.GetChildControls<Control>();
             Dictionary<string, string> details = new Dictionary<string, string>();
 
+            //password not required, put an empty string in the password field for the case
+            //then we can check if casePassword == "" then don't use password
+            if (!uiRequiresPasswordCheckbox.Checked)
+                details.Add("hashed_password", "");
+
             foreach (Control control in allControls)
             {
-
-                if(control.Name == "uiFirstPasswordTextBox")
-                {
-                    string password = control.Text;
-                    string hash = SecurePasswordHasher.Hash(password);
-                    details.Add("hashed_password", hash);
-                    continue;
-
-                }
-                else if(control.Name == "uiConfirmPasswordTextBox" || control.Name == "uiCasePathTextBox" )
+                if (control.Name == "uiConfirmPasswordTextBox" || control.Name == "uiCasePathTextBox" || control.Name == "uiRequiresPasswordCheckbox")
                 {
                     continue;
                 }
-
-                if (control is ComboBox || control is TextBox || control is SpellBox)
+                else if (control is ComboBox || control is TextBox || control is SpellBox)
                 {
-                     details.Add(control.Tag.ToString(), control.Text);
+
+                    if (control.Name == "uiFirstPasswordTextBox" && uiRequiresPasswordCheckbox.Checked)
+                    {
+                        string password = control.Text;
+                        string hash = SecurePasswordHasher.Hash(password);
+                        details.Add("hashed_password", hash);
+                        continue;
+                    }
+                    else if(control.Name == "uiFirstPasswordTextBox" && !uiRequiresPasswordCheckbox.Checked)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        details.Add(control.Tag.ToString(), control.Text);
+                    } 
                 }
             }
             return details;
@@ -204,6 +218,19 @@ namespace OSIRT.UI
 
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void uiRequiresPasswordCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool isChecked = uiRequiresPasswordCheckbox.Checked;
+            uiFirstPasswordTextBox.Enabled = isChecked;
+            uiConfirmPasswordTextBox.Enabled = isChecked;
+
+
+            //UserSettings settings = UserSettings.Load();
+            //settings.CaseHasPassword = isChecked;
+            //settings.Save();
 
         }
     }

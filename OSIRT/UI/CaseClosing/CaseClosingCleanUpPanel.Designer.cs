@@ -59,10 +59,10 @@
             // uiSpinnerPictureBox
             // 
             this.uiSpinnerPictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.uiSpinnerPictureBox.Image = global::OSIRT.Properties.Resources.spinner;
-            this.uiSpinnerPictureBox.Location = new System.Drawing.Point(227, 19);
+            this.uiSpinnerPictureBox.Image = global::OSIRT.Properties.Resources.squares;
+            this.uiSpinnerPictureBox.Location = new System.Drawing.Point(209, 19);
             this.uiSpinnerPictureBox.Name = "uiSpinnerPictureBox";
-            this.uiSpinnerPictureBox.Size = new System.Drawing.Size(130, 132);
+            this.uiSpinnerPictureBox.Size = new System.Drawing.Size(150, 132);
             this.uiSpinnerPictureBox.TabIndex = 0;
             this.uiSpinnerPictureBox.TabStop = false;
             // 

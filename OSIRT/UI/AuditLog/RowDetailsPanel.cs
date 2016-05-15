@@ -21,6 +21,7 @@ namespace OSIRT.UI.AuditLog
         public RowDetailsPanel()
         {
             InitializeComponent();
+            uiFileDetailsLabel.Text = "";
         }
 
         public TextBox DateTimeTextBox { get; private set; }
@@ -60,11 +61,6 @@ namespace OSIRT.UI.AuditLog
                     {
                         Actions directory;
                         Enum.TryParse(rowDetails["action"].Replace(" ", ""), true, out directory);
-
-                        //Debug.WriteLine("IN POP TEXTBOXES");
-                        //Debug.WriteLine("FILE: " + rowDetails["file"]);
-                        //Debug.WriteLine("CASE DIR: " + directory);
-
                         if (Path.HasExtension(rowDetails["file"]) && directory != Actions.CaseNotes)
                         {
                             DisplayFileIconWithFileSize(rowDetails["file"], directory);
@@ -91,9 +87,6 @@ namespace OSIRT.UI.AuditLog
 
         private void DisplayFileIconWithFileSize(string file, Actions caseDirectory)
         {
-            Debug.WriteLine("IN DISPLAY FILE ICON" + file);
-            Debug.WriteLine("FILE: " + file);
-            Debug.WriteLine("CASE DIR: " + caseDirectory);
             BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
             FilePreviewImage.Image = OsirtHelper.GetBitmap(icon);
             string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);

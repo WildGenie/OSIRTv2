@@ -32,6 +32,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.uiWhySha512Label = new System.Windows.Forms.Label();
             this.uiHashProgressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.uiFileNameTextBox = new System.Windows.Forms.TextBox();
@@ -44,7 +45,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.uiOpenCaseButton = new System.Windows.Forms.Button();
             this.uiPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.uiWhySha512Label = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -98,6 +99,17 @@
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Case Container Details";
+            // 
+            // uiWhySha512Label
+            // 
+            this.uiWhySha512Label.AutoSize = true;
+            this.uiWhySha512Label.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiWhySha512Label.Location = new System.Drawing.Point(575, 82);
+            this.uiWhySha512Label.Name = "uiWhySha512Label";
+            this.uiWhySha512Label.Size = new System.Drawing.Size(19, 13);
+            this.uiWhySha512Label.TabIndex = 13;
+            this.uiWhySha512Label.Text = "[?]";
+            this.uiWhySha512Label.Click += new System.EventHandler(this.uiWhySha512Label_Click);
             // 
             // uiHashProgressBar
             // 
@@ -166,6 +178,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.uiInvalidPasswordLabel);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.uiOpenCaseButton);
@@ -180,7 +193,7 @@
             // 
             this.uiInvalidPasswordLabel.AutoSize = true;
             this.uiInvalidPasswordLabel.ForeColor = System.Drawing.Color.Red;
-            this.uiInvalidPasswordLabel.Location = new System.Drawing.Point(103, 101);
+            this.uiInvalidPasswordLabel.Location = new System.Drawing.Point(104, 117);
             this.uiInvalidPasswordLabel.Name = "uiInvalidPasswordLabel";
             this.uiInvalidPasswordLabel.Size = new System.Drawing.Size(87, 13);
             this.uiInvalidPasswordLabel.TabIndex = 6;
@@ -213,16 +226,14 @@
             this.uiPasswordTextBox.Size = new System.Drawing.Size(244, 20);
             this.uiPasswordTextBox.TabIndex = 3;
             // 
-            // uiWhySha512Label
+            // label3
             // 
-            this.uiWhySha512Label.AutoSize = true;
-            this.uiWhySha512Label.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiWhySha512Label.Location = new System.Drawing.Point(575, 82);
-            this.uiWhySha512Label.Name = "uiWhySha512Label";
-            this.uiWhySha512Label.Size = new System.Drawing.Size(19, 13);
-            this.uiWhySha512Label.TabIndex = 13;
-            this.uiWhySha512Label.Text = "[?]";
-            this.uiWhySha512Label.Click += new System.EventHandler(this.uiWhySha512Label_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(70, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(165, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "(Leave field blank if no password)";
             // 
             // LoadExistingCasePanel
             // 
@@ -260,5 +271,6 @@
         private System.Windows.Forms.ProgressBar uiHashProgressBar;
         private System.Windows.Forms.Label uiInvalidPasswordLabel;
         private System.Windows.Forms.Label uiWhySha512Label;
+        private System.Windows.Forms.Label label3;
     }
 }

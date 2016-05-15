@@ -40,8 +40,8 @@
             this.snippetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
+            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
             this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
@@ -179,11 +179,6 @@
             this.uiAttachmentToolStripButton.ToolTipText = "Attach item to this case";
             this.uiAttachmentToolStripButton.Click += new System.EventHandler(this.uiAttachmentToolStripButton_Click);
             // 
-            // uiURLComboBox
-            // 
-            this.uiURLComboBox.Name = "uiURLComboBox";
-            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
-            // 
             // uiCaseNotesButton
             // 
             this.uiCaseNotesButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -193,10 +188,15 @@
             this.uiCaseNotesButton.Size = new System.Drawing.Size(23, 22);
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
+            // uiURLComboBox
+            // 
+            this.uiURLComboBox.Name = "uiURLComboBox";
+            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
+            // 
             // uiAuditLogToolStripButton
             // 
             this.uiAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.table;
+            this.uiAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.log;
             this.uiAuditLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiAuditLogToolStripButton.Name = "uiAuditLogToolStripButton";
             this.uiAuditLogToolStripButton.Size = new System.Drawing.Size(23, 22);
@@ -236,7 +236,7 @@
             // closeCaseToolStripMenuItem
             // 
             this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
-            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 

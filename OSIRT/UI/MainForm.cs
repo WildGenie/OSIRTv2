@@ -194,9 +194,20 @@ namespace OSIRT.UI
         private void ClosingOsirt()
         {
             Controls.Clear();
-            CloseCasePanel closePanel = new CloseCasePanel();
-            Controls.Add(closePanel);
-            closePanel.PasswordCorrect += ClosePanel_PasswordCorrect;
+
+            //UserSettings.Load().CaseHasPassword
+            bool caseHasPassword = new Database.DatabaseHandler().CaseHasPassword();
+            if (caseHasPassword)
+            {
+                CloseCasePanel closePanel = new CloseCasePanel();
+                Controls.Add(closePanel);
+                closePanel.PasswordCorrect += ClosePanel_PasswordCorrect;
+            }
+            else
+            {
+                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("");
+                Controls.Add(cleanUpPanel);
+            }
         }
 
         private void ClosePanel_PasswordCorrect(object sender, CaseClosingEventArgs e)

@@ -17,6 +17,7 @@ namespace OSIRT.Helpers
     public class OsirtHelper
     {
 
+
         //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
         public enum PasswordScore
         {

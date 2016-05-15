@@ -30,9 +30,6 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiPasswordGroupBox = new System.Windows.Forms.GroupBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.uiPasswordStrengthProgressBar = new System.Windows.Forms.ProgressBar();
             this.label10 = new System.Windows.Forms.Label();
             this.uiConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,10 +55,11 @@
             this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent4 = new System.Windows.Controls.TextBox();
+            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
+            this.uiRequiresPasswordCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -98,9 +96,7 @@
             // 
             this.uiPasswordGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiPasswordGroupBox.Controls.Add(this.label12);
-            this.uiPasswordGroupBox.Controls.Add(this.label11);
-            this.uiPasswordGroupBox.Controls.Add(this.uiPasswordStrengthProgressBar);
+            this.uiPasswordGroupBox.Controls.Add(this.uiRequiresPasswordCheckbox);
             this.uiPasswordGroupBox.Controls.Add(this.label10);
             this.uiPasswordGroupBox.Controls.Add(this.uiConfirmPasswordTextBox);
             this.uiPasswordGroupBox.Controls.Add(this.label9);
@@ -112,41 +108,10 @@
             this.uiPasswordGroupBox.TabStop = false;
             this.uiPasswordGroupBox.Text = "Container Password";
             // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(344, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(109, 91);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Always follow your \r\norganisations official \r\npassword policy.\r\n\r\nThe strength me" +
-    "ter is \r\nto be used as \r\na guide only.";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(7, 114);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 13);
-            this.label11.TabIndex = 5;
-            this.label11.Text = "Password Strength";
-            // 
-            // uiPasswordStrengthProgressBar
-            // 
-            this.uiPasswordStrengthProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiPasswordStrengthProgressBar.Location = new System.Drawing.Point(5, 130);
-            this.uiPasswordStrengthProgressBar.Maximum = 5;
-            this.uiPasswordStrengthProgressBar.Name = "uiPasswordStrengthProgressBar";
-            this.uiPasswordStrengthProgressBar.Size = new System.Drawing.Size(448, 23);
-            this.uiPasswordStrengthProgressBar.Step = 1;
-            this.uiPasswordStrengthProgressBar.TabIndex = 4;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(7, 69);
+            this.label10.Location = new System.Drawing.Point(9, 105);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(91, 13);
             this.label10.TabIndex = 3;
@@ -154,15 +119,16 @@
             // 
             // uiConfirmPasswordTextBox
             // 
-            this.uiConfirmPasswordTextBox.Location = new System.Drawing.Point(5, 85);
+            this.uiConfirmPasswordTextBox.Enabled = false;
+            this.uiConfirmPasswordTextBox.Location = new System.Drawing.Point(9, 121);
             this.uiConfirmPasswordTextBox.Name = "uiConfirmPasswordTextBox";
-            this.uiConfirmPasswordTextBox.Size = new System.Drawing.Size(230, 20);
+            this.uiConfirmPasswordTextBox.Size = new System.Drawing.Size(228, 20);
             this.uiConfirmPasswordTextBox.TabIndex = 6;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(7, 20);
+            this.label9.Location = new System.Drawing.Point(9, 56);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(53, 13);
             this.label9.TabIndex = 1;
@@ -170,9 +136,10 @@
             // 
             // uiFirstPasswordTextBox
             // 
-            this.uiFirstPasswordTextBox.Location = new System.Drawing.Point(5, 36);
+            this.uiFirstPasswordTextBox.Enabled = false;
+            this.uiFirstPasswordTextBox.Location = new System.Drawing.Point(9, 72);
             this.uiFirstPasswordTextBox.Name = "uiFirstPasswordTextBox";
-            this.uiFirstPasswordTextBox.Size = new System.Drawing.Size(230, 20);
+            this.uiFirstPasswordTextBox.Size = new System.Drawing.Size(228, 20);
             this.uiFirstPasswordTextBox.TabIndex = 5;
             this.uiFirstPasswordTextBox.TextChanged += new System.EventHandler(this.uiFirstPasswordTextBox_TextChanged);
             // 
@@ -442,6 +409,17 @@
             this.uiHelpLabelLabel.Text = "Create New Case";
             this.uiHelpLabelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // uiRequiresPasswordCheckbox
+            // 
+            this.uiRequiresPasswordCheckbox.AutoSize = true;
+            this.uiRequiresPasswordCheckbox.Location = new System.Drawing.Point(10, 25);
+            this.uiRequiresPasswordCheckbox.Name = "uiRequiresPasswordCheckbox";
+            this.uiRequiresPasswordCheckbox.Size = new System.Drawing.Size(119, 17);
+            this.uiRequiresPasswordCheckbox.TabIndex = 7;
+            this.uiRequiresPasswordCheckbox.Text = "Password required?";
+            this.uiRequiresPasswordCheckbox.UseVisualStyleBackColor = true;
+            this.uiRequiresPasswordCheckbox.CheckedChanged += new System.EventHandler(this.uiRequiresPasswordCheckbox_CheckedChanged);
+            // 
             // CaseDetailsPanel2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -496,15 +474,14 @@
         private System.Windows.Forms.ComboBox uiHashFunctionComboBox;
         private SpellBox uiNotesTextBox;
         private System.Windows.Controls.TextBox hostedComponent1;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ProgressBar uiPasswordStrengthProgressBar;
         private System.Windows.Forms.Button uiNextButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label uiHelpLabelLabel;
         private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Controls.TextBox hostedComponent3;
         private System.Windows.Controls.TextBox hostedComponent4;
+        private System.Windows.Controls.TextBox hostedComponent5;
+        private System.Windows.Forms.CheckBox uiRequiresPasswordCheckbox;
     }
 }

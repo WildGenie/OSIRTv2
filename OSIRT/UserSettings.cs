@@ -9,6 +9,7 @@
         public bool DefaultSaveAsPdf = false;
         public bool HashContainerOnClose = false;
         public bool AuditLogNewestFirst = false;
+        public bool CaseHasPassword = false;
         public int NumberOfRowsPerPage = 25;
 
         //reporting

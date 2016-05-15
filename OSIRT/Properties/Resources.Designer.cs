@@ -203,6 +203,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap log {
+            get {
+                object obj = ResourceManager.GetObject("log", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap magnify {
             get {
                 object obj = ResourceManager.GetObject("magnify", resourceCulture);
@@ -326,6 +336,36 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap spinner {
             get {
                 object obj = ResourceManager.GetObject("spinner", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap splash_screen_large {
+            get {
+                object obj = ResourceManager.GetObject("splash_screen_large", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap splash_screen_small {
+            get {
+                object obj = ResourceManager.GetObject("splash_screen_small", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap squares {
+            get {
+                object obj = ResourceManager.GetObject("squares", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

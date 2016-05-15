@@ -341,6 +341,12 @@
     </Compile>
     <Compile Include="UI\SpellBox.cs" />
     <Compile Include="Loggers\WebsiteLog.cs" />
+    <Compile Include="UI\Splash\SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Splash\SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSettings.cs" />
     <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <Compile Include="VideoCapture\VideoCaptureCompleteEventArgs.cs" />
@@ -437,6 +443,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SnippetTool\SnippingTool.resx">
       <DependentUpon>SnippingTool.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Splash\SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VideoPreviewer.resx">
       <DependentUpon>VideoPreviewer.cs</DependentUpon>
@@ -547,6 +556,10 @@
     <EmbeddedResource Include="Resources\report-title-page.html" />
     <None Include="Resources\options.png" />
     <None Include="Resources\mouse-halo.png" />
+    <None Include="Resources\log.png" />
+    <None Include="Resources\squares.gif" />
+    <None Include="Resources\splash_screen_large.png" />
+    <None Include="Resources\splash_screen_small.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
