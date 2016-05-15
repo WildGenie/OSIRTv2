@@ -38,6 +38,7 @@
             // groupBox
             // 
             this.groupBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.groupBox.Controls.Add(this.uiInfoLabel);
             this.groupBox.Controls.Add(this.uiSpinnerPictureBox);
             this.groupBox.Location = new System.Drawing.Point(200, 109);
@@ -49,7 +50,7 @@
             // uiInfoLabel
             // 
             this.uiInfoLabel.AutoSize = true;
-            this.uiInfoLabel.Location = new System.Drawing.Point(269, 154);
+            this.uiInfoLabel.Location = new System.Drawing.Point(263, 152);
             this.uiInfoLabel.Name = "uiInfoLabel";
             this.uiInfoLabel.Size = new System.Drawing.Size(35, 13);
             this.uiInfoLabel.TabIndex = 1;
@@ -58,11 +59,11 @@
             // 
             // uiSpinnerPictureBox
             // 
-            this.uiSpinnerPictureBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.uiSpinnerPictureBox.Image = global::OSIRT.Properties.Resources.squares;
             this.uiSpinnerPictureBox.Location = new System.Drawing.Point(209, 19);
             this.uiSpinnerPictureBox.Name = "uiSpinnerPictureBox";
-            this.uiSpinnerPictureBox.Size = new System.Drawing.Size(150, 132);
+            this.uiSpinnerPictureBox.Size = new System.Drawing.Size(150, 150);
+            this.uiSpinnerPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.uiSpinnerPictureBox.TabIndex = 0;
             this.uiSpinnerPictureBox.TabStop = false;
             // 

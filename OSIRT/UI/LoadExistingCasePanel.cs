@@ -34,7 +34,7 @@ namespace OSIRT.UI
         {
             Dock = DockStyle.Fill;
             uiPasswordTextBox.Focus();
-            uiPasswordTextBox.Enabled = !ZipFile.CheckZipPassword(file.FullName, "");
+            ShowPasswordEntry(!ZipFile.CheckZipPassword(file.FullName, ""));
             InitialiseFileDetailFields();
             uiPasswordTextBox.UseSystemPasswordChar = true;
             BackgroundWorker backgroundWorker = new BackgroundWorker();
@@ -42,6 +42,12 @@ namespace OSIRT.UI
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             backgroundWorker.RunWorkerAsync();
 
+        }
+
+        private void ShowPasswordEntry(bool show)
+        {
+            uiPasswordTextBox.Visible = show;
+            label2.Visible = show;
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

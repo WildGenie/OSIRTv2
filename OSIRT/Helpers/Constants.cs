@@ -24,7 +24,8 @@ namespace OSIRT.Helpers
             get { return Path.Combine(CasePath, CaseContainerName); }
         }
 
-        public static string ReportContainerName => $"report_{CaseContainerName}"; 
+        public static string ReportContainerName => $"report_{CaseContainerName}";
+        public static string ExportedHashFileName => $"{CaseContainerName}_hash_%%dt%%.txt";
 
 
         //Image Cache Constants

@@ -30,9 +30,7 @@ namespace OSIRT.UI.CaseClosing
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            //throw new NotImplementedException();
-            //case closed sucessfully message
-            //close application... Fire event?
+            OsirtLogWriter.Write(Constants.ContainerLocation, true);
             Application.Exit();
         }
 
@@ -52,7 +50,7 @@ namespace OSIRT.UI.CaseClosing
             UpdateLabel("Deleting browser cache... Please Wait");
             DeleteCache();
             //Need this log here, as database entry.
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt", Constants.CaseContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt]", Constants.CaseContainerName));
             UpdateLabel("Encrypting container... Please Wait");
             ZipContainer(password);
             UpdateLabel("Hashing case container... Please Wait");
@@ -94,7 +92,7 @@ namespace OSIRT.UI.CaseClosing
         {
             //TODO: have hash save location as an option
             string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
-            File.WriteAllText(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory) + $"\\{Constants.CaseContainerName}_hash.txt", hash);
+            File.WriteAllText(Path.Combine(UserSettings.Load().HashExportLocation, Constants.ExportedHashFileName.Replace("%%dt%%", $"{DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")}" )), hash);
         }
 
         private void ZipContainer(string password)
@@ -102,19 +100,17 @@ namespace OSIRT.UI.CaseClosing
             using (ZipFile zip = new ZipFile())
             {
 
-                //zip.Password = password;
-                //zip.Encryption = password != "" ? EncryptionAlgorithm.WinZipAes256 : EncryptionAlgorithm.None;
-
-
-                if (password != "")
+                if (password.Length > 0)
                 {
                     zip.Password = password;
                     zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                 }
-                else
-                {
-                    zip.Password = ""; //need to ensure blank password is reset
-                }
+                //else
+                //{
+                    //zip.Password = "";  <--- NO, DON'T DO THIS!
+                    //empty string password means it can't be opened in Windows
+                    //Just don't use a password AT ALL!
+               //}
 
 
                 zip.AddDirectory(Constants.ContainerLocation, Constants.CaseContainerName);

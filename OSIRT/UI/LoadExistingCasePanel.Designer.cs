@@ -45,7 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.uiOpenCaseButton = new System.Windows.Forms.Button();
             this.uiPasswordTextBox = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -178,7 +177,6 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.uiInvalidPasswordLabel);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.uiOpenCaseButton);
@@ -226,15 +224,6 @@
             this.uiPasswordTextBox.Size = new System.Drawing.Size(244, 20);
             this.uiPasswordTextBox.TabIndex = 3;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(70, 98);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(165, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "(Leave field blank if no password)";
-            // 
             // LoadExistingCasePanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -271,6 +260,5 @@
         private System.Windows.Forms.ProgressBar uiHashProgressBar;
         private System.Windows.Forms.Label uiInvalidPasswordLabel;
         private System.Windows.Forms.Label uiWhySha512Label;
-        private System.Windows.Forms.Label label3;
     }
 }

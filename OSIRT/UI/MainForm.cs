@@ -57,18 +57,18 @@ namespace OSIRT.UI
             }
         }
 
-        private void CloseOsirt(string password)
-        {
-            if (caseOpened)
-            {
-                bool closeSuccessful = (bool) WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait", password);
-                if(closeSuccessful)
-                {
-                    OsirtLogWriter.Write(Constants.ContainerLocation, true);
-                    Environment.Exit(0);
-                }
-            }
-        }
+        //private void CloseOsirt(string password)
+        //{
+        //    if (caseOpened)
+        //    {
+        //        bool closeSuccessful = (bool) WaitWindow.Show(ClosingOperations, "Running OSIRT closing operations... Please wait", password);
+        //        if(closeSuccessful)
+        //        {
+        //            OsirtLogWriter.Write(Constants.ContainerLocation, true);
+        //            Environment.Exit(0);
+        //        }
+        //    }
+        //}
 
         private void ClosingOperations(object sender, WaitWindowEventArgs e)
         {
