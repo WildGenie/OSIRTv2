@@ -85,7 +85,7 @@ namespace OSIRT.UI
                     Hash = OsirtHelper.GetFileHash(pathToSave);
                 }
             }
-            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException)
+            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException || ex is System.AccessViolationException || ex is Exception)
             {
                 thrown = true;
                 var message = "Unable to save as PDF. Reverting to saving as PNG.";
@@ -141,7 +141,7 @@ namespace OSIRT.UI
             }
             catch(MagickCoderErrorException cex)
             {
-                System.Diagnostics.Debug.WriteLine(cex.ToString());
+                Debug.WriteLine(cex.ToString());
             }
             catch (MagickCorruptImageErrorException mic)
             {
@@ -167,8 +167,16 @@ namespace OSIRT.UI
             }
             catch (OutOfMemoryException oom)
             {
-                MessageBox.Show(@"Debugging: Known issue. Webpage takes a large chunk of memory, causing the image loading in the previewer to fail. 
-                                The image is still saved/logged/hashed, it just can't be previewed. Further debug info:  " + oom);
+                //MessageBox.Show(@"Debugging: Known issue. Webpage takes a large chunk of memory, causing the image loading in the previewer to fail. 
+                //                The image is still saved/logged/hashed, it just can't be previewed. Further debug info:  " + oom);
+
+                //can we call ShowCannotOpenPanel here, instead?
+                uiPreviewerSplitContainer.Panel2.Controls.Clear();
+                uiPreviewerSplitContainer.Panel2.Controls.Add(new ImageLoadFailed());
+
+                //Debug.WriteLine("-- OUT OF MEMORY --");
+                //ShowCannotOpenPanel(GetImageSize());
+
                 //we can carry on, show the previewer so they can name the image and leave a note.
                 //TODO: put a friendly message on the right, and a link to the image currently residing in the cache
                 //so they can see it.

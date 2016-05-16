@@ -1,8 +1,6 @@
 ﻿namespace OSIRT.Enums
 {
-    //TODO: these can be used as actions, too.
-    //We have const strings that store actions in Constants.cs
-    //Bit Silly, let's just use this.
+    
     public enum Actions
     {
         Images,

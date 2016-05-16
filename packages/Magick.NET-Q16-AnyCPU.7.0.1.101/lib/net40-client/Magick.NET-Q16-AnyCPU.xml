@@ -80,7 +80,7 @@
         </member>
         <member name="M:ImageMagick.MagickColor.op_Implicit(ImageMagick.MagickColor)~System.Drawing.Color">
             <summary>
-             Converts the specified MagickColor to an instance of this type.
+             Converts the specified MagickColor to a Color instance.
             </summary>
         </member>
         <member name="M:ImageMagick.MagickColor.op_Implicit(System.Drawing.Color)~ImageMagick.MagickColor">
@@ -591,6 +591,11 @@
         <member name="T:ImageMagick.MagickColors">
             <summary>
             Class that contains the same colors as System.Drawing.Colors.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.MagickColors.None">
+            <summary>
+            Gets a system-defined color that has an RGBA value of #FFFFFF00.
             </summary>
         </member>
         <member name="P:ImageMagick.MagickColors.Transparent">
@@ -1615,6 +1620,11 @@
              Class that implements IDefine
             </summary>
         </member>
+        <member name="M:ImageMagick.MagickDefine.#ctor(System.String,System.String)">
+            <summary>
+            Initializes a new instance of the MagickDefine class.
+            </summary>
+        </member>
         <member name="M:ImageMagick.MagickDefine.#ctor(ImageMagick.MagickFormat,System.String,System.String)">
             <summary>
             Initializes a new instance of the MagickDefine class.
@@ -1760,15 +1770,15 @@
              The defines that should be set as an define on an image
             </summary>
         </member>
-        <member name="T:ImageMagick.Drawables.IDrawingWand">
-            <summary>
-             Interface for internal use.
-            </summary>
-        </member>
         <member name="T:ImageMagick.DrawableAffine">
             <summary>
              Adjusts the current affine transformation matrix with the specified affine transformation
              matrix. Note that the current affine transform is adjusted rather than replaced.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.#ctor">
+            <summary>
+             Creates a new DrawableAffine instance.
             </summary>
         </member>
         <member name="M:ImageMagick.DrawableAffine.#ctor(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
@@ -1811,6 +1821,43 @@
             <summary>
              The Y coordinate of the translation element.
             </summary>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.Reset">
+            <summary>
+            Reset to default
+            </summary>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.TransformOrigin(System.Double,System.Double)">
+             <summary>
+             Sets the origin of coordinate system.
+             </summary>
+            <param name="translateX">The X coordinate of the translation element.</param>
+            <param name="translateY">The Y coordinate of the translation element.</param>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.TransformRotation(System.Double)">
+            <summary>
+            Rotation to use.
+            </summary>
+            <param name="angle">The angle of the rotation.</param>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.TransformScale(System.Double,System.Double)">
+             <summary>
+             Sets the scale to use.
+             </summary>
+            <param name="scaleX">The X coordinate scaling element.</param>
+            <param name="scaleY">The Y coordinate scaling element.</param>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.TransformSkewX(System.Double)">
+             <summary>
+             Skew to use in X axis
+             </summary>
+            <param name="skewX">The X skewing element.</param>
+        </member>
+        <member name="M:ImageMagick.DrawableAffine.TransformSkewY(System.Double)">
+             <summary>
+             Skew to use in Y axis
+             </summary>
+            <param name="skewY">The Y skewing element.</param>
         </member>
         <member name="M:ImageMagick.DrawableAffine.#ctor(System.Drawing.Drawing2D.Matrix)">
             <summary>
@@ -2644,6 +2691,530 @@
              The width.
             </summary>
         </member>
+        <member name="T:ImageMagick.Drawables">
+            <summary>
+            Class that can be used to chain draw actions.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.#ctor">
+            <summary>
+            Initializes a new instance of the Drawables class.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.Paths">
+            <summary>
+            Creates a new Paths instance.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ImageMagick.Drawables.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ImageMagick.Drawables.Affine(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableAffine instance.
+            </summary>
+            <param name="scaleX">The X coordinate scaling element.</param>
+            <param name="scaleY">The Y coordinate scaling element.</param>
+            <param name="shearX">The X coordinate shearing element.</param>
+            <param name="shearY">The Y coordinate shearing element.</param>
+            <param name="translateX">The X coordinate of the translation element.</param>
+            <param name="translateY">The Y coordinate of the translation element.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Alpha(System.Double,System.Double,ImageMagick.PaintMethod)">
+            <summary>
+            Creates a new DrawableOpacity instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="paintMethod">The paint method to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Arc(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableArc instance.
+            </summary>
+            <param name="startX">The starting X coordinate of the bounding rectangle.</param>
+            <param name="startY">The starting Y coordinate of thebounding rectangle.</param>
+            <param name="endX">The ending X coordinate of the bounding rectangle.</param>
+            <param name="endY">The ending Y coordinate of the bounding rectangle.</param>
+            <param name="startDegrees">The starting degrees of rotation.</param>
+            <param name="endDegrees">The ending degrees of rotation.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Bezier(ImageMagick.PointD[])">
+            <summary>
+            Creates a new DrawableBezier instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Bezier(System.Collections.Generic.IEnumerable{ImageMagick.PointD})">
+            <summary>
+            Creates a new DrawableBezier instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.BorderColor(ImageMagick.MagickColor)">
+            <summary>
+            Creates a new DrawableColor instance.
+            </summary>
+            <param name="color">The color of the border.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Circle(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableCircle instance.
+            </summary>
+            <param name="originX">The origin X coordinate.</param>
+            <param name="originY">The origin Y coordinate.</param>
+            <param name="perimeterX">The perimeter X coordinate.</param>
+            <param name="perimeterY">The perimeter Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.ClipPath(System.String)">
+            <summary>
+            Creates a new DrawableClipPath instance.
+            </summary>
+            <param name="clipPath">The ID of the clip path.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.ClipRule(ImageMagick.FillRule)">
+            <summary>
+            Creates a new DrawableClipRule instance.
+            </summary>
+            <param name="fillRule">The rule to use when filling drawn objects.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.ClipUnits(ImageMagick.ClipPathUnit)">
+            <summary>
+            Creates a new DrawableClipUnits instance.
+            </summary>
+            <param name="units">The clip path units.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Color(System.Double,System.Double,ImageMagick.PaintMethod)">
+            <summary>
+            Creates a new DrawableColor instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="paintMethod">The paint method to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Composite(ImageMagick.MagickGeometry,ImageMagick.MagickImage)">
+            <summary>
+            Creates a new DrawableCompositeImage instance.
+            </summary>
+            <param name="offset">The offset from origin.</param>
+            <param name="image">The image to draw.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Composite(System.Double,System.Double,ImageMagick.MagickImage)">
+            <summary>
+            Creates a new DrawableCompositeImage instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="image">The image to draw.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Composite(ImageMagick.MagickGeometry,ImageMagick.CompositeOperator,ImageMagick.MagickImage)">
+            <summary>
+            Creates a new DrawableCompositeImage instance.
+            </summary>
+            <param name="offset">The offset from origin.</param>
+            <param name="compose">The algorithm to use.</param>
+            <param name="image">The image to draw.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Composite(System.Double,System.Double,ImageMagick.CompositeOperator,ImageMagick.MagickImage)">
+            <summary>
+            Creates a new DrawableCompositeImage instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="compose">The algorithm to use.</param>
+            <param name="image">The image to draw.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Density(System.Double)">
+            <summary>
+            Creates a new DrawableDensity instance.
+            </summary>
+            <param name="density">The vertical and horizontal resolution.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Density(ImageMagick.PointD)">
+            <summary>
+            Creates a new DrawableDensity instance.
+            </summary>
+            <param name="pointDensity">The vertical and horizontal resolution.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Ellipse(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableEllipse instance.
+            </summary>
+            <param name="originX">The origin X coordinate.</param>
+            <param name="originY">The origin Y coordinate.</param>
+            <param name="radiusX">The X radius.</param>
+            <param name="radiusY">The Y radius.</param>
+            <param name="startDegrees">The starting degrees of rotation.</param>
+            <param name="endDegrees">The ending degrees of rotation.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FillColor(ImageMagick.MagickColor)">
+            <summary>
+            Creates a new DrawableFillColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FillOpacity(ImageMagick.Percentage)">
+            <summary>
+            Creates a new DrawableFillOpacity instance.
+            </summary>
+            <param name="opacity">The opacity.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FillPatternUrl(System.String)">
+            <summary>
+            Creates a new DrawableFillPatternUrl instance.
+            </summary>
+            <param name="url">Url specifying pattern ID (e.g. "#pattern_id").</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FillRule(ImageMagick.FillRule)">
+            <summary>
+            Creates a new DrawableFillRule instance.
+            </summary>
+            <param name="fillRule">The rule to use when filling drawn objects.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Font(System.String)">
+            <summary>
+            Creates a new DrawableFont instance.
+            </summary>
+            <param name="family">The font family or the full path to the font file.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Font(System.String,ImageMagick.FontStyleType,ImageMagick.FontWeight,ImageMagick.FontStretch)">
+            <summary>
+            Creates a new DrawableFont instance.
+            </summary>
+            <param name="family">The font family or the full path to the font file.</param>
+            <param name="style">The style of the font.</param>
+            <param name="weight">The weight of the font.</param>
+            <param name="stretch">The font stretching type.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FontPointSize(System.Double)">
+            <summary>
+            Creates a new DrawablePointSize instance.
+            </summary>
+            <param name="pointSize">The point size.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Gravity(ImageMagick.Gravity)">
+            <summary>
+            Creates a new DrawableGravity instance.
+            </summary>
+            <param name="gravity">The gravity.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Line(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableLine instance.
+            </summary>
+            <param name="startX">The starting X coordinate.</param>
+            <param name="startY">The starting Y coordinate.</param>
+            <param name="endX">The ending X coordinate.</param>
+            <param name="endY">The ending Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Path(ImageMagick.IPath[])">
+            <summary>
+            Creates a new DrawablePath instance.
+            </summary>
+            <param name="paths">The paths to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Path(System.Collections.Generic.IEnumerable{ImageMagick.IPath})">
+            <summary>
+            Creates a new DrawablePath instance.
+            </summary>
+            <param name="paths">The paths to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Point(System.Double,System.Double)">
+            <summary>
+            Creates a new DrawablePoint instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Polygon(ImageMagick.PointD[])">
+            <summary>
+            Creates a new DrawablePolygon instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Polygon(System.Collections.Generic.IEnumerable{ImageMagick.PointD})">
+            <summary>
+            Creates a new DrawablePolygon instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Polyline(ImageMagick.PointD[])">
+            <summary>
+            Creates a new DrawablePolyline instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Polyline(System.Collections.Generic.IEnumerable{ImageMagick.PointD})">
+            <summary>
+            Creates a new DrawablePolyline instance.
+            </summary>
+            <param name="coordinates">The coordinates.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.PopClipPath">
+            <summary>
+            Creates a new DrawablePopClipPath instance.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.PopGraphicContext">
+            <summary>
+            Creates a new DrawablePopGraphicContext instance.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.PopPattern">
+            <summary>
+            Creates a new DrawablePopPattern instance.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.PushClipPath(System.String)">
+            <summary>
+            Creates a new DrawablePushClipPath instance.
+            </summary>
+            <param name="clipPath">The ID of the clip path.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.PushGraphicContext">
+            <summary>
+            Creates a new DrawablePushGraphicContext instance.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Drawables.PushPattern(System.String,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawablePushPattern instance.
+            </summary>
+            <param name="id">The ID of the pattern.</param>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Rectangle(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableRectangle instance.
+            </summary>
+            <param name="upperLeftX">The upper left X coordinate.</param>
+            <param name="upperLeftY">The upper left Y coordinate.</param>
+            <param name="lowerRightX">The lower right X coordinate.</param>
+            <param name="lowerRightY">The lower right Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Rotation(System.Double)">
+            <summary>
+            Creates a new DrawableRotation instance.
+            </summary>
+            <param name="angle">The angle.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.RoundRectangle(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableRoundRectangle instance.
+            </summary>
+            <param name="centerX">The center X coordinate.</param>
+            <param name="centerY">The center Y coordinate.</param>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="cornerWidth">The corner width.</param>
+            <param name="cornerHeight">The corner height.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Scaling(System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableScaling instance.
+            </summary>
+            <param name="x">Horizontal scale factor.</param>
+            <param name="y">Vertical scale factor.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.SkewX(System.Double)">
+            <summary>
+            Creates a new DrawableSkewX instance.
+            </summary>
+            <param name="angle">The angle.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.SkewY(System.Double)">
+            <summary>
+            Creates a new DrawableSkewY instance.
+            </summary>
+            <param name="angle">The angle.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeAntialias(System.Boolean)">
+            <summary>
+            Creates a new DrawableStrokeAntialias instance.
+            </summary>
+            <param name="isEnabled">True if stroke antialiasing is enabled otherwise false.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeColor(ImageMagick.MagickColor)">
+            <summary>
+            Creates a new DrawableStrokeColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeDashArray(System.Double[])">
+            <summary>
+            Creates a new DrawableDashArray instance.
+            </summary>
+            <param name="dash">An array containing the dash information.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeDashOffset(System.Double)">
+            <summary>
+            Creates a new DrawableStrokeDashOffset instance.
+            </summary>
+            <param name="offset">The dash offset.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeLineCap(ImageMagick.LineCap)">
+            <summary>
+            Creates a new DrawableStrokeLineCap instance.
+            </summary>
+            <param name="lineCap">The line cap.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeLineJoin(ImageMagick.LineJoin)">
+            <summary>
+            Creates a new DrawableStrokeLineJoin instance.
+            </summary>
+            <param name="lineJoin">The line join.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeMiterLimit(System.Int32)">
+            <summary>
+            Creates a new DrawableMiterLimit instance.
+            </summary>
+            <param name="miterlimit">The miter limit.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeOpacity(ImageMagick.Percentage)">
+            <summary>
+            Creates a new DrawableStrokeOpacity instance.
+            </summary>
+            <param name="opacity">The opacity.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokePatternUrl(System.String)">
+            <summary>
+            Creates a new DrawableStrokePatternUrl instance.
+            </summary>
+            <param name="url">Url specifying pattern ID (e.g. "#pattern_id").</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeWidth(System.Double)">
+            <summary>
+            Creates a new DrawableStrokeWidth instance.
+            </summary>
+            <param name="width">The width.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Text(System.Double,System.Double,System.String)">
+            <summary>
+            Creates a new DrawableText instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+            <param name="value">The text to draw.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextAlignment(ImageMagick.TextAlignment)">
+            <summary>
+            Creates a new DrawableTextAntialias instance.
+            </summary>
+            <param name="alignment">Text alignment.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextAntialias(System.Boolean)">
+            <summary>
+            Creates a new DrawableTextAntialias instance.
+            </summary>
+            <param name="isEnabled">True if text antialiasing is enabled otherwise false.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextDecoration(ImageMagick.TextDecoration)">
+            <summary>
+            Creates a new DrawableTextDecoration instance.
+            </summary>
+            <param name="decoration">The text decoration.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextDirection(ImageMagick.TextDirection)">
+            <summary>
+            Creates a new DrawableTextDirection instance.
+            </summary>
+            <param name="direction">Direction to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextEncoding(System.Text.Encoding)">
+            <summary>
+            Creates a new DrawableTextEncoding instance.
+            </summary>
+            <param name="encoding">Encoding to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextInterlineSpacing(System.Double)">
+            <summary>
+            Creates a new DrawableTextInterlineSpacing instance.
+            </summary>
+            <param name="spacing">Spacing to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextInterwordSpacing(System.Double)">
+            <summary>
+            Creates a new DrawableTextInterwordSpacing instance.
+            </summary>
+            <param name="spacing">Spacing to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextKerning(System.Double)">
+            <summary>
+            Creates a new DrawableTextKerning instance.
+            </summary>
+            <param name="kerning">Kerning to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextUnderColor(ImageMagick.MagickColor)">
+            <summary>
+            Creates a new DrawableTextUnderColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Translation(System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableTranslation instance.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Viewbox(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Creates a new DrawableViewbox instance.
+            </summary>
+            <param name="upperLeftX">The upper left X coordinate.</param>
+            <param name="upperLeftY">The upper left Y coordinate.</param>
+            <param name="lowerRightX">The lower right X coordinate.</param>
+            <param name="lowerRightY">The lower right Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Affine(System.Drawing.Drawing2D.Matrix)">
+            <summary>
+            Creates a new DrawableAffine instance using the specified Matrix.
+            </summary>
+            <param name="matrix">The matrix.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.BorderColor(System.Drawing.Color)">
+            <summary>
+            Creates a new DrawableColor instance.
+            </summary>
+            <param name="color">The color of the border.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.FillColor(System.Drawing.Color)">
+            <summary>
+            Creates a new DrawableFillColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Rectangle(System.Drawing.Rectangle)">
+            <summary>
+            Creates a new DrawableRectangle instance.
+            </summary>
+            <param name="rectangle">The rectangle to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.StrokeColor(System.Drawing.Color)">
+            <summary>
+            Creates a new DrawableStrokeColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.TextUnderColor(System.Drawing.Color)">
+            <summary>
+            Creates a new DrawableTextUnderColor instance.
+            </summary>
+            <param name="color">The color to use.</param>
+        </member>
+        <member name="M:ImageMagick.Drawables.Viewbox(System.Drawing.Rectangle)">
+            <summary>
+            Creates a new DrawableViewbox instance.
+            </summary>
+            <param name="rectangle">The rectangle to use.</param>
+        </member>
         <member name="T:ImageMagick.DrawableScaling">
             <summary>
              Adjusts the scaling factor to apply in the horizontal and vertical directions to the current
@@ -3121,11 +3692,16 @@
              Interface for drawables.
             </summary>
         </member>
-        <member name="M:ImageMagick.IDrawable.Draw(ImageMagick.Drawables.IDrawingWand)">
+        <member name="M:ImageMagick.IDrawable.Draw(ImageMagick.IDrawingWand)">
             <summary>
             Draws this instance with the drawing wand.
             </summary>
             <param name="wand"></param>
+        </member>
+        <member name="T:ImageMagick.IDrawingWand">
+            <summary>
+             Interface for internal use.
+            </summary>
         </member>
         <member name="T:ImageMagick.PathArc">
             <summary>
@@ -3191,12 +3767,278 @@
              The Y offset from origin.
             </summary>
         </member>
+        <member name="T:ImageMagick.Paths">
+            <summary>
+            Class that can be used to chain path actions.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Paths.ArcAbs(ImageMagick.PathArc[])">
+            <summary>
+            Initializes a new instance of the PathArcAbs class.
+            </summary>
+            <param name="pathArcs">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.ArcAbs(System.Collections.Generic.IEnumerable{ImageMagick.PathArc})">
+            <summary>
+            Initializes a new instance of the PathArcAbs class.
+            </summary>
+            <param name="pathArcs">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.ArcRel(ImageMagick.PathArc[])">
+            <summary>
+            Initializes a new instance of the PathArcRel class.
+            </summary>
+            <param name="pathArcs">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.ArcRel(System.Collections.Generic.IEnumerable{ImageMagick.PathArc})">
+            <summary>
+            Initializes a new instance of the PathArcRel class.
+            </summary>
+            <param name="pathArcs">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.Close">
+            <summary>
+            Initializes a new instance of the PathClose class.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Paths.CurveToAbs(ImageMagick.PointD,ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathCurveToAbs class.
+            </summary>
+            <param name="controlPointStart">Coordinate of control point for curve beginning</param>
+            <param name="controlPointEnd">Coordinate of control point for curve ending</param>
+            <param name="end">Coordinate of the end of the curve</param>
+        </member>
+        <member name="M:ImageMagick.Paths.CurveToAbs(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathCurveToAbs class.
+            </summary>
+            <param name="x1">X coordinate of control point for curve beginning</param>
+            <param name="y1">Y coordinate of control point for curve beginning</param>
+            <param name="x2">X coordinate of control point for curve ending</param>
+            <param name="y2">Y coordinate of control point for curve ending</param>
+            <param name="x">X coordinate of the end of the curve</param>
+            <param name="y">Y coordinate of the end of the curve</param>
+        </member>
+        <member name="M:ImageMagick.Paths.CurveToRel(ImageMagick.PointD,ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathCurveToRel class.
+            </summary>
+            <param name="controlPointStart">Coordinate of control point for curve beginning</param>
+            <param name="controlPointEnd">Coordinate of control point for curve ending</param>
+            <param name="end">Coordinate of the end of the curve</param>
+        </member>
+        <member name="M:ImageMagick.Paths.CurveToRel(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathCurveToRel class.
+            </summary>
+            <param name="x1">X coordinate of control point for curve beginning</param>
+            <param name="y1">Y coordinate of control point for curve beginning</param>
+            <param name="x2">X coordinate of control point for curve ending</param>
+            <param name="y2">Y coordinate of control point for curve ending</param>
+            <param name="x">X coordinate of the end of the curve</param>
+            <param name="y">Y coordinate of the end of the curve</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToAbs(ImageMagick.PointD[])">
+            <summary>
+            Initializes a new instance of the PathLineToAbs class.
+            </summary>
+            <param name="coordinates">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToAbs(System.Collections.Generic.IEnumerable{ImageMagick.PointD})">
+            <summary>
+            Initializes a new instance of the PathLineToAbs class.
+            </summary>
+            <param name="coordinates">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToAbs(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathLineToAbs class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToHorizontalAbs(System.Double)">
+            <summary>
+            Initializes a new instance of the PathLineToHorizontalAbs class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToHorizontalRel(System.Double)">
+            <summary>
+            Initializes a new instance of the PathLineToHorizontalRel class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToRel(ImageMagick.PointD[])">
+            <summary>
+            Initializes a new instance of the PathLineToRel class.
+            </summary>
+            <param name="coordinates">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToRel(System.Collections.Generic.IEnumerable{ImageMagick.PointD})">
+            <summary>
+            Initializes a new instance of the PathLineToRel class.
+            </summary>
+            <param name="coordinates">The coordinates to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToRel(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathLineToRel class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToVerticalAbs(System.Double)">
+            <summary>
+            Initializes a new instance of the PathLinetoVerticalAbs class.
+            </summary>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.LineToVerticalRel(System.Double)">
+            <summary>
+            Initializes a new instance of the PathLineToVerticalRel class.
+            </summary>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.MoveToAbs(ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathMoveToAbs class.
+            </summary>
+            <param name="coordinate">The coordinate to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.MoveToAbs(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathMoveToAbs class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.MoveToRel(ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathMoveToRel class.
+            </summary>
+            <param name="coordinate">The coordinate to use.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.MoveToRel(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathMoveToRel class.
+            </summary>
+            <param name="x">The X coordinate.</param>
+            <param name="y">The Y coordinate.</param>
+        </member>
+        <member name="M:ImageMagick.Paths.QuadraticCurveToAbs(ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathQuadraticCurveToAbs class.
+            </summary>
+            <param name="controlPoint">Coordinate of control point</param>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.QuadraticCurveToAbs(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathQuadraticCurveToAbs class.
+            </summary>
+            <param name="x1">X coordinate of control point</param>
+            <param name="y1">Y coordinate of control point</param>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.QuadraticCurveToRel(ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathQuadraticCurveToRel class.
+            </summary>
+            <param name="controlPoint">Coordinate of control point</param>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.QuadraticCurveToRel(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathQuadraticCurveToRel class.
+            </summary>
+            <param name="x1">X coordinate of control point</param>
+            <param name="y1">Y coordinate of control point</param>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothCurveToAbs(ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathSmoothCurveToAbs class.
+            </summary>
+            <param name="controlPoint">Coordinate of second point</param>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothCurveToAbs(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathSmoothCurveToAbs class.
+            </summary>
+            <param name="x2">X coordinate of second point</param>
+            <param name="y2">Y coordinate of second point</param>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothCurveToRel(ImageMagick.PointD,ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathSmoothCurveToRel class.
+            </summary>
+            <param name="controlPoint">Coordinate of second point</param>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothCurveToRel(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathSmoothCurveToRel class.
+            </summary>
+            <param name="x2">X coordinate of second point</param>
+            <param name="y2">Y coordinate of second point</param>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothQuadraticCurveToAbs(ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathSmoothQuadraticCurveToAbs class.
+            </summary>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothQuadraticCurveToAbs(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathSmoothQuadraticCurveToAbs class.
+            </summary>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothQuadraticCurveToRel(ImageMagick.PointD)">
+            <summary>
+            Initializes a new instance of the PathSmoothQuadraticCurveToRel class.
+            </summary>
+            <param name="end">Coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.SmoothQuadraticCurveToRel(System.Double,System.Double)">
+            <summary>
+            Initializes a new instance of the PathSmoothQuadraticCurveToRel class.
+            </summary>
+            <param name="x">X coordinate of final point</param>
+            <param name="y">Y coordinate of final point</param>
+        </member>
+        <member name="M:ImageMagick.Paths.#ctor">
+            <summary>
+            Initializes a new instance of the Paths class.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Paths.op_Implicit(ImageMagick.Paths)~ImageMagick.Drawables">
+            <summary>
+             Converts the specified Paths to a DrawablePath instance.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.Paths.GetEnumerator">
+            <summary>
+             Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:ImageMagick.IPath">
             <summary>
              Interface for paths.
             </summary>
         </member>
-        <member name="M:ImageMagick.IPath.Draw(ImageMagick.Drawables.IDrawingWand)">
+        <member name="M:ImageMagick.IPath.Draw(ImageMagick.IDrawingWand)">
             <summary>
             Draws this instance with the drawing wand.
             </summary>
@@ -4583,7 +5425,6 @@
             </summary>
         </member>
         <member name="T:ImageMagick.DistortMethod">
-            =============================================================================================
             <summary>
              Specifies distortion methods.
             </summary>
@@ -6113,6 +6954,11 @@
              Flexible Image Transport System
             </summary>
         </member>
+        <member name="F:ImageMagick.MagickFormat.Flif">
+            <summary>
+             Free Lossless Image Format
+            </summary>
+        </member>
         <member name="F:ImageMagick.MagickFormat.Fractal">
             <summary>
              Plasma fractal image
@@ -6638,11 +7484,6 @@
              Portable pixmap format (color)
             </summary>
         </member>
-        <member name="F:ImageMagick.MagickFormat.Preview">
-            <summary>
-             Show a preview an image enhancement, effect, or f/x
-            </summary>
-        </member>
         <member name="F:ImageMagick.MagickFormat.Ps">
             <summary>
              PostScript
@@ -7166,6 +8007,26 @@
         <member name="F:ImageMagick.NoiseType.Random">
             <summary>
             Random
+            </summary>
+        </member>
+        <member name="T:ImageMagick.OpenCLDeviceType">
+            <summary>
+             Specifies the OpenCL device types.
+            </summary>
+        </member>
+        <member name="F:ImageMagick.OpenCLDeviceType.Undefined">
+            <summary>
+            Undefined
+            </summary>
+        </member>
+        <member name="F:ImageMagick.OpenCLDeviceType.Cpu">
+            <summary>
+            Cpu
+            </summary>
+        </member>
+        <member name="F:ImageMagick.OpenCLDeviceType.Gpu">
+            <summary>
+            Gpu
             </summary>
         </member>
         <member name="T:ImageMagick.OrientationType">
@@ -7808,6 +8669,20 @@
              When set to true the current operation will be canceled.
             </summary>
         </member>
+        <member name="T:ImageMagick.MagickPolicyErrorException">
+            <summary>
+             Encapsulation of the ImageMagick PolicyError exception.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.MagickPolicyErrorException.#ctor(System.String,ImageMagick.MagickException)">
+            <summary>
+            Initializes a new instance of the MagickPolicyErrorException class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a
+            null reference if no inner exception is specified.</param>
+        </member>
         <member name="T:ImageMagick.MagickResourceLimitErrorException">
             <summary>
              Encapsulation of the ImageMagick ResourceLimitError exception.
@@ -8192,6 +9067,20 @@
         <member name="M:ImageMagick.MagickFileOpenWarningException.#ctor(System.String,ImageMagick.MagickException)">
             <summary>
             Initializes a new instance of the MagickFileOpenWarningException class with a specified error
+            message and a reference to the inner exception that is the cause of this exception.
+            </summary>
+            <param name="message">The error message that explains the reason for the exception.</param>
+            <param name="innerException">The exception that is the cause of the current exception, or a
+            null reference if no inner exception is specified.</param>
+        </member>
+        <member name="T:ImageMagick.MagickPolicyWarningException">
+            <summary>
+             Encapsulation of the ImageMagick PolicyWarning exception.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.MagickPolicyWarningException.#ctor(System.String,ImageMagick.MagickException)">
+            <summary>
+            Initializes a new instance of the MagickFilterWarningException class with a specified error
             message and a reference to the inner exception that is the cause of this exception.
             </summary>
             <param name="message">The error message that explains the reason for the exception.</param>
@@ -9526,7 +10415,7 @@
             <param name="args">The arguments for the algorithm (compose:args).</param>
             <exception cref="T:ImageMagick.MagickException"/>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.MagickGeometry)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.PointD)">
             <summary>
              Compose an image onto another at specified offset using the 'In' operator.
             </summary>
@@ -9534,7 +10423,7 @@
             <param name="offset">The offset from origin.</param>
             <exception cref="T:ImageMagick.MagickException"/>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.MagickGeometry,ImageMagick.CompositeOperator)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator)">
             <summary>
              Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -9543,7 +10432,7 @@
             <param name="compose">The algorithm to use.</param>
             <exception cref="T:ImageMagick.MagickException"/>
         </member>
-        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.MagickGeometry,ImageMagick.CompositeOperator,System.String)">
+        <member name="M:ImageMagick.MagickImage.Composite(ImageMagick.MagickImage,ImageMagick.PointD,ImageMagick.CompositeOperator,System.String)">
             <summary>
              Compose an image onto another at specified offset using the specified algorithm.
             </summary>
@@ -9764,6 +10653,13 @@
             <param name="method">The distortion method to use.</param>
             <param name="bestfit">Attempt to 'bestfit' the size of the resulting image.</param>
             <param name="arguments">An array containing the arguments for the distortion.</param>
+            <exception cref="T:ImageMagick.MagickException"/>
+        </member>
+        <member name="M:ImageMagick.MagickImage.Draw(ImageMagick.Drawables)">
+            <summary>
+             Draw on image using one or more drawables.
+            </summary>
+            <param name="drawables">The drawable(s) to draw on the image.</param>
             <exception cref="T:ImageMagick.MagickException"/>
         </member>
         <member name="M:ImageMagick.MagickImage.Draw(ImageMagick.IDrawable[])">
@@ -12815,6 +13711,104 @@
             <param name="stream">The stream to read the image data from.</param>
             <exception cref="T:ImageMagick.MagickException"/>
         </member>
+        <member name="T:ImageMagick.OpenCL">
+            <summary>
+            Class that can be used to initialize OpenCL.
+            </summary>
+        </member>
+        <member name="M:ImageMagick.OpenCL.SetCacheDirectory(System.String)">
+            <summary>
+             Sets the directory that will be used by ImageMagick to store OpenCL cache files.
+            </summary>
+            <param name="path">The path of the OpenCL cache directory.</param>
+        </member>
+        <member name="P:ImageMagick.OpenCL.Devices">
+            <summary>
+            Returns all the OpenCL devices.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ImageMagick.OpenCL.IsEnabled">
+            <summary>
+             Gets or sets wether OpenCL is enabled.
+            </summary>
+        </member>
+        <member name="T:ImageMagick.OpenCLDevice">
+            <summary>
+            Represents an OpenCL device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.BenchmarkScore">
+            <summary>
+            The benchmark score of the device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.DeviceType">
+            <summary>
+            The type of the device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.Name">
+            <summary>
+            The name of the device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.IsEnabled">
+            <summary>
+            Specifies if the device is enabled or disabled.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.KernelProfileRecords">
+            <summary>
+            Returns all the kernel profile records for this devices.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.ProfileKernels">
+            <summary>
+            Specifies if kernel profiling is enabled. This can be used to get information about the OpenCL performance.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLDevice.Version">
+            <summary>
+            The OpenCL version supported by the device.
+            </summary>
+        </member>
+        <member name="T:ImageMagick.OpenCLKernelProfileRecord">
+            <summary>
+            Represents a kernel profile record for an OpenCL device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.AverageDuration">
+            <summary>
+            The average duration of all executions in microseconds.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.Count">
+            <summary>
+            The number of times that this kernel was executed.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.MaximumDuration">
+            <summary>
+            The maximum duration of a single execution in microseconds.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.MinimumDuration">
+            <summary>
+            The minimum duration of a single execution in microseconds.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.Name">
+            <summary>
+            The name of the device.
+            </summary>
+        </member>
+        <member name="P:ImageMagick.OpenCLKernelProfileRecord.TotalDuration">
+            <summary>
+            The total duration of all executions in microseconds.
+            </summary>
+        </member>
         <member name="T:ImageMagick.MagickNET">
             <summary>
              Class that can be used to initialize Magick.NET.
@@ -12867,12 +13861,6 @@
             </summary>
             <param name="path">The path of the Ghostscript font directory.</param>
         </member>
-        <member name="M:ImageMagick.MagickNET.SetOpenCLCacheDirectory(System.String)">
-            <summary>
-             Sets the directory that will be used by ImageMagick to store OpenCL cache files.
-            </summary>
-            <param name="path">The path of the OpenCL cache directory.</param>
-        </member>
         <member name="M:ImageMagick.MagickNET.SetTempDirectory(System.String)">
             <summary>
              Sets the directory that will be used when ImageMagick does not have enough memory for the
@@ -12899,11 +13887,6 @@
         <member name="P:ImageMagick.MagickNET.SupportedFormats">
             <summary>
              Returns information about the supported formats.
-            </summary>
-        </member>
-        <member name="P:ImageMagick.MagickNET.UseOpenCL">
-            <summary>
-             Gets or sets the use of OpenCL.
             </summary>
         </member>
         <member name="P:ImageMagick.MagickNET.Version">
@@ -13317,6 +14300,30 @@
             <param name="mapping">The mapping of the pixels (e.g. RGB/RGBA/ARGB).</param>
              <returns></returns>
         </member>
+        <member name="M:ImageMagick.PixelCollection.ToShortArray(System.Int32,System.Int32,System.Int32,System.Int32,System.String)">
+             <summary>
+             Returns the values of the pixels as an array.
+             </summary>
+            <param name="x">The X coordinate of the area.</param>
+            <param name="y">The Y coordinate of the area.</param>
+            <param name="width">The width of the area.</param>
+            <param name="height">The height of the area.</param>
+            <param name="mapping">The mapping of the pixels (e.g. RGB/RGBA/ARGB).</param>
+        </member>
+        <member name="M:ImageMagick.PixelCollection.ToShortArray(ImageMagick.MagickGeometry,System.String)">
+             <summary>
+             Returns the values of the pixels as an array.
+             </summary>
+            <param name="geometry">The geometry of the area.</param>
+            <param name="mapping">The mapping of the pixels (e.g. RGB/RGBA/ARGB).</param>
+        </member>
+        <member name="M:ImageMagick.PixelCollection.ToShortArray(System.String)">
+             <summary>
+             Returns the values of the pixels as an array.
+             </summary>
+            <param name="mapping">The mapping of the pixels (e.g. RGB/RGBA/ARGB).</param>
+             <returns></returns>
+        </member>
         <member name="T:ImageMagick.Quantum">
             <summary>
              Class that can be used to acquire information about the Quantum.
@@ -13608,11 +14615,23 @@
             <param name="format">The format to get the option for.</param>
             <param name="name">The name of the option.</param>
         </member>
+        <member name="M:ImageMagick.MagickSettings.GetDefine(System.String)">
+            <summary>
+             Returns the value of a format-specific option.
+            </summary>
+            <param name="name">The name of the option.</param>
+        </member>
         <member name="M:ImageMagick.MagickSettings.RemoveDefine(ImageMagick.MagickFormat,System.String)">
             <summary>
              Removes the define with the specified name.
             </summary>
             <param name="format">The format to set the define for.</param>
+            <param name="name">The name of the define.</param>
+        </member>
+        <member name="M:ImageMagick.MagickSettings.RemoveDefine(System.String)">
+            <summary>
+             Removes the define with the specified name.
+            </summary>
             <param name="name">The name of the define.</param>
         </member>
         <member name="M:ImageMagick.MagickSettings.SetDefine(ImageMagick.MagickFormat,System.String,System.Boolean)">
@@ -13628,6 +14647,13 @@
              Sets a format-specific option.
             </summary>
             <param name="format">The format to set the option for.</param>
+            <param name="name">The name of the option.</param>
+            <param name="value">The value of the option.</param>
+        </member>
+        <member name="M:ImageMagick.MagickSettings.SetDefine(System.String,System.String)">
+            <summary>
+             Sets a format-specific option.
+            </summary>
             <param name="name">The name of the option.</param>
             <param name="value">The value of the option.</param>
         </member>
@@ -14104,7 +15130,6 @@
             <param name="height">The height.</param>
         </member>
         <member name="M:ImageMagick.MagickGeometry.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
-            =======================================================================================
             <summary>
              Initializes a new instance of the MagickGeometry class using the specified offsets, width
              and height.
@@ -14785,10 +15810,9 @@
             </summary>
         </member>
         <member name="T:ImageMagick.ExifProfile">
-            =============================================================================================
-             <summary>
-             Class that can be used to access an Exif profile.
-             </summary>
+            <summary>
+            Class that can be used to access an Exif profile.
+            </summary>
         </member>
         <member name="M:ImageMagick.ExifProfile.UpdateData">
             <summary>

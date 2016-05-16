@@ -71,13 +71,13 @@ namespace OSIRT.Browser
         {
             contextMenu = new ContextMenuStrip();
 
-            contextMenu.Items.Add("Save image as...", null, SaveImageAs_Click);
-            contextMenu.Items.Add("Save page source", null, SaveSource_Click);
+            contextMenu.Items.Add("Save image as...", Properties.Resources.picture_save, SaveImageAs_Click);
+            contextMenu.Items.Add("Save page source", Properties.Resources.source_code, SaveSource_Click);
             contextMenu.Items.Add("View page source", null, ViewSource_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Open link in new tab", null, OpenNewTab_Click);
+            contextMenu.Items.Add("Open link in new tab", Properties.Resources.new_tab, OpenNewTab_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Download all images", null, DownloadAllImages_Click);
+            contextMenu.Items.Add("Download all images", Properties.Resources.download_cloud, DownloadAllImages_Click);
 
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;

@@ -59,7 +59,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
-      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.0.0104\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.1.101\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -114,6 +114,7 @@
     <Compile Include="Browser\DownloadManager\IDownloadManager.cs" />
     <Compile Include="Browser\DownloadManager\IServiceProvider.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
+    <Compile Include="Browser\WebBrowserHelper.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClient.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClientStatus.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadCompletedEventArgs.cs" />
@@ -272,6 +273,12 @@
     <Compile Include="UI\FirstLoadPanel.Designer.cs">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ImageLoadFailed.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ImageLoadFailed.Designer.cs">
+      <DependentUpon>ImageLoadFailed.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ImagePreviewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -408,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ImageLoadFailed.resx">
+      <DependentUpon>ImageLoadFailed.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ImagePreviewer.resx">
       <DependentUpon>ImagePreviewer.cs</DependentUpon>
@@ -560,6 +570,11 @@
     <None Include="Resources\squares.gif" />
     <None Include="Resources\splash_screen_large.png" />
     <None Include="Resources\splash_screen_small.png" />
+    <None Include="Resources\cut.png" />
+    <None Include="Resources\picture_save.png" />
+    <None Include="Resources\source_code.png" />
+    <None Include="Resources\tab_add.png" />
+    <None Include="Resources\download_cloud.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

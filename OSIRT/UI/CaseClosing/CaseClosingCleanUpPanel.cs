@@ -36,7 +36,7 @@ namespace OSIRT.UI.CaseClosing
 
         private void BackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //throw new NotImplementedException();
+         
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
@@ -46,17 +46,23 @@ namespace OSIRT.UI.CaseClosing
 
         private void CleanUp(string password)
         {
-            
-            UpdateLabel("Deleting browser cache... Please Wait");
-            DeleteCache();
+
+            if (UserSettings.Load().ClearCacheOnClose)
+            {
+                WebBrowserHelper.ClearCache();
+                UpdateLabel("Deleting browser cache... Please Wait");
+            }
+
             //Need this log here, as database entry.
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case Closed - Hash exported as {Constants.CaseContainerName}_hash.txt]", Constants.CaseContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case closed - Hash exported]", Constants.CaseContainerName));
             UpdateLabel("Encrypting container... Please Wait");
             ZipContainer(password);
             UpdateLabel("Hashing case container... Please Wait");
             HashCase();
             UpdateLabel("Performing clean up operations... Please Wait");
             CleanUpDirectories();
+            DeleteImageMagickFiles();
+            //TODO: check cache to make sure all deleted, too
         }
 
         private void UpdateLabel(string message)
@@ -67,11 +73,6 @@ namespace OSIRT.UI.CaseClosing
 
         private void CleanUpDirectories()
         {
-
-            //TODO: A handle is being left on the directory... What to do?
-            //Or is it? Could be the WaitWindow, you know... Use background worker to test!
-            //Idea: Have a timer, let it run for, say, 10 seconds and auto shut down app
-
             int attempts = 0;
             Timer timer = new Timer { Interval = 1000 };
             timer.Start();
@@ -83,14 +84,17 @@ namespace OSIRT.UI.CaseClosing
             };
         }
 
-        private void DeleteCache()
+        private void DeleteImageMagickFiles()
         {
-            //TODO: clear IE cache if required
+            string[] files = Directory.GetFiles(Path.GetTempPath(), "magick-*");
+
+            foreach (string file in files)
+                File.Delete(file);
+
         }
 
         private void HashCase()
         {
-            //TODO: have hash save location as an option
             string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
             File.WriteAllText(Path.Combine(UserSettings.Load().HashExportLocation, Constants.ExportedHashFileName.Replace("%%dt%%", $"{DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")}" )), hash);
         }
@@ -99,7 +103,6 @@ namespace OSIRT.UI.CaseClosing
         {
             using (ZipFile zip = new ZipFile())
             {
-
                 if (password.Length > 0)
                 {
                     zip.Password = password;

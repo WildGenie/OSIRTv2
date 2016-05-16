@@ -95,8 +95,8 @@ namespace OSIRT.UI
 
         private void uiLBackButton_Click(object sender, EventArgs e)
         {
-            //TODO: check if can back
-            uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
+            if(uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
+                uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
         }
 
         private void uiForwardButton_Click(object sender, EventArgs e)
@@ -107,7 +107,8 @@ namespace OSIRT.UI
 
         private void uiRefreshButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
+            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
+                uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
         }
 
         private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -135,6 +136,9 @@ namespace OSIRT.UI
             {
                 vidPreviewer.ShowDialog();
             }
+
+            ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
+
         }
 
         private void uiAuditLogToolStripButton_Click(object sender, EventArgs e)

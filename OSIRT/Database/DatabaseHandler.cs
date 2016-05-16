@@ -114,7 +114,6 @@ namespace OSIRT.Database
                     conn.Open();
                     command.CommandText = "SELECT hashed_password FROM case_details";
                     string result = command.ExecuteScalar().ToString();
-                    Debug.WriteLine("RESULT: " + result);
                     return result != "";
                 }
             }

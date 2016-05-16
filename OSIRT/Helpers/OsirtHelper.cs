@@ -152,7 +152,7 @@ namespace OSIRT.Helpers
         /// </summary>
         public static void DeleteDirectory(string path)
         {
-            Thread.Sleep(1); //TODO: added this sleep, does it matter?
+            Thread.Sleep(1);
             foreach (string directory in Directory.GetDirectories(path))
             {
                 DeleteDirectory(directory);
