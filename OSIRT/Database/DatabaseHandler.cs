@@ -3,7 +3,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.Text;
 using OSIRT.Helpers;
-using System.Diagnostics;
 
 namespace OSIRT.Database
 {
@@ -16,6 +15,11 @@ namespace OSIRT.Database
         public DatabaseHandler()
         {
            connectionString = "Data Source=" + Constants.ContainerLocation + Constants.DatabaseFileName + ";Version=3;";
+        }
+
+        public DatabaseHandler(string path) //this will be for when export osrr (report) file
+        {
+            connectionString = "Data Source=" + path + ";Version=3;";
         }
 
 
@@ -54,8 +58,6 @@ namespace OSIRT.Database
         public DataTable GetRowsFromColumns(string table, string where = "WHERE print = 'true'", params string[] columns)
         {
             string joinedColumn = string.Join(",", columns);
-            //TODO: added where clause for audit export, but not checked ramifications for other dependants of this method.
-            //AFFECTS CASE NOTES: THERE IS NO PRINT COLUMN
             string query = $"SELECT {joinedColumn} FROM {table} {where}"; 
             return GetDataTableFromQuery(query);
         }

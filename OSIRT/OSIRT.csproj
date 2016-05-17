@@ -124,6 +124,7 @@
     </Compile>
     <Compile Include="Browser\WebDownloader\WebDownload.designer.cs" />
     <Compile Include="CaseNotesToHtml.cs" />
+    <Compile Include="CaseReportExporter.cs" />
     <Compile Include="CaseSettings.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
@@ -340,6 +341,12 @@
     <Compile Include="UI\Previewer.Designer.cs">
       <DependentUpon>Previewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\SelectTimeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\SelectTimeForm.Designer.cs">
+      <DependentUpon>SelectTimeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SnippetTool\SnippingTool.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -450,6 +457,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Previewer.resx">
       <DependentUpon>Previewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SelectTimeForm.resx">
+      <DependentUpon>SelectTimeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SnippetTool\SnippingTool.resx">
       <DependentUpon>SnippingTool.cs</DependentUpon>
@@ -575,6 +585,9 @@
     <None Include="Resources\source_code.png" />
     <None Include="Resources\tab_add.png" />
     <None Include="Resources\download_cloud.png" />
+    <None Include="Resources\measure_crop.png" />
+    <None Include="Resources\hourglass.png" />
+    <None Include="Resources\alarm-clock.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

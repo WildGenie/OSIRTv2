@@ -169,5 +169,23 @@ namespace OSIRT.UI
             ImageDiskCache.RemoveItemsInCache();
 
         }
+
+        private void currentViewScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentViewScreenshot();
+        }
+
+        private void currentViewTimedScreenshotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (SelectTimeForm timeForm = new SelectTimeForm())
+            {
+                if (timeForm.ShowDialog() != DialogResult.OK)
+                    return;
+
+                uiTabbedBrowserControl.TimedScreenshot(timeForm.Time);
+            }
+           
+            
+        }
     }
 }

@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using OSIRT.Database;
 using OSIRT.Helpers;
+using System.Data;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -79,13 +80,25 @@ namespace OSIRT.UI.AuditLog
             SearchCompletedEventArgs args = (SearchCompletedEventArgs)e;
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
 
+            DataTable table = args.SearchTable;
+            if(table == null)
+            {
+                uiAuditLogSplitContainer.Panel2.Controls.Clear();
+                uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel("No results to display. Please search another term."));
+            }
+            else
+            {
+                DataGridView grid = new DataGridView();
+                //AuditGridView grid = new AuditGridView(table); //can't use AuditGridView as it attempts to access database with (non existsent) table name
+                grid.DataSource = table;
+                grid.Dock = DockStyle.Fill;
+                uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
+            }
+
             //TODO: find a way to use AuditGridView with this
             //disabling this for now, as panel switching is not quite there
 
-            //DataGridView grid = new DataGridView();
-            //grid.DataSource = args.SearchTable;
-            //grid.Dock = DockStyle.Fill;
-            //uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
+        
 
         }
 

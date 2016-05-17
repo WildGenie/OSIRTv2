@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OSIRT.UI.AuditLog;
+using OSIRT.UI.CaseClosing;
+using System;
 using System.Windows.Forms;
 
 namespace OSIRT.UI
@@ -56,7 +58,60 @@ namespace OSIRT.UI
 
         private void uiLoadReportButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("COMING SOON");
+
+            //TODO: this logic is in the load exisiting case panel
+            string filenameWithPath;
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "OSR Files|*.osr";
+                DialogResult result = openFileDialog.ShowDialog();
+                if (result != DialogResult.OK)
+                    return;
+
+                filenameWithPath = openFileDialog.FileName;
+            }
+
+            Controls.Clear();
+            LoadExistingCasePanel exisitingCasePanel = new LoadExistingCasePanel(new System.IO.FileInfo(filenameWithPath), true);
+            Controls.Add(exisitingCasePanel);
+            exisitingCasePanel.PasswordCheckClick += ExisitingCasePanel_PasswordCheckClick;
+
+        }
+
+        private void ExisitingCasePanel_PasswordCheckClick(object sender, EventArgs e)
+        {
+            //TODO: logic also exists in load exisiting case panel/close case panels
+            //this is a test of functionality
+
+            //if password is fine, open audit log
+            Controls.Clear();
+
+            using (AuditLogForm audit = new AuditLogForm()) 
+            {
+                audit.ShowDialog();
+            }
+
+
+            bool caseHasPassword = new Database.DatabaseHandler().CaseHasPassword();
+            if (caseHasPassword)
+            {
+                CloseCasePanel closePanel = new CloseCasePanel();
+                Controls.Add(closePanel);
+                closePanel.PasswordCorrect += ClosePanel_PasswordCorrect;
+            }
+            else
+            {
+                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("");
+                Controls.Add(cleanUpPanel);
+            }
+        }
+
+        private void ClosePanel_PasswordCorrect(object sender, CaseClosingEventArgs args)
+        {
+            Controls.Clear();
+            //add new closing panel
+            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(args.Password);
+            Controls.Add(cleanUpPanel);
         }
     }
 }

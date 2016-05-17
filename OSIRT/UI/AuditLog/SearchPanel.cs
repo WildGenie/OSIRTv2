@@ -17,6 +17,7 @@ namespace OSIRT.UI.AuditLog
             InitializeComponent();
             Dock = DockStyle.Fill;
             this.tabs = tabs;
+            tabs.Add("All tables", "all");
         }
 
         private void SearchPanel_Load(object sender, EventArgs e)

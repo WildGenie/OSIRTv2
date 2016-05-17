@@ -160,7 +160,7 @@
     <value>Investigating Officer</value>
   </data>
   <data name="LoadReport" xml:space="preserve">
-    <value>Load an OSIRT case to view its report. [NOT IMPLEMENTED]</value>
+    <value>Load an OSIRT case to view its audit log.</value>
   </data>
   <data name="NewCase" xml:space="preserve">
     <value>Creates a brand new OSIRT case</value>

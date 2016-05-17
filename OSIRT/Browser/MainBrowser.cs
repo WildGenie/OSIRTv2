@@ -114,7 +114,7 @@ namespace OSIRT.Browser
         /// Gets the current viewport of the browser
         /// </summary>
         /// <returns>A Bitmap of the current browser viewport</returns>
-        public Bitmap GetCurrentViewScreenshot()
+        private Bitmap GetCurrentViewScreenshot()
         {
             int width, height;
             width = ClientRectangle.Width;
@@ -134,6 +134,12 @@ namespace OSIRT.Browser
                 }
                 return new Bitmap(image);
             }
+        }
+
+        public void GetCurrentViewportScreenshot()
+        {
+            ScreenshotHelper.SaveScreenshotToCache(GetCurrentViewScreenshot());
+            FireScreenshotCompleteEvent();
         }
 
         public bool Enable
@@ -260,6 +266,8 @@ namespace OSIRT.Browser
 
             }
         }
+
+
 
         public void GenerateFullpageScreenshot()
         {

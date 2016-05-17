@@ -85,7 +85,7 @@ namespace OSIRT.UI
                     Hash = OsirtHelper.GetFileHash(pathToSave);
                 }
             }
-            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException || ex is System.AccessViolationException || ex is Exception)
+            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
             {
                 thrown = true;
                 var message = "Unable to save as PDF. Reverting to saving as PNG.";

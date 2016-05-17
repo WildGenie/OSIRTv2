@@ -31,7 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
+            this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
+            this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
+            this.uiForwardButton = new System.Windows.Forms.ToolStripButton();
+            this.uiRefreshButton = new System.Windows.Forms.ToolStripButton();
+            this.uiScreenshotButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.snippetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentViewScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.currentViewTimedScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
+            this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,18 +55,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
-            this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
-            this.uiForwardButton = new System.Windows.Forms.ToolStripButton();
-            this.uiRefreshButton = new System.Windows.Forms.ToolStripButton();
-            this.uiScreenshotButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
-            this.snippetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
-            this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
-            this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -88,83 +90,6 @@
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(1089, 25);
             this.uiBrowserToolStrip.TabIndex = 1;
-            // 
-            // uiURLComboBox
-            // 
-            this.uiURLComboBox.Name = "uiURLComboBox";
-            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
-            // 
-            // uiBrowserMenuStrip
-            // 
-            this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.uiBrowserMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
-            this.uiBrowserMenuStrip.Size = new System.Drawing.Size(1089, 24);
-            this.uiBrowserMenuStrip.TabIndex = 0;
-            this.uiBrowserMenuStrip.Visible = false;
-            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.closeCaseToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // closeCaseToolStripMenuItem
-            // 
-            this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
-            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.closeCaseToolStripMenuItem.Text = "Close Case";
-            this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
-            // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 62);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 636);
-            this.uiTabbedBrowserControl.TabIndex = 2;
-            // 
-            // BottomToolStripPanel
-            // 
-            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
-            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // TopToolStripPanel
-            // 
-            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.TopToolStripPanel.Name = "TopToolStripPanel";
-            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // RightToolStripPanel
-            // 
-            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.RightToolStripPanel.Name = "RightToolStripPanel";
-            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // LeftToolStripPanel
-            // 
-            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
-            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
-            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
-            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
-            // 
-            // ContentPanel
-            // 
-            this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
             // uiHomeButton
             // 
@@ -222,7 +147,9 @@
             // 
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.snippetToolStripMenuItem});
+            this.snippetToolStripMenuItem,
+            this.currentViewScreenshotToolStripMenuItem,
+            this.currentViewTimedScreenshotToolStripMenuItem});
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
@@ -233,9 +160,25 @@
             // 
             this.snippetToolStripMenuItem.Image = global::OSIRT.Properties.Resources.cut;
             this.snippetToolStripMenuItem.Name = "snippetToolStripMenuItem";
-            this.snippetToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.snippetToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
             this.snippetToolStripMenuItem.Text = "Snippet";
             this.snippetToolStripMenuItem.Click += new System.EventHandler(this.snippetToolStripMenuItem_Click);
+            // 
+            // currentViewScreenshotToolStripMenuItem
+            // 
+            this.currentViewScreenshotToolStripMenuItem.Image = global::OSIRT.Properties.Resources.measure_crop;
+            this.currentViewScreenshotToolStripMenuItem.Name = "currentViewScreenshotToolStripMenuItem";
+            this.currentViewScreenshotToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.currentViewScreenshotToolStripMenuItem.Text = "Current View Screenshot";
+            this.currentViewScreenshotToolStripMenuItem.Click += new System.EventHandler(this.currentViewScreenshotToolStripMenuItem_Click);
+            // 
+            // currentViewTimedScreenshotToolStripMenuItem
+            // 
+            this.currentViewTimedScreenshotToolStripMenuItem.Image = global::OSIRT.Properties.Resources.hourglass;
+            this.currentViewTimedScreenshotToolStripMenuItem.Name = "currentViewTimedScreenshotToolStripMenuItem";
+            this.currentViewTimedScreenshotToolStripMenuItem.Size = new System.Drawing.Size(240, 22);
+            this.currentViewTimedScreenshotToolStripMenuItem.Text = "Current View Timed Screenshot";
+            this.currentViewTimedScreenshotToolStripMenuItem.Click += new System.EventHandler(this.currentViewTimedScreenshotToolStripMenuItem_Click);
             // 
             // uiVideoCaptureButton
             // 
@@ -267,6 +210,11 @@
             this.uiCaseNotesButton.ToolTipText = "Add note to case";
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
+            // uiURLComboBox
+            // 
+            this.uiURLComboBox.Name = "uiURLComboBox";
+            this.uiURLComboBox.Size = new System.Drawing.Size(350, 25);
+            // 
             // uiAuditLogToolStripButton
             // 
             this.uiAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -288,6 +236,78 @@
             this.uiOptionsToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.uiOptionsToolStripButton.Text = "Options";
             this.uiOptionsToolStripButton.Click += new System.EventHandler(this.uiOptionsToolStripButton_Click);
+            // 
+            // uiBrowserMenuStrip
+            // 
+            this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.uiBrowserMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.uiBrowserMenuStrip.Name = "uiBrowserMenuStrip";
+            this.uiBrowserMenuStrip.Size = new System.Drawing.Size(1089, 24);
+            this.uiBrowserMenuStrip.TabIndex = 0;
+            this.uiBrowserMenuStrip.Visible = false;
+            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.closeCaseToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // closeCaseToolStripMenuItem
+            // 
+            this.closeCaseToolStripMenuItem.Name = "closeCaseToolStripMenuItem";
+            this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+            this.closeCaseToolStripMenuItem.Text = "Close Case";
+            this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            // 
+            // BottomToolStripPanel
+            // 
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // TopToolStripPanel
+            // 
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
             // BrowserPanel
             // 
@@ -332,5 +352,7 @@
         private System.Windows.Forms.ToolStripButton uiOptionsToolStripButton;
         private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
         private System.Windows.Forms.ToolStripMenuItem snippetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentViewScreenshotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem currentViewTimedScreenshotToolStripMenuItem;
     }
 }

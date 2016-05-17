@@ -74,7 +74,6 @@
             // uiSearchToolStripButton
             // 
             this.uiSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiSearchToolStripButton.Enabled = false;
             this.uiSearchToolStripButton.Image = global::OSIRT.Properties.Resources.search;
             this.uiSearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiSearchToolStripButton.Name = "uiSearchToolStripButton";

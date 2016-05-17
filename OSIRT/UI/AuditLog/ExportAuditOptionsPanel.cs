@@ -244,5 +244,12 @@ namespace OSIRT.UI.AuditLog
         {
             GSCP = uiGSCPComboBox.Text;
         }
+
+        private void uiExportAsCaseFileButton_Click(object sender, EventArgs e)
+        {
+            //export as ossr file
+
+
+        }
     }
 }

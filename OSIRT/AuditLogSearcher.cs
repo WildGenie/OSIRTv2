@@ -15,14 +15,39 @@ namespace OSIRT
         private static DataTable tableToSearch;
 
 
+        private static DataTable GetMergedDataTable()
+        {
+            DatabaseHandler db = new DatabaseHandler();
+            DataTable merged = new DataTable();
+            foreach (string table in DatabaseTableHelper.GetTables())
+            {
+                string columns = DatabaseTableHelper.GetTableColumns(table);
+                DataTable dt = db.GetRowsFromColumns(table: table, columns: columns);
+                merged.Merge(dt, true, MissingSchemaAction.Add);
+            }
+            merged.TableName = "merged";
+            DataView view = new DataView(merged);
+            view.Sort = "date asc, time asc";
+            DataTable sortedTable = view.ToTable();
+            return sortedTable;
+        }
+
+
         public static DataTable Search(string databaseTable, string pattern)
         {
-
             Debug.WriteLine("TABLE TO SEARCH IN SEARCHER: " + databaseTable);
             Debug.WriteLine("TABLE TO SEARCH IN SEARCHER: " + pattern);
 
-            DatabaseHandler dbHandler = new DatabaseHandler();
-            tableToSearch = dbHandler.GetAllRows(databaseTable);
+            if (databaseTable == "all")
+            {
+                tableToSearch = GetMergedDataTable();
+            }
+            else
+            {
+                DatabaseHandler dbHandler = new DatabaseHandler();
+                tableToSearch = dbHandler.GetAllRows(databaseTable);
+            }   
+
             SetColumnNames();
             DataRow[] dataRows = tableToSearch.Select(BuildQueryString(pattern));
 
@@ -30,6 +55,13 @@ namespace OSIRT
             {
                 tableToSearch = dataRows.CopyToDataTable();
             }
+            else
+            {
+                tableToSearch = null;
+            }
+            //else, return an empty datatable
+            //if datatable is empty, display a message in a panel
+            //that's be back to the UI
 
             return tableToSearch;
         }

@@ -13,19 +13,26 @@ namespace OSIRT.UI.CaseClosing
     {
 
         private BackgroundWorker backgroundWorker;
+        private bool isReportView;
 
-
-        public CaseClosingCleanUpPanel(string password)
+        public CaseClosingCleanUpPanel(string password, bool isReportView) 
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
             uiInfoLabel.Text = "Cleaning up... Please Wait";
+            this.isReportView = isReportView;
             backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerSupportsCancellation = true;
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
             backgroundWorker.RunWorkerAsync(password);
+        }
+
+
+        public CaseClosingCleanUpPanel(string password) : this(password, false)
+        {
+           
         }
 
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -54,11 +61,15 @@ namespace OSIRT.UI.CaseClosing
             }
 
             //Need this log here, as database entry.
-            Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case closed - Hash exported]", Constants.CaseContainerName));
+            if(isReportView)
+                Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case closed - Hash exported]", Constants.CaseContainerName));
             UpdateLabel("Encrypting container... Please Wait");
             ZipContainer(password);
-            UpdateLabel("Hashing case container... Please Wait");
-            HashCase();
+            if (isReportView)
+            {
+                UpdateLabel("Hashing case container... Please Wait");
+                HashCase();
+            }
             UpdateLabel("Performing clean up operations... Please Wait");
             CleanUpDirectories();
             DeleteImageMagickFiles();

@@ -17,12 +17,20 @@ namespace OSIRT.UI
         public event EventHandler PasswordCheckClick;
 
         private FileInfo file;
+        private bool isReport;
 
-        public LoadExistingCasePanel(FileInfo file)
+
+        public LoadExistingCasePanel(FileInfo file, bool logOpening)
         {
             InitializeComponent();
             this.file = file;
+            isReport = logOpening;
         }
+
+        public LoadExistingCasePanel(FileInfo file)
+            : this(file, false)
+        { }
+   
 
         private void InitialiseFileDetailFields()
         {
@@ -119,8 +127,8 @@ namespace OSIRT.UI
                 UpdateCaseTableWithPassword(hash);
             }
 
-            //TODO: put the hash as a property rather than directly from textbox
-            Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text, Constants.CaseContainerName));
+            if(!isReport)
+                Logger.Log(new OsirtActionsLog(Actions.CaseLoaded, uiFileHashTextBox.Text, Constants.CaseContainerName));
 
         }
 

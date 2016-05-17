@@ -120,7 +120,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(173, 18);
             this.label3.TabIndex = 5;
-            this.label3.Text = "View Case Report";
+            this.label3.Text = "View Case Audit Log";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2

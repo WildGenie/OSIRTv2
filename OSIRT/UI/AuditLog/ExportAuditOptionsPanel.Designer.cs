@@ -336,6 +336,7 @@
             this.uiExportAsCaseFileButton.Size = new System.Drawing.Size(60, 56);
             this.uiExportAsCaseFileButton.TabIndex = 2;
             this.uiExportAsCaseFileButton.UseVisualStyleBackColor = true;
+            this.uiExportAsCaseFileButton.Click += new System.EventHandler(this.uiExportAsCaseFileButton_Click);
             this.uiExportAsCaseFileButton.MouseHover += new System.EventHandler(this.uiExportAsCaseFileButton_MouseHover);
             // 
             // uiExportAsPdfButton

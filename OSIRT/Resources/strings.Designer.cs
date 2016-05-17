@@ -270,7 +270,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load an OSIRT case to view its report. [NOT IMPLEMENTED].
+        ///   Looks up a localized string similar to Load an OSIRT case to view its audit log..
         /// </summary>
         internal static string LoadReport {
             get {

@@ -36,7 +36,6 @@ namespace OSIRT.Browser
         }
 
 
-
         public TabbedBrowserControl()
         {
             InitializeComponent();
@@ -74,7 +73,9 @@ namespace OSIRT.Browser
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-            Navigate(/*UserSettings.Load().Homepage*/ url);
+
+            Navigate(url);
+
         }
 
         private void AddBrowserEvents()
@@ -161,6 +162,24 @@ namespace OSIRT.Browser
             CurrentBrowser.GenerateFullpageScreenshot(); 
         }
 
+        public void CurrentViewScreenshot()
+        {
+            CurrentBrowser.GetCurrentViewportScreenshot();
+        }
+
+        public void TimedScreenshot(int seconds)
+        {
+
+            var future = DateTime.Now.AddSeconds(seconds);
+            do
+            {
+                uiActionLoggedToolStripStatusLabel.Text = string.Format("Screenshotting in: {0}", (future - DateTime.Now).ToString("ss"));
+                Application.DoEvents();
+            } while (future > DateTime.Now);
+            uiActionLoggedToolStripStatusLabel.Text = "";
+            CurrentBrowser.GetCurrentViewportScreenshot();
+        }
+
 
         public void Navigate(string url)
         {
@@ -169,9 +188,6 @@ namespace OSIRT.Browser
 
         private void uiBrowserTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Debug.WriteLine("HEYO");
-            //if(CurrentTab.Browser != null)
-            //    addressBar.Text = CurrentTab.CurrentUrl;
         }
 
         private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
