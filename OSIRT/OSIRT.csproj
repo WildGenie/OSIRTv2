@@ -140,6 +140,7 @@
     <Compile Include="Helpers\HashServiceFactory.cs" />
     <Compile Include="Helpers\ImageDiskCache.cs" />
     <Compile Include="Helpers\ScreenCapturedEvent.cs" />
+    <Compile Include="IPageable.cs" />
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
     <Compile Include="Browser\BrowserTab.cs">
@@ -208,6 +209,9 @@
     <Compile Include="UI\AuditLog\ExportAuditOptionsPanel.Designer.cs">
       <DependentUpon>ExportAuditOptionsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\AuditLog\OsirtGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AuditLog\RowDetailsPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +219,9 @@
       <DependentUpon>RowDetailsPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\AuditLog\SearchCompletedEventArgs.cs" />
+    <Compile Include="UI\AuditLog\SearchGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UI\AuditLog\TempSearchPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -233,6 +240,7 @@
     <Compile Include="UI\CannotOpenImagePanel.Designer.cs">
       <DependentUpon>CannotOpenImagePanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CaseClosing\CaseCleanUpLogic.cs" />
     <Compile Include="UI\CaseClosing\CaseClosingCleanUpPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -361,6 +369,12 @@
     <Compile Include="UI\Splash\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UnhandledExceptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UnhandledExceptionForm.Designer.cs">
+      <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserSettings.cs" />
     <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <Compile Include="VideoCapture\VideoCaptureCompleteEventArgs.cs" />
@@ -466,6 +480,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Splash\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
+      <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VideoPreviewer.resx">
       <DependentUpon>VideoPreviewer.cs</DependentUpon>

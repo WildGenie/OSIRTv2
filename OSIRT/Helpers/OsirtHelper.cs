@@ -152,7 +152,7 @@ namespace OSIRT.Helpers
         /// </summary>
         public static void DeleteDirectory(string path)
         {
-            Thread.Sleep(1);
+            //Thread.Sleep(1); <--- Bad
             foreach (string directory in Directory.GetDirectories(path))
             {
                 DeleteDirectory(directory);

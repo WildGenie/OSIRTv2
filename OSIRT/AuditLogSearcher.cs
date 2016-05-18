@@ -35,9 +35,6 @@ namespace OSIRT
 
         public static DataTable Search(string databaseTable, string pattern)
         {
-            Debug.WriteLine("TABLE TO SEARCH IN SEARCHER: " + databaseTable);
-            Debug.WriteLine("TABLE TO SEARCH IN SEARCHER: " + pattern);
-
             if (databaseTable == "all")
             {
                 tableToSearch = GetMergedDataTable();
@@ -46,7 +43,7 @@ namespace OSIRT
             {
                 DatabaseHandler dbHandler = new DatabaseHandler();
                 tableToSearch = dbHandler.GetAllRows(databaseTable);
-            }   
+            }
 
             SetColumnNames();
             DataRow[] dataRows = tableToSearch.Select(BuildQueryString(pattern));
@@ -59,10 +56,6 @@ namespace OSIRT
             {
                 tableToSearch = null;
             }
-            //else, return an empty datatable
-            //if datatable is empty, display a message in a panel
-            //that's be back to the UI
-
             return tableToSearch;
         }
 

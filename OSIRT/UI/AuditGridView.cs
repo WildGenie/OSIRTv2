@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using OSIRT.Database;
+using OSIRT.UI.AuditLog;
 
 namespace OSIRT.UI
 {
-    public class AuditGridView : DataGridView
+    public class AuditGridView : OsirtGridView, IPageable
     {
 
-        public event EventHandler RowEntered;
+        //public event EventHandler RowEntered;
         private string TableName { get; }
         public DataTable Table { get; private set; }
         public int Page { get; private set; }
@@ -28,51 +29,13 @@ namespace OSIRT.UI
             totalRowCount = TotalRowCount();
             Page = 1;
             GoToPage(Page);
-            InitialiseDataGridView();
+            //InitialiseDataGridView();
+            CellClick += AuditLogGrid_CellClick;
         }
 
         private void PopulateGrid(DataTable dataTable)
         {
             DataSource = dataTable;
-        }
-
-        private void InitialiseDataGridView()
-        {
-            AllowUserToAddRows = false;
-            AllowUserToDeleteRows = false;
-            Dock = DockStyle.Fill;
-            AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCells;
-
-            ColumnAdded += AuditGridView_ColumnAdded;
-            RowEnter += AuditGridView_RowEnter;
-            CellClick += AuditLogGrid_CellClick;
-        }
-
-        private void AuditGridView_RowEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            Dictionary<string, string> rowCells = new Dictionary<string, string>();
-            int cellCount = Rows[e.RowIndex].Cells.Count;
-            for (int i = 0; i < cellCount; i++)
-            {
-                rowCells.Add(Columns[i].Name, Rows[e.RowIndex].Cells[i].Value.ToString());
-            }
-
-            ExtendedRowEnterEventArgs eventArgs = new ExtendedRowEnterEventArgs(e, rowCells);
-            RowEntered?.Invoke(this, eventArgs);
-        }
-
-
-        //Makes the print column selectable, and keeps other columns readonly
-        private void AuditGridView_ColumnAdded(object sender, DataGridViewColumnEventArgs e)
-        {
-            DataGridViewColumn column = e.Column;
-            column.ReadOnly = true;
-            if (column.Name == "print")
-            {
-                column.ReadOnly = false;
-            }
-
         }
 
         private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -83,7 +46,7 @@ namespace OSIRT.UI
 
             if (Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
             {
-                DataGridViewCheckBoxCell column = (DataGridViewCheckBoxCell) Rows[e.RowIndex].Cells[e.ColumnIndex];
+                DataGridViewCheckBoxCell column = (DataGridViewCheckBoxCell)Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (column.Value != null)
                 {
                     bool isChecked = (bool)column.Value;
@@ -178,8 +141,6 @@ namespace OSIRT.UI
             PopulateGrid(Table);
         }
 
-
-
-
+   
     }
 }
