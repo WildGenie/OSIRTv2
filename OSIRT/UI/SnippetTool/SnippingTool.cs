@@ -17,7 +17,18 @@ namespace OSIRT.UI.SnippetTool
 
         private static Size BitmapSize;
         private static Graphics Graph;
-        private static int[] bounds = { 0, 0, 0, 0 }; //minx, miny,maxbottom, maxright
+        private static SnipBounds snipBounds;
+        //Use a struct?
+        //private static int[] bounds = { 0, 0, 0, 0 }; //minx, miny,maxbottom, maxright
+
+        private struct SnipBounds
+        {
+            public int MinX;
+            public int MinY;
+            public int MaxBottom;
+            public int MaxRight;
+        };
+
 
         public SnippingTool()
         {
@@ -57,10 +68,16 @@ namespace OSIRT.UI.SnippetTool
                 }
             }
 
-            bounds[0] = minX;
-            bounds[1] = minY;
-            bounds[2] = maxBottom;
-            bounds[3] = maxRight;
+
+            snipBounds.MinX = minX;
+            snipBounds.MinY = minY;
+            snipBounds.MaxBottom = maxBottom;
+            snipBounds.MaxRight = maxRight;
+
+            //bounds[0] = minX;
+            //bounds[1] = minY;
+            //bounds[2] = maxBottom;
+            //bounds[3] = maxRight;
 
         }
         public static bool Snip()
@@ -69,7 +86,7 @@ namespace OSIRT.UI.SnippetTool
             Bitmap bmp = null;
             try
             {
-                bmp = new Bitmap(bounds[3] - bounds[0], bounds[2] - bounds[1], System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
+                bmp = new Bitmap(snipBounds.MaxRight - snipBounds.MinX, snipBounds.MaxBottom - snipBounds.MinY, System.Drawing.Imaging.PixelFormat.Format32bppPArgb);
             }
             catch (Exception e)
             {
@@ -83,7 +100,7 @@ namespace OSIRT.UI.SnippetTool
 
             using (var snipper = new SnippingTool(bmp))
             {
-                snipper.Location = new Point(bounds[0], bounds[1]);
+                snipper.Location = new Point(snipBounds.MinX, snipBounds.MinY);
 
                 if (snipper.ShowDialog() == DialogResult.OK)
                 {
@@ -103,7 +120,6 @@ namespace OSIRT.UI.SnippetTool
             BackgroundImage = screenShot;
             ShowInTaskbar = false;
             FormBorderStyle = FormBorderStyle.None;
-
             DoubleBuffered = true;
         }
         public Image Image
@@ -187,20 +203,22 @@ namespace OSIRT.UI.SnippetTool
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
             FindMultiScreenSize();
 
             //minx, miny,maxbottom, maxright
-            this.Size = new Size(bounds[3] - bounds[0], bounds[2] - bounds[1]);
+            this.Size = new Size( snipBounds.MaxRight - snipBounds.MinX, snipBounds.MaxBottom - snipBounds.MinY);
 
-            Graph.CopyFromScreen(bounds[0], bounds[1], 0, 0, BitmapSize);
+            Graph.CopyFromScreen(snipBounds.MinX, snipBounds.MinY, 0, 0, BitmapSize);
         }
 
         private void SnippingTool_Load(object sender, EventArgs e)
         {
-
+           
         }
     }
 }

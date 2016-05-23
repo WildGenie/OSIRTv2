@@ -6,6 +6,7 @@ using Ionic.Zip;
 using System.Diagnostics;
 using System.IO;
 using OSIRT.Helpers;
+using OSIRT.Resources;
 
 namespace OSIRT.UI.CaseClosing
 {
@@ -18,7 +19,7 @@ namespace OSIRT.UI.CaseClosing
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
-            uiInfoLabel.Text = "Cleaning up... Please Wait";
+            uiInfoLabel.Text = strings.CaseClosingCleanUpPanel_Cleaning_up____Please_Wait;
             CaseCleanUpLogic cleanUp = new CaseCleanUpLogic(password, isInAuditViewMode);
             cleanUp.ReportProgress += CleanUp_ReportProgress;
             cleanUp.Start();

@@ -104,8 +104,8 @@ namespace OSIRT.Browser
 
         private void AttachMouseEventHandlers()
         {
-            Document.MouseDown += new HtmlElementEventHandler(Document_MouseDown);
-            Document.MouseMove += new HtmlElementEventHandler(Document_MouseMove);
+            Document.MouseDown += Document_MouseDown;
+            Document.MouseMove += Document_MouseMove;
             firstLoad = false;
         }
 
@@ -537,17 +537,17 @@ namespace OSIRT.Browser
 
                 if(e.MouseButtonsPressed == MouseButtons.Middle)
                 {
-                    HtmlElement element = Document.GetElementFromPoint(PointToClient(MousePosition));
+                    HtmlElement el = Document.GetElementFromPoint(PointToClient(MousePosition));
                     //I assume I need to check if this element has child elements that contain a TagName "A"
                
-                    if (element.TagName == "A" && !string.IsNullOrEmpty(element.GetAttribute("href")))//it means we have deal with href
+                    if (el.TagName == "A" && !string.IsNullOrEmpty(el.GetAttribute("href")))//it means we have deal with href
                     {
                         Debug.WriteLine("Get link location, open in new tab.");
-                        var url = element.GetAttribute("href");
+                        var url = el.GetAttribute("href");
                         Debug.WriteLine(url);
                     }
                     else
-                        Debug.WriteLine(element.TagName);
+                        Debug.WriteLine(el.TagName);
                  
 
                     

@@ -12,17 +12,17 @@ namespace OSIRT
     public class WebImageDownloader
     {
 
-        private string url;
+        private readonly string url;
 
         public WebImageDownloader(string url)
         {
             this.url = url;
         }
 
-        //url, filename
+        //pUrl, filename
         public Dictionary<string, string> GetSafeUrls()
         {
-            //TODO: rather than load the page again via url, parse the current document
+            //TODO: rather than load the page again via pUrl, parse the current document
             //HtmlDocument document = new HtmlDocument();
             //document.LoadHtml();
 
@@ -34,9 +34,9 @@ namespace OSIRT
 
             Dictionary<string, string> files = new Dictionary<string, string>();
 
-            foreach (string url in urls)
+            foreach (string u in urls)
             {
-                string fullUrl = GetSafeUrl(url);
+                string fullUrl = GetSafeUrl(u);
                 string filename = GetSafeFilename(Path.GetFileName(fullUrl));
 
 
@@ -48,42 +48,36 @@ namespace OSIRT
         }
 
 
-        private string GetSafeUrl(string url)
+        private string GetSafeUrl(string pUrl)
         {
-            if (url.StartsWith(@"//"))
+            if (pUrl.StartsWith(@"//"))
             {
-                url = "http:" + url;
+                pUrl = "http:" + pUrl;
             }
 
-            if (IsRelativeUrl(url))
+            if (IsRelativeUrl(pUrl))
             {
-                url = "http://" + new Uri(url).Host + url;
+                pUrl = "http://" + new Uri(url).Host + pUrl;
             }
-
-            //url = Helpers.OsirtHelper.StripQueryFromPath(url);
-
-            return url;
+            return pUrl;
         }
 
         private string GetSafeFilename(string file)
         {
-
-            if(!Helpers.OsirtHelper.IsValidFilename(file))
-            {
-                string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff",
-                                        CultureInfo.InvariantCulture);
-                file = timestamp.Replace(@"/", "_").Replace(":", "_").Replace(" ", "_").Replace(".", "_").Replace(" ", "") + ".png";
-            }
+            if (Helpers.OsirtHelper.IsValidFilename(file)) return file;
+            string timestamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fffff",
+                CultureInfo.InvariantCulture);
+            file = timestamp.Replace(@"/", "_").Replace(":", "_").Replace(" ", "_").Replace(".", "_").Replace(" ", "") + ".png";
 
 
             return file;
         }
 
-        private bool IsRelativeUrl(string url)
+        private bool IsRelativeUrl(string pUrl)
         {
-            //http://stackoverflow.com/questions/10687099/how-to-test-if-a-url-string-is-absolute-or-relative
+            //http://stackoverflow.com/questions/10687099/how-to-test-if-a-pUrl-string-is-absolute-or-relative
             //Geo
-            return !System.Text.RegularExpressions.Regex.Match(url, @"^(?:[a-z]+:)?//").Success;
+            return !System.Text.RegularExpressions.Regex.Match(pUrl, @"^(?:[a-z]+:)?//").Success;
         }
 
 

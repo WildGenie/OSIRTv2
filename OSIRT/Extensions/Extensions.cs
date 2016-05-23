@@ -32,18 +32,18 @@ namespace OSIRT.Extensions
             return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(toTitle);
         }
 
-        private static readonly string[] validExtensions = { ".jpg", ".jpeg", ".tiff", ".bmp", ".gif", ".png" };
+        private static readonly string[] ValidExtensions = { ".jpg", ".jpeg", ".tiff", ".bmp", ".gif", ".png" };
         public static bool HasImageExtension(this string path)
         {
             string fileName = Path.GetExtension(path);
-            return validExtensions.Contains(fileName.ToLower());
+            return ValidExtensions.Contains(fileName.ToLower());
         }
 
-        private static readonly string[] validVideoExtensions = { ".mp4" };
+        private static readonly string[] ValidVideoExtensions = { ".mp4" };
         public static bool HasVideoExtension(this string path)
         {
             string fileName = Path.GetExtension(path);
-            return validVideoExtensions.Contains(fileName.ToLower());
+            return ValidVideoExtensions.Contains(fileName.ToLower());
         }
 
 

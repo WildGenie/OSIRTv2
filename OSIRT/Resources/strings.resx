@@ -207,4 +207,7 @@
   <data name="Please_enter_a_note" xml:space="preserve">
     <value>Please enter a note.</value>
   </data>
+  <data name="CaseClosingCleanUpPanel_Cleaning_up____Please_Wait" xml:space="preserve">
+    <value>Cleaning up... Please Wait</value>
+  </data>
 </root>

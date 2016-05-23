@@ -107,6 +107,15 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cleaning up... Please Wait.
+        /// </summary>
+        internal static string CaseClosingCleanUpPanel_Cleaning_up____Please_Wait {
+            get {
+                return ResourceManager.GetString("CaseClosingCleanUpPanel_Cleaning_up____Please_Wait", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Case Details.
         /// </summary>
         internal static string CaseDetailsHeader {
