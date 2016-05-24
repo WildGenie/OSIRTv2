@@ -401,6 +401,16 @@ namespace OSIRT.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon source_code1 {
+            get {
+                object obj = ResourceManager.GetObject("source_code1", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap spinner {
@@ -506,6 +516,16 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap trans {
             get {
                 object obj = ResourceManager.GetObject("trans", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transform_crop {
+            get {
+                object obj = ResourceManager.GetObject("transform_crop", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

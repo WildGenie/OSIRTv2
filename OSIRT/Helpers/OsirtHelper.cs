@@ -145,6 +145,12 @@ namespace OSIRT.Helpers
 
         }
 
+        public static bool IsOnYouTube(string url)
+        {
+            string pattern = @"(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+";
+            return Regex.Match(url, pattern).Success;
+        }
+
         /// <summary>
         /// Depth-first recursive delete, with handling for descendant 
         /// directories open in Windows Explorer.

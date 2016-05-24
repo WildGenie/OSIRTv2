@@ -17,8 +17,13 @@ namespace OSIRT.UI.Options
 
         private void uiShowMouseTrailCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            UserSettings settings = UserSettings.Load();
             settings.ShowMouseTrail = uiShowMouseTrailCheckBox.Checked;
+            settings.Save();
+        }
+
+        private void uiShowMouseClicksCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.ShowMouseClick = uiShowMouseClicksCheckBox.Checked;
             settings.Save();
         }
 
@@ -27,6 +32,7 @@ namespace OSIRT.UI.Options
             uiShowMouseTrailCheckBox.Checked = settings.ShowMouseTrail;
             uiDeleteCacheOnCloseCheckBox.Checked = settings.ClearCacheOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
+            uiFPSTrackBar.Value = settings.FramesPerSecond;
 
             if (settings.IconAsBase64 != "")
                 uiConstabularyIconPictureBox.Image = settings.IconAsBase64.Base64ToImage();
@@ -34,7 +40,6 @@ namespace OSIRT.UI.Options
 
         private void uiDeleteCacheOnCloseCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            UserSettings settings = UserSettings.Load();
             settings.ClearCacheOnClose = uiDeleteCacheOnCloseCheckBox.Checked;
             settings.Save();
         }
@@ -75,5 +80,24 @@ namespace OSIRT.UI.Options
 
             }
         }
+
+        private void uiFPSTrackBar_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiFPSTrackBar_ValueChanged(object sender, EventArgs e)
+        {
+            int value = uiFPSTrackBar.Value;
+            uiFPSLabel.Text = $"{value} FPS";
+            settings.FramesPerSecond = value;
+        }
+
+        private void uiCloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+
     }
 }

@@ -50,6 +50,10 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="FastColoredTextBox, Version=2.16.11.0, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <HintPath>..\packages\FCTB.2.16.11.0\lib\FastColoredTextBox.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
@@ -60,6 +64,10 @@
     </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.1.101\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationCore" />
@@ -104,6 +112,10 @@
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="YoutubeExtractor, Version=0.10.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\YoutubeExtractor.0.10.10\lib\net35\YoutubeExtractor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuditLogSearcher.cs" />
@@ -308,6 +320,12 @@
     </Compile>
     <Compile Include="Helpers\NativeMethods.cs" />
     <Compile Include="Helpers\ScreenshotHelper.cs" />
+    <Compile Include="UI\MarkerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\MarkerWindow.designer.cs">
+      <DependentUpon>MarkerWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\NoRecordsToShowPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -375,6 +393,11 @@
     <Compile Include="UI\UnhandledExceptionForm.Designer.cs">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ViewSource\SaveSourceEventArgs.cs" />
+    <Compile Include="UI\ViewSource\ViewPageSource.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ViewSource\ViewSourceEventArgs.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <Compile Include="VideoCapture\VideoCaptureCompleteEventArgs.cs" />
@@ -449,6 +472,9 @@
     <EmbeddedResource Include="UI\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\MarkerWindow.resx">
+      <DependentUpon>MarkerWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\NoRecordsToShowPanel.resx">
       <DependentUpon>NoRecordsToShowPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -483,6 +509,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ViewSource\ViewPageSource.resx">
+      <DependentUpon>ViewPageSource.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VideoPreviewer.resx">
       <DependentUpon>VideoPreviewer.cs</DependentUpon>
@@ -605,6 +634,8 @@
     <None Include="Resources\measure_crop.png" />
     <None Include="Resources\hourglass.png" />
     <None Include="Resources\alarm-clock.png" />
+    <None Include="Resources\transform_crop.png" />
+    <None Include="Resources\source_code.ico" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

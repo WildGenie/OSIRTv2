@@ -23,5 +23,7 @@ namespace OSIRT
 
         //video recording
         public bool ShowMouseTrail = false;
+        public bool ShowMouseClick = false;
+        public int FramesPerSecond = 30;
     }
 }

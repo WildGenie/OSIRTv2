@@ -41,6 +41,8 @@
             this.currentViewScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentViewTimedScreenshotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiVideoCaptureButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.markerWindowToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
             this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
@@ -81,6 +83,7 @@
             this.uiScreenshotButton,
             this.toolStripDropDownButton1,
             this.uiVideoCaptureButton,
+            this.toolStripDropDownButton2,
             this.uiAttachmentToolStripButton,
             this.uiCaseNotesButton,
             this.uiURLComboBox,
@@ -189,6 +192,26 @@
             this.uiVideoCaptureButton.Size = new System.Drawing.Size(23, 22);
             this.uiVideoCaptureButton.ToolTipText = "Start video capture";
             this.uiVideoCaptureButton.Click += new System.EventHandler(this.uiVideoCaptureButton_Click);
+            // 
+            // toolStripDropDownButton2
+            // 
+            this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.markerWindowToolStripMenuItem1});
+            this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
+            this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(13, 22);
+            this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+            this.toolStripDropDownButton2.ToolTipText = "More video options";
+            // 
+            // markerWindowToolStripMenuItem1
+            // 
+            this.markerWindowToolStripMenuItem1.Image = global::OSIRT.Properties.Resources.transform_crop;
+            this.markerWindowToolStripMenuItem1.Name = "markerWindowToolStripMenuItem1";
+            this.markerWindowToolStripMenuItem1.Size = new System.Drawing.Size(158, 22);
+            this.markerWindowToolStripMenuItem1.Text = "Marker Window";
+            this.markerWindowToolStripMenuItem1.Click += new System.EventHandler(this.markerWindowToolStripMenuItem1_Click);
             // 
             // uiAttachmentToolStripButton
             // 
@@ -354,5 +377,7 @@
         private System.Windows.Forms.ToolStripMenuItem snippetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem currentViewScreenshotToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem currentViewTimedScreenshotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton2;
+        private System.Windows.Forms.ToolStripMenuItem markerWindowToolStripMenuItem1;
     }
 }

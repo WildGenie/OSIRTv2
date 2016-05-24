@@ -38,12 +38,14 @@
             this.uiHomePageTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.uiRecordingOptionsGroupBox = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.uiFPSLabel = new System.Windows.Forms.Label();
+            this.uiFPSTrackBar = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.uiCaptureGroupBox = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.uiShowMouseClicksCheckBox = new System.Windows.Forms.CheckBox();
             this.uiShowMouseTrailCheckBox = new System.Windows.Forms.CheckBox();
             this.uiAudioGroupBox = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,7 +60,9 @@
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.uiRecordingOptionsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiFPSTrackBar)).BeginInit();
             this.uiCaptureGroupBox.SuspendLayout();
+            this.uiAudioGroupBox.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -158,53 +162,71 @@
             // 
             // uiRecordingOptionsGroupBox
             // 
-            this.uiRecordingOptionsGroupBox.Controls.Add(this.label2);
+            this.uiRecordingOptionsGroupBox.Controls.Add(this.uiFPSLabel);
+            this.uiRecordingOptionsGroupBox.Controls.Add(this.uiFPSTrackBar);
             this.uiRecordingOptionsGroupBox.Controls.Add(this.label1);
-            this.uiRecordingOptionsGroupBox.Location = new System.Drawing.Point(8, 99);
+            this.uiRecordingOptionsGroupBox.Location = new System.Drawing.Point(8, 76);
             this.uiRecordingOptionsGroupBox.Name = "uiRecordingOptionsGroupBox";
-            this.uiRecordingOptionsGroupBox.Size = new System.Drawing.Size(467, 74);
+            this.uiRecordingOptionsGroupBox.Size = new System.Drawing.Size(467, 77);
             this.uiRecordingOptionsGroupBox.TabIndex = 1;
             this.uiRecordingOptionsGroupBox.TabStop = false;
             this.uiRecordingOptionsGroupBox.Text = "Recording";
             // 
-            // label2
+            // uiFPSLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 42);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Bir rate (these will be drop downs, just here to remind me)";
+            this.uiFPSLabel.AutoSize = true;
+            this.uiFPSLabel.Location = new System.Drawing.Point(412, 20);
+            this.uiFPSLabel.Name = "uiFPSLabel";
+            this.uiFPSLabel.Size = new System.Drawing.Size(42, 13);
+            this.uiFPSLabel.TabIndex = 3;
+            this.uiFPSLabel.Text = "30 FPS";
+            // 
+            // uiFPSTrackBar
+            // 
+            this.uiFPSTrackBar.AutoSize = false;
+            this.uiFPSTrackBar.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiFPSTrackBar.Location = new System.Drawing.Point(9, 36);
+            this.uiFPSTrackBar.Maximum = 30;
+            this.uiFPSTrackBar.Minimum = 5;
+            this.uiFPSTrackBar.Name = "uiFPSTrackBar";
+            this.uiFPSTrackBar.Size = new System.Drawing.Size(451, 31);
+            this.uiFPSTrackBar.SmallChange = 5;
+            this.uiFPSTrackBar.TabIndex = 2;
+            this.uiFPSTrackBar.TickFrequency = 5;
+            this.uiFPSTrackBar.Value = 5;
+            this.uiFPSTrackBar.Scroll += new System.EventHandler(this.uiFPSTrackBar_Scroll);
+            this.uiFPSTrackBar.ValueChanged += new System.EventHandler(this.uiFPSTrackBar_ValueChanged);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 20);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(100, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "FPS";
+            this.label1.Text = "Frames Per Second";
             // 
             // uiCaptureGroupBox
             // 
-            this.uiCaptureGroupBox.Controls.Add(this.checkBox2);
+            this.uiCaptureGroupBox.Controls.Add(this.uiShowMouseClicksCheckBox);
             this.uiCaptureGroupBox.Controls.Add(this.uiShowMouseTrailCheckBox);
-            this.uiCaptureGroupBox.Location = new System.Drawing.Point(8, 179);
+            this.uiCaptureGroupBox.Location = new System.Drawing.Point(8, 159);
             this.uiCaptureGroupBox.Name = "uiCaptureGroupBox";
             this.uiCaptureGroupBox.Size = new System.Drawing.Size(467, 66);
             this.uiCaptureGroupBox.TabIndex = 1;
             this.uiCaptureGroupBox.TabStop = false;
             this.uiCaptureGroupBox.Text = "Capture";
             // 
-            // checkBox2
+            // uiShowMouseClicksCheckBox
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(6, 42);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(117, 17);
-            this.checkBox2.TabIndex = 1;
-            this.checkBox2.Text = "Show mouse clicks";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.uiShowMouseClicksCheckBox.AutoSize = true;
+            this.uiShowMouseClicksCheckBox.Location = new System.Drawing.Point(6, 42);
+            this.uiShowMouseClicksCheckBox.Name = "uiShowMouseClicksCheckBox";
+            this.uiShowMouseClicksCheckBox.Size = new System.Drawing.Size(117, 17);
+            this.uiShowMouseClicksCheckBox.TabIndex = 1;
+            this.uiShowMouseClicksCheckBox.Text = "Show mouse clicks";
+            this.uiShowMouseClicksCheckBox.UseVisualStyleBackColor = true;
+            this.uiShowMouseClicksCheckBox.CheckedChanged += new System.EventHandler(this.uiShowMouseClicksCheckBox_CheckedChanged);
             // 
             // uiShowMouseTrailCheckBox
             // 
@@ -219,12 +241,23 @@
             // 
             // uiAudioGroupBox
             // 
+            this.uiAudioGroupBox.Controls.Add(this.label5);
             this.uiAudioGroupBox.Location = new System.Drawing.Point(8, 6);
             this.uiAudioGroupBox.Name = "uiAudioGroupBox";
-            this.uiAudioGroupBox.Size = new System.Drawing.Size(467, 87);
+            this.uiAudioGroupBox.Size = new System.Drawing.Size(467, 64);
             this.uiAudioGroupBox.TabIndex = 0;
             this.uiAudioGroupBox.TabStop = false;
             this.uiAudioGroupBox.Text = "Audio";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(355, 26);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "In order to record sound, Stereo Mix need to be enabled on this computer.\r\nClick " +
+    "here to find out how to enable Stereo Mix.";
             // 
             // tabPage3
             // 
@@ -317,6 +350,7 @@
             this.uiCloseButton.TabIndex = 1;
             this.uiCloseButton.Text = "Close";
             this.uiCloseButton.UseVisualStyleBackColor = true;
+            this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
             // OptionsForm
             // 
@@ -328,7 +362,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OptionsForm";
-            this.Text = "Options Form";
+            this.Text = "Options";
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.uiOptionsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -337,8 +371,11 @@
             this.tabPage2.ResumeLayout(false);
             this.uiRecordingOptionsGroupBox.ResumeLayout(false);
             this.uiRecordingOptionsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiFPSTrackBar)).EndInit();
             this.uiCaptureGroupBox.ResumeLayout(false);
             this.uiCaptureGroupBox.PerformLayout();
+            this.uiAudioGroupBox.ResumeLayout(false);
+            this.uiAudioGroupBox.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
@@ -354,11 +391,10 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.GroupBox uiCaptureGroupBox;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox uiShowMouseClicksCheckBox;
         private System.Windows.Forms.CheckBox uiShowMouseTrailCheckBox;
         private System.Windows.Forms.GroupBox uiAudioGroupBox;
         private System.Windows.Forms.GroupBox uiRecordingOptionsGroupBox;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox uiDeleteCacheOnCloseCheckBox;
@@ -374,5 +410,8 @@
         private System.Windows.Forms.Button uiBrowseLocationButton;
         private System.Windows.Forms.TextBox uiHashFileLocationTextBox;
         private System.Windows.Forms.Button uiCloseButton;
+        private System.Windows.Forms.TrackBar uiFPSTrackBar;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label uiFPSLabel;
     }
 }

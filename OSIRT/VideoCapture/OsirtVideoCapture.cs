@@ -58,16 +58,16 @@ namespace OSIRT.VideoCapture
             OsirtVideoCapture.button = button;
 
             captureThreadEntry = new Capture();
-            captureThreadEntry.WindowHandle = handle; /*(uint)Process.GetCurrentProcess().MainWindowHandle*/;
+            captureThreadEntry.WindowHandle = handle;
             captureThreadEntry.WholeWindow = 1;
             captureThreadEntry.X = 0;
             captureThreadEntry.Y = 0;
             captureThreadEntry.Width = (uint)width;
             captureThreadEntry.Height = (uint)height;
             captureThreadEntry.BitRate = 20000000;
-            captureThreadEntry.FrameRate = 30;
-            captureThreadEntry.Audio = HasSteroMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0. Audio is screwed- does record, but sped up?
-            captureThreadEntry.Filename = Constants.TempVideoFile; //TODO: Remember to delete video file.
+            captureThreadEntry.FrameRate = (uint) UserSettings.Load().FramesPerSecond;
+            captureThreadEntry.Audio = HasStereoMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0. Audio is screwed- does record, but sped up?
+            captureThreadEntry.Filename = Constants.TempVideoFile;
 
             captureThread = new Thread(new ThreadStart(captureThreadEntry.Start));
             captureThread.Start();
@@ -90,7 +90,7 @@ namespace OSIRT.VideoCapture
 
         }
 
-        private static bool HasSteroMix()
+        private static bool HasStereoMix()
         {
             VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
             string[] allLines = null;

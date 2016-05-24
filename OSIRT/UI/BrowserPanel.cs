@@ -8,6 +8,10 @@ using OSIRT.VideoCapture;
 using OSIRT.UI.Options;
 using OSIRT.UI.SnippetTool;
 using OSIRT.Helpers;
+using OSIRT.UI.ViewSource;
+using System.IO;
+using System.Text;
+using OSIRT.Loggers;
 
 namespace OSIRT.UI
 {
@@ -30,7 +34,34 @@ namespace OSIRT.UI
             ConfigureUi();
             AddNewTab();
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
+            uiTabbedBrowserControl.CurrentTab.Browser.ViewPageSource += Browser_ViewPageSource;
+            uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+        }
+
+        private void Browser_SavePageSource(object sender, EventArgs e)
+        {
+            var args = ((SaveSourceEventArgs)e);
+            string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", args.Domain);
+            string path = Path.Combine(Constants.ContainerLocation,  Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Source), filename);
+            using (FileStream fileStream = new FileStream(path, FileMode.Create))
+            {
+                using (StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.UTF8))
+                {
+                    streamWriter.WriteLine(args.Source);
+                }
+            }
+
+            Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Enums.Actions.Source, OsirtHelper.GetFileHash(path), filename, "[Page source downloaded]"));
+            MessageBox.Show("Page source saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void Browser_ViewPageSource(object sender, EventArgs e)
+        {
+            var args = ((ViewSourceEventArgs)e);
+            string source = args.Source;
+            string title = args.Title;
+            new ViewPageSource(source, title).Show();
         }
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
@@ -117,12 +148,35 @@ namespace OSIRT.UI
         }
 
 
+
+        private MarkerWindow markerWindow;
+        private void markerWindowToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (markerWindow == null || markerWindow.IsDisposed)
+            {
+                markerWindow = new MarkerWindow();
+            }
+            try
+            {
+                markerWindow.Show();
+            }
+            catch { markerWindow = new MarkerWindow(); markerWindow.Show(); }
+        }
+
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail; 
+            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
+
+            //TODO: this check is causing the user to have to click twice to stop/start recording??
+            IntPtr handle;
+            if (markerWindow != null && markerWindow.Visible)
+                handle = markerWindow.Handle;
+            else
+                handle = Handle;
+
 
             if (!OsirtVideoCapture.IsRecording())
-                OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)Handle);
+                OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)handle);
             else
                 OsirtVideoCapture.StopCapture();
         }
@@ -187,5 +241,6 @@ namespace OSIRT.UI
            
             
         }
+
     }
 }

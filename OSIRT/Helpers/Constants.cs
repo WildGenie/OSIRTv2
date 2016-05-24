@@ -26,7 +26,7 @@ namespace OSIRT.Helpers
 
         public static string ReportContainerName => $"report_{CaseContainerName}";
         public static string ExportedHashFileName => $"{CaseContainerName}_hash_%%dt%%.txt";
-
+        public static string PageSourceFileName => $"%%dt%%_%%name%%_page_source.txt";
 
         //Image Cache Constants
         public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");

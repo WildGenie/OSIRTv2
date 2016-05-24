@@ -16,6 +16,9 @@ using System.ComponentModel;
 using System.Net;
 using OSIRT.Extensions;
 using OSIRT.UI.DownloadClient;
+using OSIRT.UI.ViewSource;
+using System.Collections.Generic;
+using YoutubeExtractor;
 
 namespace OSIRT.Browser
 {
@@ -25,6 +28,8 @@ namespace OSIRT.Browser
         public event EventHandler DownloadingProgress = delegate { };
         public event EventHandler DownloadComplete = delegate { };
         public event EventHandler NewTab = delegate { };
+        public event EventHandler ViewPageSource = delegate { };
+        public event EventHandler SavePageSource = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
@@ -60,7 +65,7 @@ namespace OSIRT.Browser
 
         private void InitialiseMouseTrail()
         {
-            mouseTrail.BackColor = Color.Red;
+            mouseTrail.BackColor = Color.Green;
             mouseTrail.Size = new Size(12, 12);
             Controls.Add(mouseTrail);
             MouseTrailVisible = false;
@@ -78,21 +83,64 @@ namespace OSIRT.Browser
             contextMenu.Items.Add("Open link in new tab", Properties.Resources.new_tab, OpenNewTab_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add("Download all images", Properties.Resources.download_cloud, DownloadAllImages_Click);
+            contextMenu.Items.Add(new ToolStripSeparator());
+            contextMenu.Items.Add("Extract YouTube video", Properties.Resources.download_cloud, DownloadYouTube_Click);
 
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;
+            contextMenu.Items[8].Enabled = false;
             contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
             ContextMenuStrip = contextMenu;
         }
 
-        
+        private void DownloadYouTube_Click(object sender, EventArgs e)
+        {
+            // Our test youtube link
+            string link = URL;
 
+            /*
+             * Get the available video formats.
+             * We'll work with them in the video and audio download examples.
+             */
+            IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(link);
+
+            /*
+             * Select the first .mp4 video with 360p resolution
+             */
+            VideoInfo video = videoInfos
+                .First(info => info.VideoType == VideoType.Mp4 && info.Resolution == 360);
+
+            /*
+             * If the video has a decrypted signature, decipher it
+             */
+            if (video.RequiresDecryption)
+            {
+                DownloadUrlResolver.DecryptDownloadUrl(video);
+            }
+
+            /*
+             * Create the video downloader.
+             * The first argument is the video to download.
+             * The second argument is the path to save the video file.
+             */
+            var videoDownloader = new VideoDownloader(video, Path.Combine("D:/", video.Title + video.VideoExtension));
+
+            // Register the ProgressChanged event and print the current progress
+            //videoDownloader.DownloadProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
+
+            /*
+             * Execute the video downloader.
+             * For GUI applications note, that this method runs synchronously.
+             */
+            videoDownloader.Execute();
+
+        }
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             if (firstLoad) AttachMouseEventHandlers();
 
-            if (e.Url.AbsolutePath != ((WebBrowser) sender).Url.AbsolutePath)
+            if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
                 return;
 
             Logger.Log(new WebsiteLog(Url.AbsoluteUri));
@@ -105,8 +153,15 @@ namespace OSIRT.Browser
         private void AttachMouseEventHandlers()
         {
             Document.MouseDown += Document_MouseDown;
+            Document.MouseUp += Document_MouseUp;
             Document.MouseMove += Document_MouseMove;
             firstLoad = false;
+        }
+
+        private void Document_MouseUp(object sender, HtmlElementEventArgs e)
+        {
+            if (UserSettings.Load().ShowMouseClick)
+                mouseTrail.BackColor = Color.Green;
         }
 
 
@@ -161,7 +216,7 @@ namespace OSIRT.Browser
 
         private async void FullpageScreenshotByScrolling()
         {
-            
+
             Enable = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
@@ -182,7 +237,7 @@ namespace OSIRT.Browser
             {
                 if (pageLeft > viewportHeight)
                 {
-                   //if we can scroll using the viewport, let's do that
+                    //if we can scroll using the viewport, let's do that
 
                     ScrollTo(0, count * viewportHeight);
 
@@ -263,7 +318,6 @@ namespace OSIRT.Browser
                     Dock = DockStyle.Fill;
                     ToggleScrollbars(true);
                 }
-
             }
         }
 
@@ -351,7 +405,7 @@ namespace OSIRT.Browser
         {
             //TODO: If this is a PDF (or non webpage) it throws an exception.
             //The same for Width, I'd imagine.
-     
+
             Rectangle bounds = Document.Body.ScrollRectangle;
             IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
@@ -444,12 +498,14 @@ namespace OSIRT.Browser
 
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
+            contextMenu.Items[8].Enabled = OsirtHelper.IsOnYouTube(URL);
+
             if (element == null)
                 return;
 
             contextMenu.Items[0].Enabled = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
             contextMenu.Items[4].Enabled = (element.TagName == "A");
-            //contextMenu.Items[4].Enabled = (element.ContainsAnchor()) /*|| element.NextSibling.TagName == "A" */;
+            
         }
 
         private void OpenNewTab_Click(object sender, EventArgs e)
@@ -462,7 +518,6 @@ namespace OSIRT.Browser
 
         private void DownloadAllImages_Click(object sender, EventArgs e)
         {
-            //MessageBox.Show("Not yet implemented");
             var files = new WebImageDownloader(URL).GetSafeUrls();
 
             if (files.Count == 0)
@@ -480,12 +535,12 @@ namespace OSIRT.Browser
 
         private void SaveSource_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented");
+            SavePageSource?.Invoke(this, new SaveSourceEventArgs(DocumentText, new Uri(URL).Host.Replace(".", "")));
         }
 
         private void ViewSource_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Not yet implemented!");
+            ViewPageSource?.Invoke(this, new ViewSourceEventArgs(DocumentText, DocumentTitle));
         }
 
 
@@ -522,6 +577,11 @@ namespace OSIRT.Browser
         #region mouse events
         private void Document_MouseDown(object sender, HtmlElementEventArgs e)
         {
+            if (UserSettings.Load().ShowMouseClick)
+                mouseTrail.BackColor = Color.Yellow;
+
+
+
             try
             {
                 element = Document.GetElementFromPoint(PointToClient(MousePosition));
@@ -535,11 +595,11 @@ namespace OSIRT.Browser
                     IsWebBrowserContextMenuEnabled = false;
                 }
 
-                if(e.MouseButtonsPressed == MouseButtons.Middle)
+                if (e.MouseButtonsPressed == MouseButtons.Middle)
                 {
                     HtmlElement el = Document.GetElementFromPoint(PointToClient(MousePosition));
                     //I assume I need to check if this element has child elements that contain a TagName "A"
-               
+
                     if (el.TagName == "A" && !string.IsNullOrEmpty(el.GetAttribute("href")))//it means we have deal with href
                     {
                         Debug.WriteLine("Get link location, open in new tab.");
@@ -548,9 +608,6 @@ namespace OSIRT.Browser
                     }
                     else
                         Debug.WriteLine(el.TagName);
-                 
-
-                    
                 }
             }
             catch
@@ -560,7 +617,7 @@ namespace OSIRT.Browser
         }
 
 
-        
+
 
 
 
@@ -570,7 +627,6 @@ namespace OSIRT.Browser
             {
                 Point p = PointToClient(MousePosition);
                 mouseTrail.Location = new Point(p.X + 5, p.Y + 5);
-                
             }
         }
 
