@@ -401,6 +401,7 @@
     <Compile Include="UserSettings.cs" />
     <Compile Include="VideoCapture\OsirtVideoCapture.cs" />
     <Compile Include="VideoCapture\VideoCaptureCompleteEventArgs.cs" />
+    <Compile Include="VideoDownloader.cs" />
     <Compile Include="VideoPreviewer.cs">
       <SubType>Form</SubType>
     </Compile>

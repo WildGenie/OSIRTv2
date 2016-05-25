@@ -31,9 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuditLogForm));
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.uiAuditOptionsToolStrip = new System.Windows.Forms.ToolStrip();
-            this.uiSearchToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.uiExportReportToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiSearchSelectionComboBox = new System.Windows.Forms.ComboBox();
+            this.uiSearchButton = new System.Windows.Forms.Button();
+            this.uiSearchTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiAuditLogSplitContainer)).BeginInit();
             this.uiAuditLogSplitContainer.SuspendLayout();
             this.uiAuditOptionsToolStrip.SuspendLayout();
@@ -62,29 +63,12 @@
             // 
             this.uiAuditOptionsToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.uiAuditOptionsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiSearchToolStripButton,
-            this.toolStripSeparator1,
             this.uiExportReportToolStripButton});
             this.uiAuditOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiAuditOptionsToolStrip.Name = "uiAuditOptionsToolStrip";
             this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 39);
             this.uiAuditOptionsToolStrip.TabIndex = 14;
             this.uiAuditOptionsToolStrip.Text = "toolStrip1";
-            // 
-            // uiSearchToolStripButton
-            // 
-            this.uiSearchToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiSearchToolStripButton.Image = global::OSIRT.Properties.Resources.search;
-            this.uiSearchToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiSearchToolStripButton.Name = "uiSearchToolStripButton";
-            this.uiSearchToolStripButton.Size = new System.Drawing.Size(36, 36);
-            this.uiSearchToolStripButton.Text = "Search";
-            this.uiSearchToolStripButton.Click += new System.EventHandler(this.uiSearchToolStripButton_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 39);
             // 
             // uiExportReportToolStripButton
             // 
@@ -96,11 +80,47 @@
             this.uiExportReportToolStripButton.Text = "Export report ";
             this.uiExportReportToolStripButton.Click += new System.EventHandler(this.uiExportReportToolStripButton_Click);
             // 
+            // uiSearchSelectionComboBox
+            // 
+            this.uiSearchSelectionComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiSearchSelectionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.uiSearchSelectionComboBox.FormattingEnabled = true;
+            this.uiSearchSelectionComboBox.Items.AddRange(new object[] {
+            "Current Tab",
+            "All Tabs",
+            "This Page"});
+            this.uiSearchSelectionComboBox.Location = new System.Drawing.Point(742, 10);
+            this.uiSearchSelectionComboBox.Name = "uiSearchSelectionComboBox";
+            this.uiSearchSelectionComboBox.Size = new System.Drawing.Size(135, 21);
+            this.uiSearchSelectionComboBox.TabIndex = 17;
+            // 
+            // uiSearchButton
+            // 
+            this.uiSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiSearchButton.Location = new System.Drawing.Point(883, 10);
+            this.uiSearchButton.Name = "uiSearchButton";
+            this.uiSearchButton.Size = new System.Drawing.Size(75, 21);
+            this.uiSearchButton.TabIndex = 16;
+            this.uiSearchButton.Text = "Search";
+            this.uiSearchButton.UseVisualStyleBackColor = true;
+            this.uiSearchButton.Click += new System.EventHandler(this.uiSearchButton_Click);
+            // 
+            // uiSearchTextBox
+            // 
+            this.uiSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiSearchTextBox.Location = new System.Drawing.Point(481, 10);
+            this.uiSearchTextBox.Name = "uiSearchTextBox";
+            this.uiSearchTextBox.Size = new System.Drawing.Size(255, 20);
+            this.uiSearchTextBox.TabIndex = 15;
+            // 
             // AuditLogForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 676);
+            this.Controls.Add(this.uiSearchSelectionComboBox);
+            this.Controls.Add(this.uiSearchButton);
+            this.Controls.Add(this.uiSearchTextBox);
             this.Controls.Add(this.uiAuditOptionsToolStrip);
             this.Controls.Add(this.uiAuditLogSplitContainer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -122,8 +142,9 @@
 
         private System.Windows.Forms.SplitContainer uiAuditLogSplitContainer;
         private System.Windows.Forms.ToolStrip uiAuditOptionsToolStrip;
-        private System.Windows.Forms.ToolStripButton uiSearchToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton uiExportReportToolStripButton;
+        private System.Windows.Forms.ComboBox uiSearchSelectionComboBox;
+        private System.Windows.Forms.Button uiSearchButton;
+        private System.Windows.Forms.TextBox uiSearchTextBox;
     }
 }

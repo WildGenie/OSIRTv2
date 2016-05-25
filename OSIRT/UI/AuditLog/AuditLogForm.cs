@@ -11,7 +11,6 @@ namespace OSIRT.UI.AuditLog
 
         private RowDetailsPanel rowDetailsPanel;
         private AuditTabControlPanel auditTabControlPanel;
-        private SearchPanel searchPanel;
         private TempSearchPanel rightSearchPanel;
         private ExportAuditOptionsPanel exportReportOptionsPanel;
         private bool isSearchPanel;
@@ -28,12 +27,9 @@ namespace OSIRT.UI.AuditLog
             auditTabControlPanel = new AuditTabControlPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
             AttachRowEventHandler(auditTabControlPanel);
+
             rowDetailsPanel = new RowDetailsPanel();
             uiAuditLogSplitContainer.Panel1.Controls.Add(rowDetailsPanel);
-
-            searchPanel = new SearchPanel(auditTabControlPanel.Tabs());
-            uiAuditLogSplitContainer.Panel1.Controls.Add(searchPanel);
-            searchPanel.SearchCompleted += SearchPanel_SearchCompleted;
 
             rightSearchPanel = new TempSearchPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
@@ -42,15 +38,53 @@ namespace OSIRT.UI.AuditLog
             uiAuditLogSplitContainer.Panel1.Controls.Add(exportReportOptionsPanel);
 
             rightSearchPanel.Visible = false;
-            searchPanel.Visible = false;
             exportReportOptionsPanel.Visible = false;
+
+            InitialiseSearchComboBox();
+        }
+
+        private void InitialiseSearchComboBox()
+        {
+            var tabs = auditTabControlPanel.Tabs();
+            tabs.Add("All tables", "all");
+
+            uiSearchSelectionComboBox.DataSource = new BindingSource(tabs, null);
+            uiSearchSelectionComboBox.DisplayMember = "Key";
+            uiSearchSelectionComboBox.ValueMember = "Value";
+        }
+
+        private void uiSearchButton_Click(object sender, EventArgs e)
+        {
+            string searchText = uiSearchTextBox.Text;
+            string tableToSearch = uiSearchSelectionComboBox.SelectedValue.ToString();
+
+            DataTable table = AuditLogSearcher.Search(tableToSearch, searchText);
+            UpdateSearchResults(table);
+        }
+
+
+        private void UpdateSearchResults(DataTable table)
+        {
+            uiAuditLogSplitContainer.Panel2.Controls.Clear();
+
+            if (table == null)
+            {
+                uiAuditLogSplitContainer.Panel2.Controls.Clear();
+                uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel("No results to display. Please search another term."));
+            }
+            else
+            {
+                OsirtGridView grid = new OsirtGridView();
+                grid.DataSource = table;
+                grid.Dock = DockStyle.Fill;
+                uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
+            }
         }
 
 
         private void uiExportReportToolStripButton_Click(object sender, EventArgs e)
         {
             exportReportOptionsPanel.Visible = !isReportExportPanel;
-            searchPanel.Visible = isReportExportPanel;
             rowDetailsPanel.Visible = isReportExportPanel;
             isReportExportPanel = !isReportExportPanel;
             uiExportReportToolStripButton.Image = isReportExportPanel ? Properties.Resources.table : Properties.Resources.report;
@@ -68,32 +102,6 @@ namespace OSIRT.UI.AuditLog
             auditTabControlPanel.Visible = on;
 
             rightSearchPanel.Visible = !on;
-            searchPanel.Visible = !on;
-
-            uiSearchToolStripButton.Image = !on ? Properties.Resources.table : Properties.Resources.search;
-            string tooltip = !on ? "Audit Log" : "Search";
-            uiSearchToolStripButton.ToolTipText = tooltip;
-        }
-
-        private void SearchPanel_SearchCompleted(object sender, EventArgs e)
-        {
-            SearchCompletedEventArgs args = (SearchCompletedEventArgs)e;
-            uiAuditLogSplitContainer.Panel2.Controls.Clear();
-
-            DataTable table = args.SearchTable;
-            if(table == null)
-            {
-                uiAuditLogSplitContainer.Panel2.Controls.Clear();
-                uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel("No results to display. Please search another term."));
-            }
-            else
-            {
-                OsirtGridView grid = new OsirtGridView();
-                //AuditGridView grid = new AuditGridView(table); //can't use AuditGridView as it attempts to access database with (non existsent) table name
-                grid.DataSource = table;
-                grid.Dock = DockStyle.Fill;
-                uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
-            }
         }
 
         private void AttachRowEventHandler(AuditTabControlPanel pAuditTabControlPanel)
@@ -127,12 +135,5 @@ namespace OSIRT.UI.AuditLog
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
         }
-
-
-        private void uiExportAsHtmlToolStripButton_Click(object sender, EventArgs e)
-        {
-            
-        }
-
     }
 }

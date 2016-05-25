@@ -192,7 +192,6 @@ namespace OSIRT.UI
             }
 
             ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
-
         }
 
         private void uiAuditLogToolStripButton_Click(object sender, EventArgs e)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace OSIRT.UI.AuditLog
@@ -8,7 +9,8 @@ namespace OSIRT.UI.AuditLog
     {
         private TabbedAuditLogControl tabbedAuditLog;
         private ToolTip toolTip = new ToolTip();
-        
+        public TabControl.TabPageCollection AuditTabs => tabbedAuditLog.AuditTabs;
+
         public AuditTabControlPanel()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace OSIRT.UI.AuditLog
             uiPreviousPageButton.Enabled = false;
             uiSearchSelectionComboBox.SelectedIndex = 0;
         }
+
 
         public Dictionary<string, string> Tabs()
         {
@@ -49,33 +52,6 @@ namespace OSIRT.UI.AuditLog
             toolTip.SetToolTip(uiNextPageButton, "Go forward one page");
             toolTip.SetToolTip(uiFirstPageButton, "Go to first page");
             toolTip.SetToolTip(uiLastPageButton, "Go to last page");
-        }
-
-        public TabControl.TabPageCollection AuditTabs => tabbedAuditLog.AuditTabs;
-
-        private void uiSearchButton_Click(object sender, EventArgs e)
-        {
-            //get combo box value (this tab/all tabs/current page)
-            //create search tab, this allows us access to pagination in AuditTab.
-            //will need to have an AddTab method in TabbedAuditLogControl
-            //switch to search tab (may need a "searching" spinner, like the imagepreviewer)
-
-            tabbedAuditLog.AddSearchTab();
-
-            string searchRequired = uiSearchSelectionComboBox.Text;
-            string searchText = uiSearchTextBox.Text;
-
-            if (string.IsNullOrWhiteSpace(searchText))
-                return;
-
-            if (searchRequired == "Current Tab")
-            {
-                //tabbedAuditLog.CurrentTab.SearchCurrentTab(searchText);
-            }
-            else
-            {
-                //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
-            }
         }
 
         private void NextPage()
@@ -156,6 +132,16 @@ namespace OSIRT.UI.AuditLog
         {
             //string searchText = uiSearchTextBox.Text;
             //tabbedAuditLog.CurrentTab.SearchCurrentPage(searchText);
+        }
+
+        private void uiSearchSelectionComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiSearchButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

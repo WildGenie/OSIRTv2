@@ -85,23 +85,7 @@ namespace OSIRT.UI.AuditLog
         {
         }
 
-        private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
-        {
-            var backgroundWorker = new BackgroundWorker();
-            uiProgressGroupBox.Show();
-            EnableOptionsGroupboxes(false);
-            backgroundWorker.DoWork += delegate
-            {
-                ExportAsHtml();
-            };
-            backgroundWorker.RunWorkerCompleted += delegate
-            {
-                uiProgressGroupBox.Hide();
-                EnableOptionsGroupboxes(true);
-                MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            };
-            backgroundWorker.RunWorkerAsync();
-        }
+
 
         private void ExportAsPdf()
         {
@@ -157,23 +141,30 @@ namespace OSIRT.UI.AuditLog
             return sortedTable;
         }
 
-
-
-        private void uiExportAsPdfButton_Click(object sender, EventArgs e)
+        private void RunWorker(Action method)
         {
             var backgroundWorker = new BackgroundWorker();
-            uiReportExportProgressBar.Show();
+            uiProgressGroupBox.Show();
             backgroundWorker.DoWork += delegate
             {
-                ExportAsPdf();
+                method.Invoke();
             };
             backgroundWorker.RunWorkerCompleted += delegate
             {
-                uiReportExportLabel.Hide();
-                uiReportExportProgressBar.Hide();
+                uiProgressGroupBox.Hide();
                 MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
             };
             backgroundWorker.RunWorkerAsync();
+        }
+
+        private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
+        {
+            RunWorker(ExportAsHtml);
+        }
+
+        private void uiExportAsPdfButton_Click(object sender, EventArgs e)
+        {
+            RunWorker(ExportAsPdf);
         }
 
         private void uiBrowseButton_Click(object sender, EventArgs e)
@@ -215,7 +206,7 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsCaseFileButton_MouseHover(object sender, EventArgs e)
         {
-            uiReportExportHelpLabel.Text = "Export report as OSRR file";
+            uiReportExportHelpLabel.Text = $"Export report as CSV (spreadsheet friendly) file. {Environment.NewLine} Note: this only exports the audit log with no artefacts.";
         }
 
         private void uiDisplayImagesCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -247,7 +238,19 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsCaseFileButton_Click(object sender, EventArgs e)
         {
-            //export as ossr file
+            StringBuilder sb = new StringBuilder();
+            DataTable dt = GetMergedDataTable();
+            IEnumerable<string> columnNames = dt.Columns.Cast<DataColumn>().
+                                              Select(column => column.ColumnName);
+            sb.AppendLine(string.Join(",", columnNames));
+
+            foreach (DataRow row in dt.Rows)
+            {
+                IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
+                sb.AppendLine(string.Join(",", fields));
+            }
+
+            File.WriteAllText(@"D:/test.csv", sb.ToString());
 
 
         }

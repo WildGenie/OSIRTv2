@@ -86,7 +86,10 @@ namespace OSIRT.Browser
             CurrentBrowser.DownloadingProgress += currentBrowser_DownloadingProgress;
             CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
             CurrentBrowser.NewTab += CurrentBrowser_NewTab;
+            CurrentBrowser.YouTubeDownloadProgress += CurrentBrowser_YouTubeDownloadProgress;
+            CurrentBrowser.YouTubeDownloadComplete += CurrentBrowser_YouTubeDownloadComplete;
         }
+
 
         private void CurrentBrowser_NewTab(object sender, EventArgs e)
         {
@@ -186,18 +189,26 @@ namespace OSIRT.Browser
              CurrentTab?.Browser?.Navigate(url);
         }
 
-        private void uiBrowserTabControl_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void CurrentBrowser_YouTubeDownloadComplete(object sender, EventArgs e)
         {
+            Invoke((MethodInvoker)delegate {
+                uiDownloadProgressBar.Visible = false;
+                DisplaySavedLabel("YouTube Video", "now");
+            });
+
         }
 
-        private void uiBrowserStatusStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void CurrentBrowser_YouTubeDownloadProgress(object sender, EventArgs e)
         {
+            var progress = (YoutubeExtractor.ProgressEventArgs)e;
 
-        }
+            Invoke((MethodInvoker)delegate {
+                if (!uiDownloadProgressBar.Visible)
+                    uiDownloadProgressBar.Visible = true;
 
-        private void uiBrowserTabControl_Click(object sender, EventArgs e)
-        {
-
+                uiDownloadProgressBar.Value = (int)progress.ProgressPercentage;
+            });
         }
     }
 }

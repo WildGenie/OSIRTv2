@@ -61,7 +61,6 @@
             this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 596);
             this.uiBrowserTabControl.TabIndex = 1;
             this.uiBrowserTabControl.Text = "chromeTabControl1";
-            this.uiBrowserTabControl.Click += new System.EventHandler(this.uiBrowserTabControl_Click);
             // 
             // uiBrowserStatusStrip
             // 
@@ -75,7 +74,6 @@
             this.uiBrowserStatusStrip.Size = new System.Drawing.Size(800, 22);
             this.uiBrowserStatusStrip.TabIndex = 0;
             this.uiBrowserStatusStrip.Text = "statusStrip1";
-            this.uiBrowserStatusStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserStatusStrip_ItemClicked);
             // 
             // uiStatusLabel
             // 

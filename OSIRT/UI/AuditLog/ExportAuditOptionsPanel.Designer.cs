@@ -274,17 +274,17 @@
             // 
             this.uiExportAsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiExportAsGroupBox.Controls.Add(this.uiReportExportHelpLabel);
             this.uiExportAsGroupBox.Controls.Add(this.uiBrowseButton);
             this.uiExportAsGroupBox.Controls.Add(this.label2);
             this.uiExportAsGroupBox.Controls.Add(this.uiPathTextBox);
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsCaseFileButton);
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsPdfButton);
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsHtmlButton);
+            this.uiExportAsGroupBox.Controls.Add(this.uiReportExportHelpLabel);
             this.uiExportAsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 330);
             this.uiExportAsGroupBox.Name = "uiExportAsGroupBox";
-            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 165);
+            this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 175);
             this.uiExportAsGroupBox.TabIndex = 2;
             this.uiExportAsGroupBox.TabStop = false;
             this.uiExportAsGroupBox.Text = "Export Report";
@@ -292,9 +292,9 @@
             // uiReportExportHelpLabel
             // 
             this.uiReportExportHelpLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.uiReportExportHelpLabel.Location = new System.Drawing.Point(3, 139);
+            this.uiReportExportHelpLabel.Location = new System.Drawing.Point(3, 124);
             this.uiReportExportHelpLabel.Name = "uiReportExportHelpLabel";
-            this.uiReportExportHelpLabel.Size = new System.Drawing.Size(304, 23);
+            this.uiReportExportHelpLabel.Size = new System.Drawing.Size(304, 48);
             this.uiReportExportHelpLabel.TabIndex = 6;
             this.uiReportExportHelpLabel.Text = "Export report as HTML";
             this.uiReportExportHelpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -374,7 +374,7 @@
             // 
             this.uiProgressGroupBox.Controls.Add(this.uiReportExportLabel);
             this.uiProgressGroupBox.Controls.Add(this.uiReportExportProgressBar);
-            this.uiProgressGroupBox.Location = new System.Drawing.Point(3, 501);
+            this.uiProgressGroupBox.Location = new System.Drawing.Point(3, 511);
             this.uiProgressGroupBox.Name = "uiProgressGroupBox";
             this.uiProgressGroupBox.Size = new System.Drawing.Size(310, 63);
             this.uiProgressGroupBox.TabIndex = 5;
@@ -384,6 +384,7 @@
             // uiReportExportLabel
             // 
             this.uiReportExportLabel.AutoSize = true;
+            this.uiReportExportLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiReportExportLabel.Location = new System.Drawing.Point(6, 16);
             this.uiReportExportLabel.Name = "uiReportExportLabel";
             this.uiReportExportLabel.Size = new System.Drawing.Size(90, 13);

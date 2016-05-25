@@ -159,6 +159,7 @@
             this.uiSearchSelectionComboBox.Size = new System.Drawing.Size(101, 21);
             this.uiSearchSelectionComboBox.TabIndex = 2;
             this.uiSearchSelectionComboBox.Visible = false;
+            this.uiSearchSelectionComboBox.SelectedIndexChanged += new System.EventHandler(this.uiSearchSelectionComboBox_SelectedIndexChanged);
             // 
             // uiSearchButton
             // 

@@ -32,7 +32,6 @@ namespace OSIRT.UI.CaseClosing
             backgroundWorker.DoWork += BackgroundWorker_DoWork;
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += BackgroundWorker_RunWorkerCompleted;
-           
         }
 
         public void Start()
@@ -63,7 +62,7 @@ namespace OSIRT.UI.CaseClosing
 
             (sender as BackgroundWorker).ReportProgress(10, "Archiving Case... Please Wait");
             ZipContainer(password);
-
+            HashCase();
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
             DeleteImageMagickFiles();
 

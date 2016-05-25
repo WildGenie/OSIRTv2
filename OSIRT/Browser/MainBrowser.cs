@@ -30,6 +30,8 @@ namespace OSIRT.Browser
         public event EventHandler NewTab = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler SavePageSource = delegate { };
+        public event EventHandler YouTubeDownloadProgress = delegate { };
+        public event EventHandler YouTubeDownloadComplete = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
@@ -88,52 +90,20 @@ namespace OSIRT.Browser
 
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;
-            contextMenu.Items[8].Enabled = false;
+            contextMenu.Items[8].Visible = false;
             contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
             ContextMenuStrip = contextMenu;
         }
-        //
-        private void DownloadYouTube_Click(object sender, EventArgs e)
+
+
+        private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
         {
-            // Our test youtube link
-            string link = URL;
+            YouTubeDownloadComplete?.Invoke(this, e);
+        }
 
-            /*
-             * Get the available video formats.
-             * We'll work with them in the video and audio download examples.
-             */
-            IEnumerable<VideoInfo> videoInfos = DownloadUrlResolver.GetDownloadUrls(link);
-
-            /*
-             * Select the first .mp4 video with 360p resolution
-             */
-            VideoInfo video = videoInfos
-                .First(info => info.VideoType == VideoType.Mp4 && info.Resolution == 360);
-
-            /*
-             * If the video has a decrypted signature, decipher it
-             */
-            if (video.RequiresDecryption)
-            {
-                DownloadUrlResolver.DecryptDownloadUrl(video);
-            }
-
-            /*
-             * Create the video downloader.
-             * The first argument is the video to download.
-             * The second argument is the path to save the video file.
-             */
-            var videoDownloader = new VideoDownloader(video, Path.Combine("D:/", video.Title + video.VideoExtension));
-
-            // Register the ProgressChanged event and print the current progress
-            //videoDownloader.DownloadProgressChanged += (sender, args) => Console.WriteLine(args.ProgressPercentage);
-
-            /*
-             * Execute the video downloader.
-             * For GUI applications note, that this method runs synchronously.
-             */
-            videoDownloader.Execute();
-
+        private void YouTubeDownloader_DownloadProgress(object sender, EventArgs e)
+        {
+            YouTubeDownloadProgress?.Invoke(this, e);
         }
 
         private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
@@ -249,7 +219,7 @@ namespace OSIRT.Browser
                         cache.AddImage(count, image);
                     }
                 }
-                else //TODO: what if it's exactly divisible?
+                else 
                 {
                     //find out what's left of the page to scroll, then take screenshot
                     //if it's the last image, we're going to need to crop what we need, as it'll take
@@ -498,7 +468,7 @@ namespace OSIRT.Browser
 
         private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
         {
-            contextMenu.Items[8].Enabled = OsirtHelper.IsOnYouTube(URL);
+            contextMenu.Items[8].Visible = OsirtHelper.IsOnYouTube(URL);
 
             if (element == null)
                 return;
@@ -529,7 +499,22 @@ namespace OSIRT.Browser
             {
                 downloader.ShowDialog();
             }
+        }
 
+
+        private async void DownloadYouTube_Click(object sender, EventArgs e)
+        {
+            var downloader = new YouTubeVideoDownloader(URL);
+            downloader.DownloadProgress += YouTubeDownloader_DownloadProgress;
+            downloader.DownloadComplete += YouTubeDownloader_DownloadComplete;
+            await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
+
+            //TODO: placing this here due to cross threading issues, place this somewhere sensible.
+            using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
+            {
+                vidPreviewer.ShowDialog();
+            }
+            ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
 
         }
 

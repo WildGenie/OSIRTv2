@@ -33,9 +33,6 @@ namespace OSIRT.UI.AuditLog
             string searchText = uiSearchTextTextBox.Text;
             string tableToSearch = uiTabletoSearchComboBox.SelectedValue.ToString();
 
-            Debug.WriteLine("TABLE TO SEARCH: " + tableToSearch);
-            Debug.WriteLine("SEARCH TEXT: " + searchText);
-
             DataTable table = AuditLogSearcher.Search(tableToSearch, searchText);
             SearchCompleted(this, new SearchCompletedEventArgs(table));
 
