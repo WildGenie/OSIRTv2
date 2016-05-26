@@ -30,7 +30,9 @@ namespace OSIRT.UI.Options
         private void OptionsForm_Load(object sender, EventArgs e)
         {
             uiShowMouseTrailCheckBox.Checked = settings.ShowMouseTrail;
+            uiShowMouseClicksCheckBox.Checked = settings.ShowMouseClick;
             uiDeleteCacheOnCloseCheckBox.Checked = settings.ClearCacheOnClose;
+            uiExportHashOnCloseCheckBox.Checked = settings.ExportHashOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
 
@@ -98,6 +100,12 @@ namespace OSIRT.UI.Options
             Close();
         }
 
-
+        private void uiExportHashOnCloseCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool hashOnClose = uiExportHashOnCloseCheckBox.Checked;
+            uiBrowseLocationButton.Enabled = hashOnClose;
+            settings.ExportHashOnClose = hashOnClose;
+            settings.Save();
+        }
     }
 }

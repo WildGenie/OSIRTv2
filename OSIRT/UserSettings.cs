@@ -13,6 +13,7 @@ namespace OSIRT
         public bool AuditLogNewestFirst = false;
         public bool CaseHasPassword = false;
         public int NumberOfRowsPerPage = 25;
+        public bool ExportHashOnClose = false;
 
 
         //reporting

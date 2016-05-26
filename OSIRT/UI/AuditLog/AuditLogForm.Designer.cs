@@ -32,6 +32,7 @@
             this.uiAuditLogSplitContainer = new System.Windows.Forms.SplitContainer();
             this.uiAuditOptionsToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiExportReportToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiBackToAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiSearchSelectionComboBox = new System.Windows.Forms.ComboBox();
             this.uiSearchButton = new System.Windows.Forms.Button();
             this.uiSearchTextBox = new System.Windows.Forms.TextBox();
@@ -63,7 +64,8 @@
             // 
             this.uiAuditOptionsToolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.uiAuditOptionsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiExportReportToolStripButton});
+            this.uiExportReportToolStripButton,
+            this.uiBackToAuditLogToolStripButton});
             this.uiAuditOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiAuditOptionsToolStrip.Name = "uiAuditOptionsToolStrip";
             this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 39);
@@ -79,6 +81,17 @@
             this.uiExportReportToolStripButton.Size = new System.Drawing.Size(36, 36);
             this.uiExportReportToolStripButton.Text = "Export report ";
             this.uiExportReportToolStripButton.Click += new System.EventHandler(this.uiExportReportToolStripButton_Click);
+            // 
+            // uiBackToAuditLogToolStripButton
+            // 
+            this.uiBackToAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiBackToAuditLogToolStripButton.Enabled = false;
+            this.uiBackToAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.log;
+            this.uiBackToAuditLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiBackToAuditLogToolStripButton.Name = "uiBackToAuditLogToolStripButton";
+            this.uiBackToAuditLogToolStripButton.Size = new System.Drawing.Size(36, 36);
+            this.uiBackToAuditLogToolStripButton.ToolTipText = "Back to audit log";
+            this.uiBackToAuditLogToolStripButton.Click += new System.EventHandler(this.uiBackToAuditLogToolStripButton_Click);
             // 
             // uiSearchSelectionComboBox
             // 
@@ -112,6 +125,7 @@
             this.uiSearchTextBox.Name = "uiSearchTextBox";
             this.uiSearchTextBox.Size = new System.Drawing.Size(255, 20);
             this.uiSearchTextBox.TabIndex = 15;
+            this.uiSearchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.uiSearchTextBox_KeyDown);
             // 
             // AuditLogForm
             // 
@@ -146,5 +160,6 @@
         private System.Windows.Forms.ComboBox uiSearchSelectionComboBox;
         private System.Windows.Forms.Button uiSearchButton;
         private System.Windows.Forms.TextBox uiSearchTextBox;
+        private System.Windows.Forms.ToolStripButton uiBackToAuditLogToolStripButton;
     }
 }

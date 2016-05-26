@@ -55,6 +55,7 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
+            this.uiExportHashOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -272,12 +273,13 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.uiExportHashOnCloseCheckBox);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.uiBrowseLocationButton);
             this.groupBox3.Controls.Add(this.uiHashFileLocationTextBox);
             this.groupBox3.Location = new System.Drawing.Point(9, 187);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(466, 67);
+            this.groupBox3.Size = new System.Drawing.Size(466, 108);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hash Export Location";
@@ -285,15 +287,16 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 42);
+            this.label4.Location = new System.Drawing.Point(6, 65);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(275, 13);
+            this.label4.Size = new System.Drawing.Size(419, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Select where the hash file is saved after closing the case";
+            this.label4.Text = "Select where the hash file is saved after closing the case. This has is saved in " +
+    "a .txt file.";
             // 
             // uiBrowseLocationButton
             // 
-            this.uiBrowseLocationButton.Location = new System.Drawing.Point(385, 17);
+            this.uiBrowseLocationButton.Location = new System.Drawing.Point(385, 40);
             this.uiBrowseLocationButton.Name = "uiBrowseLocationButton";
             this.uiBrowseLocationButton.Size = new System.Drawing.Size(75, 23);
             this.uiBrowseLocationButton.TabIndex = 2;
@@ -303,7 +306,7 @@
             // 
             // uiHashFileLocationTextBox
             // 
-            this.uiHashFileLocationTextBox.Location = new System.Drawing.Point(6, 19);
+            this.uiHashFileLocationTextBox.Location = new System.Drawing.Point(6, 42);
             this.uiHashFileLocationTextBox.Name = "uiHashFileLocationTextBox";
             this.uiHashFileLocationTextBox.ReadOnly = true;
             this.uiHashFileLocationTextBox.Size = new System.Drawing.Size(373, 20);
@@ -351,6 +354,17 @@
             this.uiCloseButton.Text = "Close";
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
+            // 
+            // uiExportHashOnCloseCheckBox
+            // 
+            this.uiExportHashOnCloseCheckBox.AutoSize = true;
+            this.uiExportHashOnCloseCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.uiExportHashOnCloseCheckBox.Name = "uiExportHashOnCloseCheckBox";
+            this.uiExportHashOnCloseCheckBox.Size = new System.Drawing.Size(131, 17);
+            this.uiExportHashOnCloseCheckBox.TabIndex = 4;
+            this.uiExportHashOnCloseCheckBox.Text = "Export hash on close?";
+            this.uiExportHashOnCloseCheckBox.UseVisualStyleBackColor = true;
+            this.uiExportHashOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiExportHashOnCloseCheckBox_CheckedChanged);
             // 
             // OptionsForm
             // 
@@ -413,5 +427,6 @@
         private System.Windows.Forms.TrackBar uiFPSTrackBar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label uiFPSLabel;
+        private System.Windows.Forms.CheckBox uiExportHashOnCloseCheckBox;
     }
 }

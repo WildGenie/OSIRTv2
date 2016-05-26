@@ -66,21 +66,27 @@ namespace OSIRT.UI.AuditLog
         private void UpdateSearchResults(DataTable table)
         {
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
+            uiBackToAuditLogToolStripButton.Enabled = true;
 
             if (table == null)
             {
-                uiAuditLogSplitContainer.Panel2.Controls.Clear();
                 uiAuditLogSplitContainer.Panel2.Controls.Add(new TempSearchPanel("No results to display. Please search another term."));
             }
             else
             {
                 OsirtGridView grid = new OsirtGridView();
+                grid.RowEntered += Grid_RowEntered;
                 grid.DataSource = table;
                 grid.Dock = DockStyle.Fill;
                 uiAuditLogSplitContainer.Panel2.Controls.Add(grid);
             }
         }
 
+        private void Grid_RowEntered(object sender, EventArgs e)
+        {
+            ExtendedRowEnterEventArgs args = (ExtendedRowEnterEventArgs)e;
+            rowDetailsPanel.PopulateTextBoxes(args.RowDetails);
+        }
 
         private void uiExportReportToolStripButton_Click(object sender, EventArgs e)
         {
@@ -88,6 +94,16 @@ namespace OSIRT.UI.AuditLog
             rowDetailsPanel.Visible = isReportExportPanel;
             isReportExportPanel = !isReportExportPanel;
             uiExportReportToolStripButton.Image = isReportExportPanel ? Properties.Resources.table : Properties.Resources.report;
+        }
+
+
+        private void uiBackToAuditLogToolStripButton_Click(object sender, EventArgs e)
+        {
+            uiAuditLogSplitContainer.Panel2.Controls.Clear();
+            auditTabControlPanel = new AuditTabControlPanel();
+            uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
+            AttachRowEventHandler(auditTabControlPanel);
+            uiBackToAuditLogToolStripButton.Enabled = false;
         }
 
         private void uiSearchToolStripButton_Click(object sender, EventArgs e)
@@ -98,9 +114,8 @@ namespace OSIRT.UI.AuditLog
 
         private void SwapPanels(bool on)
         {
-            rowDetailsPanel.Visible = on;
+            uiBackToAuditLogToolStripButton.Enabled = on;
             auditTabControlPanel.Visible = on;
-
             rightSearchPanel.Visible = !on;
         }
 
@@ -134,6 +149,16 @@ namespace OSIRT.UI.AuditLog
             //can't UPDATE multiple tables... look into transactions:
             //http://stackoverflow.com/questions/2044467/how-to-update-two-tables-in-one-statement-in-sql-server-2005
             //http://www.jokecamp.com/blog/make-your-sqlite-bulk-inserts-very-fast-in-c/
+        }
+
+        private void uiSearchTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                uiSearchButton_Click(this, new EventArgs());
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
         }
     }
 }

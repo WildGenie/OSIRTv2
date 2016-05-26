@@ -10,6 +10,7 @@ using OSIRT.Resources;
 using OSIRT.UI.CaseClosing;
 using OSIRT.Loggers;
 using System.Drawing;
+using OSIRT.UI.Splash;
 
 namespace OSIRT.UI
 {
@@ -34,6 +35,16 @@ namespace OSIRT.UI
        
         public MainForm()
         {
+
+            SplashScreen splash = new SplashScreen();
+            splash.TopMost = true;
+            splash.ShowDialog();
+            splash.CaseChecked += delegate
+            {
+                Show();
+            };
+
+
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
         }
@@ -63,7 +74,12 @@ namespace OSIRT.UI
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             Controls.Add(firstLoadPanel);
-    }
+        }
+
+        private void ShowSplashScreen()
+        {
+
+        }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
         {

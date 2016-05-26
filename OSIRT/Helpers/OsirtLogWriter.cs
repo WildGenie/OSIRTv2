@@ -18,7 +18,7 @@ namespace OSIRT.Helpers
 
         public static string[] ReadLog()
         {
-            return File.ReadAllText(Constants.ApplicationLog).Split();
+            return File.ReadAllText(Constants.ApplicationLog).Split(',');
         }
 
 

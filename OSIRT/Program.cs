@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 using OSIRT.UI;
+using System.Threading;
+using OSIRT.UI.Splash;
 
 namespace OSIRT
 {
     static class Program
     {
+
+        private static SplashScreen splash;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
-            {
+        {
             //TODO: SCALING: http://www.telerik.com/blogs/winforms-scaling-at-large-dpi-settings-is-it-even-possible-
 
             //Double Check sharex source, they appear to remove AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -27,7 +32,7 @@ namespace OSIRT
             **/
 
 
-#if !DEBUG            
+#if !DEBUG
             try
             {
 
@@ -38,9 +43,10 @@ namespace OSIRT
                 => FatalExceptionHandler.Handle(e.Exception);
 
 #endif
-                Application.EnableVisualStyles();
-                Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new MainForm());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+
 #if !DEBUG
             }
             catch (Exception e)
@@ -48,11 +54,12 @@ namespace OSIRT
 
                 FatalExceptionHandler.Handle(e);
 
-        }
+            }
 #endif
 
 
         }//main
+
 
         //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
         static void FatalExceptionObject(object exceptionObject)
