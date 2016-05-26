@@ -1,4 +1,5 @@
 ﻿using OSIRT.UI;
+using OSIRT.UI.CaseClosing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +26,10 @@ namespace OSIRT
             using (UnhandledExceptionForm exceptionFrom = new UnhandledExceptionForm(exception.ToString()))
             {
                 if (DialogResult.OK == exceptionFrom.ShowDialog())
-                    Process.GetCurrentProcess().Kill();
+                {
+                    new CaseCleanUpLogic("", false);
+                    Application.Exit();
+                }
             }
 
 

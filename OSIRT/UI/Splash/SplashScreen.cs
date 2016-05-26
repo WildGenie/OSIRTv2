@@ -22,7 +22,6 @@ namespace OSIRT.UI.Splash
         public SplashScreen()
         {
             InitializeComponent();
-            //check log to see if closed properly (background worker)
         }
 
         private  void SplashScreen_Load(object sender, EventArgs e)
@@ -30,21 +29,19 @@ namespace OSIRT.UI.Splash
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.DoWork +=  delegate
             {
-
                 Thread.Sleep(3500);
                 string[] log =  OsirtLogWriter.ReadLog();
                 if (!Convert.ToBoolean(log[1]))
                 {
                     if (!File.Exists(log[0] + ".osr"))
                     {
-                        backgroundWorker.ReportProgress(10, $"Archiving {log[0] + ".osr"}");
+                        backgroundWorker.ReportProgress(10, $"Re-Archiving {log[0] + ".osr"}");
                     }
                 }
             };
             backgroundWorker.ProgressChanged += BackgroundWorker_ProgressChanged;
             backgroundWorker.RunWorkerCompleted += delegate
             {
-                
                 CaseChecked?.Invoke(this, e);
                 Close();
             };
