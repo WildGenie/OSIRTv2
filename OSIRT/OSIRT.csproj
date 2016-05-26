@@ -37,6 +37,9 @@
   <PropertyGroup>
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>osirt_icon.png.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Cyotek.Windows.Forms.ImageBox, Version=1.1.5.1, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\CyotekImageBox.1.1.5.1\lib\net20\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
@@ -637,6 +640,7 @@
     <None Include="Resources\alarm-clock.png" />
     <None Include="Resources\transform_crop.png" />
     <None Include="Resources\source_code.ico" />
+    <Content Include="osirt_icon.png.ico" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
