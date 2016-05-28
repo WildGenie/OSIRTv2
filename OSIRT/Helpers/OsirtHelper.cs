@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Linq;
 using System.Text;
 using System.Security.Cryptography;
+using ImageMagick;
+using OSIRT.Extensions;
 
 namespace OSIRT.Helpers
 {
@@ -53,6 +55,42 @@ namespace OSIRT.Helpers
 
             return (PasswordScore)score;
         }
+
+        public static string ResizeConstabLogo(string filepath)
+        {
+            //need to convert image to png
+            try
+            {
+                using (MagickImage image = new MagickImage(filepath))
+                {
+                    image.Write(Constants.TempLogoFile);
+                }
+
+                using (MagickImage image = new MagickImage(Constants.TempLogoFile))
+                {
+                    MagickGeometry size = new MagickGeometry(196, 196);
+                    size.IgnoreAspectRatio = false;
+                    image.Resize(size);
+                    image.Write(Constants.TempImgFile);
+                }
+                string base64;
+                using (Image img = new Bitmap(Constants.TempImgFile))
+                {
+                     base64 = img.ToBase64Encoded();
+                }
+                ImageDiskCache.RemoveItemsInCache();
+                return base64;
+            }
+            catch
+            {
+                throw new Exception("Unable to save icon");
+            }
+
+            
+      
+
+        }
+    
 
         //http://stackoverflow.com/questions/1337750/get-imageformat-from-file-extension/1337773#1337773
         public static ImageFormat GetImageFormat(string fileName)

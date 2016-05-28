@@ -17,7 +17,7 @@ namespace OSIRT.Helpers
         public static string GetCaseDetails()
         {
             //TODO: investigating_agency missing from output? perhaps the audit log header is covering it.
-            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {
@@ -69,10 +69,11 @@ namespace OSIRT.Helpers
 
             string save = auditHtml.Replace("<%%AUDIT_LOG%%>", auditLog)
                                    .Replace("<%%CASE_DETAILS%%>", caseDetails);
+                                   
             string save2 = save.Replace("<%%MORE_DETAILS%%>", GetCaseDetails())
+                 .Replace("<%%CONSTAB_LOGO%%>", UserSettings.Load().ConstabIcon)
                 .Replace("<%%DATE_TIME%%>", dateAndTime)
                 .Replace("<%%_GSCP_%%>", gscp);
-
             return save2;
         }
 
@@ -82,7 +83,7 @@ namespace OSIRT.Helpers
                 $@"<div id='case-details'>
                 <hr>
                 <h2 id='log-title'>Audit Log <%%_GSCP_%%></h2>
-                <img src='C:\Users\Joe\Desktop\kent.gif' alt='' />
+                <img src='data:image/png;base64, <%%CONSTAB_LOGO%%>'>
                 <%%MORE_DETAILS%%>
                 <br>
                 <p id='when-printed'>Printed: <%%DATE_TIME%%></p>

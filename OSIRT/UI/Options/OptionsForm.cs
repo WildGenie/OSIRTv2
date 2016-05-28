@@ -2,6 +2,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 using OSIRT.Extensions;
+using System.Diagnostics;
+using OSIRT.Helpers;
+using System.Threading.Tasks;
 
 namespace OSIRT.UI.Options
 {
@@ -36,8 +39,8 @@ namespace OSIRT.UI.Options
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
 
-            if (settings.IconAsBase64 != "")
-                uiConstabularyIconPictureBox.Image = settings.IconAsBase64.Base64ToImage();
+            if (settings.ConstabIcon != "")
+                uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
         }
 
         private void uiDeleteCacheOnCloseCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -46,7 +49,7 @@ namespace OSIRT.UI.Options
             settings.Save();
         }
 
-        private void uiBrowseIconButton_Click(object sender, EventArgs e)
+        private async void uiBrowseIconButton_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png, *gif) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.gif";
@@ -57,13 +60,17 @@ namespace OSIRT.UI.Options
                 return;
 
             string path = dialog.FileName;
-
-            Image icon = Image.FromFile(path);
-            uiConstabularyIconPictureBox.Image = icon;
-
-
-            settings.IconAsBase64 = icon.ToBase64Encoded();
-            settings.Save();
+            try
+            {
+                string base64 = await Task.Run(() => OsirtHelper.ResizeConstabLogo(path));
+                uiConstabularyIconPictureBox.Image = base64.Base64ToImage();
+                settings.ConstabIcon = base64;
+                settings.Save();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to save icon", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void uiBrowseLocationButton_Click(object sender, EventArgs e)

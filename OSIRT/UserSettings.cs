@@ -6,7 +6,7 @@ namespace OSIRT
     {
         public string Homepage = "http://google.com";
         public string Hash = "MD5";
-        public string IconAsBase64 = "";
+        public string ConstabIcon = "";
         public bool ClearCacheOnClose = false;
         public bool DefaultSaveAsPdf = false;
         public bool HashContainerOnClose = false;

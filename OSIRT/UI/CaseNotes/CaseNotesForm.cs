@@ -35,6 +35,7 @@ namespace OSIRT.UI.CaseNotes
 
         private void uiEnteredNoteSpellBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
+
             if (e.Key == Key.Enter)
             {
                 AddNote();
@@ -71,6 +72,7 @@ namespace OSIRT.UI.CaseNotes
 
         private void uiAddNoteButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(uiEnteredNoteSpellBox.Text)) return;
             AddNote();
         }
 

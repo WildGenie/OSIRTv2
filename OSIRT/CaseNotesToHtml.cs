@@ -18,7 +18,8 @@ namespace OSIRT
             string caseNotes = GetCaseNotesToHtml();
             string htmlResource = OsirtHelper.GetResource("casenotes.html");
             htmlResource = htmlResource.Replace("<%%CASE_NOTES%%>", caseNotes)
-                                       .Replace("<%%CASE_DETAILS%%>", caseDetails);
+                                       .Replace("<%%CASE_DETAILS%%>", caseDetails)
+                                       .Replace("<%%CONSTAB_LOGO%%>", UserSettings.Load().ConstabIcon);
             return htmlResource;
         }
 

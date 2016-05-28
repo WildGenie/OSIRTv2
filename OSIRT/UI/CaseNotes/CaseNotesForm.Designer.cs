@@ -34,12 +34,9 @@
             this.uiButtonPanel = new System.Windows.Forms.Panel();
             this.uiAddNoteButton = new System.Windows.Forms.Button();
             this.uiEnteredNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent4 = new System.Windows.Controls.TextBox();
+            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             this.uiOptionsToolStrip = new System.Windows.Forms.ToolStrip();
-            this.uiPrintToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.uiExportAsPDFToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiExportTxtToolStripButton = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -117,31 +114,12 @@
             // uiOptionsToolStrip
             // 
             this.uiOptionsToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uiPrintToolStripButton,
-            this.toolStripSeparator1,
-            this.uiExportAsPDFToolStripButton,
-            this.uiExportTxtToolStripButton});
+            this.uiExportAsPDFToolStripButton});
             this.uiOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiOptionsToolStrip.Name = "uiOptionsToolStrip";
             this.uiOptionsToolStrip.Size = new System.Drawing.Size(696, 25);
             this.uiOptionsToolStrip.TabIndex = 1;
             this.uiOptionsToolStrip.Text = "toolStrip1";
-            // 
-            // uiPrintToolStripButton
-            // 
-            this.uiPrintToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiPrintToolStripButton.Enabled = false;
-            this.uiPrintToolStripButton.Image = global::OSIRT.Properties.Resources.printer;
-            this.uiPrintToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiPrintToolStripButton.Name = "uiPrintToolStripButton";
-            this.uiPrintToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiPrintToolStripButton.Text = "toolStripButton2";
-            this.uiPrintToolStripButton.ToolTipText = "Print case notes";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // uiExportAsPDFToolStripButton
             // 
@@ -153,17 +131,6 @@
             this.uiExportAsPDFToolStripButton.Text = "p";
             this.uiExportAsPDFToolStripButton.ToolTipText = "Export as PDF";
             this.uiExportAsPDFToolStripButton.Click += new System.EventHandler(this.uiExportAsPDFToolStripButton_Click);
-            // 
-            // uiExportTxtToolStripButton
-            // 
-            this.uiExportTxtToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiExportTxtToolStripButton.Enabled = false;
-            this.uiExportTxtToolStripButton.Image = global::OSIRT.Properties.Resources.txt_file;
-            this.uiExportTxtToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiExportTxtToolStripButton.Name = "uiExportTxtToolStripButton";
-            this.uiExportTxtToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiExportTxtToolStripButton.Text = "toolStripButton2";
-            this.uiExportTxtToolStripButton.ToolTipText = "Export as plain text";
             // 
             // CaseNotesForm
             // 
@@ -197,13 +164,11 @@
         private System.Windows.Controls.TextBox hostedComponent1;
         private System.Windows.Forms.ToolStrip uiOptionsToolStrip;
         private System.Windows.Forms.ToolStripButton uiExportAsPDFToolStripButton;
-        private System.Windows.Forms.ToolStripButton uiExportTxtToolStripButton;
-        private System.Windows.Forms.ToolStripButton uiPrintToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Panel uiButtonPanel;
         private System.Windows.Forms.Button uiAddNoteButton;
         private System.Windows.Controls.TextBox hostedComponent2;
         private System.Windows.Controls.TextBox hostedComponent3;
         private System.Windows.Controls.TextBox hostedComponent4;
+        private System.Windows.Controls.TextBox hostedComponent5;
     }
 }

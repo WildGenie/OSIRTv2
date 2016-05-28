@@ -48,6 +48,7 @@ namespace OSIRT.Helpers
                     ProduceOutline = true,
                     DocumentTitle = documentTitle,
                     PaperSize = PaperKind.A4,
+                    Orientation = GlobalSettings.PaperOrientation.Landscape,
 
                     Margins =
                     {

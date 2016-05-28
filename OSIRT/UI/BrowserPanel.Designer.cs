@@ -148,6 +148,7 @@
             // 
             // toolStripDropDownButton1
             // 
+            this.toolStripDropDownButton1.AutoSize = false;
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.snippetToolStripMenuItem,
@@ -156,7 +157,7 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(13, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(23, 22);
             this.toolStripDropDownButton1.ToolTipText = "More screen capture options";
             // 
             // snippetToolStripMenuItem
@@ -195,13 +196,14 @@
             // 
             // toolStripDropDownButton2
             // 
+            this.toolStripDropDownButton2.AutoSize = false;
             this.toolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
             this.toolStripDropDownButton2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.markerWindowToolStripMenuItem1});
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(13, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(23, 22);
             this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ToolTipText = "More video options";
             // 
