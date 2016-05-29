@@ -19,6 +19,7 @@ using OSIRT.UI.DownloadClient;
 using OSIRT.UI.ViewSource;
 using System.Collections.Generic;
 using YoutubeExtractor;
+using OSIRT.UI;
 
 namespace OSIRT.Browser
 {
@@ -87,13 +88,16 @@ namespace OSIRT.Browser
             contextMenu.Items.Add("Download all images", Properties.Resources.download_cloud, DownloadAllImages_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add("Extract YouTube video", Properties.Resources.download_cloud, DownloadYouTube_Click);
+            contextMenu.Items.Add("View image Exif data", Properties.Resources.camera, ViewExifData_Click);
 
             contextMenu.Items[0].Enabled = false;
             contextMenu.Items[4].Enabled = false;
             contextMenu.Items[8].Visible = false;
+            contextMenu.Items[9].Enabled = false;
             contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
             ContextMenuStrip = contextMenu;
         }
+
 
 
         private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
@@ -473,7 +477,9 @@ namespace OSIRT.Browser
             if (element == null)
                 return;
 
-            contextMenu.Items[0].Enabled = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
+            bool isImageElement = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
+            contextMenu.Items[0].Enabled = isImageElement;
+            contextMenu.Items[9].Enabled = isImageElement &&  OsirtHelper.HasJpegExtension(OsirtHelper.StripQueryFromPath(element.GetAttribute("src")));
             contextMenu.Items[4].Enabled = (element.TagName == "A");
             
         }
@@ -528,7 +534,17 @@ namespace OSIRT.Browser
             ViewPageSource?.Invoke(this, new ViewSourceEventArgs(DocumentText, DocumentTitle));
         }
 
-
+        private void ViewExifData_Click(object sender, EventArgs e)
+        {
+            string path = element.GetAttribute("src");
+            WebClient webClientexif = new WebClient();
+            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+            webClientexif.DownloadFileAsync(new Uri(path), file, file);
+            webClientexif.DownloadFileCompleted += (snd, evt) =>
+            {
+                new ExifViewer(evt.UserState.ToString(), path).Show();
+            };
+        }
 
         private void SaveImageAs_Click(object sender, EventArgs e)
         {

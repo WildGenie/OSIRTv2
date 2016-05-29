@@ -132,14 +132,13 @@ namespace OSIRT.UI
 
         private void uiForwardButton_Click(object sender, EventArgs e)
         {
-            //TODO: check if can go forward
-            uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
+            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
+                uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
         }
 
         private void uiRefreshButton_Click(object sender, EventArgs e)
         {
-            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
-                uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
+            uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
         }
 
         private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)

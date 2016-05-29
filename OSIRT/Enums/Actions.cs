@@ -18,6 +18,7 @@
         CaseLoaded,
         CaseClosed,
         CaseNotes,
+        Exif,
         Artefacts
 
     }

@@ -130,6 +130,12 @@ namespace OSIRT.Helpers
             }
         }
 
+        public static bool HasJpegExtension(string path)
+        {
+            return Path.GetExtension(path).Equals(".jpg", StringComparison.InvariantCultureIgnoreCase)
+                    || Path.GetExtension(path).Equals(".jpeg", StringComparison.InvariantCultureIgnoreCase);
+        }
+
         public static string StripQueryFromPath(string path)
         {
             Uri uri = new Uri(path);

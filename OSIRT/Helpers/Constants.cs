@@ -58,6 +58,7 @@ namespace OSIRT.Helpers
                 { Enums.Actions.Video, @"videos" },
                 { Enums.Actions.Download, @"downloads" },
                 { Enums.Actions.Source, @"downloads\source_code" },
+                { Enums.Actions.Exif, @"downloads\exif" },
                 { Enums.Actions.Report, @"reports" },
             };
 

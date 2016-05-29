@@ -9,7 +9,7 @@ namespace OSIRT
     static class Program
     {
 
-        private static SplashScreen splash;
+       
 
         /// <summary>
         /// The main entry point for the application.
