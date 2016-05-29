@@ -22,6 +22,7 @@ namespace OSIRT.UI.DownloadClient
         private string url;
         private WebClient client;
         private int count;
+        private int errorCount;
         private int numFiles;
 
         public DownloadForm(Dictionary<string, string> files, Actions action)
@@ -38,7 +39,6 @@ namespace OSIRT.UI.DownloadClient
             savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), filename);
             url = files.First().Key;
 
-            Debug.WriteLine("FILENAME: " + filename);
             try
             {
                 client.DownloadFileAsync(new Uri(url), savePath);
@@ -46,7 +46,7 @@ namespace OSIRT.UI.DownloadClient
             }
             catch (Exception e)
             {
-                count++;
+                errorCount++;
             }
         }
 
@@ -60,11 +60,8 @@ namespace OSIRT.UI.DownloadClient
             {
                 Download();
             }
+
         }
-
-
-
-
 
         private void Client_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
@@ -74,6 +71,11 @@ namespace OSIRT.UI.DownloadClient
             if (files.Count > 0)
             {
                 Download();
+            }
+            else //completed
+            {
+                uiCompleteLabel.Text = $"Download completed, you may now close this window.{Environment.NewLine} {count} image(s) were downloaded.{Environment.NewLine} {errorCount} image(s) could not be downloaded.";
+                uiCloseButton.Enabled = true;
             }
         }
 
@@ -97,6 +99,11 @@ namespace OSIRT.UI.DownloadClient
         private void uiCompleteLabel_SizeChanged(object sender, EventArgs e)
         {
             uiCompleteLabel.Left = (ClientSize.Width - uiCompleteLabel.Size.Width) / 2;
+        }
+
+        private void uiCloseButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

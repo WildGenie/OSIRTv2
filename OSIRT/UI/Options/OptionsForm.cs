@@ -5,6 +5,7 @@ using OSIRT.Extensions;
 using System.Diagnostics;
 using OSIRT.Helpers;
 using System.Threading.Tasks;
+using OSIRT.VideoCapture;
 
 namespace OSIRT.UI.Options
 {
@@ -36,11 +37,22 @@ namespace OSIRT.UI.Options
             uiShowMouseClicksCheckBox.Checked = settings.ShowMouseClick;
             uiDeleteCacheOnCloseCheckBox.Checked = settings.ClearCacheOnClose;
             uiExportHashOnCloseCheckBox.Checked = settings.ExportHashOnClose;
+            uiBrowseLocationButton.Enabled = settings.ExportHashOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
 
-            if (settings.ConstabIcon != "")
-                uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
+            uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
+
+            if (OsirtVideoCapture.HasStereoMix())
+            {
+                uiSteroMixStatusLabel.ForeColor = Color.Green;
+                uiSteroMixStatusLabel.Text = "Stereo Mix found";
+            }
+            else
+            {
+                uiSteroMixStatusLabel.ForeColor = Color.Red;
+                uiSteroMixStatusLabel.Text = "Stereo Mix not found";
+            }
         }
 
         private void uiDeleteCacheOnCloseCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -114,5 +126,6 @@ namespace OSIRT.UI.Options
             settings.ExportHashOnClose = hashOnClose;
             settings.Save();
         }
+
     }
 }

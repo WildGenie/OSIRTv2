@@ -23,6 +23,7 @@ namespace OSIRT.UI.AuditLog
 
         public string ExportPath { get; private set; }
         public string GSCP { get; private set; }
+        private bool openReport = false;
 
 
         public ExportAuditOptionsPanel()
@@ -94,6 +95,8 @@ namespace OSIRT.UI.AuditLog
             HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+            if (openReport)
+                Process.Start(Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
         }
 
         private void EnableOptionsGroupboxes(bool enabled)
@@ -121,6 +124,8 @@ namespace OSIRT.UI.AuditLog
             Thread.Sleep(750);
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+            if(openReport)
+                Process.Start(Path.Combine(ExportPath, Constants.ReportContainerName, "combined.html"));
         }
 
 
@@ -249,10 +254,15 @@ namespace OSIRT.UI.AuditLog
                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
                 sb.AppendLine(string.Join(",", fields));
             }
-
+            //TODO: get export path, log and hash!
             File.WriteAllText(@"D:/test.csv", sb.ToString());
 
 
+        }
+
+        private void uiOpenReportCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            openReport = uiOpenReportCheckBox.Checked;
         }
     }
 }

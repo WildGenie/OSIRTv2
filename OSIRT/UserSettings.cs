@@ -6,14 +6,14 @@ namespace OSIRT
     {
         public string Homepage = "http://google.com";
         public string Hash = "MD5";
-        public string ConstabIcon = "";
+        public string ConstabIcon = @"iVBORw0KGgoAAAANSUhEUgAAAMQAAADECAIAAABPxBk8AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAFsSURBVHja7NJBDQAACMQwwL/nQwMJz1bCsk5S8GEkwEyYCTOBmTATZsJMYCbMhJnATJgJM2EmMBNmwkxgJsyEmTATmAkzYSYwE2bCTJgJzISZMBOYCTNhJswEZsJMmAnMhJkwE2YCM2EmzARmwkyYCTOBmTATZsJMYCbMhJnATJgJM2EmMBNmwkxgJsyEmTATmAkzYSYwE2bCTJgJzISZMBOYCTNhJswEZsJMmAnMhJkwE2YCM2EmzARmwkyYCTOBmTATZgIzYSbMhJnATJgJM2EmMBNmwkxgJsyEmTATmAkzYSYwE2bCTJgJzISZMBOYCTNhJswEZsJMmAnMhJkwE2YCM2EmzARmwkyYCTOBmTATZgIzYSbMhJnATJgJM4GZMBNmwkxgJsyEmTATmAkzYSYwE2bCTJgJzISZMBOYCTNhJswEZsJMmAnMhJkwE2YCM2EmzARmwkyYCTOBmTATZgIzYSbMhJngYgUYAPYwBIX3y9zlAAAAAElFTkSuQmCC";
         public bool ClearCacheOnClose = false;
         public bool DefaultSaveAsPdf = false;
         public bool HashContainerOnClose = false;
         public bool AuditLogNewestFirst = false;
         public bool CaseHasPassword = false;
         public int NumberOfRowsPerPage = 25;
-        public bool ExportHashOnClose = false;
+        public bool ExportHashOnClose = true;
 
 
         //reporting

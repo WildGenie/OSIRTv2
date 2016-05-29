@@ -52,17 +52,20 @@ namespace OSIRT.UI.CaseClosing
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            string caseClosed = "[Case closed";
+            caseClosed += UserSettings.Load().HashContainerOnClose ? "- Hash exported]" : "]" ;
+
             if (UserSettings.Load().ClearCacheOnClose)
             {
                 (sender as BackgroundWorker).ReportProgress(10, "Deleting IE Cache... Please Wait");
                 CleanInternetExporerCache();
             }
             if(!isInAuditViewMode) //Still getting logged due to this logic also exisitng in the MainForm close method
-                Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, $"[Case closed - Hash exported]", Constants.CaseContainerName));
+                Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, caseClosed, Constants.CaseContainerName));
 
             (sender as BackgroundWorker).ReportProgress(10, "Archiving Case... Please Wait");
             ZipContainer(password);
-            HashCase();
+            if(UserSettings.Load().HashContainerOnClose) HashCase();
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
             DeleteImageMagickFiles();
 

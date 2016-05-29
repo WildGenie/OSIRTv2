@@ -291,6 +291,12 @@
     <Compile Include="UI\DownloadClient\DownloadForm.Designer.cs">
       <DependentUpon>DownloadForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ExifViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExifViewerForm.Designer.cs">
+      <DependentUpon>ExifViewerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -460,6 +466,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\DownloadClient\DownloadForm.resx">
       <DependentUpon>DownloadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExifViewerForm.resx">
+      <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
@@ -641,6 +650,7 @@
     <None Include="Resources\transform_crop.png" />
     <None Include="Resources\source_code.ico" />
     <Content Include="osirt_icon.png.ico" />
+    <None Include="Resources\computing-cloud.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

@@ -157,7 +157,7 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(18, 22);
             this.toolStripDropDownButton1.ToolTipText = "More screen capture options";
             // 
             // snippetToolStripMenuItem
@@ -203,7 +203,7 @@
             this.toolStripDropDownButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton2.Image")));
             this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
-            this.toolStripDropDownButton2.Size = new System.Drawing.Size(23, 22);
+            this.toolStripDropDownButton2.Size = new System.Drawing.Size(18, 22);
             this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ToolTipText = "More video options";
             // 

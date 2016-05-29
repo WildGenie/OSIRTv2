@@ -90,7 +90,7 @@ namespace OSIRT.VideoCapture
 
         }
 
-        private static bool HasStereoMix()
+        public static bool HasStereoMix()
         {
             VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
             string[] allLines = null;

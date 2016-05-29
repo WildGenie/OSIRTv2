@@ -45,9 +45,9 @@
             this.uiShowMouseClicksCheckBox = new System.Windows.Forms.CheckBox();
             this.uiShowMouseTrailCheckBox = new System.Windows.Forms.CheckBox();
             this.uiAudioGroupBox = new System.Windows.Forms.GroupBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.uiExportHashOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uiBrowseLocationButton = new System.Windows.Forms.Button();
             this.uiHashFileLocationTextBox = new System.Windows.Forms.TextBox();
@@ -55,7 +55,9 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
-            this.uiExportHashOnCloseCheckBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.uiSteroMixStatusLabel = new System.Windows.Forms.Label();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -242,6 +244,8 @@
             // 
             // uiAudioGroupBox
             // 
+            this.uiAudioGroupBox.Controls.Add(this.uiSteroMixStatusLabel);
+            this.uiAudioGroupBox.Controls.Add(this.label2);
             this.uiAudioGroupBox.Controls.Add(this.label5);
             this.uiAudioGroupBox.Location = new System.Drawing.Point(8, 6);
             this.uiAudioGroupBox.Name = "uiAudioGroupBox";
@@ -249,16 +253,6 @@
             this.uiAudioGroupBox.TabIndex = 0;
             this.uiAudioGroupBox.TabStop = false;
             this.uiAudioGroupBox.Text = "Audio";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(355, 26);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "In order to record sound, Stereo Mix need to be enabled on this computer.\r\nClick " +
-    "here to find out how to enable Stereo Mix.";
             // 
             // tabPage3
             // 
@@ -283,6 +277,17 @@
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hash Export Location";
+            // 
+            // uiExportHashOnCloseCheckBox
+            // 
+            this.uiExportHashOnCloseCheckBox.AutoSize = true;
+            this.uiExportHashOnCloseCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.uiExportHashOnCloseCheckBox.Name = "uiExportHashOnCloseCheckBox";
+            this.uiExportHashOnCloseCheckBox.Size = new System.Drawing.Size(131, 17);
+            this.uiExportHashOnCloseCheckBox.TabIndex = 4;
+            this.uiExportHashOnCloseCheckBox.Text = "Export hash on close?";
+            this.uiExportHashOnCloseCheckBox.UseVisualStyleBackColor = true;
+            this.uiExportHashOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiExportHashOnCloseCheckBox_CheckedChanged);
             // 
             // label4
             // 
@@ -327,7 +332,7 @@
             // 
             // uiBrowseIconButton
             // 
-            this.uiBrowseIconButton.Location = new System.Drawing.Point(230, 134);
+            this.uiBrowseIconButton.Location = new System.Drawing.Point(10, 138);
             this.uiBrowseIconButton.Name = "uiBrowseIconButton";
             this.uiBrowseIconButton.Size = new System.Drawing.Size(75, 23);
             this.uiBrowseIconButton.TabIndex = 1;
@@ -338,7 +343,7 @@
             // uiConstabularyIconPictureBox
             // 
             this.uiConstabularyIconPictureBox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.uiConstabularyIconPictureBox.Location = new System.Drawing.Point(311, 15);
+            this.uiConstabularyIconPictureBox.Location = new System.Drawing.Point(106, 19);
             this.uiConstabularyIconPictureBox.Name = "uiConstabularyIconPictureBox";
             this.uiConstabularyIconPictureBox.Size = new System.Drawing.Size(150, 142);
             this.uiConstabularyIconPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -355,16 +360,33 @@
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
-            // uiExportHashOnCloseCheckBox
+            // label5
             // 
-            this.uiExportHashOnCloseCheckBox.AutoSize = true;
-            this.uiExportHashOnCloseCheckBox.Location = new System.Drawing.Point(6, 19);
-            this.uiExportHashOnCloseCheckBox.Name = "uiExportHashOnCloseCheckBox";
-            this.uiExportHashOnCloseCheckBox.Size = new System.Drawing.Size(131, 17);
-            this.uiExportHashOnCloseCheckBox.TabIndex = 4;
-            this.uiExportHashOnCloseCheckBox.Text = "Export hash on close?";
-            this.uiExportHashOnCloseCheckBox.UseVisualStyleBackColor = true;
-            this.uiExportHashOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiExportHashOnCloseCheckBox_CheckedChanged);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(260, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "In order to record sound, Stereo Mix must be enabled.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Stereo Mix status: ";
+            // 
+            // uiSteroMixStatusLabel
+            // 
+            this.uiSteroMixStatusLabel.AutoSize = true;
+            this.uiSteroMixStatusLabel.ForeColor = System.Drawing.Color.Red;
+            this.uiSteroMixStatusLabel.Location = new System.Drawing.Point(94, 38);
+            this.uiSteroMixStatusLabel.Name = "uiSteroMixStatusLabel";
+            this.uiSteroMixStatusLabel.Size = new System.Drawing.Size(70, 13);
+            this.uiSteroMixStatusLabel.TabIndex = 2;
+            this.uiSteroMixStatusLabel.Text = "Not Available";
             // 
             // OptionsForm
             // 
@@ -425,8 +447,10 @@
         private System.Windows.Forms.TextBox uiHashFileLocationTextBox;
         private System.Windows.Forms.Button uiCloseButton;
         private System.Windows.Forms.TrackBar uiFPSTrackBar;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label uiFPSLabel;
         private System.Windows.Forms.CheckBox uiExportHashOnCloseCheckBox;
+        private System.Windows.Forms.Label uiSteroMixStatusLabel;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label5;
     }
 }
