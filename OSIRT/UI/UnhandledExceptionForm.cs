@@ -21,5 +21,11 @@ namespace OSIRT.UI
         private void UnhandledExceptionForm_Load(object sender, EventArgs e)
         {
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Clipboard.Clear();    //Clear if any old value is there in Clipboard        
+            Clipboard.SetText(uiExceptionMessageTextBox.Text); //Copy text to Clipboard
+        }
     }
 }

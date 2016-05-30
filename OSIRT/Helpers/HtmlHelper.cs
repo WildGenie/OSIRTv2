@@ -86,7 +86,7 @@ namespace OSIRT.Helpers
                 <img src='data:image/png;base64, <%%CONSTAB_LOGO%%>'>
                 <%%MORE_DETAILS%%>
                 <br>
-                <p id='when-printed'>Printed: <%%DATE_TIME%%></p>
+                <p id='when-printed'>Created: <%%DATE_TIME%%></p>
                 <hr>
             </div>
             <p style='page-break-after:always; '><!-- pagebreak --></p>";

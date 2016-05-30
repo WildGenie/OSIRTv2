@@ -60,7 +60,7 @@ namespace OSIRT.UI
             e.Cancel = true;
             DialogResult result = MessageBox.Show(strings.In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_, "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
-            if (result != DialogResult.Cancel || result != DialogResult.No)
+            if (result == DialogResult.Yes)
             {
                 caseClosed = true;
                 ClosingOsirt();

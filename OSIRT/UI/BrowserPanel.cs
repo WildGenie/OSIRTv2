@@ -146,8 +146,6 @@ namespace OSIRT.UI
             CaseClosing?.Invoke(this, e);
         }
 
-
-
         private MarkerWindow markerWindow;
         private void markerWindowToolStripMenuItem1_Click(object sender, EventArgs e)
         {

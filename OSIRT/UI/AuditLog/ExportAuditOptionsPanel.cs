@@ -24,6 +24,7 @@ namespace OSIRT.UI.AuditLog
         public string ExportPath { get; private set; }
         public string GSCP { get; private set; }
         private bool openReport = false;
+   
 
 
         public ExportAuditOptionsPanel()
@@ -157,19 +158,47 @@ namespace OSIRT.UI.AuditLog
             backgroundWorker.RunWorkerCompleted += delegate
             {
                 uiProgressGroupBox.Hide();
-                MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if(!openReport)
+                    MessageBox.Show("Report successfully exported", "Report Exported", MessageBoxButtons.OK, MessageBoxIcon.Information);
             };
             backgroundWorker.RunWorkerAsync();
         }
 
         private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
         {
-            RunWorker(ExportAsHtml);
+            if (ReportExists(ExportPath))
+            {
+                if (CanOverwriteReport())
+                    RunWorker(ExportAsHtml);
+            }
+            else
+            {
+                RunWorker(ExportAsHtml);
+            }
         }
 
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
-            RunWorker(ExportAsPdf);
+            if (ReportExists(ExportPath))
+            {
+                if (CanOverwriteReport())
+                    RunWorker(ExportAsPdf);
+            }
+            else
+            {
+                RunWorker(ExportAsPdf);
+            }
+        }
+
+        private bool ReportExists(string selectedPath)
+        {
+            return Directory.Exists(Path.Combine(selectedPath, Constants.ReportContainerName));
+        }
+
+        private bool CanOverwriteReport()
+        {
+            DialogResult overwrite = MessageBox.Show("A report for this case already exists at this location. Do you want to overwrite the existing report?", "Report Already Exists", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            return overwrite == DialogResult.Yes;
         }
 
         private void uiBrowseButton_Click(object sender, EventArgs e)
@@ -180,8 +209,10 @@ namespace OSIRT.UI.AuditLog
                 if (result != DialogResult.OK)
                     return;
 
-                ExportPath = folderDialog.SelectedPath;
+                string selectedPath = folderDialog.SelectedPath;
+                ExportPath = selectedPath;
                 uiPathTextBox.Text = ExportPath;
+
             }
         }
 
@@ -241,7 +272,7 @@ namespace OSIRT.UI.AuditLog
             GSCP = uiGSCPComboBox.Text;
         }
 
-        private void uiExportAsCaseFileButton_Click(object sender, EventArgs e)
+        private void ExportAsCsv()
         {
             StringBuilder sb = new StringBuilder();
             DataTable dt = GetMergedDataTable();
@@ -254,10 +285,17 @@ namespace OSIRT.UI.AuditLog
                 IEnumerable<string> fields = row.ItemArray.Select(field => field.ToString());
                 sb.AppendLine(string.Join(",", fields));
             }
-            //TODO: get export path, log and hash!
-            File.WriteAllText(@"D:/test.csv", sb.ToString());
 
+            string csvPath = Path.Combine(ExportPath, Constants.ReportContainerName + ".csv");
+            File.WriteAllText(csvPath, sb.ToString());
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(csvPath), Constants.ReportContainerName));
+            if (openReport)
+                Process.Start(csvPath);
+        }
 
+        private void uiExportAsCaseFileButton_Click(object sender, EventArgs e)
+        {
+            RunWorker(ExportAsCsv);
         }
 
         private void uiOpenReportCheckBox_CheckedChanged(object sender, EventArgs e)

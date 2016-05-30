@@ -242,7 +242,7 @@ namespace OSIRT.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In order to safely close a case, you are required to enter the case password. Would you like to enter the case password now?.
+        ///   Looks up a localized string similar to Would you like to safely close the current case?.
         /// </summary>
         internal static string In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_ {
             get {

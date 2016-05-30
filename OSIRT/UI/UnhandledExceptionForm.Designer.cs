@@ -32,7 +32,7 @@
             this.uiExceptionMessageTextBox = new System.Windows.Forms.TextBox();
             this.uiErrorLabel = new System.Windows.Forms.Label();
             this.uiQuitButton = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.uiCopyToClipboardButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // uiExceptionMessageTextBox
@@ -65,21 +65,22 @@
             this.uiQuitButton.Text = "Close";
             this.uiQuitButton.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // uiCopyToClipboardButton
             // 
-            this.button2.Location = new System.Drawing.Point(319, 269);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Put error message on clipboard";
-            this.button2.UseVisualStyleBackColor = true;
+            this.uiCopyToClipboardButton.Location = new System.Drawing.Point(319, 269);
+            this.uiCopyToClipboardButton.Name = "uiCopyToClipboardButton";
+            this.uiCopyToClipboardButton.Size = new System.Drawing.Size(173, 23);
+            this.uiCopyToClipboardButton.TabIndex = 3;
+            this.uiCopyToClipboardButton.Text = "Put error message on clipboard";
+            this.uiCopyToClipboardButton.UseVisualStyleBackColor = true;
+            this.uiCopyToClipboardButton.Click += new System.EventHandler(this.button2_Click);
             // 
             // UnhandledExceptionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(586, 304);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.uiCopyToClipboardButton);
             this.Controls.Add(this.uiQuitButton);
             this.Controls.Add(this.uiErrorLabel);
             this.Controls.Add(this.uiExceptionMessageTextBox);
@@ -98,6 +99,6 @@
         private System.Windows.Forms.TextBox uiExceptionMessageTextBox;
         private System.Windows.Forms.Label uiErrorLabel;
         private System.Windows.Forms.Button uiQuitButton;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button uiCopyToClipboardButton;
     }
 }

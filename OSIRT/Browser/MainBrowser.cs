@@ -17,8 +17,6 @@ using System.Net;
 using OSIRT.Extensions;
 using OSIRT.UI.DownloadClient;
 using OSIRT.UI.ViewSource;
-using System.Collections.Generic;
-using YoutubeExtractor;
 using OSIRT.UI;
 
 namespace OSIRT.Browser
@@ -87,7 +85,7 @@ namespace OSIRT.Browser
             contextMenu.Items.Add(new ToolStripSeparator());
             contextMenu.Items.Add("Download all images", Properties.Resources.download_cloud, DownloadAllImages_Click);
             contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Extract YouTube video", Properties.Resources.download_cloud, DownloadYouTube_Click);
+            contextMenu.Items.Add("Extract YouTube video", Properties.Resources.online_video_insert1, DownloadYouTube_Click);
             contextMenu.Items.Add("View image Exif data", Properties.Resources.camera, ViewExifData_Click);
 
             contextMenu.Items[0].Enabled = false;
@@ -190,11 +188,14 @@ namespace OSIRT.Browser
 
         private async void FullpageScreenshotByScrolling()
         {
+            int scrollHeight = ScrollHeight();
+
+            if (scrollHeight == 0)
+                return;
 
             Enable = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
-            int scrollHeight = ScrollHeight();
             ToggleScrollbars(false);
 
 
@@ -313,7 +314,23 @@ namespace OSIRT.Browser
             }
             catch //so many edge cases, let's try scrolling.
             {
-                FullpageScreenshotByScrolling();
+                try
+                {
+
+                    FullpageScreenshotByScrolling();
+                }
+                catch
+                {
+                    MessageBox.Show("Unable to take a full page capture. Please use video capture, snippet or current view screenshot.", "Cannot take fullpage screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                finally
+                {
+                    Dock = DockStyle.Fill;
+                }
+            }
+            finally
+            {
+                Dock = DockStyle.Fill;
             }
 
         }
@@ -380,6 +397,9 @@ namespace OSIRT.Browser
             //TODO: If this is a PDF (or non webpage) it throws an exception.
             //The same for Width, I'd imagine.
 
+            if (Document == null)
+                return 0;
+
             Rectangle bounds = Document.Body.ScrollRectangle;
             IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
@@ -397,13 +417,14 @@ namespace OSIRT.Browser
         /// <returns>The document's current Width</returns>
         public int ScrollWidth()
         {
-            int scrollWidth = 0;
+            if (Document == null)
+                return 0;
 
             Rectangle bounds = Document.Body.ScrollRectangle;
             IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
             IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
 
-            scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
+            int  scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
 
             return scrollWidth;
         }
@@ -476,6 +497,9 @@ namespace OSIRT.Browser
 
             if (element == null)
                 return;
+
+            if(element.TagName == "IMG")
+                Debug.WriteLine(element.GetAttribute("src"));
 
             bool isImageElement = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
             contextMenu.Items[0].Enabled = isImageElement;

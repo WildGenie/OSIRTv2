@@ -24,7 +24,6 @@ namespace OSIRT.UI
 
         public ExifViewer(string path, string url)
         {
-
             InitializeComponent();
             uiExifDatGridView.RowPrePaint += UiExifDatGridView_RowPrePaint;
             this.path = path;
@@ -114,7 +113,7 @@ namespace OSIRT.UI
             string text = string.Join("\r\n", properties);
             File.WriteAllText(savePath, text);
             Logger.Log(new WebpageActionsLog(url, Enums.Actions.Exif, OsirtHelper.GetFileHash(savePath), Path.GetFileName(savePath), "[Exif Saved]"));
-            
+            MessageBox.Show("Exif data saved.", "Exif saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
