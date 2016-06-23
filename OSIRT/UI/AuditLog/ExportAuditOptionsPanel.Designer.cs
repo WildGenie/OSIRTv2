@@ -212,6 +212,7 @@
             this.uiGSCPComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.uiGSCPComboBox.FormattingEnabled = true;
             this.uiGSCPComboBox.Items.AddRange(new object[] {
+            "Not Protectively Marked",
             "Top Secret",
             "Secret",
             "Official"});

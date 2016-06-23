@@ -112,10 +112,25 @@ namespace OSIRT.Browser
         {
             if (firstLoad) AttachMouseEventHandlers();
 
-            if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
-                return;
 
-            Logger.Log(new WebsiteLog(Url.AbsoluteUri));
+            //Debug.WriteLine("DOC COMPLETE: " + e.Url);
+
+            //if (e.Url.Equals(((WebBrowser)sender).Url))
+            //{
+            //    Console.WriteLine("LOADED: " + ((WebBrowser)sender).Url);
+            //}
+
+            //if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
+            //    return;
+
+            //Debug.WriteLine($"e.Url = {e.Url}");
+            //Debug.WriteLine($"((WebBrowser)sender).Url = {((WebBrowser)sender).Url}");
+
+            //if (e.Url != ((WebBrowser)sender).Url)
+            //    return;
+
+            //Debug.WriteLine("LOGGED: " + Url.AbsoluteUri);
+            //Logger.Log(new WebsiteLog(Url.AbsoluteUri));
 
 
             //How to scroll a webpage using the mouse. Perhaps a useful start for a selection capture.
@@ -539,13 +554,12 @@ namespace OSIRT.Browser
             downloader.DownloadComplete += YouTubeDownloader_DownloadComplete;
             await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
 
-            //TODO: placing this here due to cross threading issues, place this somewhere sensible.
-            using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
-            {
-                vidPreviewer.ShowDialog();
-            }
-            ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
-
+            //Placing this here due to cross threading issues.
+            //using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
+            //{
+            //    vidPreviewer.ShowDialog();
+            //}
+            //ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
         }
 
         private void SaveSource_Click(object sender, EventArgs e)

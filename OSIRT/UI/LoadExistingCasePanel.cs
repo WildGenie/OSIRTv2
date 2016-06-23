@@ -118,7 +118,7 @@ namespace OSIRT.UI
             }
 
             Constants.CasePath = parentDir.FullName;
-            Constants.CaseContainerName = Path.GetFileName(file.FullName.Replace(".osr", ""));
+            Constants.CaseContainerName = Path.GetFileName(file.FullName.Replace(Constants.ContainerExtension, ""));
 
             if (password != "")
             {

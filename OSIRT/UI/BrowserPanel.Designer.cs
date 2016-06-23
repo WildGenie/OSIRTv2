@@ -102,6 +102,7 @@
             this.uiHomeButton.Name = "uiHomeButton";
             this.uiHomeButton.Size = new System.Drawing.Size(23, 22);
             this.uiHomeButton.ToolTipText = "Home";
+            this.uiHomeButton.Click += new System.EventHandler(this.uiHomeButton_Click);
             // 
             // uiLBackButton
             // 

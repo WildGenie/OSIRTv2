@@ -16,7 +16,6 @@ namespace OSIRT.Helpers
     {
         public static string GetCaseDetails()
         {
-            //TODO: investigating_agency missing from output? perhaps the audit log header is covering it.
             DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
@@ -73,7 +72,7 @@ namespace OSIRT.Helpers
             string save2 = save.Replace("<%%MORE_DETAILS%%>", GetCaseDetails())
                  .Replace("<%%CONSTAB_LOGO%%>", UserSettings.Load().ConstabIcon)
                 .Replace("<%%DATE_TIME%%>", dateAndTime)
-                .Replace("<%%_GSCP_%%>", gscp);
+                .Replace("<%%GSCP%%>", gscp);
             return save2;
         }
 
@@ -82,7 +81,7 @@ namespace OSIRT.Helpers
             string html = 
                 $@"<div id='case-details'>
                 <hr>
-                <h2 id='log-title'>Audit Log <%%_GSCP_%%></h2>
+                <h2 id='log-title'>Audit Log</h2>
                 <img src='data:image/png;base64, <%%CONSTAB_LOGO%%>'>
                 <%%MORE_DETAILS%%>
                 <br>

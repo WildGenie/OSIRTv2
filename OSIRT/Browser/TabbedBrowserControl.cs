@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Net;
 using System.ComponentModel;
+using OSIRT.Loggers;
 
 namespace OSIRT.Browser
 {
@@ -117,6 +118,12 @@ namespace OSIRT.Browser
         {
             CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentUrl;
+
+            if (e.Url.Equals(((WebBrowser)sender).Url))
+            {
+                Console.WriteLine("LOGGED: " + ((WebBrowser)sender).Url);
+                Logger.Log(new WebsiteLog(CurrentTab.CurrentUrl));
+            }
         }
 
         private void Screenshot_Completed(object sender, EventArgs e)
@@ -172,7 +179,6 @@ namespace OSIRT.Browser
 
         public void TimedScreenshot(int seconds)
         {
-
             var future = DateTime.Now.AddSeconds(seconds);
             do
             {
@@ -189,14 +195,28 @@ namespace OSIRT.Browser
              CurrentTab?.Browser?.Navigate(url);
         }
 
-
         private void CurrentBrowser_YouTubeDownloadComplete(object sender, EventArgs e)
         {
             Invoke((MethodInvoker)delegate {
                 uiDownloadProgressBar.Visible = false;
-                DisplaySavedLabel("YouTube Video", "now");
-            });
+                DialogResult dialogRes;
+                string fileName;
+                string dateAndtime;
 
+                using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
+                {
+                    dialogRes = vidPreviewer.ShowDialog();
+                    fileName = vidPreviewer.FileName + vidPreviewer.FileExtension; ;
+                    dateAndtime = vidPreviewer.DateAndTime;
+                }
+
+                if (dialogRes != DialogResult.OK)
+                    return;
+
+                DisplaySavedLabel(fileName, dateAndtime);
+                ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
+
+            });
         }
 
         private void CurrentBrowser_YouTubeDownloadProgress(object sender, EventArgs e)

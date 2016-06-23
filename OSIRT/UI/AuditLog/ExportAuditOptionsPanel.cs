@@ -25,8 +25,6 @@ namespace OSIRT.UI.AuditLog
         public string GSCP { get; private set; }
         private bool openReport = false;
    
-
-
         public ExportAuditOptionsPanel()
         {
             InitializeComponent();
@@ -35,7 +33,7 @@ namespace OSIRT.UI.AuditLog
         private void ExportAuditOptions_Load(object sender, EventArgs e)
         {
             ToggleExportFileButtons(false);
-            GSCP = "";
+            uiGSCPComboBox.SelectedIndex = 0;
         }
 
 
@@ -111,16 +109,18 @@ namespace OSIRT.UI.AuditLog
 
         private void ExportAsHtml()
         {
-            
+            string navBar = HtmlHelper.GetHtmlNavBar(GetSelectedTables());
             foreach (var value in GetHtml())
             {
                 string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
-                string page = value.Item2.Replace("<%%NAV%%>", HtmlHelper.GetHtmlNavBar(GetSelectedTables()));
+                string page = value.Item2.Replace("<%%NAV%%>", navBar);
                 File.WriteAllText(savePath, page);
             }
+
             //combined
             string combined = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
             string save = HtmlHelper.ReplaceReportDetails(combined, GSCP, true);
+            save = save.Replace("<%%NAV%%>", navBar);
             File.WriteAllText(Path.Combine(ExportPath, Constants.ReportContainerName, "combined.html"), save);
             Thread.Sleep(750);
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));

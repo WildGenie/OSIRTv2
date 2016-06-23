@@ -158,6 +158,7 @@ namespace OSIRT.UI
                 markerWindow.Show();
             }
             catch { markerWindow = new MarkerWindow(); markerWindow.Show(); }
+            markerWindow.TopMost = true;
         }
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
@@ -180,6 +181,12 @@ namespace OSIRT.UI
 
         private void osirtVideoCapture_VideoCaptureComplete(object sender, EventArgs e)
         {
+            if (markerWindow != null && markerWindow.Visible)
+            {
+                markerWindow.Close();
+                markerWindow.Dispose();
+            }
+
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = false;
             VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
 
@@ -238,5 +245,9 @@ namespace OSIRT.UI
             
         }
 
+        private void uiHomeButton_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.Navigate("http://google.co.uk");
+        }
     }
 }

@@ -24,8 +24,8 @@ namespace OSIRT.UI
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Clipboard.Clear();    //Clear if any old value is there in Clipboard        
-            Clipboard.SetText(uiExceptionMessageTextBox.Text); //Copy text to Clipboard
+            Clipboard.Clear();         
+            Clipboard.SetText(uiExceptionMessageTextBox.Text);
         }
     }
 }
