@@ -165,6 +165,12 @@ namespace OSIRT.UI
         {
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
 
+            //codec used can't record above 1920x1080, so resize the window.
+            //TODO: need to test this larger resolution monitors.
+            if (Width > 1920) Width = 1920;
+            if (Height > 1080) Height = 1080;
+
+
             //TODO: this check is causing the user to have to click twice to stop/start recording??
             IntPtr handle;
             if (markerWindow != null && markerWindow.Visible)

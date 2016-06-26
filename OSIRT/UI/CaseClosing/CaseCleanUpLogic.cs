@@ -21,7 +21,6 @@ namespace OSIRT.UI.CaseClosing
         public event EventHandler ReportProgress;
         private bool isInAuditViewMode;
 
-
         public CaseCleanUpLogic(string password, bool isInAuditViewMode)
         {
             this.password = password;
@@ -65,7 +64,10 @@ namespace OSIRT.UI.CaseClosing
 
             (sender as BackgroundWorker).ReportProgress(10, "Archiving Case... Please Wait");
             ZipContainer(password);
-            if(UserSettings.Load().HashContainerOnClose) HashCase();
+            if (UserSettings.Load().ExportHashOnClose)
+            {
+                HashCase();
+            }
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
             DeleteImageMagickFiles();
 
