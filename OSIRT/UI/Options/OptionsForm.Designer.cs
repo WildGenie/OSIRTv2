@@ -45,6 +45,9 @@
             this.uiShowMouseClicksCheckBox = new System.Windows.Forms.CheckBox();
             this.uiShowMouseTrailCheckBox = new System.Windows.Forms.CheckBox();
             this.uiAudioGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiSteroMixStatusLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.uiExportHashOnCloseCheckBox = new System.Windows.Forms.CheckBox();
@@ -55,9 +58,8 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.uiSteroMixStatusLabel = new System.Windows.Forms.Label();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.uiEnterCreatesNewLineCheckBox = new System.Windows.Forms.CheckBox();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,6 +72,7 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).BeginInit();
+            this.groupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiOptionsTabControl
@@ -254,8 +257,37 @@
             this.uiAudioGroupBox.TabStop = false;
             this.uiAudioGroupBox.Text = "Audio";
             // 
+            // uiSteroMixStatusLabel
+            // 
+            this.uiSteroMixStatusLabel.AutoSize = true;
+            this.uiSteroMixStatusLabel.ForeColor = System.Drawing.Color.Red;
+            this.uiSteroMixStatusLabel.Location = new System.Drawing.Point(94, 38);
+            this.uiSteroMixStatusLabel.Name = "uiSteroMixStatusLabel";
+            this.uiSteroMixStatusLabel.Size = new System.Drawing.Size(70, 13);
+            this.uiSteroMixStatusLabel.TabIndex = 2;
+            this.uiSteroMixStatusLabel.Text = "Not Available";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(7, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(94, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Stereo Mix status: ";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 16);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(260, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "In order to record sound, Stereo Mix must be enabled.";
+            // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox);
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
@@ -271,9 +303,9 @@
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.uiBrowseLocationButton);
             this.groupBox3.Controls.Add(this.uiHashFileLocationTextBox);
-            this.groupBox3.Location = new System.Drawing.Point(9, 187);
+            this.groupBox3.Location = new System.Drawing.Point(9, 186);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(466, 108);
+            this.groupBox3.Size = new System.Drawing.Size(466, 91);
             this.groupBox3.TabIndex = 1;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Hash Export Location";
@@ -360,33 +392,26 @@
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
-            // label5
+            // groupBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 16);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(260, 13);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "In order to record sound, Stereo Mix must be enabled.";
+            this.groupBox.Controls.Add(this.uiEnterCreatesNewLineCheckBox);
+            this.groupBox.Location = new System.Drawing.Point(9, 281);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(466, 51);
+            this.groupBox.TabIndex = 2;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Case Notes ";
             // 
-            // label2
+            // uiEnterCreatesNewLineCheckBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(7, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(94, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Stereo Mix status: ";
-            // 
-            // uiSteroMixStatusLabel
-            // 
-            this.uiSteroMixStatusLabel.AutoSize = true;
-            this.uiSteroMixStatusLabel.ForeColor = System.Drawing.Color.Red;
-            this.uiSteroMixStatusLabel.Location = new System.Drawing.Point(94, 38);
-            this.uiSteroMixStatusLabel.Name = "uiSteroMixStatusLabel";
-            this.uiSteroMixStatusLabel.Size = new System.Drawing.Size(70, 13);
-            this.uiSteroMixStatusLabel.TabIndex = 2;
-            this.uiSteroMixStatusLabel.Text = "Not Available";
+            this.uiEnterCreatesNewLineCheckBox.AutoSize = true;
+            this.uiEnterCreatesNewLineCheckBox.Location = new System.Drawing.Point(7, 21);
+            this.uiEnterCreatesNewLineCheckBox.Name = "uiEnterCreatesNewLineCheckBox";
+            this.uiEnterCreatesNewLineCheckBox.Size = new System.Drawing.Size(238, 17);
+            this.uiEnterCreatesNewLineCheckBox.TabIndex = 0;
+            this.uiEnterCreatesNewLineCheckBox.Text = "Pressing Enter adds a new line to case notes";
+            this.uiEnterCreatesNewLineCheckBox.UseVisualStyleBackColor = true;
+            this.uiEnterCreatesNewLineCheckBox.CheckedChanged += new System.EventHandler(this.uiEnterCreatesNewLineCheckBox_CheckedChanged);
             // 
             // OptionsForm
             // 
@@ -417,6 +442,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).EndInit();
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -452,5 +479,7 @@
         private System.Windows.Forms.Label uiSteroMixStatusLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.GroupBox groupBox;
+        private System.Windows.Forms.CheckBox uiEnterCreatesNewLineCheckBox;
     }
 }

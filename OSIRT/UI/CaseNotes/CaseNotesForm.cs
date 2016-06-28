@@ -54,6 +54,7 @@ namespace OSIRT.UI.CaseNotes
         private void uiEnteredNoteSpellBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(uiEnteredNoteSpellBox.Text)) return;
+            if (UserSettings.Load().EnterInCaseNotesNewLine) return;
             if (e.Key == Key.Enter)
             {
                 AddNote();

@@ -40,6 +40,7 @@ namespace OSIRT.UI.Options
             uiBrowseLocationButton.Enabled = settings.ExportHashOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
+            uiEnterCreatesNewLineCheckBox.Checked = settings.EnterInCaseNotesNewLine;
 
             uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
 
@@ -127,5 +128,10 @@ namespace OSIRT.UI.Options
             settings.Save();
         }
 
+        private void uiEnterCreatesNewLineCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.EnterInCaseNotesNewLine = uiEnterCreatesNewLineCheckBox.Checked;
+            settings.Save();
+        }
     }
 }

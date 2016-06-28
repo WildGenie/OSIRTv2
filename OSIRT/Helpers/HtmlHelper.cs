@@ -43,11 +43,11 @@ namespace OSIRT.Helpers
             return navBuilder.ToString();
         }
 
-        public static string GetFormattedPage(string table, string exportPath, string gscp, bool isHtmlReport)
+        public static string GetFormattedPage(string table, string exportPath, string containerName, string gscp, bool isHtmlReport)
         {
             DatabaseHandler db = new DatabaseHandler();
             string columns = DatabaseTableHelper.GetTableColumns(table);
-            string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: table, columns: columns), exportPath);
+            string page = DatatableToHtml.ConvertToHtml(db.GetRowsFromColumns(table: table, columns: columns), exportPath, containerName);
 
             return ReplaceReportDetails(page, gscp, isHtmlReport);
 

@@ -25,7 +25,7 @@ namespace OSIRT.Helpers
             get { return Path.Combine(CasePath, CaseContainerName); }
         }
 
-        public static string ReportContainerName => $"report_{CaseContainerName}";
+        public static string ReportContainerName => $"report_{CaseContainerName}_%%dt%%";
         public static string ExportedHashFileName => $"{CaseContainerName}_hash_%%dt%%.txt";
         public static string PageSourceFileName => $"%%dt%%_%%name%%_page_source.txt";
 

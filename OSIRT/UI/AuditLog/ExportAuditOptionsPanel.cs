@@ -22,6 +22,7 @@ namespace OSIRT.UI.AuditLog
     {
 
         public string ExportPath { get; private set; }
+        public string ReportContainerName { get; private set; }
         public string GSCP { get; private set; }
         private bool openReport = false;
    
@@ -63,7 +64,7 @@ namespace OSIRT.UI.AuditLog
         {
             foreach (string table in GetSelectedTables())
             {
-                string save = HtmlHelper.GetFormattedPage(table, ExportPath, GSCP, true);
+                string save = HtmlHelper.GetFormattedPage(table, ExportPath, ReportContainerName, GSCP, true);
                 yield return Tuple.Create(table, save);
             }
         }
@@ -89,13 +90,13 @@ namespace OSIRT.UI.AuditLog
 
         private void ExportAsPdf()
         {
-            string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
+            string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath, ReportContainerName);
             string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
-            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
-            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
-            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
+            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
             if (openReport)
-                Process.Start(Path.Combine(ExportPath, Constants.ReportContainerName, Constants.PdfReportName));
+                Process.Start(Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
         }
 
         private void EnableOptionsGroupboxes(bool enabled)
@@ -112,21 +113,21 @@ namespace OSIRT.UI.AuditLog
             string navBar = HtmlHelper.GetHtmlNavBar(GetSelectedTables());
             foreach (var value in GetHtml())
             {
-                string savePath = Path.Combine(ExportPath, Constants.ReportContainerName, $"{value.Item1}.html");
+                string savePath = Path.Combine(ExportPath, ReportContainerName, $"{value.Item1}.html");
                 string page = value.Item2.Replace("<%%NAV%%>", navBar);
                 File.WriteAllText(savePath, page);
             }
 
             //combined
-            string combined = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath);
+            string combined = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath, ReportContainerName);
             string save = HtmlHelper.ReplaceReportDetails(combined, GSCP, true);
             save = save.Replace("<%%NAV%%>", navBar);
-            File.WriteAllText(Path.Combine(ExportPath, Constants.ReportContainerName, "combined.html"), save);
+            File.WriteAllText(Path.Combine(ExportPath, ReportContainerName, "combined.html"), save);
             Thread.Sleep(750);
-            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, Constants.ReportContainerName));
-            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, Constants.ReportContainerName));
+            string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
             if(openReport)
-                Process.Start(Path.Combine(ExportPath, Constants.ReportContainerName, "combined.html"));
+                Process.Start(Path.Combine(ExportPath, ReportContainerName, "combined.html"));
         }
 
 
@@ -149,6 +150,7 @@ namespace OSIRT.UI.AuditLog
 
         private void RunWorker(Action method)
         {
+            
             var backgroundWorker = new BackgroundWorker();
             uiProgressGroupBox.Show();
             backgroundWorker.DoWork += delegate
@@ -166,6 +168,7 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsHtmlButton_Click(object sender, EventArgs e)
         {
+            ReportContainerName = Constants.ReportContainerName.Replace("%%dt%%", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
             if (ReportExists(ExportPath))
             {
                 if (CanOverwriteReport())
@@ -179,6 +182,7 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsPdfButton_Click(object sender, EventArgs e)
         {
+            ReportContainerName = Constants.ReportContainerName.Replace("%%dt%%", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
             if (ReportExists(ExportPath))
             {
                 if (CanOverwriteReport())
@@ -192,7 +196,7 @@ namespace OSIRT.UI.AuditLog
 
         private bool ReportExists(string selectedPath)
         {
-            return Directory.Exists(Path.Combine(selectedPath, Constants.ReportContainerName));
+            return Directory.Exists(Path.Combine(selectedPath, ReportContainerName));
         }
 
         private bool CanOverwriteReport()
@@ -211,7 +215,9 @@ namespace OSIRT.UI.AuditLog
 
                 string selectedPath = folderDialog.SelectedPath;
                 ExportPath = selectedPath;
-                uiPathTextBox.Text = ExportPath;
+                Debug.WriteLine(ExportPath);
+                uiPathTextBox.Text = ExportPath; //+ DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                ReportContainerName = Constants.ReportContainerName.Replace("%%dt%%", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
 
             }
         }
@@ -286,9 +292,9 @@ namespace OSIRT.UI.AuditLog
                 sb.AppendLine(string.Join(",", fields));
             }
 
-            string csvPath = Path.Combine(ExportPath, Constants.ReportContainerName + ".csv");
+            string csvPath = Path.Combine(ExportPath, ReportContainerName + ".csv");
             File.WriteAllText(csvPath, sb.ToString());
-            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(csvPath), Constants.ReportContainerName));
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(csvPath), ReportContainerName));
             if (openReport)
                 Process.Start(csvPath);
         }

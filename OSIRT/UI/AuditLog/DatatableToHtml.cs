@@ -17,7 +17,7 @@ namespace OSIRT.UI.AuditLog
     {
 
         //http://stackoverflow.com/questions/19682996/datatable-to-html-table
-        public static string ConvertToHtml(DataTable table, string exportPath)
+        public static string ConvertToHtml(DataTable table, string exportPath, string reportContainerName)
         {
 
             //TODO: Have this similar logic when we create the case. DRY.
@@ -25,7 +25,7 @@ namespace OSIRT.UI.AuditLog
             List<string> directories = Constants.Directories.GetCaseDirectories();
             foreach (string directory in directories)
             {
-                Directory.CreateDirectory(Path.Combine($"{exportPath}", Constants.ReportContainerName, Constants.Artefacts, directory));
+                Directory.CreateDirectory(Path.Combine($"{exportPath}", reportContainerName, Constants.Artefacts, directory));
             }
 
             string columnName;
@@ -63,7 +63,7 @@ namespace OSIRT.UI.AuditLog
                             string location = Constants.Directories.GetSpecifiedCaseDirectory(action);
                             string sourceFile = Path.Combine(Constants.ContainerLocation, location, cellValue);
                             string relativePath = Path.Combine(Constants.Artefacts, location, cellValue);
-                            string destination = Path.Combine($"{exportPath}", Constants.ReportContainerName, relativePath);
+                            string destination = Path.Combine($"{exportPath}", reportContainerName, relativePath);
                             File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
 
                             if (cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)

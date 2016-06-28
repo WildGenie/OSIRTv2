@@ -15,13 +15,13 @@ namespace OSIRT.UI
             box = new TextBox();
             base.Child = box;
             box.TextChanged += (s, e) => OnTextChanged(EventArgs.Empty);
-          
+            //box.AcceptsReturn = UserSettings.Load().EnterInCaseNotesNewLine;
+
             box.SpellCheck.IsEnabled = true;
             box.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.Size = new System.Drawing.Size(100, 20);
            
         }
-
 
         public override string Text
         {

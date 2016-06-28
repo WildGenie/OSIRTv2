@@ -14,6 +14,7 @@ namespace OSIRT
         public bool CaseHasPassword = false;
         public int NumberOfRowsPerPage = 25;
         public bool ExportHashOnClose = true;
+        public bool EnterInCaseNotesNewLine = false;
 
 
         //reporting
