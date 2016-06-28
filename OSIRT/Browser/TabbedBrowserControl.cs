@@ -230,5 +230,10 @@ namespace OSIRT.Browser
                 uiDownloadProgressBar.Value = (int)progress.ProgressPercentage;
             });
         }
+
+        private void uiBrowserTabControl_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

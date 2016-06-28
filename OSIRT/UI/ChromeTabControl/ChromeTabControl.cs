@@ -1255,7 +1255,17 @@ namespace DotNetChromeTabs
             /// </summary>
             public bool CanClose
             {
-                get { return _canClose; }
+
+               
+
+                get
+                {
+
+                    if (_tabControl.TabPages.Count == 1) return false;
+                    else return _canClose;
+
+
+                }
                 set
                 {
                     bool flag = false;
@@ -1957,6 +1967,7 @@ namespace DotNetChromeTabs
 
                 public TabPage this[int index]
                 {
+
                     get { return _list[index]; }
                     set
                     {

@@ -113,7 +113,14 @@ namespace OSIRT.UI
         private void uiCaseNotesButton_Click(object sender, EventArgs e)
         {
             CaseNotesForm caseNotes = new CaseNotesForm();
+            caseNotes.FormClosed += CaseNotes_FormClosed;
             caseNotes.Show();
+            uiCaseNotesButton.Enabled = false;
+        }
+
+        private void CaseNotes_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            uiCaseNotesButton.Enabled = true;
         }
 
         private void uiAttachmentToolStripButton_Click(object sender, EventArgs e)

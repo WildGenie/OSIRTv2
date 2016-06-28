@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
-            this.uiBrowserTabControl = new DotNetChromeTabs.ChromeTabControl();
             this.uiBrowserStatusStrip = new System.Windows.Forms.StatusStrip();
             this.uiStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiActionLoggedToolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiDownloadProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.uiBrowserTabControl = new DotNetChromeTabs.ChromeTabControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserStatusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -48,19 +48,6 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(800, 615);
             this.uiBrowserPanel.TabIndex = 1;
-            // 
-            // uiBrowserTabControl
-            // 
-            this.uiBrowserTabControl.AllowDrop = true;
-            this.uiBrowserTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
-            this.uiBrowserTabControl.Name = "uiBrowserTabControl";
-            this.uiBrowserTabControl.NewTabButton = true;
-            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 596);
-            this.uiBrowserTabControl.TabIndex = 1;
-            this.uiBrowserTabControl.Text = "chromeTabControl1";
             // 
             // uiBrowserStatusStrip
             // 
@@ -95,6 +82,20 @@
             // 
             this.uiDownloadProgressBar.Name = "uiDownloadProgressBar";
             this.uiDownloadProgressBar.Size = new System.Drawing.Size(100, 16);
+            // 
+            // uiBrowserTabControl
+            // 
+            this.uiBrowserTabControl.AllowDrop = true;
+            this.uiBrowserTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
+            this.uiBrowserTabControl.Name = "uiBrowserTabControl";
+            this.uiBrowserTabControl.NewTabButton = true;
+            this.uiBrowserTabControl.Size = new System.Drawing.Size(800, 596);
+            this.uiBrowserTabControl.TabIndex = 1;
+            this.uiBrowserTabControl.Text = "chromeTabControl1";
+            this.uiBrowserTabControl.Click += new System.EventHandler(this.uiBrowserTabControl_Click);
             // 
             // TabbedBrowserControl
             // 

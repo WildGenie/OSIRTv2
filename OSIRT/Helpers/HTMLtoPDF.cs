@@ -8,10 +8,11 @@ namespace OSIRT.Helpers
     {
 
         private static IConverter converter =
-                        new StandardConverter(
+                        new ThreadSafeConverter(
                                 new PdfToolset(
                                         new Win32EmbeddedDeployment(
                                                 new TempFolderDeployment())));
+
 
         private HtmLtoPdf(){ }
 
