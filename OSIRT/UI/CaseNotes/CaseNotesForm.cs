@@ -28,14 +28,32 @@ namespace OSIRT.UI.CaseNotes
             uiEnteredNoteSpellBox.Select();
             uiCaseNotesTextBox.VisibleChanged += uiCaseNotesTextBox_VisibleChanged;
             uiEnteredNoteSpellBox.KeyUp += uiEnteredNoteSpellBox_KeyUp;
+            uiEnteredNoteSpellBox.KeyDown += UiEnteredNoteSpellBox_KeyDown;
             uiCaseNotesTextBox.Text = GetExistingCaseNotes();
 
          
         }
 
+        private void UiEnteredNoteSpellBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if(e.Key == Key.LeftShift)
+            {
+                System.Diagnostics.Debug.WriteLine("shift");
+                if ((e.Key == Key.Enter))
+                {
+                    System.Diagnostics.Debug.WriteLine("in here");
+                    e.Handled = true;
+                }
+            }
+          
+            
+
+
+        }
+
         private void uiEnteredNoteSpellBox_KeyUp(object sender, System.Windows.Input.KeyEventArgs e)
         {
-
+            if (string.IsNullOrWhiteSpace(uiEnteredNoteSpellBox.Text)) return;
             if (e.Key == Key.Enter)
             {
                 AddNote();

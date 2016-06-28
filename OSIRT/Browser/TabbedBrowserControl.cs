@@ -42,8 +42,6 @@ namespace OSIRT.Browser
             InitializeComponent();
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
-
-
             uiDownloadProgressBar.Visible = false;
             CreateTab();
         }
@@ -218,7 +216,7 @@ namespace OSIRT.Browser
 
             });
         }
-
+       
         private void CurrentBrowser_YouTubeDownloadProgress(object sender, EventArgs e)
         {
             var progress = (YoutubeExtractor.ProgressEventArgs)e;

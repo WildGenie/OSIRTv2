@@ -15,11 +15,14 @@ namespace OSIRT.UI
             box = new TextBox();
             base.Child = box;
             box.TextChanged += (s, e) => OnTextChanged(EventArgs.Empty);
+          
             box.SpellCheck.IsEnabled = true;
             box.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.Size = new System.Drawing.Size(100, 20);
            
         }
+
+
         public override string Text
         {
             get { return box.Text; }
@@ -42,6 +45,13 @@ namespace OSIRT.UI
         {
             get { return base.Child; }
             set { /* Do nothing to solve a problem with the serializer !! */ }
+        }
+
+        public new event System.Windows.Input.KeyEventHandler KeyDown
+        {
+
+            add { box.KeyDown += value; }
+            remove { box.KeyDown -= value; }
         }
 
         public new event System.Windows.Input.KeyEventHandler KeyUp
