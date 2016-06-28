@@ -42,7 +42,7 @@ namespace OSIRT.UI.CaseNotes
                 if ((e.Key == Key.Enter))
                 {
                     System.Diagnostics.Debug.WriteLine("in here");
-                    e.Handled = true;
+                    e.Handled = true;//
                 }
             }
           
