@@ -12,6 +12,7 @@ using OSIRT.UI.ViewSource;
 using System.IO;
 using System.Text;
 using OSIRT.Loggers;
+using Whois;
 
 namespace OSIRT.UI
 {
@@ -261,6 +262,29 @@ namespace OSIRT.UI
         private void uiHomeButton_Click(object sender, EventArgs e)
         {
             uiTabbedBrowserControl.CurrentTab.Browser.Navigate("http://google.co.uk");
+        }
+
+        private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //get url from bar
+            Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+
+            try
+            {
+                var whois = new WhoisLookup().Lookup(url.Host);
+                var view = new ViewPageSource(whois.ToString(), url.Host);
+                view.Show();
+            }
+            catch
+            {
+                MessageBox.Show("Unable to obtain WhoIs information for this website.", "Error obtaining WhoIs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        
+
+
+            //open new tab to whois
         }
     }
 }

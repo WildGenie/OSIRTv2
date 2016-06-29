@@ -16,12 +16,13 @@ namespace OSIRT.UI.ViewSource
         public ViewPageSource(string source, string title)
         {
             fctb = new FastColoredTextBox();
+            fctb.ReadOnly = true;
             Controls.Add(fctb);
             fctb.Dock = DockStyle.Fill;
             fctb.Language = Language.HTML;
             fctb.WordWrap = true;
             fctb.Text = source;
-            Text = $"Page source for {title}";
+            Text = $"{title}";
             Size = new System.Drawing.Size(800, 600);
             Icon = Properties.Resources.source_code1;
         }

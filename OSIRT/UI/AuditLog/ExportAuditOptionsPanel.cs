@@ -141,6 +141,18 @@ namespace OSIRT.UI.AuditLog
                 DataTable dt = db.GetRowsFromColumns(table: table, columns: columns);
                 merged.Merge(dt, true, MissingSchemaAction.Add);
             }
+
+            //added
+            if(uiMergeCaseNotesCheckBox.Checked)
+            {
+                DataTable dt = new DatabaseHandler().GetRowsFromColumns("case_notes", "", "date", "time", "note");
+                merged.Merge(dt, true, MissingSchemaAction.Add);
+            }
+
+            //end ad
+
+
+
             merged.TableName = "merged";
             DataView view = new DataView(merged);
             view.Sort = "date asc, time asc";

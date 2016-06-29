@@ -42,8 +42,18 @@ namespace OSIRT.Browser
             InitializeComponent();
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
+            uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
+
             uiDownloadProgressBar.Visible = false;
             CreateTab();
+        }
+
+        private void UiBrowserTabControl_Closed(object sender, EventArgs e)
+        {
+            //Debug.WriteLine("DISPOSE CALLED");
+            CurrentTab?.Browser?.Dispose();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)

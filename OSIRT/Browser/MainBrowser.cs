@@ -39,6 +39,14 @@ namespace OSIRT.Browser
         private PictureBox mouseTrail = new PictureBox();
         private bool firstLoad = true;
 
+        //memory footprint reduction
+        //[DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        //internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
+
+        //[DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        //internal static extern IntPtr GetCurrentProcess();
+
+
 
         public ExtendedBrowser()
         {
@@ -46,6 +54,7 @@ namespace OSIRT.Browser
             NativeMethods.DisableClickSounds();
             ScriptErrorsSuppressed = true;
             DocumentCompleted += ExtendedBrowser_DocumentCompleted;
+
             InitialiseConextMenu();
             DisableNewWindowsOpening();
             InitialiseMouseTrail();

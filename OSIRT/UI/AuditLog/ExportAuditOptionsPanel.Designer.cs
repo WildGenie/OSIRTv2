@@ -54,6 +54,7 @@
             this.uiReportExportProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiProgressGroupBox = new System.Windows.Forms.GroupBox();
             this.uiReportExportLabel = new System.Windows.Forms.Label();
+            this.uiMergeCaseNotesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
@@ -164,6 +165,7 @@
             // 
             this.uiReportOptionsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiReportOptionsGroupBox.Controls.Add(this.uiMergeCaseNotesCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiChronOrderCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiDisplayVideosCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiGSCPComboBox);
@@ -185,7 +187,7 @@
             this.uiChronOrderCheckBox.Checked = true;
             this.uiChronOrderCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiChronOrderCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiChronOrderCheckBox.Location = new System.Drawing.Point(190, 57);
+            this.uiChronOrderCheckBox.Location = new System.Drawing.Point(170, 57);
             this.uiChronOrderCheckBox.Name = "uiChronOrderCheckBox";
             this.uiChronOrderCheckBox.Size = new System.Drawing.Size(117, 17);
             this.uiChronOrderCheckBox.TabIndex = 6;
@@ -238,9 +240,9 @@
             this.uiOpenReportCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiOpenReportCheckBox.Location = new System.Drawing.Point(6, 86);
             this.uiOpenReportCheckBox.Name = "uiOpenReportCheckBox";
-            this.uiOpenReportCheckBox.Size = new System.Drawing.Size(150, 17);
+            this.uiOpenReportCheckBox.Size = new System.Drawing.Size(148, 17);
             this.uiOpenReportCheckBox.TabIndex = 2;
-            this.uiOpenReportCheckBox.Text = "Open report when created";
+            this.uiOpenReportCheckBox.Text = "Open report once created";
             this.uiOpenReportCheckBox.UseVisualStyleBackColor = true;
             this.uiOpenReportCheckBox.CheckedChanged += new System.EventHandler(this.uiOpenReportCheckBox_CheckedChanged);
             // 
@@ -250,7 +252,7 @@
             this.uiPrintNotesCheckBox.Checked = true;
             this.uiPrintNotesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiPrintNotesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiPrintNotesCheckBox.Location = new System.Drawing.Point(190, 28);
+            this.uiPrintNotesCheckBox.Location = new System.Drawing.Point(170, 28);
             this.uiPrintNotesCheckBox.Name = "uiPrintNotesCheckBox";
             this.uiPrintNotesCheckBox.Size = new System.Drawing.Size(102, 17);
             this.uiPrintNotesCheckBox.TabIndex = 1;
@@ -393,6 +395,19 @@
             this.uiReportExportLabel.TabIndex = 4;
             this.uiReportExportLabel.Text = "Exporting report...";
             // 
+            // uiMergeCaseNotesCheckBox
+            // 
+            this.uiMergeCaseNotesCheckBox.AutoSize = true;
+            this.uiMergeCaseNotesCheckBox.Checked = true;
+            this.uiMergeCaseNotesCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiMergeCaseNotesCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.uiMergeCaseNotesCheckBox.Location = new System.Drawing.Point(170, 86);
+            this.uiMergeCaseNotesCheckBox.Name = "uiMergeCaseNotesCheckBox";
+            this.uiMergeCaseNotesCheckBox.Size = new System.Drawing.Size(114, 17);
+            this.uiMergeCaseNotesCheckBox.TabIndex = 7;
+            this.uiMergeCaseNotesCheckBox.Text = "Merge case notes ";
+            this.uiMergeCaseNotesCheckBox.UseVisualStyleBackColor = true;
+            // 
             // ExportAuditOptionsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -445,5 +460,6 @@
         private System.Windows.Forms.ProgressBar uiReportExportProgressBar;
         private System.Windows.Forms.GroupBox uiProgressGroupBox;
         private System.Windows.Forms.Label uiReportExportLabel;
+        private System.Windows.Forms.CheckBox uiMergeCaseNotesCheckBox;
     }
 }

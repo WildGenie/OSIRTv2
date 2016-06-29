@@ -423,6 +423,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap settings {
+            get {
+                object obj = ResourceManager.GetObject("settings", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap source_code {
             get {
                 object obj = ResourceManager.GetObject("source_code", resourceCulture);
@@ -576,6 +586,16 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap view_details_128 {
             get {
                 object obj = ResourceManager.GetObject("view-details-128", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap who {
+            get {
+                object obj = ResourceManager.GetObject("who", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

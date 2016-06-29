@@ -123,6 +123,8 @@ namespace DotNetChromeTabs
         public delegate void TabSwitched(object sender, TabChangedEventArgs e);
 
 
+        public event EventHandler Closed;
+
         #endregion
 
         #region Public Properties
@@ -978,9 +980,15 @@ namespace DotNetChromeTabs
                 {
                     if (HoverTabCloseDownIndex < _tabPages.Count - 1)
                         _dontUpdateTabWidth = true;
+
+                    //Added
+                    Closed?.Invoke(this, null);
                     TabPages.RemoveAt(HoverTabCloseDownIndex);
+
+                  
                     //TODO: Added below
                     SelectedIndexChange?.Invoke(this, new TabChangedEventArgs(TabPages.SelectedIndex));
+                    
                 }
             }
             if (HoverTrayDownIndex > -1 && HoverTrayIndex == HoverTrayDownIndex && HoverTrayIndex < _trayItems.Count)
@@ -1172,6 +1180,8 @@ namespace DotNetChromeTabs
             /// </summary>
             public void Close()
             {
+                
+
                 if (_tabControl == null)
                     return;
                 int index = _tabControl.TabPages.IndexOf(this);
@@ -1694,6 +1704,8 @@ namespace DotNetChromeTabs
                 public delegate void TabPageCollectionEvent();
                 public event TabPageCollectionEvent NoItemsLeft;
 
+                public event EventHandler TabClosed;
+
                 private ChromeTabControl _tabControl;
                 internal void Changed()
                 {
@@ -1917,6 +1929,7 @@ namespace DotNetChromeTabs
 
                 public bool Remove(TabPage item)
                 {
+
                     int index = _list.IndexOf(item);
                     if (index < 0)
                         return false;
