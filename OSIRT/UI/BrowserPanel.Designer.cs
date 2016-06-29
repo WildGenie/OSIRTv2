@@ -35,6 +35,7 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -58,7 +59,7 @@
             this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiToolsToolStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
+            this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -127,6 +128,16 @@
             this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
+            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // BottomToolStripPanel
             // 
@@ -333,7 +344,8 @@
             this.uiToolsToolStripSplitButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiToolsToolStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiToolsToolStripSplitButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.whoIsToolStripMenuItem});
+            this.whoIsToolStripMenuItem,
+            this.whatsTheIPToolStripMenuItem});
             this.uiToolsToolStripSplitButton.Image = global::OSIRT.Properties.Resources.settings;
             this.uiToolsToolStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiToolsToolStripSplitButton.Name = "uiToolsToolStripSplitButton";
@@ -349,15 +361,14 @@
             this.whoIsToolStripMenuItem.ToolTipText = "Displays a window with the Whois information related to this domain.";
             this.whoIsToolStripMenuItem.Click += new System.EventHandler(this.whoIsToolStripMenuItem_Click);
             // 
-            // uiTabbedBrowserControl
+            // whatsTheIPToolStripMenuItem
             // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
-            this.uiTabbedBrowserControl.TabIndex = 2;
+            this.whatsTheIPToolStripMenuItem.Image = global::OSIRT.Properties.Resources.ip;
+            this.whatsTheIPToolStripMenuItem.Name = "whatsTheIPToolStripMenuItem";
+            this.whatsTheIPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.whatsTheIPToolStripMenuItem.Text = "What\'s the IP?";
+            this.whatsTheIPToolStripMenuItem.ToolTipText = "Shows the IP addresses associated with this domain";
+            this.whatsTheIPToolStripMenuItem.Click += new System.EventHandler(this.whatsTheIPToolStripMenuItem_Click);
             // 
             // BrowserPanel
             // 
@@ -408,5 +419,6 @@
         private System.Windows.Forms.ToolStripMenuItem markerWindowToolStripMenuItem1;
         private System.Windows.Forms.ToolStripSplitButton uiToolsToolStripSplitButton;
         private System.Windows.Forms.ToolStripMenuItem whoIsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem whatsTheIPToolStripMenuItem;
     }
 }

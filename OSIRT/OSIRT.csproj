@@ -663,6 +663,7 @@
     <None Include="Resources\online_video_insert.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\who.png" />
+    <None Include="Resources\ip.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

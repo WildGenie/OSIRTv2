@@ -31,6 +31,7 @@ namespace OSIRT.Browser
         public event EventHandler SavePageSource = delegate { };
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
+        public event EventHandler NavigationComplete = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
@@ -121,6 +122,10 @@ namespace OSIRT.Browser
         {
             if (firstLoad) AttachMouseEventHandlers();
 
+
+            if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
+                return;
+            NavigationComplete?.Invoke(this, null);
 
             //Debug.WriteLine("DOC COMPLETE: " + e.Url);
 

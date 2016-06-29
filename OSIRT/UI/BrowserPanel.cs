@@ -13,6 +13,7 @@ using System.IO;
 using System.Text;
 using OSIRT.Loggers;
 using Whois;
+using System.Net;
 
 namespace OSIRT.UI
 {
@@ -37,7 +38,19 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.ViewPageSource += Browser_ViewPageSource;
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
+            uiTabbedBrowserControl.CurrentTab.Browser.NavigationComplete += Browser_NavigationComplete;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+        }
+
+        private void Browser_NavigationComplete(object sender, EventArgs e)
+        {
+            Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            IPAddress[] addresses = Dns.GetHostAddresses(url.Host);
+
+            foreach (var address in addresses)
+            {
+                whatsTheIPToolStripMenuItem.Text = address.ToString();
+            }
         }
 
         private void Browser_SavePageSource(object sender, EventArgs e)
@@ -277,14 +290,20 @@ namespace OSIRT.UI
             }
             catch
             {
-                MessageBox.Show("Unable to obtain WhoIs information for this website.", "Error obtaining WhoIs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining WhoIs", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+        }
 
-        
+        private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            //IPAddress[] addresses =  Dns.GetHostAddresses(url.Host);
 
-
-            //open new tab to whois
+            //foreach (var address in addresses)
+            //{
+            //    whatsTheIPToolStripMenuItem.Text = address.ToString();
+            //}
         }
     }
 }

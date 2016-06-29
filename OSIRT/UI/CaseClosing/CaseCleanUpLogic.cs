@@ -123,7 +123,14 @@ namespace OSIRT.UI.CaseClosing
         private void HashCase()
         {
             string hash = OsirtHelper.GetFileHash(Path.Combine(Constants.CasePath, Constants.CaseContainerName + Constants.ContainerExtension));
-            File.WriteAllText(Path.Combine(UserSettings.Load().HashExportLocation, Constants.ExportedHashFileName.Replace("%%dt%%", $"{DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")}")), hash);
+            try
+            {
+                File.WriteAllText(Path.Combine(UserSettings.Load().HashExportLocation, Constants.ExportedHashFileName.Replace("%%dt%%", $"{DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")}")), hash);
+            }
+            catch (Exception e)
+            {
+                File.WriteAllText(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Constants.ExportedHashFileName.Replace("%%dt%%", $"{DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")}")), hash);
+            }
         }
 
 
