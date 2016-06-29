@@ -23,13 +23,11 @@ namespace OSIRT.UI
 
         public event EventHandler CaseClosing;
 
-
         public BrowserPanel()
         {
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
         }
-
 
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
@@ -297,13 +295,11 @@ namespace OSIRT.UI
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            //IPAddress[] addresses =  Dns.GetHostAddresses(url.Host);
+        }
 
-            //foreach (var address in addresses)
-            //{
-            //    whatsTheIPToolStripMenuItem.Text = address.ToString();
-            //}
+        private void uiURLComboBox_MouseEnter(object sender, EventArgs e)
+        {
+        
         }
     }
 }
