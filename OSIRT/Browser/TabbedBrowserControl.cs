@@ -40,20 +40,27 @@ namespace OSIRT.Browser
         public TabbedBrowserControl()
         {
             InitializeComponent();
-            uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
+            //uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
+
+            //due to browser control not releasing memory, and there not being a fix at the moment, prevent multi-tab.
+            //Place this (multiple tabs) as option with a warning.
+            uiBrowserTabControl.NewTabButton = false;
+       
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
 
             uiDownloadProgressBar.Visible = false;
+            //TODO: Browser control is not releasing memory when tabs are closed, force user to have only two tabs.
             CreateTab();
+            //CreateTab();
         }
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
             //Debug.WriteLine("DISPOSE CALLED");
-            CurrentTab?.Browser?.Dispose();
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+            //CurrentTab?.Browser?.Dispose();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)
@@ -73,7 +80,7 @@ namespace OSIRT.Browser
 
         void control_NewTabClicked(object sender, EventArgs e)
         {
-            CreateTab();
+            //CreateTab();
         }
 
         

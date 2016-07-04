@@ -14,6 +14,7 @@ using System.Text;
 using OSIRT.Loggers;
 using Whois;
 using System.Net;
+using System.Diagnostics;
 
 namespace OSIRT.UI
 {
@@ -22,6 +23,7 @@ namespace OSIRT.UI
     {
 
         public event EventHandler CaseClosing;
+        public event EventHandler ResizeMainForm;
 
         public BrowserPanel()
         {
@@ -32,7 +34,6 @@ namespace OSIRT.UI
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
             ConfigureUi();
-            AddNewTab();
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.ViewPageSource += Browser_ViewPageSource;
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
@@ -99,28 +100,14 @@ namespace OSIRT.UI
             }
         }
 
-        private void uiAddTabButton_Click(object sender, EventArgs e)
-        {
-            //AddNewTab();
-        }
-
+    
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
             uiScreenshotButton.Enabled = false;
             uiTabbedBrowserControl.FullPageScreenshot();
-            //uiScreenshotButton.Enabled = true;
         }
 
-        private void AddNewTab()
-        {
-            //uiTabbedBrowserControl.NewTab(UserSettings.Load().Homepage, uiURLComboBox);
-        }
-
-        private void uiBrowserMenuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
 
         private void uiCaseNotesButton_Click(object sender, EventArgs e)
         {
@@ -184,10 +171,7 @@ namespace OSIRT.UI
         {
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
 
-            //codec used can't record above 1920x1080, so resize the window.
-            //TODO: need to test this larger resolution monitors.
-            if (Width > 1920) Width = 1920;
-            if (Height > 1080) Height = 1080;
+            ResizeMainForm?.Invoke(this, null);
 
 
             //TODO: this check is causing the user to have to click twice to stop/start recording??
@@ -241,8 +225,16 @@ namespace OSIRT.UI
 
         private void snippetToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!SnippingTool.Snip())
+            try
+            {
+                if (!SnippingTool.Snip())
+                    return;
+            }
+            catch
+            {
+                MessageBox.Show("Unable to use snipping tool. Try closing some tabs. If this continues, restart OSIRT.", "Unable to use snippet tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
             
             using (Previewer imagePreviewer = new ImagePreviewer(Enums.Actions.Snippet, uiTabbedBrowserControl.CurrentTab.Browser.URL))
             {
@@ -279,16 +271,21 @@ namespace OSIRT.UI
         {
             //get url from bar
             Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-
             try
             {
-                var whois = new WhoisLookup().Lookup(url.Host);
+                string host = url.Host;
+                if(!(host.EndsWith(".com") ||  host.EndsWith(".net")) )
+                {
+                    if (host.StartsWith("www."))
+                        host = host.Remove(0, 4);
+                }
+                var whois = new WhoisLookup().Lookup(host);
                 var view = new ViewPageSource(whois.ToString(), url.Host);
                 view.Show();
             }
             catch
             {
-                MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining WhoIs", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining Whois?", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

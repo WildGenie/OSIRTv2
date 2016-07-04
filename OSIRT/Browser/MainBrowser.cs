@@ -41,11 +41,11 @@ namespace OSIRT.Browser
         private bool firstLoad = true;
 
         //memory footprint reduction
-        //[DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        //internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
+        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
 
-        //[DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        //internal static extern IntPtr GetCurrentProcess();
+        [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
+        internal static extern IntPtr GetCurrentProcess();
 
 
 
@@ -125,7 +125,13 @@ namespace OSIRT.Browser
 
             if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
                 return;
+
             NavigationComplete?.Invoke(this, null);
+
+            // Call this when you want to trim the working set
+            //IntPtr pHandle = GetCurrentProcess();
+            //SetProcessWorkingSetSize(pHandle, -1, -1);
+
 
             //Debug.WriteLine("DOC COMPLETE: " + e.Url);
 

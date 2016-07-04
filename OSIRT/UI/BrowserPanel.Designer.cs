@@ -308,7 +308,6 @@
             this.uiBrowserMenuStrip.Size = new System.Drawing.Size(1089, 24);
             this.uiBrowserMenuStrip.TabIndex = 0;
             this.uiBrowserMenuStrip.Visible = false;
-            this.uiBrowserMenuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.uiBrowserMenuStrip_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 

@@ -49,6 +49,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox = new System.Windows.Forms.GroupBox();
+            this.uiEnterCreatesNewLineCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.uiExportHashOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -58,8 +60,7 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
-            this.groupBox = new System.Windows.Forms.GroupBox();
-            this.uiEnterCreatesNewLineCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -69,10 +70,11 @@
             this.uiCaptureGroupBox.SuspendLayout();
             this.uiAudioGroupBox.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.groupBox.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).BeginInit();
-            this.groupBox.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiOptionsTabControl
@@ -90,6 +92,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
@@ -103,13 +106,12 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.uiHomePageTextBox);
             this.groupBox1.Location = new System.Drawing.Point(9, 7);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(466, 121);
+            this.groupBox1.Size = new System.Drawing.Size(466, 75);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General ";
@@ -117,11 +119,11 @@
             // uiDeleteCacheOnCloseCheckBox
             // 
             this.uiDeleteCacheOnCloseCheckBox.AutoSize = true;
-            this.uiDeleteCacheOnCloseCheckBox.Location = new System.Drawing.Point(10, 88);
+            this.uiDeleteCacheOnCloseCheckBox.Location = new System.Drawing.Point(10, 19);
             this.uiDeleteCacheOnCloseCheckBox.Name = "uiDeleteCacheOnCloseCheckBox";
-            this.uiDeleteCacheOnCloseCheckBox.Size = new System.Drawing.Size(133, 17);
+            this.uiDeleteCacheOnCloseCheckBox.Size = new System.Drawing.Size(248, 17);
             this.uiDeleteCacheOnCloseCheckBox.TabIndex = 3;
-            this.uiDeleteCacheOnCloseCheckBox.Text = "Delete cache on close";
+            this.uiDeleteCacheOnCloseCheckBox.Text = "Delete cache (temporary Internet files) on close";
             this.uiDeleteCacheOnCloseCheckBox.UseVisualStyleBackColor = true;
             this.uiDeleteCacheOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiDeleteCacheOnCloseCheckBox_CheckedChanged);
             // 
@@ -297,6 +299,27 @@
             this.tabPage3.Text = "General";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox
+            // 
+            this.groupBox.Controls.Add(this.uiEnterCreatesNewLineCheckBox);
+            this.groupBox.Location = new System.Drawing.Point(9, 281);
+            this.groupBox.Name = "groupBox";
+            this.groupBox.Size = new System.Drawing.Size(466, 51);
+            this.groupBox.TabIndex = 2;
+            this.groupBox.TabStop = false;
+            this.groupBox.Text = "Case Notes ";
+            // 
+            // uiEnterCreatesNewLineCheckBox
+            // 
+            this.uiEnterCreatesNewLineCheckBox.AutoSize = true;
+            this.uiEnterCreatesNewLineCheckBox.Location = new System.Drawing.Point(7, 21);
+            this.uiEnterCreatesNewLineCheckBox.Name = "uiEnterCreatesNewLineCheckBox";
+            this.uiEnterCreatesNewLineCheckBox.Size = new System.Drawing.Size(238, 17);
+            this.uiEnterCreatesNewLineCheckBox.TabIndex = 0;
+            this.uiEnterCreatesNewLineCheckBox.Text = "Pressing Enter adds a new line to case notes";
+            this.uiEnterCreatesNewLineCheckBox.UseVisualStyleBackColor = true;
+            this.uiEnterCreatesNewLineCheckBox.CheckedChanged += new System.EventHandler(this.uiEnterCreatesNewLineCheckBox_CheckedChanged);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.uiExportHashOnCloseCheckBox);
@@ -326,10 +349,10 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(6, 65);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(419, 13);
+            this.label4.Size = new System.Drawing.Size(425, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Select where the hash file is saved after closing the case. This has is saved in " +
-    "a .txt file.";
+            this.label4.Text = "Select where the hash file is saved after closing the case. This hash is saved in" +
+    " a .txt file.";
             // 
             // uiBrowseLocationButton
             // 
@@ -392,26 +415,15 @@
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
-            // groupBox
+            // groupBox4
             // 
-            this.groupBox.Controls.Add(this.uiEnterCreatesNewLineCheckBox);
-            this.groupBox.Location = new System.Drawing.Point(9, 281);
-            this.groupBox.Name = "groupBox";
-            this.groupBox.Size = new System.Drawing.Size(466, 51);
-            this.groupBox.TabIndex = 2;
-            this.groupBox.TabStop = false;
-            this.groupBox.Text = "Case Notes ";
-            // 
-            // uiEnterCreatesNewLineCheckBox
-            // 
-            this.uiEnterCreatesNewLineCheckBox.AutoSize = true;
-            this.uiEnterCreatesNewLineCheckBox.Location = new System.Drawing.Point(7, 21);
-            this.uiEnterCreatesNewLineCheckBox.Name = "uiEnterCreatesNewLineCheckBox";
-            this.uiEnterCreatesNewLineCheckBox.Size = new System.Drawing.Size(238, 17);
-            this.uiEnterCreatesNewLineCheckBox.TabIndex = 0;
-            this.uiEnterCreatesNewLineCheckBox.Text = "Pressing Enter adds a new line to case notes";
-            this.uiEnterCreatesNewLineCheckBox.UseVisualStyleBackColor = true;
-            this.uiEnterCreatesNewLineCheckBox.CheckedChanged += new System.EventHandler(this.uiEnterCreatesNewLineCheckBox_CheckedChanged);
+            this.groupBox4.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
+            this.groupBox4.Location = new System.Drawing.Point(9, 88);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(466, 52);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Cache";
             // 
             // OptionsForm
             // 
@@ -438,12 +450,14 @@
             this.uiAudioGroupBox.ResumeLayout(false);
             this.uiAudioGroupBox.PerformLayout();
             this.tabPage3.ResumeLayout(false);
+            this.groupBox.ResumeLayout(false);
+            this.groupBox.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).EndInit();
-            this.groupBox.ResumeLayout(false);
-            this.groupBox.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -481,5 +495,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.CheckBox uiEnterCreatesNewLineCheckBox;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
