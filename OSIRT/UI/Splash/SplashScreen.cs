@@ -35,12 +35,14 @@ namespace OSIRT.UI.Splash
                 string[] log = OsirtLogWriter.ReadLog();
                 string path = log[0];
 
+
                 if (!Convert.ToBoolean(log[1]))
                 {
-                    bool fileExists = !File.Exists(path + ".osr");
+                    bool fileExists = File.Exists(path + ".osr");
                     if (!fileExists)
                     {
                         backgroundWorker.ReportProgress(10, $"Previous Case not closed successfully. Re-Archiving: {log[0] + Constants.ContainerExtension}");
+                        Thread.Sleep(250);
                         using (ZipFile zip = new ZipFile())
                         {
                             //if (password.Length > 0)
@@ -48,12 +50,13 @@ namespace OSIRT.UI.Splash
                             //    zip.Password = password;
                             //    zip.Encryption = EncryptionAlgorithm.WinZipAes256;
                             //}
-                            zip.AddDirectory(path);
+
+                            zip.AddDirectory(path, Path.GetFileName(path));
                             zip.Save(Path.Combine(Directory.GetParent(path).FullName, Path.GetFileName(path) + Constants.ContainerExtension));
                         }
 
                         //Dear idiot, don't recursively delete your desktop again like a moron.
-                        //Directory.Delete(Directory.GetParent(path).FullName, true);
+                        OsirtHelper.DeleteDirectory(path);
                     }
                 }
             };

@@ -113,5 +113,18 @@ namespace OSIRT.UI
             CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(args.Password);
             Controls.Add(cleanUpPanel);
         }
+
+        private void uiFixCaseButton_MouseHover(object sender, EventArgs e)
+        {
+            uiHelpLabelLabel.Text = "Restore an extraced OSIRT case.";
+        }
+
+        private void uiFixCaseButton_Click(object sender, EventArgs e)
+        {
+            using(RestoreCaseForm restoreCase = new RestoreCaseForm())
+            {
+                restoreCase.ShowDialog();
+            }
+        }
     }
 }

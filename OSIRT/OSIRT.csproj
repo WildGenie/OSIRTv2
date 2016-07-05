@@ -384,6 +384,12 @@
     <Compile Include="UI\Previewer.Designer.cs">
       <DependentUpon>Previewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\RestoreCaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RestoreCaseForm.Designer.cs">
+      <DependentUpon>RestoreCaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SelectTimeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -518,6 +524,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\Previewer.resx">
       <DependentUpon>Previewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\RestoreCaseForm.resx">
+      <DependentUpon>RestoreCaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectTimeForm.resx">
       <DependentUpon>SelectTimeForm.cs</DependentUpon>
@@ -664,6 +673,8 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\who.png" />
     <None Include="Resources\ip.png" />
+    <None Include="Resources\info.png" />
+    <None Include="Resources\fix_case.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

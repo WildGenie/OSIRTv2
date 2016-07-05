@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.uiOptionsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.uiDeleteCacheOnCloseCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.uiHomePageTextBox = new System.Windows.Forms.TextBox();
@@ -60,9 +61,9 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.uiRecordingOptionsGroupBox.SuspendLayout();
@@ -74,7 +75,6 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).BeginInit();
-            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiOptionsTabControl
@@ -102,6 +102,29 @@
             this.tabPage1.Text = "Browser";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
+            this.groupBox4.Location = new System.Drawing.Point(9, 88);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(466, 52);
+            this.groupBox4.TabIndex = 4;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Cache";
+            // 
+            // uiDeleteCacheOnCloseCheckBox
+            // 
+            this.uiDeleteCacheOnCloseCheckBox.AutoSize = true;
+            this.uiDeleteCacheOnCloseCheckBox.Checked = true;
+            this.uiDeleteCacheOnCloseCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiDeleteCacheOnCloseCheckBox.Location = new System.Drawing.Point(10, 19);
+            this.uiDeleteCacheOnCloseCheckBox.Name = "uiDeleteCacheOnCloseCheckBox";
+            this.uiDeleteCacheOnCloseCheckBox.Size = new System.Drawing.Size(248, 17);
+            this.uiDeleteCacheOnCloseCheckBox.TabIndex = 3;
+            this.uiDeleteCacheOnCloseCheckBox.Text = "Delete cache (temporary Internet files) on close";
+            this.uiDeleteCacheOnCloseCheckBox.UseVisualStyleBackColor = true;
+            this.uiDeleteCacheOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiDeleteCacheOnCloseCheckBox_CheckedChanged);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -115,17 +138,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General ";
-            // 
-            // uiDeleteCacheOnCloseCheckBox
-            // 
-            this.uiDeleteCacheOnCloseCheckBox.AutoSize = true;
-            this.uiDeleteCacheOnCloseCheckBox.Location = new System.Drawing.Point(10, 19);
-            this.uiDeleteCacheOnCloseCheckBox.Name = "uiDeleteCacheOnCloseCheckBox";
-            this.uiDeleteCacheOnCloseCheckBox.Size = new System.Drawing.Size(248, 17);
-            this.uiDeleteCacheOnCloseCheckBox.TabIndex = 3;
-            this.uiDeleteCacheOnCloseCheckBox.Text = "Delete cache (temporary Internet files) on close";
-            this.uiDeleteCacheOnCloseCheckBox.UseVisualStyleBackColor = true;
-            this.uiDeleteCacheOnCloseCheckBox.CheckedChanged += new System.EventHandler(this.uiDeleteCacheOnCloseCheckBox_CheckedChanged);
             // 
             // button1
             // 
@@ -415,16 +427,6 @@
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
-            this.groupBox4.Location = new System.Drawing.Point(9, 88);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(466, 52);
-            this.groupBox4.TabIndex = 4;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Cache";
-            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +441,8 @@
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.uiOptionsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -456,8 +460,6 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }

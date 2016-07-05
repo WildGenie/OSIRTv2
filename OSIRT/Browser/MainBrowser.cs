@@ -128,31 +128,6 @@ namespace OSIRT.Browser
 
             NavigationComplete?.Invoke(this, null);
 
-            // Call this when you want to trim the working set
-            //IntPtr pHandle = GetCurrentProcess();
-            //SetProcessWorkingSetSize(pHandle, -1, -1);
-
-
-            //Debug.WriteLine("DOC COMPLETE: " + e.Url);
-
-            //if (e.Url.Equals(((WebBrowser)sender).Url))
-            //{
-            //    Console.WriteLine("LOADED: " + ((WebBrowser)sender).Url);
-            //}
-
-            //if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
-            //    return;
-
-            //Debug.WriteLine($"e.Url = {e.Url}");
-            //Debug.WriteLine($"((WebBrowser)sender).Url = {((WebBrowser)sender).Url}");
-
-            //if (e.Url != ((WebBrowser)sender).Url)
-            //    return;
-
-            //Debug.WriteLine("LOGGED: " + Url.AbsoluteUri);
-            //Logger.Log(new WebsiteLog(Url.AbsoluteUri));
-
-
             //How to scroll a webpage using the mouse. Perhaps a useful start for a selection capture.
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/2c7b0977-7491-4dee-aa5e-c6eceb3b9f52/scroll-up-and-down-by-clicking-and-dragging?forum=csharpgeneral
         }

@@ -49,7 +49,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(639, 19);
+            this.label1.Location = new System.Drawing.Point(641, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(168, 25);
             this.label1.TabIndex = 1;
@@ -60,7 +60,7 @@
             this.uiProgressLabel.AutoSize = true;
             this.uiProgressLabel.BackColor = System.Drawing.Color.Transparent;
             this.uiProgressLabel.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiProgressLabel.Location = new System.Drawing.Point(574, 219);
+            this.uiProgressLabel.Location = new System.Drawing.Point(538, 219);
             this.uiProgressLabel.Name = "uiProgressLabel";
             this.uiProgressLabel.Size = new System.Drawing.Size(224, 13);
             this.uiProgressLabel.TabIndex = 2;
