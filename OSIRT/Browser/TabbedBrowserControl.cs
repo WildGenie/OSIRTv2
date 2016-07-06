@@ -40,15 +40,12 @@ namespace OSIRT.Browser
         public TabbedBrowserControl()
         {
             InitializeComponent();
-            //uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
-
             //due to browser control not releasing memory, and there not being a fix at the moment, prevent multi-tab.
-            uiBrowserTabControl.NewTabButton = false;
+            //uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
 
             uiDownloadProgressBar.Visible = false;
-            CreateTab();
         }
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
@@ -60,7 +57,7 @@ namespace OSIRT.Browser
             //TODO: had a play in ChromeTabControl.
             //Not had time to fully inspect ramifications of this event.
             //It's not quite 100%, so needs work.
-            //Problems arise when drag-moving tab
+            //Problems arise when drag-moving tab.
             addressBar.Text = CurrentTab?.CurrentUrl;
         }
 
@@ -75,15 +72,18 @@ namespace OSIRT.Browser
             //CreateTab();
         }
 
-        
-        private void CreateTab(string url = "http://google.co.uk")
+        private void CreateTab(string url)
         {
             BrowserTab tab = new BrowserTab();
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
 
             Navigate(url);
+        }
 
+        private void CreateTab()
+        {
+            CreateTab(UserSettings.Load().Homepage);
         }
 
         private void AddBrowserEvents()
@@ -128,7 +128,6 @@ namespace OSIRT.Browser
 
             if (e.Url.Equals(((WebBrowser)sender).Url))
             {
-                Console.WriteLine("LOGGED: " + ((WebBrowser)sender).Url);
                 Logger.Log(new WebsiteLog(CurrentTab.CurrentUrl));
             }
         }
@@ -241,6 +240,19 @@ namespace OSIRT.Browser
         private void uiBrowserTabControl_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void TabbedBrowserControl_Load(object sender, EventArgs e)
+        {
+            if(DesignMode)
+            {
+                uiBrowserTabControl.NewTabButton = false;
+            }
+            else
+            {
+                uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
+                CreateTab();
+            }
         }
     }
 }

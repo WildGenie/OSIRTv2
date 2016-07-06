@@ -31,10 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.uiOptionsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.uiMoreInfoTabsLinkLabel = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.uiAllowMultiTabsCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.uiDeleteCacheOnCloseCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.uiSetHomePageButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.uiHomePageTextBox = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -63,6 +67,7 @@
             this.uiCloseButton = new System.Windows.Forms.Button();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,6 +97,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -101,6 +107,50 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Browser";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.uiMoreInfoTabsLinkLabel);
+            this.groupBox5.Controls.Add(this.label6);
+            this.groupBox5.Controls.Add(this.uiAllowMultiTabsCheckBox);
+            this.groupBox5.Location = new System.Drawing.Point(9, 146);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(466, 104);
+            this.groupBox5.TabIndex = 5;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Tabbed Browsing";
+            // 
+            // uiMoreInfoTabsLinkLabel
+            // 
+            this.uiMoreInfoTabsLinkLabel.AutoSize = true;
+            this.uiMoreInfoTabsLinkLabel.Location = new System.Drawing.Point(6, 83);
+            this.uiMoreInfoTabsLinkLabel.Name = "uiMoreInfoTabsLinkLabel";
+            this.uiMoreInfoTabsLinkLabel.Size = new System.Drawing.Size(86, 13);
+            this.uiMoreInfoTabsLinkLabel.TabIndex = 2;
+            this.uiMoreInfoTabsLinkLabel.TabStop = true;
+            this.uiMoreInfoTabsLinkLabel.Text = "More Information";
+            this.uiMoreInfoTabsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.uiMoreInfoTabsLinkLabel_LinkClicked);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Maroon;
+            this.label6.Location = new System.Drawing.Point(5, 39);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(413, 39);
+            this.label6.TabIndex = 1;
+            this.label6.Text = resources.GetString("label6.Text");
+            // 
+            // uiAllowMultiTabsCheckBox
+            // 
+            this.uiAllowMultiTabsCheckBox.AutoSize = true;
+            this.uiAllowMultiTabsCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.uiAllowMultiTabsCheckBox.Name = "uiAllowMultiTabsCheckBox";
+            this.uiAllowMultiTabsCheckBox.Size = new System.Drawing.Size(190, 17);
+            this.uiAllowMultiTabsCheckBox.TabIndex = 0;
+            this.uiAllowMultiTabsCheckBox.Text = "Allow multiple tabs (requires restart)";
+            this.uiAllowMultiTabsCheckBox.UseVisualStyleBackColor = true;
+            this.uiAllowMultiTabsCheckBox.CheckedChanged += new System.EventHandler(this.uiAllowMultiTabsCheckBox_CheckedChanged);
             // 
             // groupBox4
             // 
@@ -129,7 +179,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.uiSetHomePageButton);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.uiHomePageTextBox);
             this.groupBox1.Location = new System.Drawing.Point(9, 7);
@@ -139,15 +189,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "General ";
             // 
-            // button1
+            // uiSetHomePageButton
             // 
-            this.button1.Enabled = false;
-            this.button1.Location = new System.Drawing.Point(376, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "OK";
-            this.button1.UseVisualStyleBackColor = true;
+            this.uiSetHomePageButton.Location = new System.Drawing.Point(376, 39);
+            this.uiSetHomePageButton.Name = "uiSetHomePageButton";
+            this.uiSetHomePageButton.Size = new System.Drawing.Size(75, 20);
+            this.uiSetHomePageButton.TabIndex = 2;
+            this.uiSetHomePageButton.Text = "OK";
+            this.uiSetHomePageButton.UseVisualStyleBackColor = true;
+            this.uiSetHomePageButton.Click += new System.EventHandler(this.uiSetHomePageButton_Click);
             // 
             // label3
             // 
@@ -160,12 +210,11 @@
             // 
             // uiHomePageTextBox
             // 
-            this.uiHomePageTextBox.Enabled = false;
             this.uiHomePageTextBox.Location = new System.Drawing.Point(6, 39);
             this.uiHomePageTextBox.Name = "uiHomePageTextBox";
             this.uiHomePageTextBox.Size = new System.Drawing.Size(364, 20);
             this.uiHomePageTextBox.TabIndex = 0;
-            this.uiHomePageTextBox.Text = "(Currently Disabled)";
+            this.uiHomePageTextBox.Text = "http://www.google.co.uk";
             // 
             // tabPage2
             // 
@@ -441,6 +490,8 @@
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.uiOptionsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -477,7 +528,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox uiDeleteCacheOnCloseCheckBox;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button uiSetHomePageButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox uiHomePageTextBox;
         private System.Windows.Forms.TabPage tabPage3;
@@ -498,5 +549,9 @@
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.CheckBox uiEnterCreatesNewLineCheckBox;
         private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.LinkLabel uiMoreInfoTabsLinkLabel;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox uiAllowMultiTabsCheckBox;
     }
 }

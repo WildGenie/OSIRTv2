@@ -73,6 +73,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap about_osirt {
+            get {
+                object obj = ResourceManager.GetObject("about_osirt", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap add_folder_128 {
             get {
                 object obj = ResourceManager.GetObject("add-folder-128", resourceCulture);

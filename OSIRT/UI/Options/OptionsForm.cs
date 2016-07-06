@@ -41,6 +41,8 @@ namespace OSIRT.UI.Options
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
             uiEnterCreatesNewLineCheckBox.Checked = settings.EnterInCaseNotesNewLine;
+            uiAllowMultiTabsCheckBox.Checked = settings.AllowMultipleTabs;
+            uiHomePageTextBox.Text = settings.Homepage;
 
             uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
 
@@ -131,6 +133,36 @@ namespace OSIRT.UI.Options
         private void uiEnterCreatesNewLineCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             settings.EnterInCaseNotesNewLine = uiEnterCreatesNewLineCheckBox.Checked;
+            settings.Save();
+        }
+
+        private void uiMoreInfoTabsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("These slow-downs are largely due to the browser control used within OSIRT. OSIRT is looking to move towards using CefSharp, an open source project, as its main browser. CefSharp uses the same engine as Google Chrome.", "Why does this happen?", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void uiAllowMultiTabsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.AllowMultipleTabs = uiAllowMultiTabsCheckBox.Checked;
+            settings.Save();
+        }
+
+        private void uiSetHomePageButton_Click(object sender, EventArgs e)
+        {
+            string url = uiHomePageTextBox.Text;
+
+            if (!url.StartsWith("http://"))
+                url = url.Insert(0, "http://");
+
+            if (!url.IsUrl())
+            {
+                MessageBox.Show("Invalid Url", "Invalid Url", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                uiHomePageTextBox.Focus();
+                return;
+            }
+
+            uiHomePageTextBox.Text = url;
+            settings.Homepage = url;
             settings.Save();
         }
     }

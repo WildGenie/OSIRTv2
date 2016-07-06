@@ -56,7 +56,7 @@ namespace OSIRT.UI
         {
             var args = ((SaveSourceEventArgs)e);
             string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", args.Domain);
-            string path = Path.Combine(Constants.ContainerLocation,  Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Source), filename);
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Source), filename);
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {
                 using (StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.UTF8))
@@ -100,7 +100,7 @@ namespace OSIRT.UI
             }
         }
 
-    
+
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
@@ -124,7 +124,7 @@ namespace OSIRT.UI
 
         private void uiAttachmentToolStripButton_Click(object sender, EventArgs e)
         {
-            using(AttachmentForm attachment = new AttachmentForm())
+            using (AttachmentForm attachment = new AttachmentForm())
             {
                 attachment.ShowDialog();
             }
@@ -132,7 +132,7 @@ namespace OSIRT.UI
 
         private void uiLBackButton_Click(object sender, EventArgs e)
         {
-            if(uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
+            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
                 uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
         }
 
@@ -235,7 +235,7 @@ namespace OSIRT.UI
                 MessageBox.Show("Unable to use snipping tool. Try closing some tabs. If this continues, restart OSIRT.", "Unable to use snippet tool", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             using (Previewer imagePreviewer = new ImagePreviewer(Enums.Actions.Snippet, uiTabbedBrowserControl.CurrentTab.Browser.URL))
             {
                 imagePreviewer.ShowDialog();
@@ -258,13 +258,13 @@ namespace OSIRT.UI
 
                 uiTabbedBrowserControl.TimedScreenshot(timeForm.Time);
             }
-           
-            
+
+
         }
 
         private void uiHomeButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Navigate("http://google.co.uk");
+            uiTabbedBrowserControl.CurrentTab.Browser.Navigate(UserSettings.Load().Homepage);
         }
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -274,7 +274,7 @@ namespace OSIRT.UI
             try
             {
                 string host = url.Host;
-                if(!(host.EndsWith(".com") ||  host.EndsWith(".net")) )
+                if (!(host.EndsWith(".com") || host.EndsWith(".net")))
                 {
                     if (host.StartsWith("www."))
                         host = host.Remove(0, 4);
@@ -296,7 +296,12 @@ namespace OSIRT.UI
 
         private void uiURLComboBox_MouseEnter(object sender, EventArgs e)
         {
-        
+
+        }
+
+        private void aboutOSIRTToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new AboutOSIRT().Show();
         }
     }
 }

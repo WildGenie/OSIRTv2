@@ -30,6 +30,7 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.uiPasswordGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiRequiresPasswordCheckbox = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.uiConfirmPasswordTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -55,11 +56,10 @@
             this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent5 = new System.Windows.Controls.TextBox();
+            this.hostedComponent6 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
-            this.uiRequiresPasswordCheckbox = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -106,7 +106,18 @@
             this.uiPasswordGroupBox.Size = new System.Drawing.Size(459, 159);
             this.uiPasswordGroupBox.TabIndex = 58;
             this.uiPasswordGroupBox.TabStop = false;
-            this.uiPasswordGroupBox.Text = "Container Password";
+            this.uiPasswordGroupBox.Text = "Container Password [In Beta, recommended for testers only]";
+            // 
+            // uiRequiresPasswordCheckbox
+            // 
+            this.uiRequiresPasswordCheckbox.AutoSize = true;
+            this.uiRequiresPasswordCheckbox.Location = new System.Drawing.Point(10, 25);
+            this.uiRequiresPasswordCheckbox.Name = "uiRequiresPasswordCheckbox";
+            this.uiRequiresPasswordCheckbox.Size = new System.Drawing.Size(119, 17);
+            this.uiRequiresPasswordCheckbox.TabIndex = 7;
+            this.uiRequiresPasswordCheckbox.Text = "Password required?";
+            this.uiRequiresPasswordCheckbox.UseVisualStyleBackColor = true;
+            this.uiRequiresPasswordCheckbox.CheckedChanged += new System.EventHandler(this.uiRequiresPasswordCheckbox_CheckedChanged);
             // 
             // label10
             // 
@@ -409,17 +420,6 @@
             this.uiHelpLabelLabel.Text = "Create New Case";
             this.uiHelpLabelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiRequiresPasswordCheckbox
-            // 
-            this.uiRequiresPasswordCheckbox.AutoSize = true;
-            this.uiRequiresPasswordCheckbox.Location = new System.Drawing.Point(10, 25);
-            this.uiRequiresPasswordCheckbox.Name = "uiRequiresPasswordCheckbox";
-            this.uiRequiresPasswordCheckbox.Size = new System.Drawing.Size(119, 17);
-            this.uiRequiresPasswordCheckbox.TabIndex = 7;
-            this.uiRequiresPasswordCheckbox.Text = "Password required?";
-            this.uiRequiresPasswordCheckbox.UseVisualStyleBackColor = true;
-            this.uiRequiresPasswordCheckbox.CheckedChanged += new System.EventHandler(this.uiRequiresPasswordCheckbox_CheckedChanged);
-            // 
             // CaseDetailsPanel2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,5 +483,6 @@
         private System.Windows.Controls.TextBox hostedComponent4;
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Forms.CheckBox uiRequiresPasswordCheckbox;
+        private System.Windows.Controls.TextBox hostedComponent6;
     }
 }

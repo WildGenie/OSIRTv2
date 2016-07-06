@@ -24,6 +24,14 @@ namespace OSIRT.Extensions
             return r.Replace(toSplit, " ");
         }
 
+
+        public static bool IsUrl(this string url)
+        {
+            Uri uriResult;
+            bool result = Uri.TryCreate(url, UriKind.Absolute, out uriResult) && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+            return result;
+        }
+
         public static string ToTitleCase(this string toTitle)
         {
             if (toTitle.Contains("_")) //database tables joined by '_'
