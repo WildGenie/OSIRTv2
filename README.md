@@ -2,7 +2,7 @@
 
 This documentation is still work in progress, see http://osirtbrowser.com/ to download the latest version.
 
-OSIRT's source code is licensed under MIT License.
+#2 OSIRT's source code is licensed using the MIT License.
 
 MIT License
 
