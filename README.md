@@ -4,7 +4,7 @@ This documentation is still work in progress, see http://osirtbrowser.com/ to do
 
 OSIRT's source code is licensed under the MIT License.
 
-MIT License
+[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/hyperium/hyper/master/LICENSE)
 
 Copyright (c) 2016 Joseph Williams
 
