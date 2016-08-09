@@ -15,6 +15,8 @@ using OSIRT.Loggers;
 using Whois;
 using System.Net;
 using System.Diagnostics;
+using OSIRT.Extensions;
+using OSIRT.Browser;
 
 namespace OSIRT.UI
 {
@@ -38,7 +40,21 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.ViewPageSource += Browser_ViewPageSource;
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
             uiTabbedBrowserControl.CurrentTab.Browser.NavigationComplete += Browser_NavigationComplete;
+            uiTabbedBrowserControl.CurrentTab.UpdateAddressBar += CurrentTab_UpdateAddressBar;
+            uiTabbedBrowserControl.CurrentTab.OpenNewTab += CurrentTab_OpenNewTab;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+        }
+
+        private void CurrentTab_OpenNewTab(object sender, EventArgs e)
+        {
+            Debug.WriteLine("--- in open new tab event ---");
+            string url = ((OnPopUpEventArgs)e).TargetUrl;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CurrentTab.Browser.Load(url));
+        }
+
+        private void CurrentTab_UpdateAddressBar(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => uiURLComboBox.Text = ((NewTabEventArgs)e).Url);
         }
 
         private void Browser_NavigationComplete(object sender, EventArgs e)
@@ -69,17 +85,19 @@ namespace OSIRT.UI
             MessageBox.Show("Page source saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void Browser_ViewPageSource(object sender, EventArgs e)
+        private async void Browser_ViewPageSource(object sender, EventArgs e)
         {
-            var args = ((ViewSourceEventArgs)e);
-            string source = args.Source;
-            string title = args.Title;
-            new ViewPageSource(source, title).Show();
+            //var args = ((ViewSourceEventArgs)e);
+            //string source = args.Source;
+            //string title = args.Title;
+
+            string source =  await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.GetSourceAsync();
+            new ViewPageSource(source, "").Show();
         }
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
-            uiScreenshotButton.Enabled = true;
+            //uiScreenshotButton.Enabled = true;
         }
 
         private void ConfigureUi()
@@ -104,7 +122,7 @@ namespace OSIRT.UI
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
-            uiScreenshotButton.Enabled = false;
+            //uiScreenshotButton.Enabled = false;
             uiTabbedBrowserControl.FullPageScreenshot();
         }
 
@@ -132,14 +150,14 @@ namespace OSIRT.UI
 
         private void uiLBackButton_Click(object sender, EventArgs e)
         {
-            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
-                uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
+            //if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
+            //    uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
         }
 
         private void uiForwardButton_Click(object sender, EventArgs e)
         {
-            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
-                uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
+            //if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
+            //    uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
         }
 
         private void uiRefreshButton_Click(object sender, EventArgs e)
@@ -264,7 +282,7 @@ namespace OSIRT.UI
 
         private void uiHomeButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Navigate(UserSettings.Load().Homepage);
+           // uiTabbedBrowserControl.CurrentTab.Browser.Navigate(UserSettings.Load().Homepage);
         }
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)

@@ -2,26 +2,66 @@
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
+using OSIRT.Extensions;
+using OSIRT.Loggers;
+using CefSharp.WinForms;
+using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using CefSharp;
+using System.Threading;
 
 namespace OSIRT.Browser
 {
-    public class BrowserTab : /*TabPage*/ ChromeTabControl.TabPage
+    public class BrowserTab : ChromeTabControl.TabPage
     {
         public ExtendedBrowser Browser { get; private set; }
         public string CurrentUrl { get; set; }
+        public event EventHandler UpdateAddressBar = delegate { };
+        public event EventHandler OpenNewTab = delegate { };
+        private ToolStripComboBox addressBar;
 
-        public BrowserTab()
+        private IntPtr browserHandle;
+
+        public BrowserTab(ToolStripComboBox addressBar)
         {
+            this.addressBar = addressBar;
             Browser = new ExtendedBrowser {Dock = DockStyle.Fill};
-            Browser.DocumentTitleChanged += Browser_DocumentTitleChanged;
+            Browser.TitleChanged += Browser_TitleChanged;
+            Browser.AddressChanged += Browser_AddressChanged;
+            Browser.DownloadHandler = new DownloadHandler();
+            Browser.LifeSpanHandler = new LifespanHandler();
+
+            Browser.HandleCreated += Browser_HandleCreated;
+            Browser.MouseMove += Browser_MouseMove;
             Controls.Add(Browser);
         }
 
 
-        void Browser_DocumentTitleChanged(object sender, EventArgs e)
+        private void Browser_MouseMove(object sender, MouseEventArgs e)
         {
-            Title = Browser.DocumentTitle;
+            //Debug.WriteLine($"{e.X} {e.Y}");
         }
+
+        private void Browser_HandleCreated(object sender, EventArgs e)
+        {
+            browserHandle = Browser.Handle;
+        }
+
+        private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)
+        {
+            Debug.WriteLine("Address changed");
+            Logger.Log(new WebsiteLog(e.Address));
+            //UpdateAddressBar?.Invoke(this, new NewTabEventArgs(e.Address)); //Address bar not updating, may have to pass reference to it here.
+            this.InvokeIfRequired(() => addressBar.Text = e.Address);
+        }
+
+        private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)
+        {
+            SuspendLayout();
+            this.InvokeIfRequired(() => Title = e.Title);
+            ResumeLayout(true);
+        }
+
 
         internal override bool NewInstanceAttempted(ChromeTabControl.TabPage newInstance)
         {

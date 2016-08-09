@@ -274,7 +274,7 @@ namespace WebDownloader
         {
 
             Invoke(new UIDownloadCompletedHanlder(DownloadCompletedHanlder), e);
-            Logger.Log(new WebpageActionsLog(tbURL.Text, Actions.Download, OsirtHelper.GetFileHash(DownloadPath), Path.GetFileName(tbURL.Text), "Test note"));
+            Logger.Log(new WebpageActionsLog(tbURL.Text, Actions.Download, OsirtHelper.GetFileHash(DownloadPath), Path.GetFileName(tbURL.Text), ""));
         }
 
         void DownloadCompletedHanlder(HttpDownloadCompletedEventArgs e)
@@ -338,5 +338,11 @@ namespace WebDownloader
 
         }
 
+        
+
+        private void WebDownload_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

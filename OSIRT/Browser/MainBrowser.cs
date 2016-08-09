@@ -18,10 +18,13 @@ using OSIRT.Extensions;
 using OSIRT.UI.DownloadClient;
 using OSIRT.UI.ViewSource;
 using OSIRT.UI;
+using CefSharp.WinForms;
+using System.Threading;
+using System.Drawing.Imaging;
 
 namespace OSIRT.Browser
 {
-    public class ExtendedBrowser : WebBrowser
+    public class ExtendedBrowser : ChromiumWebBrowser
     {
         public event EventHandler ScreenshotCompleted = delegate { };
         public event EventHandler DownloadingProgress = delegate { };
@@ -29,36 +32,51 @@ namespace OSIRT.Browser
         public event EventHandler NewTab = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler SavePageSource = delegate { };
+        
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
         public event EventHandler NavigationComplete = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
-        private ContextMenuStrip contextMenu;
-        private HtmlElement element;
         private PictureBox mouseTrail = new PictureBox();
-        private bool firstLoad = true;
-
-        //memory footprint reduction
-        [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
-
-        [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
-        internal static extern IntPtr GetCurrentProcess();
 
 
-
-        public ExtendedBrowser()
+        public ExtendedBrowser() : base("http://google.co.uk")
         {
-            SetLatestIEKeyforWebBrowserControl();
-            NativeMethods.DisableClickSounds();
-            ScriptErrorsSuppressed = true;
-            DocumentCompleted += ExtendedBrowser_DocumentCompleted;
-
-            InitialiseConextMenu();
-            DisableNewWindowsOpening();
             InitialiseMouseTrail();
+            var handler = new MenuHandler();
+            handler.DownloadImage += Handler_DownloadImage;
+            handler.ViewPageSource += Handler_ViewPageSource;
+            MenuHandler = handler;
+            MouseMove += ExtendedBrowser_MouseMove;
+        }
+
+
+        private void ExtendedBrowser_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (UserSettings.Load().ShowMouseTrail)
+            {
+                mouseTrail.Location = new Point(e.X + 5, e.Y + 5);
+                Debug.WriteLine($"{e.X + 5} {e.Y + 5}");
+            }
+        }
+
+        private async void Handler_ViewPageSource(object sender, EventArgs e)
+        {
+            string source = await GetBrowser().MainFrame.GetSourceAsync();
+            new ViewPageSource(source, "").Show();
+        }
+
+        private void Handler_DownloadImage(object sender, EventArgs e)
+        {
+            DownloadFile(((DownloadImageViaContextMenuEventArgs)e).Url);
+        }
+
+        private void ExtendedBrowser_AddressChanged(object sender, CefSharp.AddressChangedEventArgs e)
+        {
+            Logger.Log(new WebsiteLog(e.Address));
+            Debug.WriteLine(e.Address);
         }
 
         public bool MouseTrailVisible
@@ -83,31 +101,6 @@ namespace OSIRT.Browser
         }
 
 
-        private void InitialiseConextMenu()
-        {
-            contextMenu = new ContextMenuStrip();
-
-            contextMenu.Items.Add("Save image as...", Properties.Resources.picture_save, SaveImageAs_Click);
-            contextMenu.Items.Add("Save page source", Properties.Resources.source_code, SaveSource_Click);
-            contextMenu.Items.Add("View page source", null, ViewSource_Click);
-            contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Open link in new tab", Properties.Resources.new_tab, OpenNewTab_Click);
-            contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Download all images", Properties.Resources.download_cloud, DownloadAllImages_Click);
-            contextMenu.Items.Add(new ToolStripSeparator());
-            contextMenu.Items.Add("Extract YouTube video", Properties.Resources.online_video_insert1, DownloadYouTube_Click);
-            contextMenu.Items.Add("View image Exif data", Properties.Resources.camera, ViewExifData_Click);
-
-            contextMenu.Items[0].Enabled = false;
-            contextMenu.Items[4].Enabled = false;
-            contextMenu.Items[8].Visible = false;
-            contextMenu.Items[9].Enabled = false;
-            contextMenu.Opening += new CancelEventHandler(contextMenuStrip_Opening);
-            ContextMenuStrip = contextMenu;
-        }
-
-
-
         private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
         {
             YouTubeDownloadComplete?.Invoke(this, e);
@@ -118,26 +111,13 @@ namespace OSIRT.Browser
             YouTubeDownloadProgress?.Invoke(this, e);
         }
 
-        private void ExtendedBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
-        {
-            if (firstLoad) AttachMouseEventHandlers();
-
-
-            if (e.Url.AbsolutePath != ((WebBrowser)sender).Url.AbsolutePath)
-                return;
-
-            NavigationComplete?.Invoke(this, null);
-
-            //How to scroll a webpage using the mouse. Perhaps a useful start for a selection capture.
-            //https://social.msdn.microsoft.com/Forums/vstudio/en-US/2c7b0977-7491-4dee-aa5e-c6eceb3b9f52/scroll-up-and-down-by-clicking-and-dragging?forum=csharpgeneral
-        }
 
         private void AttachMouseEventHandlers()
         {
-            Document.MouseDown += Document_MouseDown;
-            Document.MouseUp += Document_MouseUp;
-            Document.MouseMove += Document_MouseMove;
-            firstLoad = false;
+            //Document.MouseDown += Document_MouseDown;
+            //Document.MouseUp += Document_MouseUp;
+            //Document.MouseMove += Document_MouseMove;
+            //firstLoad = false;
         }
 
         private void Document_MouseUp(object sender, HtmlElementEventArgs e)
@@ -179,60 +159,51 @@ namespace OSIRT.Browser
             FireScreenshotCompleteEvent();
         }
 
-        public bool Enable
-        {
-            get
-            {
-                return ((Control)this).Enabled;
-            }
-            set
-            {
-                ((Control)this).Enabled = value;
-            }
-        }
-
         public async Task PutTaskDelay()
         {
             await Task.Delay(MaxWait);
         }
+       private int GetDocHeight()
+        {
+            int scrollHeight = 0;
+            var task = GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
+            task.Wait();
+            var response = task.Result;
+            scrollHeight = (int)response.Result;
+            return scrollHeight;
+        }
+
+
 
         private async void FullpageScreenshotByScrolling()
         {
-            int scrollHeight = ScrollHeight();
-
+            int scrollHeight =  GetDocHeight();
             if (scrollHeight == 0)
                 return;
 
-            Enable = false;
+            Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height;
             int viewportWidth = ClientRectangle.Size.Width;
-            ToggleScrollbars(false);
-
-
+            await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
             int count = 0;
             int pageLeft = scrollHeight;
             bool atBottom = false;
-
             Debug.WriteLine($"OUTSIDE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
-
             ImageDiskCache cache = new ImageDiskCache();
-
 
             while (!atBottom)
             {
                 if (pageLeft > viewportHeight)
                 {
                     //if we can scroll using the viewport, let's do that
-
-                    ScrollTo(0, count * viewportHeight);
-
+                    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0," + (count * viewportHeight) + "); })();");
                     count++;
-
-                    await PutTaskDelay(); //we do need these delays. Some pages, like facebook, may need to load viewport content.
+                    await PutTaskDelay();  //we do need these delays. Some pages, like facebook, may need to load viewport content.
                     using (Bitmap image = GetCurrentViewScreenshot())
                     {
                         cache.AddImage(count, image);
                     }
+                    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
                 }
                 else 
                 {
@@ -240,13 +211,11 @@ namespace OSIRT.Browser
                     //if it's the last image, we're going to need to crop what we need, as it'll take
                     //a capture of the entire viewport.
 
-                    Navigate("javascript:var s = function() { window.scrollBy(0," + pageLeft + "); }; s();");
-
+                    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
                     atBottom = true;
                     count++;
 
-                    await PutTaskDelay(); //may need to place larger delay
-
+                    await PutTaskDelay();
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -256,19 +225,16 @@ namespace OSIRT.Browser
                         g.DrawImage(src, new Rectangle(0, 0, target.Width, target.Height), cropRect, GraphicsUnit.Pixel);
                         cache.AddImage(count, target);
                     }
-
+                  
                 }
 
                 pageLeft = pageLeft - viewportHeight;
-                ToggleFixedElements(false);
                 Debug.WriteLine($"IN WHILE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
             }//end while
-
-            ToggleScrollbars(true);
-            ToggleFixedElements(true);
-            Document.Body.ScrollIntoView(true);//scroll page back to the top
-
-            Enable = true;
+            await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { document.documentElement.style.overflow = 'auto'; })();");
+            await GetBrowser().MainFrame.EvaluateScriptAsync("javascript:var s = function() { document.body.scrollTop = document.documentElement.scrollTop = 0;}; s();");
+            await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'visible'; } } })(); ");
+            Enabled = true;
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             FireScreenshotCompleteEvent();
         }
@@ -280,63 +246,17 @@ namespace OSIRT.Browser
             ScreenshotHelper.CombineScreenshot(files, e);
         }
 
-        public string URL => Url.AbsoluteUri;
-
-
-        private void FullpageScreenshotGdi()
-        {
-            int width = ScrollWidth();
-            int height = ScrollHeight();
-
-            Dock = DockStyle.None;
-            ToggleScrollbars(false);
-            Size = new Size(width, height);
-            using (Bitmap screenshot = new Bitmap(width, height))
-            {
-                try
-                {
-                    NativeMethods.GetImage(ActiveXInstance, screenshot, Color.Black);
-                    ScreenshotHelper.SaveScreenshotToCache(screenshot);
-                }
-                finally
-                {
-                    Dock = DockStyle.Fill;
-                    ToggleScrollbars(true);
-                }
-            }
-        }
-
-
+        public string URL => Address;
 
         public void GenerateFullpageScreenshot()
         {
             try
             {
-                if (ScrollHeight() > MaxScrollHeight)
-                {
-                    FullpageScreenshotByScrolling();
-                }
-                else
-                {
-                    FullpageScreenshotGdi();
-                    FireScreenshotCompleteEvent();
-                }
+                FullpageScreenshotByScrolling();
             }
-            catch //so many edge cases, let's try scrolling.
+            catch
             {
-                try
-                {
-
-                    FullpageScreenshotByScrolling();
-                }
-                catch
-                {
-                    MessageBox.Show("Unable to take a full page capture. Please use video capture, snippet or current view screenshot.", "Cannot take fullpage screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                finally
-                {
-                    Dock = DockStyle.Fill;
-                }
+                MessageBox.Show("Unable to take a full page capture. Please use video capture, snippet or current view screenshot.", "Cannot take fullpage screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             finally
             {
@@ -350,181 +270,6 @@ namespace OSIRT.Browser
             ScreenshotCompleted(this, new ScreenshotCompletedEventArgs());
         }
 
-        private void ScrollTo(int x, int y)
-        {
-            Document.Window.ScrollTo(x, y);
-        }
-
-
-
-        /// <summary>
-        /// Inspects the registry and uses the latest version of IE
-        /// </summary>
-        private void SetLatestIEKeyforWebBrowserControl()
-        {
-
-            const string BROWSER_EMULATION_KEY = @"Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_BROWSER_EMULATION";
-
-            string appname = Process.GetCurrentProcess().ProcessName + ".exe";
-
-            // Internet Explorer 11. Webpages are displayed in IE11 edge mode, regardless of the !DOCTYPE directive.
-            const int browserEmulationMode = 11001;
-
-            RegistryKey browserEmulationKey =
-            Registry.CurrentUser.OpenSubKey(BROWSER_EMULATION_KEY, RegistryKeyPermissionCheck.ReadWriteSubTree) ??
-            Registry.CurrentUser.CreateSubKey(BROWSER_EMULATION_KEY);
-
-            if (browserEmulationKey != null)
-            {
-                browserEmulationKey.SetValue(appname, browserEmulationMode, RegistryValueKind.DWord);
-                browserEmulationKey.Close();
-            }
-
-        }
-
-        /// <summary>
-        /// Toggles the all the elements that has a property of "position:fixed" in the document
-        /// </summary>
-        /// <param name="toggle">Elements are visible if true, other hidden if false</param>
-        public void ToggleFixedElements(bool toggle)
-        {
-            string property = toggle ? "visible" : "hidden";
-            HtmlElement h = Document.GetElementsByTagName("head")[0];
-            HtmlElement s = Document.CreateElement("script");
-            IHTMLScriptElement el = (IHTMLScriptElement)s.DomElement;
-            el.text = "javascript: var f = function() { var elements =	document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if(position === 'fixed') { elements[i].style.visibility = '" + property + "';  } }	 }; f();";
-            h.AppendChild(s);
-        }
-
-        /// <summary>
-        /// Obtains the Height of the current document.
-        /// Inspects the documents scroll height, client height, the body's scroll height and the bounds of the body using ScrollRectangle.
-        /// The highest height is returned.
-        /// </summary>
-        /// <returns>The document's current Height</returns>
-        public int ScrollHeight()
-        {
-            //TODO: If this is a PDF (or non webpage) it throws an exception.
-            //The same for Width, I'd imagine.
-
-            if (Document == null)
-                return 0;
-
-            Rectangle bounds = Document.Body.ScrollRectangle;
-            IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
-            IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
-
-            int scrollHeight = new[] { body.scrollHeight, bounds.Height, doc.scrollHeight, Document.Body.OffsetRectangle.Height, doc.clientHeight }.Max();
-
-            return scrollHeight;
-        }
-
-        /// <summary>
-        /// Obtains the Width of the current document.
-        /// Inspects the documents scroll width, client width, the body's scroll width and the bounds of the body using ScrollRectangle.
-        /// The highest width is returned.
-        /// </summary>
-        /// <returns>The document's current Width</returns>
-        public int ScrollWidth()
-        {
-            if (Document == null)
-                return 0;
-
-            Rectangle bounds = Document.Body.ScrollRectangle;
-            IHTMLElement2 body = Document.Body.DomElement as IHTMLElement2;
-            IHTMLElement2 doc = (Document.DomDocument as IHTMLDocument3).documentElement as IHTMLElement2;
-
-            int  scrollWidth = new[] { body.scrollWidth, bounds.Width, doc.scrollWidth, Document.Body.OffsetRectangle.Width, doc.clientWidth }.Max();
-
-            return scrollWidth;
-        }
-
-        /// <summary>
-        /// Displays or hides the document's scrollbars
-        /// </summary>
-        /// <param name="toggle">Scrolls visible if true, hidden if false</param>
-        public void ToggleScrollbars(bool toggle)
-        {
-            string property = toggle ? "visible" : "hidden";
-            string attribute = toggle ? "yes" : "no";
-            Document.Body.Style = $"overflow:{property}";
-            Document.Body.SetAttribute("scroll", attribute);
-        }
-
-        public void DisableNewWindowsOpening()
-        {
-            var activex = (SHDocVw.WebBrowser_V1)ActiveXInstance;
-            activex.NewWindow += delegate (string URL, int Flags, string TargetFrameName, ref object PostData, string Headers, ref bool Processed)
-            {
-                Processed = true;
-                object flags = Flags;
-                object targetFrame = Type.Missing;
-                object postData = PostData != null ? PostData : Type.Missing;
-                object headers = !string.IsNullOrEmpty(Headers) ? Headers.ToString() : Type.Missing;
-                activex.Navigate(URL, ref flags, ref targetFrame, ref postData, ref headers);
-            };
-        }
-
-
-        #region Download Manager
-        protected sealed class WebBrowserControlSite : WebBrowserSite, DownloadManager.IServiceProvider
-        {
-            private IDownloadManager manager;
-
-            public WebBrowserControlSite(WebBrowser host) : base(host)
-            {
-                manager = new BrowserDownloadManager();
-            }
-
-            [return: MarshalAs(UnmanagedType.I4)]
-            public int QueryService([In] ref Guid guidService, [In] ref Guid riid, [Out] out IntPtr ppvObject)
-            {
-                Guid SID_SDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
-                Guid IID_IDownloadManager = new Guid("988934A4-064B-11D3-BB80-00104B35E7F9");
-
-                if ((guidService == IID_IDownloadManager && riid == IID_IDownloadManager))
-                {
-                    ppvObject = Marshal.GetComInterfaceForObject(manager, typeof(IDownloadManager));
-                    return 0; //S_OK
-                }
-                ppvObject = IntPtr.Zero;
-                return unchecked((int)0x80004002); //NON_INTERFACE
-            }
-        }
-
-        protected override WebBrowserSiteBase CreateWebBrowserSiteBase()
-        {
-            return new WebBrowserControlSite(this);
-        }
-
-        #endregion
-
-        #region context menu events
-
-        private void contextMenuStrip_Opening(object sender, CancelEventArgs e)
-        {
-            contextMenu.Items[8].Visible = OsirtHelper.IsOnYouTube(URL);
-
-            if (element == null)
-                return;
-
-            if(element.TagName == "IMG")
-                Debug.WriteLine(element.GetAttribute("src"));
-
-            bool isImageElement = (element.TagName == "IMG") && OsirtHelper.StripQueryFromPath(element.GetAttribute("src")).HasImageExtension();
-            contextMenu.Items[0].Enabled = isImageElement;
-            contextMenu.Items[9].Enabled = isImageElement &&  OsirtHelper.HasJpegExtension(OsirtHelper.StripQueryFromPath(element.GetAttribute("src")));
-            contextMenu.Items[4].Enabled = (element.TagName == "A");
-            
-        }
-
-        private void OpenNewTab_Click(object sender, EventArgs e)
-        {
-            //TODO: Validate this url!
-            string url = element.GetAttribute("href");
-            Debug.WriteLine(url);
-            NewTab?.Invoke(this, new NewTabEventArgs(url));
-        }
 
         private void DownloadAllImages_Click(object sender, EventArgs e)
         {
@@ -548,42 +293,20 @@ namespace OSIRT.Browser
             downloader.DownloadProgress += YouTubeDownloader_DownloadProgress;
             downloader.DownloadComplete += YouTubeDownloader_DownloadComplete;
             await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
-
-            //Placing this here due to cross threading issues.
-            //using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
-            //{
-            //    vidPreviewer.ShowDialog();
-            //}
-            //ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
-        }
-
-        private void SaveSource_Click(object sender, EventArgs e)
-        {
-            SavePageSource?.Invoke(this, new SaveSourceEventArgs(DocumentText, new Uri(URL).Host.Replace(".", "")));
-        }
-
-        private void ViewSource_Click(object sender, EventArgs e)
-        {
-            ViewPageSource?.Invoke(this, new ViewSourceEventArgs(DocumentText, DocumentTitle));
         }
 
         private void ViewExifData_Click(object sender, EventArgs e)
         {
-            string path = element.GetAttribute("src");
-            WebClient webClientexif = new WebClient();
-            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
-            webClientexif.DownloadFileAsync(new Uri(path), file, file);
-            webClientexif.DownloadFileCompleted += (snd, evt) =>
-            {
-                new ExifViewer(evt.UserState.ToString(), path).Show();
-            };
+            //string path = element.GetAttribute("src");
+            //WebClient webClientexif = new WebClient();
+            //string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+            //webClientexif.DownloadFileAsync(new Uri(path), file, file);
+            //webClientexif.DownloadFileCompleted += (snd, evt) =>
+            //{
+            //    new ExifViewer(evt.UserState.ToString(), path).Show();
+            //};
         }
 
-        private void SaveImageAs_Click(object sender, EventArgs e)
-        {
-            string path = element.GetAttribute("src");
-            DownloadFile(path);
-        }
 
         private void DownloadFile(string path)
         {
@@ -606,48 +329,48 @@ namespace OSIRT.Browser
         }
 
 
-        #endregion
+   
 
         #region mouse events
         private void Document_MouseDown(object sender, HtmlElementEventArgs e)
         {
-            if (UserSettings.Load().ShowMouseClick)
-                mouseTrail.BackColor = Color.Yellow;
+            //if (UserSettings.Load().ShowMouseClick)
+            //    mouseTrail.BackColor = Color.Yellow;
 
 
 
-            try
-            {
-                element = Document.GetElementFromPoint(PointToClient(MousePosition));
+            //try
+            //{
+            //    element = Document.GetElementFromPoint(PointToClient(MousePosition));
 
-                if (e.MouseButtonsPressed == MouseButtons.Right && element.TagName == "INPUT")
-                {
-                    IsWebBrowserContextMenuEnabled = true;
-                }
-                else
-                {
-                    IsWebBrowserContextMenuEnabled = false;
-                }
+            //    if (e.MouseButtonsPressed == MouseButtons.Right && element.TagName == "INPUT")
+            //    {
+            //        IsWebBrowserContextMenuEnabled = true;
+            //    }
+            //    else
+            //    {
+            //        IsWebBrowserContextMenuEnabled = false;
+            //    }
 
-                if (e.MouseButtonsPressed == MouseButtons.Middle)
-                {
-                    HtmlElement el = Document.GetElementFromPoint(PointToClient(MousePosition));
-                    //I assume I need to check if this element has child elements that contain a TagName "A"
+            //    if (e.MouseButtonsPressed == MouseButtons.Middle)
+            //    {
+            //        HtmlElement el = Document.GetElementFromPoint(PointToClient(MousePosition));
+            //        //I assume I need to check if this element has child elements that contain a TagName "A"
 
-                    if (el.TagName == "A" && !string.IsNullOrEmpty(el.GetAttribute("href")))//it means we have deal with href
-                    {
-                        Debug.WriteLine("Get link location, open in new tab.");
-                        var url = el.GetAttribute("href");
-                        Debug.WriteLine(url);
-                    }
-                    else
-                        Debug.WriteLine(el.TagName);
-                }
-            }
-            catch
-            {
-                //just swallow this exception, too many edge cases.
-            }
+            //        if (el.TagName == "A" && !string.IsNullOrEmpty(el.GetAttribute("href")))//it means we have deal with href
+            //        {
+            //            Debug.WriteLine("Get link location, open in new tab.");
+            //            var url = el.GetAttribute("href");
+            //            Debug.WriteLine(url);
+            //        }
+            //        else
+            //            Debug.WriteLine(el.TagName);
+            //    }
+            //}
+            //catch
+            //{
+            //    //just swallow this exception, too many edge cases.
+            //}
         }
 
 

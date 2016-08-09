@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.ComponentModel;
 using OSIRT.Loggers;
+using OSIRT.Extensions;
 
 namespace OSIRT.Browser
 {
@@ -26,6 +27,7 @@ namespace OSIRT.Browser
             get
             {
                 int selectedIndex = (int)uiBrowserTabControl?.TabPages?.SelectedIndex;
+                Debug.WriteLine("SELECTED INDEX OF CURRENT TAB: " + selectedIndex);
                 return uiBrowserTabControl?.TabPages?[selectedIndex] as BrowserTab;
             }
         }
@@ -41,7 +43,7 @@ namespace OSIRT.Browser
         {
             InitializeComponent();
             //due to browser control not releasing memory, and there not being a fix at the moment, prevent multi-tab.
-            //uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
+            uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
 
@@ -58,7 +60,7 @@ namespace OSIRT.Browser
             //Not had time to fully inspect ramifications of this event.
             //It's not quite 100%, so needs work.
             //Problems arise when drag-moving tab.
-            addressBar.Text = CurrentTab?.CurrentUrl;
+            addressBar.Text = CurrentTab?.Browser.Address;
         }
 
         private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
@@ -69,15 +71,14 @@ namespace OSIRT.Browser
 
         void control_NewTabClicked(object sender, EventArgs e)
         {
-            //CreateTab();
+            CreateTab();
         }
 
-        private void CreateTab(string url)
+        public void CreateTab(string url)
         {
-            BrowserTab tab = new BrowserTab();
+            BrowserTab tab = new BrowserTab(addressBar);
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-
             Navigate(url);
         }
 
@@ -88,42 +89,37 @@ namespace OSIRT.Browser
 
         private void AddBrowserEvents()
         {
-            CurrentBrowser.StatusTextChanged += Browser_StatusTextChanged;
-            CurrentBrowser.Navigated += CurrentBrowser_Navigated;
             CurrentBrowser.ScreenshotCompleted += Screenshot_Completed;
             CurrentBrowser.DownloadingProgress += currentBrowser_DownloadingProgress;
             CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
-            CurrentBrowser.NewTab += CurrentBrowser_NewTab;
             CurrentBrowser.YouTubeDownloadProgress += CurrentBrowser_YouTubeDownloadProgress;
             CurrentBrowser.YouTubeDownloadComplete += CurrentBrowser_YouTubeDownloadComplete;
-        }
-
-
-        private void CurrentBrowser_NewTab(object sender, EventArgs e)
-        {
-            CreateTab(((NewTabEventArgs)e).Url);
         }
 
         private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)
         {
             AsyncCompletedEventArgs evt = (AsyncCompletedEventArgs)e;
             string filename = evt.UserState.ToString();
-            uiDownloadProgressBar.Visible = false;
+            this.InvokeIfRequired(() => uiDownloadProgressBar.Visible = false);
             ShowImagePreviewer(Actions.Saved, filename);
         }
 
         private void currentBrowser_DownloadingProgress(object sender, EventArgs e)
         {
-            if(!uiDownloadProgressBar.Visible)
-                uiDownloadProgressBar.Visible = true;
+            Invoke((MethodInvoker)delegate
+            {
+                if (!uiDownloadProgressBar.Visible)
+                    uiDownloadProgressBar.Visible = true;
 
-            int progress =  ((DownloadProgressChangedEventArgs)e).ProgressPercentage;
-            uiDownloadProgressBar.Value = progress;
+                int progress = ((DownloadProgressChangedEventArgs)e).ProgressPercentage;
+                uiDownloadProgressBar.Value = progress;
+            });
+
         }
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
+            //CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentUrl;
 
             if (e.Url.Equals(((WebBrowser)sender).Url))
@@ -140,23 +136,26 @@ namespace OSIRT.Browser
 
         private void ShowImagePreviewer(Actions action, string imagePath)
         {
-            ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
-            DialogResult dialogRes;
-            string fileName;
-            string dateAndtime;
-
-            using(Previewer previewForm = new ImagePreviewer(action, CurrentBrowser.URL, imagePath))
+            Invoke((MethodInvoker)delegate
             {
-                dialogRes = previewForm.ShowDialog();
-                fileName = previewForm.FileName + previewForm.FileExtension;
-                dateAndtime = previewForm.DateAndTime;
-            }
+                ScreenshotDetails details = new ScreenshotDetails(CurrentBrowser.URL);
+                DialogResult dialogRes;
+                string fileName;
+                string dateAndtime;
 
-            ImageDiskCache.RemoveItemsInCache();
-            if (dialogRes != DialogResult.OK)
-                return;
+                using (Previewer previewForm = new ImagePreviewer(action, CurrentBrowser.URL, imagePath))
+                {
+                    dialogRes = previewForm.ShowDialog();
+                    fileName = previewForm.FileName + previewForm.FileExtension;
+                    dateAndtime = previewForm.DateAndTime;
+                }
+                ImageDiskCache.RemoveItemsInCache();
+                if (dialogRes != DialogResult.OK)
+                    return;
 
-            DisplaySavedLabel(fileName, dateAndtime);
+                DisplaySavedLabel(fileName, dateAndtime);
+            });
+
         }
 
         private void DisplaySavedLabel(string fileName, string dateTime)
@@ -170,7 +169,7 @@ namespace OSIRT.Browser
 
         void Browser_StatusTextChanged(object sender, EventArgs e)
         {
-            uiStatusLabel.Text = CurrentBrowser.StatusText;
+            //uiStatusLabel.Text = CurrentBrowser.StatusText;
         }
 
         public void FullPageScreenshot()
@@ -198,7 +197,8 @@ namespace OSIRT.Browser
 
         public void Navigate(string url)
         {
-             CurrentTab?.Browser?.Navigate(url);
+            Debug.WriteLine("url in navigate: " + url);
+            CurrentTab.Browser.Load(url);
         }
 
         private void CurrentBrowser_YouTubeDownloadComplete(object sender, EventArgs e)

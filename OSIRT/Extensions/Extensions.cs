@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -12,6 +13,19 @@ namespace OSIRT.Extensions
 {
     public static class Extensions
     {
+
+        public static void InvokeIfRequired(this ISynchronizeInvoke control, MethodInvoker action)
+        {
+            if (control.InvokeRequired)
+            {
+                var args = new object[0];
+                control.Invoke(action, args);
+            }
+            else {
+                action();
+            }
+        }
+
         public static IEnumerable<TControl> GetChildControls<TControl>(this Control control) where TControl : Control
         {
             var children = control.Controls.OfType<TControl>();

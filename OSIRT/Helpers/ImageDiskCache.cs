@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using OSIRT.Enums;
 using System.Linq;
+using System.Diagnostics;
 
 namespace OSIRT.Helpers
 {
@@ -30,7 +31,7 @@ namespace OSIRT.Helpers
             using (image)
             {
                 string path = Path.Combine(Constants.CacheLocation, name + SaveableFileTypes.Png);
-
+                Console.WriteLine(Constants.CacheLocation, name + SaveableFileTypes.Png);
                 try
                 {
                     if(File.Exists(path))
@@ -94,7 +95,7 @@ namespace OSIRT.Helpers
                 GC.WaitForPendingFinalizers();
 
                 DirectoryInfo di = new DirectoryInfo(Constants.CacheLocation);
-                FileInfo[] images = di.GetFiles("*.png"); //don't want to delete video from cache
+                var images = di.GetFiles().Where(ext => ext.Extension != ".mp4"); //don't want to delete video from cache
                 foreach (var img in images)
                     img.Delete();
 
