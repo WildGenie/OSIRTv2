@@ -125,6 +125,7 @@ namespace OSIRT.UI.AuditLog
 
             foreach (AuditTab tab in tabs)
             {
+                if (tab.Text == "Complete") continue; //still getting a null reference
                 tab.AuditLogGrid.RowEntered += AuditLogForm_RowEntered;
             }
         }

@@ -177,6 +177,7 @@
     <Compile Include="Browser\DownloadManager\BrowserDownloadManager.cs" />
     <Compile Include="Browser\DownloadManager\IDownloadManager.cs" />
     <Compile Include="Browser\DownloadManager\IServiceProvider.cs" />
+    <Compile Include="Browser\ExifViewerEventArgs.cs" />
     <Compile Include="Browser\LifespanHandler.cs" />
     <Compile Include="Browser\MenuHandler.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />

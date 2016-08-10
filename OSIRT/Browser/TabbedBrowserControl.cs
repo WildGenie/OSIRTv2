@@ -19,6 +19,7 @@ namespace OSIRT.Browser
     {
 
         private ToolStripComboBox addressBar;
+        private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
 
@@ -36,6 +37,11 @@ namespace OSIRT.Browser
         public void SetAddressBar(ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
+        }
+
+        public void SetMenuItem(ToolStripMenuItem menuItem)
+        {
+            this.menuItem = menuItem;
         }
 
 

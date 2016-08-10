@@ -38,7 +38,6 @@
             this.BackColor = System.Drawing.Color.Purple;
             this.ClientSize = new System.Drawing.Size(624, 446);
             this.ForeColor = System.Drawing.Color.Red;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MarkerWindow";
             this.Text = "Marker Window";

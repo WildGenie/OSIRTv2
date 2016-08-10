@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using CefSharp;
 using System.Threading;
+using System.Net;
 
 namespace OSIRT.Browser
 {
@@ -16,11 +17,9 @@ namespace OSIRT.Browser
     {
         public ExtendedBrowser Browser { get; private set; }
         public string CurrentUrl { get; set; }
-        public event EventHandler UpdateAddressBar = delegate { };
-        public event EventHandler OpenNewTab = delegate { };
         private ToolStripComboBox addressBar;
-
         private IntPtr browserHandle;
+        public event EventHandler AddressChanged = delegate { };
 
         public BrowserTab(ToolStripComboBox addressBar)
         {
@@ -49,17 +48,13 @@ namespace OSIRT.Browser
 
         private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)
         {
-            Debug.WriteLine("Address changed");
             Logger.Log(new WebsiteLog(e.Address));
-            //UpdateAddressBar?.Invoke(this, new NewTabEventArgs(e.Address)); //Address bar not updating, may have to pass reference to it here.
             this.InvokeIfRequired(() => addressBar.Text = e.Address);
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)
         {
-            SuspendLayout();
             this.InvokeIfRequired(() => Title = e.Title);
-            ResumeLayout(true);
         }
 
 

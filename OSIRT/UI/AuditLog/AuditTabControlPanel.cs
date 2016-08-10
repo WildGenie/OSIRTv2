@@ -41,8 +41,21 @@ namespace OSIRT.UI.AuditLog
         {
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
             //TODO: next/prev page buttons still doing some voodoo stuff.
-            NextPage();
-            PreviousPage();
+
+            AuditTab tab = (AuditTab)sender;
+
+            if (tab.Text != "Complete")
+            {
+                uiNextPageButton.Visible = true;
+                uiPreviousPageButton.Visible = true;
+                NextPage();
+                PreviousPage();
+            }
+            else
+            {
+                uiNextPageButton.Visible = false;
+                uiPreviousPageButton.Visible = false;
+            }
 
         }
 

@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using OSIRT.Helpers;
+using System.Diagnostics;
 
 namespace OSIRT.Browser
 {
@@ -15,9 +17,13 @@ namespace OSIRT.Browser
         private const int CloseDevTools = 26502;
         private const int MenuSaveImage = 26503;
         private const int ViewSource = 26504;
+        private const int SaveYouTubeVideo = 26505;
+        private const int ViewImageExifData = 26506;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
+        public event EventHandler DownloadYouTubeVideo = delegate { };
+        public event EventHandler ViewImageExif = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -28,10 +34,18 @@ namespace OSIRT.Browser
             model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
-                model.AddItem((CefMenuCommand)MenuSaveImage, "Save image as...");
-                model.AddSeparator();
-            }
+                //if file ends with jpeg
 
+                if(OsirtHelper.HasJpegExtension(parameters.SourceUrl))
+                {
+                    model.AddItem((CefMenuCommand)ViewImageExifData, "View image EXIF data");
+                }
+                model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
+            }
+            if(OsirtHelper.IsOnYouTube(browserControl.Address))
+            {
+                model.AddItem((CefMenuCommand)SaveYouTubeVideo, "Extract YouTube video");
+            }
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
@@ -52,6 +66,14 @@ namespace OSIRT.Browser
             {
                 //trigger event and display elsewhere.
                 ViewPageSource?.Invoke(this, null);
+            }
+            if ((int)commandId == SaveYouTubeVideo)
+            {
+                DownloadYouTubeVideo?.Invoke(this, null);   //we have the address, anyway, so don't need to pass it via event args.
+            }
+            if ((int)commandId == ViewImageExifData)
+            {
+                ViewImageExif?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl)); 
             }
             return false;
         }

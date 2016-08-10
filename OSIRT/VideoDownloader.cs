@@ -38,8 +38,6 @@ namespace OSIRT
             }
 
             //TODO: check this path! Video names could have a "/" (slash) in them. For example: Joe w/ [shortent with] Jen
-
-            
             var videoDownloader = new VideoDownloader(video, Constants.TempVideoFile);
 
             // Register the ProgressChanged event and print the current progress
@@ -55,7 +53,6 @@ namespace OSIRT
 
         private void VideoDownloader_DownloadProgressChanged(object sender, ProgressEventArgs e)
         {
-            //Debug.WriteLine(e.ProgressPercentage);
             DownloadProgress?.Invoke(this, e);
         }
     }

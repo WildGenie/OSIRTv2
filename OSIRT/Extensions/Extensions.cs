@@ -19,7 +19,7 @@ namespace OSIRT.Extensions
             if (control.InvokeRequired)
             {
                 var args = new object[0];
-                control.Invoke(action, args);
+                control?.Invoke(action, args);
             }
             else {
                 action();

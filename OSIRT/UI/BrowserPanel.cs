@@ -39,10 +39,14 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.ViewPageSource += Browser_ViewPageSource;
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
-            uiTabbedBrowserControl.CurrentTab.Browser.NavigationComplete += Browser_NavigationComplete;
-            uiTabbedBrowserControl.CurrentTab.UpdateAddressBar += CurrentTab_UpdateAddressBar;
-            uiTabbedBrowserControl.CurrentTab.OpenNewTab += CurrentTab_OpenNewTab;
+            uiTabbedBrowserControl.CurrentTab.AddressChanged += CurrentTab_AddressChanged;
+
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+        }
+
+        private void CurrentTab_AddressChanged(object sender, EventArgs e)
+        {
+          
         }
 
         private void CurrentTab_OpenNewTab(object sender, EventArgs e)
@@ -52,10 +56,6 @@ namespace OSIRT.UI
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CurrentTab.Browser.Load(url));
         }
 
-        private void CurrentTab_UpdateAddressBar(object sender, EventArgs e)
-        {
-            this.InvokeIfRequired(() => uiURLComboBox.Text = ((NewTabEventArgs)e).Url);
-        }
 
         private void Browser_NavigationComplete(object sender, EventArgs e)
         {
@@ -287,7 +287,6 @@ namespace OSIRT.UI
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //get url from bar
             Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
             try
             {
@@ -310,6 +309,13 @@ namespace OSIRT.UI
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            IPAddress[] addresses = Dns.GetHostAddresses(url.Host);
+
+            foreach (var address in addresses)
+            {
+                this.InvokeIfRequired(() => whatsTheIPToolStripMenuItem.Text = address.ToString());
+            }
         }
 
         private void uiURLComboBox_MouseEnter(object sender, EventArgs e)

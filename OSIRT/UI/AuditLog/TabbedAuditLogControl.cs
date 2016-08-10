@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Database;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -24,6 +25,14 @@ namespace OSIRT.UI.AuditLog
             uiAuditLogTabControl.SelectedIndexChanged += AuditLogTabControl_SelectedIndexChanged;
             CreateTabs();
 
+            OsirtGridView grid = new OsirtGridView();
+            //grid.RowEntered += Grid_RowEntered;
+            grid.DataSource = new DatabaseHandler().GetAllDatabaseData();
+            grid.Dock = DockStyle.Fill;
+            var tab = new AuditTab("Complete");
+            tab.Controls.Add(grid);
+
+            uiAuditLogTabControl.TabPages.Add(tab);
         }
 
         private void CreateTabs()
@@ -33,6 +42,7 @@ namespace OSIRT.UI.AuditLog
                 AuditTab auditTab = new AuditTab(tab.Key, tab.Value);
                 uiAuditLogTabControl.TabPages.Add(auditTab);
             }
+            //Working on adding a complete audit log tab, including notes
 
         }
 
@@ -57,7 +67,7 @@ namespace OSIRT.UI.AuditLog
 
         private void AuditLogTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TabChanged?.Invoke(this, e);
+            TabChanged?.Invoke(CurrentTab, e);
         }
 
         public TabControl.TabPageCollection AuditTabs

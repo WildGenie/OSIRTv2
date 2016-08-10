@@ -35,23 +35,35 @@ namespace OSIRT.Browser
         
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
-        public event EventHandler NavigationComplete = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private PictureBox mouseTrail = new PictureBox();
 
 
-        public ExtendedBrowser() : base("http://google.co.uk")
+        public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
             InitialiseMouseTrail();
             var handler = new MenuHandler();
             handler.DownloadImage += Handler_DownloadImage;
             handler.ViewPageSource += Handler_ViewPageSource;
+            handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
+            handler.ViewImageExif += Handler_ViewImageExif;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
         }
 
+        private void Handler_ViewImageExif(object sender, EventArgs e)
+        {
+            string path = ((ExifViewerEventArgs)e).ImageUrl;
+            WebClient webClientexif = new WebClient();
+            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+            webClientexif.DownloadFileAsync(new Uri(path), file, file);
+            webClientexif.DownloadFileCompleted += (snd, evt) =>
+            {
+               this.InvokeIfRequired(() =>  new ExifViewer(evt.UserState.ToString(), path).Show());
+            };
+        }
 
         private void ExtendedBrowser_MouseMove(object sender, MouseEventArgs e)
         {
@@ -71,12 +83,6 @@ namespace OSIRT.Browser
         private void Handler_DownloadImage(object sender, EventArgs e)
         {
             DownloadFile(((DownloadImageViaContextMenuEventArgs)e).Url);
-        }
-
-        private void ExtendedBrowser_AddressChanged(object sender, CefSharp.AddressChangedEventArgs e)
-        {
-            Logger.Log(new WebsiteLog(e.Address));
-            Debug.WriteLine(e.Address);
         }
 
         public bool MouseTrailVisible
@@ -101,24 +107,6 @@ namespace OSIRT.Browser
         }
 
 
-        private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
-        {
-            YouTubeDownloadComplete?.Invoke(this, e);
-        }
-
-        private void YouTubeDownloader_DownloadProgress(object sender, EventArgs e)
-        {
-            YouTubeDownloadProgress?.Invoke(this, e);
-        }
-
-
-        private void AttachMouseEventHandlers()
-        {
-            //Document.MouseDown += Document_MouseDown;
-            //Document.MouseUp += Document_MouseUp;
-            //Document.MouseMove += Document_MouseMove;
-            //firstLoad = false;
-        }
 
         private void Document_MouseUp(object sender, HtmlElementEventArgs e)
         {
@@ -163,6 +151,7 @@ namespace OSIRT.Browser
         {
             await Task.Delay(MaxWait);
         }
+
        private int GetDocHeight()
         {
             int scrollHeight = 0;
@@ -287,7 +276,10 @@ namespace OSIRT.Browser
         }
 
 
-        private async void DownloadYouTube_Click(object sender, EventArgs e)
+
+        #region YouTube downloading
+
+        private async void Handler_DownloadYouTubeVideo(object sender, EventArgs e)
         {
             var downloader = new YouTubeVideoDownloader(URL);
             downloader.DownloadProgress += YouTubeDownloader_DownloadProgress;
@@ -295,17 +287,17 @@ namespace OSIRT.Browser
             await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
         }
 
-        private void ViewExifData_Click(object sender, EventArgs e)
+        private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
         {
-            //string path = element.GetAttribute("src");
-            //WebClient webClientexif = new WebClient();
-            //string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
-            //webClientexif.DownloadFileAsync(new Uri(path), file, file);
-            //webClientexif.DownloadFileCompleted += (snd, evt) =>
-            //{
-            //    new ExifViewer(evt.UserState.ToString(), path).Show();
-            //};
+            YouTubeDownloadComplete?.Invoke(this, e);
         }
+
+        private void YouTubeDownloader_DownloadProgress(object sender, EventArgs e)
+        {
+            YouTubeDownloadProgress?.Invoke(this, e);
+        }
+        #endregion
+
 
 
         private void DownloadFile(string path)
