@@ -9,6 +9,7 @@ namespace OSIRT.UI.AuditLog
     {
         public event EventHandler TabChanged;
 
+
         private readonly Dictionary<string, string> tabs = new Dictionary<string, string>()
         {
             {"Websites Loaded", "webpage_log"},
@@ -24,12 +25,11 @@ namespace OSIRT.UI.AuditLog
             InitializeComponent();
             uiAuditLogTabControl.SelectedIndexChanged += AuditLogTabControl_SelectedIndexChanged;
             CreateTabs();
+        }
 
-            OsirtGridView grid = new OsirtGridView();
-            //grid.RowEntered += Grid_RowEntered;
-            grid.DataSource = new DatabaseHandler().GetAllDatabaseData();
-            grid.Dock = DockStyle.Fill;
-            var tab = new AuditTab("Complete");
+        public void AddGridToTab(OsirtGridView grid, string tabName)
+        {
+            var tab = new AuditTab(tabName);
             tab.Controls.Add(grid);
 
             uiAuditLogTabControl.TabPages.Add(tab);

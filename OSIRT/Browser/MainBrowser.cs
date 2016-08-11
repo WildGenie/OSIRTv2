@@ -77,7 +77,7 @@ namespace OSIRT.Browser
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            new ViewPageSource(source, "").Show();
+            new ViewPageSource(source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show();
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)

@@ -25,12 +25,16 @@ namespace OSIRT.UI.AuditLog
             tabbedAuditLog.Dock = DockStyle.Fill;
             uiGridViewPanel.Controls.Add(tabbedAuditLog);
             InitialiseTooltips();
-
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription(); 
             uiPreviousPageButton.Enabled = false;
             uiSearchSelectionComboBox.SelectedIndex = 0;
         }
 
+
+        public void AddGridToTab(OsirtGridView grid, string tabName)
+        {
+            tabbedAuditLog.AddGridToTab(grid, tabName);
+        }
 
         public Dictionary<string, string> Tabs()
         {
@@ -40,10 +44,7 @@ namespace OSIRT.UI.AuditLog
         private void TabbedAuditLog_TabChanged(object sender, EventArgs e)
         {
             uiPageNumberLabel.Text = tabbedAuditLog.CurrentTab.PagesLeftDescription();
-            //TODO: next/prev page buttons still doing some voodoo stuff.
-
             AuditTab tab = (AuditTab)sender;
-
             if (tab.Text != "Complete")
             {
                 uiNextPageButton.Visible = true;

@@ -58,6 +58,7 @@ namespace OSIRT.Browser
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
+            //CurrentTab?.Browser?.Dispose();
         }
 
         private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)

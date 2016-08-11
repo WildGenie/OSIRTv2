@@ -984,7 +984,7 @@ namespace DotNetChromeTabs
                     //Added
                     Closed?.Invoke(this, null);
                     TabPages.RemoveAt(HoverTabCloseDownIndex);
-
+                    
                   
                     //TODO: Added below
                     SelectedIndexChange?.Invoke(this, new TabChangedEventArgs(TabPages.SelectedIndex));

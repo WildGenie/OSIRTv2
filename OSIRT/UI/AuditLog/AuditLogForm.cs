@@ -24,12 +24,13 @@ namespace OSIRT.UI.AuditLog
 
         private void uiAuditLogForm_Load(object sender, EventArgs e)
         {
+            
+            rowDetailsPanel = new RowDetailsPanel();
+            uiAuditLogSplitContainer.Panel1.Controls.Add(rowDetailsPanel);
+
             auditTabControlPanel = new AuditTabControlPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(auditTabControlPanel);
             AttachRowEventHandler(auditTabControlPanel);
-
-            rowDetailsPanel = new RowDetailsPanel();
-            uiAuditLogSplitContainer.Panel1.Controls.Add(rowDetailsPanel);
 
             rightSearchPanel = new TempSearchPanel();
             uiAuditLogSplitContainer.Panel2.Controls.Add(rightSearchPanel);
@@ -41,6 +42,16 @@ namespace OSIRT.UI.AuditLog
             exportReportOptionsPanel.Visible = false;
 
             InitialiseSearchComboBox();
+            AddCompleteAuditTrail();
+        }
+
+        private void AddCompleteAuditTrail()
+        {
+            OsirtGridView grid = new OsirtGridView();
+            grid.RowEntered += Grid_RowEntered;
+            grid.DataSource = new DatabaseHandler().GetAllDatabaseData();
+            grid.Dock = DockStyle.Fill;
+            auditTabControlPanel.AddGridToTab(grid, "Complete");
         }
 
         private void InitialiseSearchComboBox()
@@ -125,7 +136,7 @@ namespace OSIRT.UI.AuditLog
 
             foreach (AuditTab tab in tabs)
             {
-                if (tab.Text == "Complete") continue; //still getting a null reference
+                if (tab.Text == "Complete") continue;
                 tab.AuditLogGrid.RowEntered += AuditLogForm_RowEntered;
             }
         }
