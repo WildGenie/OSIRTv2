@@ -24,12 +24,12 @@ namespace OSIRT.Browser
         public BrowserTab(ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
+
             Browser = new ExtendedBrowser {Dock = DockStyle.Fill};
             Browser.TitleChanged += Browser_TitleChanged;
             Browser.AddressChanged += Browser_AddressChanged;
             Browser.DownloadHandler = new DownloadHandler();
             Browser.LifeSpanHandler = new LifespanHandler();
-
             Browser.HandleCreated += Browser_HandleCreated;
             Browser.MouseMove += Browser_MouseMove;
             Controls.Add(Browser);

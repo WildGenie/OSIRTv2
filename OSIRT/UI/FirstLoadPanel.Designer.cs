@@ -30,16 +30,17 @@
         {
             this.uiFirstLoadPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.uiFixCaseButton = new System.Windows.Forms.Button();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
             this.uiImagePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.uiBrowserSettingsButton = new System.Windows.Forms.Button();
+            this.uiFixCaseButton = new System.Windows.Forms.Button();
             this.uiNewCaseButton = new System.Windows.Forms.Button();
             this.uiLoadExistingCaseButton = new System.Windows.Forms.Button();
             this.uiLoadReportButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.uiFirstLoadPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.uiBrowserSettingsButton);
             this.panel1.Controls.Add(this.uiFixCaseButton);
             this.panel1.Controls.Add(this.uiHelpLabelLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -67,22 +69,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(995, 109);
             this.panel1.TabIndex = 2;
-            // 
-            // uiFixCaseButton
-            // 
-            this.uiFixCaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.uiFixCaseButton.BackColor = System.Drawing.Color.Transparent;
-            this.uiFixCaseButton.BackgroundImage = global::OSIRT.Properties.Resources.fix_case;
-            this.uiFixCaseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiFixCaseButton.FlatAppearance.BorderSize = 0;
-            this.uiFixCaseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.uiFixCaseButton.Location = new System.Drawing.Point(3, 67);
-            this.uiFixCaseButton.Name = "uiFixCaseButton";
-            this.uiFixCaseButton.Size = new System.Drawing.Size(39, 39);
-            this.uiFixCaseButton.TabIndex = 4;
-            this.uiFixCaseButton.UseVisualStyleBackColor = false;
-            this.uiFixCaseButton.Click += new System.EventHandler(this.uiFixCaseButton_Click);
-            this.uiFixCaseButton.MouseHover += new System.EventHandler(this.uiFixCaseButton_MouseHover);
             // 
             // uiHelpLabelLabel
             // 
@@ -153,6 +139,49 @@
             this.label2.Text = "Load Case";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 163);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(177, 18);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Create New Case";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiBrowserSettingsButton
+            // 
+            this.uiBrowserSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uiBrowserSettingsButton.BackColor = System.Drawing.Color.Transparent;
+            this.uiBrowserSettingsButton.BackgroundImage = global::OSIRT.Properties.Resources.network_tools;
+            this.uiBrowserSettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiBrowserSettingsButton.FlatAppearance.BorderSize = 0;
+            this.uiBrowserSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uiBrowserSettingsButton.Location = new System.Drawing.Point(953, 67);
+            this.uiBrowserSettingsButton.Name = "uiBrowserSettingsButton";
+            this.uiBrowserSettingsButton.Size = new System.Drawing.Size(39, 39);
+            this.uiBrowserSettingsButton.TabIndex = 5;
+            this.uiBrowserSettingsButton.UseVisualStyleBackColor = false;
+            this.uiBrowserSettingsButton.Click += new System.EventHandler(this.uiBrowserSettingsButton_Click);
+            // 
+            // uiFixCaseButton
+            // 
+            this.uiFixCaseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.uiFixCaseButton.BackColor = System.Drawing.Color.Transparent;
+            this.uiFixCaseButton.BackgroundImage = global::OSIRT.Properties.Resources.fix_case;
+            this.uiFixCaseButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiFixCaseButton.FlatAppearance.BorderSize = 0;
+            this.uiFixCaseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uiFixCaseButton.Location = new System.Drawing.Point(3, 67);
+            this.uiFixCaseButton.Name = "uiFixCaseButton";
+            this.uiFixCaseButton.Size = new System.Drawing.Size(39, 39);
+            this.uiFixCaseButton.TabIndex = 4;
+            this.uiFixCaseButton.UseVisualStyleBackColor = false;
+            this.uiFixCaseButton.Click += new System.EventHandler(this.uiFixCaseButton_Click);
+            this.uiFixCaseButton.MouseHover += new System.EventHandler(this.uiFixCaseButton_MouseHover);
+            // 
             // uiNewCaseButton
             // 
             this.uiNewCaseButton.BackColor = System.Drawing.Color.White;
@@ -196,18 +225,6 @@
             this.uiLoadReportButton.Click += new System.EventHandler(this.uiLoadReportButton_Click);
             this.uiLoadReportButton.MouseHover += new System.EventHandler(this.uiLoadReportButton_MouseHover);
             // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 163);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 18);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Create New Case";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FirstLoadPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -237,5 +254,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label uiHelpLabelLabel;
         private System.Windows.Forms.Button uiFixCaseButton;
+        private System.Windows.Forms.Button uiBrowserSettingsButton;
     }
 }

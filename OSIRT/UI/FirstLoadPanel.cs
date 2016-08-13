@@ -126,5 +126,12 @@ namespace OSIRT.UI
                 restoreCase.ShowDialog();
             }
         }
+
+        private void uiBrowserSettingsButton_Click(object sender, EventArgs e)
+        {
+            //open new options form
+            //agent spoofer
+            //tor settings
+        }
     }
 }

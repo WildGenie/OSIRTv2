@@ -61,7 +61,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.uiFacebookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -277,8 +276,7 @@
             this.uiToolsToolStripSplitButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.whoIsToolStripMenuItem,
             this.whatsTheIPToolStripMenuItem,
-            this.aboutOSIRTToolStripMenuItem,
-            this.uiFacebookToolStripMenuItem});
+            this.aboutOSIRTToolStripMenuItem});
             this.uiToolsToolStripSplitButton.Image = global::OSIRT.Properties.Resources.settings;
             this.uiToolsToolStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiToolsToolStripSplitButton.Name = "uiToolsToolStripSplitButton";
@@ -382,13 +380,6 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // uiFacebookToolStripMenuItem
-            // 
-            this.uiFacebookToolStripMenuItem.Name = "uiFacebookToolStripMenuItem";
-            this.uiFacebookToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.uiFacebookToolStripMenuItem.Text = "Facebook";
-            this.uiFacebookToolStripMenuItem.Click += new System.EventHandler(this.uiFacebookToolStripMenuItem_Click);
-            // 
             // BrowserPanel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -440,6 +431,5 @@
         private System.Windows.Forms.ToolStripMenuItem whoIsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatsTheIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutOSIRTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uiFacebookToolStripMenuItem;
     }
 }

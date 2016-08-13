@@ -147,6 +147,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tor">
+      <HintPath>..\..\..\TorBrowser_1_0_0\TorBrowser\TorBrowser\TorDll\Tor.dll</HintPath>
+    </Reference>
     <Reference Include="TuesPechkin, Version=2.1.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TuesPechkin.2.1.1\lib\net20\TuesPechkin.dll</HintPath>
       <Private>True</Private>
@@ -302,6 +305,12 @@
     <Compile Include="UI\AuditLog\TempSearchPanel.Designer.cs">
       <DependentUpon>TempSearchPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BrowserOptions\BrowserOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BrowserOptions\BrowserOptionsForm.Designer.cs">
+      <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BrowserPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -355,6 +364,12 @@
     </Compile>
     <Compile Include="UI\ExifViewerForm.Designer.cs">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\FacebookDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\FacebookDetailsForm.Designer.cs">
+      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
@@ -523,6 +538,9 @@
     <EmbeddedResource Include="UI\AuditLog\TempSearchPanel.resx">
       <DependentUpon>TempSearchPanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\BrowserOptions\BrowserOptionsForm.resx">
+      <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -546,6 +564,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ExifViewerForm.resx">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\FacebookDetailsForm.resx">
+      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
@@ -743,6 +764,7 @@
     <None Include="Resources\fix_case.png" />
     <None Include="Resources\about_osirt.png" />
     <None Include="Resources\save_close.png" />
+    <None Include="Resources\network_tools.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

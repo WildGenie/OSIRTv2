@@ -10,6 +10,10 @@ using System.Net;
 using System.ComponentModel;
 using OSIRT.Loggers;
 using OSIRT.Extensions;
+using CefSharp;
+using Tor;
+using System.IO;
+using System.Threading;
 
 namespace OSIRT.Browser
 {
@@ -17,18 +21,17 @@ namespace OSIRT.Browser
 
     public partial class TabbedBrowserControl : UserControl
     {
-
         private ToolStripComboBox addressBar;
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
+        private RouterCollection allRouters;
 
         public BrowserTab CurrentTab
         {
             get
             {
                 int selectedIndex = (int)uiBrowserTabControl?.TabPages?.SelectedIndex;
-                Debug.WriteLine("SELECTED INDEX OF CURRENT TAB: " + selectedIndex);
                 return uiBrowserTabControl?.TabPages?[selectedIndex] as BrowserTab;
             }
         }
@@ -52,9 +55,11 @@ namespace OSIRT.Browser
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
-
             uiDownloadProgressBar.Visible = false;
+
         }
+
+
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
@@ -68,6 +73,9 @@ namespace OSIRT.Browser
             //It's not quite 100%, so needs work.
             //Problems arise when drag-moving tab.
             addressBar.Text = CurrentTab?.Browser.Address;
+
+            //UpdateForwardAndBackButtons?.Invoke(this, EventArgs.Empty);
+
         }
 
         private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
@@ -169,7 +177,7 @@ namespace OSIRT.Browser
         {
             uiActionLoggedToolStripStatusLabel.Text = $"{fileName} logged at {dateTime}";
 
-            Timer timer = new Timer { Interval = 5000 };
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer { Interval = 5000 };
             timer.Start();
             timer.Tick += (s, e) => { uiActionLoggedToolStripStatusLabel.Text = ""; timer.Stop(); };
         }
@@ -181,7 +189,7 @@ namespace OSIRT.Browser
 
         public void FullPageScreenshot()
         {
-            CurrentBrowser.GenerateFullpageScreenshot(); 
+            CurrentBrowser.GenerateFullpageScreenshot();
         }
 
         public void CurrentViewScreenshot()
@@ -210,7 +218,8 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_YouTubeDownloadComplete(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 uiDownloadProgressBar.Visible = false;
                 DialogResult dialogRes;
                 string fileName;
@@ -231,12 +240,13 @@ namespace OSIRT.Browser
 
             });
         }
-       
+
         private void CurrentBrowser_YouTubeDownloadProgress(object sender, EventArgs e)
         {
             var progress = (YoutubeExtractor.ProgressEventArgs)e;
 
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 if (!uiDownloadProgressBar.Visible)
                     uiDownloadProgressBar.Visible = true;
 
@@ -251,15 +261,103 @@ namespace OSIRT.Browser
 
         private void TabbedBrowserControl_Load(object sender, EventArgs e)
         {
-            if(DesignMode)
+            if (DesignMode)
             {
                 uiBrowserTabControl.NewTabButton = false;
             }
             else
             {
                 uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
+
+                //user agent spoofer: it works.
+                CefSettings cfsettings = new CefSettings();
+                cfsettings.UserAgent = "Opera/12.02 (Android 4.1; Linux; Opera Mobi/ADR-1111101157; U; en-US) Presto/2.9.201 Version/12.02";
+                Cef.Initialize(cfsettings);
+
+                /*
+                CefSettings settings = new CefSettings();
+                settings.CefCommandLineArgs.Add("proxy-server", "127.0.0.1:8182");
+                Cef.Initialize(settings);
+
+                Process[] previous = Process.GetProcessesByName("tor");
+                if (previous != null && previous.Length > 0)
+                {
+                    foreach (Process process in previous)
+                        process.Kill();
+                }
+
+                ClientCreateParams createParameters = new ClientCreateParams();
+                createParameters.ConfigurationFile = "";
+                createParameters.ControlPassword = "";
+                createParameters.ControlPort = 9051;
+                createParameters.DefaultConfigurationFile = "";
+                createParameters.Path = @"Tor\Tor\tor.exe";
+                */
+                //createParameters.SetConfig(ConfigurationNames.AvoidDiskWrites, true);
+                //createParameters.SetConfig(ConfigurationNames.GeoIPFile, Path.Combine(Environment.CurrentDirectory, @"Tor\Data\Tor\geoip"));
+                //createParameters.SetConfig(ConfigurationNames.GeoIPv6File, Path.Combine(Environment.CurrentDirectory, @"Tor\Data\Tor\geoip6"));
+
+                /*
+                Client client = Client.Create(createParameters);
+
+                if (!client.IsRunning)
+                {
+                    //SetStatusProgress(PROGRESS_DISABLED);
+                    //SetStatusText("The tor client could not be created");
+                    return;
+                }
+                */
+
+                //client.Status.BandwidthChanged += OnClientBandwidthChanged;
+                //client.Status.CircuitsChanged += OnClientCircuitsChanged;
+                //client.Status.ORConnectionsChanged += OnClientConnectionsChanged;
+                //client.Status.StreamsChanged += OnClientStreamsChanged;
+                //client.Configuration.PropertyChanged += (s, e) => { Invoke((Action)delegate { configGrid.Refresh(); }); };
+                //client.Shutdown += new EventHandler(OnClientShutdown);
+
+                //SetStatusProgress(PROGRESS_DISABLED);
+                //SetStatusText("Ready");
+
+                //configGrid.SelectedObject = client.Configuration;
+
+                //SetStatusText("Downloading routers");
+                //SetStatusProgress(PROGRESS_INDETERMINATE);
+
+                //    ThreadPool.QueueUserWorkItem(state =>
+                //    {
+                //        allRouters = client.Status.GetAllRouters();
+
+                //        if (allRouters == null)
+                //        {
+                //            //SetStatusText("Could not download routers");
+                //            //SetStatusProgress(PROGRESS_DISABLED);
+                //        }
+                //        else
+                //        {
+                //            Invoke((Action)delegate
+                //            {
+                //                //routerList.BeginUpdate();
+
+                //                //foreach (Router router in allRouters)
+                //                //    routerList.Items.Add(string.Format("{0} [{1}] ({2}/s)", router.Nickname, router.IPAddress, router.Bandwidth));
+
+                //                //routerList.EndUpdate();
+                //            });
+
+                //            //SetStatusText("Ready");
+                //            //SetStatusProgress(PROGRESS_DISABLED);
+                //            //ShowTorReady();
+                //        }
+                //    });
+                //}
+
                 CreateTab();
+
             }
         }
+
+
+
+
     }
 }

@@ -21,6 +21,7 @@ using OSIRT.UI;
 using CefSharp.WinForms;
 using System.Threading;
 using System.Drawing.Imaging;
+using CefSharp;
 
 namespace OSIRT.Browser
 {
@@ -49,8 +50,15 @@ namespace OSIRT.Browser
             handler.ViewPageSource += Handler_ViewPageSource;
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
+            handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
+        }
+
+        private async void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        {
+            string source = await GetBrowser().MainFrame.GetSourceAsync();
+            this.InvokeIfRequired(() => new FacebookDetailsForm(source).Show());
         }
 
         private void Handler_ViewImageExif(object sender, EventArgs e)
@@ -77,7 +85,7 @@ namespace OSIRT.Browser
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            new ViewPageSource(source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show();
+            this.InvokeIfRequired(() => new ViewPageSource(source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)
