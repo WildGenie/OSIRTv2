@@ -36,7 +36,7 @@ namespace OSIRT.Browser
         public event EventHandler OpenNewTabContextMenu = delegate { };
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
-
+        public event EventHandler OnLoadingStateChanged = delegate { };
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private PictureBox mouseTrail = new PictureBox();
@@ -54,6 +54,12 @@ namespace OSIRT.Browser
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
+            LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+        }
+
+        private void ExtendedBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            OnLoadingStateChanged?.Invoke(this, e);
         }
 
         private void Handler_OpenInNewTabContextMenu(object sender, EventArgs e)

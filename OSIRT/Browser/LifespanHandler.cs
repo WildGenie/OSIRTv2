@@ -19,10 +19,8 @@ namespace OSIRT.Browser
         bool ILifeSpanHandler.OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
             newBrowser = null;
-            //opening in new tab is turning out to be troublesome, just open it in the current browser for now.
             //browserControl.Load(targetUrl);
-            Console.WriteLine("in handler: " +  targetUrl);
-            OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl));
+            OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl)); //this breaks when there are multiple window.open calls from JS.
             return true;
         }
 
@@ -33,8 +31,8 @@ namespace OSIRT.Browser
 
         bool ILifeSpanHandler.DoClose(IWebBrowser browserControl, IBrowser browser)
         {
-            browserControl.Dispose();
-            return true; //was false
+            //browserControl.Dispose();
+            return false; //was false
         }
 
         void ILifeSpanHandler.OnBeforeClose(IWebBrowser browserControl, IBrowser browser)

@@ -55,6 +55,13 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.AddressChanged += CurrentTab_AddressChanged;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
+            uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
+        }
+
+        private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() =>  uiForwardButton.Enabled =  ((NavigationalEventArgs)e).CanGoForward );
+            this.InvokeIfRequired(() => uiLBackButton.Enabled = ((NavigationalEventArgs)e).CanGoBack);
         }
 
         private void Browser_StatusMessage(object sender, StatusMessageEventArgs e)
@@ -374,8 +381,16 @@ namespace OSIRT.UI
 
             Client client = Client.Create(createParameters);
             client.Status.BandwidthChanged += Status_BandwidthChanged;
+            client.Shutdown += Client_Shutdown;
+            
             Cef.Initialize(settings);
 
+        }
+
+        private void Client_Shutdown(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tor client has shutdown without warning. It is highly recommended you restart OSIRT.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
         }
 
         private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)

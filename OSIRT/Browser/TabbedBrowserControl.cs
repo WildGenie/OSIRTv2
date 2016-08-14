@@ -25,7 +25,7 @@ namespace OSIRT.Browser
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
-        
+        public event EventHandler UpdateNavigation;
 
         public BrowserTab CurrentTab
         {
@@ -57,12 +57,10 @@ namespace OSIRT.Browser
         public TabbedBrowserControl()
         {
             InitializeComponent();
-            //due to browser control not releasing memory, and there not being a fix at the moment, prevent multi-tab.
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
             uiDownloadProgressBar.Visible = false;
-            
         }
 
         private void CurrentBrowser_StatusMessage(object sender, StatusMessageEventArgs e)
@@ -84,13 +82,17 @@ namespace OSIRT.Browser
             addressBar.Text = CurrentTab?.Browser.Address;
 
             //UpdateForwardAndBackButtons?.Invoke(this, EventArgs.Empty);
-
+            UpdateNavigation?.Invoke(this, new NavigationalEventArgs(CurrentTab.CanGoForward, CurrentTab.CanGoBack));
         }
 
         private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
         {
             if (CurrentTab.Browser != null)
                 addressBar.Text = CurrentTab.CurrentUrl;
+
+
+
+
         }
 
         void control_NewTabClicked(object sender, EventArgs e)
@@ -126,6 +128,17 @@ namespace OSIRT.Browser
             CurrentBrowser.YouTubeDownloadComplete += CurrentBrowser_YouTubeDownloadComplete;
             CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
             CurrentBrowser.OpenNewTabContextMenu += CurrentBrowser_OpenNewTabContextMenu;
+            CurrentBrowser.LoadingStateChanged += CurrentBrowser_LoadingStateChanged;
+        }
+
+        private void CurrentBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            UpdateNavigation?.Invoke(this, new NavigationalEventArgs(CurrentTab.CanGoForward, CurrentTab.CanGoBack));
+        }
+
+        private void CurrentBrowser_OnLoadingStateChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void CurrentBrowser_OpenNewTabContextMenu(object sender, EventArgs e)

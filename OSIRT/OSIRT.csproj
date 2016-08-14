@@ -183,6 +183,7 @@
     <Compile Include="Browser\ExifViewerEventArgs.cs" />
     <Compile Include="Browser\LifespanHandler.cs" />
     <Compile Include="Browser\MenuHandler.cs" />
+    <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
     <Compile Include="Browser\OnPopUpEventArgs.cs" />
     <Compile Include="Browser\WebBrowserHelper.cs" />
