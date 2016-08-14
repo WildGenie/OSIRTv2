@@ -17,6 +17,8 @@ using System.Net;
 using System.Diagnostics;
 using OSIRT.Extensions;
 using OSIRT.Browser;
+using CefSharp;
+using Tor;
 
 namespace OSIRT.UI
 {
@@ -26,11 +28,23 @@ namespace OSIRT.UI
 
         public event EventHandler CaseClosing;
         public event EventHandler ResizeMainForm;
+        private bool isUsingTor;
+        private string userAgent;
 
-        public BrowserPanel()
+        public BrowserPanel(bool isUsingTor, string userAgent)
         {
+            this.isUsingTor = isUsingTor;
+            this.userAgent = userAgent;
+            CheckAdvancedOptions();
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
+
+            if (isUsingTor)
+            {
+                uiURLComboBox.BackColor = Color.MediumPurple;
+                uiURLComboBox.ForeColor = Color.White;
+            }
+               
         }
 
         private void BrowserPanel_Load(object sender, EventArgs e)
@@ -40,6 +54,12 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
             uiTabbedBrowserControl.CurrentTab.AddressChanged += CurrentTab_AddressChanged;
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+            uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
+        }
+
+        private void Browser_StatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            this.InvokeIfRequired(() =>  uiTabbedBrowserControl.SetStatusLabel(e.Value));
         }
 
         private void UiTabbedBrowserControl_UpdateForwardAndBackButtons(object sender, EventArgs e)
@@ -322,6 +342,53 @@ namespace OSIRT.UI
         {
 
         }
+
+
+        private void CheckAdvancedOptions()
+        {
+            CefSettings settings = new CefSettings();
+            if (!string.IsNullOrEmpty(userAgent))
+            {
+                settings.UserAgent = userAgent;
+            }
+
+            if (!isUsingTor)
+            {
+                Cef.Initialize(settings);
+                return;
+            }
+            settings.CefCommandLineArgs.Add("proxy-server", "127.0.0.1:8182");
+            Process[] previous = Process.GetProcessesByName("tor");
+            if (previous != null && previous.Length > 0)
+            {
+                foreach (Process process in previous)
+                    process.Kill();
+            }
+
+            ClientCreateParams createParameters = new ClientCreateParams();
+            createParameters.ConfigurationFile = "";
+            createParameters.ControlPassword = "";
+            createParameters.ControlPort = 9051;
+            createParameters.DefaultConfigurationFile = "";
+            createParameters.Path = @"Tor\Tor\tor.exe";
+
+            Client client = Client.Create(createParameters);
+            client.Status.BandwidthChanged += Status_BandwidthChanged;
+            Cef.Initialize(settings);
+
+        }
+
+        private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
+        {
+            Invoke((Action)delegate
+            {
+                if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
+                    uiTabbedBrowserControl.SetStatusLabel("");
+                else
+                    uiTabbedBrowserControl.SetStatusLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
+            });
+        }
+
 
         private void aboutOSIRTToolStripMenuItem_Click(object sender, EventArgs e)
         {

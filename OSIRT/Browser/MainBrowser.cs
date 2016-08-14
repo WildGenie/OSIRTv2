@@ -33,7 +33,7 @@ namespace OSIRT.Browser
         public event EventHandler NewTab = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler SavePageSource = delegate { };
-        
+        public event EventHandler OpenNewTabContextMenu = delegate { };
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
 
@@ -51,8 +51,14 @@ namespace OSIRT.Browser
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
             handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
+            handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
+        }
+
+        private void Handler_OpenInNewTabContextMenu(object sender, EventArgs e)
+        {
+            OpenNewTabContextMenu?.Invoke(this, (NewTabEventArgs)e);
         }
 
         private async void Handler_ViewFacebookIdNum(object sender, EventArgs e)

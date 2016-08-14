@@ -25,7 +25,7 @@ namespace OSIRT.Browser
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
-        private RouterCollection allRouters;
+        
 
         public BrowserTab CurrentTab
         {
@@ -40,11 +40,17 @@ namespace OSIRT.Browser
         public void SetAddressBar(ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
+            
         }
 
         public void SetMenuItem(ToolStripMenuItem menuItem)
         {
             this.menuItem = menuItem;
+        }
+
+        public void SetStatusLabel(string status)
+        {
+            uiStatusLabel.Text = status;
         }
 
 
@@ -56,10 +62,13 @@ namespace OSIRT.Browser
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
             uiDownloadProgressBar.Visible = false;
-
+            
         }
 
-
+        private void CurrentBrowser_StatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            this.InvokeIfRequired(() => SetStatusLabel(e.Value));
+        }
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
@@ -91,10 +100,16 @@ namespace OSIRT.Browser
 
         public void CreateTab(string url)
         {
-            BrowserTab tab = new BrowserTab(addressBar);
+            BrowserTab tab = new BrowserTab(url, addressBar);
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-            Navigate(url);
+            tab.OpenInNewtab += Tab_OpenInNewtab;
+            //Navigate(url);
+        }
+
+        private void Tab_OpenInNewtab(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
         private void CreateTab()
@@ -109,6 +124,13 @@ namespace OSIRT.Browser
             CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
             CurrentBrowser.YouTubeDownloadProgress += CurrentBrowser_YouTubeDownloadProgress;
             CurrentBrowser.YouTubeDownloadComplete += CurrentBrowser_YouTubeDownloadComplete;
+            CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
+            CurrentBrowser.OpenNewTabContextMenu += CurrentBrowser_OpenNewTabContextMenu;
+        }
+
+        private void CurrentBrowser_OpenNewTabContextMenu(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
         private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)
@@ -212,7 +234,6 @@ namespace OSIRT.Browser
 
         public void Navigate(string url)
         {
-            Debug.WriteLine("url in navigate: " + url);
             CurrentTab.Browser.Load(url);
         }
 
@@ -268,90 +289,9 @@ namespace OSIRT.Browser
             else
             {
                 uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
-
-                //user agent spoofer: it works.
-                CefSettings cfsettings = new CefSettings();
-                cfsettings.UserAgent = "Opera/12.02 (Android 4.1; Linux; Opera Mobi/ADR-1111101157; U; en-US) Presto/2.9.201 Version/12.02";
-                Cef.Initialize(cfsettings);
-
-                /*
-                CefSettings settings = new CefSettings();
-                settings.CefCommandLineArgs.Add("proxy-server", "127.0.0.1:8182");
-                Cef.Initialize(settings);
-
-                Process[] previous = Process.GetProcessesByName("tor");
-                if (previous != null && previous.Length > 0)
-                {
-                    foreach (Process process in previous)
-                        process.Kill();
-                }
-
-                ClientCreateParams createParameters = new ClientCreateParams();
-                createParameters.ConfigurationFile = "";
-                createParameters.ControlPassword = "";
-                createParameters.ControlPort = 9051;
-                createParameters.DefaultConfigurationFile = "";
-                createParameters.Path = @"Tor\Tor\tor.exe";
-                */
-                //createParameters.SetConfig(ConfigurationNames.AvoidDiskWrites, true);
-                //createParameters.SetConfig(ConfigurationNames.GeoIPFile, Path.Combine(Environment.CurrentDirectory, @"Tor\Data\Tor\geoip"));
-                //createParameters.SetConfig(ConfigurationNames.GeoIPv6File, Path.Combine(Environment.CurrentDirectory, @"Tor\Data\Tor\geoip6"));
-
-                /*
-                Client client = Client.Create(createParameters);
-
-                if (!client.IsRunning)
-                {
-                    //SetStatusProgress(PROGRESS_DISABLED);
-                    //SetStatusText("The tor client could not be created");
-                    return;
-                }
-                */
-
-                //client.Status.BandwidthChanged += OnClientBandwidthChanged;
-                //client.Status.CircuitsChanged += OnClientCircuitsChanged;
-                //client.Status.ORConnectionsChanged += OnClientConnectionsChanged;
-                //client.Status.StreamsChanged += OnClientStreamsChanged;
-                //client.Configuration.PropertyChanged += (s, e) => { Invoke((Action)delegate { configGrid.Refresh(); }); };
-                //client.Shutdown += new EventHandler(OnClientShutdown);
-
-                //SetStatusProgress(PROGRESS_DISABLED);
-                //SetStatusText("Ready");
-
-                //configGrid.SelectedObject = client.Configuration;
-
-                //SetStatusText("Downloading routers");
-                //SetStatusProgress(PROGRESS_INDETERMINATE);
-
-                //    ThreadPool.QueueUserWorkItem(state =>
-                //    {
-                //        allRouters = client.Status.GetAllRouters();
-
-                //        if (allRouters == null)
-                //        {
-                //            //SetStatusText("Could not download routers");
-                //            //SetStatusProgress(PROGRESS_DISABLED);
-                //        }
-                //        else
-                //        {
-                //            Invoke((Action)delegate
-                //            {
-                //                //routerList.BeginUpdate();
-
-                //                //foreach (Router router in allRouters)
-                //                //    routerList.Items.Add(string.Format("{0} [{1}] ({2}/s)", router.Nickname, router.IPAddress, router.Bandwidth));
-
-                //                //routerList.EndUpdate();
-                //            });
-
-                //            //SetStatusText("Ready");
-                //            //SetStatusProgress(PROGRESS_DISABLED);
-                //            //ShowTorReady();
-                //        }
-                //    });
-                //}
-
+                //
                 CreateTab();
+                CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
 
             }
         }

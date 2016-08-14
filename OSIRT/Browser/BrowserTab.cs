@@ -21,7 +21,9 @@ namespace OSIRT.Browser
         private IntPtr browserHandle;
         public event EventHandler AddressChanged = delegate { };
 
-        public BrowserTab(ToolStripComboBox addressBar)
+        public event EventHandler OpenInNewtab = delegate { };
+
+        public BrowserTab(string url, ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
 
@@ -29,12 +31,23 @@ namespace OSIRT.Browser
             Browser.TitleChanged += Browser_TitleChanged;
             Browser.AddressChanged += Browser_AddressChanged;
             Browser.DownloadHandler = new DownloadHandler();
-            Browser.LifeSpanHandler = new LifespanHandler();
+
+            var lifespanHandler = new LifespanHandler();
+            Browser.LifeSpanHandler = lifespanHandler;
+            lifespanHandler.OpenInNewTab += LifespanHandler_OpenInNewTab;
+
             Browser.HandleCreated += Browser_HandleCreated;
             Browser.MouseMove += Browser_MouseMove;
             Controls.Add(Browser);
+
+            Browser.Load(url);
         }
 
+        private void LifespanHandler_OpenInNewTab(object sender, EventArgs e)
+        {
+            Console.WriteLine( "In browser tab: " + ((NewTabEventArgs)e).Url );
+            OpenInNewtab?.Invoke(this, (NewTabEventArgs)e);
+        }
 
         private void Browser_MouseMove(object sender, MouseEventArgs e)
         {

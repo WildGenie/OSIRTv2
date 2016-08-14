@@ -1,4 +1,5 @@
 ﻿using OSIRT.UI.AuditLog;
+using OSIRT.UI.BrowserOptions;
 using OSIRT.UI.CaseClosing;
 using System;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ namespace OSIRT.UI
 
         public event EventHandler NewCaseClick;
         public event EventHandler LoadOldCaseClick;
-        //public event EventHandler LoadReport_Click;
+        public event EventHandler LoadAdavancedOptions;
 
         public FirstLoadPanel()
         {
@@ -129,9 +130,7 @@ namespace OSIRT.UI
 
         private void uiBrowserSettingsButton_Click(object sender, EventArgs e)
         {
-            //open new options form
-            //agent spoofer
-            //tor settings
+            LoadAdavancedOptions?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace OSIRT.Browser
 {
     internal class MenuHandler : IContextMenuHandler
     {
-        private const int ShowDevTools = 26501;
+        private const int OpenLinkInNewTab = 26501;
         private const int CloseDevTools = 26502;
         private const int MenuSaveImage = 26503;
         private const int ViewSource = 26504;
@@ -26,12 +26,13 @@ namespace OSIRT.Browser
         public event EventHandler DownloadYouTubeVideo = delegate { };
         public event EventHandler ViewImageExif = delegate { };
         public event EventHandler ViewFacebookIdNum = delegate { };
+        public event EventHandler OpenInNewTabContextMenu = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
             model.Remove(CefMenuCommand.ViewSource); // Remove "View Source" option
-           
+            Debug.WriteLine(parameters.UnfilteredLinkUrl);
             //Add new custom menu items
             model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
@@ -50,13 +51,18 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
             }
+            if(!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
+            {
+                model.AddItem((CefMenuCommand)26501, "Open link in new tab");
+            }
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
         {
-            if ((int)commandId == ShowDevTools)
+            if ((int)commandId == OpenLinkInNewTab)
             {
-                browser.ShowDevTools();
+                //browser.ShowDevTools();
+                OpenInNewTabContextMenu?.Invoke(this, new NewTabEventArgs(parameters.UnfilteredLinkUrl));
             }
             if ((int)commandId == CloseDevTools)
             {
