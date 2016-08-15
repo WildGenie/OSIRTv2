@@ -33,14 +33,14 @@ namespace OSIRT.Helpers
         /// <param name="html">The HTML to convert</param>
         /// <param name="filePath">The location where the PDF should be saved</param>
         /// <param name="documentTitle">The title of the PDF document</param>
-        public static void SaveHtmltoPdf(string html, string documentTitle, string filePath)
+        public static void SaveHtmltoPdf(string html, string GSCP, string documentTitle, string filePath)
         {
-            var document = GetHtmlToPdfDocument(html, documentTitle);
+            var document = GetHtmlToPdfDocument(html, documentTitle, GSCP);
             byte[] result =  converter.Convert(document);
             File.WriteAllBytes(filePath, result);
         } 
 
-        private static HtmlToPdfDocument GetHtmlToPdfDocument(string html, string documentTitle)
+        private static HtmlToPdfDocument GetHtmlToPdfDocument(string html, string documentTitle, string gscp)
         {
             var document = new HtmlToPdfDocument
             {
@@ -65,8 +65,8 @@ namespace OSIRT.Helpers
                         {
                             LoadImages = true
                                 
-                        }
-                        /*FooterSettings = new FooterSettings{LeftText = $"Signature ........................................", RightText = "[page]"},*/
+                        },
+                        FooterSettings = new FooterSettings{LeftText = gscp, RightText = "[page]", FontSize = 8.0d},
                        
                        
                     }

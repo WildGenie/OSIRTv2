@@ -83,6 +83,7 @@ namespace OSIRT.Browser
             {
                this.InvokeIfRequired(() =>  new ExifViewer(evt.UserState.ToString(), path).Show());
             };
+            ImageDiskCache.RemoveItemsInCache();
         }
 
         private void ExtendedBrowser_MouseMove(object sender, MouseEventArgs e)
@@ -97,7 +98,7 @@ namespace OSIRT.Browser
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            this.InvokeIfRequired(() => new ViewPageSource(source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
+            this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)

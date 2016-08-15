@@ -307,7 +307,7 @@ namespace OSIRT.UI
 
         private void uiHomeButton_Click(object sender, EventArgs e)
         {
-           // uiTabbedBrowserControl.CurrentTab.Browser.Navigate(UserSettings.Load().Homepage);
+            uiTabbedBrowserControl.CurrentTab.Browser.Load(UserSettings.Load().Homepage);
         }
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -322,7 +322,7 @@ namespace OSIRT.UI
                         host = host.Remove(0, 4);
                 }
                 var whois = new WhoisLookup().Lookup(host);
-                var view = new ViewPageSource( whois.ToString(), new Tuple<string, string, string>(url.Host, host, ""));
+                var view = new ViewPageSource( whois.ToString(), Enums.Actions.Whois, new Tuple<string, string, string>(url.Host, host, ""));
                 view.Show();
             }
             catch

@@ -13,6 +13,7 @@
         Video,
         Download,
         Source,
+        Whois,
         Report,
         Loaded,
         CaseLoaded,

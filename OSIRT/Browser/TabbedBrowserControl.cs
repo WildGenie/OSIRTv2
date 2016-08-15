@@ -106,7 +106,6 @@ namespace OSIRT.Browser
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
             tab.OpenInNewtab += Tab_OpenInNewtab;
-            //Navigate(url);
         }
 
         private void Tab_OpenInNewtab(object sender, EventArgs e)

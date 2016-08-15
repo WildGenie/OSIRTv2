@@ -92,7 +92,7 @@ namespace OSIRT.UI.AuditLog
         {
             string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath, ReportContainerName);
             string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
-            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
+            HtmLtoPdf.SaveHtmltoPdf(save, GSCP ,"audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
             if (openReport)

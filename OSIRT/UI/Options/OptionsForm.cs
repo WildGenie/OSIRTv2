@@ -43,8 +43,10 @@ namespace OSIRT.UI.Options
             uiEnterCreatesNewLineCheckBox.Checked = settings.EnterInCaseNotesNewLine;
             uiAllowMultiTabsCheckBox.Checked = settings.AllowMultipleTabs;
             uiHomePageTextBox.Text = settings.Homepage;
-
             uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
+            uiMicroPhoneRadioButton.Checked = OsirtVideoCapture.HasMicrophone() && settings.UseMicrophone;
+            uiStereoMixRadioButton.Checked = OsirtVideoCapture.HasStereoMix() && settings.UseStereoMix;
+
 
             if (OsirtVideoCapture.HasStereoMix())
             {
@@ -56,6 +58,8 @@ namespace OSIRT.UI.Options
                 uiSteroMixStatusLabel.ForeColor = Color.Red;
                 uiSteroMixStatusLabel.Text = "Stereo Mix not found";
             }
+           uiStereoMixRadioButton.Enabled = OsirtVideoCapture.HasStereoMix();
+           uiMicroPhoneRadioButton.Enabled = OsirtVideoCapture.HasMicrophone();
         }
 
         private void uiDeleteCacheOnCloseCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -163,6 +167,23 @@ namespace OSIRT.UI.Options
 
             uiHomePageTextBox.Text = url;
             settings.Homepage = url;
+            settings.Save();
+        }
+
+        private void uiAudioGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiStereoMixRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.UseStereoMix = OsirtVideoCapture.HasStereoMix() && uiStereoMixRadioButton.Checked;
+            settings.Save();
+        }
+
+        private void uiMicroPhoneRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.UseMicrophone = OsirtVideoCapture.HasMicrophone() && uiMicroPhoneRadioButton.Checked;
             settings.Save();
         }
     }
