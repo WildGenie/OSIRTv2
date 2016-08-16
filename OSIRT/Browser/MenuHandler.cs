@@ -32,7 +32,7 @@ namespace OSIRT.Browser
         {
             //Removing existing menu item
             model.Remove(CefMenuCommand.ViewSource); // Remove "View Source" option
-            Debug.WriteLine(parameters.UnfilteredLinkUrl);
+            model.Remove(CefMenuCommand.Print);
             //Add new custom menu items
             model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)

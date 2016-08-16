@@ -58,8 +58,10 @@ namespace OSIRT.Helpers
 
         public static bool IsOnFacebook(string url)
         {
+
+            string stripped = StripQueryFromPath(url);
             var rCaseInsensitive = new Regex(@"^(https?:\/\/)?((w{3}\.)?)facebook\.com\/(?:[^\s()\\\[\]{};:'"",<>?«»“”‘’]){5,}$", RegexOptions.IgnoreCase);
-            return rCaseInsensitive.IsMatch(url);
+            return rCaseInsensitive.IsMatch(stripped);
         }
 
         public static string ResizeConstabLogo(string filepath)

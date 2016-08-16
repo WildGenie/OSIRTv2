@@ -178,16 +178,13 @@ namespace OSIRT.UI
 
         private void uiForwardButton_Click(object sender, EventArgs e)
         {
-
             if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
                 uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().GoForward();
-
-
         }
 
         private void uiRefreshButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
+            uiTabbedBrowserControl.CurrentTab.Browser.Reload();
         }
 
         private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -409,6 +406,10 @@ namespace OSIRT.UI
         {
             new AboutOSIRT().Show();
         }
-      
+
+        private void forceCacheRefreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
+        }
     }
 }

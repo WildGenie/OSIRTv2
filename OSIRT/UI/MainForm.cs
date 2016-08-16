@@ -100,11 +100,6 @@ namespace OSIRT.UI
             }
         }
 
-        private void ShowSplashScreen()
-        {
-
-        }
-
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
         {
             string filenameWithPath;

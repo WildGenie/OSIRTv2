@@ -19,11 +19,20 @@ namespace OSIRT.UI
 
             string token = @"/ajax/messaging/composer.php?ids%5B0%5D="; //example: "/ajax/messaging/composer.php?ids%5B0%5D=1234567"
             int index = source.IndexOf(token);
+
+            if (index == -1)
+            {
+                token = ",\"uid\":";
+                index = source.IndexOf(token);
+
+            }
+            
             string sourceTrim = source.Substring(index + token.Length, 40);
             string id = "";
-            foreach(char c in sourceTrim)
+
+            foreach (char c in sourceTrim)
             {
-                if (c == '&')
+                if (c == '&' || c == '}')
                     break;
 
                 if (char.IsDigit(c))
