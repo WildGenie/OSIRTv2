@@ -83,7 +83,7 @@ namespace OSIRT.Browser
             {
                this.InvokeIfRequired(() =>  new ExifViewer(evt.UserState.ToString(), path).Show());
             };
-            ImageDiskCache.RemoveItemsInCache();
+            
         }
 
         private void ExtendedBrowser_MouseMove(object sender, MouseEventArgs e)
@@ -323,12 +323,20 @@ namespace OSIRT.Browser
 
         private void DownloadFile(string path)
         {
-            WebClient webClient = new WebClient();
-            webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
-            webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
+            try
+            {
 
-            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
-            webClient.DownloadFileAsync(new Uri(path), file, file);
+                WebClient webClient = new WebClient();
+                webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
+                webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
+
+                string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+                webClient.DownloadFileAsync(new Uri(path), file, file);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to download this file.", "Unable to download file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

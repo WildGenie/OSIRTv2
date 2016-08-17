@@ -32,7 +32,7 @@ namespace OSIRT.Browser
         bool ILifeSpanHandler.DoClose(IWebBrowser browserControl, IBrowser browser)
         {
             //browserControl.Dispose();
-            return false; //was false
+            return true; //was false
         }
 
         void ILifeSpanHandler.OnBeforeClose(IWebBrowser browserControl, IBrowser browser)

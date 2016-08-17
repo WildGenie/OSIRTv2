@@ -119,7 +119,7 @@ namespace OSIRT.UI
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
-            //uiScreenshotButton.Enabled = true;
+            uiBrowserToolStrip.Enabled = true;
         }
 
         private void ConfigureUi()
@@ -144,8 +144,16 @@ namespace OSIRT.UI
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
-            //uiScreenshotButton.Enabled = false;
-            uiTabbedBrowserControl.FullPageScreenshot();
+            try
+            {
+                ImageDiskCache.RemoveItemsInCache(); //may be old items in cache, don't want them getting appended to screenshot
+                uiBrowserToolStrip.Enabled = false;
+                uiTabbedBrowserControl.FullPageScreenshot();
+            }
+            finally
+            {
+                //uiBrowserToolStrip.Enabled = true;
+            }
         }
 
 
@@ -223,9 +231,15 @@ namespace OSIRT.UI
 
 
             if (!OsirtVideoCapture.IsRecording())
+            {
                 OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)handle);
+                uiScreenshotButton.Enabled = false;
+            }
             else
+            {
                 OsirtVideoCapture.StopCapture();
+                uiScreenshotButton.Enabled = true;
+            }
         }
 
         private void osirtVideoCapture_VideoCaptureComplete(object sender, EventArgs e)
@@ -355,7 +369,6 @@ namespace OSIRT.UI
             {
                 settings.UserAgent = userAgent;
             }
-
             if (!isUsingTor)
             {
                 Cef.Initialize(settings);

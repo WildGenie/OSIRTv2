@@ -43,6 +43,8 @@ namespace OSIRT.Browser
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
             Controls.Add(Browser);
 
+            
+
             Browser.Load(url);
         }
 

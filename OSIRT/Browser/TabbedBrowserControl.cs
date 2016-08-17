@@ -70,7 +70,10 @@ namespace OSIRT.Browser
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
-            //CurrentTab?.Browser?.Dispose();
+            int selectedIndex = (int)uiBrowserTabControl?.HoverTabCloseDownIndex;
+            var tabPage = uiBrowserTabControl?.TabPages?[selectedIndex];
+            uiBrowserTabControl.TabPages.RemoveAt(selectedIndex);
+            tabPage?.Dispose();
         }
 
         private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)
@@ -89,10 +92,6 @@ namespace OSIRT.Browser
         {
             if (CurrentTab.Browser != null)
                 addressBar.Text = CurrentTab.CurrentUrl;
-
-
-
-
         }
 
         void control_NewTabClicked(object sender, EventArgs e)
