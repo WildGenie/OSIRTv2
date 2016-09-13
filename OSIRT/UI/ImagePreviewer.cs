@@ -25,6 +25,7 @@ namespace OSIRT.UI
         private readonly int MaxImageHeight = 12500;
         private CannotOpenImagePanel cantOpenPanel;
         private string Url;
+        private bool successful = false;
 
         public ImagePreviewer(Actions a, string url) : this(a, url, Constants.TempImgFile) { }
 
@@ -114,19 +115,20 @@ namespace OSIRT.UI
                 string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
                 string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
                 File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
+                successful = true;
             }
-            catch (IOException ioe)
+            catch (IOException)
             {
-                MessageBox.Show($"Can't move file to container due to an IOExcpetion... {ioe}");
+                successful = false;
+                MessageBox.Show($"Unable to save image. This may be due to a file with this name already exisiting. Try entering a different file name, then attempt to save again.", "Unable to save capture", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                uiFileNameComboBox.Focus();
+                return;
             }
             catch (UnauthorizedAccessException uae)
             {
                 MessageBox.Show($"Can't move file to container due to an Unauthorised Access Attempt... {uae}");
             }
         }
-
-  
-
 
         private Size GetImageSize()
         {
@@ -246,18 +248,16 @@ namespace OSIRT.UI
             }
             else
             {
-                Debug.WriteLine(filePath);
-                //TODO: need to set the file name for when it's logged
-                //at the moment it's taking the file name from the combobox
-                //but it's saved using the file name from the download using Path.GetFileName(filePath)
                 SaveAs();
             }
 
-           
-
-            Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
-            DialogResult = DialogResult.OK;
-            Close();
+            //May be an error, so we don't want to close without checking
+            if (successful)
+            {
+                Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
+                DialogResult = DialogResult.OK;
+                Close();
+            }
         }
     }
 }

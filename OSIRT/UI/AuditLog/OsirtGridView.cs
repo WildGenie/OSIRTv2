@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Database;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,16 @@ namespace OSIRT.UI.AuditLog
     {
 
         public event EventHandler RowEntered;
+        public string table;
 
         public OsirtGridView()
         {
+            InitialiseDataGridView();
+        }
+
+        public OsirtGridView(string table)
+        {
+            this.table = table;
             InitialiseDataGridView();
         }
 
@@ -28,7 +36,29 @@ namespace OSIRT.UI.AuditLog
 
             ColumnAdded += AuditGridView_ColumnAdded;
             RowEnter += AuditGridView_RowEnter;
+            CellClick += OsirtGridView_CellClick;
            
+        }
+
+        protected virtual void OsirtGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            //Don't want this to execute when the column header/row is clicked (OOB)
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            if (Rows[e.RowIndex].Cells[e.ColumnIndex] is DataGridViewCheckBoxCell)
+            {
+                DataGridViewCheckBoxCell column = (DataGridViewCheckBoxCell)Rows[e.RowIndex].Cells[e.ColumnIndex];
+                if (column.Value != null)
+                {
+                    bool isChecked = (bool)column.Value;
+                    string id = Rows[e.RowIndex].Cells["id"].Value.ToString();
+                    string query = $"UPDATE {table} SET print = '{(!isChecked)}' WHERE id='{id}'";
+                    System.Diagnostics.Debug.WriteLine("QUERY: " + query);
+                    DatabaseHandler db = new DatabaseHandler();
+                    db.ExecuteNonQuery(query); //TODO: Place an Update method in the db handler   
+                }
+            }
         }
 
         private void AuditGridView_RowEnter(object sender, DataGridViewCellEventArgs e)

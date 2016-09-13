@@ -24,7 +24,7 @@ namespace OSIRT.UI.AuditLog
         public string ExportPath { get; private set; }
         public string ReportContainerName { get; private set; }
         public string GSCP { get; private set; }
-        private bool openReport = false;
+        private bool openReport = true;
    
         public ExportAuditOptionsPanel()
         {
@@ -92,7 +92,7 @@ namespace OSIRT.UI.AuditLog
         {
             string page = DatatableToHtml.ConvertToHtml(GetMergedDataTable(), ExportPath, ReportContainerName);
             string save = HtmlHelper.ReplaceReportDetails(page, GSCP, false);
-            HtmLtoPdf.SaveHtmltoPdf(save, "audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
+            HtmLtoPdf.SaveHtmltoPdf(save, GSCP ,"audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
             if (openReport)

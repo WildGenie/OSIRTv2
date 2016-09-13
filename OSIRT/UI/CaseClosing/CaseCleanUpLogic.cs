@@ -70,6 +70,7 @@ namespace OSIRT.UI.CaseClosing
             }
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
             DeleteImageMagickFiles();
+            TorCleanUp();
 
             int attempts = 0;
             while (CleanUpDirectories())
@@ -88,6 +89,16 @@ namespace OSIRT.UI.CaseClosing
             //Debug.WriteLine("--------- IN REPORT -------" + message);
             //backgroundWorker.ReportProgress(percentage, message);
         } 
+
+        private void TorCleanUp()
+        {
+            Process[] previous = Process.GetProcessesByName("tor");
+            if (previous != null && previous.Length > 0)
+            {
+                foreach (Process process in previous)
+                    process.Kill();
+            }
+        }
 
         public void CleanInternetExporerCache()
         {

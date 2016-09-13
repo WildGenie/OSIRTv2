@@ -15,8 +15,7 @@ namespace OSIRT
         public int NumberOfRowsPerPage = 25;
         public bool ExportHashOnClose = true;
         public bool EnterInCaseNotesNewLine = false;
-        public bool AllowMultipleTabs = false;
-
+        public bool AllowMultipleTabs = true;
 
         //reporting
         public bool PrintImagesInReport = true;
@@ -28,5 +27,7 @@ namespace OSIRT
         public bool ShowMouseTrail = false;
         public bool ShowMouseClick = false;
         public int FramesPerSecond = 30;
+        public bool UseStereoMix = true;
+        public bool UseMicrophone = false;
     }
 }

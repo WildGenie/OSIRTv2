@@ -66,9 +66,20 @@ namespace OSIRT.VideoCapture
             captureThreadEntry.Height = (uint)height;
             captureThreadEntry.BitRate = 20000000;
             captureThreadEntry.FrameRate = (uint) UserSettings.Load().FramesPerSecond;
-            captureThreadEntry.Audio = HasStereoMix() ? 0 : 0xFFFFFFFF; //TODO: Stereo mix may not always be at pos 0. Audio is screwed- does record, but sped up?
+            uint audio = 0xFFFFFFFF;
+            if(HasStereoMix() && UserSettings.Load().UseStereoMix  || HasMicrophone() && UserSettings.Load().UseMicrophone)
+            {
+                foreach(string line in AudioDevices())
+                {
+                    if ((line.Contains("Stereo Mix") && UserSettings.Load().UseStereoMix)|| (line.Contains("Microphone") && UserSettings.Load().UseMicrophone))
+                    {
+                        audio = Convert.ToUInt32(line.Trim()[0].ToString());
+                        break;
+                    }
+                }
+            }
+            captureThreadEntry.Audio = audio;
             captureThreadEntry.Filename = Constants.TempVideoFile;
-
             captureThread = new Thread(new ThreadStart(captureThreadEntry.Start));
             captureThread.Start();
 
@@ -90,7 +101,7 @@ namespace OSIRT.VideoCapture
 
         }
 
-        public static bool HasStereoMix()
+        private static string[] AudioDevices()
         {
             VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
             string[] allLines = null;
@@ -102,9 +113,23 @@ namespace OSIRT.VideoCapture
                 loadedFileInfo.Delete();
             }
             catch { }
-            foreach (string line in allLines)
+
+            return allLines;
+        }
+
+        public static bool HasMicrophone()
+        {
+            foreach (string line in AudioDevices())
             {
-                Debug.WriteLine(line);
+                if (line.Contains("Microphone")) return true;
+            }
+            return false;
+        }
+
+        public static bool HasStereoMix()
+        {
+            foreach (string line in AudioDevices())
+            {
                 if (line.Contains("Stereo Mix")) return true; 
             }
             return false;

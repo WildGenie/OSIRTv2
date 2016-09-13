@@ -21,6 +21,7 @@ using OSIRT.UI;
 using CefSharp.WinForms;
 using System.Threading;
 using System.Drawing.Imaging;
+using CefSharp;
 
 namespace OSIRT.Browser
 {
@@ -32,10 +33,10 @@ namespace OSIRT.Browser
         public event EventHandler NewTab = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler SavePageSource = delegate { };
-        
+        public event EventHandler OpenNewTabContextMenu = delegate { };
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
-
+        public event EventHandler OnLoadingStateChanged = delegate { };
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private PictureBox mouseTrail = new PictureBox();
@@ -49,8 +50,27 @@ namespace OSIRT.Browser
             handler.ViewPageSource += Handler_ViewPageSource;
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
+            handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
+            handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
+            LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+        }
+
+        private void ExtendedBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            OnLoadingStateChanged?.Invoke(this, e);
+        }
+
+        private void Handler_OpenInNewTabContextMenu(object sender, EventArgs e)
+        {
+            OpenNewTabContextMenu?.Invoke(this, (NewTabEventArgs)e);
+        }
+
+        private async void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        {
+            string source = await GetBrowser().MainFrame.GetSourceAsync();
+            this.InvokeIfRequired(() => new FacebookDetailsForm(source).Show());
         }
 
         private void Handler_ViewImageExif(object sender, EventArgs e)
@@ -63,6 +83,7 @@ namespace OSIRT.Browser
             {
                this.InvokeIfRequired(() =>  new ExifViewer(evt.UserState.ToString(), path).Show());
             };
+            
         }
 
         private void ExtendedBrowser_MouseMove(object sender, MouseEventArgs e)
@@ -77,7 +98,7 @@ namespace OSIRT.Browser
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            new ViewPageSource(source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show();
+            this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)
@@ -302,12 +323,20 @@ namespace OSIRT.Browser
 
         private void DownloadFile(string path)
         {
-            WebClient webClient = new WebClient();
-            webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
-            webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
+            try
+            {
 
-            string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
-            webClient.DownloadFileAsync(new Uri(path), file, file);
+                WebClient webClient = new WebClient();
+                webClient.DownloadProgressChanged += webClient_DownloadProgressChanged;
+                webClient.DownloadFileCompleted += webClient_DownloadFileCompleted;
+
+                string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
+                webClient.DownloadFileAsync(new Uri(path), file, file);
+            }
+            catch
+            {
+                MessageBox.Show("Unable to download this file.", "Unable to download file", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void webClient_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)

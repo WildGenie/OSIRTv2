@@ -30,7 +30,7 @@ namespace OSIRT.UI
             Page = 1;
             GoToPage(Page);
             //InitialiseDataGridView();
-            CellClick += AuditLogGrid_CellClick;
+            //CellClick += AuditLogGrid_CellClick;
         }
 
         private void PopulateGrid(DataTable dataTable)
@@ -38,7 +38,7 @@ namespace OSIRT.UI
             DataSource = dataTable;
         }
 
-        private void AuditLogGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        protected override void OsirtGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //Don't want this to execute when the column header/row is clicked (OOB)
             if (e.RowIndex < 0 || e.ColumnIndex < 0)

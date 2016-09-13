@@ -27,7 +27,7 @@ namespace OSIRT.Helpers
 
         public static string ReportContainerName => $"report_{CaseContainerName}_%%dt%%";
         public static string ExportedHashFileName => $"{CaseContainerName}_hash_%%dt%%.txt";
-        public static string PageSourceFileName => $"%%dt%%_%%name%%_page_source.txt";
+        public static string PageSourceFileName => $"%%dt%%_%%name%%_%%action%%.txt";
 
         //Image Cache Constants
         public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
@@ -59,6 +59,7 @@ namespace OSIRT.Helpers
                 { Enums.Actions.Video, @"videos" },
                 { Enums.Actions.Download, @"downloads" },
                 { Enums.Actions.Source, @"downloads\source_code" },
+                { Enums.Actions.Whois, @"downloads\who_is" },
                 { Enums.Actions.Exif, @"downloads\exif" },
                 { Enums.Actions.Report, @"reports" },
             };
@@ -77,6 +78,8 @@ namespace OSIRT.Helpers
                 if (!directories.TryGetValue(key, out value))
                     throw new KeyNotFoundException($"The key, {key}, does not exist.");
 
+                //to ensure backwards compatability with old cases. Create a the directory if it doesn't exist
+                Directory.CreateDirectory(Path.Combine(ContainerLocation, value));
                 return value;
             }
 

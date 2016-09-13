@@ -17,6 +17,8 @@ using System.Net;
 using System.Diagnostics;
 using OSIRT.Extensions;
 using OSIRT.Browser;
+using CefSharp;
+using Tor;
 
 namespace OSIRT.UI
 {
@@ -26,11 +28,23 @@ namespace OSIRT.UI
 
         public event EventHandler CaseClosing;
         public event EventHandler ResizeMainForm;
+        private bool isUsingTor;
+        private string userAgent;
 
-        public BrowserPanel()
+        public BrowserPanel(bool isUsingTor, string userAgent)
         {
+            this.isUsingTor = isUsingTor;
+            this.userAgent = userAgent;
+            CheckAdvancedOptions();
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
+
+            if (isUsingTor)
+            {
+                uiURLComboBox.BackColor = Color.MediumPurple;
+                uiURLComboBox.ForeColor = Color.White;
+            }
+               
         }
 
         private void BrowserPanel_Load(object sender, EventArgs e)
@@ -39,9 +53,28 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.SavePageSource += Browser_SavePageSource;
             uiTabbedBrowserControl.CurrentTab.AddressChanged += CurrentTab_AddressChanged;
-
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
+            uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
+            uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
         }
+
+        private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() =>  uiForwardButton.Enabled =  ((NavigationalEventArgs)e).CanGoForward );
+            this.InvokeIfRequired(() => uiLBackButton.Enabled = ((NavigationalEventArgs)e).CanGoBack);
+        }
+
+        private void Browser_StatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            this.InvokeIfRequired(() =>  uiTabbedBrowserControl.SetStatusLabel(e.Value));
+        }
+
+        private void UiTabbedBrowserControl_UpdateForwardAndBackButtons(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => uiLBackButton.Enabled = uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack);
+            this.InvokeIfRequired(() => uiForwardButton.Enabled = uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward);
+        }
+
 
         private void CurrentTab_AddressChanged(object sender, EventArgs e)
         {
@@ -86,7 +119,7 @@ namespace OSIRT.UI
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
-            //uiScreenshotButton.Enabled = true;
+            uiBrowserToolStrip.Enabled = true;
         }
 
         private void ConfigureUi()
@@ -111,8 +144,16 @@ namespace OSIRT.UI
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {
-            //uiScreenshotButton.Enabled = false;
-            uiTabbedBrowserControl.FullPageScreenshot();
+            try
+            {
+                ImageDiskCache.RemoveItemsInCache(); //may be old items in cache, don't want them getting appended to screenshot
+                uiBrowserToolStrip.Enabled = false;
+                uiTabbedBrowserControl.FullPageScreenshot();
+            }
+            finally
+            {
+                //uiBrowserToolStrip.Enabled = true;
+            }
         }
 
 
@@ -139,19 +180,19 @@ namespace OSIRT.UI
 
         private void uiLBackButton_Click(object sender, EventArgs e)
         {
-            //if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
-            //    uiTabbedBrowserControl.CurrentTab.Browser.GoBack();
+            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoBack)
+                uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().GoBack();
         }
 
         private void uiForwardButton_Click(object sender, EventArgs e)
         {
-            //if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
-            //    uiTabbedBrowserControl.CurrentTab.Browser.GoForward();
+            if (uiTabbedBrowserControl.CurrentTab.Browser.CanGoForward)
+                uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().GoForward();
         }
 
         private void uiRefreshButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Refresh();
+            uiTabbedBrowserControl.CurrentTab.Browser.Reload();
         }
 
         private void closeCaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -190,9 +231,15 @@ namespace OSIRT.UI
 
 
             if (!OsirtVideoCapture.IsRecording())
+            {
                 OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)handle);
+                uiScreenshotButton.Enabled = false;
+            }
             else
+            {
                 OsirtVideoCapture.StopCapture();
+                uiScreenshotButton.Enabled = true;
+            }
         }
 
         private void osirtVideoCapture_VideoCaptureComplete(object sender, EventArgs e)
@@ -271,7 +318,7 @@ namespace OSIRT.UI
 
         private void uiHomeButton_Click(object sender, EventArgs e)
         {
-           // uiTabbedBrowserControl.CurrentTab.Browser.Navigate(UserSettings.Load().Homepage);
+            uiTabbedBrowserControl.CurrentTab.Browser.Load(UserSettings.Load().Homepage);
         }
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -286,7 +333,7 @@ namespace OSIRT.UI
                         host = host.Remove(0, 4);
                 }
                 var whois = new WhoisLookup().Lookup(host);
-                var view = new ViewPageSource( whois.ToString(), new Tuple<string, string, string>(url.Host, host, ""));
+                var view = new ViewPageSource( whois.ToString(), Enums.Actions.Whois, new Tuple<string, string, string>(url.Host, host, ""));
                 view.Show();
             }
             catch
@@ -314,36 +361,68 @@ namespace OSIRT.UI
 
         }
 
+
+        private void CheckAdvancedOptions()
+        {
+            CefSettings settings = new CefSettings();
+            if (!string.IsNullOrEmpty(userAgent))
+            {
+                settings.UserAgent = userAgent;
+            }
+            if (!isUsingTor)
+            {
+                Cef.Initialize(settings);
+                return;
+            }
+            settings.CefCommandLineArgs.Add("proxy-server", "127.0.0.1:8182");
+            Process[] previous = Process.GetProcessesByName("tor");
+            if (previous != null && previous.Length > 0)
+            {
+                foreach (Process process in previous)
+                    process.Kill();
+            }
+
+            ClientCreateParams createParameters = new ClientCreateParams();
+            createParameters.ConfigurationFile = "";
+            createParameters.ControlPassword = "";
+            createParameters.ControlPort = 9051;
+            createParameters.DefaultConfigurationFile = "";
+            createParameters.Path = @"Tor\Tor\tor.exe";
+
+            Client client = Client.Create(createParameters);
+            client.Status.BandwidthChanged += Status_BandwidthChanged;
+            client.Shutdown += Client_Shutdown;
+            
+            Cef.Initialize(settings);
+
+        }
+
+        private void Client_Shutdown(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tor client has shutdown without warning. It is highly recommended you restart OSIRT.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return;
+        }
+
+        private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
+        {
+            Invoke((Action)delegate
+            {
+                if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
+                    uiTabbedBrowserControl.SetStatusLabel("");
+                else
+                    uiTabbedBrowserControl.SetStatusLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
+            });
+        }
+
+
         private void aboutOSIRTToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new AboutOSIRT().Show();
         }
 
-        private void uiFacebookToolStripMenuItem_Click(object sender, EventArgs e)
+        private void forceCacheRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try {
-                var strId = "";
-                var strUrl = uiTabbedBrowserControl.CurrentTab.Browser.URL;
-                if (!strUrl.ToLower().Contains("/pages/"))
-                {
-                    const string strFBRegex = @"id.:..(?< id >\d +).,";
-                    var strGraphUrl = strUrl.Replace("www", "graph");
-                    var wc = new WebClient();
-                    var strGraphJson = wc.DownloadString(strGraphUrl);
-                    strId = System.Text.RegularExpressions.Regex.Match(strGraphJson, strFBRegex).Groups["id"].Value;
-                }
-                else
-                {
-                    strId = System.Text.RegularExpressions.Regex.Match(strUrl, @"\d+").Value;
-                }
-                var strFBUrl = "fb://profile/" + strId;
-
-                MessageBox.Show(strId);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.ToString());
-            }
+            uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
         }
     }
 }

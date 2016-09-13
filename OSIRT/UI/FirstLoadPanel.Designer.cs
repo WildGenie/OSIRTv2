@@ -30,6 +30,7 @@
         {
             this.uiFirstLoadPanel = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.uiBrowserSettingsButton = new System.Windows.Forms.Button();
             this.uiFixCaseButton = new System.Windows.Forms.Button();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
             this.uiImagePanel = new System.Windows.Forms.Panel();
@@ -60,6 +61,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel1.Controls.Add(this.uiBrowserSettingsButton);
             this.panel1.Controls.Add(this.uiFixCaseButton);
             this.panel1.Controls.Add(this.uiHelpLabelLabel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -67,6 +69,21 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(995, 109);
             this.panel1.TabIndex = 2;
+            // 
+            // uiBrowserSettingsButton
+            // 
+            this.uiBrowserSettingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBrowserSettingsButton.BackColor = System.Drawing.Color.Transparent;
+            this.uiBrowserSettingsButton.BackgroundImage = global::OSIRT.Properties.Resources.network_tools;
+            this.uiBrowserSettingsButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiBrowserSettingsButton.FlatAppearance.BorderSize = 0;
+            this.uiBrowserSettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.uiBrowserSettingsButton.Location = new System.Drawing.Point(953, 67);
+            this.uiBrowserSettingsButton.Name = "uiBrowserSettingsButton";
+            this.uiBrowserSettingsButton.Size = new System.Drawing.Size(39, 39);
+            this.uiBrowserSettingsButton.TabIndex = 5;
+            this.uiBrowserSettingsButton.UseVisualStyleBackColor = false;
+            this.uiBrowserSettingsButton.Click += new System.EventHandler(this.uiBrowserSettingsButton_Click);
             // 
             // uiFixCaseButton
             // 
@@ -237,5 +254,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label uiHelpLabelLabel;
         private System.Windows.Forms.Button uiFixCaseButton;
+        private System.Windows.Forms.Button uiBrowserSettingsButton;
     }
 }

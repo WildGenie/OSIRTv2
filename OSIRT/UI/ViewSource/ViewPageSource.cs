@@ -18,32 +18,33 @@ namespace OSIRT.UI.ViewSource
         private ToolStripButton uiSaveSourceToolStripButton;
         private FastColoredTextBox fctb;
         private Panel uiSourcePanel;
+        private Enums.Actions action;
 
         //private Panel SourcePanel;
         private Tuple<string, string, string> domainUrlAndTitle;
 
-        public ViewPageSource(string source, Tuple<string, string, string> domainUrlAndTitle)
+        public ViewPageSource(string source, Enums.Actions action, Tuple<string, string, string> domainUrlAndTitle)
         {
             InitializeComponent();
             this.domainUrlAndTitle = domainUrlAndTitle;
+            this.action = action;
             fctb = new FastColoredTextBox();
             fctb.ReadOnly = true;
-
             fctb.Dock = DockStyle.Fill;
             fctb.Language = Language.HTML;
             fctb.WordWrap = true;
             fctb.Text = source;
-            //Text = $"{title}";
             Size = new System.Drawing.Size(800, 600);
             Icon = Properties.Resources.source_code1;
+            Text = $"Viewing {action.ToString()} for {domainUrlAndTitle.Item1}";
             uiSourcePanel.Controls.Add(fctb);
-            toolStrip1.ImageScalingSize = new Size(40, 40);
+            //toolStrip1.ImageScalingSize = new Size(40, 40);
         }
 
         private void uiSaveSourceToolStripButton_Click(object sender, EventArgs e)
         {
-            string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", domainUrlAndTitle.Item1);
-            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Source), filename);
+            string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", domainUrlAndTitle.Item1).Replace("%%action%%", action.ToString());
+            string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), filename);
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {
                 using (StreamWriter streamWriter = new StreamWriter(fileStream, Encoding.UTF8))
@@ -52,8 +53,8 @@ namespace OSIRT.UI.ViewSource
                 }
             }
 
-            Logger.Log(new WebpageActionsLog(domainUrlAndTitle.Item2, Enums.Actions.Source, OsirtHelper.GetFileHash(path), filename, "[Page source downloaded]"));
-            MessageBox.Show("Page source saved successfully", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Logger.Log(new WebpageActionsLog(domainUrlAndTitle.Item2, action, OsirtHelper.GetFileHash(path), filename, $"[{action.ToString()} downloaded]"));
+            MessageBox.Show("Save successful", $"Saved - {action.ToString()}", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
 
@@ -74,12 +75,13 @@ namespace OSIRT.UI.ViewSource
             // 
             // toolStrip1
             // 
-            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.toolStrip1.AutoSize = false;
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiSaveSourceToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(947, 47);
+            this.toolStrip1.Size = new System.Drawing.Size(947, 37);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -89,16 +91,16 @@ namespace OSIRT.UI.ViewSource
             this.uiSaveSourceToolStripButton.Image = global::OSIRT.Properties.Resources.save_close;
             this.uiSaveSourceToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiSaveSourceToolStripButton.Name = "uiSaveSourceToolStripButton";
-            this.uiSaveSourceToolStripButton.Size = new System.Drawing.Size(44, 44);
-            this.uiSaveSourceToolStripButton.ToolTipText = "Save Page Source";
+            this.uiSaveSourceToolStripButton.Size = new System.Drawing.Size(36, 34);
+            this.uiSaveSourceToolStripButton.ToolTipText = "Save";
             this.uiSaveSourceToolStripButton.Click += new System.EventHandler(this.uiSaveSourceToolStripButton_Click);
             // 
             // uiSourcePanel
             // 
             this.uiSourcePanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiSourcePanel.Location = new System.Drawing.Point(0, 47);
+            this.uiSourcePanel.Location = new System.Drawing.Point(0, 37);
             this.uiSourcePanel.Name = "uiSourcePanel";
-            this.uiSourcePanel.Size = new System.Drawing.Size(947, 512);
+            this.uiSourcePanel.Size = new System.Drawing.Size(947, 522);
             this.uiSourcePanel.TabIndex = 1;
             // 
             // ViewPageSource
@@ -112,7 +114,6 @@ namespace OSIRT.UI.ViewSource
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

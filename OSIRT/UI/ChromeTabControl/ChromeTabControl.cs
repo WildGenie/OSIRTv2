@@ -25,6 +25,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
 using OSIRT.UI.ChromeTabControl;
+using System.Diagnostics;
 
 namespace DotNetChromeTabs
 {
@@ -677,7 +678,7 @@ namespace DotNetChromeTabs
             }
         }
         private int _hoverTabCloseDownIndex = -1;
-        private int HoverTabCloseDownIndex
+        public int HoverTabCloseDownIndex
         {
             get { return _hoverTabCloseDownIndex; }
             set
@@ -982,8 +983,9 @@ namespace DotNetChromeTabs
                         _dontUpdateTabWidth = true;
 
                     //Added
+                    Debug.WriteLine("HOVER CLOSED: " + HoverTabCloseDownIndex);
                     Closed?.Invoke(this, null);
-                    TabPages.RemoveAt(HoverTabCloseDownIndex);
+                    //TabPages.RemoveAt(HoverTabCloseDownIndex);
                     
                   
                     //TODO: Added below

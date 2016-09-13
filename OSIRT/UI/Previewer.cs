@@ -209,5 +209,9 @@ namespace OSIRT.UI
             CheckValidFileName();
         }
 
+        private void uiOKButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

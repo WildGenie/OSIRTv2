@@ -52,6 +52,7 @@
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.forceCacheRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +62,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.uiFacebookToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -277,8 +277,8 @@
             this.uiToolsToolStripSplitButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.whoIsToolStripMenuItem,
             this.whatsTheIPToolStripMenuItem,
-            this.aboutOSIRTToolStripMenuItem,
-            this.uiFacebookToolStripMenuItem});
+            this.forceCacheRefreshToolStripMenuItem,
+            this.aboutOSIRTToolStripMenuItem});
             this.uiToolsToolStripSplitButton.Image = global::OSIRT.Properties.Resources.settings;
             this.uiToolsToolStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiToolsToolStripSplitButton.Name = "uiToolsToolStripSplitButton";
@@ -289,7 +289,7 @@
             // 
             this.whoIsToolStripMenuItem.Image = global::OSIRT.Properties.Resources.who;
             this.whoIsToolStripMenuItem.Name = "whoIsToolStripMenuItem";
-            this.whoIsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.whoIsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.whoIsToolStripMenuItem.Text = "WhoIs?";
             this.whoIsToolStripMenuItem.ToolTipText = "Displays a window with the Whois information related to this domain.";
             this.whoIsToolStripMenuItem.Click += new System.EventHandler(this.whoIsToolStripMenuItem_Click);
@@ -298,7 +298,7 @@
             // 
             this.whatsTheIPToolStripMenuItem.Image = global::OSIRT.Properties.Resources.ip;
             this.whatsTheIPToolStripMenuItem.Name = "whatsTheIPToolStripMenuItem";
-            this.whatsTheIPToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.whatsTheIPToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.whatsTheIPToolStripMenuItem.Text = "What\'s the IP?";
             this.whatsTheIPToolStripMenuItem.ToolTipText = "Shows the IP addresses associated with this domain";
             this.whatsTheIPToolStripMenuItem.Click += new System.EventHandler(this.whatsTheIPToolStripMenuItem_Click);
@@ -307,9 +307,18 @@
             // 
             this.aboutOSIRTToolStripMenuItem.Image = global::OSIRT.Properties.Resources.info;
             this.aboutOSIRTToolStripMenuItem.Name = "aboutOSIRTToolStripMenuItem";
-            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
             this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
+            // 
+            // forceCacheRefreshToolStripMenuItem
+            // 
+            this.forceCacheRefreshToolStripMenuItem.Image = global::OSIRT.Properties.Resources.arrow_rotate_clockwise;
+            this.forceCacheRefreshToolStripMenuItem.Name = "forceCacheRefreshToolStripMenuItem";
+            this.forceCacheRefreshToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.forceCacheRefreshToolStripMenuItem.Text = "Force Cache Refresh";
+            this.forceCacheRefreshToolStripMenuItem.ToolTipText = "Forces page to reload, while ignoring the cache";
+            this.forceCacheRefreshToolStripMenuItem.Click += new System.EventHandler(this.forceCacheRefreshToolStripMenuItem_Click);
             // 
             // uiBrowserMenuStrip
             // 
@@ -382,13 +391,6 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // uiFacebookToolStripMenuItem
-            // 
-            this.uiFacebookToolStripMenuItem.Name = "uiFacebookToolStripMenuItem";
-            this.uiFacebookToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.uiFacebookToolStripMenuItem.Text = "Facebook";
-            this.uiFacebookToolStripMenuItem.Click += new System.EventHandler(this.uiFacebookToolStripMenuItem_Click);
-            // 
             // BrowserPanel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -440,6 +442,6 @@
         private System.Windows.Forms.ToolStripMenuItem whoIsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatsTheIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutOSIRTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem uiFacebookToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem forceCacheRefreshToolStripMenuItem;
     }
 }

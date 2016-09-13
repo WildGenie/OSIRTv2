@@ -10,6 +10,10 @@ using System.Net;
 using System.ComponentModel;
 using OSIRT.Loggers;
 using OSIRT.Extensions;
+using CefSharp;
+using Tor;
+using System.IO;
+using System.Threading;
 
 namespace OSIRT.Browser
 {
@@ -17,18 +21,17 @@ namespace OSIRT.Browser
 
     public partial class TabbedBrowserControl : UserControl
     {
-
         private ToolStripComboBox addressBar;
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
+        public event EventHandler UpdateNavigation;
 
         public BrowserTab CurrentTab
         {
             get
             {
                 int selectedIndex = (int)uiBrowserTabControl?.TabPages?.SelectedIndex;
-                Debug.WriteLine("SELECTED INDEX OF CURRENT TAB: " + selectedIndex);
                 return uiBrowserTabControl?.TabPages?[selectedIndex] as BrowserTab;
             }
         }
@@ -37,6 +40,7 @@ namespace OSIRT.Browser
         public void SetAddressBar(ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
+            
         }
 
         public void SetMenuItem(ToolStripMenuItem menuItem)
@@ -44,21 +48,32 @@ namespace OSIRT.Browser
             this.menuItem = menuItem;
         }
 
+        public void SetStatusLabel(string status)
+        {
+            uiStatusLabel.Text = status;
+        }
+
 
         public TabbedBrowserControl()
         {
             InitializeComponent();
-            //due to browser control not releasing memory, and there not being a fix at the moment, prevent multi-tab.
             uiBrowserTabControl.NewTabClicked += control_NewTabClicked;
             uiBrowserTabControl.SelectedIndexChange += uiBrowserTabControl_SelectedIndexChange;
             uiBrowserTabControl.Closed += UiBrowserTabControl_Closed;
-
             uiDownloadProgressBar.Visible = false;
+        }
+
+        private void CurrentBrowser_StatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            this.InvokeIfRequired(() => SetStatusLabel(e.Value));
         }
 
         private void UiBrowserTabControl_Closed(object sender, EventArgs e)
         {
-            //CurrentTab?.Browser?.Dispose();
+            int selectedIndex = (int)uiBrowserTabControl?.HoverTabCloseDownIndex;
+            var tabPage = uiBrowserTabControl?.TabPages?[selectedIndex];
+            uiBrowserTabControl.TabPages.RemoveAt(selectedIndex);
+            tabPage?.Dispose();
         }
 
         private void uiBrowserTabControl_SelectedIndexChange(object sender, EventArgs e)
@@ -68,6 +83,9 @@ namespace OSIRT.Browser
             //It's not quite 100%, so needs work.
             //Problems arise when drag-moving tab.
             addressBar.Text = CurrentTab?.Browser.Address;
+
+            //UpdateForwardAndBackButtons?.Invoke(this, EventArgs.Empty);
+            UpdateNavigation?.Invoke(this, new NavigationalEventArgs(CurrentTab.CanGoForward, CurrentTab.CanGoBack));
         }
 
         private void uiBrowserPanel_TabIndexChanged(object sender, EventArgs e)
@@ -83,10 +101,15 @@ namespace OSIRT.Browser
 
         public void CreateTab(string url)
         {
-            BrowserTab tab = new BrowserTab(addressBar);
+            BrowserTab tab = new BrowserTab(url, addressBar);
             uiBrowserTabControl.TabPages.Add(tab);
             AddBrowserEvents();
-            Navigate(url);
+            tab.OpenInNewtab += Tab_OpenInNewtab;
+        }
+
+        private void Tab_OpenInNewtab(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
         private void CreateTab()
@@ -101,6 +124,24 @@ namespace OSIRT.Browser
             CurrentBrowser.DownloadComplete += CurrentBrowser_DownloadComplete;
             CurrentBrowser.YouTubeDownloadProgress += CurrentBrowser_YouTubeDownloadProgress;
             CurrentBrowser.YouTubeDownloadComplete += CurrentBrowser_YouTubeDownloadComplete;
+            CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
+            CurrentBrowser.OpenNewTabContextMenu += CurrentBrowser_OpenNewTabContextMenu;
+            CurrentBrowser.LoadingStateChanged += CurrentBrowser_LoadingStateChanged;
+        }
+
+        private void CurrentBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            UpdateNavigation?.Invoke(this, new NavigationalEventArgs(CurrentTab.CanGoForward, CurrentTab.CanGoBack));
+        }
+
+        private void CurrentBrowser_OnLoadingStateChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void CurrentBrowser_OpenNewTabContextMenu(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
         private void CurrentBrowser_DownloadComplete(object sender, EventArgs e)
@@ -169,7 +210,7 @@ namespace OSIRT.Browser
         {
             uiActionLoggedToolStripStatusLabel.Text = $"{fileName} logged at {dateTime}";
 
-            Timer timer = new Timer { Interval = 5000 };
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer { Interval = 5000 };
             timer.Start();
             timer.Tick += (s, e) => { uiActionLoggedToolStripStatusLabel.Text = ""; timer.Stop(); };
         }
@@ -181,7 +222,7 @@ namespace OSIRT.Browser
 
         public void FullPageScreenshot()
         {
-            CurrentBrowser.GenerateFullpageScreenshot(); 
+            CurrentBrowser.GenerateFullpageScreenshot();
         }
 
         public void CurrentViewScreenshot()
@@ -204,13 +245,13 @@ namespace OSIRT.Browser
 
         public void Navigate(string url)
         {
-            Debug.WriteLine("url in navigate: " + url);
             CurrentTab.Browser.Load(url);
         }
 
         private void CurrentBrowser_YouTubeDownloadComplete(object sender, EventArgs e)
         {
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 uiDownloadProgressBar.Visible = false;
                 DialogResult dialogRes;
                 string fileName;
@@ -231,12 +272,13 @@ namespace OSIRT.Browser
 
             });
         }
-       
+
         private void CurrentBrowser_YouTubeDownloadProgress(object sender, EventArgs e)
         {
             var progress = (YoutubeExtractor.ProgressEventArgs)e;
 
-            Invoke((MethodInvoker)delegate {
+            Invoke((MethodInvoker)delegate
+            {
                 if (!uiDownloadProgressBar.Visible)
                     uiDownloadProgressBar.Visible = true;
 
@@ -251,15 +293,22 @@ namespace OSIRT.Browser
 
         private void TabbedBrowserControl_Load(object sender, EventArgs e)
         {
-            if(DesignMode)
+            if (DesignMode)
             {
                 uiBrowserTabControl.NewTabButton = false;
             }
             else
             {
                 uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
+                //
                 CreateTab();
+                CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
+
             }
         }
+
+
+
+
     }
 }

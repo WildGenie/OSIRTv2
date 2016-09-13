@@ -16,7 +16,7 @@ namespace OSIRT.Helpers
     {
         public static string GetCaseDetails()
         {
-            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "", "investigating_agency", "operation_name", "case_reference", "evidence_reference");
+            DataTable table = new DatabaseHandler().GetRowsFromColumns("case_details", "", "investigating_agency", "operation_name", "case_reference", "evidence_reference", "notes");
             StringBuilder stringBuilder = new StringBuilder();
             foreach (DataRow row in table.Rows)
             {

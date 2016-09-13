@@ -20,21 +20,46 @@ namespace OSIRT.Browser
         private ToolStripComboBox addressBar;
         private IntPtr browserHandle;
         public event EventHandler AddressChanged = delegate { };
+        public event EventHandler OpenInNewtab = delegate { };
+        public event EventHandler stateChanged = delegate { };
 
-        public BrowserTab(ToolStripComboBox addressBar)
+        public bool CanGoForward { get; private set; }
+        public bool CanGoBack { get; private set; }
+
+        public BrowserTab(string url, ToolStripComboBox addressBar)
         {
             this.addressBar = addressBar;
+
             Browser = new ExtendedBrowser {Dock = DockStyle.Fill};
             Browser.TitleChanged += Browser_TitleChanged;
             Browser.AddressChanged += Browser_AddressChanged;
             Browser.DownloadHandler = new DownloadHandler();
-            Browser.LifeSpanHandler = new LifespanHandler();
 
+            var lifespanHandler = new LifespanHandler();
+            Browser.LifeSpanHandler = lifespanHandler;
+            lifespanHandler.OpenInNewTab += LifespanHandler_OpenInNewTab;
             Browser.HandleCreated += Browser_HandleCreated;
             Browser.MouseMove += Browser_MouseMove;
+            Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
             Controls.Add(Browser);
+
+            
+
+            Browser.Load(url);
         }
 
+        private void Browser_OnLoadingStateChanged(object sender, EventArgs e)
+        {
+            //stateChanged?.Invoke(this, (LoadingStateChangedEventArgs)e);
+
+            CanGoForward = ((LoadingStateChangedEventArgs)e).CanGoForward;
+            CanGoBack = ((LoadingStateChangedEventArgs)e).CanGoBack;
+        }
+
+        private void LifespanHandler_OpenInNewTab(object sender, EventArgs e)
+        {
+            OpenInNewtab?.Invoke(this, (NewTabEventArgs)e);
+        }
 
         private void Browser_MouseMove(object sender, MouseEventArgs e)
         {

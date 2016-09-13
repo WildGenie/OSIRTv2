@@ -9,6 +9,8 @@ using OSIRT.Helpers;
 using System.IO;
 using System.Diagnostics;
 using System.Linq;
+using ImageMagick;
+using System.Drawing;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -63,7 +65,30 @@ namespace OSIRT.UI.AuditLog
                         Enum.TryParse(rowDetails["action"].Replace(" ", ""), true, out directory);
                         if (Path.HasExtension(rowDetails["file"]) && directory != Actions.CaseNotes)
                         {
-                            DisplayFileIconWithFileSize(rowDetails["file"], directory);
+                            if (rowDetails["file"].HasImageExtension())
+                            {
+                                DisplayRezisedImage(rowDetails["file"], directory);
+
+                                var backgroundWorker = new BackgroundWorker();
+                                backgroundWorker.WorkerReportsProgress = true;
+                                backgroundWorker.DoWork += delegate
+                                {
+                                    DisplayRezisedImage(rowDetails["file"], directory);
+
+                                };
+
+                                backgroundWorker.RunWorkerCompleted += delegate
+                                {
+                                    DisplayFileDetailsLabel(rowDetails["file"], directory);
+                                };
+
+                                backgroundWorker.RunWorkerAsync();
+                            }
+                            else
+                            {
+
+                                DisplayFileIconWithFileSize(rowDetails["file"], directory);
+                            }
                         }
                         else
                         {
@@ -85,14 +110,39 @@ namespace OSIRT.UI.AuditLog
             }
         }
 
+        private void DisplayRezisedImage(string file, Actions caseDirectory)
+        {
+            //put this in a background worker.
+            try
+            {
+                using (MagickImage image = new MagickImage(Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory), file)))
+                {
+                    MagickGeometry size = new MagickGeometry(196, 196);
+                    size.IgnoreAspectRatio = false;
+                    image.Resize(size);
+                    this.InvokeIfRequired(() => FilePreviewImage.Image = image.ToBitmap());
+                }
+
+          
+            }
+            catch(Exception e)
+            {
+                DisplayFileIconWithFileSize(file, caseDirectory);
+            }
+        }
+
         private void DisplayFileIconWithFileSize(string file, Actions caseDirectory)
         {
             BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
             FilePreviewImage.Image = OsirtHelper.GetBitmap(icon);
+            DisplayFileDetailsLabel(file, caseDirectory);
+        }
+
+        private void DisplayFileDetailsLabel(string file, Actions caseDirectory)
+        {
             string caseDir = Constants.Directories.GetSpecifiedCaseDirectory(caseDirectory);
             filePath = Path.Combine(Constants.ContainerLocation, caseDir, file);
             SetFileLabelText($"File size: {OsirtHelper.GetHumanReadableFileSize(filePath)}. File type: {Path.GetExtension(filePath.ToUpperInvariant())}");
-
         }
 
         private void uiRowDetailsPanel_Paint(object sender, PaintEventArgs e)

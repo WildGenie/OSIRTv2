@@ -250,6 +250,8 @@
             // uiOpenReportCheckBox
             // 
             this.uiOpenReportCheckBox.AutoSize = true;
+            this.uiOpenReportCheckBox.Checked = true;
+            this.uiOpenReportCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.uiOpenReportCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiOpenReportCheckBox.Location = new System.Drawing.Point(6, 86);
             this.uiOpenReportCheckBox.Name = "uiOpenReportCheckBox";

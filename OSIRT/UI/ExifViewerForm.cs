@@ -134,7 +134,12 @@ namespace OSIRT.UI
 
         private void ExifViewer_Load(object sender, EventArgs e)
         {
+            FormClosing += ExifViewer_FormClosing;
+        }
 
+        private void ExifViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //ImageDiskCache.RemoveItemsInCache();
         }
     }
 }

@@ -70,11 +70,11 @@ namespace OSIRT.UI.AuditLog
             string tableToSearch = uiSearchSelectionComboBox.SelectedValue.ToString();
 
             DataTable table = AuditLogSearcher.Search(tableToSearch, searchText);
-            UpdateSearchResults(table);
+            UpdateSearchResults(table, tableToSearch);
         }
 
 
-        private void UpdateSearchResults(DataTable table)
+        private void UpdateSearchResults(DataTable table, string tableToSearch)
         {
             uiAuditLogSplitContainer.Panel2.Controls.Clear();
             uiBackToAuditLogToolStripButton.Enabled = true;
@@ -85,7 +85,8 @@ namespace OSIRT.UI.AuditLog
             }
             else
             {
-                OsirtGridView grid = new OsirtGridView();
+                table.TableName = tableToSearch;
+                OsirtGridView grid = new OsirtGridView(table.TableName);
                 grid.RowEntered += Grid_RowEntered;
                 grid.DataSource = table;
                 grid.Dock = DockStyle.Fill;

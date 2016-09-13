@@ -11,6 +11,7 @@ using OSIRT.UI.CaseClosing;
 using OSIRT.Loggers;
 using System.Drawing;
 using OSIRT.UI.Splash;
+using OSIRT.UI.BrowserOptions;
 
 namespace OSIRT.UI
 {
@@ -18,6 +19,8 @@ namespace OSIRT.UI
     {
         private bool caseOpened;
         private bool caseClosed;
+        private bool usingTor;
+        private string userAgent;
 
         //http://stackoverflow.com/questions/2612487/how-to-fix-the-flickering-in-user-controls
         //TODO@ need to look at this for hosted controls
@@ -80,12 +83,21 @@ namespace OSIRT.UI
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
+            firstLoadPanel.LoadAdavancedOptions += FirstLoadPanel_LoadAdavancedOptions;
             Controls.Add(firstLoadPanel);
         }
 
-        private void ShowSplashScreen()
+        private void FirstLoadPanel_LoadAdavancedOptions(object sender, EventArgs e)
         {
+            using (BrowserOptionsForm browserOptions = new BrowserOptionsForm())
+            {
+               DialogResult result = browserOptions.ShowDialog();
+                if (result != DialogResult.OK)
+                    return;
 
+                usingTor = browserOptions.IsUsingTor;
+                userAgent = browserOptions.UserAgent;
+            }
         }
 
         private void FirstLoadPanel_LoadOldCase_Click(object sender, EventArgs e)
@@ -137,7 +149,7 @@ namespace OSIRT.UI
         private void ShowBrowserPanel()
         {
             Controls.Clear();
-            BrowserPanel browserPanel = new BrowserPanel();
+            BrowserPanel browserPanel = new BrowserPanel(usingTor, userAgent);
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;
