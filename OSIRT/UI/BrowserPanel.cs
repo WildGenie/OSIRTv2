@@ -333,7 +333,7 @@ namespace OSIRT.UI
                         host = host.Remove(0, 4);
                 }
                 var whois = new WhoisLookup().Lookup(host);
-                var view = new ViewPageSource( whois.ToString(), Enums.Actions.Whois, new Tuple<string, string, string>(url.Host, host, ""));
+                var view = new ViewPageSource(whois.ToString(), Enums.Actions.Whois, new Tuple<string, string, string>(url.Host, host, ""));
                 view.Show();
             }
             catch
@@ -348,12 +348,23 @@ namespace OSIRT.UI
             Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
             IPAddress[] addresses = Dns.GetHostAddresses(url.Host);
 
-            using (var ipForm = new IpAddressesForm(addresses))
+            //using (var ipForm = new IpAddressesForm(addresses))
+            //{
+            //    this.InvokeIfRequired(() => ipForm.ShowDialog());
+            //}
+
+            string message = "";
+            foreach (var address in addresses)
             {
-                this.InvokeIfRequired(() => ipForm.ShowDialog());
+                message += address.ToString() + "\r\n";
             }
 
-                
+            using (var view = new ViewPageSource(message, Enums.Actions.IpAddress, new Tuple<string, string, string>(url.Host, url.AbsoluteUri, "")))
+            {
+                this.InvokeIfRequired(() => view.ShowDialog());
+            }
+
+
         }
 
         private void uiURLComboBox_MouseEnter(object sender, EventArgs e)

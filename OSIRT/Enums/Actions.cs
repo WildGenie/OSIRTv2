@@ -14,6 +14,7 @@
         Download,
         Source,
         Whois,
+        IpAddress,
         Report,
         Loaded,
         CaseLoaded,

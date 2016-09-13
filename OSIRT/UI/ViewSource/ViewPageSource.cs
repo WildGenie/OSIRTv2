@@ -43,7 +43,7 @@ namespace OSIRT.UI.ViewSource
 
         private void uiSaveSourceToolStripButton_Click(object sender, EventArgs e)
         {
-            string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", domainUrlAndTitle.Item1).Replace("%%action%%", action.ToString());
+            string filename = Constants.PageSourceFileName.Replace("%%dt%%", DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss")).Replace("%%name%%", domainUrlAndTitle.Item1).Replace("%%action%%", action.ToString().Replace(".","_"));
             string path = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), filename);
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {
