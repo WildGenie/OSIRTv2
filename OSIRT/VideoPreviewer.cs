@@ -17,6 +17,9 @@ namespace OSIRT
 {
     public partial class VideoPreviewer : Previewer
     {
+
+        private bool successful = false;
+
         public VideoPreviewer(Actions a) : base(a, Constants.TempVideoFile)
         {
             InitializeComponent();
@@ -43,10 +46,7 @@ namespace OSIRT
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 File.Delete(Constants.TempVideoFile);
-
-                Logger.Log(new VideoLog(action, FileName + FileExtension, Hash, Note));
-                DialogResult = DialogResult.OK;
-                Close();
+                successful = true;
             }
             catch(UnauthorizedAccessException uex)
             {
@@ -54,7 +54,14 @@ namespace OSIRT
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Can't move video. Reason: " + ex.ToString());
+                MessageBox.Show("Unable to save the video. Enter a different file name and try again", "Unable to save video", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (successful)
+            {
+                Logger.Log(new VideoLog(action, FileName + FileExtension, Hash, Note));
+                DialogResult = DialogResult.OK;
+                Close();
             }
         }
     }

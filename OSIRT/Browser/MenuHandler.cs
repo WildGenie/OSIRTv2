@@ -20,6 +20,7 @@ namespace OSIRT.Browser
         private const int SaveYouTubeVideo = 26505;
         private const int ViewImageExifData = 26506;
         private const int ViewFacebookId = 26507;
+        private const int CopyImgLocation = 26508;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -27,6 +28,7 @@ namespace OSIRT.Browser
         public event EventHandler ViewImageExif = delegate { };
         public event EventHandler ViewFacebookIdNum = delegate { };
         public event EventHandler OpenInNewTabContextMenu = delegate { };
+        public event EventHandler CopyImageLocation = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -42,6 +44,7 @@ namespace OSIRT.Browser
                     model.AddItem((CefMenuCommand)ViewImageExifData, "View image EXIF data");
                 }
                 model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
+                model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
             }
             if(OsirtHelper.IsOnYouTube(browserControl.Address))
             {
@@ -58,7 +61,7 @@ namespace OSIRT.Browser
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
-        {
+         {
             if ((int)commandId == OpenLinkInNewTab)
             {
                 //browser.ShowDevTools();
@@ -87,6 +90,10 @@ namespace OSIRT.Browser
             if ((int)commandId == ViewFacebookId)
             {
                 ViewFacebookIdNum?.Invoke(this, EventArgs.Empty);
+            }
+            if ((int)commandId == CopyImgLocation)
+            {
+                CopyImageLocation?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
             }
             return false;
         }

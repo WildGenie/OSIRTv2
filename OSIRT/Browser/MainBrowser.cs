@@ -22,6 +22,9 @@ using CefSharp.WinForms;
 using System.Threading;
 using System.Drawing.Imaging;
 using CefSharp;
+using ZXing;
+using ZXing.Common;
+using ZXing.QrCode;
 
 namespace OSIRT.Browser
 {
@@ -51,10 +54,17 @@ namespace OSIRT.Browser
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
             handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
+            handler.CopyImageLocation += Handler_CopyImageLocation; ;
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+        }
+
+        private void Handler_CopyImageLocation(object sender, EventArgs e)
+        {
+            string link = ((ExifViewerEventArgs)e).ImageUrl;
+            Clipboard.SetText(link);
         }
 
         private void ExtendedBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)

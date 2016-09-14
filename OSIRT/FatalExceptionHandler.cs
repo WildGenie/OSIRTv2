@@ -18,12 +18,14 @@ namespace OSIRT
             if(exception is DllNotFoundException)
             {
                 MessageBox.Show("A required library is missing that OSIRT needs. Please ensure that OSIRT is running within the extracted folder. See the 'Running OSIRT' section in the user guide.", "Missing Library", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                //Application.Exit();
+                return;
             }
             else if(exception is MissingMethodException)
             {
                 MessageBox.Show("You require the .NET Framework 4.6 or later. Please see the 'System Requirements' section of the user guide to install the correct version of the .NET framework ", "Old version of the .NET framework installed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                // Application.Exit();
+                return;
             }
 
 

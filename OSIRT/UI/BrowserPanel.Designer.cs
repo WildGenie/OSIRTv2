@@ -51,8 +51,8 @@
             this.uiToolsToolStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.forceCacheRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -272,7 +272,6 @@
             // 
             // uiToolsToolStripSplitButton
             // 
-            this.uiToolsToolStripSplitButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.uiToolsToolStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiToolsToolStripSplitButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.whoIsToolStripMenuItem,
@@ -303,14 +302,6 @@
             this.whatsTheIPToolStripMenuItem.ToolTipText = "Shows the IP addresses associated with this domain";
             this.whatsTheIPToolStripMenuItem.Click += new System.EventHandler(this.whatsTheIPToolStripMenuItem_Click);
             // 
-            // aboutOSIRTToolStripMenuItem
-            // 
-            this.aboutOSIRTToolStripMenuItem.Image = global::OSIRT.Properties.Resources.info;
-            this.aboutOSIRTToolStripMenuItem.Name = "aboutOSIRTToolStripMenuItem";
-            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
-            this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
-            // 
             // forceCacheRefreshToolStripMenuItem
             // 
             this.forceCacheRefreshToolStripMenuItem.Image = global::OSIRT.Properties.Resources.arrow_rotate_clockwise;
@@ -319,6 +310,14 @@
             this.forceCacheRefreshToolStripMenuItem.Text = "Force Cache Refresh";
             this.forceCacheRefreshToolStripMenuItem.ToolTipText = "Forces page to reload, while ignoring the cache";
             this.forceCacheRefreshToolStripMenuItem.Click += new System.EventHandler(this.forceCacheRefreshToolStripMenuItem_Click);
+            // 
+            // aboutOSIRTToolStripMenuItem
+            // 
+            this.aboutOSIRTToolStripMenuItem.Image = global::OSIRT.Properties.Resources.info;
+            this.aboutOSIRTToolStripMenuItem.Name = "aboutOSIRTToolStripMenuItem";
+            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
+            this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
             // 
             // uiBrowserMenuStrip
             // 

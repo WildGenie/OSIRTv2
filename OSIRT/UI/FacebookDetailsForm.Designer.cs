@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.uiProfileIdLabel = new System.Windows.Forms.Label();
+            this.uiFacebookIdTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // uiProfileIdLabel
+            // uiFacebookIdTextBox
             // 
-            this.uiProfileIdLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiProfileIdLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiProfileIdLabel.ForeColor = System.Drawing.Color.SteelBlue;
-            this.uiProfileIdLabel.Location = new System.Drawing.Point(0, 0);
-            this.uiProfileIdLabel.Name = "uiProfileIdLabel";
-            this.uiProfileIdLabel.Size = new System.Drawing.Size(265, 25);
-            this.uiProfileIdLabel.TabIndex = 0;
-            this.uiProfileIdLabel.Text = "label1";
-            this.uiProfileIdLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.uiFacebookIdTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiFacebookIdTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiFacebookIdTextBox.Location = new System.Drawing.Point(0, 0);
+            this.uiFacebookIdTextBox.Multiline = true;
+            this.uiFacebookIdTextBox.Name = "uiFacebookIdTextBox";
+            this.uiFacebookIdTextBox.ReadOnly = true;
+            this.uiFacebookIdTextBox.Size = new System.Drawing.Size(265, 25);
+            this.uiFacebookIdTextBox.TabIndex = 0;
+            this.uiFacebookIdTextBox.Text = "Not found...";
             // 
             // FacebookDetailsForm
             // 
@@ -49,18 +49,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(265, 25);
-            this.Controls.Add(this.uiProfileIdLabel);
+            this.Controls.Add(this.uiFacebookIdTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FacebookDetailsForm";
             this.Text = "Facebook Profile ID";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FacebookDetailsForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label uiProfileIdLabel;
+        private System.Windows.Forms.TextBox uiFacebookIdTextBox;
     }
 }

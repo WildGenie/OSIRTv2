@@ -348,11 +348,6 @@ namespace OSIRT.UI
             Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
             IPAddress[] addresses = Dns.GetHostAddresses(url.Host);
 
-            //using (var ipForm = new IpAddressesForm(addresses))
-            //{
-            //    this.InvokeIfRequired(() => ipForm.ShowDialog());
-            //}
-
             string message = "";
             foreach (var address in addresses)
             {

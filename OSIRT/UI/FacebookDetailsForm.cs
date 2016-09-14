@@ -41,11 +41,11 @@ namespace OSIRT.UI
 
             if(string.IsNullOrWhiteSpace(id))
             {
-                uiProfileIdLabel.Text = "Not found...";
+                uiFacebookIdTextBox.Text = "Not found...";
             }
             else
             {
-                uiProfileIdLabel.Text = id.ToString();
+                uiFacebookIdTextBox.Text = id.ToString();
             }
             
             

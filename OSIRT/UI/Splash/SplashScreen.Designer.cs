@@ -31,6 +31,7 @@
             this.uiSplashLoadingProgressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.uiProgressLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // uiSplashLoadingProgressBar
@@ -66,6 +67,17 @@
             this.uiProgressLabel.TabIndex = 2;
             this.uiProgressLabel.Text = "Checking previous case closed successfully...";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.Location = new System.Drawing.Point(1, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "v 3.0 (Cef)";
+            // 
             // SplashScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -73,6 +85,7 @@
             this.BackgroundImage = global::OSIRT.Properties.Resources.splash_screen_small;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(803, 261);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.uiProgressLabel);
             this.Controls.Add(this.uiSplashLoadingProgressBar);
             this.Controls.Add(this.label1);
@@ -94,5 +107,6 @@
         private System.Windows.Forms.ProgressBar uiSplashLoadingProgressBar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label uiProgressLabel;
+        private System.Windows.Forms.Label label2;
     }
 }

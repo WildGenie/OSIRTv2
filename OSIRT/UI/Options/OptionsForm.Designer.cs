@@ -50,6 +50,9 @@
             this.uiShowMouseClicksCheckBox = new System.Windows.Forms.CheckBox();
             this.uiShowMouseTrailCheckBox = new System.Windows.Forms.CheckBox();
             this.uiAudioGroupBox = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.uiMicroPhoneRadioButton = new System.Windows.Forms.RadioButton();
+            this.uiStereoMixRadioButton = new System.Windows.Forms.RadioButton();
             this.uiSteroMixStatusLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,9 +68,6 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
-            this.uiStereoMixRadioButton = new System.Windows.Forms.RadioButton();
-            this.uiMicroPhoneRadioButton = new System.Windows.Forms.RadioButton();
-            this.label7 = new System.Windows.Forms.Label();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -122,6 +122,7 @@
             this.groupBox5.TabIndex = 5;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Tabbed Browsing";
+            this.groupBox5.Visible = false;
             // 
             // uiMoreInfoTabsLinkLabel
             // 
@@ -327,6 +328,39 @@
             this.uiAudioGroupBox.Text = "Audio";
             this.uiAudioGroupBox.Enter += new System.EventHandler(this.uiAudioGroupBox_Enter);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(7, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(208, 13);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Select the audio source you wish to record";
+            // 
+            // uiMicroPhoneRadioButton
+            // 
+            this.uiMicroPhoneRadioButton.AutoSize = true;
+            this.uiMicroPhoneRadioButton.Location = new System.Drawing.Point(93, 35);
+            this.uiMicroPhoneRadioButton.Name = "uiMicroPhoneRadioButton";
+            this.uiMicroPhoneRadioButton.Size = new System.Drawing.Size(81, 17);
+            this.uiMicroPhoneRadioButton.TabIndex = 4;
+            this.uiMicroPhoneRadioButton.TabStop = true;
+            this.uiMicroPhoneRadioButton.Text = "Microphone";
+            this.uiMicroPhoneRadioButton.UseVisualStyleBackColor = true;
+            this.uiMicroPhoneRadioButton.CheckedChanged += new System.EventHandler(this.uiMicroPhoneRadioButton_CheckedChanged);
+            // 
+            // uiStereoMixRadioButton
+            // 
+            this.uiStereoMixRadioButton.AutoSize = true;
+            this.uiStereoMixRadioButton.Location = new System.Drawing.Point(12, 35);
+            this.uiStereoMixRadioButton.Name = "uiStereoMixRadioButton";
+            this.uiStereoMixRadioButton.Size = new System.Drawing.Size(75, 17);
+            this.uiStereoMixRadioButton.TabIndex = 3;
+            this.uiStereoMixRadioButton.TabStop = true;
+            this.uiStereoMixRadioButton.Text = "Stereo Mix";
+            this.uiStereoMixRadioButton.UseVisualStyleBackColor = true;
+            this.uiStereoMixRadioButton.CheckedChanged += new System.EventHandler(this.uiStereoMixRadioButton_CheckedChanged);
+            // 
             // uiSteroMixStatusLabel
             // 
             this.uiSteroMixStatusLabel.AutoSize = true;
@@ -482,39 +516,6 @@
             this.uiCloseButton.Text = "Close";
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
-            // 
-            // uiStereoMixRadioButton
-            // 
-            this.uiStereoMixRadioButton.AutoSize = true;
-            this.uiStereoMixRadioButton.Location = new System.Drawing.Point(12, 35);
-            this.uiStereoMixRadioButton.Name = "uiStereoMixRadioButton";
-            this.uiStereoMixRadioButton.Size = new System.Drawing.Size(75, 17);
-            this.uiStereoMixRadioButton.TabIndex = 3;
-            this.uiStereoMixRadioButton.TabStop = true;
-            this.uiStereoMixRadioButton.Text = "Stereo Mix";
-            this.uiStereoMixRadioButton.UseVisualStyleBackColor = true;
-            this.uiStereoMixRadioButton.CheckedChanged += new System.EventHandler(this.uiStereoMixRadioButton_CheckedChanged);
-            // 
-            // uiMicroPhoneRadioButton
-            // 
-            this.uiMicroPhoneRadioButton.AutoSize = true;
-            this.uiMicroPhoneRadioButton.Location = new System.Drawing.Point(93, 35);
-            this.uiMicroPhoneRadioButton.Name = "uiMicroPhoneRadioButton";
-            this.uiMicroPhoneRadioButton.Size = new System.Drawing.Size(81, 17);
-            this.uiMicroPhoneRadioButton.TabIndex = 4;
-            this.uiMicroPhoneRadioButton.TabStop = true;
-            this.uiMicroPhoneRadioButton.Text = "Microphone";
-            this.uiMicroPhoneRadioButton.UseVisualStyleBackColor = true;
-            this.uiMicroPhoneRadioButton.CheckedChanged += new System.EventHandler(this.uiMicroPhoneRadioButton_CheckedChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(7, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(208, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Select the audio source you wish to record";
             // 
             // OptionsForm
             // 
