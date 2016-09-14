@@ -218,17 +218,12 @@ namespace OSIRT.UI
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
-
-            ResizeMainForm?.Invoke(this, null);
-
-
-            //TODO: this check is causing the user to have to click twice to stop/start recording??
+           
             IntPtr handle;
             if (markerWindow != null && markerWindow.Visible)
                 handle = markerWindow.Handle;
             else
                 handle = Handle;
-
 
             if (!OsirtVideoCapture.IsRecording())
             {
@@ -259,6 +254,7 @@ namespace OSIRT.UI
             }
 
             ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
+            uiScreenshotButton.Enabled = true;
         }
 
         private void uiAuditLogToolStripButton_Click(object sender, EventArgs e)

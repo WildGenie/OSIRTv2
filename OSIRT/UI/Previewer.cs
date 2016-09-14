@@ -63,6 +63,17 @@ namespace OSIRT.UI
             PopulateExtenions();
             CheckValidFileName();
             CheckValidNoteEntry();
+            DisableScrollInCombobox();
+        }
+
+        private void DisableScrollInCombobox()
+        {
+            uiFileExtensionComboBox.MouseWheel += UiFileExtensionComboBox_MouseWheel;
+        }
+
+        private void UiFileExtensionComboBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
         }
 
         private void Previewer_Load(object sender, EventArgs e)

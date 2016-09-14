@@ -60,6 +60,13 @@ namespace OSIRT.UI
             {
                 ShowCannotOpenPanel(imageSize);
             }
+
+            uiFileNameComboBox.MouseWheel += UiFileNameComboBox_MouseWheel;
+        }
+
+        private void UiFileNameComboBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            ((HandledMouseEventArgs)e).Handled = true;
         }
 
         private void ImagePrevEx_FormClosing(object sender, FormClosingEventArgs e)
