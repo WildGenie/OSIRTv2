@@ -35,6 +35,7 @@
             this.uiThumbnailPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiSaveAsTextButton = new System.Windows.Forms.Button();
+            this.uiGoogleMapsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.uiExifDatGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiThumbnailPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -98,11 +99,23 @@
             this.uiSaveAsTextButton.UseVisualStyleBackColor = true;
             this.uiSaveAsTextButton.Click += new System.EventHandler(this.uiSaveAsTextButton_Click);
             // 
+            // uiGoogleMapsButton
+            // 
+            this.uiGoogleMapsButton.Location = new System.Drawing.Point(306, 564);
+            this.uiGoogleMapsButton.Name = "uiGoogleMapsButton";
+            this.uiGoogleMapsButton.Size = new System.Drawing.Size(127, 23);
+            this.uiGoogleMapsButton.TabIndex = 4;
+            this.uiGoogleMapsButton.Text = "View on Google Maps";
+            this.uiGoogleMapsButton.UseVisualStyleBackColor = true;
+            this.uiGoogleMapsButton.Visible = false;
+            this.uiGoogleMapsButton.Click += new System.EventHandler(this.uiGoogleMapsButton_Click);
+            // 
             // ExifViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 588);
+            this.ClientSize = new System.Drawing.Size(434, 589);
+            this.Controls.Add(this.uiGoogleMapsButton);
             this.Controls.Add(this.uiSaveAsTextButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.uiThumbnailPictureBox);
@@ -127,6 +140,7 @@
         private System.Windows.Forms.PictureBox uiThumbnailPictureBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button uiSaveAsTextButton;
+        private System.Windows.Forms.Button uiGoogleMapsButton;
     }
 }
 

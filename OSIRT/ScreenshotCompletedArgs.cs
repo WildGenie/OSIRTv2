@@ -5,12 +5,12 @@ namespace OSIRT
     public class ScreenshotCompletedEventArgs : EventArgs
     {
 
-        public ScreenshotCompletedEventArgs()
-        {
-            //ScreenshotDetails = details;
-        } 
+        public bool Successful  { get; private set; }
 
-        //public ScreenshotDetails ScreenshotDetails { get; private set; }
+        public ScreenshotCompletedEventArgs(bool successful)
+        {
+            Successful = successful;
+        } 
 
     }
 }

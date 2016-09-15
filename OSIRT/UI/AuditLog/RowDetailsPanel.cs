@@ -67,8 +67,7 @@ namespace OSIRT.UI.AuditLog
                         {
                             if (rowDetails["file"].HasImageExtension())
                             {
-                                DisplayRezisedImage(rowDetails["file"], directory);
-
+                                FilePreviewImage.Image = Properties.Resources.spin;
                                 var backgroundWorker = new BackgroundWorker();
                                 backgroundWorker.WorkerReportsProgress = true;
                                 backgroundWorker.DoWork += delegate
@@ -86,7 +85,6 @@ namespace OSIRT.UI.AuditLog
                             }
                             else
                             {
-
                                 DisplayFileIconWithFileSize(rowDetails["file"], directory);
                             }
                         }

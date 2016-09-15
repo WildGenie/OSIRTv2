@@ -153,21 +153,7 @@ namespace OSIRT.UI
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;
-            browserPanel.ResizeMainForm += BrowserPanel_ResizeMainForm;
-        }
-
-        private void BrowserPanel_ResizeMainForm(object sender, EventArgs e)
-        {
-            int width = Width, height = Height;
-
-            if (Width > 1920) width = 1920;
-            if (Height > 1080) height = 1080;
-
-            Size = new Size(width, height);
-
-            Width = width;
-            Height = height;
-            Debug.WriteLine($"WIDTH : {width}. HEIGHT : {height}");
+            
         }
 
         //event from menu item

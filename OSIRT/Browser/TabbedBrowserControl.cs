@@ -127,6 +127,13 @@ namespace OSIRT.Browser
             CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
             CurrentBrowser.OpenNewTabContextMenu += CurrentBrowser_OpenNewTabContextMenu;
             CurrentBrowser.LoadingStateChanged += CurrentBrowser_LoadingStateChanged;
+            CurrentBrowser.OpenTinEye += CurrentBrowser_OpenTinEye;
+        }
+
+        private void CurrentBrowser_OpenTinEye(object sender, EventArgs e)
+        {
+            string url = ((ExifViewerEventArgs)e).ImageUrl;
+            this.InvokeIfRequired(() => CreateTab("http://www.tineye.com/search/?url=" + url));
         }
 
         private void CurrentBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -178,8 +185,12 @@ namespace OSIRT.Browser
 
         private void Screenshot_Completed(object sender, EventArgs e)
         {
+            bool showPreviewer = ((ScreenshotCompletedEventArgs)e).Successful;
             ScreenshotComplete?.Invoke(this, new EventArgs());
-            ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
+            if (showPreviewer)
+            {
+                ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
+            }
         }
 
         private void ShowImagePreviewer(Actions action, string imagePath)

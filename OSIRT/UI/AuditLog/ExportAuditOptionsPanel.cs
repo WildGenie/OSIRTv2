@@ -151,8 +151,6 @@ namespace OSIRT.UI.AuditLog
 
             //end ad
 
-
-
             merged.TableName = "merged";
             DataView view = new DataView(merged);
             view.Sort = "date asc, time asc";

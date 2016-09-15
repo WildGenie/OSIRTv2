@@ -771,6 +771,7 @@
     <None Include="Resources\about_osirt.png" />
     <None Include="Resources\save_close.png" />
     <None Include="Resources\network_tools.png" />
+    <None Include="Resources\spin.gif" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

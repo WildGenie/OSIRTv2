@@ -40,6 +40,7 @@ namespace OSIRT.Browser
         public event EventHandler YouTubeDownloadProgress = delegate { };
         public event EventHandler YouTubeDownloadComplete = delegate { };
         public event EventHandler OnLoadingStateChanged = delegate { };
+        public event EventHandler OpenTinEye = delegate { };
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private PictureBox mouseTrail = new PictureBox();
@@ -56,9 +57,16 @@ namespace OSIRT.Browser
             handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
             handler.CopyImageLocation += Handler_CopyImageLocation; ;
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
+            handler.ReverseImgSearch += Handler_ReverseImgSearch;
+
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+        }
+
+        private void Handler_ReverseImgSearch(object sender, EventArgs e)
+        {
+            OpenTinEye?.Invoke(this, e);
         }
 
         private void Handler_CopyImageLocation(object sender, EventArgs e)
@@ -175,7 +183,7 @@ namespace OSIRT.Browser
         public void GetCurrentViewportScreenshot()
         {
             ScreenshotHelper.SaveScreenshotToCache(GetCurrentViewScreenshot());
-            FireScreenshotCompleteEvent();
+            FireScreenshotCompleteEvent(true);
         }
 
         public async Task PutTaskDelay()
@@ -185,12 +193,20 @@ namespace OSIRT.Browser
 
        private int GetDocHeight()
         {
-            int scrollHeight = 0;
-            var task = GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
-            task.Wait();
-            var response = task.Result;
-            scrollHeight = (int)response.Result;
-            return scrollHeight;
+            try
+            {
+                int scrollHeight = 0;
+                var task = GetBrowser()?.MainFrame?.EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
+                task.Wait();
+                var response = task.Result;
+                scrollHeight = (int)response.Result;
+                return scrollHeight;
+            }
+            catch
+            {
+                MessageBox.Show("Unable to take full page capture. Consider using video capture, snippet or current view capture tools.", "Unable to take full page screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+            }
         }
 
 
@@ -199,7 +215,10 @@ namespace OSIRT.Browser
         {
             int scrollHeight =  GetDocHeight();
             if (scrollHeight == 0)
+            {
+                FireScreenshotCompleteEvent(false);
                 return;
+            }
 
             Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height;
@@ -256,7 +275,7 @@ namespace OSIRT.Browser
             await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'visible'; } } })(); ");
             Enabled = true;
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
-            FireScreenshotCompleteEvent();
+            FireScreenshotCompleteEvent(true);
         }
 
         private void GetScreenshot(object sender, WaitWindowEventArgs e)
@@ -285,9 +304,9 @@ namespace OSIRT.Browser
 
         }
 
-        private void FireScreenshotCompleteEvent()
+        private void FireScreenshotCompleteEvent(bool successful)
         {
-            ScreenshotCompleted(this, new ScreenshotCompletedEventArgs());
+            ScreenshotCompleted(this, new ScreenshotCompletedEventArgs(successful));
         }
 
 

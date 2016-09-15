@@ -64,19 +64,28 @@ namespace OSIRT.UI.AuditLog
                             string sourceFile = Path.Combine(Constants.ContainerLocation, location, cellValue);
                             string relativePath = Path.Combine(Constants.Artefacts, location, cellValue);
                             string destination = Path.Combine($"{exportPath}", reportContainerName, relativePath);
-                            File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
+                            try
+                            {
+                                File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
+                            }
+                            catch
+                            {
 
-                            if (cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)
-                            {
-                                html += $@"<td><a href='{relativePath}' onmouseover=showImageOnMouseOver('{relativePath.Replace(@"\", @"\\")}','{count}'); onmouseout=resetImage('{count}');> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=' id='place-holder-{count}' style='zindex: 100; position: absolute;'/>{cellValue}</a></td>";
                             }
-                            else if (cellValue.HasVideoExtension() && UserSettings.Load().ShowVideosInReport)
+                            finally
                             {
-                                html += $@"<td><video width='300' height='200' controls> <source src='{relativePath}' type='video/mp4'><a href='{relativePath}'>{cellValue}</a></video>";
-                            }
-                            else
-                            {
-                                html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                                if (cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)
+                                {
+                                    html += $@"<td><a href='{relativePath}' onmouseover=showImageOnMouseOver('{relativePath.Replace(@"\", @"\\")}','{count}'); onmouseout=resetImage('{count}');> <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAAA1JREFUGFdj+O/LwAAABOgBTRkGJGkAAAAASUVORK5CYII=' id='place-holder-{count}' style='zindex: 100; position: absolute;'/>{cellValue}</a></td>";
+                                }
+                                else if (cellValue.HasVideoExtension() && UserSettings.Load().ShowVideosInReport)
+                                {
+                                    html += $@"<td><video width='300' height='200' controls> <source src='{relativePath}' type='video/mp4'><a href='{relativePath}'>{cellValue}</a></video>";
+                                }
+                                else
+                                {
+                                    html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
+                                }
                             }
                         }
                         else

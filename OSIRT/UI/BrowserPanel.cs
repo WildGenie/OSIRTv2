@@ -27,7 +27,6 @@ namespace OSIRT.UI
     {
 
         public event EventHandler CaseClosing;
-        public event EventHandler ResizeMainForm;
         private bool isUsingTor;
         private string userAgent;
 
@@ -60,7 +59,7 @@ namespace OSIRT.UI
 
         private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
         {
-            this.InvokeIfRequired(() =>  uiForwardButton.Enabled =  ((NavigationalEventArgs)e).CanGoForward );
+            this.InvokeIfRequired(() =>  uiForwardButton.Enabled =  ((NavigationalEventArgs)e).CanGoForward);
             this.InvokeIfRequired(() => uiLBackButton.Enabled = ((NavigationalEventArgs)e).CanGoBack);
         }
 
@@ -350,7 +349,7 @@ namespace OSIRT.UI
                 message += address.ToString() + "\r\n";
             }
 
-            using (var view = new ViewPageSource(message, Enums.Actions.IpAddress, new Tuple<string, string, string>(url.Host, url.AbsoluteUri, "")))
+            using (var view = new ViewPageSource(message, Enums.Actions.Ipaddress, new Tuple<string, string, string>(url.Host, url.AbsoluteUri, "")))
             {
                 this.InvokeIfRequired(() => view.ShowDialog());
             }

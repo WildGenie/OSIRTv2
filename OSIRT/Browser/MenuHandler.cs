@@ -21,6 +21,7 @@ namespace OSIRT.Browser
         private const int ViewImageExifData = 26506;
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
+        private const int ReverseImageSearch = 26509;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -29,6 +30,7 @@ namespace OSIRT.Browser
         public event EventHandler ViewFacebookIdNum = delegate { };
         public event EventHandler OpenInNewTabContextMenu = delegate { };
         public event EventHandler CopyImageLocation = delegate { };
+        public event EventHandler ReverseImgSearch = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -45,6 +47,7 @@ namespace OSIRT.Browser
                 }
                 model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
+                model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
             }
             if(OsirtHelper.IsOnYouTube(browserControl.Address))
             {
@@ -94,6 +97,10 @@ namespace OSIRT.Browser
             if ((int)commandId == CopyImgLocation)
             {
                 CopyImageLocation?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
+            }
+            if ((int)commandId == ReverseImageSearch)
+            {
+                ReverseImgSearch?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
             }
             return false;
         }

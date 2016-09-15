@@ -21,6 +21,7 @@ namespace OSIRT.UI
         private List<string> properties;
         private string path;
         private string url;
+        private string googleMapUrl;
 
         public ExifViewer(string path, string url)
         {
@@ -86,11 +87,25 @@ namespace OSIRT.UI
 
         private void PopulateGrid()
         {
+            string longitude = "";
+            string latitude = "";
             foreach (string property in properties)
             {
                 string[] split = property.Split(':');
                 uiExifDatGridView.Rows.Add(split[0], split[1]);
+
+                if(split[0].ToLower() == "gpslatitude")
+                {
+                    latitude = split[1];
+                }
+                if (split[0].ToLower() == "gpslongitude")
+                {
+                    longitude = split[1];
+                }
+
             }
+            //googleMapUrl = $@"http://maps.google.com/maps?q={latitude},{longitude}";
+            //Console.WriteLine(googleMapUrl);
         }
 
         private void DisplayThumbnail(ExifReader reader)
@@ -140,6 +155,16 @@ namespace OSIRT.UI
         private void ExifViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
             //ImageDiskCache.RemoveItemsInCache();
+        }
+
+        private void uiGoogleMapsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+                   
+        }
+
+        private void uiGoogleMapsButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
