@@ -10,7 +10,7 @@ namespace OSIRT
     public class AuditLogSearcher
     {
         private AuditLogSearcher() { }
-
+        //
         private static List<string> columnNames;
         private static DataTable tableToSearch;
 
