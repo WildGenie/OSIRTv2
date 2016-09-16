@@ -1,4 +1,5 @@
-﻿using OSIRT.UI;
+﻿using OSIRT.Helpers;
+using OSIRT.UI;
 using OSIRT.UI.CaseClosing;
 using System;
 using System.Collections.Generic;
@@ -27,12 +28,13 @@ namespace OSIRT
                 // Application.Exit();
                 return;
             }
-            else if(exception is ImageMagick.MagickDelegateErrorException)
-            {
-                MessageBox.Show("There has been an error combining the screenshot (MagickDelegateErrorException). Try taking the screenshot again.", "Error combining screenshot" ,MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Application.Exit();
-                return;
-            }
+            //else if(exception is ImageMagick.MagickDelegateErrorException)
+            //{
+            //    MessageBox.Show("There has been an error combining the screenshot (MagickDelegateErrorException). Try taking the screenshot again.", "Error combining screenshot" ,MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
+            //    // Application.Exit();
+            //    return;
+            //}
 
 
             using (UnhandledExceptionForm exceptionFrom = new UnhandledExceptionForm(exception.ToString()))

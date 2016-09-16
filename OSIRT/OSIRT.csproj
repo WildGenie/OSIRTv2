@@ -194,6 +194,12 @@
     <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
     <Compile Include="Browser\OnPopUpEventArgs.cs" />
+    <Compile Include="Browser\SearchFinder\Find.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Browser\SearchFinder\Find.Designer.cs">
+      <DependentUpon>Find.cs</DependentUpon>
+    </Compile>
     <Compile Include="Browser\WebBrowserHelper.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClient.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClientStatus.cs" />
@@ -516,6 +522,9 @@
     <EmbeddedResource Include="Browser\BrowserTab.resx">
       <DependentUpon>BrowserTab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Browser\SearchFinder\Find.resx">
+      <DependentUpon>Find.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Browser\TabbedBrowserControl.resx">
       <DependentUpon>TabbedBrowserControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -772,6 +781,7 @@
     <None Include="Resources\save_close.png" />
     <None Include="Resources\network_tools.png" />
     <None Include="Resources\spin.gif" />
+    <None Include="Resources\magnify_sm.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

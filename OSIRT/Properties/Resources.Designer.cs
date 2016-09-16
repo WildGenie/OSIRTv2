@@ -313,6 +313,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap magnify_sm {
+            get {
+                object obj = ResourceManager.GetObject("magnify_sm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap measure_crop {
             get {
                 object obj = ResourceManager.GetObject("measure_crop", resourceCulture);

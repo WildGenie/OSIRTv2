@@ -19,6 +19,7 @@ using OSIRT.Extensions;
 using OSIRT.Browser;
 using CefSharp;
 using Tor;
+using OSIRT.Browser.SearchFinder;
 
 namespace OSIRT.UI
 {
@@ -146,8 +147,16 @@ namespace OSIRT.UI
             try
             {
                 ImageDiskCache.RemoveItemsInCache(); //may be old items in cache, don't want them getting appended to screenshot
+                ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
                 uiBrowserToolStrip.Enabled = false;
                 uiTabbedBrowserControl.FullPageScreenshot();
+            }
+            catch(ImageMagick.MagickDelegateErrorException mdee)
+            {
+                MessageBox.Show("There has been an error combining the screenshot (MagickDelegateErrorException). Try taking the screenshot again.", "Error combining screenshot", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ImageDiskCache.RemoveItemsInCache();
+                ImageDiskCache.RemoveSpecificItemFromCache("temp.mp4");
+                UiTabbedBrowserControl_ScreenshotComplete(sender, e);
             }
             finally
             {
@@ -424,6 +433,40 @@ namespace OSIRT.UI
         private void forceCacheRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
+        }
+
+        private void findOnPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var findForm = new Find();
+            findForm.Show();
+            findForm.FindNext += FindForm_FindNext; ;
+            findForm.FindPrevious += FindForm_FindPrevious;
+            findForm.FindClosing += FindForm_FindClosing;
+        }
+
+        private void FindForm_FindClosing(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.StopFinding(true);
+        }
+
+        private void FindForm_FindPrevious(object sender, EventArgs e)
+        {
+            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, false, false, false);
+        }
+
+        private void FindForm_FindNext(object sender, EventArgs e)
+        {
+            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, true, false, false);
+        }
+
+        private void FindForm_FindComplete(object sender, EventArgs e)
+        {
+            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, true, false, false);
+
+
         }
     }
 }

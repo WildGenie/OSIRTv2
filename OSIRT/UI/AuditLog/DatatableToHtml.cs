@@ -68,10 +68,6 @@ namespace OSIRT.UI.AuditLog
                             {
                                 File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
                             }
-                            catch
-                            {
-
-                            }
                             finally
                             {
                                 if (cellValue.HasImageExtension() && UserSettings.Load().PrintImagesInReport)

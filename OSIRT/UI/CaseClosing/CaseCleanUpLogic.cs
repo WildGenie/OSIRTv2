@@ -70,6 +70,8 @@ namespace OSIRT.UI.CaseClosing
             }
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
             DeleteImageMagickFiles();
+            ImageDiskCache.RemoveItemsInCache();
+            ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
             TorCleanUp();
 
             int attempts = 0;

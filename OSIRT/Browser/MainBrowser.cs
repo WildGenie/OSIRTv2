@@ -62,6 +62,8 @@ namespace OSIRT.Browser
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+
+            
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)
