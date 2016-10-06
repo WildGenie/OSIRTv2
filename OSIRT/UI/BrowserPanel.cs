@@ -147,7 +147,7 @@ namespace OSIRT.UI
             try
             {
                 ImageDiskCache.RemoveItemsInCache(); //may be old items in cache, don't want them getting appended to screenshot
-                ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
+                //ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
                 uiBrowserToolStrip.Enabled = false;
                 uiTabbedBrowserControl.FullPageScreenshot();
             }
@@ -236,12 +236,10 @@ namespace OSIRT.UI
             if (!OsirtVideoCapture.IsRecording())
             {
                 OsirtVideoCapture.StartCapture(Width, Height, uiVideoCaptureButton, (uint)handle);
-                uiScreenshotButton.Enabled = false;
             }
             else
             {
                 OsirtVideoCapture.StopCapture();
-                uiScreenshotButton.Enabled = true;
             }
         }
 
@@ -254,7 +252,7 @@ namespace OSIRT.UI
             }
 
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = false;
-            VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
+            //VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
 
             using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
             {
@@ -262,7 +260,6 @@ namespace OSIRT.UI
             }
 
             ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
-            uiScreenshotButton.Enabled = true;
         }
 
         private void uiAuditLogToolStripButton_Click(object sender, EventArgs e)
@@ -399,18 +396,18 @@ namespace OSIRT.UI
             createParameters.DefaultConfigurationFile = "";
             createParameters.Path = @"Tor\Tor\tor.exe";
 
+
             Client client = Client.Create(createParameters);
             client.Status.BandwidthChanged += Status_BandwidthChanged;
             client.Shutdown += Client_Shutdown;
-            
             Cef.Initialize(settings);
 
         }
 
         private void Client_Shutdown(object sender, EventArgs e)
         {
-            MessageBox.Show("Tor client has shutdown without warning. It is highly recommended you restart OSIRT.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
+            //MessageBox.Show("Tor client has shutdown without warning. It is highly recommended you restart OSIRT.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //return;
         }
 
         private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)

@@ -1,4 +1,6 @@
-﻿using OSIRT.Helpers;
+﻿using NAudio.CoreAudioApi;
+using NAudio.Wave;
+using OSIRT.Helpers;
 using OSIRT.UI;
 using System;
 using System.Collections.Generic;
@@ -73,7 +75,8 @@ namespace OSIRT.VideoCapture
                 {
                     if ((line.Contains("Stereo Mix") && UserSettings.Load().UseStereoMix)|| (line.Contains("Microphone") && UserSettings.Load().UseMicrophone))
                     {
-                        audio = Convert.ToUInt32(line.Trim()[0].ToString());
+                        audio = Convert.ToUInt32(line.Trim()[7].ToString());
+                        Console.WriteLine("AUDIO: " + audio);
                         break;
                     }
                 }
@@ -101,20 +104,27 @@ namespace OSIRT.VideoCapture
 
         }
 
-        private static string[] AudioDevices()
+        private static List<string> AudioDevices()
         {
-            VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
-            string[] allLines = null;
-            try
+            //VideoCapture.CallEnumerateAndSaveAudioCaptureDevices();
+            //string[] allLines = null;
+            //try
+            //{
+            //    string loadFilename = "AudioCaptureDevices.txt";
+            //    allLines = File.ReadAllLines(loadFilename);
+            //    FileInfo loadedFileInfo = new FileInfo(loadFilename);
+            //    loadedFileInfo.Delete();
+            //}
+            //catch { }
+            List<string> devices = new List<string>();
+            int waveInDevices = WaveIn.DeviceCount;
+            for (int waveInDevice = 0; waveInDevice < waveInDevices; waveInDevice++)
             {
-                string loadFilename = "AudioCaptureDevices.txt";
-                allLines = File.ReadAllLines(loadFilename);
-                FileInfo loadedFileInfo = new FileInfo(loadFilename);
-                loadedFileInfo.Delete();
+                WaveInCapabilities deviceInfo = WaveIn.GetCapabilities(waveInDevice);
+                //Console.WriteLine($"Device {waveInDevice}: {deviceInfo.ProductName}");
+                devices.Add($"Device {waveInDevice}: {deviceInfo.ProductName}");
             }
-            catch { }
-
-            return allLines;
+            return devices;
         }
 
         public static bool HasMicrophone()
@@ -237,6 +247,7 @@ namespace OSIRT.VideoCapture
 
         [DllImport(ScreenCaptureDLL)]
         public static extern UInt32 ReSizeWindow(UInt32 WindowHandle, UInt32 NewWidth, UInt32 NewHeight);
+
 
     }
 }

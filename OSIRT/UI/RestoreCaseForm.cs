@@ -80,12 +80,18 @@ namespace OSIRT.UI
             {
                 System.Threading.Thread.Sleep(1000);
                 RezipCase(path);
+              
             };
             backgroundWorker.RunWorkerCompleted += delegate
             {
                 FlipUi(false, "Recover");
             };
             backgroundWorker.RunWorkerAsync();
+        }
+
+        private void RestoreCaseForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

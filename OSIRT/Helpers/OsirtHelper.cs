@@ -56,6 +56,13 @@ namespace OSIRT.Helpers
             return (PasswordScore)score;
         }
 
+        public static void CheckCacheDirectoriesExist()
+        {
+           Directory.CreateDirectory(Constants.CacheLocation);
+           Directory.CreateDirectory(Constants.VideoCacheLocation);
+           if(!File.Exists(Constants.ApplicationLog)) File.Create(Constants.ApplicationLog);
+        }
+
         public static bool IsOnFacebook(string url)
         {
 

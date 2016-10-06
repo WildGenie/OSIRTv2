@@ -54,11 +54,11 @@ namespace OSIRT.UI.CaseClosing
             string caseClosed = "[Case closed";
             caseClosed += UserSettings.Load().HashContainerOnClose ? "- Hash exported]" : "]" ;
 
-            if (UserSettings.Load().ClearCacheOnClose)
-            {
-                (sender as BackgroundWorker).ReportProgress(10, "Deleting IE Cache... Please Wait");
-                CleanInternetExporerCache();
-            }
+            //if (UserSettings.Load().ClearCacheOnClose)
+            //{
+            //    (sender as BackgroundWorker).ReportProgress(10, "Deleting IE Cache... Please Wait");
+            //    CleanInternetExporerCache();
+            //}
             if(!isInAuditViewMode) //Still getting logged due to this logic also exisitng in the MainForm close method
                 Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, caseClosed, Constants.CaseContainerName));
 

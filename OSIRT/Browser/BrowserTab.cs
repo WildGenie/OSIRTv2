@@ -43,8 +43,6 @@ namespace OSIRT.Browser
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
             Controls.Add(Browser);
 
-            
-
             Browser.Load(url);
         }
 
@@ -73,6 +71,8 @@ namespace OSIRT.Browser
 
         private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)
         {
+            Console.WriteLine(e.Address);
+
             Logger.Log(new WebsiteLog(e.Address));
             this.InvokeIfRequired(() => addressBar.Text = e.Address);
         }

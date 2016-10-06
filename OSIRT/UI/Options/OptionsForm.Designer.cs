@@ -165,6 +165,7 @@
             this.groupBox4.TabIndex = 4;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Cache";
+            this.groupBox4.Visible = false;
             // 
             // uiDeleteCacheOnCloseCheckBox
             // 

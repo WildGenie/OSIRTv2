@@ -31,10 +31,11 @@ namespace OSIRT.UI.Splash
             backgroundWorker.WorkerReportsProgress = true;
             backgroundWorker.DoWork +=  delegate
             {
-                Thread.Sleep(3500);
+                OsirtHelper.CheckCacheDirectoriesExist();
+                Thread.Sleep(2000);
                 string[] log = OsirtLogWriter.ReadLog();
                 string path = log[0];
-
+                
 
                 if (!Convert.ToBoolean(log[1]))
                 {

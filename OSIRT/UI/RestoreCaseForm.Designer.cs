@@ -132,6 +132,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "RestoreCaseForm";
             this.Text = "Restore Case";
+            this.Load += new System.EventHandler(this.RestoreCaseForm_Load);
             this.uiRestoreSplitContainer.Panel1.ResumeLayout(false);
             this.uiRestoreSplitContainer.Panel1.PerformLayout();
             this.uiRestoreSplitContainer.Panel2.ResumeLayout(false);

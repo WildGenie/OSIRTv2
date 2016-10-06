@@ -54,7 +54,7 @@
             // 
             // uiFindPreviousButton
             // 
-            this.uiFindPreviousButton.Location = new System.Drawing.Point(207, 57);
+            this.uiFindPreviousButton.Location = new System.Drawing.Point(212, 57);
             this.uiFindPreviousButton.Name = "uiFindPreviousButton";
             this.uiFindPreviousButton.Size = new System.Drawing.Size(75, 23);
             this.uiFindPreviousButton.TabIndex = 3;

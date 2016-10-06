@@ -30,16 +30,18 @@ namespace OSIRT.Helpers
         public static string PageSourceFileName => $"%%dt%%_%%name%%_%%action%%.txt";
 
         //Image Cache Constants
-        public static readonly string CacheLocation = Path.Combine(Application.StartupPath, "cache");
-        public static readonly string ApplicationLog = Path.Combine(Application.StartupPath, "log.config");
+        public static readonly string CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt" ,"cache");
+        public static readonly string VideoCacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt" ,"videocache");
+        public static readonly string ApplicationLog = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "log.config");
         private static readonly string TempImgName = "temp.png";
         private static readonly string TempLogoName = "templogo.png";
         private static readonly string ScaledImgName = "scaled.png";
         private static readonly string TempVideoName = "temp.mp4";
+
         public static readonly string TempImgFile = Path.Combine(CacheLocation, TempImgName);
         public static readonly string TempLogoFile = Path.Combine(CacheLocation, TempLogoName);
         public static readonly string ScaledImgFile = Path.Combine(CacheLocation, ScaledImgName);
-        public static readonly string TempVideoFile = Path.Combine(CacheLocation, TempVideoName);
+        public static readonly string TempVideoFile = Path.Combine(VideoCacheLocation, TempVideoName);
 
 
 

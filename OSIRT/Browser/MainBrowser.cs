@@ -1,6 +1,6 @@
 ﻿using Jacksonsoft;
 using Microsoft.Win32;
-using mshtml;
+//using mshtml;
 using OSIRT.Browser.DownloadManager;
 using OSIRT.Helpers;
 using OSIRT.Loggers;
@@ -62,8 +62,6 @@ namespace OSIRT.Browser
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
-
-            
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)
