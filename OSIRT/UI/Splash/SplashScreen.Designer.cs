@@ -74,9 +74,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(1, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.Size = new System.Drawing.Size(68, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "v 3.0.1 (Cef - BETA)";
+            this.label2.Text = "v 3.0.1 (Cef )";
             // 
             // SplashScreen
             // 

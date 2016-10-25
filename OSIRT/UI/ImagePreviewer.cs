@@ -91,6 +91,7 @@ namespace OSIRT.UI
                     image.Write(pathToSave);
                     e.Window.Message = "Rehashing PDF";
                     Hash = OsirtHelper.GetFileHash(pathToSave);
+                    successful = true;
                 }
             }
             catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
