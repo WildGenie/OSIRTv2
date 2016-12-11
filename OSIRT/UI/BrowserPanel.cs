@@ -20,6 +20,7 @@ using OSIRT.Browser;
 using CefSharp;
 using Tor;
 using OSIRT.Browser.SearchFinder;
+using System.Collections.Generic;
 
 namespace OSIRT.UI
 {
@@ -30,11 +31,13 @@ namespace OSIRT.UI
         public event EventHandler CaseClosing;
         private bool isUsingTor;
         private string userAgent;
+        private Form parentForm;
 
-        public BrowserPanel(bool isUsingTor, string userAgent)
+        public BrowserPanel(bool isUsingTor, string userAgent, Form parent)
         {
             this.isUsingTor = isUsingTor;
             this.userAgent = userAgent;
+            parentForm = parent;
             CheckAdvancedOptions();
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
@@ -44,7 +47,6 @@ namespace OSIRT.UI
                 uiURLComboBox.BackColor = Color.MediumPurple;
                 uiURLComboBox.ForeColor = Color.White;
             }
-               
         }
 
         private void BrowserPanel_Load(object sender, EventArgs e)
@@ -227,11 +229,15 @@ namespace OSIRT.UI
         {
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
            
-            IntPtr handle;
-            if (markerWindow != null && markerWindow.Visible)
-                handle = markerWindow.Handle;
-            else
-                handle = Handle;
+            IntPtr handle = Handle;
+            if (markerWindow != null && markerWindow.Visible) handle = markerWindow.Handle;
+            if (handle == IntPtr.Zero)
+            {
+                MessageBox.Show("HANDLE ZERO. SETTING TO FORM HANDLE");
+                handle = parentForm.Handle;
+            }
+
+            MessageBox.Show($"HANDLE: {handle} WIDTH: {Width} HEIGHT: {Height}");
 
             if (!OsirtVideoCapture.IsRecording())
             {

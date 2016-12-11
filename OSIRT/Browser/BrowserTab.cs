@@ -33,7 +33,11 @@ namespace OSIRT.Browser
             Browser = new ExtendedBrowser {Dock = DockStyle.Fill};
             Browser.TitleChanged += Browser_TitleChanged;
             Browser.AddressChanged += Browser_AddressChanged;
-            Browser.DownloadHandler = new DownloadHandler();
+
+            //var downloadHandler = new DownloadHandler();
+
+            //Browser.DownloadHandler = downloadHandler;
+            //downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
 
             var lifespanHandler = new LifespanHandler();
             Browser.LifeSpanHandler = lifespanHandler;
@@ -41,10 +45,14 @@ namespace OSIRT.Browser
             Browser.HandleCreated += Browser_HandleCreated;
             Browser.MouseMove += Browser_MouseMove;
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
+
+
             Controls.Add(Browser);
 
             Browser.Load(url);
         }
+
+
 
         private void Browser_OnLoadingStateChanged(object sender, EventArgs e)
         {

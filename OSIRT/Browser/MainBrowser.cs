@@ -25,6 +25,7 @@ using CefSharp;
 using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
+using HtmlAgilityPack;
 
 namespace OSIRT.Browser
 {
@@ -41,6 +42,9 @@ namespace OSIRT.Browser
         public event EventHandler YouTubeDownloadComplete = delegate { };
         public event EventHandler OnLoadingStateChanged = delegate { };
         public event EventHandler OpenTinEye = delegate { };
+        public event EventHandler DownloadStatusChanged = delegate { };
+        public event EventHandler DownloadCompleted = delegate { };
+
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 500;
         private PictureBox mouseTrail = new PictureBox();
@@ -58,10 +62,44 @@ namespace OSIRT.Browser
             handler.CopyImageLocation += Handler_CopyImageLocation; ;
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             handler.ReverseImgSearch += Handler_ReverseImgSearch;
+            handler.ExtractLinks += Handler_ExtractLinks;
 
             MenuHandler = handler;
             MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
+
+            var downloadHandler = new DownloadHandler();
+
+            DownloadHandler = downloadHandler;
+            downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
+            downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
+        }
+
+        private void DownloadHandler_DownloadCompleted(object sender, EventArgs e)
+        {
+            DownloadCompleted?.Invoke(this, e);
+        }
+
+        private void DownloadHandler_DownloadUpdated(object sender, EventArgs e)
+        {
+            DownloadStatusChanged?.Invoke(this, e);
+        }
+
+        private async void Handler_ExtractLinks(object sender, EventArgs e)
+        {
+            string source = await GetBrowser().MainFrame.GetSourceAsync();
+
+
+            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+            doc.LoadHtml(source);
+            string links = "";
+            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
+            {
+                string value = link.Attributes["href"].Value;
+                if (value == "#") continue;
+                links += value + "\n";
+            }
+            this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)

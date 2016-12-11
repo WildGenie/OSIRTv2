@@ -36,8 +36,6 @@ namespace OSIRT.UI
             uiURLTextBox.Text = url;
             FormClosing += ImagePrevEx_FormClosing;
             Url = url;
-            //this.filePath = filePath;
-
         }
 
         private void ImagePrevEx_Load(object sender, EventArgs e)
@@ -48,7 +46,6 @@ namespace OSIRT.UI
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-
 
             Size imageSize = GetImageSize();
 
@@ -77,44 +74,44 @@ namespace OSIRT.UI
         }
 
 
-        private void SaveAsPdf(object sender, WaitWindowEventArgs e)
-        {
-            string fileName = e.Arguments[0].ToString();
-            string pathToSave = "";
-            bool thrown = false;
-            try
-            {
-                using (MagickImage image = new MagickImage(filePath))
-                {
-                    image.Format = MagickFormat.Pdf;
-                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + SaveableFileTypes.Pdf);
-                    image.Write(pathToSave);
-                    e.Window.Message = "Rehashing PDF";
-                    Hash = OsirtHelper.GetFileHash(pathToSave);
-                    successful = true;
-                }
-            }
-            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
-            {
-                thrown = true;
-                var message = "Unable to save as PDF. Reverting to saving as PNG.";
-                Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
-                e.Window.Message = message;
-                Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
-                SaveAsPng(fileName);
-            }
-            finally
-            {
-                //delete temp pdf file
-                if (thrown)
-                {
-                    if (File.Exists(pathToSave))
-                    {
-                        File.Delete(pathToSave);
-                    }
-                }
-            }
-        }
+        //private void SaveAsPdf(object sender, WaitWindowEventArgs e)
+        //{
+        //    string fileName = e.Arguments[0].ToString();
+        //    string pathToSave = "";
+        //    bool thrown = false;
+        //    try
+        //    {
+        //        using (MagickImage image = new MagickImage(filePath))
+        //        {
+        //            image.Format = MagickFormat.Pdf;
+        //            pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + SaveableFileTypes.Pdf);
+        //            image.Write(pathToSave);
+        //            e.Window.Message = "Rehashing PDF";
+        //            Hash = OsirtHelper.GetFileHash(pathToSave);
+        //            successful = true;
+        //        }
+        //    }
+        //    catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
+        //    {
+        //        thrown = true;
+        //        var message = "Unable to save as PDF. Reverting to saving as PNG.";
+        //        Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
+        //        e.Window.Message = message;
+        //        Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
+        //        SaveAsPng(fileName);
+        //    }
+        //    finally
+        //    {
+        //        //delete temp pdf file
+        //        if (thrown)
+        //        {
+        //            if (File.Exists(pathToSave))
+        //            {
+        //                File.Delete(pathToSave);
+        //            }
+        //        }
+        //    }
+        //}
 
         private void SaveAsPng(string name)
         {
@@ -229,6 +226,7 @@ namespace OSIRT.UI
                 string sourceFile = Path.Combine(filePath);
                 File.Copy(sourceFile, destLocation); //Will need to delete this from the cache
                 ImageDiskCache.RemoveSpecificItemFromCache(filePath);
+                successful = true; 
             }
             catch (IOException ioe)
             {
@@ -244,15 +242,64 @@ namespace OSIRT.UI
             }
         }
 
+        private void SaveAsOther(object sender, WaitWindowEventArgs e)
+        {
+            //string fileName = e.Arguments[0].ToString();
+
+            ImageSaveOptions options = (ImageSaveOptions) e.Arguments[0];
+            string fileName = options.FileName;
+            string fileType = options.FileType;
+            MagickFormat format = options.ImageFormat;
+
+            string pathToSave = "";
+            bool thrown = false;
+            try
+            {
+                using (MagickImage image = new MagickImage(filePath))
+                {
+                    image.Format = format;
+                    pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + fileType);
+                    image.Write(pathToSave);
+                    e.Window.Message = $"Rehashing {fileType}";
+                    Hash = OsirtHelper.GetFileHash(pathToSave);
+                    successful = true;
+                }
+            }
+            catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
+            {
+                thrown = true;
+                var message = $"Unable to save as {fileType}. Reverting to saving as PNG.";
+                Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
+                e.Window.Message = message;
+                Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
+                SaveAsPng(fileName);
+            }
+            finally
+            {
+                //delete temp pdf file
+                if (thrown)
+                {
+                    if (File.Exists(pathToSave))
+                    {
+                        File.Delete(pathToSave);
+                    }
+                }
+            }
+        }
+
         private void uiOKButton_Click(object sender, EventArgs e)
         {
             if (FileExtension == SaveableFileTypes.Pdf)
             {
-                WaitWindow.Show(SaveAsPdf, "Saving as PDF. Please Wait...", FileName);
+                WaitWindow.Show(SaveAsOther, "Saving as PDF. Please Wait...", new ImageSaveOptions(FileName, MagickFormat.Pdf, SaveableFileTypes.Pdf));
             }
             else if (FileExtension == SaveableFileTypes.Png)
             {
                 SaveAsPng(FileName);
+            }
+            else if (FileExtension == SaveableFileTypes.Jpg)
+            {
+                WaitWindow.Show(SaveAsOther, "Saving as JPG. Please Wait...", new ImageSaveOptions(FileName, MagickFormat.Jpg, SaveableFileTypes.Jpg));
             }
             else
             {

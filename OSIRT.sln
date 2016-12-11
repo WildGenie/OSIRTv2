@@ -5,7 +5,7 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OSIRT", "OSIRT\OSIRT.csproj", "{758688E3-BF3B-4918-8711-69900BF9992F}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "osirtinstaller", "osirtinstaller\osirtinstaller.vdproj", "{DFB441B8-9DA6-4BC1-A0FA-88530C86CC5E}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OSIRTSetup", "OSIRTSetup\OSIRTSetup.vdproj", "{7870C258-E702-486D-BFA9-8082CC6BC243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{758688E3-BF3B-4918-8711-69900BF9992F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{758688E3-BF3B-4918-8711-69900BF9992F}.Release|x86.ActiveCfg = Release|x86
 		{758688E3-BF3B-4918-8711-69900BF9992F}.Release|x86.Build.0 = Release|x86
-		{DFB441B8-9DA6-4BC1-A0FA-88530C86CC5E}.Debug|Any CPU.ActiveCfg = Debug
-		{DFB441B8-9DA6-4BC1-A0FA-88530C86CC5E}.Debug|x86.ActiveCfg = Debug
-		{DFB441B8-9DA6-4BC1-A0FA-88530C86CC5E}.Release|Any CPU.ActiveCfg = Release
-		{DFB441B8-9DA6-4BC1-A0FA-88530C86CC5E}.Release|x86.ActiveCfg = Release
+		{7870C258-E702-486D-BFA9-8082CC6BC243}.Debug|Any CPU.ActiveCfg = Debug
+		{7870C258-E702-486D-BFA9-8082CC6BC243}.Debug|x86.ActiveCfg = Debug
+		{7870C258-E702-486D-BFA9-8082CC6BC243}.Release|Any CPU.ActiveCfg = Release
+		{7870C258-E702-486D-BFA9-8082CC6BC243}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -22,6 +22,7 @@ namespace OSIRT.Browser
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
         private const int ReverseImageSearch = 26509;
+        private const int ExtractAllLinks = 26510;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -31,6 +32,7 @@ namespace OSIRT.Browser
         public event EventHandler OpenInNewTabContextMenu = delegate { };
         public event EventHandler CopyImageLocation = delegate { };
         public event EventHandler ReverseImgSearch = delegate { };
+        public event EventHandler ExtractLinks = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -61,6 +63,7 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)26501, "Open link in new tab");
             }
+            model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
@@ -102,6 +105,11 @@ namespace OSIRT.Browser
             {
                 ReverseImgSearch?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
             }
+            if ((int)commandId == ExtractAllLinks)
+            {
+                ExtractLinks?.Invoke(this, EventArgs.Empty);
+            }
+
             return false;
         }
 

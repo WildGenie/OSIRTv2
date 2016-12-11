@@ -55,6 +55,7 @@
             this.uiBrowserTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBrowserTabControl.HoverTabCloseDownIndex = -1;
             this.uiBrowserTabControl.Location = new System.Drawing.Point(0, 0);
             this.uiBrowserTabControl.Name = "uiBrowserTabControl";
             this.uiBrowserTabControl.NewTabButton = true;
@@ -84,7 +85,7 @@
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(683, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(652, 17);
             this.toolStripStatusLabel1.Spring = true;
             // 
             // uiActionLoggedToolStripStatusLabel

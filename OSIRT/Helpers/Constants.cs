@@ -63,6 +63,7 @@ namespace OSIRT.Helpers
                 { Enums.Actions.Source, @"downloads\source_code" },
                 { Enums.Actions.Whois, @"downloads\who_is" },
                 { Enums.Actions.Ipaddress, @"downloads\ip_addresses" },
+                { Enums.Actions.Links, @"downloads\links" },
                 { Enums.Actions.Exif, @"downloads\exif" },
                 { Enums.Actions.Report, @"reports" },
             };

@@ -1,1 +1,1 @@
-﻿.png,.pdf
+﻿.png,.pdf,.jpg

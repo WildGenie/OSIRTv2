@@ -149,7 +149,7 @@ namespace OSIRT.UI
         private void ShowBrowserPanel()
         {
             Controls.Clear();
-            BrowserPanel browserPanel = new BrowserPanel(usingTor, userAgent);
+            BrowserPanel browserPanel = new BrowserPanel(usingTor, userAgent, this);
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;

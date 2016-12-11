@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using OSIRT.UI;
 using System.Threading;
 using OSIRT.UI.Splash;
+using CefSharp;
 
 namespace OSIRT
 {
