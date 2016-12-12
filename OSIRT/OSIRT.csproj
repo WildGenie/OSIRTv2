@@ -779,6 +779,7 @@
     <None Include="Resources\network_tools.png" />
     <None Include="Resources\spin.gif" />
     <None Include="Resources\magnify_sm.png" />
+    <None Include="Resources\xml_exports.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

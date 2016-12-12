@@ -66,7 +66,7 @@ namespace OSIRT.UI.AuditLog
                             string destination = Path.Combine($"{exportPath}", reportContainerName, relativePath);
                             try
                             {
-                                File.Copy(sourceFile, destination, true); //TODO: overwrites existing file... Do we want that?
+                                File.Copy(sourceFile, destination, true);
                             }
                             finally
                             {

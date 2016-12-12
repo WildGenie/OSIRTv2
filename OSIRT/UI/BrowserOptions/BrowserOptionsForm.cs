@@ -1,9 +1,11 @@
-﻿using System;
+﻿using OSIRT.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,11 +40,35 @@ namespace OSIRT.UI.BrowserOptions
         {
             IsUsingTor = uiConnectToTorCheckBox.Checked;
             UserAgent = uiUserAgentTextBox.Text;
+
+            CheckProxySettings();
+        }
+
+        private void CheckProxySettings()
+        {
+            string cefProxy = uiBrowserProxyTextBox.Text;
+            string torProxy = uiTorProxyTextBox.Text;
+
+            var proxySettings = new Dictionary<string, string>
+            {
+                { "cefProxy", cefProxy },
+                { "torProxy", torProxy }
+            };
+
+            string[] lines = proxySettings.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
+            File.WriteAllLines(Constants.ProxySettingsFile, lines);
         }
 
         private void BrowserOptionsForm_Load(object sender, EventArgs e)
         {
+            if (File.Exists(Constants.ProxySettingsFile))
+            {
+                string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
+                var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
 
+                uiBrowserProxyTextBox.Text = dict["cefProxy"];
+                uiTorProxyTextBox.Text = dict["torProxy"];
+            }
         }
     }
 }

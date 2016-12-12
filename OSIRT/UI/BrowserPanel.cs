@@ -21,6 +21,7 @@ using CefSharp;
 using Tor;
 using OSIRT.Browser.SearchFinder;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OSIRT.UI
 {
@@ -229,15 +230,8 @@ namespace OSIRT.UI
         {
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
            
-            IntPtr handle = Handle;
+            IntPtr handle = parentForm.Handle;
             if (markerWindow != null && markerWindow.Visible) handle = markerWindow.Handle;
-            if (handle == IntPtr.Zero)
-            {
-                MessageBox.Show("HANDLE ZERO. SETTING TO FORM HANDLE");
-                handle = parentForm.Handle;
-            }
-
-            MessageBox.Show($"HANDLE: {handle} WIDTH: {Width} HEIGHT: {Height}");
 
             if (!OsirtVideoCapture.IsRecording())
             {
@@ -258,7 +252,6 @@ namespace OSIRT.UI
             }
 
             uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = false;
-            //VideoCaptureCompleteEventArgs ev = (VideoCaptureCompleteEventArgs)e;
 
             using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
             {
@@ -378,16 +371,35 @@ namespace OSIRT.UI
         private void CheckAdvancedOptions()
         {
             CefSettings settings = new CefSettings();
+            string cefProxy = "";
+            string torProxy = "127.0.0.1:8182";
+
+            if (File.Exists(Constants.ProxySettingsFile))
+            {
+                string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
+                var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+                cefProxy = dict["cefProxy"];
+                torProxy = !string.IsNullOrWhiteSpace(dict["torProxy"]) ? dict["torProxy"] : "127.0.0.1:8182";
+            }
+
             if (!string.IsNullOrEmpty(userAgent))
             {
                 settings.UserAgent = userAgent;
             }
             if (!isUsingTor)
             {
+                if(!string.IsNullOrWhiteSpace(cefProxy))
+                {
+                    settings.CefCommandLineArgs.Add("proxy-server", cefProxy);
+                }
+
                 Cef.Initialize(settings);
                 return;
             }
-            settings.CefCommandLineArgs.Add("proxy-server", "127.0.0.1:8182");
+
+           //tor settings
+           settings.CefCommandLineArgs.Add("proxy-server", torProxy);
+
             Process[] previous = Process.GetProcessesByName("tor");
             if (previous != null && previous.Length > 0)
             {

@@ -151,7 +151,7 @@ namespace OSIRT.UI.AuditLog
 
             //end ad
 
-            merged.TableName = "merged";
+            merged.TableName = "artefact"; //was "merged" but changed to artefacts for neater xml output
             DataView view = new DataView(merged);
             view.Sort = "date asc, time asc";
             DataTable sortedTable = view.ToTable();
@@ -237,6 +237,7 @@ namespace OSIRT.UI.AuditLog
             uiExportAsPdfButton.Enabled = enabled;
             uiExportAsHtmlButton.Enabled = enabled;
             uiExportAsCaseFileButton.Enabled = enabled;
+            uiExportAsXmlButton.Enabled = enabled;
     
         }
 
@@ -259,6 +260,11 @@ namespace OSIRT.UI.AuditLog
         private void uiExportAsCaseFileButton_MouseHover(object sender, EventArgs e)
         {
             uiReportExportHelpLabel.Text = $"Export report as CSV (spreadsheet friendly) file. {Environment.NewLine} Note: this only exports the audit log with no artefacts.";
+        }
+
+        private void uiExportAsXmlButton_MouseHover(object sender, EventArgs e)
+        {
+            uiReportExportHelpLabel.Text = $"Export report as XML file. {Environment.NewLine} Note: this only exports the audit log with no artefacts.";
         }
 
         private void uiDisplayImagesCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -318,5 +324,26 @@ namespace OSIRT.UI.AuditLog
         {
             openReport = uiOpenReportCheckBox.Checked;
         }
+
+        private void ExportAsXml()
+        {
+            //TODO: Export artefacts, too?
+
+            DataTable dt = GetMergedDataTable();
+
+            string xmlPath = Path.Combine(ExportPath, ReportContainerName + ".xml");
+            dt.WriteXml(xmlPath);
+
+            Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(xmlPath), ReportContainerName));
+            //if (openReport)
+            //    Process.Start(xmlPath);
+        }
+
+        private void uiExportAsXmlButton_Click(object sender, EventArgs e)
+        {
+            RunWorker(ExportAsXml);
+        }
+
+
     }
 }

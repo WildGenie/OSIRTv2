@@ -134,11 +134,6 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_DownloadCompleted(object sender, EventArgs e)
         {
-            //hide status bar
-            //confirm complete
-            //copy file from saved location
-            //log file
-
             DownloadEventArgs dl = (DownloadEventArgs)e;
 
             Invoke((MethodInvoker)delegate
@@ -151,6 +146,7 @@ namespace OSIRT.Browser
             string dlPath = dl.DownloadItems.FullPath;
             string savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), Path.GetFileName(dl.DownloadItems.FullPath));
 
+            //try catch... perhaps have a yes/no messagebox asking if they'd like to open the file they just downloaded.
             File.Copy(dlPath, savePath);
             Logger.Log(new WebpageActionsLog(dl.DownloadItems.Url, Actions.Download, OsirtHelper.GetFileHash(dlPath), Path.GetFileName(dl.DownloadItems.FullPath), ""));
         }

@@ -39,8 +39,16 @@
             this.uiUserAgentTextBox = new System.Windows.Forms.TextBox();
             this.uiOKButton = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.uiTorProxyTextBox = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.uiBrowserProxyTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.uiTorControlPortTextBox = new System.Windows.Forms.TextBox();
             this.uiBrowserOptionsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiBrowserOptionsGroupBox
@@ -125,7 +133,7 @@
             // uiOKButton
             // 
             this.uiOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiOKButton.Location = new System.Drawing.Point(422, 179);
+            this.uiOKButton.Location = new System.Drawing.Point(422, 337);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(75, 23);
             this.uiOKButton.TabIndex = 2;
@@ -136,18 +144,82 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(341, 179);
+            this.button2.Location = new System.Drawing.Point(341, 337);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
             this.button2.Text = "Cancel";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.uiTorControlPortTextBox);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.uiTorProxyTextBox);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.uiBrowserProxyTextBox);
+            this.groupBox2.Location = new System.Drawing.Point(8, 175);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(489, 156);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Proxy Settings";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(232, 13);
+            this.label5.TabIndex = 3;
+            this.label5.Text = "Tor Proxy (default is 127.0.0.1:8182 if left blank)";
+            // 
+            // uiTorProxyTextBox
+            // 
+            this.uiTorProxyTextBox.Location = new System.Drawing.Point(4, 75);
+            this.uiTorProxyTextBox.Name = "uiTorProxyTextBox";
+            this.uiTorProxyTextBox.Size = new System.Drawing.Size(479, 20);
+            this.uiTorProxyTextBox.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 18);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(191, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Browser Proxy  (leave blank for default)";
+            // 
+            // uiBrowserProxyTextBox
+            // 
+            this.uiBrowserProxyTextBox.Location = new System.Drawing.Point(4, 34);
+            this.uiBrowserProxyTextBox.Name = "uiBrowserProxyTextBox";
+            this.uiBrowserProxyTextBox.Size = new System.Drawing.Size(479, 20);
+            this.uiBrowserProxyTextBox.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 103);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(203, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Tor Control Port (default 9051 if left blank)";
+            // 
+            // uiTorControlPortTextBox
+            // 
+            this.uiTorControlPortTextBox.Location = new System.Drawing.Point(4, 119);
+            this.uiTorControlPortTextBox.Name = "uiTorControlPortTextBox";
+            this.uiTorControlPortTextBox.Size = new System.Drawing.Size(479, 20);
+            this.uiTorControlPortTextBox.TabIndex = 4;
+            // 
             // BrowserOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(505, 208);
+            this.ClientSize = new System.Drawing.Size(505, 365);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.uiOKButton);
             this.Controls.Add(this.groupBox1);
@@ -162,6 +234,8 @@
             this.uiBrowserOptionsGroupBox.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -179,5 +253,12 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button uiOKButton;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox uiBrowserProxyTextBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox uiTorProxyTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox uiTorControlPortTextBox;
     }
 }
