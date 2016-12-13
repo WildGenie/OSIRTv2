@@ -57,7 +57,7 @@ namespace OSIRT.UI.AuditLog
                     {
                         count++;
                         string rowAction = row["action"].ToString();
-                        if (Path.HasExtension(cellValue) &&  rowAction != "Case Notes")  
+                        if (Path.HasExtension(cellValue) && rowAction != "Case Notes")
                         {
                             Actions action = (Actions)Enum.Parse(typeof(Actions), rowAction);
                             string location = Constants.Directories.GetSpecifiedCaseDirectory(action);
@@ -82,7 +82,7 @@ namespace OSIRT.UI.AuditLog
                                 {
                                     html += $@"<td><a href='{relativePath}'>{cellValue}</a></td>";
                                 }
-                            }
+                           }
                         }
                         else
                         {

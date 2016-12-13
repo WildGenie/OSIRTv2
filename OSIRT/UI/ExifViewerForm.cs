@@ -21,7 +21,7 @@ namespace OSIRT.UI
         private List<string> properties;
         private string path;
         private string url;
-        private string googleMapUrl;
+        public event EventHandler OpenGoogleMaps;
 
         public ExifViewer(string path, string url)
         {
@@ -33,11 +33,11 @@ namespace OSIRT.UI
 
         private static string RenderTag(object tagValue)
         {
-            // Arrays don't render well without assistance.
+     
             var array = tagValue as Array;
             if (array != null)
             {
-                // Hex rendering for really big byte arrays (ugly otherwise)
+   
                 if (array.Length > 20 && array.GetType().GetElementType() == typeof(byte))
                     return "0x" + string.Join("", array.Cast<byte>().Select(x => x.ToString("X2")).ToArray());
 
@@ -78,7 +78,7 @@ namespace OSIRT.UI
                     DisplayThumbnail(reader);
                 }
             }
-            catch (ExifLibException ex)
+            catch (ExifLibException)
             {
                 MessageBox.Show("Unable to load Exif data.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Close();
@@ -104,8 +104,16 @@ namespace OSIRT.UI
                 }
 
             }
-            //googleMapUrl = $@"http://maps.google.com/maps?q={latitude},{longitude}";
-            //Console.WriteLine(googleMapUrl);
+
+            if(string.IsNullOrWhiteSpace(longitude) || string.IsNullOrWhiteSpace(latitude))
+            {
+                uiGoogleMapsButton.Visible = true;
+            }
+
+
+            //MessageBox.Show($"long {longitude} : lat {latitude}");
+            string googleMapUrl = $@"http://maps.google.com/maps?q={longitude},{latitude}";
+            Console.WriteLine(googleMapUrl);
         }
 
         private void DisplayThumbnail(ExifReader reader)

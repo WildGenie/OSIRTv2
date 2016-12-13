@@ -182,6 +182,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArtefactExporter.cs" />
     <Compile Include="AuditLogSearcher.cs" />
     <Compile Include="BaseAuditTab.cs">
       <SubType>Component</SubType>

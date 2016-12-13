@@ -45,17 +45,17 @@
             this.uiPrintNotesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiDisplayImagesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiExportAsGroupBox = new System.Windows.Forms.GroupBox();
+            this.uiExportAsXmlButton = new System.Windows.Forms.Button();
             this.uiBrowseButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.uiPathTextBox = new System.Windows.Forms.TextBox();
+            this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
+            this.uiExportAsPdfButton = new System.Windows.Forms.Button();
+            this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
             this.uiReportExportHelpLabel = new System.Windows.Forms.Label();
             this.uiReportExportProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiProgressGroupBox = new System.Windows.Forms.GroupBox();
             this.uiReportExportLabel = new System.Windows.Forms.Label();
-            this.uiExportAsXmlButton = new System.Windows.Forms.Button();
-            this.uiExportAsCaseFileButton = new System.Windows.Forms.Button();
-            this.uiExportAsPdfButton = new System.Windows.Forms.Button();
-            this.uiExportAsHtmlButton = new System.Windows.Forms.Button();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
@@ -310,6 +310,17 @@
             this.uiExportAsGroupBox.TabStop = false;
             this.uiExportAsGroupBox.Text = "Export Report";
             // 
+            // uiExportAsXmlButton
+            // 
+            this.uiExportAsXmlButton.Image = global::OSIRT.Properties.Resources.xml_exports;
+            this.uiExportAsXmlButton.Location = new System.Drawing.Point(163, 80);
+            this.uiExportAsXmlButton.Name = "uiExportAsXmlButton";
+            this.uiExportAsXmlButton.Size = new System.Drawing.Size(60, 56);
+            this.uiExportAsXmlButton.TabIndex = 7;
+            this.uiExportAsXmlButton.UseVisualStyleBackColor = true;
+            this.uiExportAsXmlButton.Click += new System.EventHandler(this.uiExportAsXmlButton_Click);
+            this.uiExportAsXmlButton.MouseHover += new System.EventHandler(this.uiExportAsXmlButton_MouseHover);
+            // 
             // uiBrowseButton
             // 
             this.uiBrowseButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
@@ -338,6 +349,39 @@
             this.uiPathTextBox.Size = new System.Drawing.Size(217, 20);
             this.uiPathTextBox.TabIndex = 3;
             this.uiPathTextBox.TextChanged += new System.EventHandler(this.uiPathTextBox_TextChanged);
+            // 
+            // uiExportAsCaseFileButton
+            // 
+            this.uiExportAsCaseFileButton.Image = global::OSIRT.Properties.Resources.table;
+            this.uiExportAsCaseFileButton.Location = new System.Drawing.Point(244, 80);
+            this.uiExportAsCaseFileButton.Name = "uiExportAsCaseFileButton";
+            this.uiExportAsCaseFileButton.Size = new System.Drawing.Size(60, 56);
+            this.uiExportAsCaseFileButton.TabIndex = 2;
+            this.uiExportAsCaseFileButton.UseVisualStyleBackColor = true;
+            this.uiExportAsCaseFileButton.Click += new System.EventHandler(this.uiExportAsCaseFileButton_Click);
+            this.uiExportAsCaseFileButton.MouseHover += new System.EventHandler(this.uiExportAsCaseFileButton_MouseHover);
+            // 
+            // uiExportAsPdfButton
+            // 
+            this.uiExportAsPdfButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
+            this.uiExportAsPdfButton.Location = new System.Drawing.Point(84, 80);
+            this.uiExportAsPdfButton.Name = "uiExportAsPdfButton";
+            this.uiExportAsPdfButton.Size = new System.Drawing.Size(60, 56);
+            this.uiExportAsPdfButton.TabIndex = 1;
+            this.uiExportAsPdfButton.UseVisualStyleBackColor = true;
+            this.uiExportAsPdfButton.Click += new System.EventHandler(this.uiExportAsPdfButton_Click);
+            this.uiExportAsPdfButton.MouseHover += new System.EventHandler(this.uiExportAsPdfButton_MouseHover);
+            // 
+            // uiExportAsHtmlButton
+            // 
+            this.uiExportAsHtmlButton.Image = global::OSIRT.Properties.Resources.html;
+            this.uiExportAsHtmlButton.Location = new System.Drawing.Point(6, 80);
+            this.uiExportAsHtmlButton.Name = "uiExportAsHtmlButton";
+            this.uiExportAsHtmlButton.Size = new System.Drawing.Size(62, 56);
+            this.uiExportAsHtmlButton.TabIndex = 0;
+            this.uiExportAsHtmlButton.UseVisualStyleBackColor = true;
+            this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
+            this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
             // 
             // uiReportExportHelpLabel
             // 
@@ -378,50 +422,6 @@
             this.uiReportExportLabel.Size = new System.Drawing.Size(90, 13);
             this.uiReportExportLabel.TabIndex = 4;
             this.uiReportExportLabel.Text = "Exporting report...";
-            // 
-            // uiExportAsXmlButton
-            // 
-            this.uiExportAsXmlButton.Image = global::OSIRT.Properties.Resources.xml_exports;
-            this.uiExportAsXmlButton.Location = new System.Drawing.Point(244, 80);
-            this.uiExportAsXmlButton.Name = "uiExportAsXmlButton";
-            this.uiExportAsXmlButton.Size = new System.Drawing.Size(60, 56);
-            this.uiExportAsXmlButton.TabIndex = 7;
-            this.uiExportAsXmlButton.UseVisualStyleBackColor = true;
-            this.uiExportAsXmlButton.Click += new System.EventHandler(this.uiExportAsXmlButton_Click);
-            this.uiExportAsXmlButton.MouseHover += new System.EventHandler(this.uiExportAsXmlButton_MouseHover);
-            // 
-            // uiExportAsCaseFileButton
-            // 
-            this.uiExportAsCaseFileButton.Image = global::OSIRT.Properties.Resources.table;
-            this.uiExportAsCaseFileButton.Location = new System.Drawing.Point(163, 80);
-            this.uiExportAsCaseFileButton.Name = "uiExportAsCaseFileButton";
-            this.uiExportAsCaseFileButton.Size = new System.Drawing.Size(60, 56);
-            this.uiExportAsCaseFileButton.TabIndex = 2;
-            this.uiExportAsCaseFileButton.UseVisualStyleBackColor = true;
-            this.uiExportAsCaseFileButton.Click += new System.EventHandler(this.uiExportAsCaseFileButton_Click);
-            this.uiExportAsCaseFileButton.MouseHover += new System.EventHandler(this.uiExportAsCaseFileButton_MouseHover);
-            // 
-            // uiExportAsPdfButton
-            // 
-            this.uiExportAsPdfButton.Image = global::OSIRT.Properties.Resources.pdf_icon;
-            this.uiExportAsPdfButton.Location = new System.Drawing.Point(84, 80);
-            this.uiExportAsPdfButton.Name = "uiExportAsPdfButton";
-            this.uiExportAsPdfButton.Size = new System.Drawing.Size(60, 56);
-            this.uiExportAsPdfButton.TabIndex = 1;
-            this.uiExportAsPdfButton.UseVisualStyleBackColor = true;
-            this.uiExportAsPdfButton.Click += new System.EventHandler(this.uiExportAsPdfButton_Click);
-            this.uiExportAsPdfButton.MouseHover += new System.EventHandler(this.uiExportAsPdfButton_MouseHover);
-            // 
-            // uiExportAsHtmlButton
-            // 
-            this.uiExportAsHtmlButton.Image = global::OSIRT.Properties.Resources.html;
-            this.uiExportAsHtmlButton.Location = new System.Drawing.Point(6, 80);
-            this.uiExportAsHtmlButton.Name = "uiExportAsHtmlButton";
-            this.uiExportAsHtmlButton.Size = new System.Drawing.Size(62, 56);
-            this.uiExportAsHtmlButton.TabIndex = 0;
-            this.uiExportAsHtmlButton.UseVisualStyleBackColor = true;
-            this.uiExportAsHtmlButton.Click += new System.EventHandler(this.uiExportAsHtmlButton_Click);
-            this.uiExportAsHtmlButton.MouseHover += new System.EventHandler(this.uiExportAsHtmlButton_MouseHover);
             // 
             // ExportAuditOptionsPanel
             // 

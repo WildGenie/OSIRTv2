@@ -48,11 +48,13 @@ namespace OSIRT.UI.BrowserOptions
         {
             string cefProxy = uiBrowserProxyTextBox.Text;
             string torProxy = uiTorProxyTextBox.Text;
+            string torPort = uiTorControlPortTextBox.Text;
 
             var proxySettings = new Dictionary<string, string>
             {
                 { "cefProxy", cefProxy },
-                { "torProxy", torProxy }
+                { "torProxy", string.IsNullOrWhiteSpace(torProxy) ? "127.0.0.1:8182" : torProxy },
+                { "torPort", string.IsNullOrWhiteSpace(torPort) ? "9051" : torPort }
             };
 
             string[] lines = proxySettings.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
@@ -61,6 +63,7 @@ namespace OSIRT.UI.BrowserOptions
 
         private void BrowserOptionsForm_Load(object sender, EventArgs e)
         {
+
             if (File.Exists(Constants.ProxySettingsFile))
             {
                 string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
@@ -68,6 +71,7 @@ namespace OSIRT.UI.BrowserOptions
 
                 uiBrowserProxyTextBox.Text = dict["cefProxy"];
                 uiTorProxyTextBox.Text = dict["torProxy"];
+                uiTorControlPortTextBox.Text = dict["torPort"];
             }
         }
     }

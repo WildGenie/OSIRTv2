@@ -249,12 +249,12 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsHtmlButton_MouseHover(object sender, EventArgs e)
         {
-            uiReportExportHelpLabel.Text = "Export report as HTML";
+            uiReportExportHelpLabel.Text = "Export report with artefacts as HTML";
         }
 
         private void uiExportAsPdfButton_MouseHover(object sender, EventArgs e)
         {
-            uiReportExportHelpLabel.Text = "Export report as PDF";
+            uiReportExportHelpLabel.Text = "Export report with artefacts as PDF";
         }
 
         private void uiExportAsCaseFileButton_MouseHover(object sender, EventArgs e)
@@ -264,7 +264,7 @@ namespace OSIRT.UI.AuditLog
 
         private void uiExportAsXmlButton_MouseHover(object sender, EventArgs e)
         {
-            uiReportExportHelpLabel.Text = $"Export report as XML file. {Environment.NewLine} Note: this only exports the audit log with no artefacts.";
+            uiReportExportHelpLabel.Text = $"Export report with artefacts as XML file.";
         }
 
         private void uiDisplayImagesCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -327,16 +327,16 @@ namespace OSIRT.UI.AuditLog
 
         private void ExportAsXml()
         {
-            //TODO: Export artefacts, too?
+            ReportContainerName = Constants.ReportContainerName.Replace("%%dt%%", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss"));
 
             DataTable dt = GetMergedDataTable();
+            new ArtefactExporter(dt, ExportPath, ReportContainerName);
 
-            string xmlPath = Path.Combine(ExportPath, ReportContainerName + ".xml");
+            string xmlPath = Path.Combine(ExportPath, ReportContainerName, "report.xml");
             dt.WriteXml(xmlPath);
 
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(xmlPath), ReportContainerName));
-            //if (openReport)
-            //    Process.Start(xmlPath);
+
         }
 
         private void uiExportAsXmlButton_Click(object sender, EventArgs e)

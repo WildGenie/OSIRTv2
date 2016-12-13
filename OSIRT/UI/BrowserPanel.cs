@@ -373,13 +373,15 @@ namespace OSIRT.UI
             CefSettings settings = new CefSettings();
             string cefProxy = "";
             string torProxy = "127.0.0.1:8182";
+            int controlPort = 9051;
 
             if (File.Exists(Constants.ProxySettingsFile))
             {
                 string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
                 var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
                 cefProxy = dict["cefProxy"];
-                torProxy = !string.IsNullOrWhiteSpace(dict["torProxy"]) ? dict["torProxy"] : "127.0.0.1:8182";
+                torProxy = dict["torProxy"];
+                controlPort = int.Parse(dict["torPort"]);
             }
 
             if (!string.IsNullOrEmpty(userAgent))
@@ -410,7 +412,7 @@ namespace OSIRT.UI
             ClientCreateParams createParameters = new ClientCreateParams();
             createParameters.ConfigurationFile = "";
             createParameters.ControlPassword = "";
-            createParameters.ControlPort = 9051;
+            createParameters.ControlPort = controlPort;
             createParameters.DefaultConfigurationFile = "";
             createParameters.Path = @"Tor\Tor\tor.exe";
 
