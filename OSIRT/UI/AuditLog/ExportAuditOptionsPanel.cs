@@ -95,6 +95,7 @@ namespace OSIRT.UI.AuditLog
             HtmLtoPdf.SaveHtmltoPdf(save, GSCP ,"audit log", Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
+            PlaceReportInContainer(Path.Combine(ExportPath, ReportContainerName));
             if (openReport)
                 Process.Start(Path.Combine(ExportPath, ReportContainerName, Constants.PdfReportName));
         }
@@ -126,7 +127,8 @@ namespace OSIRT.UI.AuditLog
             Thread.Sleep(750);
             string hash = OsirtHelper.CreateHashForFolder(Path.Combine(ExportPath, ReportContainerName));
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, hash, ReportContainerName));
-            if(openReport)
+            PlaceReportInContainer(Path.Combine(ExportPath, ReportContainerName));
+            if (openReport)
                 Process.Start(Path.Combine(ExportPath, ReportContainerName, "combined.html"));
         }
 
@@ -311,6 +313,7 @@ namespace OSIRT.UI.AuditLog
             string csvPath = Path.Combine(ExportPath, ReportContainerName + ".csv");
             File.WriteAllText(csvPath, sb.ToString());
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(csvPath), ReportContainerName));
+            PlaceReportInContainer(Path.Combine(ExportPath, ReportContainerName));
             if (openReport)
                 Process.Start(csvPath);
         }
@@ -336,7 +339,21 @@ namespace OSIRT.UI.AuditLog
             dt.WriteXml(xmlPath);
 
             Logger.Log(new OsirtActionsLog(Enums.Actions.Report, OsirtHelper.GetFileHash(xmlPath), ReportContainerName));
+            PlaceReportInContainer(Path.Combine(ExportPath, ReportContainerName));
+        }
 
+        private void PlaceReportInContainer(string copyFrom)
+        {         
+            try
+            {
+                string directory = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Report), ReportContainerName);
+                Directory.CreateDirectory(directory);
+                new Microsoft.VisualBasic.Devices.Computer().FileSystem.CopyDirectory(copyFrom, directory);
+            }
+            catch (UnauthorizedAccessException a)
+            {
+                MessageBox.Show(a.ToString());
+            }
         }
 
         private void uiExportAsXmlButton_Click(object sender, EventArgs e)

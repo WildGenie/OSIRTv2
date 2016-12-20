@@ -22,6 +22,7 @@ using Tor;
 using OSIRT.Browser.SearchFinder;
 using System.Collections.Generic;
 using System.Linq;
+using Jacksonsoft;
 
 namespace OSIRT.UI
 {
@@ -399,29 +400,55 @@ namespace OSIRT.UI
                 return;
             }
 
-           //tor settings
-           settings.CefCommandLineArgs.Add("proxy-server", torProxy);
+
+            //tor settings
+            settings.CefCommandLineArgs.Add("proxy-server", "socks5://127.0.0.1:9050");
 
             Process[] previous = Process.GetProcessesByName("tor");
             if (previous != null && previous.Length > 0)
             {
-                foreach (Process process in previous)
-                    process.Kill();
+                foreach (Process p in previous)
+                    p.Kill();
             }
 
-            ClientCreateParams createParameters = new ClientCreateParams();
-            createParameters.ConfigurationFile = "";
-            createParameters.ControlPassword = "";
-            createParameters.ControlPort = controlPort;
-            createParameters.DefaultConfigurationFile = "";
-            createParameters.Path = @"Tor\Tor\tor.exe";
+            var process = new Process
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = @"Tor\Tor\tor.exe",
+                    CreateNoWindow = true,
+                    WindowStyle = ProcessWindowStyle.Hidden
+                }
+            };
+
+            process.Start();
+            WaitWindow.Show(LoadTor, "Loading Tor... Please Wait. This will take a few seconds.");
 
 
-            Client client = Client.Create(createParameters);
-            client.Status.BandwidthChanged += Status_BandwidthChanged;
-            client.Shutdown += Client_Shutdown;
+            //This use to work until updated to new Tor version
+            //ClientCreateParams createParameters = new ClientCreateParams();
+            //createParameters.ConfigurationFile = "";
+            //createParameters.ControlPassword = "";
+            //createParameters.ControlPort = 9051;
+            //createParameters.DefaultConfigurationFile = "";
+            //createParameters.Path = @"Tor\Tor\tor.exe";
+
+            //Client client = Client.Create(createParameters); //causing a FormatException
+            //client.Status.BandwidthChanged += Status_BandwidthChanged;
+            //client.Shutdown += Client_Shutdown;
             Cef.Initialize(settings);
 
+        }
+
+        private void LoadTor(object sender, WaitWindowEventArgs e)
+        {
+            System.Threading.Thread.Sleep(5000);
+
+            ClientRemoteParams remoteParams = new ClientRemoteParams();
+            remoteParams.Address = "127.0.0.1";
+            remoteParams.ControlPassword = "";
+            remoteParams.ControlPort = 9050;
+            Client client = Client.CreateForRemote(remoteParams);
         }
 
         private void Client_Shutdown(object sender, EventArgs e)
@@ -430,16 +457,17 @@ namespace OSIRT.UI
             //return;
         }
 
-        private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
-        {
-            Invoke((Action)delegate
-            {
-                if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
-                    uiTabbedBrowserControl.SetStatusLabel("");
-                else
-                    uiTabbedBrowserControl.SetStatusLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
-            });
-        }
+        //private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
+        //{
+        //    Console.WriteLine(".... in BC ....");
+        //    Invoke((Action)delegate
+        //    {
+        //        if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
+        //            uiTabbedBrowserControl.SetStatusLabel("");
+        //        else
+        //            uiTabbedBrowserControl.SetStatusLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
+        //    });
+        //}
 
 
         private void aboutOSIRTToolStripMenuItem_Click(object sender, EventArgs e)

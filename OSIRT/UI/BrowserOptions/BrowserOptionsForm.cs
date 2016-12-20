@@ -74,5 +74,7 @@ namespace OSIRT.UI.BrowserOptions
                 uiTorControlPortTextBox.Text = dict["torPort"];
             }
         }
+
+    
     }
 }

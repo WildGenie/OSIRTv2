@@ -132,5 +132,10 @@ namespace OSIRT.UI
         {
             LoadAdavancedOptions?.Invoke(this, EventArgs.Empty);
         }
+
+        private void uiBrowserSettingsButton_MouseHover(object sender, EventArgs e)
+        {
+            uiHelpLabelLabel.Text = "Advanced browser options and Tor.";
+        }
     }
 }

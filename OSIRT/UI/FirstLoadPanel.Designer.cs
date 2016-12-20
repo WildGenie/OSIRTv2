@@ -84,6 +84,7 @@
             this.uiBrowserSettingsButton.TabIndex = 5;
             this.uiBrowserSettingsButton.UseVisualStyleBackColor = false;
             this.uiBrowserSettingsButton.Click += new System.EventHandler(this.uiBrowserSettingsButton_Click);
+            this.uiBrowserSettingsButton.MouseHover += new System.EventHandler(this.uiBrowserSettingsButton_MouseHover);
             // 
             // uiFixCaseButton
             // 
