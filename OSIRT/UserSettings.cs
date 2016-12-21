@@ -21,7 +21,7 @@ namespace OSIRT
         public bool PrintImagesInReport = true;
         public bool PrintAuditNotes = true;
         public bool ShowVideosInReport = true;
-        public string HashExportLocation = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        public string HashExportLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         //video recording
         public bool ShowMouseTrail = false;

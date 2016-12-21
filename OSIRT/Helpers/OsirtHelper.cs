@@ -204,6 +204,12 @@ namespace OSIRT.Helpers
 
         }
 
+        public static bool IsOnGoogle(string url)
+        {
+
+            return url.StartsWith("http://www.google") || url.StartsWith("https://www.google") || url.StartsWith("http://google") || url.StartsWith("https://google");
+        }
+
         public static bool IsOnYouTube(string url)
         {
             string pattern = @"(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+";

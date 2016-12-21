@@ -400,7 +400,6 @@ namespace OSIRT.UI
                 return;
             }
 
-
             //tor settings
             settings.CefCommandLineArgs.Add("proxy-server", "socks5://127.0.0.1:9050");
 
@@ -424,15 +423,6 @@ namespace OSIRT.UI
             process.Start();
             WaitWindow.Show(LoadTor, "Loading Tor... Please Wait. This will take a few seconds.");
 
-
-            //This use to work until updated to new Tor version
-            //ClientCreateParams createParameters = new ClientCreateParams();
-            //createParameters.ConfigurationFile = "";
-            //createParameters.ControlPassword = "";
-            //createParameters.ControlPort = 9051;
-            //createParameters.DefaultConfigurationFile = "";
-            //createParameters.Path = @"Tor\Tor\tor.exe";
-
             //Client client = Client.Create(createParameters); //causing a FormatException
             //client.Status.BandwidthChanged += Status_BandwidthChanged;
             //client.Shutdown += Client_Shutdown;
@@ -442,13 +432,15 @@ namespace OSIRT.UI
 
         private void LoadTor(object sender, WaitWindowEventArgs e)
         {
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(5000); //give a chance for the tor process to load
 
             ClientRemoteParams remoteParams = new ClientRemoteParams();
             remoteParams.Address = "127.0.0.1";
             remoteParams.ControlPassword = "";
             remoteParams.ControlPort = 9050;
+            
             Client client = Client.CreateForRemote(remoteParams);
+
         }
 
         private void Client_Shutdown(object sender, EventArgs e)

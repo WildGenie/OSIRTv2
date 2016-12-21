@@ -58,6 +58,7 @@ namespace OSIRT.UI.Options
                 uiSteroMixStatusLabel.ForeColor = Color.Red;
                 uiSteroMixStatusLabel.Text = "Stereo Mix not found";
             }
+
            uiStereoMixRadioButton.Enabled = OsirtVideoCapture.HasStereoMix();
            uiMicroPhoneRadioButton.Enabled = OsirtVideoCapture.HasMicrophone();
         }
