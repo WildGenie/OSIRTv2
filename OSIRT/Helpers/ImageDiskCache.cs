@@ -74,7 +74,7 @@ namespace OSIRT.Helpers
             }
             catch (IOException ioe)
             {
-                MessageBox.Show($"Unable to delete cache. Error: {ioe}");
+                MessageBox.Show($"Unable to delete {file} from the cache. Please ensure this file not open within another application. For example, a video is playing in Windows Media Player.");
             }
             catch (UnauthorizedAccessException uae)
             {

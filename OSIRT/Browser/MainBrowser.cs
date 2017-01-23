@@ -52,7 +52,7 @@ namespace OSIRT.Browser
 
         public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
-            InitialiseMouseTrail();
+            //InitialiseMouseTrail();
             var handler = new MenuHandler();
             handler.DownloadImage += Handler_DownloadImage;
             handler.ViewPageSource += Handler_ViewPageSource;
@@ -74,6 +74,8 @@ namespace OSIRT.Browser
             downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
             downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
         }
+
+
 
         private void DownloadHandler_DownloadCompleted(object sender, EventArgs e)
         {
@@ -175,22 +177,56 @@ namespace OSIRT.Browser
 
         }
 
-        private void InitialiseMouseTrail()
+        public void InitialiseMouseTrail()
         {
-            mouseTrail.BackColor = Color.Green;
-            mouseTrail.Size = new Size(12, 12);
-            Controls.Add(mouseTrail);
-            MouseTrailVisible = false;
+            //mouseTrail.BackColor = Color.Green;
+            //mouseTrail.Size = new Size(12, 12);
+            //Controls.Add(mouseTrail);
+            //MouseTrailVisible = true;
+
+
+            /*
+                this does inject a square into the document to follow the cursor when recording the screen.
+                HOWEVER: this works on a _per document_ basis, meaning every time a document is loaded,
+                this JS has to be injected into it again.
+
+                Obviously, there can be many tabs open, all loading different documents so this method
+                will have to be called every single time.
+                Not ideal, so it's not used anywhere. 
+                
+                Here for future reference, when a good solution can be found.
+            */
+            var task =  GetBrowser().MainFrame.EvaluateScriptAsync(
+
+                @"var followCursor = (function() { 
+                    var s = document.createElement('div');
+                    s.style.position = 'absolute';
+                    s.style.margin = '0';
+                    s.style.padding = '5px';
+                    s.style.border = '1px solid red';
+                    s.style.backgroundColor = 'red';
+
+                    return {
+                        init: function() {
+                            document.body.appendChild(s);
+                        },
+
+                    run: function(e) {
+                                        var e = e || window.event;
+                        s.style.left  = (e.clientX + 5) + 'px';
+                        s.style.top = (e.clientY + 5) + 'px';
+                        }
+                    };
+                }());
+
+                (function()
+                {
+                    followCursor.init();
+                    document.body.onmousemove = followCursor.run;
+                })();"
+            );
+            task.Wait();
         }
-
-
-
-        private void Document_MouseUp(object sender, HtmlElementEventArgs e)
-        {
-            if (UserSettings.Load().ShowMouseClick)
-                mouseTrail.BackColor = Color.Green;
-        }
-
 
         /// <summary>
         /// Gets the current viewport of the browser
@@ -420,67 +456,6 @@ namespace OSIRT.Browser
         {
             DownloadingProgress?.Invoke(this, e);
         }
-
-
-   
-
-        #region mouse events
-        private void Document_MouseDown(object sender, HtmlElementEventArgs e)
-        {
-            //if (UserSettings.Load().ShowMouseClick)
-            //    mouseTrail.BackColor = Color.Yellow;
-
-
-
-            //try
-            //{
-            //    element = Document.GetElementFromPoint(PointToClient(MousePosition));
-
-            //    if (e.MouseButtonsPressed == MouseButtons.Right && element.TagName == "INPUT")
-            //    {
-            //        IsWebBrowserContextMenuEnabled = true;
-            //    }
-            //    else
-            //    {
-            //        IsWebBrowserContextMenuEnabled = false;
-            //    }
-
-            //    if (e.MouseButtonsPressed == MouseButtons.Middle)
-            //    {
-            //        HtmlElement el = Document.GetElementFromPoint(PointToClient(MousePosition));
-            //        //I assume I need to check if this element has child elements that contain a TagName "A"
-
-            //        if (el.TagName == "A" && !string.IsNullOrEmpty(el.GetAttribute("href")))//it means we have deal with href
-            //        {
-            //            Debug.WriteLine("Get link location, open in new tab.");
-            //            var url = el.GetAttribute("href");
-            //            Debug.WriteLine(url);
-            //        }
-            //        else
-            //            Debug.WriteLine(el.TagName);
-            //    }
-            //}
-            //catch
-            //{
-            //    //just swallow this exception, too many edge cases.
-            //}
-        }
-
-
-
-
-
-
-        private void Document_MouseMove(object sender, HtmlElementEventArgs e)
-        {
-            if (UserSettings.Load().ShowMouseTrail)
-            {
-                Point p = PointToClient(MousePosition);
-                mouseTrail.Location = new Point(p.X + 5, p.Y + 5);
-            }
-        }
-
-        #endregion
 
     }
 }

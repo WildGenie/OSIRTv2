@@ -34,11 +34,6 @@ namespace OSIRT.Browser
             Browser.TitleChanged += Browser_TitleChanged;
             Browser.AddressChanged += Browser_AddressChanged;
 
-            //var downloadHandler = new DownloadHandler();
-
-            //Browser.DownloadHandler = downloadHandler;
-            //downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
-
             var lifespanHandler = new LifespanHandler();
             Browser.LifeSpanHandler = lifespanHandler;
             lifespanHandler.OpenInNewTab += LifespanHandler_OpenInNewTab;
@@ -56,8 +51,6 @@ namespace OSIRT.Browser
 
         private void Browser_OnLoadingStateChanged(object sender, EventArgs e)
         {
-            //stateChanged?.Invoke(this, (LoadingStateChangedEventArgs)e);
-
             CanGoForward = ((LoadingStateChangedEventArgs)e).CanGoForward;
             CanGoBack = ((LoadingStateChangedEventArgs)e).CanGoBack;
         }

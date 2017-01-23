@@ -30,6 +30,8 @@ namespace OSIRT.Browser
         {
             DownloadUpdated?.Invoke(this, new DownloadEventArgs(downloadItem));
 
+            
+
             if (downloadItem.IsComplete)
             {
                 //System.Windows.MessageBox.Show("Download Completed");

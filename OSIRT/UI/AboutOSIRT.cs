@@ -16,7 +16,7 @@ namespace OSIRT.UI
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", "3.0.1");
+            this.labelVersion.Text = String.Format("Version {0}", "3.1.0");
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
@@ -105,6 +105,11 @@ namespace OSIRT.UI
         private void okButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void AboutOSIRT_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

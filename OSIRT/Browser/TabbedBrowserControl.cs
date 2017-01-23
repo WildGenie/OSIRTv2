@@ -11,7 +11,6 @@ using System.ComponentModel;
 using OSIRT.Loggers;
 using OSIRT.Extensions;
 using CefSharp;
-using Tor;
 using System.IO;
 using System.Threading;
 
@@ -51,6 +50,12 @@ namespace OSIRT.Browser
         public void SetStatusLabel(string status)
         {
             uiStatusLabel.Text = status;
+        }
+
+        public void SetLoggedLabel(string text)
+        {
+            uiActionLoggedToolStripStatusLabel.Visible = true;
+            uiActionLoggedToolStripStatusLabel.Text = text;
         }
 
 
@@ -138,7 +143,7 @@ namespace OSIRT.Browser
 
             Invoke((MethodInvoker)delegate
             {
-                uiStatusLabel.Visible = false;
+                uiActionLoggedToolStripStatusLabel.Visible = false;
                 uiDownloadProgressBar.Visible = false;
                 MessageBox.Show("Download Completed", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             });
@@ -146,9 +151,17 @@ namespace OSIRT.Browser
             string dlPath = dl.DownloadItems.FullPath;
             string savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), Path.GetFileName(dl.DownloadItems.FullPath));
 
-            //try catch... perhaps have a yes/no messagebox asking if they'd like to open the file they just downloaded.
-            File.Copy(dlPath, savePath);
-            Logger.Log(new WebpageActionsLog(dl.DownloadItems.Url, Actions.Download, OsirtHelper.GetFileHash(dlPath), Path.GetFileName(dl.DownloadItems.FullPath), ""));
+            if(File.Exists(savePath))
+            {
+                string extension = Path.GetExtension(savePath);
+                string name = Path.GetFileNameWithoutExtension(savePath) + "_" + (DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss") + extension);
+                savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), name);
+            }
+
+        
+             File.Copy(dlPath, savePath);
+             Logger.Log(new WebpageActionsLog(dl.DownloadItems.Url, Actions.Download, OsirtHelper.GetFileHash(dlPath), Path.GetFileName(savePath), ""));
+       
         }
 
         private void CurrentBrowser_DownloadStatusChanged(object sender, EventArgs e)
@@ -159,11 +172,14 @@ namespace OSIRT.Browser
             Invoke((MethodInvoker)delegate
             {
                 if (!uiDownloadProgressBar.Visible)
+                {
                     uiDownloadProgressBar.Visible = true;
+                    uiActionLoggedToolStripStatusLabel.Visible = true;
+                }
 
                 int progress = dl.DownloadItems.PercentComplete;
                 uiDownloadProgressBar.Value = progress;
-                uiStatusLabel.Text = $"Speed (byte/s): {dl.DownloadItems.CurrentSpeed} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
+                uiActionLoggedToolStripStatusLabel.Text = $"Speed (KB/s): {dl.DownloadItems.CurrentSpeed / 1024} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
             });
         }
 

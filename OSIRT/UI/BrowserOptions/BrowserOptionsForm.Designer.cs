@@ -174,6 +174,7 @@
             this.label6.Size = new System.Drawing.Size(203, 13);
             this.label6.TabIndex = 5;
             this.label6.Text = "Tor Control Port (default 9050 if left blank)";
+            this.label6.Visible = false;
             // 
             // uiTorControlPortTextBox
             // 
@@ -181,6 +182,7 @@
             this.uiTorControlPortTextBox.Name = "uiTorControlPortTextBox";
             this.uiTorControlPortTextBox.Size = new System.Drawing.Size(479, 20);
             this.uiTorControlPortTextBox.TabIndex = 4;
+            this.uiTorControlPortTextBox.Visible = false;
             // 
             // label5
             // 
@@ -190,6 +192,7 @@
             this.label5.Size = new System.Drawing.Size(205, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Tor Proxy (default is 127.0.0.1 if left blank)";
+            this.label5.Visible = false;
             // 
             // uiTorProxyTextBox
             // 
@@ -197,6 +200,7 @@
             this.uiTorProxyTextBox.Name = "uiTorProxyTextBox";
             this.uiTorProxyTextBox.Size = new System.Drawing.Size(479, 20);
             this.uiTorProxyTextBox.TabIndex = 2;
+            this.uiTorProxyTextBox.Visible = false;
             // 
             // label4
             // 

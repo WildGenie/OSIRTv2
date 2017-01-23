@@ -229,8 +229,9 @@ namespace OSIRT.UI
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = UserSettings.Load().ShowMouseTrail;
-           
+         
+           //uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
+
             IntPtr handle = parentForm.Handle;
             if (markerWindow != null && markerWindow.Visible) handle = markerWindow.Handle;
 
@@ -438,8 +439,9 @@ namespace OSIRT.UI
             remoteParams.Address = "127.0.0.1";
             remoteParams.ControlPassword = "";
             remoteParams.ControlPort = 9050;
-            
+        
             Client client = Client.CreateForRemote(remoteParams);
+            client.Status.BandwidthChanged += Status_BandwidthChanged;
 
         }
 
@@ -449,17 +451,17 @@ namespace OSIRT.UI
             //return;
         }
 
-        //private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
-        //{
-        //    Console.WriteLine(".... in BC ....");
-        //    Invoke((Action)delegate
-        //    {
-        //        if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
-        //            uiTabbedBrowserControl.SetStatusLabel("");
-        //        else
-        //            uiTabbedBrowserControl.SetStatusLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
-        //    });
-        //}
+        private void Status_BandwidthChanged(object sender, BandwidthEventArgs e)
+        {
+            Console.WriteLine(".... in BC ....");
+            Invoke((Action)delegate
+            {
+                if (e.Downloaded.Value == 0 && e.Uploaded.Value == 0)
+                    uiTabbedBrowserControl.SetLoggedLabel("");
+                else
+                    uiTabbedBrowserControl.SetLoggedLabel(string.Format("Down: {0}/s, Up: {1}/s", e.Downloaded, e.Uploaded));
+            });
+        }
 
 
         private void aboutOSIRTToolStripMenuItem_Click(object sender, EventArgs e)

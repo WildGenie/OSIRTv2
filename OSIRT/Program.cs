@@ -4,14 +4,15 @@ using OSIRT.UI;
 using System.Threading;
 using OSIRT.UI.Splash;
 using CefSharp;
+using OSIRT.Helpers;
 
 namespace OSIRT
 {
     static class Program
     {
 
-       
 
+        static Mutex mutex = new Mutex(true, "{AFD8BAF3-4E94-492F-9049-B52ADD704C84}");
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -33,6 +34,7 @@ namespace OSIRT
             **/
 
 
+
 #if !DEBUG
             try
             {
@@ -44,9 +46,26 @@ namespace OSIRT
                 => FatalExceptionHandler.Handle(e.Exception);
 
 #endif
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+                //prevent multi-instance (Matt Davis): http://stackoverflow.com/questions/19147/what-is-the-correct-way-to-create-a-single-instance-application
+                if (mutex.WaitOne(TimeSpan.Zero, true))
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+                    Application.Run(new MainForm());
+                    mutex.ReleaseMutex();
+                }
+                else {
+                    // send our Win32 message to make the currently running instance
+                    // jump on top of all the other windows
+                    NativeMethods.PostMessage(
+                        (IntPtr)NativeMethods.HWND_BROADCAST,
+                        NativeMethods.WM_SHOWME,
+                        IntPtr.Zero,
+                        IntPtr.Zero);
+                }
+
+
 
 #if !DEBUG
             }

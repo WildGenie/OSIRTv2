@@ -20,7 +20,7 @@ namespace OSIRT.Browser
         {
             newBrowser = null;
             //browserControl.Load(targetUrl);
-            OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl)); //this breaks when there are multiple window.open calls from JS.
+            OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl));
             return true;
         }
 
