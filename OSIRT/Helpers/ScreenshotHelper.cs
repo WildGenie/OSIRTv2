@@ -54,16 +54,28 @@ namespace OSIRT.Helpers
 
             string screenshotLocation = Path.Combine(Constants.CacheLocation, "temp.png");
 
+
             using (MagickImageCollection images = new MagickImageCollection())
             {
+              
                 // Add the first image
                 var orderedFiles = files.OrderBy(f => f.CreationTime);
+
+                //FileSystemInfo last = orderedFiles.Last();
                 foreach (FileSystemInfo file in orderedFiles)
                 {
                     MagickImage first = new MagickImage(file.FullName);
                     e.Window.Message = "Obtaining Snapshots... Please Wait";
+
+                    //if(file == last)
+                    //{
+                    //    first.Annotate("http://example.com/url/large/domain.html?=abcf&p=1234" + "\n" + "01/01/2001 19:59:59", Gravity.Southwest);
+                    //}
+
                     images.Add(first);
                 }
+
+                
 
                 using (MagickImage result = images.AppendVertically())
                 {
@@ -77,7 +89,31 @@ namespace OSIRT.Helpers
                     }
                    
                 }
-        
+
+                e.Window.Message = "Annotating Image... Please Wait";
+                MagickReadSettings settings = new MagickReadSettings();
+                bool annotateImage = true; //TODO: this will be a user setting
+                if (annotateImage)
+                {
+                    settings = new MagickReadSettings()
+                    {
+                        BackgroundColor = MagickColors.White,
+                        //Font = "Arial", // -font Arial 
+
+                        StrokeColor = MagickColors.White,
+                        StrokeWidth = 0.8,
+                        StrokeAntiAlias = true,
+                        FontWeight = FontWeight.Bold,
+                        FillColor = MagickColors.Black,
+                        FontPointsize = 20.0
+                    };
+                }
+
+                using(MagickImage imgAnnotate = new MagickImage(screenshotLocation, settings))
+                {
+                    imgAnnotate.Annotate("http;//www.example.com/result/page.html?12345" + "\n" + "01/01/2001 19:51:51", Gravity.Southwest);
+                    imgAnnotate.Write(screenshotLocation);
+                }
             }
         }
     }
