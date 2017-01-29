@@ -25,6 +25,11 @@ namespace OSIRT.UI.CaseClosing
             cleanUp.Start();
         }
 
+        private void CleanUp_CaseArchived(object sender, EventArgs e)
+        {
+          
+        }
+
         private void CleanUp_ReportProgress(object sender, EventArgs e)
         {
             uiInfoLabel.Text = ((ProgressChangedEventArgs)e).UserState.ToString();

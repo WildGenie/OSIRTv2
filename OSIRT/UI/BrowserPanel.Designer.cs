@@ -45,6 +45,9 @@
             this.markerWindowToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.uiAttachmentToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiCaseNotesButton = new System.Windows.Forms.ToolStripButton();
+            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiToolsToolStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,9 +55,6 @@
             this.forceCacheRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiURLComboBox = new System.Windows.Forms.ToolStripComboBox();
-            this.uiAuditLogToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.uiOptionsToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -244,6 +244,34 @@
             this.uiCaseNotesButton.ToolTipText = "Add note to case";
             this.uiCaseNotesButton.Click += new System.EventHandler(this.uiCaseNotesButton_Click);
             // 
+            // uiURLComboBox
+            // 
+            this.uiURLComboBox.Name = "uiURLComboBox";
+            this.uiURLComboBox.Size = new System.Drawing.Size(700, 25);
+            this.uiURLComboBox.MouseEnter += new System.EventHandler(this.uiURLComboBox_MouseEnter);
+            // 
+            // uiAuditLogToolStripButton
+            // 
+            this.uiAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.log;
+            this.uiAuditLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiAuditLogToolStripButton.Name = "uiAuditLogToolStripButton";
+            this.uiAuditLogToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiAuditLogToolStripButton.Text = "Audit Log";
+            this.uiAuditLogToolStripButton.ToolTipText = "Display audit log";
+            this.uiAuditLogToolStripButton.Click += new System.EventHandler(this.uiAuditLogToolStripButton_Click);
+            // 
+            // uiOptionsToolStripButton
+            // 
+            this.uiOptionsToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiOptionsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiOptionsToolStripButton.Image = global::OSIRT.Properties.Resources.options;
+            this.uiOptionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiOptionsToolStripButton.Name = "uiOptionsToolStripButton";
+            this.uiOptionsToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiOptionsToolStripButton.Text = "Options";
+            this.uiOptionsToolStripButton.Click += new System.EventHandler(this.uiOptionsToolStripButton_Click);
+            // 
             // uiToolsToolStripSplitButton
             // 
             this.uiToolsToolStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -308,34 +336,6 @@
             this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
             this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
-            // 
-            // uiURLComboBox
-            // 
-            this.uiURLComboBox.Name = "uiURLComboBox";
-            this.uiURLComboBox.Size = new System.Drawing.Size(700, 25);
-            this.uiURLComboBox.MouseEnter += new System.EventHandler(this.uiURLComboBox_MouseEnter);
-            // 
-            // uiAuditLogToolStripButton
-            // 
-            this.uiAuditLogToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiAuditLogToolStripButton.Image = global::OSIRT.Properties.Resources.log;
-            this.uiAuditLogToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiAuditLogToolStripButton.Name = "uiAuditLogToolStripButton";
-            this.uiAuditLogToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiAuditLogToolStripButton.Text = "Audit Log";
-            this.uiAuditLogToolStripButton.ToolTipText = "Display audit log";
-            this.uiAuditLogToolStripButton.Click += new System.EventHandler(this.uiAuditLogToolStripButton_Click);
-            // 
-            // uiOptionsToolStripButton
-            // 
-            this.uiOptionsToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.uiOptionsToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.uiOptionsToolStripButton.Image = global::OSIRT.Properties.Resources.options;
-            this.uiOptionsToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.uiOptionsToolStripButton.Name = "uiOptionsToolStripButton";
-            this.uiOptionsToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiOptionsToolStripButton.Text = "Options";
-            this.uiOptionsToolStripButton.Click += new System.EventHandler(this.uiOptionsToolStripButton_Click);
             // 
             // uiBrowserMenuStrip
             // 

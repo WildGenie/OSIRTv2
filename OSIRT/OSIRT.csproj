@@ -785,6 +785,7 @@
     <None Include="Resources\xml_exports.png" />
     <None Include="Resources\warning.png" />
     <None Include="Resources\question.png" />
+    <None Include="Resources\door.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

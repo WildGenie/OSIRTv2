@@ -70,13 +70,6 @@ namespace OSIRT.UI
 
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
-
-            //var timer = new System.Threading.Timer(
-            //    e => WebBrowserHelper.ClearCache(),
-            //    null,
-            //    TimeSpan.Zero,
-            //    TimeSpan.FromMinutes(1));
-
         }
 
         void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -126,6 +119,7 @@ namespace OSIRT.UI
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.Filter = "OSR Files|*.osr";
+                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
                 DialogResult result = openFileDialog.ShowDialog();
                 if (result != DialogResult.OK)
                     return;
@@ -197,7 +191,7 @@ namespace OSIRT.UI
             }
             else
             {
-                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("");
+                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("", false);
                 Controls.Add(cleanUpPanel);
             }
         }
@@ -206,7 +200,7 @@ namespace OSIRT.UI
         {
             Controls.Clear();
             //add new closing panel
-            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(e.Password);
+            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(e.Password, false);
             Controls.Add(cleanUpPanel);
 
             //CloseOsirt(e.Password);

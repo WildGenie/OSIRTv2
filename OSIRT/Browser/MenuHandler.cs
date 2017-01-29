@@ -37,10 +37,14 @@ namespace OSIRT.Browser
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
-            model.Remove(CefMenuCommand.ViewSource); // Remove "View Source" option
-            model.Remove(CefMenuCommand.Print);
-            //Add new custom menu items
-            model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
+            model.Clear();
+
+
+            if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
+            {
+                model.AddItem((CefMenuCommand)26501, "Open link in new tab");
+                model.AddSeparator();
+            }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
                 if(OsirtHelper.HasJpegExtension(parameters.SourceUrl))
@@ -59,10 +63,8 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
             }
-            if(!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
-            {
-                model.AddItem((CefMenuCommand)26501, "Open link in new tab");
-            }
+            model.AddSeparator();
+            model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
         }
 

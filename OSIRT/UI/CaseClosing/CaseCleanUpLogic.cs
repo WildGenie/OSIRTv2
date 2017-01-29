@@ -20,6 +20,7 @@ namespace OSIRT.UI.CaseClosing
         private string password;
         public event EventHandler ReportProgress;
         private bool isInAuditViewMode;
+      
 
         public CaseCleanUpLogic(string password, bool isInAuditViewMode)
         {
@@ -41,6 +42,7 @@ namespace OSIRT.UI.CaseClosing
         private void BackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             OsirtLogWriter.Write(Constants.ContainerLocation, true);
+            //don't want to exit if we're just shutting a case down.
             Application.Exit();
         }
 
@@ -54,11 +56,6 @@ namespace OSIRT.UI.CaseClosing
             string caseClosed = "[Case closed";
             caseClosed += UserSettings.Load().HashContainerOnClose ? "- Hash exported]" : "]" ;
 
-            //if (UserSettings.Load().ClearCacheOnClose)
-            //{
-            //    (sender as BackgroundWorker).ReportProgress(10, "Deleting IE Cache... Please Wait");
-            //    CleanInternetExporerCache();
-            //}
             if(!isInAuditViewMode) //Still getting logged due to this logic also exisitng in the MainForm close method
                 Logger.Log(new OsirtActionsLog(Enums.Actions.CaseClosed, caseClosed, Constants.CaseContainerName));
 
@@ -69,6 +66,7 @@ namespace OSIRT.UI.CaseClosing
                 HashCase();
             }
             (sender as BackgroundWorker).ReportProgress(10, "Performing Clean Up Operations... Please Wait");
+            //StopCapture();
             DeleteImageMagickFiles();
             ImageDiskCache.RemoveItemsInCache();
             ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
@@ -79,6 +77,11 @@ namespace OSIRT.UI.CaseClosing
             {
                 if (++attempts > 10) break;
             }
+        }
+
+        private void StopCapture()
+        {
+            if(VideoCapture.OsirtVideoCapture.IsRecording()) VideoCapture.OsirtVideoCapture.StopCapture();
         }
 
         private void CleanUp(BackgroundWorker bw, string password)
@@ -109,19 +112,9 @@ namespace OSIRT.UI.CaseClosing
 
         public bool CleanUpDirectories()
         {
-            //int attempts = 0;
-            //Timer timer = new Timer { Interval = 1000 };
-
-            //timer.Start();
-            ////Timer.Tick is not effective!
-            //timer.Tick += (s, e) =>
-            //{
-                //attempts++;
             string directory = Path.Combine(Constants.CasePath, Constants.CaseContainerName);
             OsirtHelper.DeleteDirectory(directory);
             return Directory.Exists(directory);
-                //if (!Directory.Exists(directory) || attempts == 5) timer.Stop();
-            //};
         }
 
         public void DeleteImageMagickFiles()

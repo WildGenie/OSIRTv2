@@ -102,7 +102,7 @@ namespace OSIRT.UI
             }
             else
             {
-                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("");
+                CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel("", false);
                 Controls.Add(cleanUpPanel);
             }
         }
@@ -111,7 +111,7 @@ namespace OSIRT.UI
         {
             Controls.Clear();
             //add new closing panel
-            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(args.Password);
+            CaseClosingCleanUpPanel cleanUpPanel = new CaseClosingCleanUpPanel(args.Password, false);
             Controls.Add(cleanUpPanel);
         }
 

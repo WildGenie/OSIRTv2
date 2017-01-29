@@ -23,6 +23,7 @@ using OSIRT.Browser.SearchFinder;
 using System.Collections.Generic;
 using System.Linq;
 using Jacksonsoft;
+using OSIRT.UI.CaseClosing;
 
 namespace OSIRT.UI
 {
@@ -507,5 +508,16 @@ namespace OSIRT.UI
 
 
         }
+
+        private void shutdownCurrentCaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //clicked shutdown
+            //warn if they want to shutdown
+            //show archiving panel
+            //-- need to handle case possibly having a password
+            //first load panel button events are fired elsewhere, this needs a rewrite
+        }
+
+
     }
 }
