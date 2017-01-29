@@ -54,6 +54,7 @@ namespace OSIRT.Browser
                 model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
                 model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
+                //
             }
             if(OsirtHelper.IsOnYouTube(browserControl.Address))
             {
