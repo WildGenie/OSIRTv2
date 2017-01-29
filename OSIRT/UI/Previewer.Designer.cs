@@ -37,13 +37,13 @@
             this.uiHashTextBox = new System.Windows.Forms.TextBox();
             this.uiCancelButton = new System.Windows.Forms.Button();
             this.uiOKButton = new System.Windows.Forms.Button();
+            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent6 = new System.Windows.Controls.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.uiDateAndTimeTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.uiFileNameComboBox = new System.Windows.Forms.ComboBox();
-            this.uiNoteSpellBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.uiPreviewerSplitContainer)).BeginInit();
             this.uiPreviewerSplitContainer.Panel1.SuspendLayout();
             this.uiPreviewerSplitContainer.SuspendLayout();
@@ -145,6 +145,7 @@
             this.uiCancelButton.TabIndex = 30;
             this.uiCancelButton.Text = "Cancel";
             this.uiCancelButton.UseVisualStyleBackColor = true;
+            this.uiCancelButton.Click += new System.EventHandler(this.uiCancelButton_Click);
             // 
             // uiOKButton
             // 
@@ -156,6 +157,18 @@
             this.uiOKButton.Text = "Log";
             this.uiOKButton.UseVisualStyleBackColor = true;
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
+            // 
+            // uiNoteSpellBox
+            // 
+            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 207);
+            this.uiNoteSpellBox.Multiline = true;
+            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
+            this.uiNoteSpellBox.TabIndex = 23;
+            this.uiNoteSpellBox.WordWrap = true;
             // 
             // label5
             // 
@@ -210,18 +223,6 @@
             this.uiFileNameComboBox.Size = new System.Drawing.Size(253, 21);
             this.uiFileNameComboBox.TabIndex = 20;
             // 
-            // uiNoteSpellBox
-            // 
-            this.uiNoteSpellBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNoteSpellBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 207);
-            this.uiNoteSpellBox.Multiline = true;
-            this.uiNoteSpellBox.Name = "uiNoteSpellBox";
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(326, 187);
-            this.uiNoteSpellBox.TabIndex = 23;
-            this.uiNoteSpellBox.WordWrap = true;
-            // 
             // Previewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,5 +263,6 @@
         protected System.Windows.Controls.TextBox hostedComponent3;
         protected System.Windows.Controls.TextBox hostedComponent4;
         protected System.Windows.Controls.TextBox hostedComponent5;
+        protected System.Windows.Controls.TextBox hostedComponent6;
     }
 }

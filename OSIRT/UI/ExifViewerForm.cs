@@ -107,7 +107,7 @@ namespace OSIRT.UI
 
             if(string.IsNullOrWhiteSpace(longitude) || string.IsNullOrWhiteSpace(latitude))
             {
-                uiGoogleMapsButton.Visible = true;
+                //uiGoogleMapsButton.Visible = true;
             }
 
 

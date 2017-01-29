@@ -32,18 +32,21 @@ namespace OSIRT.Helpers
         //Image Cache Constants
         public static readonly string CacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt" ,"cache");
         public static readonly string VideoCacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt" ,"videocache");
+        public static readonly string TextCacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "textcache");
         public static readonly string ApplicationLog = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "log.config");
         public static readonly string ProxySettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "proxy.config");
+
         private static readonly string TempImgName = "temp.png";
         private static readonly string TempLogoName = "templogo.png";
         private static readonly string ScaledImgName = "scaled.png";
         private static readonly string TempVideoName = "temp.mp4";
+        private static readonly string TempTextName = "temp.txt";
 
         public static readonly string TempImgFile = Path.Combine(CacheLocation, TempImgName);
         public static readonly string TempLogoFile = Path.Combine(CacheLocation, TempLogoName);
         public static readonly string ScaledImgFile = Path.Combine(CacheLocation, ScaledImgName);
         public static readonly string TempVideoFile = Path.Combine(VideoCacheLocation, TempVideoName);
-
+        public static readonly string TempTextFile = Path.Combine(TextCacheLocation, TempTextName);
 
 
 

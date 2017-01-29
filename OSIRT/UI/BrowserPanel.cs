@@ -336,8 +336,8 @@ namespace OSIRT.UI
                         host = host.Remove(0, 4);
                 }
                 var whois = new WhoisLookup().Lookup(host);
-                var view = new ViewPageSource(whois.ToString(), Enums.Actions.Whois, new Tuple<string, string, string>(url.Host, host, ""));
-                view.Show();
+                File.WriteAllText(Constants.TempTextFile, whois.ToString());
+                this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Whois, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
             }
             catch
             {
@@ -357,12 +357,8 @@ namespace OSIRT.UI
                 message += address.ToString() + "\r\n";
             }
 
-            using (var view = new ViewPageSource(message, Enums.Actions.Ipaddress, new Tuple<string, string, string>(url.Host, url.AbsoluteUri, "")))
-            {
-                this.InvokeIfRequired(() => view.ShowDialog());
-            }
-
-
+            File.WriteAllText(Constants.TempTextFile, message);
+            this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Ipaddress, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
         }
 
         private void uiURLComboBox_MouseEnter(object sender, EventArgs e)
@@ -518,6 +514,9 @@ namespace OSIRT.UI
             //first load panel button events are fired elsewhere, this needs a rewrite
         }
 
-
+        private void textPrevToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new TextPreviewer(Enums.Actions.Source, "example text").Show();
+        }
     }
 }

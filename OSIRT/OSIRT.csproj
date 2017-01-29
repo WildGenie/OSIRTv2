@@ -106,8 +106,8 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Magick.NET-Q16-AnyCPU">
-      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.3.1\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
+    <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
+      <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.4.400\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
@@ -506,6 +506,12 @@
     <Compile Include="UI\Splash\SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\TextPreviewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\TextPreviewer.Designer.cs">
+      <DependentUpon>TextPreviewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UnhandledExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -648,6 +654,9 @@
     <EmbeddedResource Include="UI\Splash\SplashScreen.resx">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\TextPreviewer.resx">
+      <DependentUpon>TextPreviewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -786,6 +795,7 @@
     <None Include="Resources\warning.png" />
     <None Include="Resources\question.png" />
     <None Include="Resources\door.png" />
+    <EmbeddedResource Include="Resources\TextSaveableTypes.txt" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

@@ -39,7 +39,6 @@ namespace OSIRT.Browser
             //Removing existing menu item
             model.Clear();
 
-
             if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
             {
                 model.AddItem((CefMenuCommand)26501, "Open link in new tab");
@@ -54,6 +53,7 @@ namespace OSIRT.Browser
                 model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
                 model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
+                model.AddSeparator();
                 //
             }
             if(OsirtHelper.IsOnYouTube(browserControl.Address))
@@ -64,8 +64,8 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
             }
-            model.AddSeparator();
-            model.AddItem((CefMenuCommand)ViewSource, "View Page Source");
+           
+            model.AddItem((CefMenuCommand)ViewSource, "View page source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
         }
 

@@ -130,9 +130,12 @@ namespace OSIRT.UI
                 case Actions.Video:
                     extensionsCsv = OsirtHelper.GetResource("VideoSaveableFileTypes.txt");
                     break;
-                //case Actions.Saved: //TODO: Give this its own case, as saved images can have many file extensions
-                //    extensionsCsv = Path.GetExtension(filePath);
-                //    break;
+                case Actions.Source:
+                case Actions.Ipaddress:
+                case Actions.Links:
+                case Actions.Whois:
+                    extensionsCsv = OsirtHelper.GetResource("TextSaveableTypes.txt");
+                    break;
             }
 
             if (extensionsCsv.Contains(","))
@@ -221,6 +224,11 @@ namespace OSIRT.UI
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiCancelButton_Click(object sender, EventArgs e)
         {
 
         }

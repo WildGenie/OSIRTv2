@@ -101,7 +101,9 @@ namespace OSIRT.Browser
                 if (value == "#") continue;
                 links += value + "\n";
             }
-            this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
+            File.WriteAllText(Constants.TempTextFile, links);
+            this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Links, URL).Show());
+            //this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)
@@ -156,7 +158,15 @@ namespace OSIRT.Browser
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
+
+            //TODO: make sure this is overwriting text, and not appending!
+            //TODO: append website URL to default file name
+            File.WriteAllText(Constants.TempTextFile, source);
+            this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Source, URL).Show());
+            //this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
+
+
+
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)

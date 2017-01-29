@@ -74,45 +74,7 @@ namespace OSIRT.UI
         }
 
 
-        //private void SaveAsPdf(object sender, WaitWindowEventArgs e)
-        //{
-        //    string fileName = e.Arguments[0].ToString();
-        //    string pathToSave = "";
-        //    bool thrown = false;
-        //    try
-        //    {
-        //        using (MagickImage image = new MagickImage(filePath))
-        //        {
-        //            image.Format = MagickFormat.Pdf;
-        //            pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + SaveableFileTypes.Pdf);
-        //            image.Write(pathToSave);
-        //            e.Window.Message = "Rehashing PDF";
-        //            Hash = OsirtHelper.GetFileHash(pathToSave);
-        //            successful = true;
-        //        }
-        //    }
-        //    catch (Exception ex) when (ex is MagickErrorException || ex is System.Runtime.InteropServices.SEHException || ex is ArgumentException || ex is System.Reflection.TargetInvocationException /*|| ex is System.AccessViolationException || ex is Exception*/)
-        //    {
-        //        thrown = true;
-        //        var message = "Unable to save as PDF. Reverting to saving as PNG.";
-        //        Invoke((MethodInvoker)(() => uiFileExtensionComboBox.SelectedIndex = uiFileExtensionComboBox.Items.IndexOf(SaveableFileTypes.Png)));
-        //        e.Window.Message = message;
-        //        Task.Delay(2000).Wait(); //just so the user can see we're saving as PNG instead
-        //        SaveAsPng(fileName);
-        //    }
-        //    finally
-        //    {
-        //        //delete temp pdf file
-        //        if (thrown)
-        //        {
-        //            if (File.Exists(pathToSave))
-        //            {
-        //                File.Delete(pathToSave);
-        //            }
-        //        }
-        //    }
-        //}
-
+      
         private void SaveAsPng(string name)
         {
             try
@@ -255,9 +217,32 @@ namespace OSIRT.UI
             bool thrown = false;
             try
             {
-                using (MagickImage image = new MagickImage(filePath))
-                {
+
+                //This works well with the annotate method, but stroke and font size needs a little play
+                //only tested with jpg. PNGs are already created and copied over from cache, so will need to be reloaded 
+                //to append watermark 
+
+                //MagickReadSettings settings = new MagickReadSettings()
+                //{
+                //    BackgroundColor = MagickColors.LightBlue,
+                //    //Font = "Arial", // -font Arial 
+
+                //    StrokeColor = MagickColors.White,
+                //    StrokeWidth = 0.4,
+                //    StrokeAntiAlias = true,
+                //    FontWeight = FontWeight.Bold,
+                //    FillColor = MagickColors.Black,
+                //    FontPointsize = 25.0
+
+                //};
+
+                using (MagickImage image = new MagickImage(filePath/*, settings*/))
+                {                  
                     image.Format = format;
+
+                    //uncomment this to get annotation
+                    //image.Annotate(Url + "\n" + DateAndTime, Gravity.Southwest);
+
                     pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), fileName + fileType);
                     image.Write(pathToSave);
                     e.Window.Message = $"Rehashing {fileType}";
@@ -313,6 +298,11 @@ namespace OSIRT.UI
                 DialogResult = DialogResult.OK;
                 Close();
             }
+        }
+
+        private void uiCancelButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
