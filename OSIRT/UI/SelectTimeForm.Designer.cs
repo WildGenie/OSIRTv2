@@ -69,6 +69,11 @@
             this.uiTimeNumericUpDown.Name = "uiTimeNumericUpDown";
             this.uiTimeNumericUpDown.Size = new System.Drawing.Size(120, 20);
             this.uiTimeNumericUpDown.TabIndex = 2;
+            this.uiTimeNumericUpDown.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
             // uiOKButton
             // 

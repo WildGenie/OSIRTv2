@@ -57,11 +57,13 @@ namespace OSIRT.UI.AuditLog
         private void InitialiseSearchComboBox()
         {
             var tabs = auditTabControlPanel.Tabs();
-            tabs.Add("All tables", "all");
+            tabs.Add("All", "all");
 
             uiSearchSelectionComboBox.DataSource = new BindingSource(tabs, null);
             uiSearchSelectionComboBox.DisplayMember = "Key";
             uiSearchSelectionComboBox.ValueMember = "Value";
+
+            uiSearchSelectionComboBox.SelectedIndex = uiSearchSelectionComboBox.Items.Count - 1; //to display "All" first
         }
 
         private void uiSearchButton_Click(object sender, EventArgs e)
@@ -106,6 +108,7 @@ namespace OSIRT.UI.AuditLog
             rowDetailsPanel.Visible = isReportExportPanel;
             isReportExportPanel = !isReportExportPanel;
             uiExportReportToolStripButton.Image = isReportExportPanel ? Properties.Resources.table : Properties.Resources.report;
+            uiExportReportToolStripButton.Text = isReportExportPanel ? "Row Details" : "Export Report";
         }
 
 

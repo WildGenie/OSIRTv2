@@ -60,7 +60,7 @@ namespace OSIRT.UI
                         {
                         // Special case - some doubles are encoded as TIFF rationals. These
                         // items can be retrieved as 2 element arrays of {numerator, denominator}
-                        if (val is double)
+                            if (val is double)
                             {
                                 int[] rational;
                                 if (reader.GetTagValue(tagID, out rational))
@@ -78,11 +78,12 @@ namespace OSIRT.UI
                     DisplayThumbnail(reader);
                 }
             }
-            catch (ExifLibException)
+            catch (Exception ex) when (ex is ExifLibException || ex is EndOfStreamException)
             {
-                MessageBox.Show("Unable to load Exif data.", "Alert", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Unable to load Exif data. This may be due to the image not containing any Exif data.", "Unable to load Exif data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Close();
             }
+       
         }
 
         private void PopulateGrid()

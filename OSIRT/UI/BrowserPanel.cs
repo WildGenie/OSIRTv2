@@ -32,13 +32,13 @@ namespace OSIRT.UI
     {
 
         public event EventHandler CaseClosing;
-        private bool isUsingTor;
+        public static bool IsUsingTor; //we're being naughter here, as we need to know we're in tor mode and this is the easiest way for now.
         private string userAgent;
         private Form parentForm;
 
         public BrowserPanel(bool isUsingTor, string userAgent, Form parent)
         {
-            this.isUsingTor = isUsingTor;
+            IsUsingTor = isUsingTor;
             this.userAgent = userAgent;
             parentForm = parent;
             CheckAdvancedOptions();
@@ -387,7 +387,7 @@ namespace OSIRT.UI
             {
                 settings.UserAgent = userAgent;
             }
-            if (!isUsingTor)
+            if (!IsUsingTor)
             {
                 if(!string.IsNullOrWhiteSpace(cefProxy))
                 {

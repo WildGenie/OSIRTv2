@@ -90,30 +90,34 @@ namespace OSIRT.Helpers
                    
                 }
 
-                e.Window.Message = "Annotating Image... Please Wait";
-                MagickReadSettings settings = new MagickReadSettings();
-                bool annotateImage = true; //TODO: this will be a user setting
-                if (annotateImage)
-                {
-                    settings = new MagickReadSettings()
-                    {
-                        BackgroundColor = MagickColors.White,
-                        //Font = "Arial", // -font Arial 
+                //uncomment this for annotations, still WIP.
 
-                        StrokeColor = MagickColors.White,
-                        StrokeWidth = 0.8,
-                        StrokeAntiAlias = true,
-                        FontWeight = FontWeight.Bold,
-                        FillColor = MagickColors.Black,
-                        FontPointsize = 20.0
-                    };
-                }
+                //e.Window.Message = "Annotating Image... Please Wait";
+                ////TODO: place this in its own class, then we can use it
+                ////for all images (snippets, viewport screenshots)
+                //MagickReadSettings settings = new MagickReadSettings();
+                //bool annotateImage = true; //TODO: this will be a user setting
+                //if (annotateImage)
+                //{
+                //    settings = new MagickReadSettings()
+                //    {
+                //        BackgroundColor = MagickColors.White,
+                //        //Font = "Arial", // -font Arial 
 
-                using(MagickImage imgAnnotate = new MagickImage(screenshotLocation, settings))
-                {
-                    imgAnnotate.Annotate("http;//www.example.com/result/page.html?12345" + "\n" + "01/01/2001 19:51:51", Gravity.Southwest);
-                    imgAnnotate.Write(screenshotLocation);
-                }
+                //        StrokeColor = MagickColors.White,
+                //        StrokeWidth = 0.8,
+                //        StrokeAntiAlias = true,
+                //        FontWeight = FontWeight.Bold,
+                //        FillColor = MagickColors.Black,
+                //        FontPointsize = 20.0
+                //    };
+                //}
+
+                //using(MagickImage imgAnnotate = new MagickImage(screenshotLocation, settings))
+                //{
+                //    imgAnnotate.Annotate("http;//www.example.com/result/page.html?12345" + "\n" + "01/01/2001 19:51:51", Gravity.Southwest);
+                //    imgAnnotate.Write(screenshotLocation);
+                //}
             }
         }
     }

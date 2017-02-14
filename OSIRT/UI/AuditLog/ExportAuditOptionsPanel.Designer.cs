@@ -88,10 +88,10 @@
             this.uiOsirtActionsCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiOsirtActionsCheckBox.Location = new System.Drawing.Point(6, 92);
             this.uiOsirtActionsCheckBox.Name = "uiOsirtActionsCheckBox";
-            this.uiOsirtActionsCheckBox.Size = new System.Drawing.Size(96, 17);
+            this.uiOsirtActionsCheckBox.Size = new System.Drawing.Size(97, 17);
             this.uiOsirtActionsCheckBox.TabIndex = 2;
             this.uiOsirtActionsCheckBox.Tag = "osirt_actions";
-            this.uiOsirtActionsCheckBox.Text = "OSIRT actions";
+            this.uiOsirtActionsCheckBox.Text = "OSIRT Actions";
             this.uiOsirtActionsCheckBox.UseVisualStyleBackColor = true;
             // 
             // uiToggleCheckedButton
@@ -142,10 +142,10 @@
             this.uiWebActionsCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiWebActionsCheckBox.Location = new System.Drawing.Point(6, 60);
             this.uiWebActionsCheckBox.Name = "uiWebActionsCheckBox";
-            this.uiWebActionsCheckBox.Size = new System.Drawing.Size(110, 17);
+            this.uiWebActionsCheckBox.Size = new System.Drawing.Size(103, 17);
             this.uiWebActionsCheckBox.TabIndex = 1;
             this.uiWebActionsCheckBox.Tag = "webpage_actions";
-            this.uiWebActionsCheckBox.Text = "Webpage actions";
+            this.uiWebActionsCheckBox.Text = "Website Actions";
             this.uiWebActionsCheckBox.UseVisualStyleBackColor = true;
             // 
             // uiLoadedCheckBox
@@ -156,10 +156,10 @@
             this.uiLoadedCheckBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.uiLoadedCheckBox.Location = new System.Drawing.Point(6, 28);
             this.uiLoadedCheckBox.Name = "uiLoadedCheckBox";
-            this.uiLoadedCheckBox.Size = new System.Drawing.Size(62, 17);
+            this.uiLoadedCheckBox.Size = new System.Drawing.Size(109, 17);
             this.uiLoadedCheckBox.TabIndex = 0;
             this.uiLoadedCheckBox.Tag = "webpage_log";
-            this.uiLoadedCheckBox.Text = "Loaded";
+            this.uiLoadedCheckBox.Text = "Websites Loaded";
             this.uiLoadedCheckBox.UseVisualStyleBackColor = true;
             // 
             // uiReportOptionsGroupBox
@@ -229,9 +229,10 @@
             this.uiGSCPComboBox.FormattingEnabled = true;
             this.uiGSCPComboBox.Items.AddRange(new object[] {
             "Not Protectively Marked",
-            "Top Secret",
-            "Secret",
-            "Official"});
+            "TOP SECRET",
+            "SECRET",
+            "OFFICIAL-SENSITIVE",
+            "OFFICIAL"});
             this.uiGSCPComboBox.Location = new System.Drawing.Point(6, 143);
             this.uiGSCPComboBox.Name = "uiGSCPComboBox";
             this.uiGSCPComboBox.Size = new System.Drawing.Size(298, 21);

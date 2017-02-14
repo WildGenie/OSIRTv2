@@ -174,6 +174,7 @@ namespace OSIRT.UI
             uiInvestigatingOfficer.Focus();
             uiConfirmPasswordTextBox.UseSystemPasswordChar = true;
             uiFirstPasswordTextBox.UseSystemPasswordChar = true;
+            uiHashFunctionComboBox.SelectedIndex = uiHashFunctionComboBox.FindStringExact("sha256");
         }
 
         private void uiNextButton_Click(object sender, EventArgs e)
@@ -232,6 +233,16 @@ namespace OSIRT.UI
             //settings.CaseHasPassword = isChecked;
             //settings.Save();
 
+        }
+
+        private void uiHashHelpLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void uiCaserefDetailsLabel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Whatever is entered here will become the name of your case.", "Case Reference", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

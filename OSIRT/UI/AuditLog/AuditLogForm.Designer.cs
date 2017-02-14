@@ -74,12 +74,11 @@
             // 
             // uiExportReportToolStripButton
             // 
-            this.uiExportReportToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiExportReportToolStripButton.Image = global::OSIRT.Properties.Resources.report;
             this.uiExportReportToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiExportReportToolStripButton.Name = "uiExportReportToolStripButton";
-            this.uiExportReportToolStripButton.Size = new System.Drawing.Size(36, 36);
-            this.uiExportReportToolStripButton.Text = "Export report ";
+            this.uiExportReportToolStripButton.Size = new System.Drawing.Size(117, 36);
+            this.uiExportReportToolStripButton.Text = "Export Report ";
             this.uiExportReportToolStripButton.Click += new System.EventHandler(this.uiExportReportToolStripButton_Click);
             // 
             // uiBackToAuditLogToolStripButton

@@ -84,10 +84,11 @@ namespace OSIRT.UI
                 File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
                 successful = true;
             }
-            catch (IOException)
+            catch (Exception ex) when (ex is IOException || ex is  NotSupportedException)
             {
                 successful = false;
-                MessageBox.Show($"Unable to save image. This may be due to a file with this name already exisiting. Try entering a different file name, then attempt to save again.", "Unable to save capture", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //: colon in file name throwing NotSupportedException, even though it's blacklisted... Just check again.
+                MessageBox.Show($"Unable to save image. This may either be due to a file with this name already exisiting, or an invalid file name. Try entering a different file name, then attempt to save again.", "Unable to save capture", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 uiFileNameComboBox.Focus();
                 return;
             }
@@ -218,23 +219,7 @@ namespace OSIRT.UI
             try
             {
 
-                //This works well with the annotate method, but stroke and font size needs a little play
-                //only tested with jpg. PNGs are already created and copied over from cache, so will need to be reloaded 
-                //to append watermark 
-
-                //MagickReadSettings settings = new MagickReadSettings()
-                //{
-                //    BackgroundColor = MagickColors.LightBlue,
-                //    //Font = "Arial", // -font Arial 
-
-                //    StrokeColor = MagickColors.White,
-                //    StrokeWidth = 0.4,
-                //    StrokeAntiAlias = true,
-                //    FontWeight = FontWeight.Bold,
-                //    FillColor = MagickColors.Black,
-                //    FontPointsize = 25.0
-
-                //};
+             
 
                 using (MagickImage image = new MagickImage(filePath/*, settings*/))
                 {                  

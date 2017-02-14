@@ -53,13 +53,14 @@
             this.label6 = new System.Windows.Forms.Label();
             this.uiCasePathTextBox = new System.Windows.Forms.TextBox();
             this.uiBrowsButton = new System.Windows.Forms.Button();
-            this.uiHashHelpLabel = new System.Windows.Forms.Label();
             this.uiHashFunctionComboBox = new System.Windows.Forms.ComboBox();
-            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent6 = new System.Windows.Controls.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
+            this.uiHashHelpLabel = new System.Windows.Forms.Label();
+            this.uiCaserefDetailsLabel = new System.Windows.Forms.Label();
+            this.uiNotesTextBox = new OSIRT.UI.SpellBox();
+            this.hostedComponent7 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -158,6 +159,7 @@
             // 
             this.uiCaseDetailsGroupBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiCaseDetailsGroupBox.Controls.Add(this.uiCaserefDetailsLabel);
             this.uiCaseDetailsGroupBox.Controls.Add(this.label5);
             this.uiCaseDetailsGroupBox.Controls.Add(this.uiEvidenceReferenceTextBox);
             this.uiCaseDetailsGroupBox.Controls.Add(this.label4);
@@ -324,9 +326,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 21);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(75, 13);
+            this.label6.Size = new System.Drawing.Size(103, 13);
             this.label6.TabIndex = 58;
-            this.label6.Text = "Case Location";
+            this.label6.Text = "Case Save Location";
             // 
             // uiCasePathTextBox
             // 
@@ -348,17 +350,6 @@
             this.uiBrowsButton.UseVisualStyleBackColor = true;
             this.uiBrowsButton.Click += new System.EventHandler(this.uiBrowsButton_Click);
             // 
-            // uiHashHelpLabel
-            // 
-            this.uiHashHelpLabel.AutoSize = true;
-            this.uiHashHelpLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiHashHelpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiHashHelpLabel.Location = new System.Drawing.Point(136, 89);
-            this.uiHashHelpLabel.Name = "uiHashHelpLabel";
-            this.uiHashHelpLabel.Size = new System.Drawing.Size(23, 16);
-            this.uiHashHelpLabel.TabIndex = 55;
-            this.uiHashHelpLabel.Text = "[?]";
-            // 
             // uiHashFunctionComboBox
             // 
             this.uiHashFunctionComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -374,19 +365,6 @@
             this.uiHashFunctionComboBox.Size = new System.Drawing.Size(124, 21);
             this.uiHashFunctionComboBox.TabIndex = 8;
             this.uiHashFunctionComboBox.Tag = "hash_function";
-            // 
-            // uiNotesTextBox
-            // 
-            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.uiNotesTextBox.Location = new System.Drawing.Point(3, 138);
-            this.uiNotesTextBox.Multiline = true;
-            this.uiNotesTextBox.Name = "uiNotesTextBox";
-            this.uiNotesTextBox.Size = new System.Drawing.Size(503, 296);
-            this.uiNotesTextBox.TabIndex = 9;
-            this.uiNotesTextBox.Tag = "notes";
-            this.uiNotesTextBox.WordWrap = true;
             // 
             // panel1
             // 
@@ -419,6 +397,44 @@
             this.uiHelpLabelLabel.TabIndex = 1;
             this.uiHelpLabelLabel.Text = "Create New Case";
             this.uiHelpLabelLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // uiHashHelpLabel
+            // 
+            this.uiHashHelpLabel.AutoSize = true;
+            this.uiHashHelpLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiHashHelpLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiHashHelpLabel.Location = new System.Drawing.Point(136, 89);
+            this.uiHashHelpLabel.Name = "uiHashHelpLabel";
+            this.uiHashHelpLabel.Size = new System.Drawing.Size(23, 16);
+            this.uiHashHelpLabel.TabIndex = 55;
+            this.uiHashHelpLabel.Text = "[?]";
+            this.uiHashHelpLabel.Click += new System.EventHandler(this.uiHashHelpLabel_Click);
+            // 
+            // uiCaserefDetailsLabel
+            // 
+            this.uiCaserefDetailsLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.uiCaserefDetailsLabel.AutoSize = true;
+            this.uiCaserefDetailsLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.uiCaserefDetailsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiCaserefDetailsLabel.Location = new System.Drawing.Point(89, 171);
+            this.uiCaserefDetailsLabel.Name = "uiCaserefDetailsLabel";
+            this.uiCaserefDetailsLabel.Size = new System.Drawing.Size(23, 16);
+            this.uiCaserefDetailsLabel.TabIndex = 61;
+            this.uiCaserefDetailsLabel.Text = "[?]";
+            this.uiCaserefDetailsLabel.Click += new System.EventHandler(this.uiCaserefDetailsLabel_Click);
+            // 
+            // uiNotesTextBox
+            // 
+            this.uiNotesTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiNotesTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiNotesTextBox.Location = new System.Drawing.Point(3, 138);
+            this.uiNotesTextBox.Multiline = true;
+            this.uiNotesTextBox.Name = "uiNotesTextBox";
+            this.uiNotesTextBox.Size = new System.Drawing.Size(503, 296);
+            this.uiNotesTextBox.TabIndex = 9;
+            this.uiNotesTextBox.Tag = "notes";
+            this.uiNotesTextBox.WordWrap = true;
             // 
             // CaseDetailsPanel2
             // 
@@ -470,7 +486,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox uiCasePathTextBox;
         private System.Windows.Forms.Button uiBrowsButton;
-        private System.Windows.Forms.Label uiHashHelpLabel;
         private System.Windows.Forms.ComboBox uiHashFunctionComboBox;
         private SpellBox uiNotesTextBox;
         private System.Windows.Controls.TextBox hostedComponent1;
@@ -484,5 +499,8 @@
         private System.Windows.Controls.TextBox hostedComponent5;
         private System.Windows.Forms.CheckBox uiRequiresPasswordCheckbox;
         private System.Windows.Controls.TextBox hostedComponent6;
+        private System.Windows.Controls.TextBox hostedComponent7;
+        private System.Windows.Forms.Label uiCaserefDetailsLabel;
+        private System.Windows.Forms.Label uiHashHelpLabel;
     }
 }

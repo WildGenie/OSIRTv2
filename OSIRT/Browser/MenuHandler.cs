@@ -46,11 +46,14 @@ namespace OSIRT.Browser
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
-                if(OsirtHelper.HasJpegExtension(parameters.SourceUrl))
+                if (!UI.BrowserPanel.IsUsingTor)
                 {
-                    model.AddItem((CefMenuCommand)ViewImageExifData, "View image EXIF data");
-                }
-                model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
+                    if (OsirtHelper.HasJpegExtension(parameters.SourceUrl))
+                    {
+                        model.AddItem((CefMenuCommand)ViewImageExifData, "View image EXIF data");
+                    }
+                    model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
+                }          
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
                 model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
                 model.AddSeparator();

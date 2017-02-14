@@ -64,5 +64,10 @@ namespace OSIRT.UI
                 Close();
             }
         }
+
+        private void uiCancelButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
