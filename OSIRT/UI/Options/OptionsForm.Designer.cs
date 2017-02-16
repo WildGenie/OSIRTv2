@@ -290,6 +290,7 @@
             this.uiCaptureGroupBox.TabIndex = 1;
             this.uiCaptureGroupBox.TabStop = false;
             this.uiCaptureGroupBox.Text = "Capture";
+            this.uiCaptureGroupBox.Visible = false;
             // 
             // uiShowMouseClicksCheckBox
             // 

@@ -67,11 +67,6 @@ namespace OSIRT.Helpers
                     MagickImage first = new MagickImage(file.FullName);
                     e.Window.Message = "Obtaining Snapshots... Please Wait";
 
-                    //if(file == last)
-                    //{
-                    //    first.Annotate("http://example.com/url/large/domain.html?=abcf&p=1234" + "\n" + "01/01/2001 19:59:59", Gravity.Southwest);
-                    //}
-
                     images.Add(first);
                 }
 

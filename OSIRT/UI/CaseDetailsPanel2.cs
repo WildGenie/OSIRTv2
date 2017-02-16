@@ -237,12 +237,12 @@ namespace OSIRT.UI
 
         private void uiHashHelpLabel_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show("A hash function provides a way of verifying that a file hasn't changed or been modified. If you're unsure what a hash function is, leave it as SHA256.", "What is a Hash Function?", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void uiCaserefDetailsLabel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Whatever is entered here will become the name of your case.", "Case Reference", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("The entered text here will become the name of your case.", "Case Reference", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

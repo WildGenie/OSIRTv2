@@ -423,7 +423,15 @@ namespace OSIRT.Browser
             var downloader = new YouTubeVideoDownloader(URL);
             downloader.DownloadProgress += YouTubeDownloader_DownloadProgress;
             downloader.DownloadComplete += YouTubeDownloader_DownloadComplete;
-            await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
+
+            try
+            {
+                await Task.Run(() => downloader.Download()); //Download() is synchronous, need to wrap it like this as not to block UI 
+            }
+            catch //all sorts of things can go wrong with this, just catch all the exceptions.
+            {
+                MessageBox.Show("Unable to download this video. Try using the built-in screen capture.", "Unable to Download Video", MessageBoxButtons.OK,MessageBoxIcon.Warning);
+            }
         }
 
         private void YouTubeDownloader_DownloadComplete(object sender, EventArgs e)
