@@ -518,5 +518,10 @@ namespace OSIRT.UI
         {
             new TextPreviewer(Enums.Actions.Source, "example text").Show();
         }
+
+        private void userAgentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new UserAgentSettings().Show();
+        }
     }
 }

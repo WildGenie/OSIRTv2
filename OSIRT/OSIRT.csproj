@@ -201,6 +201,7 @@
     <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
     <Compile Include="Browser\OnPopUpEventArgs.cs" />
+    <Compile Include="Browser\RequestHandler.cs" />
     <Compile Include="Browser\SearchFinder\Find.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -328,6 +329,12 @@
     </Compile>
     <Compile Include="UI\AuditLog\TempSearchPanel.Designer.cs">
       <DependentUpon>TempSearchPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\AuthenticationForm.Designer.cs">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\BrowserOptions\BrowserOptionsForm.cs">
       <SubType>Form</SubType>
@@ -518,6 +525,12 @@
     <Compile Include="UI\UnhandledExceptionForm.Designer.cs">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UserAgentSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UserAgentSettings.Designer.cs">
+      <DependentUpon>UserAgentSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ViewSource\SaveSourceEventArgs.cs" />
     <Compile Include="UI\ViewSource\ViewPageSource.cs">
       <SubType>Form</SubType>
@@ -567,6 +580,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\AuditLog\TempSearchPanel.resx">
       <DependentUpon>TempSearchPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\AuthenticationForm.resx">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserOptions\BrowserOptionsForm.resx">
       <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
@@ -659,6 +675,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\UserAgentSettings.resx">
+      <DependentUpon>UserAgentSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ViewSource\ViewPageSource.resx">
       <DependentUpon>ViewPageSource.cs</DependentUpon>

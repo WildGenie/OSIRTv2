@@ -73,6 +73,8 @@ namespace OSIRT.Browser
             DownloadHandler = downloadHandler;
             downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
             downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
+
+            RequestHandler = new RequestHandler();
         }
 
 

@@ -64,6 +64,7 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.userAgentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -281,7 +282,8 @@
             this.findOnPageToolStripMenuItem,
             this.forceCacheRefreshToolStripMenuItem,
             this.toolStripSeparator1,
-            this.aboutOSIRTToolStripMenuItem});
+            this.aboutOSIRTToolStripMenuItem,
+            this.userAgentToolStripMenuItem});
             this.uiToolsToolStripSplitButton.Image = global::OSIRT.Properties.Resources.settings;
             this.uiToolsToolStripSplitButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiToolsToolStripSplitButton.Name = "uiToolsToolStripSplitButton";
@@ -408,6 +410,13 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
+            // userAgentToolStripMenuItem
+            // 
+            this.userAgentToolStripMenuItem.Name = "userAgentToolStripMenuItem";
+            this.userAgentToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.userAgentToolStripMenuItem.Text = "user agent";
+            this.userAgentToolStripMenuItem.Click += new System.EventHandler(this.userAgentToolStripMenuItem_Click);
+            // 
             // BrowserPanel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -462,5 +471,6 @@
         private System.Windows.Forms.ToolStripMenuItem forceCacheRefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findOnPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem userAgentToolStripMenuItem;
     }
 }
