@@ -93,12 +93,16 @@ namespace OSIRT.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
             firstLoadPanel.LoadAdavancedOptions += FirstLoadPanel_LoadAdavancedOptions;
             Controls.Add(firstLoadPanel);
         }
+
+      
 
         private void FirstLoadPanel_LoadAdavancedOptions(object sender, EventArgs e)
         {

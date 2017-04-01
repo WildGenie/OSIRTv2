@@ -55,16 +55,17 @@
             this.forceCacheRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userAgentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.userAgentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiBookMarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
@@ -83,6 +84,7 @@
             // 
             // uiBrowserToolStrip
             // 
+            this.uiBrowserToolStrip.AllowMerge = false;
             this.uiBrowserToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.uiHomeButton,
             this.uiLBackButton,
@@ -277,6 +279,7 @@
             // 
             this.uiToolsToolStripSplitButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiToolsToolStripSplitButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiBookMarksToolStripMenuItem,
             this.whoIsToolStripMenuItem,
             this.whatsTheIPToolStripMenuItem,
             this.findOnPageToolStripMenuItem,
@@ -339,6 +342,13 @@
             this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
             this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
             // 
+            // userAgentToolStripMenuItem
+            // 
+            this.userAgentToolStripMenuItem.Name = "userAgentToolStripMenuItem";
+            this.userAgentToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.userAgentToolStripMenuItem.Text = "user agent";
+            this.userAgentToolStripMenuItem.Click += new System.EventHandler(this.userAgentToolStripMenuItem_Click);
+            // 
             // uiBrowserMenuStrip
             // 
             this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -363,16 +373,6 @@
             this.closeCaseToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
-            // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
-            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // BottomToolStripPanel
             // 
@@ -410,12 +410,22 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // userAgentToolStripMenuItem
+            // uiBookMarksToolStripMenuItem
             // 
-            this.userAgentToolStripMenuItem.Name = "userAgentToolStripMenuItem";
-            this.userAgentToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
-            this.userAgentToolStripMenuItem.Text = "user agent";
-            this.userAgentToolStripMenuItem.Click += new System.EventHandler(this.userAgentToolStripMenuItem_Click);
+            this.uiBookMarksToolStripMenuItem.Image = global::OSIRT.Properties.Resources.star;
+            this.uiBookMarksToolStripMenuItem.Name = "uiBookMarksToolStripMenuItem";
+            this.uiBookMarksToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
+            this.uiBookMarksToolStripMenuItem.Text = "Bookmarks";
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
+            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // BrowserPanel
             // 
@@ -472,5 +482,6 @@
         private System.Windows.Forms.ToolStripMenuItem findOnPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem userAgentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uiBookMarksToolStripMenuItem;
     }
 }

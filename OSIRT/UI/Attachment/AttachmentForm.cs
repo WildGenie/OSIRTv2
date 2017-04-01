@@ -85,6 +85,9 @@ namespace OSIRT.UI.Attachment
                 MessageBox.Show(strings.File_with_this_name_already_exists_in_the_attachment_folder);
                 return;
             }
+
+
+
             uiAttachFileProgressPanel.Visible = true;
             uiCancelButton.Enabled = false;
             CopyFile(fileWithPath, destination);

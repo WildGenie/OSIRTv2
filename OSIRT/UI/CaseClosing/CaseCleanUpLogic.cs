@@ -71,12 +71,18 @@ namespace OSIRT.UI.CaseClosing
             ImageDiskCache.RemoveItemsInCache();
             ImageDiskCache.RemoveSpecificItemFromCache(Constants.TempVideoFile);
             TorCleanUp();
-
+            WriteFavourites();
             int attempts = 0;
             while (CleanUpDirectories())
             {
                 if (++attempts > 10) break;
             }
+        }
+
+        private void WriteFavourites()
+        {
+            string[] lines = OsirtHelper.Favourites.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
+            File.WriteAllLines(Constants.Favourites, lines);
         }
 
         private void StopCapture()

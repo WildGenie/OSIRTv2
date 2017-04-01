@@ -65,7 +65,9 @@ namespace OSIRT
                         IntPtr.Zero);
                 }
 
-
+            //https://github.com/cefsharp/CefSharp/wiki/General-Usage#high-dpi-displayssupport
+            //https://github.com/cefsharp/CefSharp/issues/1757
+            Cef.EnableHighDPISupport();
 
 #if !DEBUG
             }

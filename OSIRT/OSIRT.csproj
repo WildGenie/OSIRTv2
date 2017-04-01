@@ -196,6 +196,7 @@
     <Compile Include="Browser\DownloadManager\IDownloadManager.cs" />
     <Compile Include="Browser\DownloadManager\IServiceProvider.cs" />
     <Compile Include="Browser\ExifViewerEventArgs.cs" />
+    <Compile Include="Browser\KeyboardHandler.cs" />
     <Compile Include="Browser\LifespanHandler.cs" />
     <Compile Include="Browser\MenuHandler.cs" />
     <Compile Include="Browser\NavigationEventArgs.cs" />
@@ -815,6 +816,7 @@
     <None Include="Resources\question.png" />
     <None Include="Resources\door.png" />
     <EmbeddedResource Include="Resources\TextSaveableTypes.txt" />
+    <None Include="Resources\star.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

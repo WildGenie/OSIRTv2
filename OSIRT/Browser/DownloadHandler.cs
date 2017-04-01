@@ -17,6 +17,7 @@ namespace OSIRT.Browser
 
         public void OnBeforeDownload(IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
         {
+           
             if (!callback.IsDisposed)
             {
                 using (callback)

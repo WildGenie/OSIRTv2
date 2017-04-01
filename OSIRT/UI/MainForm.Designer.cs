@@ -36,9 +36,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1021, 690);
+            this.ClientSize = new System.Drawing.Size(1121, 790);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1037, 729);
+            this.MinimumSize = new System.Drawing.Size(1137, 829);
             this.Name = "MainForm";
             this.Text = "OSIRT";
             this.Load += new System.EventHandler(this.Form1_Load);

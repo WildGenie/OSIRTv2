@@ -13,12 +13,14 @@ using System.Text;
 using System.Security.Cryptography;
 using ImageMagick;
 using OSIRT.Extensions;
+using System.Collections.Generic;
 
 namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
 
+        public static Dictionary<string, string> Favourites = new Dictionary<string, string>();
 
         //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
         public enum PasswordScore
@@ -62,7 +64,11 @@ namespace OSIRT.Helpers
            Directory.CreateDirectory(Constants.VideoCacheLocation);
            Directory.CreateDirectory(Constants.TextCacheLocation);
             if (!File.Exists(Constants.ApplicationLog)) File.Create(Constants.ApplicationLog);
+            if (!File.Exists(Constants.Favourites)) File.Create(Constants.Favourites);
         }
+
+
+
 
         public static bool IsOnFacebook(string url)
         {

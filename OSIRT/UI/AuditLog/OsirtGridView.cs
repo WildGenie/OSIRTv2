@@ -37,7 +37,21 @@ namespace OSIRT.UI.AuditLog
             ColumnAdded += AuditGridView_ColumnAdded;
             RowEnter += AuditGridView_RowEnter;
             CellClick += OsirtGridView_CellClick;
+
+
+            //DataBindingComplete += OsirtGridView_DataBindingComplete;
            
+        }
+
+        private void OsirtGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            var dataGridView = sender as DataGridView;
+            if (dataGridView != null)
+            {
+                dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView.Columns[dataGridView.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            }
         }
 
         protected virtual void OsirtGridView_CellClick(object sender, DataGridViewCellEventArgs e)

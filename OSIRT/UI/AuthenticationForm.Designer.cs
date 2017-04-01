@@ -43,9 +43,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(367, 13);
+            this.label1.Size = new System.Drawing.Size(347, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "The server has requires a username and password due to restricted access. ";
+            this.label1.Text = "The server requires a username and password due to restricted access. ";
             // 
             // uiUserNameTextBox
             // 

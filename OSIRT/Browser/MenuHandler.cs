@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 namespace OSIRT.Browser
 {
-    internal class MenuHandler : IContextMenuHandler
+    public class MenuHandler : IContextMenuHandler
     {
         private const int OpenLinkInNewTab = 26501;
         private const int CloseDevTools = 26502;
@@ -23,6 +23,7 @@ namespace OSIRT.Browser
         private const int CopyImgLocation = 26508;
         private const int ReverseImageSearch = 26509;
         private const int ExtractAllLinks = 26510;
+        private const int Bookmark = 26511;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -33,6 +34,7 @@ namespace OSIRT.Browser
         public event EventHandler CopyImageLocation = delegate { };
         public event EventHandler ReverseImgSearch = delegate { };
         public event EventHandler ExtractLinks = delegate { };
+        public event EventHandler AddPageToBookmarks = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -70,6 +72,7 @@ namespace OSIRT.Browser
            
             model.AddItem((CefMenuCommand)ViewSource, "View page source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
+            model.AddItem((CefMenuCommand)Bookmark, "Add page to bookmarks");
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
@@ -114,6 +117,10 @@ namespace OSIRT.Browser
             if ((int)commandId == ExtractAllLinks)
             {
                 ExtractLinks?.Invoke(this, EventArgs.Empty);
+            }
+            if((int)commandId == Bookmark)
+            {
+                AddPageToBookmarks?.Invoke(this, EventArgs.Empty);
             }
 
             return false;

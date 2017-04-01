@@ -38,18 +38,71 @@ namespace OSIRT.UI
 
         public BrowserPanel(bool isUsingTor, string userAgent, Form parent)
         {
+            
             IsUsingTor = isUsingTor;
             this.userAgent = userAgent;
             parentForm = parent;
             CheckAdvancedOptions();
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
+            PopulateFavourites();
 
             if (isUsingTor)
             {
                 uiURLComboBox.BackColor = Color.MediumPurple;
                 uiURLComboBox.ForeColor = Color.White;
             }
+        }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.Control | Keys.F))
+            {
+                ShowFindForm();
+                return true;
+            }
+            if(keyData == (Keys.Control | Keys.D))
+            {
+                Browser_AddBookmark(this, EventArgs.Empty);
+                return true;
+            }
+
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void PopulateFavourites()
+        {
+            string[] lines = File.ReadAllLines(Constants.Favourites);
+            OsirtHelper.Favourites = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+
+            foreach(var item in OsirtHelper.Favourites)
+            {
+                ToolStripMenuItem menuItem = new ToolStripMenuItem();
+                menuItem.Text = item.Key; //this will be the page title
+                menuItem.Tag = item.Value; //this will be the URL
+                menuItem.Click += MenuItem_Click;
+                uiBookMarksToolStripMenuItem.DropDownItems.Add(menuItem);
+            }
+
+        }
+
+        private void Browser_AddBookmark(object sender, EventArgs e)
+        {
+       
+            ToolStripMenuItem menuItem = new ToolStripMenuItem();
+            this.InvokeIfRequired(() => OsirtHelper.Favourites[uiTabbedBrowserControl.CurrentTab.Browser.Title] = uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            this.InvokeIfRequired(() => menuItem.Text = uiTabbedBrowserControl.CurrentTab.Browser.Title);
+            this.InvokeIfRequired(() => menuItem.Tag = uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            this.InvokeIfRequired(() => uiBookMarksToolStripMenuItem.DropDownItems.Add(menuItem));
+            menuItem.Click += MenuItem_Click;
+        }
+
+        private void MenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(clickedItem.Tag.ToString()));
+            //open new tab with url from Tag.
         }
 
         private void BrowserPanel_Load(object sender, EventArgs e)
@@ -61,7 +114,10 @@ namespace OSIRT.UI
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
             uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
+            uiTabbedBrowserControl.CurrentTab.Browser.AddBookmark += Browser_AddBookmark;
         }
+
+
 
         private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
         {
@@ -142,7 +198,26 @@ namespace OSIRT.UI
                 e.Handled = true;
                 uiTabbedBrowserControl.Navigate(uiURLComboBox.Text);
                 e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
+
+                //Uri uriResult;
+                //bool result = Uri.TryCreate(uiURLComboBox.Text, UriKind.Absolute, out uriResult)
+                //    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
+
+                //if(result)
+                //{
+                    e.Handled = true;
+                    uiTabbedBrowserControl.Navigate(uiURLComboBox.Text);
+                    e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
+                //}
+                //else
+                //{
+                //    e.Handled = true;
+                //    uiTabbedBrowserControl.Navigate("https://www.google.co.uk/search?q=" + uiURLComboBox.Text.Replace(" ", "+"));
+                //    e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
+                //}
+
             }
+            //add logic in here for google search
         }
 
 
@@ -231,8 +306,8 @@ namespace OSIRT.UI
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
          
-           //uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
-
+            uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
+            uiTabbedBrowserControl.CurrentTab.Browser.StartMouseTrailTimer();
             IntPtr handle = parentForm.Handle;
             if (markerWindow != null && markerWindow.Visible) handle = markerWindow.Handle;
 
@@ -254,7 +329,7 @@ namespace OSIRT.UI
                 markerWindow.Dispose();
             }
 
-            uiTabbedBrowserControl.CurrentTab.Browser.MouseTrailVisible = false;
+            uiTabbedBrowserControl.CurrentTab.Browser.DisableMouseTrail();
 
             using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
             {
@@ -383,6 +458,9 @@ namespace OSIRT.UI
                 controlPort = int.Parse(dict["torPort"]);
             }
 
+            //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
+            settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
+
             if (!string.IsNullOrEmpty(userAgent))
             {
                 settings.UserAgent = userAgent;
@@ -471,7 +549,14 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
         }
 
+
+
         private void findOnPageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowFindForm();
+        }
+
+        private void ShowFindForm()
         {
             var findForm = new Find();
             findForm.Show();
@@ -479,6 +564,7 @@ namespace OSIRT.UI
             findForm.FindPrevious += FindForm_FindPrevious;
             findForm.FindClosing += FindForm_FindClosing;
         }
+    
 
         private void FindForm_FindClosing(object sender, EventArgs e)
         {
@@ -519,9 +605,53 @@ namespace OSIRT.UI
             new TextPreviewer(Enums.Actions.Source, "example text").Show();
         }
 
+        private int DPI()
+        {
+            int currentDPI = 0;
+
+            using (Graphics g = this.CreateGraphics())
+            {
+                currentDPI = (int)g.DpiX;
+            }
+            return currentDPI;
+        }
+
         private void userAgentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new UserAgentSettings().Show();
+            var task = uiTabbedBrowserControl.CurrentTab.Browser.GetZoomLevelAsync();
+
+            task.ContinueWith(previous =>
+            {
+                if (previous.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
+                {
+                    double zoom = 0.0;
+                    Debug.WriteLine("SCALE: " + DPI());
+                    switch(DPI())
+                    {
+                        case 96: //no scale
+                            break;
+                        case 120:
+                            zoom = -1.15;
+                            break;
+                        case 144:
+                            zoom = -1.6;
+                            break;
+                        case 192:
+                            zoom = -2.1;
+                            break;
+                    }
+
+                    var currentLevel = previous.Result;
+                    Debug.WriteLine("Current level: " + currentLevel);
+                    uiTabbedBrowserControl.CurrentTab.Browser.SetZoomLevel(zoom);
+                }
+                else
+                {
+                    throw new InvalidOperationException("Unexpected failure of calling CEF->GetZoomLevelAsync", previous.Exception);
+                }
+            }, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
+
+
         }
     }
 }

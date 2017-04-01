@@ -44,14 +44,20 @@ namespace OSIRT.Browser
         public event EventHandler OpenTinEye = delegate { };
         public event EventHandler DownloadStatusChanged = delegate { };
         public event EventHandler DownloadCompleted = delegate { };
+        public event EventHandler AddBookmark = delegate { };
 
         private int MaxScrollHeight => 15000;
-        private readonly int MaxWait = 500;
-        private PictureBox mouseTrail = new PictureBox();
+        private readonly int MaxWait = 600;
 
+        public string Title { get; private set; }
+
+        private PictureBox mouseTrail = new PictureBox();
+        private System.Timers.Timer cursorTimer;
 
         public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
+
+            
             //InitialiseMouseTrail();
             var handler = new MenuHandler();
             handler.DownloadImage += Handler_DownloadImage;
@@ -63,9 +69,10 @@ namespace OSIRT.Browser
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             handler.ReverseImgSearch += Handler_ReverseImgSearch;
             handler.ExtractLinks += Handler_ExtractLinks;
-
+            handler.AddPageToBookmarks += Handler_AddPageToBookmarks;
+           
             MenuHandler = handler;
-            MouseMove += ExtendedBrowser_MouseMove;
+            //MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
 
             var downloadHandler = new DownloadHandler();
@@ -75,9 +82,39 @@ namespace OSIRT.Browser
             downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
 
             RequestHandler = new RequestHandler();
+            KeyboardHandler = new KeyboardHandler();
+            TitleChanged += ExtendedBrowser_TitleChanged;
+            IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
+            
         }
 
+        private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
+        {
 
+        }
+
+        private void ExtendedBrowser_TitleChanged(object sender, TitleChangedEventArgs e)
+        {
+            Title = e.Title;
+        }
+
+        private void Handler_AddPageToBookmarks(object sender, EventArgs e)
+        {
+            //when OSIRT loads, populate favourites
+
+            //add url to K,V store
+
+           
+            AddBookmark?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ExtendedBrowser_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            //This works ok, but only need to create one per application, no per tab.
+            //make the timer static?
+            Debug.WriteLine(Cursor.Position.X + " " + Cursor.Position.X);
+            this.InvokeIfRequired(() => mouseTrail.Location = new Point(PointToClient(Cursor.Position).X + 5, PointToClient(Cursor.Position).Y+5)); //new Point(Cursor.Position.X, Cursor.Position.Y - 95));
+        }
 
         private void DownloadHandler_DownloadCompleted(object sender, EventArgs e)
         {
@@ -92,19 +129,24 @@ namespace OSIRT.Browser
         private async void Handler_ExtractLinks(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-
-
-            HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
-            doc.LoadHtml(source);
-            string links = "";
-            foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
+            try
             {
-                string value = link.Attributes["href"].Value;
-                if (value == "#") continue;
-                links += value + "\n";
+                HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
+                doc.LoadHtml(source);
+                string links = "";
+                foreach (HtmlNode link in doc.DocumentNode.SelectNodes("//a[@href]"))
+                {
+                    string value = link.Attributes["href"].Value;
+                    if (value == "#") continue;
+                    links += value + "\n";
+                }
+                File.WriteAllText(Constants.TempTextFile, links);
+                this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Links, URL).Show());
             }
-            File.WriteAllText(Constants.TempTextFile, links);
-            this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Links, URL).Show());
+            catch
+            {
+                MessageBox.Show("Unable to extract any links from this page.", "No links to extract", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
             //this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
         }
 
@@ -189,12 +231,28 @@ namespace OSIRT.Browser
 
         }
 
+        public void DisableMouseTrail()
+        {
+            cursorTimer.Stop();
+            cursorTimer.Elapsed -= ExtendedBrowser_Elapsed;
+            MouseTrailVisible = false;
+            Controls.Remove(mouseTrail);
+        }
+
         public void InitialiseMouseTrail()
         {
-            //mouseTrail.BackColor = Color.Green;
-            //mouseTrail.Size = new Size(12, 12);
-            //Controls.Add(mouseTrail);
-            //MouseTrailVisible = true;
+            mouseTrail.BackColor = Color.Green;
+            mouseTrail.Size = new Size(12, 12);
+            Controls.Add(mouseTrail);
+            MouseTrailVisible = true;
+        }
+
+        public void StartMouseTrailTimer()
+        {
+            cursorTimer = new System.Timers.Timer();
+            cursorTimer.Elapsed += ExtendedBrowser_Elapsed;
+            cursorTimer.Interval = 25;
+            cursorTimer.Enabled = true;
 
 
             /*
@@ -208,36 +266,36 @@ namespace OSIRT.Browser
                 
                 Here for future reference, when a good solution can be found.
             */
-            var task =  GetBrowser().MainFrame.EvaluateScriptAsync(
+            //var task =  GetBrowser().MainFrame.EvaluateScriptAsync(
 
-                @"var followCursor = (function() { 
-                    var s = document.createElement('div');
-                    s.style.position = 'absolute';
-                    s.style.margin = '0';
-                    s.style.padding = '5px';
-                    s.style.border = '1px solid red';
-                    s.style.backgroundColor = 'red';
+            //    @"var followCursor = (function() { 
+            //        var s = document.createElement('div');
+            //        s.style.position = 'absolute';
+            //        s.style.margin = '0';
+            //        s.style.padding = '5px';
+            //        s.style.border = '1px solid red';
+            //        s.style.backgroundColor = 'red';
 
-                    return {
-                        init: function() {
-                            document.body.appendChild(s);
-                        },
+            //        return {
+            //            init: function() {
+            //                document.body.appendChild(s);
+            //            },
 
-                    run: function(e) {
-                                        var e = e || window.event;
-                        s.style.left  = (e.clientX + 5) + 'px';
-                        s.style.top = (e.clientY + 5) + 'px';
-                        }
-                    };
-                }());
+            //        run: function(e) {
+            //                            var e = e || window.event;
+            //            s.style.left  = (e.clientX + 5) + 'px';
+            //            s.style.top = (e.clientY + 5) + 'px';
+            //            }
+            //        };
+            //    }());
 
-                (function()
-                {
-                    followCursor.init();
-                    document.body.onmousemove = followCursor.run;
-                })();"
-            );
-            task.Wait();
+            //    (function()
+            //    {
+            //        followCursor.init();
+            //        document.body.onmousemove = followCursor.run;
+            //    })();"
+            //);
+            //task.Wait();
         }
 
         /// <summary>
@@ -247,8 +305,18 @@ namespace OSIRT.Browser
         private Bitmap GetCurrentViewScreenshot()
         {
             int width, height;
-            width = ClientRectangle.Width;
-            height = ClientRectangle.Height;
+            //ORIGINAL:
+            //width = ClientRectangle.Width;
+            //height = ClientRectangle.Height;
+
+            //try DisplayRectangle instead... Issue with cutting off some of the image
+            //width = DisplayRectangle.Width;
+            //height = DisplayRectangle.Height;
+
+            width = ClientSize.Width;
+            height = ClientSize.Height;
+
+            Debug.WriteLine("Client rect width: " + width + " height: " + height);
             using (Bitmap image = new Bitmap(width, height))
             {
                 using (Graphics graphics = Graphics.FromImage(image))
@@ -295,20 +363,27 @@ namespace OSIRT.Browser
             }
         }
 
-
-
         private async void FullpageScreenshotByScrolling()
         {
-            int scrollHeight =  GetDocHeight();
+            
+            int scrollHeight = GetDocHeight();
             if (scrollHeight == 0)
             {
                 FireScreenshotCompleteEvent(false);
                 return;
             }
 
-            Enabled = false;
-            int viewportHeight = ClientRectangle.Size.Height;
+            Debug.WriteLine("Client rect height: " + ClientRectangle.Size.Height);
+            Debug.WriteLine("Control height: " + Height);
+            Debug.WriteLine("Display Rect height: " +  DisplayRectangle.Height);
+            Debug.WriteLine("Client size height: " + ClientSize.Height);
+
+          
+
+             Enabled = false;
+            int viewportHeight = ClientRectangle.Size.Height; 
             int viewportWidth = ClientRectangle.Size.Width;
+
             await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
             int count = 0;
             int pageLeft = scrollHeight;
@@ -320,7 +395,7 @@ namespace OSIRT.Browser
             {
                 if (pageLeft > viewportHeight)
                 {
-                    //if we can scroll using the viewport, let's do that
+    
                     await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0," + (count * viewportHeight) + "); })();");
                     count++;
                     await PutTaskDelay();  //we do need these delays. Some pages, like facebook, may need to load viewport content.

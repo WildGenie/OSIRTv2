@@ -34,6 +34,7 @@ namespace OSIRT.Helpers
         public static readonly string VideoCacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt" ,"videocache");
         public static readonly string TextCacheLocation = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "textcache");
         public static readonly string ApplicationLog = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "log.config");
+        public static readonly string Favourites = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "favourites.config");
         public static readonly string ProxySettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "proxy.config");
 
         private static readonly string TempImgName = "temp.png";
