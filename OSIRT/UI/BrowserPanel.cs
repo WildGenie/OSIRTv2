@@ -293,8 +293,8 @@ namespace OSIRT.UI
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
          
-            uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
-            uiTabbedBrowserControl.CurrentTab.Browser.StartMouseTrailTimer();
+            //uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
+            //uiTabbedBrowserControl.CurrentTab.Browser.StartMouseTrailTimer();
             IntPtr handle = parentForm.Handle;
             if (markerWindow != null && markerWindow.Visible) handle = markerWindow.Handle;
 
@@ -305,6 +305,7 @@ namespace OSIRT.UI
             else
             {
                 OsirtVideoCapture.StopCapture();
+               //uiTabbedBrowserControl.CurrentTab.Browser.DisableMouseTrail();
             }
         }
 
@@ -315,8 +316,6 @@ namespace OSIRT.UI
                 markerWindow.Close();
                 markerWindow.Dispose();
             }
-
-            uiTabbedBrowserControl.CurrentTab.Browser.DisableMouseTrail();
 
             using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video))
             {

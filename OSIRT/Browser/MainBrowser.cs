@@ -52,7 +52,7 @@ namespace OSIRT.Browser
         public string Title { get; private set; }
 
         private PictureBox mouseTrail = new PictureBox();
-        private System.Timers.Timer cursorTimer;
+        private static System.Timers.Timer cursorTimer;
 
         public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
@@ -100,20 +100,21 @@ namespace OSIRT.Browser
 
         private void Handler_AddPageToBookmarks(object sender, EventArgs e)
         {
-            //when OSIRT loads, populate favourites
-
-            //add url to K,V store
-
-           
             AddBookmark?.Invoke(this, EventArgs.Empty);
         }
 
         private void ExtendedBrowser_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            //This works ok, but only need to create one per application, no per tab.
+            lock (_lock)
+            {
+                if (!cursorTimer.Enabled)
+                    return;
+                Debug.WriteLine(Cursor.Position.X + " " + Cursor.Position.X);
+                this.InvokeIfRequired(() => mouseTrail.Location = new Point(PointToClient(Cursor.Position).X + 5, PointToClient(Cursor.Position).Y + 5)); //new Point(Cursor.Position.X, Cursor.Position.Y - 95));
+            }
+                //This works ok, but only need to create one per application, no per tab.
             //make the timer static?
-            Debug.WriteLine(Cursor.Position.X + " " + Cursor.Position.X);
-            this.InvokeIfRequired(() => mouseTrail.Location = new Point(PointToClient(Cursor.Position).X + 5, PointToClient(Cursor.Position).Y+5)); //new Point(Cursor.Position.X, Cursor.Position.Y - 95));
+           
         }
 
         private void DownloadHandler_DownloadCompleted(object sender, EventArgs e)
@@ -231,12 +232,20 @@ namespace OSIRT.Browser
 
         }
 
+
+        readonly object _lock = new object();
         public void DisableMouseTrail()
         {
-            cursorTimer.Stop();
-            cursorTimer.Elapsed -= ExtendedBrowser_Elapsed;
-            MouseTrailVisible = false;
-            Controls.Remove(mouseTrail);
+            //deadlocking... investigate later.
+            lock (_lock)
+            {
+                cursorTimer.Enabled = false;
+            }
+          
+                //cursorTimer.Elapsed -= ExtendedBrowser_Elapsed;
+                MouseTrailVisible = false;
+                Controls.Remove(mouseTrail);
+        
         }
 
         public void InitialiseMouseTrail()
