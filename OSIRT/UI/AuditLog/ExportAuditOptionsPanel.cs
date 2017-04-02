@@ -43,6 +43,11 @@ namespace OSIRT.UI.AuditLog
             base.OnLoad(e);
             EnableTablesToPrint();
             Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+            uiFirstDateTimePicker.Enabled = uiDateSelectionCheckBox.Checked;
+            uiSecondDateTimePicker.Enabled = uiDateSelectionCheckBox.Checked;
+
+            ToolTip tt = new ToolTip();
+            tt.SetToolTip(uiDateSelectionCheckBox, "Keep this box unticked to print all dates");
         }
 
         private void EnableTablesToPrint()
@@ -151,10 +156,19 @@ namespace OSIRT.UI.AuditLog
                 merged.Merge(dt, true, MissingSchemaAction.Add);
             }
 
-            //end ad
+            //end add
 
             merged.TableName = "artefact"; //was "merged" but changed to artefacts for neater xml output
             DataView view = new DataView(merged);
+
+            if (uiDateSelectionCheckBox.Checked)
+            {
+                string firstDate = uiFirstDateTimePicker.Value.ToString("yyyy-MM-dd");
+                string endDate = uiSecondDateTimePicker.Value.ToString("yyyy-MM-dd");
+
+                Debug.WriteLine("First date: " + firstDate + " second: " + endDate);
+                view.RowFilter = $"date >= '{firstDate}' and date <= '{endDate}'";  
+            }
             view.Sort = "date asc, time asc";
             DataTable sortedTable = view.ToTable();
             return sortedTable;
@@ -361,6 +375,10 @@ namespace OSIRT.UI.AuditLog
             RunWorker(ExportAsXml);
         }
 
-
+        private void uiDateSelectionCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            uiFirstDateTimePicker.Enabled = uiDateSelectionCheckBox.Checked;
+            uiSecondDateTimePicker.Enabled = uiDateSelectionCheckBox.Checked;
+        }
     }
 }

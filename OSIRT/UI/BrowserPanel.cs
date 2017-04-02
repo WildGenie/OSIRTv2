@@ -196,31 +196,18 @@ namespace OSIRT.UI
             if (e.KeyCode == Keys.Enter)
             {
                 e.Handled = true;
-                uiTabbedBrowserControl.Navigate(uiURLComboBox.Text);
+                string searched = uiURLComboBox.Text;
+                
+                if(searched.StartsWith("?"))
+                {
+                    searched = searched.Remove(0, 1).Replace(" ", "+");
+                    searched = "https://www.google.co.uk/search?q=" + searched;
+                }
+
+                uiTabbedBrowserControl.Navigate(searched);
                 e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
-
-                //Uri uriResult;
-                //bool result = Uri.TryCreate(uiURLComboBox.Text, UriKind.Absolute, out uriResult)
-                //    && (uriResult.Scheme == Uri.UriSchemeHttp || uriResult.Scheme == Uri.UriSchemeHttps);
-
-                //if(result)
-                //{
-                    e.Handled = true;
-                    uiTabbedBrowserControl.Navigate(uiURLComboBox.Text);
-                    e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
-                //}
-                //else
-                //{
-                //    e.Handled = true;
-                //    uiTabbedBrowserControl.Navigate("https://www.google.co.uk/search?q=" + uiURLComboBox.Text.Replace(" ", "+"));
-                //    e.SuppressKeyPress = true; //stops "ding" sound when enter is pushed
-                //}
-
             }
-            //add logic in here for google search
         }
-
-
 
         private void uiScreenshotButton_Click(object sender, EventArgs e)
         {

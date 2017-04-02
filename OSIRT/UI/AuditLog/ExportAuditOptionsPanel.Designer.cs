@@ -56,10 +56,16 @@
             this.uiReportExportProgressBar = new System.Windows.Forms.ProgressBar();
             this.uiProgressGroupBox = new System.Windows.Forms.GroupBox();
             this.uiReportExportLabel = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.uiDateSelectionCheckBox = new System.Windows.Forms.CheckBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.uiFirstDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.uiSecondDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.uiReportSelectionGroupBox.SuspendLayout();
             this.uiReportOptionsGroupBox.SuspendLayout();
             this.uiExportAsGroupBox.SuspendLayout();
             this.uiProgressGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiReportSelectionGroupBox
@@ -175,7 +181,7 @@
             this.uiReportOptionsGroupBox.Controls.Add(this.uiPrintNotesCheckBox);
             this.uiReportOptionsGroupBox.Controls.Add(this.uiDisplayImagesCheckBox);
             this.uiReportOptionsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiReportOptionsGroupBox.Location = new System.Drawing.Point(3, 149);
+            this.uiReportOptionsGroupBox.Location = new System.Drawing.Point(3, 229);
             this.uiReportOptionsGroupBox.Name = "uiReportOptionsGroupBox";
             this.uiReportOptionsGroupBox.Size = new System.Drawing.Size(310, 175);
             this.uiReportOptionsGroupBox.TabIndex = 1;
@@ -304,7 +310,7 @@
             this.uiExportAsGroupBox.Controls.Add(this.uiExportAsHtmlButton);
             this.uiExportAsGroupBox.Controls.Add(this.uiReportExportHelpLabel);
             this.uiExportAsGroupBox.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 330);
+            this.uiExportAsGroupBox.Location = new System.Drawing.Point(3, 410);
             this.uiExportAsGroupBox.Name = "uiExportAsGroupBox";
             this.uiExportAsGroupBox.Size = new System.Drawing.Size(310, 175);
             this.uiExportAsGroupBox.TabIndex = 2;
@@ -407,7 +413,7 @@
             // 
             this.uiProgressGroupBox.Controls.Add(this.uiReportExportLabel);
             this.uiProgressGroupBox.Controls.Add(this.uiReportExportProgressBar);
-            this.uiProgressGroupBox.Location = new System.Drawing.Point(3, 511);
+            this.uiProgressGroupBox.Location = new System.Drawing.Point(3, 591);
             this.uiProgressGroupBox.Name = "uiProgressGroupBox";
             this.uiProgressGroupBox.Size = new System.Drawing.Size(310, 63);
             this.uiProgressGroupBox.TabIndex = 5;
@@ -424,11 +430,62 @@
             this.uiReportExportLabel.TabIndex = 4;
             this.uiReportExportLabel.Text = "Exporting report...";
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.uiDateSelectionCheckBox);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.uiFirstDateTimePicker);
+            this.groupBox1.Controls.Add(this.uiSecondDateTimePicker);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Location = new System.Drawing.Point(3, 149);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(310, 74);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Select Dates";
+            // 
+            // uiDateSelectionCheckBox
+            // 
+            this.uiDateSelectionCheckBox.AutoSize = true;
+            this.uiDateSelectionCheckBox.Location = new System.Drawing.Point(6, 20);
+            this.uiDateSelectionCheckBox.Name = "uiDateSelectionCheckBox";
+            this.uiDateSelectionCheckBox.Size = new System.Drawing.Size(273, 17);
+            this.uiDateSelectionCheckBox.TabIndex = 4;
+            this.uiDateSelectionCheckBox.Text = "Print everything between these dates only (inclusive)";
+            this.uiDateSelectionCheckBox.UseVisualStyleBackColor = true;
+            this.uiDateSelectionCheckBox.CheckedChanged += new System.EventHandler(this.uiDateSelectionCheckBox_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(140, 54);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(25, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "and";
+            // 
+            // uiFirstDateTimePicker
+            // 
+            this.uiFirstDateTimePicker.Location = new System.Drawing.Point(6, 48);
+            this.uiFirstDateTimePicker.Name = "uiFirstDateTimePicker";
+            this.uiFirstDateTimePicker.Size = new System.Drawing.Size(118, 20);
+            this.uiFirstDateTimePicker.TabIndex = 1;
+            // 
+            // uiSecondDateTimePicker
+            // 
+            this.uiSecondDateTimePicker.Location = new System.Drawing.Point(186, 48);
+            this.uiSecondDateTimePicker.Name = "uiSecondDateTimePicker";
+            this.uiSecondDateTimePicker.Size = new System.Drawing.Size(118, 20);
+            this.uiSecondDateTimePicker.TabIndex = 0;
+            // 
             // ExportAuditOptionsPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SteelBlue;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.uiProgressGroupBox);
             this.Controls.Add(this.uiExportAsGroupBox);
             this.Controls.Add(this.uiReportOptionsGroupBox);
@@ -444,6 +501,8 @@
             this.uiExportAsGroupBox.PerformLayout();
             this.uiProgressGroupBox.ResumeLayout(false);
             this.uiProgressGroupBox.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -478,5 +537,10 @@
         private System.Windows.Forms.Label uiReportExportLabel;
         private System.Windows.Forms.CheckBox uiMergeCaseNotesCheckBox;
         private System.Windows.Forms.Button uiExportAsXmlButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker uiFirstDateTimePicker;
+        private System.Windows.Forms.DateTimePicker uiSecondDateTimePicker;
+        private System.Windows.Forms.CheckBox uiDateSelectionCheckBox;
     }
 }

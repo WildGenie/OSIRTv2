@@ -56,8 +56,8 @@
             // uiAuditLogSplitContainer.Panel2
             // 
             this.uiAuditLogSplitContainer.Panel2.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(967, 638);
-            this.uiAuditLogSplitContainer.SplitterDistance = 315;
+            this.uiAuditLogSplitContainer.Size = new System.Drawing.Size(997, 689);
+            this.uiAuditLogSplitContainer.SplitterDistance = 324;
             this.uiAuditLogSplitContainer.TabIndex = 0;
             // 
             // uiAuditOptionsToolStrip
@@ -68,7 +68,7 @@
             this.uiBackToAuditLogToolStripButton});
             this.uiAuditOptionsToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiAuditOptionsToolStrip.Name = "uiAuditOptionsToolStrip";
-            this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(967, 39);
+            this.uiAuditOptionsToolStrip.Size = new System.Drawing.Size(997, 39);
             this.uiAuditOptionsToolStrip.TabIndex = 14;
             this.uiAuditOptionsToolStrip.Text = "toolStrip1";
             // 
@@ -101,7 +101,7 @@
             "Current Tab",
             "All Tabs",
             "This Page"});
-            this.uiSearchSelectionComboBox.Location = new System.Drawing.Point(742, 10);
+            this.uiSearchSelectionComboBox.Location = new System.Drawing.Point(772, 10);
             this.uiSearchSelectionComboBox.Name = "uiSearchSelectionComboBox";
             this.uiSearchSelectionComboBox.Size = new System.Drawing.Size(135, 21);
             this.uiSearchSelectionComboBox.TabIndex = 17;
@@ -109,7 +109,7 @@
             // uiSearchButton
             // 
             this.uiSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiSearchButton.Location = new System.Drawing.Point(883, 10);
+            this.uiSearchButton.Location = new System.Drawing.Point(913, 10);
             this.uiSearchButton.Name = "uiSearchButton";
             this.uiSearchButton.Size = new System.Drawing.Size(75, 21);
             this.uiSearchButton.TabIndex = 16;
@@ -120,7 +120,7 @@
             // uiSearchTextBox
             // 
             this.uiSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiSearchTextBox.Location = new System.Drawing.Point(481, 10);
+            this.uiSearchTextBox.Location = new System.Drawing.Point(511, 10);
             this.uiSearchTextBox.Name = "uiSearchTextBox";
             this.uiSearchTextBox.Size = new System.Drawing.Size(255, 20);
             this.uiSearchTextBox.TabIndex = 15;
@@ -130,7 +130,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 676);
+            this.ClientSize = new System.Drawing.Size(997, 727);
             this.Controls.Add(this.uiSearchSelectionComboBox);
             this.Controls.Add(this.uiSearchButton);
             this.Controls.Add(this.uiSearchTextBox);

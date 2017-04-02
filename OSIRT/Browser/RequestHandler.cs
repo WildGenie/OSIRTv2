@@ -11,8 +11,7 @@ namespace OSIRT.Browser
 {
     public class RequestHandler : IRequestHandler
     {
-        //private static int attempts = 0;
-
+        
         public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
         {
 
