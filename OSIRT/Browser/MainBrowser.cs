@@ -389,7 +389,7 @@ namespace OSIRT.Browser
 
           
 
-             Enabled = false;
+            Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height; 
             int viewportWidth = ClientRectangle.Size.Width;
 

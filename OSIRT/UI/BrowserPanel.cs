@@ -24,6 +24,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Jacksonsoft;
 using OSIRT.UI.CaseClosing;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace OSIRT.UI
 {
@@ -604,40 +606,127 @@ namespace OSIRT.UI
 
         private void userAgentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var task = uiTabbedBrowserControl.CurrentTab.Browser.GetZoomLevelAsync();
+            //var task = uiTabbedBrowserControl.CurrentTab.Browser.GetZoomLevelAsync();
 
-            task.ContinueWith(previous =>
+            //task.ContinueWith(previous =>
+            //{
+            //    if (previous.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
+            //    {
+            //        double zoom = 0.0;
+            //        Debug.WriteLine("SCALE: " + DPI());
+            //        switch(DPI())
+            //        {
+            //            case 96: //no scale
+            //                break;
+            //            case 120:
+            //                zoom = -1.15;
+            //                break;
+            //            case 144:
+            //                zoom = -1.6;
+            //                break;
+            //            case 192:
+            //                zoom = -2.1;
+            //                break;
+            //        }
+
+            //        var currentLevel = previous.Result;
+            //        Debug.WriteLine("Current level: " + currentLevel);
+            //        uiTabbedBrowserControl.CurrentTab.Browser.SetZoomLevel(zoom);
+            //    }
+            //    else
+            //    {
+            //        throw new InvalidOperationException("Unexpected failure of calling CEF->GetZoomLevelAsync", previous.Exception);
+            //    }
+            //}, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
+
+
+        }
+
+        //TODO: popping this here, we have duplicate logic in the main browser
+        private int GetDocHeight()
+        {
+            try
             {
-                if (previous.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
-                {
-                    double zoom = 0.0;
-                    Debug.WriteLine("SCALE: " + DPI());
-                    switch(DPI())
-                    {
-                        case 96: //no scale
-                            break;
-                        case 120:
-                            zoom = -1.15;
-                            break;
-                        case 144:
-                            zoom = -1.6;
-                            break;
-                        case 192:
-                            zoom = -2.1;
-                            break;
-                    }
+                int scrollHeight = 0;
+                var task = uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser()?.MainFrame?.EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
+                task.Wait();
+                var response = task.Result;
+                scrollHeight = (int)response.Result;
+                return scrollHeight;
+            }
+            catch
+            {
+                MessageBox.Show("Unable to take full page capture. Consider using video capture, snippet or current view capture tools.", "Unable to take full page screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
+            }
+        }
 
-                    var currentLevel = previous.Result;
-                    Debug.WriteLine("Current level: " + currentLevel);
-                    uiTabbedBrowserControl.CurrentTab.Browser.SetZoomLevel(zoom);
+        private bool stop = true;
+        private CancellationTokenSource cts;
+        private async void autoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uiStopAutoScrollingToolStripButton.Visible = true;
+            string scroll =
+            @"
+                docHeight = document.body.scrollHeight;
+	            window.scrollTo(0, docHeight);
+           
+	            if (prevDocHeight == docHeight){
+                    clearInterval(pidScrollToEnd);
                 }
-                else
-                {
-                    throw new InvalidOperationException("Unexpected failure of calling CEF->GetZoomLevelAsync", previous.Exception);
-                }
-            }, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
+
+                prevDocHeight = docHeight;
+            ";
+
+            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, document.body.scrollHeight); pidScrollToEnd = setInterval(function(){" + scroll + "}, 750); })();";
+
+            await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
+
+            //int previousDocHeight = GetDocHeight();
+            //int currentDocHeight = 0;
+
+            ////TODO: make the stop button visible in tool bar
+            //uiStopAutoScrollingToolStripButton.Visible = true;
+            //if (cts == null)
+            //{
+            //    stop = true;
+            //    cts = new CancellationTokenSource();
+            //}
+
+            //int n = 0;
+            //while (n++ < 500 && stop)
+            //{
+
+            //    //if (currentDocHeight == previousDocHeight)
+            //    //{
+            //    //    cts.Cancel();
+            //    //    uiStopAutoScrollingToolStripButton.Visible = false;
+            //    //}
+
+            //    await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0, window.pageYOffset +" + (n * 2500) + "); })();");
+            //    await Task.Delay(175);
+            //    try
+            //    {
+            //        if (cts.IsCancellationRequested)
+            //        {
+            //            stop = false;
+            //            cts = null;
+            //        }
+            //    }
+            //    catch { /*general catch as cts can throw a nullreference*/ }
 
 
+            //    currentDocHeight = GetDocHeight();
+            //    Console.WriteLine("PREVIOUS: " + previousDocHeight + " CURRENT| " + currentDocHeight);
+            //}      
+        }
+
+
+        private async void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            uiStopAutoScrollingToolStripButton.Visible = false;
+            //TODO: stop button needs to be visible for all tabs, still.
+            await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("clearInterval(pidScrollToEnd);");
         }
     }
 }
