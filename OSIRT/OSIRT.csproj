@@ -223,6 +223,7 @@
     <Compile Include="CaseSettings.cs" />
     <Compile Include="DownloadEventArgs.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="FacebookIdFinder.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
@@ -236,7 +237,9 @@
     <Compile Include="Helpers\HashServiceFactory.cs" />
     <Compile Include="Helpers\ImageDiskCache.cs" />
     <Compile Include="Helpers\ScreenCapturedEvent.cs" />
+    <Compile Include="IIdFinder.cs" />
     <Compile Include="ImageSaveOptions.cs" />
+    <Compile Include="InstagramIdFinder.cs" />
     <Compile Include="IPageable.cs" />
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
@@ -275,6 +278,7 @@
     <Compile Include="Enums\SaveableFileTypes.cs" />
     <Compile Include="Enums\ScreenshotDetails.cs" />
     <Compile Include="RowDetails.cs" />
+    <Compile Include="TwitterIdFinder.cs" />
     <Compile Include="UI\AboutOSIRT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,11 +401,11 @@
     <Compile Include="UI\ExifViewerForm.Designer.cs">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FacebookDetailsForm.cs">
+    <Compile Include="UI\IdDetailsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FacebookDetailsForm.Designer.cs">
-      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
+    <Compile Include="UI\IdDetailsForm.Designer.cs">
+      <DependentUpon>IdDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
@@ -612,8 +616,8 @@
     <EmbeddedResource Include="UI\ExifViewerForm.resx">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FacebookDetailsForm.resx">
-      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\IdDetailsForm.resx">
+      <DependentUpon>IdDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>

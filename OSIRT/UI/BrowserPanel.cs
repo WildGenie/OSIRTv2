@@ -642,91 +642,49 @@ namespace OSIRT.UI
 
         }
 
-        //TODO: popping this here, we have duplicate logic in the main browser
-        private int GetDocHeight()
-        {
-            try
-            {
-                int scrollHeight = 0;
-                var task = uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser()?.MainFrame?.EvaluateScriptAsync("(function() { var body = document.body, html = document.documentElement; return  Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ); })();", null);
-                task.Wait();
-                var response = task.Result;
-                scrollHeight = (int)response.Result;
-                return scrollHeight;
-            }
-            catch
-            {
-                MessageBox.Show("Unable to take full page capture. Consider using video capture, snippet or current view capture tools.", "Unable to take full page screenshot", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return 0;
-            }
-        }
 
-        private bool stop = true;
-        private CancellationTokenSource cts;
         private async void autoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             uiStopAutoScrollingToolStripButton.Visible = true;
+            autoscrollstartToolStripMenuItem.Enabled = false;
             string scroll =
             @"
-                docHeight = document.body.scrollHeight;
+                var body = document.body, html = document.documentElement; 
+                docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
 	            window.scrollTo(0, docHeight);
            
 	            if (prevDocHeight == docHeight){
                     clearInterval(pidScrollToEnd);
+                    return true;
                 }
 
                 prevDocHeight = docHeight;
             ";
 
-            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, document.body.scrollHeight); pidScrollToEnd = setInterval(function(){" + scroll + "}, 750); })();";
-
+            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}, 750); })();";
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
-
-            //int previousDocHeight = GetDocHeight();
-            //int currentDocHeight = 0;
-
-            ////TODO: make the stop button visible in tool bar
-            //uiStopAutoScrollingToolStripButton.Visible = true;
-            //if (cts == null)
-            //{
-            //    stop = true;
-            //    cts = new CancellationTokenSource();
-            //}
-
-            //int n = 0;
-            //while (n++ < 500 && stop)
-            //{
-
-            //    //if (currentDocHeight == previousDocHeight)
-            //    //{
-            //    //    cts.Cancel();
-            //    //    uiStopAutoScrollingToolStripButton.Visible = false;
-            //    //}
-
-            //    await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0, window.pageYOffset +" + (n * 2500) + "); })();");
-            //    await Task.Delay(175);
-            //    try
-            //    {
-            //        if (cts.IsCancellationRequested)
-            //        {
-            //            stop = false;
-            //            cts = null;
-            //        }
-            //    }
-            //    catch { /*general catch as cts can throw a nullreference*/ }
-
-
-            //    currentDocHeight = GetDocHeight();
-            //    Console.WriteLine("PREVIOUS: " + previousDocHeight + " CURRENT| " + currentDocHeight);
-            //}      
         }
 
 
         private async void toolStripButton1_Click(object sender, EventArgs e)
         {
             uiStopAutoScrollingToolStripButton.Visible = false;
-            //TODO: stop button needs to be visible for all tabs, still.
+            autoscrollstartToolStripMenuItem.Enabled = true;
+            //TODO: stop button needs to be visible for all tabs, still as the javascript could be executing on another.
+            //perhaps, in the mean time, only allow one tab to auto-scroll
+
+            //also, when the page hits the bottom the stop button needs to be hidden
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("clearInterval(pidScrollToEnd);");
+        }
+
+        private async void twitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //add is on twitter method and put in conext menu
+            string source = await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.GetSourceAsync();
+            string id = new InstagramIdFinder().FindId(source);
+          
+            this.InvokeIfRequired(() => new IdDetailsForm(id, "Instagram").Show());
+
         }
     }
 }

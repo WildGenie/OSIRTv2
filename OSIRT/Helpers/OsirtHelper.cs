@@ -208,12 +208,16 @@ namespace OSIRT.Helpers
             }
 
             return result;
+        }
 
+        public static bool IsOnTwitter(string url)
+        {
+            string pattern = @"http(?:s)?:\/\/(?:www.)?twitter\.com\/([a-zA-Z0-9_]+)";
+            return Regex.Match(url, pattern).Success;
         }
 
         public static bool IsOnGoogle(string url)
         {
-
             return url.StartsWith("http://www.google") || url.StartsWith("https://www.google") || url.StartsWith("http://google") || url.StartsWith("https://google");
         }
 

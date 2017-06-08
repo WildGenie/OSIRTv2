@@ -1,6 +1,6 @@
 ﻿namespace OSIRT.UI
 {
-    partial class FacebookDetailsForm
+    partial class IdDetailsForm
     {
         /// <summary>
         /// Required designer variable.

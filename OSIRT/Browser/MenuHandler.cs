@@ -24,12 +24,14 @@ namespace OSIRT.Browser
         private const int ReverseImageSearch = 26509;
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
+        private const int ViewTwitterId = 26512;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler DownloadYouTubeVideo = delegate { };
         public event EventHandler ViewImageExif = delegate { };
         public event EventHandler ViewFacebookIdNum = delegate { };
+        public event EventHandler ViewTwitterIdNum = delegate { };
         public event EventHandler OpenInNewTabContextMenu = delegate { };
         public event EventHandler CopyImageLocation = delegate { };
         public event EventHandler ReverseImgSearch = delegate { };
@@ -69,7 +71,11 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
             }
-           
+            if (OsirtHelper.IsOnTwitter(browserControl.Address))
+            {
+                model.AddItem((CefMenuCommand)ViewTwitterId, "Show Twitter profile ID");
+            }
+
             model.AddItem((CefMenuCommand)ViewSource, "View page source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
             model.AddItem((CefMenuCommand)Bookmark, "Add page to bookmarks");
@@ -105,6 +111,10 @@ namespace OSIRT.Browser
             if ((int)commandId == ViewFacebookId)
             {
                 ViewFacebookIdNum?.Invoke(this, EventArgs.Empty);
+            }
+            if ((int)commandId == ViewTwitterId)
+            {
+                ViewTwitterIdNum?.Invoke(this, EventArgs.Empty);
             }
             if ((int)commandId == CopyImgLocation)
             {

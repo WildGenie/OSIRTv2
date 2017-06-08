@@ -26,6 +26,7 @@ using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
 
 namespace OSIRT.Browser
 {
@@ -65,6 +66,7 @@ namespace OSIRT.Browser
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
             handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
+            handler.ViewTwitterIdNum += Handler_ViewTwitterIdNum;
             handler.CopyImageLocation += Handler_CopyImageLocation; ;
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             handler.ReverseImgSearch += Handler_ReverseImgSearch;
@@ -87,6 +89,8 @@ namespace OSIRT.Browser
             IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
             
         }
+
+       
 
         private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
         {
@@ -172,10 +176,22 @@ namespace OSIRT.Browser
             OpenNewTabContextMenu?.Invoke(this, (NewTabEventArgs)e);
         }
 
-        private async void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        private  void Handler_ViewTwitterIdNum(object sender, EventArgs e)
+        {
+            GetAndDisplayId(new TwitterIdFinder(), "Twitter");
+        }
+
+        private  void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        {
+
+            GetAndDisplayId(new FacebookIdFinder(), "Facebook");
+        }
+
+        private async void GetAndDisplayId(IIdFinder finder, string title)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            this.InvokeIfRequired(() => new FacebookDetailsForm(source).Show());
+            string id =  finder.FindId(source);
+            this.InvokeIfRequired(() => new IdDetailsForm(id, title).Show());
         }
 
         private void Handler_ViewImageExif(object sender, EventArgs e)
