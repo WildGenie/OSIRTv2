@@ -46,6 +46,7 @@ namespace OSIRT.Browser
         public event EventHandler DownloadStatusChanged = delegate { };
         public event EventHandler DownloadCompleted = delegate { };
         public event EventHandler AddBookmark = delegate { };
+        public event EventHandler SearchText = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 600;
@@ -72,6 +73,7 @@ namespace OSIRT.Browser
             handler.ReverseImgSearch += Handler_ReverseImgSearch;
             handler.ExtractLinks += Handler_ExtractLinks;
             handler.AddPageToBookmarks += Handler_AddPageToBookmarks;
+            handler.SearchText += Handler_SearchText;
            
             MenuHandler = handler;
             //MouseMove += ExtendedBrowser_MouseMove;
@@ -90,7 +92,10 @@ namespace OSIRT.Browser
             
         }
 
-       
+        private void Handler_SearchText(object sender, EventArgs e)
+        {
+            SearchText?.Invoke(this, (ExifViewerEventArgs)e);
+        }
 
         private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
         {

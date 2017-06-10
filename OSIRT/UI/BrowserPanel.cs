@@ -117,9 +117,15 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
             uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
             uiTabbedBrowserControl.CurrentTab.Browser.AddBookmark += Browser_AddBookmark;
+            uiTabbedBrowserControl.CurrentTab.Browser.SearchText += Browser_SearchText;
         }
 
+        private void Browser_SearchText(object sender, EventArgs e)
+        {
+            string text = ((ExifViewerEventArgs)e).ImageUrl;
 
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab("https://www.google.co.uk/search?q=" + text));
+        }
 
         private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
         {
@@ -677,14 +683,21 @@ namespace OSIRT.UI
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("clearInterval(pidScrollToEnd);");
         }
 
-        private async void twitterToolStripMenuItem_Click(object sender, EventArgs e)
+        private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //add is on twitter method and put in conext menu
-            string source = await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.GetSourceAsync();
-            string id = new InstagramIdFinder().FindId(source);
-          
-            this.InvokeIfRequired(() => new IdDetailsForm(id, "Instagram").Show());
+            new BookmarkManager().Show();
 
+            ////add is on twitter method and put in conext menu
+            //string source = await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.GetSourceAsync();
+            //string id = new InstagramIdFinder().FindId(source);
+          
+            //this.InvokeIfRequired(() => new IdDetailsForm(id, "Instagram").Show());
+
+        }
+
+        private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new BookmarkManager().Show();
         }
     }
 }

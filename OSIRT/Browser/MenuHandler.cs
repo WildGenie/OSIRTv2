@@ -25,6 +25,7 @@ namespace OSIRT.Browser
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
         private const int ViewTwitterId = 26512;
+        private const int SearchSelectedText = 26513;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -37,11 +38,18 @@ namespace OSIRT.Browser
         public event EventHandler ReverseImgSearch = delegate { };
         public event EventHandler ExtractLinks = delegate { };
         public event EventHandler AddPageToBookmarks = delegate { };
+        public event EventHandler SearchText = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
             model.Clear();
+
+            if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
+            {
+                model.AddItem((CefMenuCommand)SearchSelectedText, "Search selected text using Google");
+                model.AddSeparator();
+            }
 
             if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
             {
@@ -131,6 +139,10 @@ namespace OSIRT.Browser
             if((int)commandId == Bookmark)
             {
                 AddPageToBookmarks?.Invoke(this, EventArgs.Empty);
+            }
+            if ((int)commandId == SearchSelectedText)
+            {
+                SearchText?.Invoke(this, new ExifViewerEventArgs(parameters.SelectionText));
             }
 
             return false;

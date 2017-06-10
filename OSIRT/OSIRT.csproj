@@ -341,6 +341,12 @@
     <Compile Include="UI\AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BookmarkManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BookmarkManager.Designer.cs">
+      <DependentUpon>BookmarkManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BrowserOptions\BrowserOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -589,6 +595,9 @@
     <EmbeddedResource Include="UI\AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\BookmarkManager.resx">
+      <DependentUpon>BookmarkManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserOptions\BrowserOptionsForm.resx">
       <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -822,6 +831,8 @@
     <EmbeddedResource Include="Resources\TextSaveableTypes.txt" />
     <None Include="Resources\star.png" />
     <None Include="Resources\scroll_bar.png" />
+    <None Include="Resources\book_open.png" />
+    <None Include="Resources\book_picture.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
