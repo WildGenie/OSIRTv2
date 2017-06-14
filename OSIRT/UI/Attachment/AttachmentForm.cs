@@ -68,6 +68,40 @@ namespace OSIRT.UI.Attachment
            
             uiFileDetailsLabel.Text = "Click 'Browse...' to select a file to attach.";
             uiFileIconPictureBox.SizeMode = PictureBoxSizeMode.CenterImage;
+
+
+            //for attachment drag and drop.. possible feature
+            //AllowDrop = true;
+            //DragEnter += AttachmentForm_DragEnter;
+            //DragDrop += AttachmentForm_DragDrop;
+        }
+
+        private void AttachmentForm_DragDrop(object sender, DragEventArgs e)
+        {
+            //string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            ////foreach (string file in files) Console.WriteLine(file);
+
+            //if (string.IsNullOrWhiteSpace(uiNoteSpellBox.Text))
+            //{
+            //    MessageBox.Show(strings.Please_enter_a_note);
+            //    return;
+            //}
+            //note = uiNoteSpellBox.Text;
+            //string destination = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Attachment), Path.GetFileName(fileWithPath));
+            //if (File.Exists(destination))
+            //{
+            //    MessageBox.Show(strings.File_with_this_name_already_exists_in_the_attachment_folder);
+            //    return;
+            //}
+
+            //uiAttachFileProgressPanel.Visible = true;
+            //uiCancelButton.Enabled = false;
+            //CopyFile(files[0], destination);
+        }
+
+        private void AttachmentForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
         }
 
         private void uiAttachButton_Click(object sender, EventArgs e)

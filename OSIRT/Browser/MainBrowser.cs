@@ -138,9 +138,10 @@ namespace OSIRT.Browser
 
         private async void Handler_ExtractLinks(object sender, EventArgs e)
         {
-            string source = await GetBrowser().MainFrame.GetSourceAsync();
+            
             try
             {
+                string source = await GetBrowser().MainFrame.GetSourceAsync();
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(source);
                 string links = "";

@@ -558,6 +558,7 @@
       <DependentUpon>VideoPreviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="WebImageDownloader.cs" />
+    <Compile Include="YoutubeIdFinder.cs" />
     <EmbeddedResource Include="Browser\BrowserTab.resx">
       <DependentUpon>BrowserTab.cs</DependentUpon>
     </EmbeddedResource>

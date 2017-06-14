@@ -581,8 +581,6 @@ namespace OSIRT.UI
         {
             string search = ((ExifViewerEventArgs)e).ImageUrl;
             uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, true, false, false);
-
-
         }
 
         private void shutdownCurrentCaseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -685,19 +683,21 @@ namespace OSIRT.UI
 
         private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new BookmarkManager().Show();
 
-            ////add is on twitter method and put in conext menu
-            //string source = await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.GetSourceAsync();
-            //string id = new InstagramIdFinder().FindId(source);
-          
-            //this.InvokeIfRequired(() => new IdDetailsForm(id, "Instagram").Show());
 
         }
 
         private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new BookmarkManager().Show();
+            BookmarkManager bm = new BookmarkManager();
+            bm.LinkClicked += Bm_LinkClicked;
+            bm.Show();
+        }
+
+        private void Bm_LinkClicked(object sender, EventArgs e)
+        {
+            string url = ((ExifViewerEventArgs)e).ImageUrl;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
         }
     }
 }

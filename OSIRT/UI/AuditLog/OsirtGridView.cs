@@ -38,19 +38,14 @@ namespace OSIRT.UI.AuditLog
             RowEnter += AuditGridView_RowEnter;
             CellClick += OsirtGridView_CellClick;
 
-
-            //DataBindingComplete += OsirtGridView_DataBindingComplete;
-           
+            DataBindingComplete += OsirtGridView_DataBindingComplete;
         }
 
         private void OsirtGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            var dataGridView = sender as DataGridView;
-            if (dataGridView != null)
+            for (int i = 0; i < 5; i++)
             {
-                dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-                dataGridView.Columns[dataGridView.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
         }
 
