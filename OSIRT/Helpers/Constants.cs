@@ -17,6 +17,13 @@ namespace OSIRT.Helpers
         public static string Artefacts => "artefacts";
 
 
+        //versions
+
+        public static string OsirtVersion = "3.3.0";
+        public static string CefVersion = "(Cef 57.0.0)";
+
+
+
         /// <summary>
         /// Returns the location of the container, with the container's name in the path
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OSIRT.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -16,7 +17,7 @@ namespace OSIRT.UI
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", "3.2.0");
+            this.labelVersion.Text = String.Format("Version {0}", Constants.OsirtVersion);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
