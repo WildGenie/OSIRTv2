@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using CefSharp;
 using System.Threading;
 using System.Net;
+using OSIRT.UI;
 
 namespace OSIRT.Browser
 {
@@ -43,7 +44,6 @@ namespace OSIRT.Browser
 
 
             Controls.Add(Browser);
-
             Browser.Load(url);
         }
 

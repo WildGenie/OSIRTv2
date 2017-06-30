@@ -26,6 +26,8 @@ using Jacksonsoft;
 using OSIRT.UI.CaseClosing;
 using System.Threading.Tasks;
 using System.Threading;
+using Whois.NET;
+using System.Net.Sockets;
 
 namespace OSIRT.UI
 {
@@ -47,13 +49,21 @@ namespace OSIRT.UI
             CheckAdvancedOptions();
             InitializeComponent();
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
+            uiTabbedBrowserControl.BookmarkAdded += UiTabbedBrowserControl_BookmarkAdded;
             PopulateFavourites();
 
             if (isUsingTor)
             {
                 uiURLComboBox.BackColor = Color.MediumPurple;
                 uiURLComboBox.ForeColor = Color.White;
+                whoIsToolStripMenuItem.Enabled = false;
+                whatsTheIPToolStripMenuItem.Enabled = false;
             }
+        }
+
+        private void UiTabbedBrowserControl_BookmarkAdded(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => PopulateFavourites());
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
@@ -63,49 +73,86 @@ namespace OSIRT.UI
                 ShowFindForm();
                 return true;
             }
-            if(keyData == (Keys.Control | Keys.D))
-            {
-                Browser_AddBookmark(this, EventArgs.Empty);
-                return true;
-            }
-
-
+            //if(keyData == (Keys.Control | Keys.D))
+            //{
+            //    Browser_AddBookmark(this, EventArgs.Empty);
+            //    return true;
+            //}
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void PopulateFavourites()
+        public void PopulateFavourites()
         {
             string[] lines = File.ReadAllLines(Constants.Favourites);
             OsirtHelper.Favourites = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
-
-            foreach(var item in OsirtHelper.Favourites)
+            var manager = uiBookmarksToolStripDropDownButton.DropDownItems[0];
+            uiBookmarksToolStripDropDownButton.DropDownItems.Clear();
+            uiBookmarksToolStripDropDownButton.DropDownItems.Add(manager);
+            uiBookmarksToolStripDropDownButton.DropDownItems.Add(new ToolStripSeparator());
+            foreach (var item in OsirtHelper.Favourites)
             {
-                ToolStripMenuItem menuItem = new ToolStripMenuItem();
-                menuItem.Text = item.Key; //this will be the page title
-                menuItem.Tag = item.Value; //this will be the URL
+                ToolStripMenuItem menuItem = new ToolStripMenuItem()
+                {
+                    Text = item.Key, //this will be the page title
+                    Tag = item.Value //this will be the URL
+                };
                 menuItem.Click += MenuItem_Click;
-                uiBookMarksToolStripMenuItem.DropDownItems.Add(menuItem);
+                uiBookmarksToolStripDropDownButton.DropDownItems.Add(menuItem);
             }
-
         }
 
-        private void Browser_AddBookmark(object sender, EventArgs e)
-        {
-       
-            ToolStripMenuItem menuItem = new ToolStripMenuItem();
-            this.InvokeIfRequired(() => OsirtHelper.Favourites[uiTabbedBrowserControl.CurrentTab.Browser.Title] = uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            this.InvokeIfRequired(() => menuItem.Text = uiTabbedBrowserControl.CurrentTab.Browser.Title);
-            this.InvokeIfRequired(() => menuItem.Tag = uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            this.InvokeIfRequired(() => uiBookMarksToolStripMenuItem.DropDownItems.Add(menuItem));
-            menuItem.Click += MenuItem_Click;
-        }
-
+      
         private void MenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(clickedItem.Tag.ToString()));
             //open new tab with url from Tag.
         }
+
+        //TODO: pop these into text files (JSON?) and put the logic in its own class to populate the menu items
+
+        private Dictionary<string, string> searchEngines = new Dictionary<string, string>()
+        {
+            { "Google" , "http://google.co.uk"  },
+            { "Bing" , "http://bing.co.uk" },
+            { "DuckDuckGo" , "http://duckduckgo.co.uk" },
+            { "Yahoo" , "https://search.yahoo.com" }
+        };
+
+        private Dictionary<string, string> osintTools = new Dictionary<string, string>()
+        {
+            { "Intel Techniques" , "https://inteltechniques.com/menu.html"  },
+            { "OSINT Framework" , "http://osintframework.com/" },
+            { "OnStrat" , "http://www.onstrat.com/osint/" },
+            { "Toddington - Quick Guide", "https://1x7meb3bmahktmrx39tuiync-wpengine.netdna-ssl.com/wp-content/uploads/Online-Investigative-Process.pdf" }
+        };
+
+        private Dictionary<string, string> network = new Dictionary<string, string>()
+        {
+            { "CentralOps" , "https://centralops.net/co/"  },
+            { "WhoIsMind" , "http://www.whoismind.com/" },
+            { "MXToolbox", "https://mxtoolbox.com/" }
+        };
+
+        private Dictionary<string, string> peopleSearch = new Dictionary<string, string>()
+        {
+            { "Pipl", "https://pipl.com/" },
+            { "KnowEm", "http://knowem.com/" },
+            { "Namechk (user name checker)", "https://namechk.com/" }
+
+        };
+
+        private Dictionary<string, string> archive = new Dictionary<string, string>()
+        {
+            { "Wayback Machine", "https://archive.org/index.php" },
+            { "Archive.is", "http://archive.is/" }
+        };
+
+        private Dictionary<string, string> torSites = new Dictionary<string, string>()
+        {
+            { "DuckDuckGo", "http://3g2upl4pq6kufc4m.onion/" },
+            { "Hidden Wiki", "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" }
+        };
 
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
@@ -116,16 +163,91 @@ namespace OSIRT.UI
             OsirtVideoCapture.VideoCaptureComplete += osirtVideoCapture_VideoCaptureComplete;
             uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
             uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
-            uiTabbedBrowserControl.CurrentTab.Browser.AddBookmark += Browser_AddBookmark;
-            uiTabbedBrowserControl.CurrentTab.Browser.SearchText += Browser_SearchText;
+
+            //temporary... testing
+            foreach(var k in searchEngines)
+            {
+                var item = new ToolStripMenuItem(k.Key)
+                {
+                    Tag = k.Value,
+                    ToolTipText = k.Value
+                };
+                item.Click += Item_Click;
+                uiSearchEngineToolStripDropDownButton.DropDownItems.Add(item);
+            }
+
+            foreach (var k in osintTools)
+            {
+                var item = new ToolStripMenuItem(k.Key)
+                {
+                    Tag = k.Value,
+                    ToolTipText = k.Value
+                };
+                item.Click += Item_Click;
+                uiOSINTToolStripDropDownButton.DropDownItems.Add(item);
+            }
+
+
+            foreach (var k in network)
+            {
+                var item = new ToolStripMenuItem(k.Key)
+                {
+                    Tag = k.Value,
+                    ToolTipText = k.Value
+                };
+                item.Click += Item_Click;
+                uiNetworkToolStripDropDownButton.DropDownItems.Add(item);
+            }
+
+            foreach(var k in peopleSearch)
+            {
+                var item = new ToolStripMenuItem(k.Key)
+                {
+                    Tag = k.Value,
+                    ToolTipText = k.Value
+                };
+                item.Click += Item_Click;
+                uiPeopleSearchToolStripDropDownButton.DropDownItems.Add(item);
+            }
+
+            foreach (var k in archive)
+            {
+                var item = new ToolStripMenuItem(k.Key)
+                {
+                    Tag = k.Value,
+                    ToolTipText = k.Value
+                };
+                item.Click += Item_Click;
+                uiWebArchiveToolStripDropDownButton.DropDownItems.Add(item);
+            }
+            if(IsUsingTor)
+            {
+                uiTorLinksToolStripDropDownButton.Visible = true;
+                foreach (var k in torSites)
+                {
+                    var item = new ToolStripMenuItem(k.Key)
+                    {
+                        Tag = k.Value,
+                        ToolTipText = k.Value
+                    };
+                    item.Click += Item_Click;
+                    uiTorLinksToolStripDropDownButton.DropDownItems.Add(item);
+                }
+            }
         }
 
-        private void Browser_SearchText(object sender, EventArgs e)
+        private void PopulateBookmarkBar(Dictionary<string,string> bookmarks, ToolStripDropDownButton menu)
         {
-            string text = ((ExifViewerEventArgs)e).ImageUrl;
 
-            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab("https://www.google.co.uk/search?q=" + text));
         }
+
+        private void Item_Click(object sender, EventArgs e)
+        {
+            string url = ((ToolStripMenuItem)sender).Tag.ToString();
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
+
+        }
+
 
         private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
         {
@@ -502,7 +624,7 @@ namespace OSIRT.UI
 
         private void LoadTor(object sender, WaitWindowEventArgs e)
         {
-            System.Threading.Thread.Sleep(5000); //give a chance for the tor process to load
+            Thread.Sleep(5000); //give a chance for the tor process to load
 
             ClientRemoteParams remoteParams = new ClientRemoteParams();
             remoteParams.Address = "127.0.0.1";
@@ -567,19 +689,19 @@ namespace OSIRT.UI
 
         private void FindForm_FindPrevious(object sender, EventArgs e)
         {
-            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            string search = ((TextEventArgs)e).Result;
             uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, false, false, false);
         }
 
         private void FindForm_FindNext(object sender, EventArgs e)
         {
-            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            string search = ((TextEventArgs)e).Result;
             uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, true, false, false);
         }
 
         private void FindForm_FindComplete(object sender, EventArgs e)
         {
-            string search = ((ExifViewerEventArgs)e).ImageUrl;
+            string search = ((TextEventArgs)e).Result;
             uiTabbedBrowserControl.CurrentTab.Browser.Find(0, search, true, false, false);
         }
 
@@ -597,57 +719,7 @@ namespace OSIRT.UI
             new TextPreviewer(Enums.Actions.Source, "example text").Show();
         }
 
-        private int DPI()
-        {
-            int currentDPI = 0;
-
-            using (Graphics g = this.CreateGraphics())
-            {
-                currentDPI = (int)g.DpiX;
-            }
-            return currentDPI;
-        }
-
-        private void userAgentToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //var task = uiTabbedBrowserControl.CurrentTab.Browser.GetZoomLevelAsync();
-
-            //task.ContinueWith(previous =>
-            //{
-            //    if (previous.Status == System.Threading.Tasks.TaskStatus.RanToCompletion)
-            //    {
-            //        double zoom = 0.0;
-            //        Debug.WriteLine("SCALE: " + DPI());
-            //        switch(DPI())
-            //        {
-            //            case 96: //no scale
-            //                break;
-            //            case 120:
-            //                zoom = -1.15;
-            //                break;
-            //            case 144:
-            //                zoom = -1.6;
-            //                break;
-            //            case 192:
-            //                zoom = -2.1;
-            //                break;
-            //        }
-
-            //        var currentLevel = previous.Result;
-            //        Debug.WriteLine("Current level: " + currentLevel);
-            //        uiTabbedBrowserControl.CurrentTab.Browser.SetZoomLevel(zoom);
-            //    }
-            //    else
-            //    {
-            //        throw new InvalidOperationException("Unexpected failure of calling CEF->GetZoomLevelAsync", previous.Exception);
-            //    }
-            //}, System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously);
-
-
-        }
-
-
-        private async void autoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void AutoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             uiStopAutoScrollingToolStripButton.Visible = true;
             autoscrollstartToolStripMenuItem.Enabled = false;
@@ -665,7 +737,7 @@ namespace OSIRT.UI
                 prevDocHeight = docHeight;
             ";
 
-            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}, 750); })();";
+            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}, 825); })();";
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
         }
 
@@ -689,15 +761,49 @@ namespace OSIRT.UI
 
         private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BookmarkManager bm = new BookmarkManager();
-            bm.LinkClicked += Bm_LinkClicked;
-            bm.Show();
+           
+        }
+
+        private void Bm_BookmarkRemoved(object sender, EventArgs e)
+        {
+            PopulateFavourites();
         }
 
         private void Bm_LinkClicked(object sender, EventArgs e)
         {
-            string url = ((ExifViewerEventArgs)e).ImageUrl;
+            string url = ((TextEventArgs)e).Result;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
+        }
+
+
+      
+
+        private void googleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //CurrentTab_OpenNewTab
+        }
+
+        private void SearchAllWithQueryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var searchForm = new Search())
+            {
+                var dr = searchForm.ShowDialog();
+
+                if (dr != DialogResult.OK) return;
+
+                foreach (var k in searchEngines)
+                {
+                    this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(k.Value + $"/search?q={searchForm.SearchText}"));
+                }
+            }
+        }
+
+        private void manageBookmarksToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            BookmarkManager bm = new BookmarkManager();
+            bm.LinkClicked += Bm_LinkClicked;
+            bm.BookmarkRemoved += Bm_BookmarkRemoved;
+            bm.Show();
         }
     }
 }

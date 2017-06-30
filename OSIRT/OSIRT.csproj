@@ -106,6 +106,9 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="IPAddressRange, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IPAddressRange.1.5.0.0\lib\net40\IPAddressRange.dll</HintPath>
+    </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.4.400\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
       <Private>True</Private>
@@ -167,6 +170,9 @@
     <Reference Include="Whois, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Whois.1.0.0\lib\net45\Whois.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="WhoisClient, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WhoisClient.NET.2.0.1\lib\net45\WhoisClient.dll</HintPath>
     </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
@@ -504,6 +510,12 @@
     <Compile Include="UI\RestoreCaseForm.Designer.cs">
       <DependentUpon>RestoreCaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SelectTimeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -676,6 +688,9 @@
     <EmbeddedResource Include="UI\RestoreCaseForm.resx">
       <DependentUpon>RestoreCaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectTimeForm.resx">
       <DependentUpon>SelectTimeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -834,6 +849,8 @@
     <None Include="Resources\scroll_bar.png" />
     <None Include="Resources\book_open.png" />
     <None Include="Resources\book_picture.png" />
+    <None Include="Resources\man-icon.png" />
+    <None Include="Resources\man-icon2.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

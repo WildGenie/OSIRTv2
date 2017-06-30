@@ -94,7 +94,7 @@ namespace OSIRT.Browser
 
         private void Handler_SearchText(object sender, EventArgs e)
         {
-            SearchText?.Invoke(this, (ExifViewerEventArgs)e);
+            SearchText?.Invoke(this, (TextEventArgs)e);
         }
 
         private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
@@ -168,7 +168,7 @@ namespace OSIRT.Browser
 
         private void Handler_CopyImageLocation(object sender, EventArgs e)
         {
-            string link = ((ExifViewerEventArgs)e).ImageUrl;
+            string link = ((TextEventArgs)e).Result;
             Clipboard.SetText(link);
         }
 
@@ -202,7 +202,7 @@ namespace OSIRT.Browser
 
         private void Handler_ViewImageExif(object sender, EventArgs e)
         {
-            string path = ((ExifViewerEventArgs)e).ImageUrl;
+            string path = ((TextEventArgs)e).Result;
             WebClient webClientexif = new WebClient();
             string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
             webClientexif.DownloadFileAsync(new Uri(path), file, file);

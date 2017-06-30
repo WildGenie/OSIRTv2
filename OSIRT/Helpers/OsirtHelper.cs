@@ -67,7 +67,11 @@ namespace OSIRT.Helpers
             if (!File.Exists(Constants.Favourites)) File.Create(Constants.Favourites);
         }
 
-
+        public static void WriteFavourites()
+        {
+            string[] lines = Favourites.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
+            File.WriteAllLines(Constants.Favourites, lines);
+        }
 
 
         public static bool IsOnFacebook(string url)

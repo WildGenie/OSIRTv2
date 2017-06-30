@@ -16,6 +16,7 @@ namespace OSIRT.UI
     {
 
         public event EventHandler LinkClicked = delegate { };
+        public event EventHandler BookmarkRemoved = delegate { };
 
         public BookmarkManager()
         {
@@ -61,14 +62,15 @@ namespace OSIRT.UI
                     key = row.Cells[1].Value.ToString();
                     OsirtHelper.Favourites.Remove(key);
                     uiBookmarksDataGridView.Rows.Remove(row);
-
                     uiBookmarksDataGridView.Update();
                     uiBookmarksDataGridView.Refresh();
+                    OsirtHelper.WriteFavourites();
+                    BookmarkRemoved?.Invoke(this, EventArgs.Empty);
                     break;
                 case 2:
                     //click link
                     key = row.Cells[2].Value.ToString();
-                    LinkClicked?.Invoke(this, new ExifViewerEventArgs(key));
+                    LinkClicked?.Invoke(this, new TextEventArgs(key));
                     break;
             }
          

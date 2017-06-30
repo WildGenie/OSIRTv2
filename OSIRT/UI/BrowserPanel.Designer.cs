@@ -30,6 +30,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BrowserPanel));
             this.uiBrowserPanel = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.uiSearchEngineToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.searchAllWithQueryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.uiOSINTToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.uiNetworkToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.uiWebArchiveToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.uiPeopleSearchToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.uiBrowserToolStrip = new System.Windows.Forms.ToolStrip();
             this.uiHomeButton = new System.Windows.Forms.ToolStripButton();
             this.uiLBackButton = new System.Windows.Forms.ToolStripButton();
@@ -51,6 +59,7 @@
             this.uiToolsToolStripSplitButton = new System.Windows.Forms.ToolStripSplitButton();
             this.uiBookMarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageBookmarksToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findOnPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,20 +72,25 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
+            this.uiBookmarksToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
+            this.manageBookmarksToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.uiTorLinksToolStripDropDownButton = new System.Windows.Forms.ToolStripDropDownButton();
             this.uiBrowserPanel.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
             this.uiBrowserMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiBrowserPanel
             // 
+            this.uiBrowserPanel.Controls.Add(this.toolStrip1);
             this.uiBrowserPanel.Controls.Add(this.uiBrowserToolStrip);
             this.uiBrowserPanel.Controls.Add(this.uiBrowserMenuStrip);
             this.uiBrowserPanel.Controls.Add(this.uiTabbedBrowserControl);
@@ -85,6 +99,78 @@
             this.uiBrowserPanel.Name = "uiBrowserPanel";
             this.uiBrowserPanel.Size = new System.Drawing.Size(1089, 698);
             this.uiBrowserPanel.TabIndex = 0;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.uiSearchEngineToolStripDropDownButton,
+            this.uiNetworkToolStripDropDownButton,
+            this.uiWebArchiveToolStripDropDownButton,
+            this.uiPeopleSearchToolStripDropDownButton,
+            this.uiOSINTToolStripDropDownButton,
+            this.uiTorLinksToolStripDropDownButton,
+            this.uiBookmarksToolStripDropDownButton});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1089, 25);
+            this.toolStrip1.TabIndex = 3;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // uiSearchEngineToolStripDropDownButton
+            // 
+            this.uiSearchEngineToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.searchAllWithQueryToolStripMenuItem,
+            this.toolStripSeparator3});
+            this.uiSearchEngineToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.magnify_sm;
+            this.uiSearchEngineToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiSearchEngineToolStripDropDownButton.Name = "uiSearchEngineToolStripDropDownButton";
+            this.uiSearchEngineToolStripDropDownButton.Size = new System.Drawing.Size(115, 22);
+            this.uiSearchEngineToolStripDropDownButton.Text = "Search Engines";
+            // 
+            // searchAllWithQueryToolStripMenuItem
+            // 
+            this.searchAllWithQueryToolStripMenuItem.Image = global::OSIRT.Properties.Resources.magnify_sm;
+            this.searchAllWithQueryToolStripMenuItem.Name = "searchAllWithQueryToolStripMenuItem";
+            this.searchAllWithQueryToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.searchAllWithQueryToolStripMenuItem.Text = "Search All With Query";
+            this.searchAllWithQueryToolStripMenuItem.Click += new System.EventHandler(this.SearchAllWithQueryToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(186, 6);
+            // 
+            // uiOSINTToolStripDropDownButton
+            // 
+            this.uiOSINTToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.info;
+            this.uiOSINTToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiOSINTToolStripDropDownButton.Name = "uiOSINTToolStripDropDownButton";
+            this.uiOSINTToolStripDropDownButton.Size = new System.Drawing.Size(102, 22);
+            this.uiOSINTToolStripDropDownButton.Text = "OSINT Tools";
+            // 
+            // uiNetworkToolStripDropDownButton
+            // 
+            this.uiNetworkToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.network_tools;
+            this.uiNetworkToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiNetworkToolStripDropDownButton.Name = "uiNetworkToolStripDropDownButton";
+            this.uiNetworkToolStripDropDownButton.Size = new System.Drawing.Size(113, 22);
+            this.uiNetworkToolStripDropDownButton.Text = "Network Tools";
+            // 
+            // uiWebArchiveToolStripDropDownButton
+            // 
+            this.uiWebArchiveToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.book_picture;
+            this.uiWebArchiveToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiWebArchiveToolStripDropDownButton.Name = "uiWebArchiveToolStripDropDownButton";
+            this.uiWebArchiveToolStripDropDownButton.Size = new System.Drawing.Size(103, 22);
+            this.uiWebArchiveToolStripDropDownButton.Text = "Web Archive";
+            // 
+            // uiPeopleSearchToolStripDropDownButton
+            // 
+            this.uiPeopleSearchToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.man_icon2;
+            this.uiPeopleSearchToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiPeopleSearchToolStripDropDownButton.Name = "uiPeopleSearchToolStripDropDownButton";
+            this.uiPeopleSearchToolStripDropDownButton.Size = new System.Drawing.Size(110, 22);
+            this.uiPeopleSearchToolStripDropDownButton.Text = "People Search";
             // 
             // uiBrowserToolStrip
             // 
@@ -308,6 +394,7 @@
             this.uiBookMarksToolStripMenuItem.Name = "uiBookMarksToolStripMenuItem";
             this.uiBookMarksToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.uiBookMarksToolStripMenuItem.Text = "Bookmarks";
+            this.uiBookMarksToolStripMenuItem.Visible = false;
             // 
             // manageBookmarksToolStripMenuItem
             // 
@@ -315,6 +402,11 @@
             this.manageBookmarksToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.manageBookmarksToolStripMenuItem.Text = "Manage Bookmarks";
             this.manageBookmarksToolStripMenuItem.Click += new System.EventHandler(this.manageBookmarksToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
             // 
             // whoIsToolStripMenuItem
             // 
@@ -359,7 +451,7 @@
             this.autoscrollstartToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.autoscrollstartToolStripMenuItem.Text = "Start Autoscrolling";
             this.autoscrollstartToolStripMenuItem.ToolTipText = "Will automatically scroll the page until stopped";
-            this.autoscrollstartToolStripMenuItem.Click += new System.EventHandler(this.autoscrollstartToolStripMenuItem_Click);
+            this.autoscrollstartToolStripMenuItem.Click += new System.EventHandler(this.AutoscrollstartToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -418,6 +510,16 @@
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            // 
             // BottomToolStripPanel
             // 
             this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
@@ -454,20 +556,37 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // toolStripSeparator2
+            // uiBookmarksToolStripDropDownButton
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(176, 6);
+            this.uiBookmarksToolStripDropDownButton.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageBookmarksToolStripMenuItem1,
+            this.toolStripSeparator4});
+            this.uiBookmarksToolStripDropDownButton.Image = global::OSIRT.Properties.Resources.star;
+            this.uiBookmarksToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiBookmarksToolStripDropDownButton.Name = "uiBookmarksToolStripDropDownButton";
+            this.uiBookmarksToolStripDropDownButton.Size = new System.Drawing.Size(95, 22);
+            this.uiBookmarksToolStripDropDownButton.Text = "Bookmarks";
             // 
-            // uiTabbedBrowserControl
+            // manageBookmarksToolStripMenuItem1
             // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 39);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 659);
-            this.uiTabbedBrowserControl.TabIndex = 2;
+            this.manageBookmarksToolStripMenuItem1.Name = "manageBookmarksToolStripMenuItem1";
+            this.manageBookmarksToolStripMenuItem1.Size = new System.Drawing.Size(179, 22);
+            this.manageBookmarksToolStripMenuItem1.Text = "Manage Bookmarks";
+            this.manageBookmarksToolStripMenuItem1.Click += new System.EventHandler(this.manageBookmarksToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(176, 6);
+            // 
+            // uiTorLinksToolStripDropDownButton
+            // 
+            this.uiTorLinksToolStripDropDownButton.Image = ((System.Drawing.Image)(resources.GetObject("uiTorLinksToolStripDropDownButton.Image")));
+            this.uiTorLinksToolStripDropDownButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiTorLinksToolStripDropDownButton.Name = "uiTorLinksToolStripDropDownButton";
+            this.uiTorLinksToolStripDropDownButton.Size = new System.Drawing.Size(84, 22);
+            this.uiTorLinksToolStripDropDownButton.Text = "Tor Links";
+            this.uiTorLinksToolStripDropDownButton.Visible = false;
             // 
             // BrowserPanel
             // 
@@ -478,6 +597,8 @@
             this.Load += new System.EventHandler(this.BrowserPanel_Load);
             this.uiBrowserPanel.ResumeLayout(false);
             this.uiBrowserPanel.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.uiBrowserToolStrip.ResumeLayout(false);
             this.uiBrowserToolStrip.PerformLayout();
             this.uiBrowserMenuStrip.ResumeLayout(false);
@@ -529,5 +650,17 @@
         private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageBookmarksToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripDropDownButton uiSearchEngineToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripDropDownButton uiOSINTToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripDropDownButton uiPeopleSearchToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem searchAllWithQueryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripDropDownButton uiNetworkToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripDropDownButton uiWebArchiveToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripDropDownButton uiBookmarksToolStripDropDownButton;
+        private System.Windows.Forms.ToolStripMenuItem manageBookmarksToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripDropDownButton uiTorLinksToolStripDropDownButton;
     }
 }

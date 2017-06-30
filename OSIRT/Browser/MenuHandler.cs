@@ -114,7 +114,7 @@ namespace OSIRT.Browser
             }
             if ((int)commandId == ViewImageExifData)
             {
-                ViewImageExif?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl)); 
+                ViewImageExif?.Invoke(this, new TextEventArgs(parameters.SourceUrl)); 
             }
             if ((int)commandId == ViewFacebookId)
             {
@@ -126,11 +126,11 @@ namespace OSIRT.Browser
             }
             if ((int)commandId == CopyImgLocation)
             {
-                CopyImageLocation?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
+                CopyImageLocation?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
             }
             if ((int)commandId == ReverseImageSearch)
             {
-                ReverseImgSearch?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
+                ReverseImgSearch?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
             }
             if ((int)commandId == ExtractAllLinks)
             {
@@ -142,7 +142,7 @@ namespace OSIRT.Browser
             }
             if ((int)commandId == SearchSelectedText)
             {
-                SearchText?.Invoke(this, new ExifViewerEventArgs(parameters.SelectionText));
+                SearchText?.Invoke(this, new TextEventArgs(parameters.SelectionText));
             }
 
             return false;

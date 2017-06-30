@@ -25,6 +25,7 @@ namespace OSIRT.Browser
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
         public event EventHandler ScreenshotComplete;
         public event EventHandler UpdateNavigation;
+        public event EventHandler BookmarkAdded;
 
         public BrowserTab CurrentTab
         {
@@ -119,7 +120,10 @@ namespace OSIRT.Browser
 
         private void CreateTab()
         {
-            CreateTab(UserSettings.Load().Homepage);
+            string url = "";
+                                            //duckduckgo
+            url = BrowserPanel.IsUsingTor ? "http://3g2upl4pq6kufc4m.onion" : UserSettings.Load().Homepage;
+            CreateTab(url);
         }
 
         private void AddBrowserEvents()
@@ -135,6 +139,22 @@ namespace OSIRT.Browser
             CurrentBrowser.OpenTinEye += CurrentBrowser_OpenTinEye;
             CurrentBrowser.DownloadStatusChanged += CurrentBrowser_DownloadStatusChanged;
             CurrentBrowser.DownloadCompleted += CurrentBrowser_DownloadCompleted;
+            CurrentBrowser.SearchText += CurrentBrowser_SearchText;
+            CurrentBrowser.AddBookmark += CurrentBrowser_AddBookmark;
+        }
+
+        private void CurrentBrowser_AddBookmark(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => OsirtHelper.Favourites[CurrentTab.Browser.Title] = CurrentTab.Browser.URL);
+            OsirtHelper.WriteFavourites();
+            BookmarkAdded?.Invoke(this, EventArgs.Empty);
+            //this.InvokeIfRequired(() => PopulateFavourites());
+        }
+
+        private void CurrentBrowser_SearchText(object sender, EventArgs e)
+        {
+            string text = ((TextEventArgs)e).Result;
+            this.InvokeIfRequired(() => CreateTab("https://www.google.co.uk/search?q=" + text));
         }
 
         private void CurrentBrowser_DownloadCompleted(object sender, EventArgs e)
@@ -145,6 +165,7 @@ namespace OSIRT.Browser
             {
                 uiActionLoggedToolStripStatusLabel.Visible = false;
                 uiDownloadProgressBar.Visible = false;
+                //TODO: Open file?
                 MessageBox.Show("Download Completed", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             });
 
@@ -157,8 +178,6 @@ namespace OSIRT.Browser
                 string name = Path.GetFileNameWithoutExtension(savePath) + "_" + (DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss") + extension);
                 savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), name);
             }
-
-        
              File.Copy(dlPath, savePath);
              Logger.Log(new WebpageActionsLog(dl.DownloadItems.Url, Actions.Download, OsirtHelper.GetFileHash(dlPath), Path.GetFileName(savePath), ""));
        
@@ -185,7 +204,7 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_OpenTinEye(object sender, EventArgs e)
         {
-            string url = ((ExifViewerEventArgs)e).ImageUrl;
+            string url = ((TextEventArgs)e).Result;
             this.InvokeIfRequired(() => CreateTab("http://www.tineye.com/search/?url=" + url));
         }
 
