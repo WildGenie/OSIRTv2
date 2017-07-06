@@ -21,11 +21,16 @@ namespace OSIRT.Browser
         private const int ViewImageExifData = 26506;
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
-        private const int ReverseImageSearch = 26509;
+        
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
         private const int ViewTwitterId = 26512;
         private const int SearchSelectedText = 26513;
+
+        private const int ReverseImgSearchSubMenu = 26514;
+        private const int ReverseImageSearchTineye = 26509;
+        private const int ReverseImageSearchGoogle = 26515;
+        private const int ReverseImageSearchYandex = 26516;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
@@ -67,7 +72,11 @@ namespace OSIRT.Browser
                     model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
                 }          
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
-                model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
+
+                var sub = model.AddSubMenu((CefMenuCommand)ReverseImgSearchSubMenu, "Reverse image search tools");
+                sub.AddItem((CefMenuCommand)ReverseImageSearchTineye, "Reverse image search using TinEye");
+                sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
+                sub.AddItem((CefMenuCommand)ReverseImageSearchGoogle, "Reverse image search using Google");
                 model.AddSeparator();
                 //
             }
@@ -128,10 +137,20 @@ namespace OSIRT.Browser
             {
                 CopyImageLocation?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
             }
-            if ((int)commandId == ReverseImageSearch)
+
+            if ((int)commandId == ReverseImageSearchTineye)
             {
-                ReverseImgSearch?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
+                ReverseImgSearch?.Invoke(this, new TextEventArgs("http://www.tineye.com/search/?url=" + parameters.SourceUrl));
             }
+            if ((int)commandId == ReverseImageSearchGoogle)
+            {
+                ReverseImgSearch?.Invoke(this, new TextEventArgs("https://www.google.com/searchbyimage?&image_url=" + Uri.EscapeUriString(parameters.SourceUrl)));
+            }
+            if ((int)commandId == ReverseImageSearchYandex)
+            {
+                ReverseImgSearch?.Invoke(this, new TextEventArgs("https://yandex.com/images/search?url=" + Uri.EscapeUriString(parameters.SourceUrl) + "&rpt=imageview"));
+            }
+
             if ((int)commandId == ExtractAllLinks)
             {
                 ExtractLinks?.Invoke(this, EventArgs.Empty);

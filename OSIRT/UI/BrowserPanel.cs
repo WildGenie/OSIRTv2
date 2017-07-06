@@ -110,50 +110,9 @@ namespace OSIRT.UI
         }
 
         //TODO: pop these into text files (JSON?) and put the logic in its own class to populate the menu items
+        //http://json2csharp.com/
 
-        private Dictionary<string, string> searchEngines = new Dictionary<string, string>()
-        {
-            { "Google" , "http://google.co.uk"  },
-            { "Bing" , "http://bing.co.uk" },
-            { "DuckDuckGo" , "http://duckduckgo.co.uk" },
-            { "Yahoo" , "https://search.yahoo.com" }
-        };
-
-        private Dictionary<string, string> osintTools = new Dictionary<string, string>()
-        {
-            { "Intel Techniques" , "https://inteltechniques.com/menu.html"  },
-            { "OSINT Framework" , "http://osintframework.com/" },
-            { "OnStrat" , "http://www.onstrat.com/osint/" },
-            { "Toddington - Quick Guide", "https://1x7meb3bmahktmrx39tuiync-wpengine.netdna-ssl.com/wp-content/uploads/Online-Investigative-Process.pdf" }
-        };
-
-        private Dictionary<string, string> network = new Dictionary<string, string>()
-        {
-            { "CentralOps" , "https://centralops.net/co/"  },
-            { "WhoIsMind" , "http://www.whoismind.com/" },
-            { "MXToolbox", "https://mxtoolbox.com/" }
-        };
-
-        private Dictionary<string, string> peopleSearch = new Dictionary<string, string>()
-        {
-            { "Pipl", "https://pipl.com/" },
-            { "KnowEm", "http://knowem.com/" },
-            { "Namechk (user name checker)", "https://namechk.com/" }
-
-        };
-
-        private Dictionary<string, string> archive = new Dictionary<string, string>()
-        {
-            { "Wayback Machine", "https://archive.org/index.php" },
-            { "Archive.is", "http://archive.is/" }
-        };
-
-        private Dictionary<string, string> torSites = new Dictionary<string, string>()
-        {
-            { "DuckDuckGo", "http://3g2upl4pq6kufc4m.onion/" },
-            { "Hidden Wiki", "http://zqktlwi4fecvo6ri.onion/wiki/index.php/Main_Page" }
-        };
-
+        
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
             ConfigureUi();
@@ -164,88 +123,15 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.CurrentTab.Browser.StatusMessage += Browser_StatusMessage;
             uiTabbedBrowserControl.UpdateNavigation += UiTabbedBrowserControl_UpdateNavigation;
 
-            //temporary... testing
-            foreach(var k in searchEngines)
-            {
-                var item = new ToolStripMenuItem(k.Key)
-                {
-                    Tag = k.Value,
-                    ToolTipText = k.Value
-                };
-                item.Click += Item_Click;
-                uiSearchEngineToolStripDropDownButton.DropDownItems.Add(item);
-            }
 
-            foreach (var k in osintTools)
-            {
-                var item = new ToolStripMenuItem(k.Key)
-                {
-                    Tag = k.Value,
-                    ToolTipText = k.Value
-                };
-                item.Click += Item_Click;
-                uiOSINTToolStripDropDownButton.DropDownItems.Add(item);
-            }
-
-
-            foreach (var k in network)
-            {
-                var item = new ToolStripMenuItem(k.Key)
-                {
-                    Tag = k.Value,
-                    ToolTipText = k.Value
-                };
-                item.Click += Item_Click;
-                uiNetworkToolStripDropDownButton.DropDownItems.Add(item);
-            }
-
-            foreach(var k in peopleSearch)
-            {
-                var item = new ToolStripMenuItem(k.Key)
-                {
-                    Tag = k.Value,
-                    ToolTipText = k.Value
-                };
-                item.Click += Item_Click;
-                uiPeopleSearchToolStripDropDownButton.DropDownItems.Add(item);
-            }
-
-            foreach (var k in archive)
-            {
-                var item = new ToolStripMenuItem(k.Key)
-                {
-                    Tag = k.Value,
-                    ToolTipText = k.Value
-                };
-                item.Click += Item_Click;
-                uiWebArchiveToolStripDropDownButton.DropDownItems.Add(item);
-            }
-            if(IsUsingTor)
-            {
-                uiTorLinksToolStripDropDownButton.Visible = true;
-                foreach (var k in torSites)
-                {
-                    var item = new ToolStripMenuItem(k.Key)
-                    {
-                        Tag = k.Value,
-                        ToolTipText = k.Value
-                    };
-                    item.Click += Item_Click;
-                    uiTorLinksToolStripDropDownButton.DropDownItems.Add(item);
-                }
-            }
-        }
-
-        private void PopulateBookmarkBar(Dictionary<string,string> bookmarks, ToolStripDropDownButton menu)
-        {
+            var bm = new BookmarksToolbar(uiBookmarkHelperToolStrip);
+            bm.ItemClicked += Bm_ItemClicked;
 
         }
 
-        private void Item_Click(object sender, EventArgs e)
+        private void Bm_ItemClicked(object sender, EventArgs e)
         {
-            string url = ((ToolStripMenuItem)sender).Tag.ToString();
-            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
-
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(((TextEventArgs)e).Result));
         }
 
 
@@ -773,29 +659,6 @@ namespace OSIRT.UI
         {
             string url = ((TextEventArgs)e).Result;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
-        }
-
-
-      
-
-        private void googleToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //CurrentTab_OpenNewTab
-        }
-
-        private void SearchAllWithQueryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (var searchForm = new Search())
-            {
-                var dr = searchForm.ShowDialog();
-
-                if (dr != DialogResult.OK) return;
-
-                foreach (var k in searchEngines)
-                {
-                    this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(k.Value + $"/search?q={searchForm.SearchText}"));
-                }
-            }
         }
 
         private void manageBookmarksToolStripMenuItem1_Click(object sender, EventArgs e)

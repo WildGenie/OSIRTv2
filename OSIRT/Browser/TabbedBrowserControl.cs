@@ -205,7 +205,7 @@ namespace OSIRT.Browser
         private void CurrentBrowser_OpenTinEye(object sender, EventArgs e)
         {
             string url = ((TextEventArgs)e).Result;
-            this.InvokeIfRequired(() => CreateTab("http://www.tineye.com/search/?url=" + url));
+            this.InvokeIfRequired(() => CreateTab(url));
         }
 
         private void CurrentBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)

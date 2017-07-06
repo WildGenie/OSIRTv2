@@ -303,6 +303,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap information {
+            get {
+                object obj = ResourceManager.GetObject("information", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ip {
             get {
                 object obj = ResourceManager.GetObject("ip", resourceCulture);
@@ -326,6 +336,16 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap log {
             get {
                 object obj = ResourceManager.GetObject("log", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap magnifier {
+            get {
+                object obj = ResourceManager.GetObject("magnifier", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +413,29 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap network_firewall {
+            get {
+                object obj = ResourceManager.GetObject("network_firewall", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap network_tools {
             get {
                 object obj = ResourceManager.GetObject("network_tools", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap network_tools1 {
+            get {
+                object obj = ResourceManager.GetObject("network_tools1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -653,6 +693,16 @@ namespace OSIRT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap star1 {
+            get {
+                object obj = ResourceManager.GetObject("star1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap start_rec {
             get {
                 object obj = ResourceManager.GetObject("start_rec", resourceCulture);
@@ -736,6 +786,16 @@ namespace OSIRT.Properties {
         internal static System.Drawing.Bitmap txt_file {
             get {
                 object obj = ResourceManager.GetObject("txt_file", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap user_go {
+            get {
+                object obj = ResourceManager.GetObject("user_go", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

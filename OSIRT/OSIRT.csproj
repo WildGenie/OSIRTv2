@@ -195,6 +195,8 @@
     <Compile Include="BaseAuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BookmarkJsonHelper.cs" />
+    <Compile Include="BookmarksToolbar.cs" />
     <Compile Include="Browser\ChromeWidgetMessageInterceptor.cs" />
     <Compile Include="Browser\DownloadHandler.cs" />
     <Compile Include="Browser\DownloadImageViaContextMenuEventArgs.cs" />
@@ -283,6 +285,7 @@
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Enums\SaveableFileTypes.cs" />
     <Compile Include="Enums\ScreenshotDetails.cs" />
+    <Compile Include="RichTextSpellBox.cs" />
     <Compile Include="RowDetails.cs" />
     <Compile Include="TwitterIdFinder.cs" />
     <Compile Include="UI\AboutOSIRT.cs">
@@ -412,6 +415,12 @@
     </Compile>
     <Compile Include="UI\ExifViewerForm.Designer.cs">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.Designer.cs">
+      <DependentUpon>ExtendedCaseNotes.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\IdDetailsForm.cs">
       <SubType>Form</SubType>
@@ -638,6 +647,9 @@
     <EmbeddedResource Include="UI\ExifViewerForm.resx">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.resx">
+      <DependentUpon>ExtendedCaseNotes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\IdDetailsForm.resx">
       <DependentUpon>IdDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -786,6 +798,7 @@
     <EmbeddedResource Include="Resources\documents-128.png" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\osintbookmarks.json" />
     <None Include="Resources\view-details-128.png" />
   </ItemGroup>
   <ItemGroup>
@@ -851,6 +864,12 @@
     <None Include="Resources\book_picture.png" />
     <None Include="Resources\man-icon.png" />
     <None Include="Resources\man-icon2.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\network_tools1.png" />
+    <None Include="Resources\user_go.png" />
+    <None Include="Resources\network_firewall.png" />
+    <None Include="Resources\star1.png" />
+    <None Include="Resources\information.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
