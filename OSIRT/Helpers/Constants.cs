@@ -19,7 +19,7 @@ namespace OSIRT.Helpers
 
         //versions
 
-        public static string OsirtVersion = "3.3.0";
+        public static string OsirtVersion = "3.3.5";
         public static string CefVersion = "(Cef 57.0.0)";
 
 

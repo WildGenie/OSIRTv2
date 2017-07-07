@@ -500,10 +500,6 @@ namespace OSIRT.UI
 
             process.Start();
             WaitWindow.Show(LoadTor, "Loading Tor... Please Wait. This will take a few seconds.");
-
-            //Client client = Client.Create(createParameters); //causing a FormatException
-            //client.Status.BandwidthChanged += Status_BandwidthChanged;
-            //client.Shutdown += Client_Shutdown;
             Cef.Initialize(settings);
 
         }

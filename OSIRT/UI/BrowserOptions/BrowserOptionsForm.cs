@@ -63,6 +63,13 @@ namespace OSIRT.UI.BrowserOptions
 
         private void BrowserOptionsForm_Load(object sender, EventArgs e)
         {
+            if(!File.Exists(@"Tor\Tor\tor.exe"))
+            {
+                uiBrowserOptionsGroupBox.Enabled = false;
+                uiConnectToTorCheckBox.Visible = false;
+                uiTorDisabledLabel.Visible = true;
+            }
+
 
             if (File.Exists(Constants.ProxySettingsFile))
             {

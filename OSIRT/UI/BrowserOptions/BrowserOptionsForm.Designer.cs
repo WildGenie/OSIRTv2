@@ -46,6 +46,7 @@
             this.uiTorProxyTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uiBrowserProxyTextBox = new System.Windows.Forms.TextBox();
+            this.uiTorDisabledLabel = new System.Windows.Forms.Label();
             this.uiBrowserOptionsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -53,6 +54,7 @@
             // 
             // uiBrowserOptionsGroupBox
             // 
+            this.uiBrowserOptionsGroupBox.Controls.Add(this.uiTorDisabledLabel);
             this.uiBrowserOptionsGroupBox.Controls.Add(this.uiConnectToTorCheckBox);
             this.uiBrowserOptionsGroupBox.Location = new System.Drawing.Point(8, 35);
             this.uiBrowserOptionsGroupBox.Name = "uiBrowserOptionsGroupBox";
@@ -218,6 +220,18 @@
             this.uiBrowserProxyTextBox.Size = new System.Drawing.Size(479, 20);
             this.uiBrowserProxyTextBox.TabIndex = 0;
             // 
+            // uiTorDisabledLabel
+            // 
+            this.uiTorDisabledLabel.AutoSize = true;
+            this.uiTorDisabledLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.uiTorDisabledLabel.ForeColor = System.Drawing.Color.Red;
+            this.uiTorDisabledLabel.Location = new System.Drawing.Point(6, 18);
+            this.uiTorDisabledLabel.Name = "uiTorDisabledLabel";
+            this.uiTorDisabledLabel.Size = new System.Drawing.Size(224, 16);
+            this.uiTorDisabledLabel.TabIndex = 1;
+            this.uiTorDisabledLabel.Text = "Tor is disabled on this machine";
+            this.uiTorDisabledLabel.Visible = false;
+            // 
             // BrowserOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,5 +278,6 @@
         private System.Windows.Forms.TextBox uiTorProxyTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox uiTorControlPortTextBox;
+        private System.Windows.Forms.Label uiTorDisabledLabel;
     }
 }

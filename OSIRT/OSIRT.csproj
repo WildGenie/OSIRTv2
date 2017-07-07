@@ -798,7 +798,6 @@
     <EmbeddedResource Include="Resources\documents-128.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\osintbookmarks.json" />
     <None Include="Resources\view-details-128.png" />
   </ItemGroup>
   <ItemGroup>
