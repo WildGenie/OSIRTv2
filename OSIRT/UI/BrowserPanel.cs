@@ -403,24 +403,30 @@ namespace OSIRT.UI
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            try
-            {
-                string host = url.Host;
-                if (!(host.EndsWith(".com") || host.EndsWith(".net")))
-                {
-                    if (host.StartsWith("www."))
-                        host = host.Remove(0, 4);
-                }
-                var whois = new WhoisLookup().Lookup(host);
-                File.WriteAllText(Constants.TempTextFile, whois.ToString());
-                this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Whois, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
-            }
-            catch
-            {
-                MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining Whois?", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+
+           Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+           string host = url.Host; 
+
+           this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab($"https://centralops.net/co/DomainDossier.aspx?dom_whois=1&net_whois=1&dom_dns=1&addr={host}"));
+            
+            //Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
+            //try
+            //{
+            //    string host = url.Host;
+            //    if (!(host.EndsWith(".com") || host.EndsWith(".net")))
+            //    {
+            //        if (host.StartsWith("www."))
+            //            host = host.Remove(0, 4);
+            //    }
+            //    var whois = new WhoisLookup().Lookup(host);
+            //    File.WriteAllText(Constants.TempTextFile, whois.ToString());
+            //    this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Whois, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining Whois?", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
         }
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -637,7 +643,7 @@ namespace OSIRT.UI
 
         private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            
 
         }
 

@@ -76,6 +76,7 @@ namespace OSIRT.Helpers
                 { Enums.Actions.Whois, @"downloads\who_is" },
                 { Enums.Actions.Ipaddress, @"downloads\ip_addresses" },
                 { Enums.Actions.Links, @"downloads\links" },
+                { Enums.Actions.Text, @"downloads\saved_text" },
                 { Enums.Actions.Exif, @"downloads\exif" },
                 { Enums.Actions.Report, @"reports" },
             };

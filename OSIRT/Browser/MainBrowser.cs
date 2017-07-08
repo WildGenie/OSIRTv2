@@ -74,6 +74,7 @@ namespace OSIRT.Browser
             handler.ExtractLinks += Handler_ExtractLinks;
             handler.AddPageToBookmarks += Handler_AddPageToBookmarks;
             handler.SearchText += Handler_SearchText;
+            handler.SaveSelectedText += Handler_SaveSelectedText;
            
             MenuHandler = handler;
             //MouseMove += ExtendedBrowser_MouseMove;
@@ -90,6 +91,16 @@ namespace OSIRT.Browser
             TitleChanged += ExtendedBrowser_TitleChanged;
             IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
             
+        }
+
+        private void Handler_SaveSelectedText(object sender, EventArgs e)
+        {
+            try
+            {
+                File.WriteAllText(Constants.TempTextFile, ((TextEventArgs)e).Result);
+                this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Text, URL).Show());
+            }
+            catch { MessageBox.Show("Error saving selected text.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
         }
 
         private void Handler_SearchText(object sender, EventArgs e)

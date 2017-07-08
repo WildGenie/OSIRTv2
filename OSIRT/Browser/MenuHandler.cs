@@ -26,6 +26,7 @@ namespace OSIRT.Browser
         private const int Bookmark = 26511;
         private const int ViewTwitterId = 26512;
         private const int SearchSelectedText = 26513;
+        private const int SaveText = 26517;
 
         private const int ReverseImgSearchSubMenu = 26514;
         private const int ReverseImageSearchTineye = 26509;
@@ -44,6 +45,7 @@ namespace OSIRT.Browser
         public event EventHandler ExtractLinks = delegate { };
         public event EventHandler AddPageToBookmarks = delegate { };
         public event EventHandler SearchText = delegate { };
+        public event EventHandler SaveSelectedText = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -53,6 +55,7 @@ namespace OSIRT.Browser
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
             {
                 model.AddItem((CefMenuCommand)SearchSelectedText, "Search selected text using Google");
+                model.AddItem((CefMenuCommand)SaveText, "Save selected text");
                 model.AddSeparator();
             }
 
@@ -163,6 +166,11 @@ namespace OSIRT.Browser
             {
                 SearchText?.Invoke(this, new TextEventArgs(parameters.SelectionText));
             }
+            if ((int)commandId == SaveText)
+            {
+                SaveSelectedText?.Invoke(this, new TextEventArgs(parameters.SelectionText));
+            }
+
 
             return false;
         }

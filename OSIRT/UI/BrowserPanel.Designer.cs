@@ -134,7 +134,6 @@
             this.searchAllWithQueryToolStripMenuItem.Name = "searchAllWithQueryToolStripMenuItem";
             this.searchAllWithQueryToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.searchAllWithQueryToolStripMenuItem.Text = "Search All With Query";
-            //this.searchAllWithQueryToolStripMenuItem.Click += new System.EventHandler(this.SearchAllWithQueryToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
@@ -451,7 +450,7 @@
             this.whoIsToolStripMenuItem.Name = "whoIsToolStripMenuItem";
             this.whoIsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.whoIsToolStripMenuItem.Text = "WhoIs?";
-            this.whoIsToolStripMenuItem.ToolTipText = "Displays a window with the Whois information related to this domain.";
+            this.whoIsToolStripMenuItem.ToolTipText = "Opens a new tab with CentralOps.net information about this domain";
             this.whoIsToolStripMenuItem.Click += new System.EventHandler(this.whoIsToolStripMenuItem_Click);
             // 
             // whatsTheIPToolStripMenuItem
