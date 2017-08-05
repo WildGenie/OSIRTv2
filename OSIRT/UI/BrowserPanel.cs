@@ -56,7 +56,6 @@ namespace OSIRT.UI
             {
                 uiURLComboBox.BackColor = Color.MediumPurple;
                 uiURLComboBox.ForeColor = Color.White;
-                whoIsToolStripMenuItem.Enabled = false;
                 whatsTheIPToolStripMenuItem.Enabled = false;
             }
         }
@@ -106,13 +105,8 @@ namespace OSIRT.UI
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(clickedItem.Tag.ToString()));
-            //open new tab with url from Tag.
         }
 
-        //TODO: pop these into text files (JSON?) and put the logic in its own class to populate the menu items
-        //http://json2csharp.com/
-
-        
         private void BrowserPanel_Load(object sender, EventArgs e)
         {
             ConfigureUi();
@@ -392,8 +386,6 @@ namespace OSIRT.UI
 
                 uiTabbedBrowserControl.TimedScreenshot(timeForm.Time);
             }
-
-
         }
 
         private void uiHomeButton_Click(object sender, EventArgs e)
@@ -403,30 +395,8 @@ namespace OSIRT.UI
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-           Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-           string host = url.Host; 
-
+           string host = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host;
            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab($"https://centralops.net/co/DomainDossier.aspx?dom_whois=1&net_whois=1&dom_dns=1&addr={host}"));
-            
-            //Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            //try
-            //{
-            //    string host = url.Host;
-            //    if (!(host.EndsWith(".com") || host.EndsWith(".net")))
-            //    {
-            //        if (host.StartsWith("www."))
-            //            host = host.Remove(0, 4);
-            //    }
-            //    var whois = new WhoisLookup().Lookup(host);
-            //    File.WriteAllText(Constants.TempTextFile, whois.ToString());
-            //    this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Whois, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
-            //}
-            //catch
-            //{
-            //    MessageBox.Show("Unable to obtain Whois? information for this website.", "Error obtaining Whois?", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    return;
-            //}
         }
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -469,6 +439,17 @@ namespace OSIRT.UI
             //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
 
+
+
+            //settings.CefCommandLineArgs.Add("enable_do_not_track", "enable_do_not_track");
+            //webrtc stuff
+            //settings.CefCommandLineArgs.Add("enable_webrtc", "false");
+            //settings.CefCommandLineArgs.Add("enable-media-stream", "0");
+            //settings.CefCommandLineArgs.Add("webrtc.multiple_routes_enabled", "false");
+            //settings.CefCommandLineArgs.Add("webrtc.nonproxied_udp_enabled", "false");
+            //settings.CefCommandLineArgs.Add("webrtc.ip_handling_policy", "disable_non_proxied_udp");
+            
+
             if (!string.IsNullOrEmpty(userAgent))
             {
                 settings.UserAgent = userAgent;
@@ -486,6 +467,8 @@ namespace OSIRT.UI
 
             //tor settings
             settings.CefCommandLineArgs.Add("proxy-server", "socks5://127.0.0.1:9050");
+
+         
 
             Process[] previous = Process.GetProcessesByName("tor");
             if (previous != null && previous.Length > 0)
@@ -643,7 +626,7 @@ namespace OSIRT.UI
 
         private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+     
 
         }
 
@@ -670,5 +653,18 @@ namespace OSIRT.UI
             bm.BookmarkRemoved += Bm_BookmarkRemoved;
             bm.Show();
         }
+
+        private void uRLListerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string urls = "";
+
+            foreach (var t in uiTabbedBrowserControl.TabPages)
+            {
+                BrowserTab bt = t as BrowserTab;
+                urls += bt.Browser.URL + "\r\n";
+            }
+            new UrlLister(urls.Trim()).Show();
+        }
+
     }
 }

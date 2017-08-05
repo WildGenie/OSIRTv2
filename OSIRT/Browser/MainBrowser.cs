@@ -110,7 +110,23 @@ namespace OSIRT.Browser
 
         private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
         {
+            var browserHost =   GetBrowser().GetHost();
+            var requestContext = browserHost.RequestContext;
+            string errorMessage = "";
+            
+            requestContext.SetPreference("enable_do_not_track", true, out errorMessage);
+            //see: http://magpcss.org/ceforum/viewtopic.php?f=14&t=15194 post by fddima for webrtc stuff
+            requestContext.SetPreference("disable-webrtc", true, out errorMessage);
+            requestContext.SetPreference("enable-webrtc", false, out errorMessage);
+            requestContext.SetPreference("webrtc.multiple_routes_enabled", false, out errorMessage);
+            requestContext.SetPreference("webrtc.nonproxied_udp_enabled", false, out errorMessage);
+            requestContext.SetPreference("webrtc.ip_handling_policy", "disable_non_proxied_udp", out errorMessage);
 
+            //other useful webrtc links
+            //http://magpcss.org/ceforum/viewtopic.php?f=14&t=13350
+            //https://github.com/cefsharp/CefSharp/issues/2059
+
+            //set prefs on init: https://github.com/cefsharp/CefSharp/blob/master/CefSharp.WinForms.Example/BrowserTabUserControl.cs
         }
 
         private void ExtendedBrowser_TitleChanged(object sender, TitleChangedEventArgs e)

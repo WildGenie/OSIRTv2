@@ -27,6 +27,9 @@ namespace OSIRT.Browser
         public event EventHandler UpdateNavigation;
         public event EventHandler BookmarkAdded;
 
+        public DotNetChromeTabs.ChromeTabControl.TabPage.TabPageCollection TabPages { get { return uiBrowserTabControl?.TabPages;  }  }
+
+
         public BrowserTab CurrentTab
         {
             get
@@ -246,7 +249,6 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
         {
-            //CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
             addressBar.Text = CurrentTab.CurrentUrl;
 
             if (e.Url.Equals(((WebBrowser)sender).Url))
@@ -376,6 +378,7 @@ namespace OSIRT.Browser
 
         private void TabbedBrowserControl_Load(object sender, EventArgs e)
         {
+
             if (DesignMode)
             {
                 uiBrowserTabControl.NewTabButton = false;
