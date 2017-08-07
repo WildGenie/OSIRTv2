@@ -92,8 +92,8 @@ namespace OSIRT.UI
             {
                 ToolStripMenuItem menuItem = new ToolStripMenuItem()
                 {
-                    Text = item.Key, //this will be the page title
-                    Tag = item.Value //this will be the URL
+                    Text = item.Key, //page title
+                    Tag = item.Value //URL
                 };
                 menuItem.Click += MenuItem_Click;
                 uiBookmarksToolStripDropDownButton.DropDownItems.Add(menuItem);
@@ -423,6 +423,7 @@ namespace OSIRT.UI
         private void CheckAdvancedOptions()
         {
             CefSettings settings = new CefSettings();
+
             string cefProxy = "";
             string torProxy = "127.0.0.1:8182";
             int controlPort = 9051;
@@ -430,25 +431,21 @@ namespace OSIRT.UI
             if (File.Exists(Constants.ProxySettingsFile))
             {
                 string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
+                
                 var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
                 cefProxy = dict["cefProxy"];
                 torProxy = dict["torProxy"];
                 controlPort = int.Parse(dict["torPort"]);
-            }
+                if(dict.ContainsKey("disablewebrtc"))
+                {
+                    Console.WriteLine("webrtc: " + dict["disablewebrtc"]);
+                    OsirtHelper.DisableWebRtc = Convert.ToBoolean(dict["disablewebrtc"].Trim());
+                }
 
+            }
             //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
-
-
-
-            //settings.CefCommandLineArgs.Add("enable_do_not_track", "enable_do_not_track");
-            //webrtc stuff
-            //settings.CefCommandLineArgs.Add("enable_webrtc", "false");
-            //settings.CefCommandLineArgs.Add("enable-media-stream", "0");
-            //settings.CefCommandLineArgs.Add("webrtc.multiple_routes_enabled", "false");
-            //settings.CefCommandLineArgs.Add("webrtc.nonproxied_udp_enabled", "false");
-            //settings.CefCommandLineArgs.Add("webrtc.ip_handling_policy", "disable_non_proxied_udp");
-            
+   
 
             if (!string.IsNullOrEmpty(userAgent))
             {

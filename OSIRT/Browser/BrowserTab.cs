@@ -42,6 +42,11 @@ namespace OSIRT.Browser
             Browser.MouseMove += Browser_MouseMove;
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
 
+            //BrowserSettings bs = new BrowserSettings();
+            //bs.Javascript = CefState.Disabled;
+            //bs.ImageLoading = CefState.Disabled;
+            //bs.Plugins = CefState.Disabled;
+            //Browser.BrowserSettings = bs;
 
             Controls.Add(Browser);
             Browser.Load(url);

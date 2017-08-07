@@ -20,6 +20,7 @@ namespace OSIRT.Helpers
     public class OsirtHelper
     {
 
+        public static bool DisableWebRtc = false;
         public static Dictionary<string, string> Favourites = new Dictionary<string, string>();
 
         //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
@@ -65,6 +66,11 @@ namespace OSIRT.Helpers
            Directory.CreateDirectory(Constants.TextCacheLocation);
             if (!File.Exists(Constants.ApplicationLog)) File.Create(Constants.ApplicationLog);
             if (!File.Exists(Constants.Favourites)) File.Create(Constants.Favourites);
+            if (!File.Exists(Constants.UserAgentsFile) || new FileInfo(Constants.UserAgentsFile).Length == 0)
+            {
+                string res = GetResource("ua.txt");
+                File.WriteAllText(Constants.UserAgentsFile, res);
+            }
         }
 
         public static void WriteFavourites()

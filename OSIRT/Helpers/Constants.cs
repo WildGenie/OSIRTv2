@@ -18,11 +18,8 @@ namespace OSIRT.Helpers
 
 
         //versions
-
-        public static string OsirtVersion = "3.3.5";
+        public static string OsirtVersion = "3.4.0";
         public static string CefVersion = "(Cef 60.0.0)";
-
-
 
         /// <summary>
         /// Returns the location of the container, with the container's name in the path
@@ -43,6 +40,8 @@ namespace OSIRT.Helpers
         public static readonly string ApplicationLog = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "log.config");
         public static readonly string Favourites = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "favourites.config");
         public static readonly string ProxySettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "proxy.config");
+        public static readonly string BrowserSettingsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "browser.config");
+        public static readonly string UserAgentsFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "ua.config");
 
         private static readonly string TempImgName = "temp.png";
         private static readonly string TempLogoName = "templogo.png";

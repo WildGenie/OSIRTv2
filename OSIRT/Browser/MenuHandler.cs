@@ -50,7 +50,7 @@ namespace OSIRT.Browser
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
-            model.Clear();
+            //model.Clear();
 
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
             {
@@ -78,7 +78,7 @@ namespace OSIRT.Browser
 
                 var sub = model.AddSubMenu((CefMenuCommand)ReverseImgSearchSubMenu, "Reverse image search tools");
                 sub.AddItem((CefMenuCommand)ReverseImageSearchTineye, "Reverse image search using TinEye");
-                sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
+                //sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
                 sub.AddItem((CefMenuCommand)ReverseImageSearchGoogle, "Reverse image search using Google");
                 model.AddSeparator();
                 //
@@ -99,6 +99,15 @@ namespace OSIRT.Browser
             model.AddItem((CefMenuCommand)ViewSource, "View page source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
             model.AddItem((CefMenuCommand)Bookmark, "Add page to bookmarks");
+
+
+            model.Remove(CefMenuCommand.ViewSource);
+            model.Remove(CefMenuCommand.Print);
+            model.Remove(CefMenuCommand.Undo);
+            model.Remove(CefMenuCommand.Redo);
+            model.Remove(CefMenuCommand.Forward);
+            model.Remove(CefMenuCommand.Back);
+
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)

@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using OSIRT.UI;
+using System.Windows.Forms;
 
 namespace OSIRT.Browser
 {
@@ -44,11 +45,20 @@ namespace OSIRT.Browser
 
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
         {
+            //if (request.Url.ToLowerInvariant().Contains("yandex.com"))
+            //{
+            //    MessageBox.Show("This website cannot be loaded");
+            //    return true;
+            //}
+
             return false;
         }
 
         public CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
+
+
+
             //List<string> ua = new List<string>()
             //{
             //    "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser 1.98.744; .NET CLR 3.5.30729)",
@@ -107,7 +117,6 @@ namespace OSIRT.Browser
 
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
-           
         }
 
         public void OnResourceRedirect(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, ref string newUrl)

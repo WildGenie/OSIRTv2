@@ -77,7 +77,6 @@ namespace OSIRT.Browser
             handler.SaveSelectedText += Handler_SaveSelectedText;
            
             MenuHandler = handler;
-            //MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
 
             var downloadHandler = new DownloadHandler();
@@ -89,7 +88,10 @@ namespace OSIRT.Browser
             RequestHandler = new RequestHandler();
             KeyboardHandler = new KeyboardHandler();
             TitleChanged += ExtendedBrowser_TitleChanged;
-            IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
+            if (OsirtHelper.DisableWebRtc)
+            {
+                IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
+            }
             
         }
 
@@ -184,8 +186,7 @@ namespace OSIRT.Browser
             catch
             {
                 MessageBox.Show("Unable to extract any links from this page.", "No links to extract", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            //this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
+            } 
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)
@@ -249,18 +250,12 @@ namespace OSIRT.Browser
             }
         }
 
+
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-
-            //TODO: make sure this is overwriting text, and not appending!
-            //TODO: append website URL to default file name
             File.WriteAllText(Constants.TempTextFile, source);
             this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Source, URL).Show());
-            //this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
-
-
-
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)

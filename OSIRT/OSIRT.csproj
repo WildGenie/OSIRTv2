@@ -65,6 +65,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -214,6 +215,7 @@
     <Compile Include="Browser\ExifViewerEventArgs.cs" />
     <Compile Include="Browser\KeyboardHandler.cs" />
     <Compile Include="Browser\LifespanHandler.cs" />
+    <Compile Include="Browser\MemoryStreamResponseFilter.cs" />
     <Compile Include="Browser\MenuHandler.cs" />
     <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
@@ -887,6 +889,7 @@
     <None Include="Resources\star1.png" />
     <None Include="Resources\information.png" />
     <None Include="Resources\web_layout.png" />
+    <EmbeddedResource Include="Resources\ua.txt" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

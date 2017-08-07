@@ -18,6 +18,7 @@ namespace OSIRT.UI.BrowserOptions
 
         public bool IsUsingTor { get; private set; }
         public string UserAgent{ get; private set; }
+        private string webRtc;
 
         public BrowserOptionsForm()
         {
@@ -39,9 +40,23 @@ namespace OSIRT.UI.BrowserOptions
         private void uiOKButton_Click(object sender, EventArgs e)
         {
             IsUsingTor = uiConnectToTorCheckBox.Checked;
-            UserAgent = uiUserAgentTextBox.Text;
-
+            UserAgent =  uiUserAgentsComboBox.SelectedValue == null ?  "" : uiUserAgentsComboBox.SelectedValue.ToString();
             CheckProxySettings();
+        }
+
+        private void PopulateUserAgents()
+        {
+            if (File.Exists(Constants.UserAgentsFile))
+            {
+                string[] lines = File.ReadAllLines(Constants.UserAgentsFile);
+                var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+                dict.Add("Default User Agent", "");
+
+                uiUserAgentsComboBox.DataSource = new BindingSource(dict, null);
+                uiUserAgentsComboBox.DisplayMember = "Key";
+                uiUserAgentsComboBox.ValueMember = "Value";
+            }
+            uiUserAgentsComboBox.Text = "Default User Agent";
         }
 
         private void CheckProxySettings()
@@ -54,7 +69,8 @@ namespace OSIRT.UI.BrowserOptions
             {
                 { "cefProxy", cefProxy },
                 { "torProxy", string.IsNullOrWhiteSpace(torProxy) ? "127.0.0.1:8182" : torProxy },
-                { "torPort", string.IsNullOrWhiteSpace(torPort) ? "9051" : torPort }
+                { "torPort", string.IsNullOrWhiteSpace(torPort) ? "9051" : torPort },
+                { "disablewebrtc", webRtc }
             };
 
             string[] lines = proxySettings.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
@@ -70,7 +86,6 @@ namespace OSIRT.UI.BrowserOptions
                 uiTorDisabledLabel.Visible = true;
             }
 
-
             if (File.Exists(Constants.ProxySettingsFile))
             {
                 string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
@@ -79,7 +94,11 @@ namespace OSIRT.UI.BrowserOptions
                 uiBrowserProxyTextBox.Text = dict["cefProxy"];
                 uiTorProxyTextBox.Text = dict["torProxy"];
                 uiTorControlPortTextBox.Text = dict["torPort"];
+                webRtc = dict["disablewebrtc"];
             }
+
+            PopulateUserAgents();
+
         }
 
     

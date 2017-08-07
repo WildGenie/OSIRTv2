@@ -57,26 +57,16 @@ namespace DotNetChromeTabs
             contextMenuStrip = new ContextMenuStrip();
             pinItem = new ToolStripMenuItem("Pin tab");
             reopenItem = new ToolStripMenuItem("Reopen last closed tab");
-            displayAllUrls = new ToolStripMenuItem("View all URLs in open tabs");
+
 
             contextMenuStrip.Opening += contextMenuStrip_Opening;
             pinItem.Click += pinItem_Click;
             reopenItem.Click += reopenItem_Click;
-            displayAllUrls.Click += DisplayAllUrls_Click;
-
-            contextMenuStrip.Items.Add(displayAllUrls);
             contextMenuStrip.Items.Add(pinItem);
             contextMenuStrip.Items.Add(new ToolStripSeparator());
             contextMenuStrip.Items.Add(reopenItem);
 
         }
-
-        private void DisplayAllUrls_Click(object sender, EventArgs e)
-        {
-            //iterate over tabs
-            //get URLs (HOW??)
-        }
-
 
 
         #region Windows Functions

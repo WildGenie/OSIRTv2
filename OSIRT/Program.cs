@@ -38,7 +38,6 @@ namespace OSIRT
 #if !DEBUG
             try
             {
-
                 AppDomain.CurrentDomain.UnhandledException += (sender, e)
                 => FatalExceptionObject(e.ExceptionObject);
 
@@ -47,8 +46,8 @@ namespace OSIRT
 
 #endif
 
-                //prevent multi-instance (Matt Davis): http://stackoverflow.com/questions/19147/what-is-the-correct-way-to-create-a-single-instance-application
-                if (mutex.WaitOne(TimeSpan.Zero, true))
+            //prevent multi-instance (Matt Davis): http://stackoverflow.com/questions/19147/what-is-the-correct-way-to-create-a-single-instance-application
+            if (mutex.WaitOne(TimeSpan.Zero, true))
                 {
                     Application.EnableVisualStyles();
                     Application.SetCompatibleTextRenderingDefault(false);
@@ -73,9 +72,7 @@ namespace OSIRT
             }
             catch (Exception e)
             {
-
                 FatalExceptionHandler.Handle(e);
-
             }
 #endif
 
@@ -86,6 +83,7 @@ namespace OSIRT
         //http://stackoverflow.com/questions/406385/handling-unhandled-exceptions-problem
         static void FatalExceptionObject(object exceptionObject)
         {
+
             var huh = exceptionObject as Exception;
             if (huh == null)
             {
