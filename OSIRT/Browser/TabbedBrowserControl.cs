@@ -125,7 +125,7 @@ namespace OSIRT.Browser
         {
             string url = "";
                                             //duckduckgo
-            url = BrowserPanel.IsUsingTor ? "http://3g2upl4pq6kufc4m.onion" : UserSettings.Load().Homepage;
+            url = RuntimeSettings.IsUsingTor ? "http://3g2upl4pq6kufc4m.onion" : UserSettings.Load().Homepage;
             CreateTab(url);
         }
 
@@ -261,7 +261,7 @@ namespace OSIRT.Browser
         {
             bool showPreviewer = ((ScreenshotCompletedEventArgs)e).Successful;
             ScreenshotComplete?.Invoke(this, new EventArgs());
-            if (showPreviewer)
+            if (showPreviewer && !RuntimeSettings.EnableWebDownloadMode)
             {
                 ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
             }
@@ -385,7 +385,7 @@ namespace OSIRT.Browser
             }
             else
             {
-                uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
+                uiBrowserTabControl.NewTabButton = !RuntimeSettings.EnableWebDownloadMode; //UserSettings.Load().AllowMultipleTabs;
                 //
                 CreateTab();
                 CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;

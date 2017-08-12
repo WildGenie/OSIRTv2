@@ -80,12 +80,15 @@
   <ItemGroup>
     <Reference Include="CefSharp">
       <HintPath>..\..\..\..\..\..\Source\Repos\CefSharp\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CefSharp.Core">
       <HintPath>..\..\..\..\..\..\Source\Repos\CefSharp\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.Core.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CefSharp.WinForms">
       <HintPath>..\..\..\..\..\..\Source\Repos\CefSharp\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.WinForms.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Cyotek.Windows.Forms.ImageBox, Version=1.1.5.1, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\CyotekImageBox.1.1.5.1\lib\net20\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
@@ -123,6 +126,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MimeTypeMap, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaTypeMap.2.1.0.0\lib\net40\MimeTypeMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
       <Private>True</Private>
@@ -153,6 +160,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xaml" />
@@ -246,6 +254,7 @@
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\OsirtLogWriter.cs" />
+    <Compile Include="Helpers\RuntimeSettings.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
@@ -282,11 +291,13 @@
     <Compile Include="Loggers\OsirtActionsLog.cs" />
     <Compile Include="Loggers\VideoLog.cs" />
     <Compile Include="Loggers\WebpageActionsLog.cs" />
+    <Compile Include="PageDownloader.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RequestWrapper.cs" />
     <Compile Include="Resources\strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -890,6 +901,7 @@
     <None Include="Resources\information.png" />
     <None Include="Resources\web_layout.png" />
     <EmbeddedResource Include="Resources\ua.txt" />
+    <None Include="Resources\download_cloud1.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

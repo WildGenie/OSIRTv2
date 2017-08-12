@@ -74,6 +74,7 @@
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiStopAutoScrollingToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.uiDownloadWebpageToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -227,7 +228,8 @@
             this.uiAuditLogToolStripButton,
             this.uiOptionsToolStripButton,
             this.uiToolsToolStripSplitButton,
-            this.uiStopAutoScrollingToolStripButton});
+            this.uiStopAutoScrollingToolStripButton,
+            this.uiDownloadWebpageToolStripButton});
             this.uiBrowserToolStrip.Location = new System.Drawing.Point(0, 0);
             this.uiBrowserToolStrip.Name = "uiBrowserToolStrip";
             this.uiBrowserToolStrip.Size = new System.Drawing.Size(1089, 25);
@@ -533,6 +535,18 @@
             this.uiStopAutoScrollingToolStripButton.Visible = false;
             this.uiStopAutoScrollingToolStripButton.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
+            // uiDownloadWebpageToolStripButton
+            // 
+            this.uiDownloadWebpageToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.uiDownloadWebpageToolStripButton.Image = global::OSIRT.Properties.Resources.download_cloud1;
+            this.uiDownloadWebpageToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.uiDownloadWebpageToolStripButton.Name = "uiDownloadWebpageToolStripButton";
+            this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.uiDownloadWebpageToolStripButton.Text = "toolStripButton1";
+            this.uiDownloadWebpageToolStripButton.ToolTipText = "Download webpage";
+            this.uiDownloadWebpageToolStripButton.Visible = false;
+            this.uiDownloadWebpageToolStripButton.Click += new System.EventHandler(this.uiDownloadWebpageToolStripButton_Click);
+            // 
             // uiBrowserMenuStrip
             // 
             this.uiBrowserMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -679,5 +693,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripDropDownButton uiTorLinksToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem uRLListerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton uiDownloadWebpageToolStripButton;
     }
 }

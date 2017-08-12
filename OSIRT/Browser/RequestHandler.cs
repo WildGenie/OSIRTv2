@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using OSIRT.UI;
 using System.Windows.Forms;
+using System.IO;
 
 namespace OSIRT.Browser
 {
     public class RequestHandler : IRequestHandler
     {
         
+        
+
         public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
         {
 
@@ -45,19 +48,11 @@ namespace OSIRT.Browser
 
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
         {
-            //if (request.Url.ToLowerInvariant().Contains("yandex.com"))
-            //{
-            //    MessageBox.Show("This website cannot be loaded");
-            //    return true;
-            //}
-
             return false;
         }
 
         public CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
-
-
 
             //List<string> ua = new List<string>()
             //{
@@ -115,8 +110,31 @@ namespace OSIRT.Browser
            
         }
 
+        //public List<RequestWrapper> Requests { get { return requestList; } }
+
+
+        public static List<RequestWrapper> requestList = new List<RequestWrapper>();
+        private string oldAddress = "";
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
+            //if page is realoded it may be in the cache, stop caching using command line arguements!
+
+            if (oldAddress != browserControl.Address || oldAddress == "")
+            {
+                oldAddress = browserControl.Address;
+                requestList.Clear();
+            }
+
+            requestList.Add(new RequestWrapper(request.Url, request.ResourceType, response.MimeType));
+            //Console.WriteLine("COUNT: " + requestList.Count);
+
+
+            //put resouces in a list (create a wrapper class for IRequest and IResponse)
+            //when page is navigated away from (does OnBeforeBrowse work?), clear the List
+            //user clicks the download button in toolbar, obtain the list and set of WebClient
+            //what about request headers? Set user agent?
+
+
         }
 
         public void OnResourceRedirect(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, ref string newUrl)

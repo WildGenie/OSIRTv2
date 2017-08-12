@@ -27,6 +27,7 @@ using ZXing.Common;
 using ZXing.QrCode;
 using HtmlAgilityPack;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace OSIRT.Browser
 {
@@ -50,6 +51,7 @@ namespace OSIRT.Browser
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 600;
+        private RequestHandler requestHandler;
 
         public string Title { get; private set; }
 
@@ -85,7 +87,8 @@ namespace OSIRT.Browser
             downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
             downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
 
-            RequestHandler = new RequestHandler();
+            requestHandler = new RequestHandler();
+            RequestHandler = requestHandler;
             KeyboardHandler = new KeyboardHandler();
             TitleChanged += ExtendedBrowser_TitleChanged;
             if (OsirtHelper.DisableWebRtc)
@@ -94,6 +97,11 @@ namespace OSIRT.Browser
             }
             
         }
+
+        //public List<RequestWrapper> Requests()
+        //{
+        //    return requestHandler.Requests;
+        //}
 
         private void Handler_SaveSelectedText(object sender, EventArgs e)
         {

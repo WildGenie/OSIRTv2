@@ -16,7 +16,7 @@ namespace OSIRT.UI.BrowserOptions
     public partial class BrowserOptionsForm : Form
     {
 
-        public bool IsUsingTor { get; private set; }
+        //public bool IsUsingTor { get; private set; }
         public string UserAgent{ get; private set; }
         private string webRtc;
 
@@ -39,7 +39,7 @@ namespace OSIRT.UI.BrowserOptions
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
-            IsUsingTor = uiConnectToTorCheckBox.Checked;
+            RuntimeSettings.IsUsingTor = uiConnectToTorCheckBox.Checked;
             UserAgent =  uiUserAgentsComboBox.SelectedValue == null ?  "" : uiUserAgentsComboBox.SelectedValue.ToString();
             CheckProxySettings();
         }
@@ -94,13 +94,31 @@ namespace OSIRT.UI.BrowserOptions
                 uiBrowserProxyTextBox.Text = dict["cefProxy"];
                 uiTorProxyTextBox.Text = dict["torProxy"];
                 uiTorControlPortTextBox.Text = dict["torPort"];
+                if(!dict.ContainsKey("disablewebrtc")) dict.Add("disablewebrtc", "false");
                 webRtc = dict["disablewebrtc"];
             }
-
             PopulateUserAgents();
-
         }
 
-    
+        private void uiDisableJSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.JsDisabled = uiDisableJSCheckBox.Checked;
+        }
+
+        private void uiDisableImagesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.ImagesDisabled = uiDisableImagesCheckBox.Checked;
+        }
+
+        private void uiDisablePluginsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.PluginsDisabled = uiDisableImagesCheckBox.Checked;
+        }
+
+        private void uiDownloadModeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.EnableWebDownloadMode = uiWebDownloadModeCheckBox.Checked;
+            //disable tor option
+        }
     }
 }

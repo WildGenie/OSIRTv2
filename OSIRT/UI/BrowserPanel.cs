@@ -28,6 +28,9 @@ using System.Threading.Tasks;
 using System.Threading;
 using Whois.NET;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
+using System.Net.Http;
 
 namespace OSIRT.UI
 {
@@ -36,14 +39,13 @@ namespace OSIRT.UI
     {
 
         public event EventHandler CaseClosing;
-        public static bool IsUsingTor; //we're being naughter here, as we need to know we're in tor mode and this is the easiest way for now.
         private string userAgent;
         private Form parentForm;
+        private bool isDownloadingPage = false;
+        private IProgress<string> progress;
 
-        public BrowserPanel(bool isUsingTor, string userAgent, Form parent)
+        public BrowserPanel(string userAgent, Form parent)
         {
-            
-            IsUsingTor = isUsingTor;
             this.userAgent = userAgent;
             parentForm = parent;
             CheckAdvancedOptions();
@@ -52,11 +54,17 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.BookmarkAdded += UiTabbedBrowserControl_BookmarkAdded;
             PopulateFavourites();
 
-            if (isUsingTor)
+            if (RuntimeSettings.IsUsingTor)
             {
                 uiURLComboBox.BackColor = Color.MediumPurple;
                 uiURLComboBox.ForeColor = Color.White;
                 whatsTheIPToolStripMenuItem.Enabled = false;
+            }
+            if (RuntimeSettings.EnableWebDownloadMode)
+            {
+                uiURLComboBox.BackColor = Color.CadetBlue;
+                uiURLComboBox.ForeColor = Color.White;
+                uiDownloadWebpageToolStripButton.Visible = true;
             }
         }
 
@@ -72,11 +80,6 @@ namespace OSIRT.UI
                 ShowFindForm();
                 return true;
             }
-            //if(keyData == (Keys.Control | Keys.D))
-            //{
-            //    Browser_AddBookmark(this, EventArgs.Empty);
-            //    return true;
-            //}
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
@@ -100,7 +103,7 @@ namespace OSIRT.UI
             }
         }
 
-      
+
         private void MenuItem_Click(object sender, EventArgs e)
         {
             ToolStripMenuItem clickedItem = (ToolStripMenuItem)sender;
@@ -131,13 +134,13 @@ namespace OSIRT.UI
 
         private void UiTabbedBrowserControl_UpdateNavigation(object sender, EventArgs e)
         {
-            this.InvokeIfRequired(() =>  uiForwardButton.Enabled =  ((NavigationalEventArgs)e).CanGoForward);
+            this.InvokeIfRequired(() => uiForwardButton.Enabled = ((NavigationalEventArgs)e).CanGoForward);
             this.InvokeIfRequired(() => uiLBackButton.Enabled = ((NavigationalEventArgs)e).CanGoBack);
         }
 
         private void Browser_StatusMessage(object sender, StatusMessageEventArgs e)
         {
-            this.InvokeIfRequired(() =>  uiTabbedBrowserControl.SetStatusLabel(e.Value));
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.SetStatusLabel(e.Value));
         }
 
         private void UiTabbedBrowserControl_UpdateForwardAndBackButtons(object sender, EventArgs e)
@@ -149,7 +152,7 @@ namespace OSIRT.UI
 
         private void CurrentTab_AddressChanged(object sender, EventArgs e)
         {
-          
+
         }
 
         private void CurrentTab_OpenNewTab(object sender, EventArgs e)
@@ -188,9 +191,55 @@ namespace OSIRT.UI
         }
 
 
-        private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
+        private async void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
             uiBrowserToolStrip.Enabled = true;
+            uiDownloadWebpageToolStripButton.Enabled = false;
+            output = "";
+             
+            if (RuntimeSettings.EnableWebDownloadMode && isDownloadingPage ) //&& if wanting to download webpage
+            {
+                var progressHandler = new Progress<string>(value =>
+                {
+                    uiTabbedBrowserControl.SetStatusLabel(value);
+                });
+
+                progress = progressHandler as IProgress<string>;
+
+                output += "=================================================================================\r\n";
+                output += "Capture started: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
+                output += "Address: " + uiTabbedBrowserControl.CurrentTab.Browser.URL + "\r\n";
+                output += "=================================================================================\r\n";
+
+
+                PageDownloader downloader = new PageDownloader(uiTabbedBrowserControl);
+                try
+                {
+                    await Task.Run(() => RunAsync());
+                }
+                catch
+                {
+
+                }
+                finally
+                {
+                    isDownloadingPage = false;
+                }
+
+                output += "=================================================================================\r\n";
+                output += "Capture ended: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
+                output += "=================================================================================\r\n";
+
+                File.WriteAllText($@"{directory}\capture.txt", output);
+
+                //TODO: Put screenshot in capture folder
+                //TODO: Zip it up and pop it in the case container
+                //TODO: Hash individual files?
+
+                uiTabbedBrowserControl.SetStatusLabel("Capture Completed");
+                uiDownloadWebpageToolStripButton.Enabled = true;
+            }
+
         }
 
         private void ConfigureUi()
@@ -207,8 +256,8 @@ namespace OSIRT.UI
             {
                 e.Handled = true;
                 string searched = uiURLComboBox.Text;
-                
-                if(searched.StartsWith("?"))
+
+                if (searched.StartsWith("?"))
                 {
                     searched = searched.Remove(0, 1).Replace(" ", "+");
                     searched = "https://www.google.co.uk/search?q=" + searched;
@@ -228,7 +277,7 @@ namespace OSIRT.UI
                 uiBrowserToolStrip.Enabled = false;
                 uiTabbedBrowserControl.FullPageScreenshot();
             }
-            catch(ImageMagick.MagickDelegateErrorException mdee)
+            catch (ImageMagick.MagickDelegateErrorException mdee)
             {
                 MessageBox.Show("There has been an error combining the screenshot (MagickDelegateErrorException). Try taking the screenshot again.", "Error combining screenshot", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ImageDiskCache.RemoveItemsInCache();
@@ -302,7 +351,7 @@ namespace OSIRT.UI
 
         private void uiVideoCaptureButton_Click(object sender, EventArgs e)
         {
-         
+
             //uiTabbedBrowserControl.CurrentTab.Browser.InitialiseMouseTrail();
             //uiTabbedBrowserControl.CurrentTab.Browser.StartMouseTrailTimer();
             IntPtr handle = parentForm.Handle;
@@ -315,7 +364,7 @@ namespace OSIRT.UI
             else
             {
                 OsirtVideoCapture.StopCapture();
-               //uiTabbedBrowserControl.CurrentTab.Browser.DisableMouseTrail();
+                //uiTabbedBrowserControl.CurrentTab.Browser.DisableMouseTrail();
             }
         }
 
@@ -395,8 +444,8 @@ namespace OSIRT.UI
 
         private void whoIsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           string host = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host;
-           this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab($"https://centralops.net/co/DomainDossier.aspx?dom_whois=1&net_whois=1&dom_dns=1&addr={host}"));
+            string host = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab($"https://centralops.net/co/DomainDossier.aspx?dom_whois=1&net_whois=1&dom_dns=1&addr={host}"));
         }
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
@@ -431,12 +480,12 @@ namespace OSIRT.UI
             if (File.Exists(Constants.ProxySettingsFile))
             {
                 string[] lines = File.ReadAllLines(Constants.ProxySettingsFile);
-                
+
                 var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
                 cefProxy = dict["cefProxy"];
                 torProxy = dict["torProxy"];
                 controlPort = int.Parse(dict["torPort"]);
-                if(dict.ContainsKey("disablewebrtc"))
+                if (dict.ContainsKey("disablewebrtc"))
                 {
                     Console.WriteLine("webrtc: " + dict["disablewebrtc"]);
                     OsirtHelper.DisableWebRtc = Convert.ToBoolean(dict["disablewebrtc"].Trim());
@@ -445,15 +494,15 @@ namespace OSIRT.UI
             }
             //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
-   
+
 
             if (!string.IsNullOrEmpty(userAgent))
             {
                 settings.UserAgent = userAgent;
             }
-            if (!IsUsingTor)
+            if (!RuntimeSettings.IsUsingTor)
             {
-                if(!string.IsNullOrWhiteSpace(cefProxy))
+                if (!string.IsNullOrWhiteSpace(cefProxy))
                 {
                     settings.CefCommandLineArgs.Add("proxy-server", cefProxy);
                 }
@@ -465,7 +514,7 @@ namespace OSIRT.UI
             //tor settings
             settings.CefCommandLineArgs.Add("proxy-server", "socks5://127.0.0.1:9050");
 
-         
+
 
             Process[] previous = Process.GetProcessesByName("tor");
             if (previous != null && previous.Length > 0)
@@ -498,7 +547,7 @@ namespace OSIRT.UI
             remoteParams.Address = "127.0.0.1";
             remoteParams.ControlPassword = "";
             remoteParams.ControlPort = 9050;
-        
+
             Client client = Client.CreateForRemote(remoteParams);
             client.Status.BandwidthChanged += Status_BandwidthChanged;
 
@@ -548,7 +597,7 @@ namespace OSIRT.UI
             findForm.FindPrevious += FindForm_FindPrevious;
             findForm.FindClosing += FindForm_FindClosing;
         }
-    
+
 
         private void FindForm_FindClosing(object sender, EventArgs e)
         {
@@ -623,13 +672,13 @@ namespace OSIRT.UI
 
         private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-     
+
 
         }
 
         private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void Bm_BookmarkRemoved(object sender, EventArgs e)
@@ -663,5 +712,110 @@ namespace OSIRT.UI
             new UrlLister(urls.Trim()).Show();
         }
 
+
+        string output = "";
+        string directory;
+
+
+        HttpClient client = new HttpClient();
+        List<RequestWrapper> requests;
+        private async Task RunAsync()
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.Stop();
+            Thread.Sleep(2000);
+
+            directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), DateTime.Now.ToString("ddMMyyyyHHmmss"));
+            Directory.CreateDirectory(directory);
+            requests = RequestHandler.requestList.ToList(); //Could this list actually be an istance so it can work over multiple tabs?
+
+            //requests = uiTabbedBrowserControl.CurrentTab.Browser.Requests().ToList();
+
+
+            //TODO: Set this to OSIRT's UA?
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(@"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36");
+
+            foreach (var r in requests)
+            {
+                try
+                {
+                    using (HttpResponseMessage response = await client.GetAsync(r.RequestUrl))
+                    {
+                        output += "=================================================================================\r\n";
+                        output += "Request URL: " + r.RequestUrl + "\r\n";
+                        output += "Resource Type: " + r.ResourceType + "\r\n";
+                        output += "Mime Type: " + r.MimeType + "\r\n";
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            using (HttpContent content = response.Content)
+                            {
+                                var file = await content.ReadAsByteArrayAsync();
+
+                                if (file.Length > 0 && r.FileName().Length > 0)
+                                {
+                                    using (FileStream fs = new FileStream($@"{directory}\{r.FileName()}", FileMode.Create, FileAccess.Write))
+                                    {
+                                        progress.Report("Downloaded: " + $@"{directory}\{r.FileName()}");
+                                        try
+                                        {
+                                            fs.Write(file, 0, file.Length);
+
+                                            //causing IOException as it has not finished writing
+                                            //string hash = OsirtHelper.GetFileHash($@"{directory}\{r.FileName()}");
+
+
+                                            output += "File saved as: " + r.FileName() + "\r\n";
+                                            //output += "Hash [" + UserSettings.Load().Hash + "]" + hash;
+                                            output += "Download completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
+                                            output += "=================================================================================\r\n";
+                                        }
+                                        catch
+                                        {
+                                            output += "Unabled to save this file \r\n";
+                                            output += "=================================================================================\r\n";
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    output += "Unable to save this file as the Content-Length is 0\r\n";
+                                    output += "=================================================================================\r\n";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            output += $"Unable to save this file, HTTP Status Code returned {response.StatusCode.ToString()}  \r\n";
+                            output += "=================================================================================\r\n";
+                        }
+                    }
+                }
+                catch { }
+            }
+            ImageDiskCache.RemoveItemsInCache();
+        }
+
+
+
+
+        private void uiDownloadWebpageToolStripButton_Click(object sender, EventArgs e)
+        {
+            //disable browser panel and input
+            //need to create a new directory for every download
+            //zip entire directory up and put it in case container
+            //get fullepgae screenshot, too.
+
+            //this generates a fullpage screenshot and if download mode is enabled won't show image previewer
+            //need to delete cache after
+            //downloading starts even though screenshot is still being generated. Perhaps subscribe to screenshot complete event, then start downloading.
+            isDownloadingPage = true;
+            uiTabbedBrowserControl.FullPageScreenshot();
+            //uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete1;
+
+
+            //isDownloadingPage = false;
+        }
+
     }
 }
+

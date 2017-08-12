@@ -1,4 +1,5 @@
 ﻿using OSIRT.Browser;
+using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -23,7 +24,7 @@ namespace OSIRT
             AddMenuItem(Properties.Resources.book_open, "Archive", archive);
             AddMenuItem(Properties.Resources.information, "OSINT", osintTools);
 
-            if(UI.BrowserPanel.IsUsingTor) AddMenuItem(Properties.Resources.network_firewall, "Tor", torSites);
+            if(RuntimeSettings.IsUsingTor) AddMenuItem(Properties.Resources.network_firewall, "Tor", torSites);
         }
 
         private void AddMenuItem(Bitmap icon, string title, Dictionary<string,string> links)

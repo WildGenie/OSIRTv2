@@ -1,4 +1,5 @@
 ﻿using OSIRT.Helpers;
+using System;
 using System.IO;
 using System.Web.Script.Serialization;
 
@@ -8,6 +9,13 @@ namespace OSIRT
     public class CaseSettings<T> where T : new()
     {
         private static readonly string fileName = Path.Combine(Constants.ContainerLocation, "settings.json");
+
+
+        //This would be fine if it wasn't for the hash! Different cases could have different hashes, so having a general "hash" could cause problems.
+        //Having a general settings would be more beneficial, so perhaps just have a simple hash setting file in the case container that's loaded into
+        //a variable in Constants.cs could work.
+
+        //private static readonly string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "settings.json");
 
         public void Save()
         {

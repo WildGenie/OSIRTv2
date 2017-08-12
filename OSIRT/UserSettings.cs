@@ -17,6 +17,11 @@ namespace OSIRT
         public bool EnterInCaseNotesNewLine = false;
         public bool AllowMultipleTabs = true;
 
+        //browser
+        public bool AllowImages = true;
+        public bool AllowJavaScript = true;
+        public bool AllowPlugins = true;
+
         //reporting
         public bool PrintImagesInReport = true;
         public bool PrintAuditNotes = true;
@@ -29,5 +34,9 @@ namespace OSIRT
         public int FramesPerSecond = 30;
         public bool UseStereoMix = true;
         public bool UseMicrophone = false;
+
+
+
+
     }
 }

@@ -34,6 +34,7 @@
             this.uiConnectToTorCheckBox = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.uiUserAgentsComboBox = new System.Windows.Forms.ComboBox();
             this.uiUserAgentListLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label2 = new System.Windows.Forms.Label();
             this.uiOKButton = new System.Windows.Forms.Button();
@@ -45,10 +46,19 @@
             this.uiTorProxyTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uiBrowserProxyTextBox = new System.Windows.Forms.TextBox();
-            this.uiUserAgentsComboBox = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.uiDisablePluginsCheckBox = new System.Windows.Forms.CheckBox();
+            this.uiDisableImagesCheckBox = new System.Windows.Forms.CheckBox();
+            this.uiDisableJSCheckBox = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.uiWebDownloadModeCheckBox = new System.Windows.Forms.CheckBox();
             this.uiBrowserOptionsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiBrowserOptionsGroupBox
@@ -106,6 +116,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Spoof User Agent";
             // 
+            // uiUserAgentsComboBox
+            // 
+            this.uiUserAgentsComboBox.FormattingEnabled = true;
+            this.uiUserAgentsComboBox.Location = new System.Drawing.Point(9, 18);
+            this.uiUserAgentsComboBox.Name = "uiUserAgentsComboBox";
+            this.uiUserAgentsComboBox.Size = new System.Drawing.Size(474, 21);
+            this.uiUserAgentsComboBox.TabIndex = 4;
+            // 
             // uiUserAgentListLinkLabel
             // 
             this.uiUserAgentListLinkLabel.AutoSize = true;
@@ -129,7 +147,7 @@
             // uiOKButton
             // 
             this.uiOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiOKButton.Location = new System.Drawing.Point(423, 324);
+            this.uiOKButton.Location = new System.Drawing.Point(421, 400);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(75, 23);
             this.uiOKButton.TabIndex = 2;
@@ -140,7 +158,7 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(342, 324);
+            this.button2.Location = new System.Drawing.Point(343, 400);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -157,7 +175,7 @@
             this.groupBox2.Controls.Add(this.uiBrowserProxyTextBox);
             this.groupBox2.Location = new System.Drawing.Point(8, 162);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(489, 156);
+            this.groupBox2.Size = new System.Drawing.Size(489, 61);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Proxy Settings";
@@ -209,24 +227,106 @@
             // 
             // uiBrowserProxyTextBox
             // 
-            this.uiBrowserProxyTextBox.Location = new System.Drawing.Point(4, 34);
+            this.uiBrowserProxyTextBox.Location = new System.Drawing.Point(4, 32);
             this.uiBrowserProxyTextBox.Name = "uiBrowserProxyTextBox";
             this.uiBrowserProxyTextBox.Size = new System.Drawing.Size(479, 20);
             this.uiBrowserProxyTextBox.TabIndex = 0;
             // 
-            // uiUserAgentsComboBox
+            // groupBox3
             // 
-            this.uiUserAgentsComboBox.FormattingEnabled = true;
-            this.uiUserAgentsComboBox.Location = new System.Drawing.Point(9, 18);
-            this.uiUserAgentsComboBox.Name = "uiUserAgentsComboBox";
-            this.uiUserAgentsComboBox.Size = new System.Drawing.Size(474, 21);
-            this.uiUserAgentsComboBox.TabIndex = 4;
+            this.groupBox3.Controls.Add(this.label7);
+            this.groupBox3.Controls.Add(this.uiDisablePluginsCheckBox);
+            this.groupBox3.Controls.Add(this.uiDisableImagesCheckBox);
+            this.groupBox3.Controls.Add(this.uiDisableJSCheckBox);
+            this.groupBox3.Location = new System.Drawing.Point(10, 229);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(487, 72);
+            this.groupBox3.TabIndex = 5;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Browser Settings ";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 49);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(224, 13);
+            this.label7.TabIndex = 3;
+            this.label7.Text = "These settings work reset after OSIRT closes.";
+            // 
+            // uiDisablePluginsCheckBox
+            // 
+            this.uiDisablePluginsCheckBox.AutoSize = true;
+            this.uiDisablePluginsCheckBox.Location = new System.Drawing.Point(243, 19);
+            this.uiDisablePluginsCheckBox.Name = "uiDisablePluginsCheckBox";
+            this.uiDisablePluginsCheckBox.Size = new System.Drawing.Size(112, 17);
+            this.uiDisablePluginsCheckBox.TabIndex = 2;
+            this.uiDisablePluginsCheckBox.Text = "Disable All Plugins";
+            this.uiDisablePluginsCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisablePluginsCheckBox.CheckedChanged += new System.EventHandler(this.uiDisablePluginsCheckBox_CheckedChanged);
+            // 
+            // uiDisableImagesCheckBox
+            // 
+            this.uiDisableImagesCheckBox.AutoSize = true;
+            this.uiDisableImagesCheckBox.Location = new System.Drawing.Point(129, 19);
+            this.uiDisableImagesCheckBox.Name = "uiDisableImagesCheckBox";
+            this.uiDisableImagesCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.uiDisableImagesCheckBox.TabIndex = 1;
+            this.uiDisableImagesCheckBox.Text = "Disable Images";
+            this.uiDisableImagesCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisableImagesCheckBox.CheckedChanged += new System.EventHandler(this.uiDisableImagesCheckBox_CheckedChanged);
+            // 
+            // uiDisableJSCheckBox
+            // 
+            this.uiDisableJSCheckBox.AutoSize = true;
+            this.uiDisableJSCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.uiDisableJSCheckBox.Name = "uiDisableJSCheckBox";
+            this.uiDisableJSCheckBox.Size = new System.Drawing.Size(114, 17);
+            this.uiDisableJSCheckBox.TabIndex = 0;
+            this.uiDisableJSCheckBox.Text = "Disable JavaScript";
+            this.uiDisableJSCheckBox.UseVisualStyleBackColor = true;
+            this.uiDisableJSCheckBox.CheckedChanged += new System.EventHandler(this.uiDisableJSCheckBox_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.label3);
+            this.groupBox4.Controls.Add(this.uiWebDownloadModeCheckBox);
+            this.groupBox4.Location = new System.Drawing.Point(8, 307);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(487, 87);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Website Download";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 39);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(442, 39);
+            this.label3.TabIndex = 1;
+            this.label3.Text = resources.GetString("label3.Text");
+            // 
+            // uiWebDownloadModeCheckBox
+            // 
+            this.uiWebDownloadModeCheckBox.AutoSize = true;
+            this.uiWebDownloadModeCheckBox.Checked = true;
+            this.uiWebDownloadModeCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.uiWebDownloadModeCheckBox.Location = new System.Drawing.Point(6, 19);
+            this.uiWebDownloadModeCheckBox.Name = "uiWebDownloadModeCheckBox";
+            this.uiWebDownloadModeCheckBox.Size = new System.Drawing.Size(166, 17);
+            this.uiWebDownloadModeCheckBox.TabIndex = 0;
+            this.uiWebDownloadModeCheckBox.Text = "Enable Web Download Mode";
+            this.uiWebDownloadModeCheckBox.UseVisualStyleBackColor = true;
+            this.uiWebDownloadModeCheckBox.CheckedChanged += new System.EventHandler(this.uiDownloadModeCheckBox_CheckedChanged);
             // 
             // BrowserOptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(506, 354);
+            this.ClientSize = new System.Drawing.Size(506, 432);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.uiOKButton);
@@ -244,6 +344,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -268,5 +372,13 @@
         private System.Windows.Forms.TextBox uiTorControlPortTextBox;
         private System.Windows.Forms.Label uiTorDisabledLabel;
         private System.Windows.Forms.ComboBox uiUserAgentsComboBox;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox uiDisablePluginsCheckBox;
+        private System.Windows.Forms.CheckBox uiDisableImagesCheckBox;
+        private System.Windows.Forms.CheckBox uiDisableJSCheckBox;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.CheckBox uiWebDownloadModeCheckBox;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label7;
     }
 }

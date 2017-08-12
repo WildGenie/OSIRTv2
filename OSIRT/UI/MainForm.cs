@@ -112,7 +112,7 @@ namespace OSIRT.UI
                 if (result != DialogResult.OK)
                     return;
 
-                usingTor = browserOptions.IsUsingTor;
+                usingTor = RuntimeSettings.IsUsingTor;
                 userAgent = browserOptions.UserAgent;
             }
         }
@@ -167,7 +167,7 @@ namespace OSIRT.UI
         private void ShowBrowserPanel()
         {
             Controls.Clear();
-            BrowserPanel browserPanel = new BrowserPanel(usingTor, userAgent, this);
+            BrowserPanel browserPanel = new BrowserPanel(userAgent, this);
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;

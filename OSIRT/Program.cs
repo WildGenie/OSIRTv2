@@ -38,11 +38,14 @@ namespace OSIRT
 #if !DEBUG
             try
             {
+
                 AppDomain.CurrentDomain.UnhandledException += (sender, e)
                 => FatalExceptionObject(e.ExceptionObject);
 
                 Application.ThreadException += (sender, e)
                 => FatalExceptionHandler.Handle(e.Exception);
+
+                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
 
 #endif
 
@@ -64,9 +67,12 @@ namespace OSIRT
                         IntPtr.Zero);
                 }
 
-            //https://github.com/cefsharp/CefSharp/wiki/General-Usage#high-dpi-displayssupport
-            //https://github.com/cefsharp/CefSharp/issues/1757
-            Cef.EnableHighDPISupport();
+                //https://github.com/cefsharp/CefSharp/wiki/General-Usage#high-dpi-displayssupport
+                //https://github.com/cefsharp/CefSharp/issues/1757
+
+                //OSIRT will crash immediately with no error message on Windows 7 machines if cef.core.dll not available
+                Cef.EnableHighDPISupport(); 
+
 
 #if !DEBUG
             }

@@ -66,7 +66,7 @@ namespace OSIRT.Browser
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
-                if (!UI.BrowserPanel.IsUsingTor)
+                if (!RuntimeSettings.IsUsingTor)
                 {
                     if (OsirtHelper.HasJpegExtension(parameters.SourceUrl))
                     {
