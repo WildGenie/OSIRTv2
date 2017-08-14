@@ -8,6 +8,10 @@ using System.Security.Cryptography.X509Certificates;
 using OSIRT.UI;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
+using System.Net.Http;
+using OSIRT.Helpers;
+using System.Security.Cryptography;
 
 namespace OSIRT.Browser
 {
@@ -41,15 +45,25 @@ namespace OSIRT.Browser
             //return false;
         }
 
+        private Dictionary<ulong, MemoryStreamResponseFilter> responseDictionary = new Dictionary<ulong, MemoryStreamResponseFilter>();
         public IResponseFilter GetResourceResponseFilter(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
-            return null;
+            //if (!RuntimeSettings.EnableWebDownloadMode) return null;
+
+
+            var dataFilter = new MemoryStreamResponseFilter();
+            responseDictionary.Add(request.Identifier, dataFilter);
+            return dataFilter;
+
+           
+            //return null;
         }
 
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
         {
             return false;
         }
+
 
         public CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
@@ -69,7 +83,6 @@ namespace OSIRT.Browser
             //request.Headers = headers;
 
             callback.Dispose();
-            //this is the one for setting user agent at run time
             return CefReturnValue.Continue;
         }
 
@@ -110,32 +123,38 @@ namespace OSIRT.Browser
            
         }
 
-        //public List<RequestWrapper> Requests { get { return requestList; } }
 
-
-        public static List<RequestWrapper> requestList = new List<RequestWrapper>();
         private string oldAddress = "";
+        public static List<RequestWrapper> resources = new List<RequestWrapper>();
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
-            //if page is realoded it may be in the cache, stop caching using command line arguements!
 
             if (oldAddress != browserControl.Address || oldAddress == "")
             {
                 oldAddress = browserControl.Address;
-                requestList.Clear();
+                resources.Clear();
             }
 
-            requestList.Add(new RequestWrapper(request.Url, request.ResourceType, response.MimeType));
-            //Console.WriteLine("COUNT: " + requestList.Count);
+            var dict = response.ResponseHeaders.AllKeys.ToDictionary(x => x, x => response.ResponseHeaders[x]);
 
+            //System.Diagnostics.Debug.WriteLine("====================================================");
+            //System.Diagnostics.Debug.WriteLine($"Request Url: {request.Url}");
+            //System.Diagnostics.Debug.WriteLine($"Referrer Url: {request.ReferrerUrl}");
+            //foreach (var k in dict)
+            //{
+            //    System.Diagnostics.Debug.WriteLine($"{k.Key} : {k.Value}");
+            //}
+            //System.Diagnostics.Debug.WriteLine("====================================================");
 
-            //put resouces in a list (create a wrapper class for IRequest and IResponse)
-            //when page is navigated away from (does OnBeforeBrowse work?), clear the List
-            //user clicks the download button in toolbar, obtain the list and set of WebClient
-            //what about request headers? Set user agent?
-
+            MemoryStreamResponseFilter filter;
+            if (responseDictionary.TryGetValue(request.Identifier, out filter))
+            {
+                var data = filter.Data; //put this in a List<Byte[]>
+                resources.Add(new RequestWrapper(request.Url,request.ResourceType, response.MimeType, data));
+            }
 
         }
+
 
         public void OnResourceRedirect(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, ref string newUrl)
         {
@@ -144,6 +163,9 @@ namespace OSIRT.Browser
 
         public bool OnResourceResponse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
+
+            
+
             return false;
         }
 

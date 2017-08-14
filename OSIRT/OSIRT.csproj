@@ -214,7 +214,9 @@
     </Compile>
     <Compile Include="BookmarkJsonHelper.cs" />
     <Compile Include="BookmarksToolbar.cs" />
+    <Compile Include="Browser\AppendResponseFilter.cs" />
     <Compile Include="Browser\ChromeWidgetMessageInterceptor.cs" />
+    <Compile Include="Browser\CookieCollector.cs" />
     <Compile Include="Browser\DownloadHandler.cs" />
     <Compile Include="Browser\DownloadImageViaContextMenuEventArgs.cs" />
     <Compile Include="Browser\DownloadManager\BrowserDownloadManager.cs" />
@@ -228,6 +230,7 @@
     <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
     <Compile Include="Browser\OnPopUpEventArgs.cs" />
+    <Compile Include="Browser\PassThruResponseFilter.cs" />
     <Compile Include="Browser\RequestHandler.cs" />
     <Compile Include="Browser\SearchFinder\Find.cs">
       <SubType>Form</SubType>
@@ -649,6 +652,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserOptions\BrowserOptionsForm.resx">
       <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
@@ -902,6 +906,12 @@
     <None Include="Resources\web_layout.png" />
     <EmbeddedResource Include="Resources\ua.txt" />
     <None Include="Resources\download_cloud1.png" />
+    <None Include="Resources\google_webmaster_tools.png" />
+    <None Include="Resources\cookies.png" />
+    <None Include="Resources\cookies1.png" />
+    <None Include="Resources\arrow_rotate_clockwise1.png" />
+    <None Include="Resources\text_large_cap.png" />
+    <None Include="Resources\cancel.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

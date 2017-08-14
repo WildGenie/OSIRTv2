@@ -59,6 +59,27 @@ namespace OSIRT.Helpers
             return (PasswordScore)score;
         }
 
+        public static string GetSafeFilename(string filename)
+        {
+            try
+            {
+                filename = Path.GetFileName(filename);
+                filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+
+                if (filename.Length > 150)
+                {
+                    filename = filename.Substring(0, 150);
+                }
+
+                if (filename == "") filename = "blank_file_" + DateTime.Now.ToString("ddMMyyyyHHmmss");// + "." + MimeTypeMap.GetExtension(MimeType);
+            }
+            catch
+            {
+                filename = "error_file_" + DateTime.Now.ToString("ddMMyyyyHHmmss");// + "." + MimeTypeMap.GetExtension(MimeType);
+            }
+            return filename;
+        }
+
         public static void CheckCacheDirectoriesExist()
         {
            Directory.CreateDirectory(Constants.CacheLocation);
@@ -340,6 +361,12 @@ namespace OSIRT.Helpers
         public static string GetFileHash(string path)
         {
             return GetFileHash(path, UserSettings.Load().Hash);
+        }
+
+        public static string GetFileHash(byte[] bytes)
+        {
+            HashService hashService = HashServiceFactory.Create(UserSettings.Load().Hash);
+            return hashService.ToHex(hashService.ComputeHash(bytes));
         }
 
 

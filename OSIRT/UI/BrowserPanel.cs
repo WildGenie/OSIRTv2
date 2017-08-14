@@ -31,6 +31,7 @@ using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Net.Http;
+using Ionic.Zip;
 
 namespace OSIRT.UI
 {
@@ -53,6 +54,7 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
             uiTabbedBrowserControl.BookmarkAdded += UiTabbedBrowserControl_BookmarkAdded;
             PopulateFavourites();
+            //uiTabbedBrowserControl.WebpageDownloadCancel += UiTabbedBrowserControl_WebpageDownloadCancel;
 
             if (RuntimeSettings.IsUsingTor)
             {
@@ -67,6 +69,7 @@ namespace OSIRT.UI
                 uiDownloadWebpageToolStripButton.Visible = true;
             }
         }
+
 
         private void UiTabbedBrowserControl_BookmarkAdded(object sender, EventArgs e)
         {
@@ -191,56 +194,17 @@ namespace OSIRT.UI
         }
 
 
-        private async void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
+        private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
             uiBrowserToolStrip.Enabled = true;
-            uiDownloadWebpageToolStripButton.Enabled = false;
-            output = "";
-             
-            if (RuntimeSettings.EnableWebDownloadMode && isDownloadingPage ) //&& if wanting to download webpage
+            if (RuntimeSettings.EnableWebDownloadMode && isDownloadingPage)
             {
-                var progressHandler = new Progress<string>(value =>
-                {
-                    uiTabbedBrowserControl.SetStatusLabel(value);
-                });
-
-                progress = progressHandler as IProgress<string>;
-
-                output += "=================================================================================\r\n";
-                output += "Capture started: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
-                output += "Address: " + uiTabbedBrowserControl.CurrentTab.Browser.URL + "\r\n";
-                output += "=================================================================================\r\n";
-
-
-                PageDownloader downloader = new PageDownloader(uiTabbedBrowserControl);
-                try
-                {
-                    await Task.Run(() => RunAsync());
-                }
-                catch
-                {
-
-                }
-                finally
-                {
-                    isDownloadingPage = false;
-                }
-
-                output += "=================================================================================\r\n";
-                output += "Capture ended: " + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n";
-                output += "=================================================================================\r\n";
-
-                File.WriteAllText($@"{directory}\capture.txt", output);
-
-                //TODO: Put screenshot in capture folder
-                //TODO: Zip it up and pop it in the case container
-                //TODO: Hash individual files?
-
-                uiTabbedBrowserControl.SetStatusLabel("Capture Completed");
-                uiDownloadWebpageToolStripButton.Enabled = true;
+                isDownloadingPage = false;
+                string savedDirectory = (string)WaitWindow.Show(SavePage, "Saving page... Please Wait");
+                MessageBox.Show($"Page saved to: {savedDirectory}", "Save Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-
         }
+
 
         private void ConfigureUi()
         {
@@ -495,6 +459,11 @@ namespace OSIRT.UI
             //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
 
+            if(RuntimeSettings.EnableWebDownloadMode)
+            {
+                settings.CefCommandLineArgs.Add("disable-application-cache", "1");
+            }
+
 
             if (!string.IsNullOrEmpty(userAgent))
             {
@@ -579,7 +548,7 @@ namespace OSIRT.UI
 
         private void forceCacheRefreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
+            //uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
         }
 
 
@@ -670,12 +639,6 @@ namespace OSIRT.UI
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync("clearInterval(pidScrollToEnd);");
         }
 
-        private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
         private void manageBookmarksToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -713,109 +676,75 @@ namespace OSIRT.UI
         }
 
 
-        string output = "";
-        string directory;
 
-
-        HttpClient client = new HttpClient();
-        List<RequestWrapper> requests;
-        private async Task RunAsync()
+        private void SavePage(object sender, WaitWindowEventArgs e)
         {
-            uiTabbedBrowserControl.CurrentTab.Browser.Stop();
-            Thread.Sleep(2000);
-
-            directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), DateTime.Now.ToString("ddMMyyyyHHmmss"));
-            Directory.CreateDirectory(directory);
-            requests = RequestHandler.requestList.ToList(); //Could this list actually be an istance so it can work over multiple tabs?
-
-            //requests = uiTabbedBrowserControl.CurrentTab.Browser.Requests().ToList();
-
-
-            //TODO: Set this to OSIRT's UA?
-            client.DefaultRequestHeaders.UserAgent.ParseAdd(@"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.90 Safari/537.36");
-
-            foreach (var r in requests)
+            string output = "";
+            List<RequestWrapper> resources = RequestHandler.resources.ToList();
+            string folder = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host.Replace(".", "_") + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
+            Directory.CreateDirectory($@"C:\Users\Joe\Desktop\filter\{folder}");
+            foreach (var resource in resources)
             {
-                try
-                {
-                    using (HttpResponseMessage response = await client.GetAsync(r.RequestUrl))
-                    {
-                        output += "=================================================================================\r\n";
-                        output += "Request URL: " + r.RequestUrl + "\r\n";
-                        output += "Resource Type: " + r.ResourceType + "\r\n";
-                        output += "Mime Type: " + r.MimeType + "\r\n";
-
-                        if (response.IsSuccessStatusCode)
-                        {
-                            using (HttpContent content = response.Content)
-                            {
-                                var file = await content.ReadAsByteArrayAsync();
-
-                                if (file.Length > 0 && r.FileName().Length > 0)
-                                {
-                                    using (FileStream fs = new FileStream($@"{directory}\{r.FileName()}", FileMode.Create, FileAccess.Write))
-                                    {
-                                        progress.Report("Downloaded: " + $@"{directory}\{r.FileName()}");
-                                        try
-                                        {
-                                            fs.Write(file, 0, file.Length);
-
-                                            //causing IOException as it has not finished writing
-                                            //string hash = OsirtHelper.GetFileHash($@"{directory}\{r.FileName()}");
-
-
-                                            output += "File saved as: " + r.FileName() + "\r\n";
-                                            //output += "Hash [" + UserSettings.Load().Hash + "]" + hash;
-                                            output += "Download completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
-                                            output += "=================================================================================\r\n";
-                                        }
-                                        catch
-                                        {
-                                            output += "Unabled to save this file \r\n";
-                                            output += "=================================================================================\r\n";
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    output += "Unable to save this file as the Content-Length is 0\r\n";
-                                    output += "=================================================================================\r\n";
-                                }
-                            }
-                        }
-                        else
-                        {
-                            output += $"Unable to save this file, HTTP Status Code returned {response.StatusCode.ToString()}  \r\n";
-                            output += "=================================================================================\r\n";
-                        }
-                    }
-                }
-                catch { }
+                string filename = OsirtHelper.GetSafeFilename(resource.RequestUrl);
+                e.Window.Message = "Saving: " + filename + "...Please Wait";
+                File.WriteAllBytes($@"C:\Users\Joe\Desktop\filter\{folder}\{filename}", resource.Data);
+                output += "=================================================================================\r\n";
+                output += "Request URL: " + resource.RequestUrl + "\r\n";
+                output += "Resource Type: " + resource.ResourceType + "\r\n";
+                output += "Mime Type: " + resource.MimeType + "\r\n";
+                output += "File Saved Location: " + $@"C:\Users\Joe\Desktop\filter\{folder}\{filename}" + "\r\n";
+                output += $"Hash [{UserSettings.Load().Hash.ToUpper()}]: " + OsirtHelper.GetFileHash(resource.Data) + "\r\n";
+                output += "Download completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
+                output += "=================================================================================\r\n";
+                File.AppendAllText($@"C:\Users\Joe\Desktop\filter\{folder}\_capture.txt", output);
+                e.Result = $@"C:\Users\Joe\Desktop\filter\{folder}";
             }
+            File.Copy(Constants.TempImgFile, $@"C:\Users\Joe\Desktop\filter\{folder}\_website.png");
+            CopyPageSaveToCase(folder, e);
+        }
+
+        private void CopyPageSaveToCase(string folder, WaitWindowEventArgs e)
+        {
+            using (ZipFile zip = new ZipFile())
+            {
+                zip.AddDirectory($@"C:\Users\Joe\Desktop\filter\{folder}");
+                zip.Save($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip");
+                e.Window.Message = "Zipping...Please Wait";
+            }
+
+            string copyTo = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Download), Path.GetFileNameWithoutExtension($@"C:\Users\Joe\Desktop\filter\{folder}") + ".zip");
+            File.Copy($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip", copyTo);
+            e.Window.Message = "Logging...Please Wait";
+            Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Enums.Actions.Download, OsirtHelper.GetFileHash(copyTo), Path.GetFileNameWithoutExtension($@"C:\Users\Joe\Desktop\filter\{folder}") + ".zip", "Webpage downloaded"));
+            Thread.Sleep(2000);
+            File.Delete($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip");
             ImageDiskCache.RemoveItemsInCache();
         }
 
-
-
-
         private void uiDownloadWebpageToolStripButton_Click(object sender, EventArgs e)
         {
-            //disable browser panel and input
-            //need to create a new directory for every download
-            //zip entire directory up and put it in case container
-            //get fullepgae screenshot, too.
-
-            //this generates a fullpage screenshot and if download mode is enabled won't show image previewer
-            //need to delete cache after
-            //downloading starts even though screenshot is still being generated. Perhaps subscribe to screenshot complete event, then start downloading.
             isDownloadingPage = true;
             uiTabbedBrowserControl.FullPageScreenshot();
-            //uiTabbedBrowserControl.ScreenshotComplete += UiTabbedBrowserControl_ScreenshotComplete1;
-
-
-            //isDownloadingPage = false;
         }
 
+        private void refreshCacheToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            uiTabbedBrowserControl.CurrentTab.Browser.Reload(true);
+        }
+
+        private void deleteAllCookiesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var cookieManager = Cef.GetGlobalCookieManager();
+            bool deleted = cookieManager.DeleteCookies("", "");
+            if (deleted) { MessageBox.Show("Cookies are deleted.", "Cookies Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information); }
+        }
+
+        private async void getTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string text = await uiTabbedBrowserControl.CurrentTab.Browser.GetTextAsync();
+            File.WriteAllText(Constants.TempTextFile, text);
+            this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Text, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
+        }
     }
 }
 

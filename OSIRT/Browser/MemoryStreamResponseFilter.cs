@@ -34,7 +34,11 @@ namespace OSIRT.Browser
             dataOutWritten = Math.Min(dataInRead, dataOut.Length);
 
             //Important we copy dataIn to dataOut
-            dataIn.CopyTo(dataOut);
+            try
+            {
+                dataIn.CopyTo(dataOut);
+            }
+            catch { }
 
             //Copy data to stream
             dataIn.Position = 0;

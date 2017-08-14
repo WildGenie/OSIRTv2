@@ -67,9 +67,12 @@
             this.whoIsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.whatsTheIPToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.findOnPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.forceCacheRefreshToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.getTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uRLListerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoscrollstartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -413,9 +416,10 @@
             this.whoIsToolStripMenuItem,
             this.whatsTheIPToolStripMenuItem,
             this.findOnPageToolStripMenuItem,
-            this.forceCacheRefreshToolStripMenuItem,
+            this.getTextToolStripMenuItem,
             this.uRLListerToolStripMenuItem,
             this.autoscrollstartToolStripMenuItem,
+            this.deleteCookiesToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutOSIRTToolStripMenuItem,
             this.twitterToolStripMenuItem});
@@ -475,14 +479,14 @@
             this.findOnPageToolStripMenuItem.ToolTipText = "Find specific text on the page, then highlights it";
             this.findOnPageToolStripMenuItem.Click += new System.EventHandler(this.findOnPageToolStripMenuItem_Click);
             // 
-            // forceCacheRefreshToolStripMenuItem
+            // getTextToolStripMenuItem
             // 
-            this.forceCacheRefreshToolStripMenuItem.Image = global::OSIRT.Properties.Resources.arrow_rotate_clockwise;
-            this.forceCacheRefreshToolStripMenuItem.Name = "forceCacheRefreshToolStripMenuItem";
-            this.forceCacheRefreshToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.forceCacheRefreshToolStripMenuItem.Text = "Force Cache Refresh";
-            this.forceCacheRefreshToolStripMenuItem.ToolTipText = "Forces page to reload, while ignoring the cache";
-            this.forceCacheRefreshToolStripMenuItem.Click += new System.EventHandler(this.forceCacheRefreshToolStripMenuItem_Click);
+            this.getTextToolStripMenuItem.Image = global::OSIRT.Properties.Resources.txt_file;
+            this.getTextToolStripMenuItem.Name = "getTextToolStripMenuItem";
+            this.getTextToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.getTextToolStripMenuItem.Text = "Get Text";
+            this.getTextToolStripMenuItem.ToolTipText = "Gets the visible text in the currently open tab";
+            this.getTextToolStripMenuItem.Click += new System.EventHandler(this.getTextToolStripMenuItem_Click);
             // 
             // uRLListerToolStripMenuItem
             // 
@@ -503,6 +507,33 @@
             this.autoscrollstartToolStripMenuItem.ToolTipText = "Will automatically scroll the page until stopped";
             this.autoscrollstartToolStripMenuItem.Click += new System.EventHandler(this.AutoscrollstartToolStripMenuItem_Click);
             // 
+            // deleteCookiesToolStripMenuItem
+            // 
+            this.deleteCookiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.refreshCacheToolStripMenuItem,
+            this.deleteAllCookiesToolStripMenuItem});
+            this.deleteCookiesToolStripMenuItem.Image = global::OSIRT.Properties.Resources.google_webmaster_tools;
+            this.deleteCookiesToolStripMenuItem.Name = "deleteCookiesToolStripMenuItem";
+            this.deleteCookiesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.deleteCookiesToolStripMenuItem.Text = "Browser";
+            // 
+            // refreshCacheToolStripMenuItem
+            // 
+            this.refreshCacheToolStripMenuItem.Name = "refreshCacheToolStripMenuItem";
+            this.refreshCacheToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.refreshCacheToolStripMenuItem.Text = "Refresh Cache";
+            this.refreshCacheToolStripMenuItem.ToolTipText = "Clears the currently open tab browser\'s in memory cache and forces page to redown" +
+    "load";
+            this.refreshCacheToolStripMenuItem.Click += new System.EventHandler(this.refreshCacheToolStripMenuItem_Click);
+            // 
+            // deleteAllCookiesToolStripMenuItem
+            // 
+            this.deleteAllCookiesToolStripMenuItem.Name = "deleteAllCookiesToolStripMenuItem";
+            this.deleteAllCookiesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
+            this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
+            this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -522,7 +553,6 @@
             this.twitterToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.twitterToolStripMenuItem.Text = "tester";
             this.twitterToolStripMenuItem.Visible = false;
-            this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
             // 
             // uiStopAutoScrollingToolStripButton
             // 
@@ -544,7 +574,6 @@
             this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.uiDownloadWebpageToolStripButton.Text = "toolStripButton1";
             this.uiDownloadWebpageToolStripButton.ToolTipText = "Download webpage";
-            this.uiDownloadWebpageToolStripButton.Visible = false;
             this.uiDownloadWebpageToolStripButton.Click += new System.EventHandler(this.uiDownloadWebpageToolStripButton_Click);
             // 
             // uiBrowserMenuStrip
@@ -577,6 +606,7 @@
             this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.CancelButtonVisible = false;
             this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
             this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
             this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
@@ -671,7 +701,6 @@
         private System.Windows.Forms.ToolStripMenuItem whoIsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem whatsTheIPToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutOSIRTToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem forceCacheRefreshToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem findOnPageToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem uiBookMarksToolStripMenuItem;
@@ -694,5 +723,9 @@
         private System.Windows.Forms.ToolStripDropDownButton uiTorLinksToolStripDropDownButton;
         private System.Windows.Forms.ToolStripMenuItem uRLListerToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton uiDownloadWebpageToolStripButton;
+        private System.Windows.Forms.ToolStripMenuItem deleteCookiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem refreshCacheToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteAllCookiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem getTextToolStripMenuItem;
     }
 }

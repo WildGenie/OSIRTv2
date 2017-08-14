@@ -17,19 +17,20 @@ namespace OSIRT
         public string RequestUrl { get; private set; }
         public ResourceType ResourceType { get; private set; }
         public string MimeType { get; private set; }
-        private static int subframe = 0;
-        private static int css = 0;
-        public RequestWrapper(string requestUrl, ResourceType resourceType, string mimeType)
+        public byte[] Data { get; private set; }
+
+
+        public RequestWrapper(string requestUrl, ResourceType resourceType, string mimeType, byte[] data)
         {
             RequestUrl = requestUrl;
             ResourceType = resourceType;
             MimeType = mimeType;
+            Data = data;
         }
 
         public bool IsStringRequest()
         {
             return ResourceType == ResourceType.MainFrame || ResourceType == ResourceType.SubFrame || ResourceType == ResourceType.Script || ResourceType == ResourceType.Stylesheet;
-
         }
 
 
@@ -40,8 +41,8 @@ namespace OSIRT
             switch (ResourceType)
             {
                 case ResourceType.MainFrame:
-                    //filename = "mainframe.html";
-                    filename = GetSafeFilename(filename);
+                    filename = "mainframe.html";
+                    //filename = GetSafeFilename(filename);
                 break;
                 case ResourceType.SubFrame:
                     filename = GetSafeFilename(filename); //$"subframe{++subframe}.html";

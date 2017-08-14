@@ -61,6 +61,7 @@ namespace OSIRT.Browser
         public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
 
+        
             
             //InitialiseMouseTrail();
             var handler = new MenuHandler();

@@ -26,6 +26,7 @@ namespace OSIRT.Browser
         public event EventHandler ScreenshotComplete;
         public event EventHandler UpdateNavigation;
         public event EventHandler BookmarkAdded;
+        public event EventHandler WebpageDownloadCancel;
 
         public DotNetChromeTabs.ChromeTabControl.TabPage.TabPageCollection TabPages { get { return uiBrowserTabControl?.TabPages;  }  }
 
@@ -393,8 +394,21 @@ namespace OSIRT.Browser
             }
         }
 
+     public bool CancelButtonVisible
+     {
+        get
+        {
+            return uiCancelDownloadToolStripSplitButton.Visible;
+        }
+        set
+        {
+            uiCancelDownloadToolStripSplitButton.Visible = value;
+        }
+     }
 
-
-
+        private void uiCancelDownloadToolStripSplitButton_ButtonClick(object sender, EventArgs e)
+        {
+            WebpageDownloadCancel?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

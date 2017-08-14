@@ -218,9 +218,6 @@ namespace OSIRT.UI
             bool thrown = false;
             try
             {
-
-             
-
                 using (MagickImage image = new MagickImage(filePath/*, settings*/))
                 {                  
                     image.Format = format;
