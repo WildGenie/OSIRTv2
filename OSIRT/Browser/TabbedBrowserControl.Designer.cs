@@ -96,7 +96,7 @@
             this.uiCancelDownloadToolStripSplitButton.Text = "toolStripSplitButton1";
             this.uiCancelDownloadToolStripSplitButton.ToolTipText = "Cancel webpage download";
             this.uiCancelDownloadToolStripSplitButton.Visible = false;
-            this.uiCancelDownloadToolStripSplitButton.ButtonClick += new System.EventHandler(this.uiCancelDownloadToolStripSplitButton_ButtonClick);
+            //this.uiCancelDownloadToolStripSplitButton.ButtonClick += new System.EventHandler(this.uiCancelDownloadToolStripSplitButton_ButtonClick);
             // 
             // uiBrowserTabControl
             // 

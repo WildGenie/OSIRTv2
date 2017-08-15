@@ -42,8 +42,7 @@ namespace OSIRT.UI
         public event EventHandler CaseClosing;
         private string userAgent;
         private Form parentForm;
-        private bool isDownloadingPage = false;
-        private IProgress<string> progress;
+        public static bool isDownloadingPage = false;
 
         public BrowserPanel(string userAgent, Form parent)
         {
@@ -54,7 +53,6 @@ namespace OSIRT.UI
             uiTabbedBrowserControl.SetAddressBar(uiURLComboBox);
             uiTabbedBrowserControl.BookmarkAdded += UiTabbedBrowserControl_BookmarkAdded;
             PopulateFavourites();
-            //uiTabbedBrowserControl.WebpageDownloadCancel += UiTabbedBrowserControl_WebpageDownloadCancel;
 
             if (RuntimeSettings.IsUsingTor)
             {
@@ -70,6 +68,7 @@ namespace OSIRT.UI
             }
         }
 
+       
 
         private void UiTabbedBrowserControl_BookmarkAdded(object sender, EventArgs e)
         {
@@ -159,7 +158,8 @@ namespace OSIRT.UI
         }
 
         private void CurrentTab_OpenNewTab(object sender, EventArgs e)
-        {
+        { 
+
             string url = ((OnPopUpEventArgs)e).TargetUrl;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CurrentTab.Browser.Load(url));
         }
@@ -196,13 +196,15 @@ namespace OSIRT.UI
 
         private void UiTabbedBrowserControl_ScreenshotComplete(object sender, EventArgs e)
         {
-            uiBrowserToolStrip.Enabled = true;
+            //uiTabbedBrowserControl.CurrentTab.Browser.Enabled = false;
             if (RuntimeSettings.EnableWebDownloadMode && isDownloadingPage)
             {
+                string savedDirectory = (string)WaitWindow.Show(SavePage, "Saving page... Please Wait");  
                 isDownloadingPage = false;
-                string savedDirectory = (string)WaitWindow.Show(SavePage, "Saving page... Please Wait");
-                MessageBox.Show($"Page saved to: {savedDirectory}", "Save Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Process.Start(savedDirectory);
             }
+            uiBrowserToolStrip.Enabled = true;
+            uiBookmarkHelperToolStrip.Enabled = true;
         }
 
 
@@ -414,15 +416,7 @@ namespace OSIRT.UI
 
         private void whatsTheIPToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Uri url = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL);
-            IPAddress[] addresses = Dns.GetHostAddresses(url.Host);
-
-            string message = "";
-            foreach (var address in addresses)
-            {
-                message += address.ToString() + "\r\n";
-            }
-
+            string message = OsirtHelper.GetIpFromUrl(uiTabbedBrowserControl.CurrentTab.Browser.URL);
             File.WriteAllText(Constants.TempTextFile, message);
             this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Ipaddress, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
         }
@@ -680,50 +674,95 @@ namespace OSIRT.UI
         private void SavePage(object sender, WaitWindowEventArgs e)
         {
             string output = "";
-            List<RequestWrapper> resources = RequestHandler.resources.ToList();
-            string folder = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host.Replace(".", "_") + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
-            Directory.CreateDirectory($@"C:\Users\Joe\Desktop\filter\{folder}");
+            List<RequestWrapper> resources = RequestHandler.resources.OrderBy(q => q.Identifier).ToList();
+            List <HeaderWrapper> headers = RequestHandler.responseHeaders.OrderBy(q => q.Identifer).ToList();
+
+            string saveFolder = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host.Replace(".", "_") + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
+            string savePath = Path.Combine(GSettings.Load().SaveDirectory, saveFolder);
+            string logSavePath = Path.Combine(savePath, "log");
+            Directory.CreateDirectory(savePath);
+            Directory.CreateDirectory(logSavePath);
+
+            output += "=================================================================================\r\n";
+            output += "Capture started: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fff") + "\r\n";
+            output += "URL: " + uiTabbedBrowserControl.CurrentTab.Browser.URL + "\r\n";
+            output += "IP(s): " + OsirtHelper.GetIpFromUrl(uiTabbedBrowserControl.CurrentTab.Browser.URL).Replace("\r\n", " ") + "\r\n";
+            output += "Screenshot Hash: " + OsirtHelper.GetFileHash(Constants.TempImgFile) + "\r\n";
+            output += "=================================================================================\r\n";
+
+            ulong count = 0;
             foreach (var resource in resources)
             {
-                string filename = OsirtHelper.GetSafeFilename(resource.RequestUrl);
+                string filename = resource.ResourceType == ResourceType.MainFrame ? "mainframe.html" : OsirtHelper.GetSafeFilename(resource.RequestUrl);
                 e.Window.Message = "Saving: " + filename + "...Please Wait";
-                File.WriteAllBytes($@"C:\Users\Joe\Desktop\filter\{folder}\{filename}", resource.Data);
+                if (File.Exists($@"{savePath}\{filename}"))
+                {
+                    filename = $"{++count}_{filename}";
+                }
+                
+                File.WriteAllBytes($@"{savePath}\{filename}", resource.Data);
                 output += "=================================================================================\r\n";
+                output += "Request ID: " + resource.Identifier + "\r\n";
                 output += "Request URL: " + resource.RequestUrl + "\r\n";
+                output += "Request URL IP(s): " + OsirtHelper.GetIpFromUrl(resource.RequestUrl).Replace("\r\n", " ")  + "\r\n";
                 output += "Resource Type: " + resource.ResourceType + "\r\n";
                 output += "Mime Type: " + resource.MimeType + "\r\n";
-                output += "File Saved Location: " + $@"C:\Users\Joe\Desktop\filter\{folder}\{filename}" + "\r\n";
+                output += "File Saved Location: " + $@"{savePath}\{filename}" + "\r\n";
                 output += $"Hash [{UserSettings.Load().Hash.ToUpper()}]: " + OsirtHelper.GetFileHash(resource.Data) + "\r\n";
-                output += "Download completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
+                output += "Save completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
                 output += "=================================================================================\r\n";
-                File.AppendAllText($@"C:\Users\Joe\Desktop\filter\{folder}\_capture.txt", output);
-                e.Result = $@"C:\Users\Joe\Desktop\filter\{folder}";
+                e.Result = savePath;
             }
-            File.Copy(Constants.TempImgFile, $@"C:\Users\Joe\Desktop\filter\{folder}\_website.png");
-            CopyPageSaveToCase(folder, e);
+
+            output += "=================================================================================\r\n";
+            output += "Capture finished: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fff") + "\r\n";
+            output += "=================================================================================\r\n";
+            File.AppendAllText($@"{logSavePath}\_capture.txt", output);
+            File.Copy(Constants.TempImgFile, $@"{logSavePath}\_website.png");
+
+
+            if (GSettings.Load().SaveHttpHeaders)
+            {
+                string headerOutput = "";
+                foreach (var k in headers)
+                {
+                    headerOutput += "====================================================\r\n";
+                    headerOutput += "Request ID: " + k.Identifer + "\r\n";
+                    foreach (KeyValuePair<string, string> kv in k.Headers)
+                    {
+                        headerOutput += $"{kv.Key} : {kv.Value}" + "\r\n";
+                    }
+                    headerOutput += "====================================================\r\n";
+                }
+                File.AppendAllText($@"{logSavePath}\_headers.txt", headerOutput);
+            }
+
+            CopyPageSaveToCase(savePath, e);
         }
 
         private void CopyPageSaveToCase(string folder, WaitWindowEventArgs e)
         {
             using (ZipFile zip = new ZipFile())
             {
-                zip.AddDirectory($@"C:\Users\Joe\Desktop\filter\{folder}");
-                zip.Save($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip");
+                zip.AddDirectory(folder);
+                zip.Save(folder + ".zip");
                 e.Window.Message = "Zipping...Please Wait";
             }
 
-            string copyTo = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Download), Path.GetFileNameWithoutExtension($@"C:\Users\Joe\Desktop\filter\{folder}") + ".zip");
-            File.Copy($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip", copyTo);
+            string copyTo = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Enums.Actions.Download), Path.GetFileNameWithoutExtension(folder) + ".zip");
+            File.Copy(folder + ".zip", copyTo);
             e.Window.Message = "Logging...Please Wait";
-            Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Enums.Actions.Download, OsirtHelper.GetFileHash(copyTo), Path.GetFileNameWithoutExtension($@"C:\Users\Joe\Desktop\filter\{folder}") + ".zip", "Webpage downloaded"));
+            Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Enums.Actions.Download, OsirtHelper.GetFileHash(copyTo), Path.GetFileNameWithoutExtension(folder) + ".zip", "Webpage downloaded"));
             Thread.Sleep(2000);
-            File.Delete($@"C:\Users\Joe\Desktop\filter\{folder}" + ".zip");
+            File.Delete(folder + ".zip");
             ImageDiskCache.RemoveItemsInCache();
         }
 
         private void uiDownloadWebpageToolStripButton_Click(object sender, EventArgs e)
         {
             isDownloadingPage = true;
+            uiBrowserToolStrip.Enabled = false;
+            uiBookmarkHelperToolStrip.Enabled = false;
             uiTabbedBrowserControl.FullPageScreenshot();
         }
 
@@ -744,6 +783,14 @@ namespace OSIRT.UI
             string text = await uiTabbedBrowserControl.CurrentTab.Browser.GetTextAsync();
             File.WriteAllText(Constants.TempTextFile, text);
             this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Text, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
+        }
+
+        private void closeCaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+
+
+
         }
     }
 }

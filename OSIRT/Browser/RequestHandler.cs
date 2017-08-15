@@ -125,7 +125,9 @@ namespace OSIRT.Browser
 
 
         private string oldAddress = "";
-        public static List<RequestWrapper> resources = new List<RequestWrapper>();
+        //public static List<RequestWrapper> resources = new List<RequestWrapper>();
+        public static HashSet<RequestWrapper> resources = new HashSet<RequestWrapper>();
+        public static List<HeaderWrapper> responseHeaders = new List<HeaderWrapper>();
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
 
@@ -133,6 +135,7 @@ namespace OSIRT.Browser
             {
                 oldAddress = browserControl.Address;
                 resources.Clear();
+                responseHeaders.Clear();
             }
 
             var dict = response.ResponseHeaders.AllKeys.ToDictionary(x => x, x => response.ResponseHeaders[x]);
@@ -140,17 +143,21 @@ namespace OSIRT.Browser
             //System.Diagnostics.Debug.WriteLine("====================================================");
             //System.Diagnostics.Debug.WriteLine($"Request Url: {request.Url}");
             //System.Diagnostics.Debug.WriteLine($"Referrer Url: {request.ReferrerUrl}");
+            //responseHeaders.Add("====================================================\r\n");
+            //responseHeaders.Add("Request ID: " + request.Identifier + "\r\n");
             //foreach (var k in dict)
             //{
-            //    System.Diagnostics.Debug.WriteLine($"{k.Key} : {k.Value}");
+            //    responseHeaders.Add($"{k.Key} : {k.Value}" + "\r\n");
             //}
-            //System.Diagnostics.Debug.WriteLine("====================================================");
+            //responseHeaders.Add("====================================================\r\n");
+
+            responseHeaders.Add(new HeaderWrapper(request.Identifier, dict));
 
             MemoryStreamResponseFilter filter;
             if (responseDictionary.TryGetValue(request.Identifier, out filter))
             {
-                var data = filter.Data; //put this in a List<Byte[]>
-                resources.Add(new RequestWrapper(request.Url,request.ResourceType, response.MimeType, data));
+                var data = filter.Data;
+                resources.Add(new RequestWrapper(request.Url,request.ResourceType, response.MimeType, data, request.Identifier));
             }
 
         }

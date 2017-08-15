@@ -567,13 +567,13 @@
             // 
             // uiDownloadWebpageToolStripButton
             // 
-            this.uiDownloadWebpageToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiDownloadWebpageToolStripButton.Image = global::OSIRT.Properties.Resources.download_cloud1;
             this.uiDownloadWebpageToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiDownloadWebpageToolStripButton.Name = "uiDownloadWebpageToolStripButton";
-            this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.uiDownloadWebpageToolStripButton.Text = "toolStripButton1";
+            this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(96, 20);
+            this.uiDownloadWebpageToolStripButton.Text = "Save Website";
             this.uiDownloadWebpageToolStripButton.ToolTipText = "Download webpage";
+            this.uiDownloadWebpageToolStripButton.Visible = false;
             this.uiDownloadWebpageToolStripButton.Click += new System.EventHandler(this.uiDownloadWebpageToolStripButton_Click);
             // 
             // uiBrowserMenuStrip
@@ -606,7 +606,6 @@
             this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.CancelButtonVisible = false;
             this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
             this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
             this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);

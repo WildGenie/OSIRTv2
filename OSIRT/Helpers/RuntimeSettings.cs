@@ -15,6 +15,10 @@ namespace OSIRT.Helpers
         public static bool JsDisabled = false;
         public static bool ImagesDisabled = false;
         public static bool PluginsDisabled = false;
+        public static bool SaveHeaders = false;
+                                                                                       //change to mydocuments when released 
+        //public static string WebpageDownloadSaveLocation = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
 
     }
 }

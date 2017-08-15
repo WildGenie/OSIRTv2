@@ -16,7 +16,7 @@ namespace OSIRT.UI.BrowserOptions
     public partial class BrowserOptionsForm : Form
     {
 
-        //public bool IsUsingTor { get; private set; }
+        private GSettings settings = GSettings.Load();
         public string UserAgent{ get; private set; }
         private string webRtc;
 
@@ -42,6 +42,10 @@ namespace OSIRT.UI.BrowserOptions
             RuntimeSettings.IsUsingTor = uiConnectToTorCheckBox.Checked;
             UserAgent =  uiUserAgentsComboBox.SelectedValue == null ?  "" : uiUserAgentsComboBox.SelectedValue.ToString();
             CheckProxySettings();
+
+            uiHashFileLocationTextBox.Text = settings.SaveDirectory;
+            uiSaveAllResponseHeadersCheckbox.Checked = settings.SaveHttpHeaders;
+            uiOpenDirectoryCheckBox.Checked = settings.OpenDirectory;
         }
 
         private void PopulateUserAgents()
@@ -79,7 +83,14 @@ namespace OSIRT.UI.BrowserOptions
 
         private void BrowserOptionsForm_Load(object sender, EventArgs e)
         {
-            if(!File.Exists(@"Tor\Tor\tor.exe"))
+            uiHashFileLocationTextBox.Text = settings.SaveDirectory;
+            uiSaveAllResponseHeadersCheckbox.Checked = settings.SaveHttpHeaders;
+            uiOpenDirectoryCheckBox.Checked = settings.OpenDirectory;
+
+            uiWebSaveGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+            uiFolderLocationGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+
+            if (!File.Exists(@"Tor\Tor\tor.exe"))
             {
                 uiBrowserOptionsGroupBox.Enabled = false;
                 uiConnectToTorCheckBox.Visible = false;
@@ -118,7 +129,36 @@ namespace OSIRT.UI.BrowserOptions
         private void uiDownloadModeCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             RuntimeSettings.EnableWebDownloadMode = uiWebDownloadModeCheckBox.Checked;
-            //disable tor option
+
+            uiWebSaveGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+            uiFolderLocationGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+
+        }
+
+        private void uiSaveAllResponseHeadersCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.SaveHttpHeaders = uiSaveAllResponseHeadersCheckbox.Checked;
+            settings.Save();
+        }
+
+        private void uiBrowseLocationButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+            {
+                if (folderBrowser.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string path = folderBrowser.SelectedPath;
+                uiHashFileLocationTextBox.Text = path;
+                settings.SaveDirectory = path;
+                settings.Save();
+            }
+        }
+
+        private void uiOpenDirectoryCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.OpenDirectory = uiSaveAllResponseHeadersCheckbox.Checked;
+            settings.Save();
         }
     }
 }

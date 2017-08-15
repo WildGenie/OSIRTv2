@@ -1,14 +1,17 @@
-﻿using OSIRT.Helpers;
+﻿using Microsoft.VisualBasic;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
 namespace OSIRT
 {
-    //http://stackoverflow.com/questions/453161/best-practice-to-save-application-settings-in-a-windows-forms-application
-    public class CaseSettings<T> where T : new()
+    public class GlobalSettings<T> where T : new()
     {
-        private static readonly string fileName = Path.Combine(Constants.ContainerLocation, "settings.json");
+        private static readonly string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "osirt", "global_settings.json");
 
         public void Save()
         {
@@ -27,6 +30,6 @@ namespace OSIRT
                 t = (new JavaScriptSerializer()).Deserialize<T>(File.ReadAllText(fileName));
             return t;
         }
-
+    
     }
 }

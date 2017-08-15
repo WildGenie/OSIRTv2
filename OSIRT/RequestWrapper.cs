@@ -17,16 +17,34 @@ namespace OSIRT
         public string RequestUrl { get; private set; }
         public ResourceType ResourceType { get; private set; }
         public string MimeType { get; private set; }
+        public ulong Identifier { get; private set; }
         public byte[] Data { get; private set; }
 
 
-        public RequestWrapper(string requestUrl, ResourceType resourceType, string mimeType, byte[] data)
+        public RequestWrapper(string requestUrl, ResourceType resourceType, string mimeType, byte[] data, ulong id)
         {
             RequestUrl = requestUrl;
             ResourceType = resourceType;
             MimeType = mimeType;
             Data = data;
+            Identifier = id;
         }
+
+        public override bool Equals(object obj)
+        {
+            var rw = obj as RequestWrapper;
+            if (rw == null) return false;
+
+
+            return RequestUrl == rw.RequestUrl;
+        }
+
+        public override int GetHashCode()
+        {
+            return RequestUrl.GetHashCode() ^ MimeType.GetHashCode();
+        }
+
+
 
         public bool IsStringRequest()
         {

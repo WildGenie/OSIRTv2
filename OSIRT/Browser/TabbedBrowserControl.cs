@@ -23,10 +23,11 @@ namespace OSIRT.Browser
         private ToolStripComboBox addressBar;
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
+        private bool firstLoad = true;
         public event EventHandler ScreenshotComplete;
         public event EventHandler UpdateNavigation;
         public event EventHandler BookmarkAdded;
-        public event EventHandler WebpageDownloadCancel;
+        public event EventHandler LoadingStateCompleted;
 
         public DotNetChromeTabs.ChromeTabControl.TabPage.TabPageCollection TabPages { get { return uiBrowserTabControl?.TabPages;  }  }
 
@@ -111,10 +112,22 @@ namespace OSIRT.Browser
 
         public void CreateTab(string url)
         {
-            BrowserTab tab = new BrowserTab(url, addressBar);
-            uiBrowserTabControl.TabPages.Add(tab);
-            AddBrowserEvents();
-            tab.OpenInNewtab += Tab_OpenInNewtab;
+
+            if ((RuntimeSettings.EnableWebDownloadMode && firstLoad) || !RuntimeSettings.EnableWebDownloadMode)
+            {
+                BrowserTab tab = new BrowserTab(url, addressBar);
+                uiBrowserTabControl.TabPages.Add(tab);
+                AddBrowserEvents();
+                tab.OpenInNewtab += Tab_OpenInNewtab;
+                firstLoad = false;
+            }
+            else
+            {
+                CurrentTab.Browser.Load(url);
+            }
+            
+
+
         }
 
         private void Tab_OpenInNewtab(object sender, EventArgs e)
@@ -147,12 +160,12 @@ namespace OSIRT.Browser
             CurrentBrowser.AddBookmark += CurrentBrowser_AddBookmark;
         }
 
+
         private void CurrentBrowser_AddBookmark(object sender, EventArgs e)
         {
             this.InvokeIfRequired(() => OsirtHelper.Favourites[CurrentTab.Browser.Title] = CurrentTab.Browser.URL);
             OsirtHelper.WriteFavourites();
             BookmarkAdded?.Invoke(this, EventArgs.Empty);
-            //this.InvokeIfRequired(() => PopulateFavourites());
         }
 
         private void CurrentBrowser_SearchText(object sender, EventArgs e)
@@ -224,6 +237,7 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_OpenNewTabContextMenu(object sender, EventArgs e)
         {
+
             this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
@@ -248,24 +262,14 @@ namespace OSIRT.Browser
 
         }
 
-        private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        {
-            addressBar.Text = CurrentTab.CurrentUrl;
-
-            if (e.Url.Equals(((WebBrowser)sender).Url))
-            {
-                Logger.Log(new WebsiteLog(CurrentTab.CurrentUrl));
-            }
-        }
-
         private void Screenshot_Completed(object sender, EventArgs e)
         {
             bool showPreviewer = ((ScreenshotCompletedEventArgs)e).Successful;
-            ScreenshotComplete?.Invoke(this, new EventArgs());
-            if (showPreviewer && !RuntimeSettings.EnableWebDownloadMode)
+            if ( (showPreviewer && !BrowserPanel.isDownloadingPage   ))
             {
                 ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
             }
+            ScreenshotComplete?.Invoke(this, new EventArgs());
         }
 
         private void ShowImagePreviewer(Actions action, string imagePath)
@@ -390,25 +394,9 @@ namespace OSIRT.Browser
                 //
                 CreateTab();
                 CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
-
             }
         }
 
-     public bool CancelButtonVisible
-     {
-        get
-        {
-            return uiCancelDownloadToolStripSplitButton.Visible;
-        }
-        set
-        {
-            uiCancelDownloadToolStripSplitButton.Visible = value;
-        }
-     }
-
-        private void uiCancelDownloadToolStripSplitButton_ButtonClick(object sender, EventArgs e)
-        {
-            WebpageDownloadCancel?.Invoke(this, EventArgs.Empty);
-        }
+   
     }
 }

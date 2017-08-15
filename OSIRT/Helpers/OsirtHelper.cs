@@ -14,6 +14,7 @@ using System.Security.Cryptography;
 using ImageMagick;
 using OSIRT.Extensions;
 using System.Collections.Generic;
+using System.Net;
 
 namespace OSIRT.Helpers
 {
@@ -22,6 +23,21 @@ namespace OSIRT.Helpers
 
         public static bool DisableWebRtc = false;
         public static Dictionary<string, string> Favourites = new Dictionary<string, string>();
+
+
+
+        public static string GetIpFromUrl(string url)
+        {
+            Uri uri = new Uri(url);
+            IPAddress[] addresses = Dns.GetHostAddresses(uri.Host);
+
+            string message = "";
+            foreach (var address in addresses)
+            {
+                message += address.ToString() + "\r\n";
+            }
+            return message;
+        }
 
         //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
         public enum PasswordScore
@@ -63,7 +79,8 @@ namespace OSIRT.Helpers
         {
             try
             {
-                filename = Path.GetFileName(filename);
+                //filename = Path.GetFileName(filename);
+                filename = StripQueryFromFile(filename);
                 filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
 
                 if (filename.Length > 150)
@@ -187,6 +204,16 @@ namespace OSIRT.Helpers
         {
             return Path.GetExtension(path).Equals(".jpg", StringComparison.InvariantCultureIgnoreCase)
                     || Path.GetExtension(path).Equals(".jpeg", StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        public static string StripQueryFromFile(string file)
+        {
+            Uri uri = new Uri(file);
+            if (uri.Query != string.Empty)
+            {
+                file = uri.OriginalString.Replace(uri.Query, "");
+            } 
+            return file;
         }
 
         public static string StripQueryFromPath(string path)

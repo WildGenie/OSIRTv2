@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,19 @@ namespace OSIRT.Browser
             }
 
             dataInRead = dataIn.Length;
+
+            if (dataIn.Length > dataOut.Length)
+            {
+                var data = new byte[dataOut.Length];
+                dataIn.Seek(0, SeekOrigin.Begin);
+                dataIn.Read(data, 0, data.Length);
+                dataOut.Write(data, 0, data.Length);
+
+                dataInRead = dataOut.Length;
+                dataOutWritten = dataOut.Length;
+                return FilterStatus.NeedMoreData;
+            }
+
             dataOutWritten = Math.Min(dataInRead, dataOut.Length);
 
             //Important we copy dataIn to dataOut
@@ -38,7 +52,7 @@ namespace OSIRT.Browser
             {
                 dataIn.CopyTo(dataOut);
             }
-            catch { }
+            catch { Debug.WriteLine("HIIIIIIIIIIIIIIIIIIIIIIIIII");  }
 
             //Copy data to stream
             dataIn.Position = 0;

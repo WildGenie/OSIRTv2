@@ -254,6 +254,9 @@
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
     <Compile Include="FacebookIdFinder.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="GSettings.cs" />
+    <Compile Include="HeaderWrapper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\OsirtLogWriter.cs" />
