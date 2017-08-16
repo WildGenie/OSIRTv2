@@ -39,6 +39,8 @@ namespace OSIRT.UI.Options
             uiExportHashOnCloseCheckBox.Checked = settings.ExportHashOnClose;
             uiBrowseLocationButton.Enabled = settings.ExportHashOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
+            uiBrowseCopyButton.Enabled = settings.CopyImage;
+            uiCopyImgLocationTextBox.Text = settings.CopyImageLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
             uiEnterCreatesNewLineCheckBox.Checked = settings.EnterInCaseNotesNewLine;
             uiAllowMultiTabsCheckBox.Checked = settings.AllowMultipleTabs;
@@ -186,6 +188,34 @@ namespace OSIRT.UI.Options
         {
             settings.UseMicrophone = OsirtVideoCapture.HasMicrophone() && uiMicroPhoneRadioButton.Checked;
             settings.Save();
+        }
+
+        private void uiExportScreenshotCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            bool copyImg = uiExportScreenshotCheckBox.Checked;
+            uiBrowseCopyButton.Enabled = copyImg;
+            settings.CopyImage = copyImg;
+            settings.Save();
+        }
+
+        private void uiBrowseCopyButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+            {
+                if (folderBrowser.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string path = folderBrowser.SelectedPath;
+                uiCopyImgLocationTextBox.Text = path;
+
+                settings.CopyImageLocation = path;
+                settings.Save();
+            }
+        }
+
+        private void uiAnnotateScreenshotCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

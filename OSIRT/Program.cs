@@ -45,8 +45,6 @@ namespace OSIRT
                 Application.ThreadException += (sender, e)
                 => FatalExceptionHandler.Handle(e.Exception);
 
-                Application.SetUnhandledExceptionMode(UnhandledExceptionMode.ThrowException);
-
 #endif
 
             //prevent multi-instance (Matt Davis): http://stackoverflow.com/questions/19147/what-is-the-correct-way-to-create-a-single-instance-application

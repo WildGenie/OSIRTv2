@@ -16,6 +16,8 @@ namespace OSIRT
         public bool ExportHashOnClose = true;
         public bool EnterInCaseNotesNewLine = false;
         public bool AllowMultipleTabs = true;
+        public bool CopyImage = false;
+        public string CopyImageLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
         //browser
         public bool AllowImages = true;

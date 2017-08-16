@@ -73,6 +73,7 @@
             this.deleteCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -81,12 +82,13 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
@@ -510,7 +512,9 @@
             // deleteCookiesToolStripMenuItem
             // 
             this.deleteCookiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.historyToolStripMenuItem,
             this.refreshCacheToolStripMenuItem,
+            this.toolStripSeparator5,
             this.deleteAllCookiesToolStripMenuItem});
             this.deleteCookiesToolStripMenuItem.Image = global::OSIRT.Properties.Resources.google_webmaster_tools;
             this.deleteCookiesToolStripMenuItem.Name = "deleteCookiesToolStripMenuItem";
@@ -533,6 +537,14 @@
             this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
             this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
             this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
+            // 
+            // historyToolStripMenuItem
+            // 
+            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.historyToolStripMenuItem.Text = "History";
+            this.historyToolStripMenuItem.ToolTipText = "Displays the history for this session only";
+            this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -601,16 +613,6 @@
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 
-            // uiTabbedBrowserControl
-            // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
-            this.uiTabbedBrowserControl.TabIndex = 2;
-            // 
             // BottomToolStripPanel
             // 
             this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
@@ -646,6 +648,21 @@
             // ContentPanel
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
+            this.uiTabbedBrowserControl.TabIndex = 2;
             // 
             // BrowserPanel
             // 
@@ -726,5 +743,7 @@
         private System.Windows.Forms.ToolStripMenuItem refreshCacheToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteAllCookiesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem getTextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }

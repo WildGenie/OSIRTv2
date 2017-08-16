@@ -773,6 +773,10 @@ namespace OSIRT.UI
 
         private void deleteAllCookiesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DialogResult dr = MessageBox.Show("This will delete ALL cookies for this session. Are you sure?", "Delete ALL Cookies?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr != DialogResult.Yes) return;
+
             var cookieManager = Cef.GetGlobalCookieManager();
             bool deleted = cookieManager.DeleteCookies("", "");
             if (deleted) { MessageBox.Show("Cookies are deleted.", "Cookies Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information); }
@@ -785,12 +789,17 @@ namespace OSIRT.UI
             this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Text, uiTabbedBrowserControl.CurrentTab.Browser.URL).Show());
         }
 
-        private void closeCaseToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void H_HistoryLinkClicked(object sender, EventArgs e)
         {
+            string url = ((TextEventArgs)e).Result;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
+        }
 
-
-
-
+        private void historyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            HistoryViewer.HistoryViewForm h = new HistoryViewer.HistoryViewForm();
+            h.HistoryLinkClicked += H_HistoryLinkClicked;
+            h.Show();
         }
     }
 }

@@ -78,10 +78,12 @@ namespace OSIRT.Browser
 
         private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)
         {
-            Console.WriteLine(e.Address);
-
-            Logger.Log(new WebsiteLog(e.Address));
+            var log = new WebsiteLog(e.Address);
+            Logger.Log(log);
             this.InvokeIfRequired(() => addressBar.Text = e.Address);
+
+            OsirtHelper.history.Add(new History(log.Url, log.Date, log.Time));
+
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

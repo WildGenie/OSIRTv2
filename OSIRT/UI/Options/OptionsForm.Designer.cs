@@ -68,6 +68,15 @@
             this.uiBrowseIconButton = new System.Windows.Forms.Button();
             this.uiConstabularyIconPictureBox = new System.Windows.Forms.PictureBox();
             this.uiCloseButton = new System.Windows.Forms.Button();
+            this.uiScreenShotTabPage = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.uiExportScreenshotCheckBox = new System.Windows.Forms.CheckBox();
+            this.uiBrowseCopyButton = new System.Windows.Forms.Button();
+            this.uiCopyImgLocationTextBox = new System.Windows.Forms.TextBox();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.uiAnnotateScreenshotCheckBox = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -83,6 +92,9 @@
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).BeginInit();
+            this.uiScreenShotTabPage.SuspendLayout();
+            this.groupBox6.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.SuspendLayout();
             // 
             // uiOptionsTabControl
@@ -92,6 +104,7 @@
             this.uiOptionsTabControl.Controls.Add(this.tabPage1);
             this.uiOptionsTabControl.Controls.Add(this.tabPage2);
             this.uiOptionsTabControl.Controls.Add(this.tabPage3);
+            this.uiOptionsTabControl.Controls.Add(this.uiScreenShotTabPage);
             this.uiOptionsTabControl.Location = new System.Drawing.Point(0, 0);
             this.uiOptionsTabControl.Name = "uiOptionsTabControl";
             this.uiOptionsTabControl.SelectedIndex = 0;
@@ -519,6 +532,101 @@
             this.uiCloseButton.UseVisualStyleBackColor = true;
             this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
+            // uiScreenShotTabPage
+            // 
+            this.uiScreenShotTabPage.Controls.Add(this.groupBox7);
+            this.uiScreenShotTabPage.Controls.Add(this.groupBox6);
+            this.uiScreenShotTabPage.Location = new System.Drawing.Point(4, 22);
+            this.uiScreenShotTabPage.Name = "uiScreenShotTabPage";
+            this.uiScreenShotTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.uiScreenShotTabPage.Size = new System.Drawing.Size(483, 337);
+            this.uiScreenShotTabPage.TabIndex = 3;
+            this.uiScreenShotTabPage.Text = "Screenshots";
+            this.uiScreenShotTabPage.UseVisualStyleBackColor = true;
+            // 
+            // groupBox6
+            // 
+            this.groupBox6.Controls.Add(this.uiBrowseCopyButton);
+            this.groupBox6.Controls.Add(this.uiExportScreenshotCheckBox);
+            this.groupBox6.Controls.Add(this.uiCopyImgLocationTextBox);
+            this.groupBox6.Controls.Add(this.label8);
+            this.groupBox6.Location = new System.Drawing.Point(6, 6);
+            this.groupBox6.Name = "groupBox6";
+            this.groupBox6.Size = new System.Drawing.Size(467, 105);
+            this.groupBox6.TabIndex = 0;
+            this.groupBox6.TabStop = false;
+            this.groupBox6.Text = "Screenshot Exporting";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 66);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(457, 26);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "In addition to saving screenshots to the case container, you can choose to also c" +
+    "opy them to a \r\nseperate location.";
+            // 
+            // uiExportScreenshotCheckBox
+            // 
+            this.uiExportScreenshotCheckBox.AutoSize = true;
+            this.uiExportScreenshotCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.uiExportScreenshotCheckBox.Name = "uiExportScreenshotCheckBox";
+            this.uiExportScreenshotCheckBox.Size = new System.Drawing.Size(161, 17);
+            this.uiExportScreenshotCheckBox.TabIndex = 1;
+            this.uiExportScreenshotCheckBox.Text = "Make a copy of screenshot?";
+            this.uiExportScreenshotCheckBox.UseVisualStyleBackColor = true;
+            this.uiExportScreenshotCheckBox.CheckedChanged += new System.EventHandler(this.uiExportScreenshotCheckBox_CheckedChanged);
+            // 
+            // uiBrowseCopyButton
+            // 
+            this.uiBrowseCopyButton.Location = new System.Drawing.Point(388, 40);
+            this.uiBrowseCopyButton.Name = "uiBrowseCopyButton";
+            this.uiBrowseCopyButton.Size = new System.Drawing.Size(75, 23);
+            this.uiBrowseCopyButton.TabIndex = 6;
+            this.uiBrowseCopyButton.Text = "Browse...";
+            this.uiBrowseCopyButton.UseVisualStyleBackColor = true;
+            this.uiBrowseCopyButton.Click += new System.EventHandler(this.uiBrowseCopyButton_Click);
+            // 
+            // uiCopyImgLocationTextBox
+            // 
+            this.uiCopyImgLocationTextBox.Location = new System.Drawing.Point(9, 42);
+            this.uiCopyImgLocationTextBox.Name = "uiCopyImgLocationTextBox";
+            this.uiCopyImgLocationTextBox.ReadOnly = true;
+            this.uiCopyImgLocationTextBox.Size = new System.Drawing.Size(373, 20);
+            this.uiCopyImgLocationTextBox.TabIndex = 5;
+            // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label9);
+            this.groupBox7.Controls.Add(this.uiAnnotateScreenshotCheckBox);
+            this.groupBox7.Location = new System.Drawing.Point(6, 117);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(467, 62);
+            this.groupBox7.TabIndex = 1;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "Screenshot Annotations";
+            // 
+            // uiAnnotateScreenshotCheckBox
+            // 
+            this.uiAnnotateScreenshotCheckBox.AutoSize = true;
+            this.uiAnnotateScreenshotCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.uiAnnotateScreenshotCheckBox.Name = "uiAnnotateScreenshotCheckBox";
+            this.uiAnnotateScreenshotCheckBox.Size = new System.Drawing.Size(132, 17);
+            this.uiAnnotateScreenshotCheckBox.TabIndex = 0;
+            this.uiAnnotateScreenshotCheckBox.Text = "Annotate Screenshot?";
+            this.uiAnnotateScreenshotCheckBox.UseVisualStyleBackColor = true;
+            this.uiAnnotateScreenshotCheckBox.CheckedChanged += new System.EventHandler(this.uiAnnotateScreenshotCheckBox_CheckedChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(6, 39);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(256, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Places the URL on the image with the date and time.";
+            // 
             // OptionsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,6 +662,11 @@
             this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.uiConstabularyIconPictureBox)).EndInit();
+            this.uiScreenShotTabPage.ResumeLayout(false);
+            this.groupBox6.ResumeLayout(false);
+            this.groupBox6.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -599,5 +712,14 @@
         private System.Windows.Forms.RadioButton uiMicroPhoneRadioButton;
         private System.Windows.Forms.RadioButton uiStereoMixRadioButton;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TabPage uiScreenShotTabPage;
+        private System.Windows.Forms.GroupBox groupBox6;
+        private System.Windows.Forms.Button uiBrowseCopyButton;
+        private System.Windows.Forms.CheckBox uiExportScreenshotCheckBox;
+        private System.Windows.Forms.TextBox uiCopyImgLocationTextBox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.CheckBox uiAnnotateScreenshotCheckBox;
+        private System.Windows.Forms.Label label9;
     }
 }

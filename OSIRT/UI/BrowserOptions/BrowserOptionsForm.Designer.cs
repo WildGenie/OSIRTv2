@@ -52,6 +52,7 @@
             this.uiDisableImagesCheckBox = new System.Windows.Forms.CheckBox();
             this.uiDisableJSCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.uiWebDownloadModeCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -64,7 +65,6 @@
             this.uiWebSaveGroupBox = new System.Windows.Forms.GroupBox();
             this.uiOpenDirectoryCheckBox = new System.Windows.Forms.CheckBox();
             this.uiSaveAllResponseHeadersCheckbox = new System.Windows.Forms.CheckBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.uiBrowserOptionsGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -114,11 +114,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.DarkRed;
-            this.label1.Location = new System.Drawing.Point(5, 6);
+            this.label1.Location = new System.Drawing.Point(6, 427);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(361, 26);
+            this.label1.Size = new System.Drawing.Size(189, 26);
             this.label1.TabIndex = 1;
-            this.label1.Text = "These options are for advanced users who have received relevant training.\r\n ";
+            this.label1.Text = "These options are for advanced users.\r\n ";
             // 
             // groupBox1
             // 
@@ -163,7 +163,7 @@
             // uiOKButton
             // 
             this.uiOKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.uiOKButton.Location = new System.Drawing.Point(446, 433);
+            this.uiOKButton.Location = new System.Drawing.Point(442, 429);
             this.uiOKButton.Name = "uiOKButton";
             this.uiOKButton.Size = new System.Drawing.Size(75, 23);
             this.uiOKButton.TabIndex = 2;
@@ -174,7 +174,7 @@
             // button2
             // 
             this.button2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button2.Location = new System.Drawing.Point(368, 433);
+            this.button2.Location = new System.Drawing.Point(364, 429);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 3;
@@ -315,6 +315,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Website Page Saving";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.Maroon;
+            this.label9.Location = new System.Drawing.Point(7, 92);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(463, 78);
+            this.label9.TabIndex = 2;
+            this.label9.Text = resources.GetString("label9.Text");
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -339,10 +349,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(8, 23);
+            this.tabControl1.Location = new System.Drawing.Point(5, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(516, 404);
+            this.tabControl1.Size = new System.Drawing.Size(516, 423);
             this.tabControl1.TabIndex = 7;
             // 
             // tabPage1
@@ -354,7 +364,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(508, 378);
+            this.tabPage1.Size = new System.Drawing.Size(508, 397);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "General Options";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -444,16 +454,6 @@
             this.uiSaveAllResponseHeadersCheckbox.Text = "Save HTTP response headers (saves to a file called _headers.txt)";
             this.uiSaveAllResponseHeadersCheckbox.UseVisualStyleBackColor = true;
             this.uiSaveAllResponseHeadersCheckbox.CheckedChanged += new System.EventHandler(this.uiSaveAllResponseHeadersCheckbox_CheckedChanged);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.Maroon;
-            this.label9.Location = new System.Drawing.Point(7, 92);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(463, 78);
-            this.label9.TabIndex = 2;
-            this.label9.Text = resources.GetString("label9.Text");
             // 
             // BrowserOptionsForm
             // 

@@ -23,7 +23,7 @@ namespace OSIRT.Helpers
 
         public static bool DisableWebRtc = false;
         public static Dictionary<string, string> Favourites = new Dictionary<string, string>();
-
+        public static List<History> history = new List<History>();
 
 
         public static string GetIpFromUrl(string url)
