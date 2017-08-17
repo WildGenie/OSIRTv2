@@ -97,10 +97,15 @@ namespace OSIRT.Browser
             
         }
 
-        //public List<RequestWrapper> Requests()
-        //{
-        //    return requestHandler.Requests;
-        //}
+        public HashSet<RequestWrapper> ResourcesSet()
+        {
+            return requestHandler.Resources;
+        }
+
+        public List<HeaderWrapper> Headers()
+        {
+            return requestHandler.ResponseHeaders;
+        }
 
         private void Handler_SaveSelectedText(object sender, EventArgs e)
         {

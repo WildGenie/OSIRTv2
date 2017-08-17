@@ -125,39 +125,26 @@ namespace OSIRT.Browser
 
 
         private string oldAddress = "";
-        //public static List<RequestWrapper> resources = new List<RequestWrapper>();
-        public static HashSet<RequestWrapper> resources = new HashSet<RequestWrapper>();
-        public static List<HeaderWrapper> responseHeaders = new List<HeaderWrapper>();
+        public HashSet<RequestWrapper> Resources { get; private set; } = new HashSet<RequestWrapper>();
+        public List<HeaderWrapper> ResponseHeaders { get; private set; } = new List<HeaderWrapper>();
+
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
-
             if (oldAddress != browserControl.Address || oldAddress == "")
             {
                 oldAddress = browserControl.Address;
-                resources.Clear();
-                responseHeaders.Clear();
+                Resources.Clear();
+                ResponseHeaders.Clear();
             }
 
             var dict = response.ResponseHeaders.AllKeys.ToDictionary(x => x, x => response.ResponseHeaders[x]);
-
-            //System.Diagnostics.Debug.WriteLine("====================================================");
-            //System.Diagnostics.Debug.WriteLine($"Request Url: {request.Url}");
-            //System.Diagnostics.Debug.WriteLine($"Referrer Url: {request.ReferrerUrl}");
-            //responseHeaders.Add("====================================================\r\n");
-            //responseHeaders.Add("Request ID: " + request.Identifier + "\r\n");
-            //foreach (var k in dict)
-            //{
-            //    responseHeaders.Add($"{k.Key} : {k.Value}" + "\r\n");
-            //}
-            //responseHeaders.Add("====================================================\r\n");
-
-            responseHeaders.Add(new HeaderWrapper(request.Identifier, dict));
+            ResponseHeaders.Add(new HeaderWrapper(request.Identifier, dict));
 
             MemoryStreamResponseFilter filter;
             if (responseDictionary.TryGetValue(request.Identifier, out filter))
             {
                 var data = filter.Data;
-                resources.Add(new RequestWrapper(request.Url,request.ResourceType, response.MimeType, data, request.Identifier));
+                Resources.Add(new RequestWrapper(request.Url, request.ResourceType, response.MimeType, data, request.Identifier));
             }
 
         }

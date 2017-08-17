@@ -293,6 +293,7 @@ namespace OSIRT.Helpers
         public static void DeleteDirectory(string path)
         {
             //Thread.Sleep(1); <--- Bad
+            //TODO: Throwing a directory not found sometimes
             foreach (string directory in Directory.GetDirectories(path))
             {
                 DeleteDirectory(directory);

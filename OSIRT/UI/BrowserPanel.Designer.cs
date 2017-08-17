@@ -71,9 +71,10 @@
             this.uRLListerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoscrollstartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -87,7 +88,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
@@ -521,6 +521,14 @@
             this.deleteCookiesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.deleteCookiesToolStripMenuItem.Text = "Browser";
             // 
+            // historyToolStripMenuItem
+            // 
+            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.historyToolStripMenuItem.Text = "History";
+            this.historyToolStripMenuItem.ToolTipText = "Displays the history for this session only";
+            this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
+            // 
             // refreshCacheToolStripMenuItem
             // 
             this.refreshCacheToolStripMenuItem.Name = "refreshCacheToolStripMenuItem";
@@ -530,6 +538,11 @@
     "load";
             this.refreshCacheToolStripMenuItem.Click += new System.EventHandler(this.refreshCacheToolStripMenuItem_Click);
             // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            // 
             // deleteAllCookiesToolStripMenuItem
             // 
             this.deleteAllCookiesToolStripMenuItem.Name = "deleteAllCookiesToolStripMenuItem";
@@ -537,14 +550,6 @@
             this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
             this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
             this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
-            // 
-            // historyToolStripMenuItem
-            // 
-            this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
-            this.historyToolStripMenuItem.Text = "History";
-            this.historyToolStripMenuItem.ToolTipText = "Displays the history for this session only";
-            this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -579,12 +584,15 @@
             // 
             // uiDownloadWebpageToolStripButton
             // 
+            this.uiDownloadWebpageToolStripButton.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.uiDownloadWebpageToolStripButton.BackColor = System.Drawing.SystemColors.Control;
+            this.uiDownloadWebpageToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.uiDownloadWebpageToolStripButton.Image = global::OSIRT.Properties.Resources.download_cloud1;
             this.uiDownloadWebpageToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.uiDownloadWebpageToolStripButton.Name = "uiDownloadWebpageToolStripButton";
-            this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(96, 20);
+            this.uiDownloadWebpageToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.uiDownloadWebpageToolStripButton.Text = "Save Website";
-            this.uiDownloadWebpageToolStripButton.ToolTipText = "Download webpage";
+            this.uiDownloadWebpageToolStripButton.ToolTipText = "Save copy of website";
             this.uiDownloadWebpageToolStripButton.Visible = false;
             this.uiDownloadWebpageToolStripButton.Click += new System.EventHandler(this.uiDownloadWebpageToolStripButton_Click);
             // 
@@ -648,11 +656,6 @@
             // ContentPanel
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
             // 
             // uiTabbedBrowserControl
             // 

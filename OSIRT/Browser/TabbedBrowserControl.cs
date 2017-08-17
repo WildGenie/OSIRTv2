@@ -113,18 +113,18 @@ namespace OSIRT.Browser
         public void CreateTab(string url)
         {
 
-            if ((RuntimeSettings.EnableWebDownloadMode && firstLoad) || !RuntimeSettings.EnableWebDownloadMode)
-            {
+            //if ((RuntimeSettings.EnableWebDownloadMode && firstLoad) || !RuntimeSettings.EnableWebDownloadMode)
+            //{
                 BrowserTab tab = new BrowserTab(url, addressBar);
                 uiBrowserTabControl.TabPages.Add(tab);
                 AddBrowserEvents();
                 tab.OpenInNewtab += Tab_OpenInNewtab;
                 firstLoad = false;
-            }
-            else
-            {
-                CurrentTab.Browser.Load(url);
-            }
+            //}
+            //else
+            //{
+            //    CurrentTab.Browser.Load(url);
+            //}
             
 
 
@@ -390,7 +390,7 @@ namespace OSIRT.Browser
             }
             else
             {
-                uiBrowserTabControl.NewTabButton = !RuntimeSettings.EnableWebDownloadMode; //UserSettings.Load().AllowMultipleTabs;
+                //uiBrowserTabControl.NewTabButton = !RuntimeSettings.EnableWebDownloadMode; //UserSettings.Load().AllowMultipleTabs;
                 //
                 CreateTab();
                 CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;

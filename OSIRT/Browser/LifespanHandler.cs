@@ -22,7 +22,7 @@ namespace OSIRT.Browser
 
             newBrowser = null;
 
-            if (RuntimeSettings.EnableWebDownloadMode) return true; //this prevents all pop-ups.
+            //if (RuntimeSettings.EnableWebDownloadMode) return true; //this prevents all pop-ups.
 
             OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl));
             return true;

@@ -123,13 +123,9 @@ make the webpage by the server. This includes elements not seen by the user.
 
 Files are UNSANITISED, as in, OSIRT does not parse them to remove any external hyperlinks.
 If, for example, mainframe.html has external hyperlinks, these will be requested again if opened 
-in a web browser.</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>This puts OSIRT into "web download mode". When OSIRT is in this mode only one tab can 
-be opened. This mode allows for webpages, and all respective elements, to be saved 
-and adds a zip file of the site to your case.
- </value>
+in a web browser.
+
+Memory consumption is increased in this mode, so use tabs sparingly if experiencing slow-downs.</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

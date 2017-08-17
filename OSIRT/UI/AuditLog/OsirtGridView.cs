@@ -2,6 +2,7 @@
 using OSIRT.Database;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,9 +41,10 @@ namespace OSIRT.UI.AuditLog
             CellClick += OsirtGridView_CellClick;
 
             DataBindingComplete += OsirtGridView_DataBindingComplete;
-
             ColumnHeaderMouseClick += OsirtGridView_ColumnHeaderMouseClick;
         }
+
+
 
         private void OsirtGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {

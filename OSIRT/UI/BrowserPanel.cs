@@ -674,8 +674,9 @@ namespace OSIRT.UI
         private void SavePage(object sender, WaitWindowEventArgs e)
         {
             string output = "";
-            List<RequestWrapper> resources = RequestHandler.resources.OrderBy(q => q.Identifier).ToList();
-            List <HeaderWrapper> headers = RequestHandler.responseHeaders.OrderBy(q => q.Identifer).ToList();
+
+            List<RequestWrapper> resources = uiTabbedBrowserControl.CurrentTab.Browser.ResourcesSet().OrderBy(q => q.Identifier).ToList();
+            List<HeaderWrapper> headers = uiTabbedBrowserControl.CurrentTab.Browser.Headers().OrderBy(q => q.Identifer).ToList();
 
             string saveFolder = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host.Replace(".", "_") + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
             string savePath = Path.Combine(GSettings.Load().SaveDirectory, saveFolder);

@@ -308,9 +308,9 @@
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label3);
             this.groupBox4.Controls.Add(this.uiWebDownloadModeCheckBox);
-            this.groupBox4.Location = new System.Drawing.Point(6, 15);
+            this.groupBox4.Location = new System.Drawing.Point(6, 5);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(487, 175);
+            this.groupBox4.Size = new System.Drawing.Size(487, 185);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Website Page Saving";
@@ -319,9 +319,9 @@
             // 
             this.label9.AutoSize = true;
             this.label9.ForeColor = System.Drawing.Color.Maroon;
-            this.label9.Location = new System.Drawing.Point(7, 92);
+            this.label9.Location = new System.Drawing.Point(6, 71);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(463, 78);
+            this.label9.Size = new System.Drawing.Size(463, 104);
             this.label9.TabIndex = 2;
             this.label9.Text = resources.GetString("label9.Text");
             // 
@@ -330,9 +330,11 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 39);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(442, 52);
+            this.label3.Size = new System.Drawing.Size(466, 39);
             this.label3.TabIndex = 1;
-            this.label3.Text = resources.GetString("label3.Text");
+            this.label3.Text = "This puts OSIRT into \"web download mode\".  This mode allows for webpages, and all" +
+    " respective \r\nelements, to be saved and adds a zip file of the site to your case" +
+    ".\r\n ";
             // 
             // uiWebDownloadModeCheckBox
             // 
@@ -377,7 +379,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(508, 378);
+            this.tabPage2.Size = new System.Drawing.Size(508, 397);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Webpage Download";
             this.tabPage2.UseVisualStyleBackColor = true;
