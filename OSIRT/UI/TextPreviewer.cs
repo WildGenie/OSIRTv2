@@ -37,16 +37,21 @@ namespace OSIRT.UI
             uiURLTextBox.Text = url;
             uiPreviewerSplitContainer.Panel2.Controls.Add(fctb);
 
+            uiFileExtensionComboBox.Visible = false;
+
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
             string ext = FileExtension;
-            if (string.IsNullOrWhiteSpace(ext)) ext = ".txt";
+            if (string.IsNullOrWhiteSpace(ext))
+            {
+                ext = ".txt";
+            }
+            
 
             try
             {
-
                 File.Copy(Constants.TempTextFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + ext));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();

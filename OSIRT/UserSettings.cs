@@ -18,6 +18,7 @@ namespace OSIRT
         public bool AllowMultipleTabs = true;
         public bool CopyImage = false;
         public string CopyImageLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public int ScrollTimer = 850;
 
         //browser
         public bool AllowImages = true;

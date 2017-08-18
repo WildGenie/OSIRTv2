@@ -30,5 +30,10 @@ namespace OSIRT.UI
             Clipboard.Clear();   
             Clipboard.SetText(uiURLListTextBox.Text);
         }
+
+        private void uiCloseButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

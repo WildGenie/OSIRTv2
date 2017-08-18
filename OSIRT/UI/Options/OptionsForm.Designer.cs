@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OptionsForm));
             this.uiOptionsTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.uiAutoScrollNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.uiMoreInfoTabsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.label6 = new System.Windows.Forms.Label();
@@ -79,6 +83,8 @@
             this.uiCloseButton = new System.Windows.Forms.Button();
             this.uiOptionsTabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiAutoScrollNumericUpDown)).BeginInit();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,6 +119,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.groupBox8);
             this.tabPage1.Controls.Add(this.groupBox5);
             this.tabPage1.Controls.Add(this.groupBox4);
             this.tabPage1.Controls.Add(this.groupBox1);
@@ -124,12 +131,70 @@
             this.tabPage1.Text = "Browser";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label11);
+            this.groupBox8.Controls.Add(this.uiAutoScrollNumericUpDown);
+            this.groupBox8.Controls.Add(this.label10);
+            this.groupBox8.Location = new System.Drawing.Point(9, 88);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(466, 91);
+            this.groupBox8.TabIndex = 6;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "Auto-Scrolling Time Offset";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(130, 24);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(187, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "milliseconds (e.g. 1000ms is 1 second)";
+            // 
+            // uiAutoScrollNumericUpDown
+            // 
+            this.uiAutoScrollNumericUpDown.Increment = new decimal(new int[] {
+            50,
+            0,
+            0,
+            0});
+            this.uiAutoScrollNumericUpDown.Location = new System.Drawing.Point(10, 19);
+            this.uiAutoScrollNumericUpDown.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.uiAutoScrollNumericUpDown.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.uiAutoScrollNumericUpDown.Name = "uiAutoScrollNumericUpDown";
+            this.uiAutoScrollNumericUpDown.Size = new System.Drawing.Size(120, 20);
+            this.uiAutoScrollNumericUpDown.TabIndex = 1;
+            this.uiAutoScrollNumericUpDown.Value = new decimal(new int[] {
+            850,
+            0,
+            0,
+            0});
+            this.uiAutoScrollNumericUpDown.ValueChanged += new System.EventHandler(this.uiAutoScrollNumericUpDown_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(7, 42);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(448, 39);
+            this.label10.TabIndex = 0;
+            this.label10.Text = resources.GetString("label10.Text");
+            // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.uiMoreInfoTabsLinkLabel);
             this.groupBox5.Controls.Add(this.label6);
             this.groupBox5.Controls.Add(this.uiAllowMultiTabsCheckBox);
-            this.groupBox5.Location = new System.Drawing.Point(9, 146);
+            this.groupBox5.Location = new System.Drawing.Point(6, 227);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(466, 104);
             this.groupBox5.TabIndex = 5;
@@ -172,7 +237,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.uiDeleteCacheOnCloseCheckBox);
-            this.groupBox4.Location = new System.Drawing.Point(9, 88);
+            this.groupBox4.Location = new System.Drawing.Point(6, 211);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(466, 52);
             this.groupBox4.TabIndex = 4;
@@ -642,6 +707,9 @@
             this.Load += new System.EventHandler(this.OptionsForm_Load);
             this.uiOptionsTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.uiAutoScrollNumericUpDown)).EndInit();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -722,5 +790,9 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.CheckBox uiAnnotateScreenshotCheckBox;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown uiAutoScrollNumericUpDown;
+        private System.Windows.Forms.Label label10;
     }
 }

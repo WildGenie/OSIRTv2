@@ -48,6 +48,7 @@ namespace OSIRT.UI.Options
             uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
             uiMicroPhoneRadioButton.Checked = OsirtVideoCapture.HasMicrophone() && settings.UseMicrophone;
             uiStereoMixRadioButton.Checked = OsirtVideoCapture.HasStereoMix() && settings.UseStereoMix;
+            uiAutoScrollNumericUpDown.Value = settings.ScrollTimer;
 
 
             if (OsirtVideoCapture.HasStereoMix())
@@ -216,6 +217,12 @@ namespace OSIRT.UI.Options
         private void uiAnnotateScreenshotCheckBox_CheckedChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void uiAutoScrollNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            settings.ScrollTimer = (int) uiAutoScrollNumericUpDown.Value;
+            settings.Save();
         }
     }
 }

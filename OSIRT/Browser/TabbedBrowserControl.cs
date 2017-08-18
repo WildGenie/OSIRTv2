@@ -214,8 +214,11 @@ namespace OSIRT.Browser
                 }
 
                 int progress = dl.DownloadItems.PercentComplete;
-                uiDownloadProgressBar.Value = progress;
-                uiActionLoggedToolStripStatusLabel.Text = $"Speed (KB/s): {dl.DownloadItems.CurrentSpeed / 1024} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
+                if (progress > -1)
+                {
+                    uiDownloadProgressBar.Value = progress;
+                    uiActionLoggedToolStripStatusLabel.Text = $"Speed (KB/s): {dl.DownloadItems.CurrentSpeed / 1024} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
+                }
             });
         }
 

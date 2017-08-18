@@ -77,6 +77,7 @@
             this.uiCloseButton.TabIndex = 3;
             this.uiCloseButton.Text = "Close";
             this.uiCloseButton.UseVisualStyleBackColor = true;
+            this.uiCloseButton.Click += new System.EventHandler(this.uiCloseButton_Click);
             // 
             // UrlLister
             // 

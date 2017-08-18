@@ -445,8 +445,11 @@ namespace OSIRT.UI
                 controlPort = int.Parse(dict["torPort"]);
                 if (dict.ContainsKey("disablewebrtc"))
                 {
-                    Console.WriteLine("webrtc: " + dict["disablewebrtc"]);
-                    OsirtHelper.DisableWebRtc = Convert.ToBoolean(dict["disablewebrtc"].Trim());
+                    bool webRtc = false;
+                    if(bool.TryParse("disablewebrtc", out webRtc))
+                    {
+                        OsirtHelper.DisableWebRtc = Convert.ToBoolean(dict["disablewebrtc"].Trim());
+                    }
                 }
 
             }
@@ -617,7 +620,9 @@ namespace OSIRT.UI
                 prevDocHeight = docHeight;
             ";
 
-            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}, 825); })();";
+            int scrollTime = UserSettings.Load().ScrollTimer;
+            Console.WriteLine("SCROLL TIMER: " + scrollTime);
+            string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}," + scrollTime  + "); })();";
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
         }
 
