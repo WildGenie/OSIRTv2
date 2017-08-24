@@ -32,6 +32,10 @@ using System.Security.Cryptography.X509Certificates;
 using System.Net.Security;
 using System.Net.Http;
 using Ionic.Zip;
+using System.Xml.Serialization;
+using System.Xml.Linq;
+using System.Text.RegularExpressions;
+using OSIRT.UI.VideoParser;
 
 namespace OSIRT.UI
 {
@@ -621,7 +625,6 @@ namespace OSIRT.UI
             ";
 
             int scrollTime = UserSettings.Load().ScrollTimer;
-            Console.WriteLine("SCROLL TIMER: " + scrollTime);
             string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}," + scrollTime  + "); })();";
             await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
         }
@@ -674,18 +677,17 @@ namespace OSIRT.UI
             new UrlLister(urls.Trim()).Show();
         }
 
-
-
         private void SavePage(object sender, WaitWindowEventArgs e)
         {
             string output = "";
 
             List<RequestWrapper> resources = uiTabbedBrowserControl.CurrentTab.Browser.ResourcesSet().OrderBy(q => q.Identifier).ToList();
-            List<HeaderWrapper> headers = uiTabbedBrowserControl.CurrentTab.Browser.Headers().OrderBy(q => q.Identifer).ToList();
+            List<HeaderWrapper> headers = uiTabbedBrowserControl.CurrentTab.Browser.ResponseHeaders().OrderBy(q => q.Identifer).ToList();
+            List<HeaderWrapper> requestHeaders = uiTabbedBrowserControl.CurrentTab.Browser.RequestHeaders().OrderBy(q => q.Identifer).ToList();
 
             string saveFolder = new Uri(uiTabbedBrowserControl.CurrentTab.Browser.URL).Host.Replace(".", "_") + DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss-fff");
             string savePath = Path.Combine(GSettings.Load().SaveDirectory, saveFolder);
-            string logSavePath = Path.Combine(savePath, "log");
+            string logSavePath = Path.Combine(savePath, "_complete_log");
             Directory.CreateDirectory(savePath);
             Directory.CreateDirectory(logSavePath);
 
@@ -699,21 +701,23 @@ namespace OSIRT.UI
             ulong count = 0;
             foreach (var resource in resources)
             {
-                string filename = resource.ResourceType == ResourceType.MainFrame ? "mainframe.html" : OsirtHelper.GetSafeFilename(resource.RequestUrl);
+                Directory.CreateDirectory($@"{savePath}\{resource.ResourceType}");
+                string filename = resource.ResourceType == ResourceType.MainFrame ? "mainframe.html" : OsirtHelper.GetSafeFilename(resource.RequestUrl, resource.MimeType);
                 e.Window.Message = "Saving: " + filename + "...Please Wait";
-                if (File.Exists($@"{savePath}\{filename}"))
+
+                if (File.Exists($@"{savePath}\{resource.ResourceType}\{filename}")  )
                 {
                     filename = $"{++count}_{filename}";
                 }
                 
-                File.WriteAllBytes($@"{savePath}\{filename}", resource.Data);
+                File.WriteAllBytes($@"{savePath}\{resource.ResourceType}\{filename}", resource.Data);
                 output += "=================================================================================\r\n";
                 output += "Request ID: " + resource.Identifier + "\r\n";
                 output += "Request URL: " + resource.RequestUrl + "\r\n";
                 output += "Request URL IP(s): " + OsirtHelper.GetIpFromUrl(resource.RequestUrl).Replace("\r\n", " ")  + "\r\n";
                 output += "Resource Type: " + resource.ResourceType + "\r\n";
                 output += "Mime Type: " + resource.MimeType + "\r\n";
-                output += "File Saved Location: " + $@"{savePath}\{filename}" + "\r\n";
+                output += "File Saved Location: " + $@"{savePath}\{resource.ResourceType}\{filename}" + "\r\n";
                 output += $"Hash [{UserSettings.Load().Hash.ToUpper()}]: " + OsirtHelper.GetFileHash(resource.Data) + "\r\n";
                 output += "Save completed at: " + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss.fffffff") + "\r\n";
                 output += "=================================================================================\r\n";
@@ -725,7 +729,6 @@ namespace OSIRT.UI
             output += "=================================================================================\r\n";
             File.AppendAllText($@"{logSavePath}\_capture.txt", output);
             File.Copy(Constants.TempImgFile, $@"{logSavePath}\_website.png");
-
 
             if (GSettings.Load().SaveHttpHeaders)
             {
@@ -741,6 +744,19 @@ namespace OSIRT.UI
                     headerOutput += "====================================================\r\n";
                 }
                 File.AppendAllText($@"{logSavePath}\_headers.txt", headerOutput);
+
+                //string reqheaderOutput = "";
+                //foreach (var k in requestHeaders)
+                //{
+                //    reqheaderOutput += "====================================================\r\n";
+                //    reqheaderOutput += "Request ID: " + k.Identifer + "\r\n";
+                //    foreach (KeyValuePair<string, string> kv in k.Headers)
+                //    {
+                //        reqheaderOutput += $"{kv.Key} : {kv.Value}" + "\r\n";
+                //    }
+                //    reqheaderOutput += "====================================================\r\n";
+                //}
+                //File.AppendAllText($@"{logSavePath}\_request_headers.txt", reqheaderOutput);
             }
 
             CopyPageSaveToCase(savePath, e);
@@ -807,6 +823,15 @@ namespace OSIRT.UI
             h.HistoryLinkClicked += H_HistoryLinkClicked;
             h.Show();
         }
+
+        private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            new VideoParseForm().ShowDialog();
+         
+
+        }
+
     }
 }
 

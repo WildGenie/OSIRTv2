@@ -15,6 +15,7 @@ using ImageMagick;
 using OSIRT.Extensions;
 using System.Collections.Generic;
 using System.Net;
+using CefSharp;
 
 namespace OSIRT.Helpers
 {
@@ -75,12 +76,13 @@ namespace OSIRT.Helpers
             return (PasswordScore)score;
         }
 
-        public static string GetSafeFilename(string filename)
+        public static string GetSafeFilename(string filename, string mimeType)
         {
             try
             {
                 //filename = Path.GetFileName(filename);
                 filename = StripQueryFromFile(filename);
+                filename = Path.GetFileName(filename);
                 filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
 
                 if (filename.Length > 150)
@@ -89,6 +91,28 @@ namespace OSIRT.Helpers
                 }
 
                 if (filename == "") filename = "blank_file_" + DateTime.Now.ToString("ddMMyyyyHHmmss");// + "." + MimeTypeMap.GetExtension(MimeType);
+
+                
+                if (string.IsNullOrEmpty(Path.GetExtension(filename))) 
+                {
+                    Console.WriteLine("MIME: " + mimeType);
+                    try
+                    {
+                        filename += MimeTypes.MimeTypeMap.GetExtension(mimeType);
+                    }
+                    catch
+                    {
+                        if (mimeType == "text/javascript")
+                        {
+                            filename += ".js";
+                        }
+                        else
+                        {
+                            filename += ".unknown";
+                        }
+                    }
+                }
+
             }
             catch
             {
@@ -96,6 +120,9 @@ namespace OSIRT.Helpers
             }
             return filename;
         }
+
+
+
 
         public static void CheckCacheDirectoriesExist()
         {

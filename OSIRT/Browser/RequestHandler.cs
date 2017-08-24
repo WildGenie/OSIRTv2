@@ -17,8 +17,6 @@ namespace OSIRT.Browser
 {
     public class RequestHandler : IRequestHandler
     {
-        
-        
 
         public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
         {
@@ -29,8 +27,8 @@ namespace OSIRT.Browser
 
                 //use attempts counter to stop basic auth dialog popping up in continually incorrect un and pass entered.
                 //test here: https://www.httpwatch.com/httpgallery/authentication/
-                System.Windows.Forms.DialogResult dr = auth.ShowDialog();
-                if (dr == System.Windows.Forms.DialogResult.OK)
+                DialogResult dr = auth.ShowDialog();
+                if (dr == DialogResult.OK)
                 {
                     callback.Continue(auth.UserName, auth.Password);
                     return true;
@@ -127,18 +125,26 @@ namespace OSIRT.Browser
         private string oldAddress = "";
         public HashSet<RequestWrapper> Resources { get; private set; } = new HashSet<RequestWrapper>();
         public List<HeaderWrapper> ResponseHeaders { get; private set; } = new List<HeaderWrapper>();
+        public List<HeaderWrapper> RequestHeaders { get; private set; } = new List<HeaderWrapper>();
 
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
+            if (!RuntimeSettings.EnableWebDownloadMode) return;
+
+            
             if (oldAddress != browserControl.Address || oldAddress == "")
             {
                 oldAddress = browserControl.Address;
                 Resources.Clear();
                 ResponseHeaders.Clear();
+                RequestHeaders.Clear();
             }
 
             var dict = response.ResponseHeaders.AllKeys.ToDictionary(x => x, x => response.ResponseHeaders[x]);
             ResponseHeaders.Add(new HeaderWrapper(request.Identifier, dict));
+
+            var reqDict = request.Headers.AllKeys.ToDictionary(x => x, x => request.Headers[x]);
+            RequestHeaders.Add(new HeaderWrapper(request.Identifier, reqDict));
 
             MemoryStreamResponseFilter filter;
             if (responseDictionary.TryGetValue(request.Identifier, out filter))

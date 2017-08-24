@@ -570,6 +570,7 @@
             this.twitterToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.twitterToolStripMenuItem.Text = "tester";
             this.twitterToolStripMenuItem.Visible = false;
+            this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
             // 
             // uiStopAutoScrollingToolStripButton
             // 

@@ -102,10 +102,16 @@ namespace OSIRT.Browser
             return requestHandler.Resources;
         }
 
-        public List<HeaderWrapper> Headers()
+        public List<HeaderWrapper> ResponseHeaders()
         {
             return requestHandler.ResponseHeaders;
         }
+
+        public List<HeaderWrapper> RequestHeaders()
+        {
+            return requestHandler.RequestHeaders;
+        }
+
 
         private void Handler_SaveSelectedText(object sender, EventArgs e)
         {
