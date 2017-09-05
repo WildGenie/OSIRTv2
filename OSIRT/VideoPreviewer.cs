@@ -20,10 +20,15 @@ namespace OSIRT
 
         private bool successful = false;
 
-        public VideoPreviewer(Actions a) : base(a, Constants.TempVideoFile)
+        public VideoPreviewer(Actions a) : this (a, Constants.TempVideoFile)
+        {
+            //InitializeComponent();
+            //filePath = Constants.TempVideoFile;
+        }
+
+        public VideoPreviewer(Actions a, string videoPath) : base(a, videoPath)
         {
             InitializeComponent();
-            //filePath = Constants.TempVideoFile;
         }
 
 
@@ -42,10 +47,11 @@ namespace OSIRT
             try
             {
                 uiVideoMediaPlayer.Ctlcontrols.stop();
-                File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
+                //File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
+                File.Copy(filePath, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
-                File.Delete(Constants.TempVideoFile);
+                File.Delete(filePath);
                 successful = true;
             }
             catch(UnauthorizedAccessException uex)

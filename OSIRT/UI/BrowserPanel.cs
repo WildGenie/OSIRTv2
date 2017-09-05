@@ -459,8 +459,9 @@ namespace OSIRT.UI
             }
             //DPI settings >100% break screenshots. This prevents cefsharp from auto scaling the browser, meaning screenshots don't break.
             settings.CefCommandLineArgs.Add("force-device-scale-factor", "1");
+            //settings.CefCommandLineArgs.Add("--enable-system-flash", "1");
 
-            if(RuntimeSettings.EnableWebDownloadMode)
+            if (RuntimeSettings.EnableWebDownloadMode)
             {
                 settings.CefCommandLineArgs.Add("disable-application-cache", "1");
             }
@@ -827,11 +828,25 @@ namespace OSIRT.UI
         private void twitterToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            new VideoParseForm().ShowDialog();
-         
-
+            using (VideoParseForm vid = new VideoParseForm())
+            {
+                vid.VideoDownloadComplete += Dialog_VideoDownloadComplete;
+                vid.ShowDialog();
+            }
         }
 
+        private void Dialog_VideoDownloadComplete(object sender, EventArgs e)
+        {
+            //show video previewer
+
+            using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video, Path.Combine(Constants.VideoCacheLocation, "temp_facebook_vid.mp4")))
+            {
+               vidPreviewer.ShowDialog();
+            }
+
+            ImageDiskCache.RemoveSpecificItemFromCache(Path.Combine(Constants.VideoCacheLocation, "temp_facebook_vid.mp4"));
+
+        }
     }
 }
 
