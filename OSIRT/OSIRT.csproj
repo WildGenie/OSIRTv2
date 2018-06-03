@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.WinForms.66.0.0-CI2629\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.66.0.0-CI2629\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.redist.x86.3.3359.1772\build\cef.redist.x86.props" Condition="Exists('..\packages\cef.redist.x86.3.3359.1772\build\cef.redist.x86.props')" />
+  <Import Project="..\packages\cef.redist.x64.3.3359.1772\build\cef.redist.x64.props" Condition="Exists('..\packages\cef.redist.x64.3.3359.1772\build\cef.redist.x64.props')" />
   <Import Project="..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props" Condition="Exists('..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -85,10 +89,6 @@
     <Reference Include="CefSharp.Core, Version=58.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\Source\Repos\CefSharp5\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="CefSharp.WinForms, Version=58.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Source\Repos\CefSharp5\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.WinForms.dll</HintPath>
     </Reference>
     <Reference Include="Cyotek.Windows.Forms.ImageBox, Version=1.1.5.1, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\CyotekImageBox.1.1.5.1\lib\net20\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
@@ -966,12 +966,14 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets'))" />
     <Error Condition="!Exists('..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.3359.1772\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.3359.1772\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3359.1772\build\cef.redist.x86.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3359.1772\build\cef.redist.x86.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.66.0.0-CI2629\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.66.0.0-CI2629\build\CefSharp.WinForms.props'))" />
   </Target>
-  <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
-  <Import Project="..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets')" />
+  <Import Project="..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.66.0.0-CI2629\build\CefSharp.Common.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -1,0 +1,54 @@
+﻿// Copyright © 2010-2017 The CefSharp Authors. All rights reserved.
+//
+// Use of this source code is governed by a BSD-style license that can be found in the LICENSE file.
+
+using System;
+using System.Threading.Tasks;
+using CefSharp.Internals;
+
+namespace CefSharp
+{
+    public class TaskCompletionCallback : ICompletionCallback
+    {
+        private readonly TaskCompletionSource<bool> taskCompletionSource;
+        private volatile bool isDisposed;
+        private bool onComplete; //Only ever accessed on the same CEF thread, so no need for thread safety
+
+        public TaskCompletionCallback()
+        {
+            taskCompletionSource = new TaskCompletionSource<bool>();
+        }
+
+        void ICompletionCallback.OnComplete()
+        {
+            onComplete = true;
+
+            taskCompletionSource.TrySetResultAsync(true);
+        }
+
+        public Task<bool> Task
+        {
+            get { return taskCompletionSource.Task; }
+        }
+
+        bool ICompletionCallback.IsDisposed
+        {
+            get { return isDisposed; }
+        }
+
+        void IDisposable.Dispose()
+        {
+            var task = taskCompletionSource.Task;
+
+            //If onComplete is false then ICompletionCallback.OnComplete was never called,
+            //so we'll set the result to false. Calling TrySetResultAsync multiple times 
+            //can result in the issue outlined in https://github.com/cefsharp/CefSharp/pull/2349
+            if (onComplete == false && task.IsCompleted == false)
+            {
+                taskCompletionSource.TrySetResultAsync(false);
+            }
+
+            isDisposed = true;
+        }
+    }
+}
