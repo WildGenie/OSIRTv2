@@ -111,10 +111,6 @@ namespace OSIRT.UI.CaseClosing
             }
         }
 
-        public void CleanInternetExporerCache()
-        {
-            WebBrowserHelper.ClearCache();
-        }
 
         public bool CleanUpDirectories()
         {
