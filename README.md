@@ -6,7 +6,7 @@ OSIRT's source code is licensed under the MIT License.
 
 ![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Copyright (c) 2017 Joseph Williams
+Copyright (c) 2018 Joseph Williams
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
