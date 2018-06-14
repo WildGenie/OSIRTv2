@@ -174,5 +174,15 @@ namespace OSIRT.Browser
             callback.Dispose();
             return false;
         }
+
+        public bool CanGetCookies(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request)
+        {
+            return true;
+        }
+
+        public bool CanSetCookie(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, CefSharp.Cookie cookie)
+        {
+            return true;
+        }
     }
 }
