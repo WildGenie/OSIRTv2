@@ -607,7 +607,7 @@ namespace OSIRT.UI
             new TextPreviewer(Enums.Actions.Source, "example text").Show();
         }
 
-        private async void AutoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
+        private /*async*/ void AutoscrollstartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             uiStopAutoScrollingToolStripButton.Visible = true;
             autoscrollstartToolStripMenuItem.Enabled = false;
@@ -627,7 +627,8 @@ namespace OSIRT.UI
 
             int scrollTime = UserSettings.Load().ScrollTimer;
             string js = "var pidScrollToEnd; (function() { prevDocHeight = 0; window.scrollTo(0, Math.max(document.body.scrollHeight, document.documentElement.scrollHeight, document.documentElement.clientHeight) ); pidScrollToEnd = setInterval(function(){" + scroll + "}," + scrollTime  + "); })();";
-            await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
+            //await uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.EvaluateScriptAsync(js);
+             uiTabbedBrowserControl.CurrentTab.Browser.GetBrowser().MainFrame.ExecuteJavaScriptAsync(js);
         }
 
 

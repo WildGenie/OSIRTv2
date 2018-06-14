@@ -434,7 +434,7 @@ namespace OSIRT.Browser
             }
         }
 
-        private async void FullpageScreenshotByScrolling()
+        private /*async*/ void FullpageScreenshotByScrolling()
         {
             
             int scrollHeight = GetDocHeight();
@@ -444,10 +444,11 @@ namespace OSIRT.Browser
                 return;
             }
 
-            Debug.WriteLine("Client rect height: " + ClientRectangle.Size.Height);
-            Debug.WriteLine("Control height: " + Height);
-            Debug.WriteLine("Display Rect height: " +  DisplayRectangle.Height);
-            Debug.WriteLine("Client size height: " + ClientSize.Height);
+            Console.WriteLine("-------------SCROLL HEIGHT:------------" + scrollHeight);
+            Console.WriteLine("Client rect height: " + ClientRectangle.Size.Height);
+            Console.WriteLine("Control height: " + Height);
+            Console.WriteLine("Display Rect height: " +  DisplayRectangle.Height);
+            Console.WriteLine("Client size height: " + ClientSize.Height);
 
           
 
@@ -455,28 +456,32 @@ namespace OSIRT.Browser
             int viewportHeight = ClientRectangle.Size.Height; 
             int viewportWidth = ClientRectangle.Size.Width;
 
-            await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
+            //GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
             int count = 0;
             int pageLeft = scrollHeight;
             bool atBottom = false;
-            Debug.WriteLine($"OUTSIDE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
+            Console.WriteLine($"OUTSIDE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
             ImageDiskCache cache = new ImageDiskCache();
 
             while (!atBottom)
             {
                 if (pageLeft > viewportHeight)
                 {
-    
-                    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0," + (count * viewportHeight) + "); })();");
+                    string js = "(function() { window.scroll(0," + (count * viewportHeight) + "); })();";
+                    //await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0," + (count * viewportHeight) + "); })();");
+                    GetBrowser().MainFrame.ExecuteJavaScriptAsync(js);
                     count++;
-                    await PutTaskDelay();  //we do need these delays. Some pages, like facebook, may need to load viewport content.
+                    //await PutTaskDelay();  //we do need these delays. Some pages, like facebook, may need to load viewport content.
+                    Thread.Sleep(500);
                     using (Bitmap image = GetCurrentViewScreenshot())
                     {
                         cache.AddImage(count, image);
                     }
 
-                    if (!OsirtHelper.IsOnGoogle(URL))
-                        await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
+                    GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
+
+                    //if (!OsirtHelper.IsOnGoogle(URL))
+                    //    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
                 }
                 else 
                 {
@@ -484,13 +489,14 @@ namespace OSIRT.Browser
                     //if it's the last image, we're going to need to crop what we need, as it'll take
                     //a capture of the entire viewport.
 
-           
-                   await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
 
+                    // await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
+                    GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
                     atBottom = true;
                     count++;
 
-                    await PutTaskDelay();
+                    //await PutTaskDelay();
+                    Thread.Sleep(500);
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 
                     using (Bitmap src = GetCurrentViewScreenshot())
@@ -506,10 +512,10 @@ namespace OSIRT.Browser
                 pageLeft = pageLeft - viewportHeight;
                 Debug.WriteLine($"IN WHILE --- PAGE LEFT: {pageLeft}. VIEWPORT HEIGHT: {viewportHeight}");
             }//end while
-            await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { document.documentElement.style.overflow = 'auto'; })();");
-            await GetBrowser().MainFrame.EvaluateScriptAsync("javascript:var s = function() { document.body.scrollTop = document.documentElement.scrollTop = 0;}; s();");
+            GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { document.documentElement.style.overflow = 'auto'; })();");
+            GetBrowser().MainFrame.ExecuteJavaScriptAsync("javascript:var s = function() { document.body.scrollTop = document.documentElement.scrollTop = 0;}; s();");
             if (!OsirtHelper.IsOnGoogle(URL))
-                await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'visible'; } } })(); ");
+                GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'visible'; } } })(); ");
             Enabled = true;
             WaitWindow.Show(GetScreenshot, Resources.strings.CombineScreenshots);
             FireScreenshotCompleteEvent(true);
