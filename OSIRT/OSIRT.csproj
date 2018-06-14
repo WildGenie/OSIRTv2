@@ -242,7 +242,6 @@
     <Compile Include="Browser\SearchFinder\Find.Designer.cs">
       <DependentUpon>Find.cs</DependentUpon>
     </Compile>
-    <Compile Include="Browser\WebBrowserHelper.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClient.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadClientStatus.cs" />
     <Compile Include="Browser\WebDownloader\HttpDownloadCompletedEventArgs.cs" />
