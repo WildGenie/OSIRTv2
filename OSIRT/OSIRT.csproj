@@ -588,6 +588,12 @@
     <Compile Include="UI\TextPreviewer.Designer.cs">
       <DependentUpon>TextPreviewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\ToDoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\ToDoForm.Designer.cs">
+      <DependentUpon>ToDoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UnhandledExceptionForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -768,6 +774,9 @@
     <EmbeddedResource Include="UI\TextPreviewer.resx">
       <DependentUpon>TextPreviewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\ToDoForm.resx">
+      <DependentUpon>ToDoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -937,6 +946,7 @@
     <None Include="Resources\arrow_rotate_clockwise1.png" />
     <None Include="Resources\text_large_cap.png" />
     <None Include="Resources\cancel.png" />
+    <None Include="Resources\to_do_list_checked_1.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

@@ -57,7 +57,7 @@ namespace OSIRT.UI
             switch (col)
             {
                 case 0:
-                    DialogResult dr = MessageBox.Show("This will remove this bookmark. Are you sure?", "Remove Bookmark?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    DialogResult dr = MessageBox.Show("Action will remove this bookmark. Are you sure?", "Remove Bookmark?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (dr != DialogResult.Yes) return;
                     key = row.Cells[1].Value.ToString();
                     OsirtHelper.Favourites.Remove(key);

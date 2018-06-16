@@ -21,6 +21,7 @@ namespace OSIRT.Browser
         private const int ViewImageExifData = 26506;
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
+        private const int UrlInToDo = 26518;
         
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
@@ -46,6 +47,7 @@ namespace OSIRT.Browser
         public event EventHandler AddPageToBookmarks = delegate { };
         public event EventHandler SearchText = delegate { };
         public event EventHandler SaveSelectedText = delegate { };
+        public event EventHandler UrlInToDoList = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
@@ -62,6 +64,7 @@ namespace OSIRT.Browser
             if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
             {
                 model.AddItem((CefMenuCommand)26501, "Open link in new tab");
+                model.AddItem((CefMenuCommand)26518, "Add link to ToDo list");
                 model.AddSeparator();
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
@@ -114,8 +117,11 @@ namespace OSIRT.Browser
          {
             if ((int)commandId == OpenLinkInNewTab)
             {
-                //browser.ShowDevTools();
                 OpenInNewTabContextMenu?.Invoke(this, new NewTabEventArgs(parameters.UnfilteredLinkUrl));
+            }
+            if ((int)commandId == UrlInToDo)
+            {
+                UrlInToDoList?.Invoke(this, new NewTabEventArgs(parameters.UnfilteredLinkUrl));
             }
             if ((int)commandId == CloseDevTools)
             {

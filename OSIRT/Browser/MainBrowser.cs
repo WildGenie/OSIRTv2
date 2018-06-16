@@ -76,6 +76,7 @@ namespace OSIRT.Browser
             handler.AddPageToBookmarks += Handler_AddPageToBookmarks;
             handler.SearchText += Handler_SearchText;
             handler.SaveSelectedText += Handler_SaveSelectedText;
+            handler.UrlInToDoList += Handler_UrlInToDoList;
            
             MenuHandler = handler;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
@@ -95,6 +96,12 @@ namespace OSIRT.Browser
                 IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
             }
             
+        }
+
+        private void Handler_UrlInToDoList(object sender, EventArgs e)
+        {
+            string url = ((NewTabEventArgs)e).Url;
+            OsirtHelper.toDo.Add(url);
         }
 
         public HashSet<RequestWrapper> ResourcesSet()

@@ -848,6 +848,14 @@ namespace OSIRT.UI
             ImageDiskCache.RemoveSpecificItemFromCache(Path.Combine(Constants.VideoCacheLocation, "temp_facebook_vid.mp4"));
 
         }
+
+        private void toDoListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using(ToDoForm toDoForm = new ToDoForm())
+            {
+                toDoForm.ShowDialog();
+            }
+        }
     }
 }
 
