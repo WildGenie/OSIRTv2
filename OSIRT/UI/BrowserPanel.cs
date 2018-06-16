@@ -851,10 +851,16 @@ namespace OSIRT.UI
 
         private void toDoListToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            using(ToDoForm toDoForm = new ToDoForm())
-            {
-                toDoForm.ShowDialog();
-            }
+            ToDoForm toDo = new ToDoForm();
+            toDo.LinkClicked += ToDo_LinkClicked;
+            toDo.Show();
+            
+        }
+
+        private void ToDo_LinkClicked(object sender, EventArgs e)
+        {
+            string url = ((TextEventArgs)e).Result;
+            this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
         }
     }
 }

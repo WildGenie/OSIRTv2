@@ -947,6 +947,7 @@
     <None Include="Resources\text_large_cap.png" />
     <None Include="Resources\cancel.png" />
     <None Include="Resources\to_do_list_checked_1.png" />
+    <None Include="Resources\to_do_list_checked_11.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />

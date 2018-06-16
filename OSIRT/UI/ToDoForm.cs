@@ -1,4 +1,5 @@
-﻿using OSIRT.Helpers;
+﻿using OSIRT.Browser;
+using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,8 @@ namespace OSIRT.UI
 {
     public partial class ToDoForm : Form
     {
+        public event EventHandler LinkClicked = delegate { };
+
         public ToDoForm()
         {
             InitializeComponent();
@@ -23,12 +26,33 @@ namespace OSIRT.UI
         {
             uiToDoUrlDataGridView.ColumnCount = 1;
             uiToDoUrlDataGridView.Columns[0].Name = "To Do URL";
+            uiToDoUrlDataGridView.CellClick += UiToDoUrlDataGridView_CellClick;
+            uiToDoUrlDataGridView.CellMouseEnter += UiToDoUrlDataGridView_CellMouseEnter;
 
             foreach (string url in OsirtHelper.toDo)
             {
                 uiToDoUrlDataGridView.Rows.Add(url);
             }
             uiToDoUrlDataGridView.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+        }
+
+        private void UiToDoUrlDataGridView_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+
+            if (e.ColumnIndex == 0) uiToDoUrlDataGridView.Cursor = Cursors.Hand;
+        }
+
+        private void UiToDoUrlDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int col = e.ColumnIndex;
+
+            if (col < 0) return;
+
+            int rowIndex = e.RowIndex;
+            DataGridViewRow row = uiToDoUrlDataGridView.Rows[rowIndex];
+            string key = row.Cells[0].Value.ToString();
+            LinkClicked?.Invoke(this, new TextEventArgs(key));
         }
 
         private void uiExportToDoButton_Click(object sender, EventArgs e)

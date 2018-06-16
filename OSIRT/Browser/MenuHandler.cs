@@ -52,7 +52,7 @@ namespace OSIRT.Browser
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
-            //model.Clear();
+            model.Clear();
 
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
             {
@@ -64,7 +64,7 @@ namespace OSIRT.Browser
             if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
             {
                 model.AddItem((CefMenuCommand)26501, "Open link in new tab");
-                model.AddItem((CefMenuCommand)26518, "Add link to ToDo list");
+                model.AddItem((CefMenuCommand)26518, "Add link to 'To Do' list");
                 model.AddSeparator();
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
