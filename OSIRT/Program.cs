@@ -68,7 +68,12 @@ namespace OSIRT
                 //https://github.com/cefsharp/CefSharp/wiki/General-Usage#high-dpi-displayssupport
                 //https://github.com/cefsharp/CefSharp/issues/1757
 
-                //OSIRT will crash immediately with no error message on Windows 7 machines if cef.core.dll not available
+                //OSIRT will crash immediately with no error message if cef.core.dll not available
+                //that is, if OSIRT is installed via the MSI, OSIRT won't even load but Windows event viewer will 
+                //show a 'System.IO.FileLoadException'
+                //make sure appropiate VC++ redists are installed
+                //it's this early call to CEF that does causes the issue... Do we event need it?
+
                 Cef.EnableHighDPISupport(); 
 
 

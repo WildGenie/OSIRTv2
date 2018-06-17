@@ -30,13 +30,21 @@ namespace OSIRT.Helpers
 
         public static string GetIpFromUrl(string url)
         {
-            Uri uri = new Uri(url);
-            IPAddress[] addresses = Dns.GetHostAddresses(uri.Host);
-
             string message = "";
-            foreach (var address in addresses)
+            try
             {
-                message += address.ToString() + "\r\n";
+                Uri uri = new Uri(url);
+                IPAddress[] addresses = Dns.GetHostAddresses(uri.Host);
+
+                
+                foreach (var address in addresses)
+                {
+                    message += address.ToString() + "\r\n";
+                }
+            }
+            catch (Exception)
+            {
+                message = "[Unable to obtain IP]";
             }
             return message;
         }

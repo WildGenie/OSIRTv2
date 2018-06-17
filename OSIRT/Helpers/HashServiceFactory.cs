@@ -24,9 +24,8 @@ namespace OSIRT.Helpers
         /// <returns>A HashService to hash</returns>
         public static HashService Create(string algorithmRequired)
         {
-            HashService hashService;
 
-            if (!hashAlgorithms.TryGetValue(algorithmRequired.ToLowerInvariant(), out hashService))
+            if (!hashAlgorithms.TryGetValue(algorithmRequired.ToLowerInvariant(), out HashService hashService))
             {
                 throw new KeyNotFoundException("Hash is not found");
             }
