@@ -43,10 +43,12 @@ namespace OSIRT.Browser
             Browser.MouseMove += Browser_MouseMove;
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
 
-            BrowserSettings bs = new BrowserSettings();
-            bs.Javascript = RuntimeSettings.JsDisabled ? CefState.Disabled : CefState.Default;
-            bs.ImageLoading = RuntimeSettings.ImagesDisabled ? CefState.Disabled : CefState.Default;
-            bs.Plugins = RuntimeSettings.PluginsDisabled ? CefState.Disabled : CefState.Default;
+            BrowserSettings bs = new BrowserSettings
+            {
+                Javascript = RuntimeSettings.JsDisabled ? CefState.Disabled : CefState.Default,
+                ImageLoading = RuntimeSettings.ImagesDisabled ? CefState.Disabled : CefState.Default,
+                Plugins = RuntimeSettings.PluginsDisabled ? CefState.Disabled : CefState.Default
+            };
             Browser.BrowserSettings = bs;
 
             Controls.Add(Browser);
@@ -68,7 +70,6 @@ namespace OSIRT.Browser
 
         private void Browser_MouseMove(object sender, MouseEventArgs e)
         {
-            //Debug.WriteLine($"{e.X} {e.Y}");
         }
 
         private void Browser_HandleCreated(object sender, EventArgs e)

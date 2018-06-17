@@ -51,8 +51,8 @@ namespace OSIRT.Browser
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
-            //Removing existing menu item
             model.Clear();
+
 
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
             {
@@ -69,6 +69,8 @@ namespace OSIRT.Browser
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
+                
+
                 if (!RuntimeSettings.IsUsingTor)
                 {
                     if (OsirtHelper.HasJpegExtension(parameters.SourceUrl))

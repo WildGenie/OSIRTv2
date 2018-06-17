@@ -46,15 +46,15 @@ namespace OSIRT.UI
 
         private void uiBookmarksDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int col = e.ColumnIndex;
-
-            if (col < 0) return;
-
+            int columnIndex = e.ColumnIndex;
             int rowIndex = e.RowIndex;
+
+            if (columnIndex < 0 || rowIndex < 0) return;
+
             DataGridViewRow row = uiBookmarksDataGridView.Rows[rowIndex];
             string key = "";
 
-            switch (col)
+            switch (columnIndex)
             {
                 case 0:
                     DialogResult dr = MessageBox.Show("Action will remove this bookmark. Are you sure?", "Remove Bookmark?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);

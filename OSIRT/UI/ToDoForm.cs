@@ -45,9 +45,7 @@ namespace OSIRT.UI
 
         private void UiToDoUrlDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int col = e.ColumnIndex;
-
-            if (col < 0) return;
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
 
             int rowIndex = e.RowIndex;
             DataGridViewRow row = uiToDoUrlDataGridView.Rows[rowIndex];
