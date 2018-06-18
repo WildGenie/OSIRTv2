@@ -862,6 +862,23 @@ namespace OSIRT.UI
             string url = ((TextEventArgs)e).Result;
             this.InvokeIfRequired(() => uiTabbedBrowserControl.CreateTab(url));
         }
+
+        private async void printPageAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool printed = await uiTabbedBrowserControl.CurrentTab.Browser.PrintToPdfAsync(@"C:\Users\Joe\Desktop\example.pdf", new PdfPrintSettings
+            {
+                BackgroundsEnabled = true,
+                Landscape = false,
+                MarginType = CefPdfPrintMarginType.Default,
+            });
+
+            if(printed)
+            {
+                MessageBox.Show("Completed");
+            }
+                
+                
+        }
     }
 }
 

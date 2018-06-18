@@ -90,6 +90,7 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.printPageAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
@@ -424,6 +425,7 @@
             this.toDoListToolStripMenuItem,
             this.autoscrollstartToolStripMenuItem,
             this.deleteCookiesToolStripMenuItem,
+            this.printPageAsPDFToolStripMenuItem,
             this.twitterToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutOSIRTToolStripMenuItem});
@@ -508,6 +510,7 @@
             this.toDoListToolStripMenuItem.Name = "toDoListToolStripMenuItem";
             this.toDoListToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
             this.toDoListToolStripMenuItem.Text = "ToDo List";
+            this.toDoListToolStripMenuItem.ToolTipText = "Show the current URLs in your To Do list";
             this.toDoListToolStripMenuItem.Click += new System.EventHandler(this.toDoListToolStripMenuItem_Click);
             // 
             // autoscrollstartToolStripMenuItem
@@ -678,6 +681,15 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
+            // printPageAsPDFToolStripMenuItem
+            // 
+            this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
+            this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
+            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.printPageAsPDFToolStripMenuItem.Text = "Print Page as PDF";
+            this.printPageAsPDFToolStripMenuItem.ToolTipText = "Prints the current page using the system\'s default printer dialog";
+            this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
+            // 
             // BrowserPanel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -760,5 +772,6 @@
         private System.Windows.Forms.ToolStripMenuItem historyToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem toDoListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printPageAsPDFToolStripMenuItem;
     }
 }
