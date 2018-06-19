@@ -49,9 +49,6 @@ namespace OSIRT
                 uiVideoMediaPlayer.Ctlcontrols.stop();
                 //File.Copy(Constants.TempVideoFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
                 File.Copy(filePath, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                File.Delete(filePath);
                 successful = true;
             }
             catch(UnauthorizedAccessException uex)
@@ -66,9 +63,40 @@ namespace OSIRT
             if (successful)
             {
                 Logger.Log(new VideoLog(action, FileName + FileExtension, Hash, Note));
+
+                if (UserSettings.Load().CopyArtefact) CopyVideo();
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                File.Delete(filePath);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
         }
+
+        private void CopyVideo()
+        {
+            string message = "";
+            try
+            {
+                File.Copy(filePath, Path.Combine(UserSettings.Load().CopyImageLocation, FileName + FileExtension));
+            }
+            catch (IOException)
+            {
+                message = "Creating duplicate failed, but video successfully placed in case container. This may be because a file with name already exists in the copy location.";
+            }
+            catch (UnauthorizedAccessException)
+            {
+                message = "Creating duplicate failed, but video successfully placed in case container. This is due to not having permission to save to the copy location specified in the options menu.";
+            }
+            catch
+            {
+                message = "Creating duplicate failed, but video successfully placed in case container.";
+            }
+
+            if (message != "") MessageBox.Show(message, "Error in Creating Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
     }
 }

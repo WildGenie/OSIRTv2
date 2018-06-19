@@ -77,7 +77,7 @@
             this.uiAnnotateScreenshotCheckBox = new System.Windows.Forms.CheckBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.uiBrowseCopyButton = new System.Windows.Forms.Button();
-            this.uiExportScreenshotCheckBox = new System.Windows.Forms.CheckBox();
+            this.uiExportArtefactsCheckBox = new System.Windows.Forms.CheckBox();
             this.uiCopyImgLocationTextBox = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.uiCloseButton = new System.Windows.Forms.Button();
@@ -596,14 +596,14 @@
             this.uiScreenShotTabPage.Padding = new System.Windows.Forms.Padding(3);
             this.uiScreenShotTabPage.Size = new System.Drawing.Size(483, 337);
             this.uiScreenShotTabPage.TabIndex = 3;
-            this.uiScreenShotTabPage.Text = "Screenshots";
+            this.uiScreenShotTabPage.Text = "Artefacts";
             this.uiScreenShotTabPage.UseVisualStyleBackColor = true;
             // 
             // groupBox7
             // 
             this.groupBox7.Controls.Add(this.label9);
             this.groupBox7.Controls.Add(this.uiAnnotateScreenshotCheckBox);
-            this.groupBox7.Location = new System.Drawing.Point(6, 117);
+            this.groupBox7.Location = new System.Drawing.Point(6, 150);
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.Size = new System.Drawing.Size(467, 62);
             this.groupBox7.TabIndex = 1;
@@ -634,15 +634,15 @@
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.uiBrowseCopyButton);
-            this.groupBox6.Controls.Add(this.uiExportScreenshotCheckBox);
+            this.groupBox6.Controls.Add(this.uiExportArtefactsCheckBox);
             this.groupBox6.Controls.Add(this.uiCopyImgLocationTextBox);
             this.groupBox6.Controls.Add(this.label8);
             this.groupBox6.Location = new System.Drawing.Point(6, 6);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(467, 105);
+            this.groupBox6.Size = new System.Drawing.Size(467, 138);
             this.groupBox6.TabIndex = 0;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Screenshot Exporting";
+            this.groupBox6.Text = "Artefact Exporting";
             // 
             // uiBrowseCopyButton
             // 
@@ -654,16 +654,16 @@
             this.uiBrowseCopyButton.UseVisualStyleBackColor = true;
             this.uiBrowseCopyButton.Click += new System.EventHandler(this.uiBrowseCopyButton_Click);
             // 
-            // uiExportScreenshotCheckBox
+            // uiExportArtefactsCheckBox
             // 
-            this.uiExportScreenshotCheckBox.AutoSize = true;
-            this.uiExportScreenshotCheckBox.Location = new System.Drawing.Point(9, 19);
-            this.uiExportScreenshotCheckBox.Name = "uiExportScreenshotCheckBox";
-            this.uiExportScreenshotCheckBox.Size = new System.Drawing.Size(161, 17);
-            this.uiExportScreenshotCheckBox.TabIndex = 1;
-            this.uiExportScreenshotCheckBox.Text = "Make a copy of screenshot?";
-            this.uiExportScreenshotCheckBox.UseVisualStyleBackColor = true;
-            this.uiExportScreenshotCheckBox.CheckedChanged += new System.EventHandler(this.uiExportScreenshotCheckBox_CheckedChanged);
+            this.uiExportArtefactsCheckBox.AutoSize = true;
+            this.uiExportArtefactsCheckBox.Location = new System.Drawing.Point(9, 19);
+            this.uiExportArtefactsCheckBox.Name = "uiExportArtefactsCheckBox";
+            this.uiExportArtefactsCheckBox.Size = new System.Drawing.Size(224, 17);
+            this.uiExportArtefactsCheckBox.TabIndex = 1;
+            this.uiExportArtefactsCheckBox.Text = "Make a copy of artefacts? This case only.";
+            this.uiExportArtefactsCheckBox.UseVisualStyleBackColor = true;
+            this.uiExportArtefactsCheckBox.CheckedChanged += new System.EventHandler(this.uiExportScreenshotCheckBox_CheckedChanged);
             // 
             // uiCopyImgLocationTextBox
             // 
@@ -676,12 +676,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 66);
+            this.label8.Location = new System.Drawing.Point(6, 72);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(457, 26);
+            this.label8.Size = new System.Drawing.Size(441, 52);
             this.label8.TabIndex = 0;
-            this.label8.Text = "In addition to saving screenshots to the case container, you can choose to also c" +
-    "opy them to a \r\nseperate location.";
+            this.label8.Text = resources.GetString("label8.Text");
             // 
             // uiCloseButton
             // 
@@ -784,7 +783,7 @@
         private System.Windows.Forms.TabPage uiScreenShotTabPage;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Button uiBrowseCopyButton;
-        private System.Windows.Forms.CheckBox uiExportScreenshotCheckBox;
+        private System.Windows.Forms.CheckBox uiExportArtefactsCheckBox;
         private System.Windows.Forms.TextBox uiCopyImgLocationTextBox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.GroupBox groupBox7;

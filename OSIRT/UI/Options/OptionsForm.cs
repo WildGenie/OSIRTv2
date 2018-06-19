@@ -39,11 +39,12 @@ namespace OSIRT.UI.Options
             uiExportHashOnCloseCheckBox.Checked = settings.ExportHashOnClose;
             uiBrowseLocationButton.Enabled = settings.ExportHashOnClose;
             uiHashFileLocationTextBox.Text = settings.HashExportLocation;
-            uiBrowseCopyButton.Enabled = settings.CopyImage;
+            uiBrowseCopyButton.Enabled = settings.CopyArtefact;
             uiCopyImgLocationTextBox.Text = settings.CopyImageLocation;
             uiFPSTrackBar.Value = settings.FramesPerSecond;
             uiEnterCreatesNewLineCheckBox.Checked = settings.EnterInCaseNotesNewLine;
             uiAllowMultiTabsCheckBox.Checked = settings.AllowMultipleTabs;
+            uiExportArtefactsCheckBox.Checked = settings.CopyArtefact;
             uiHomePageTextBox.Text = settings.Homepage;
             uiConstabularyIconPictureBox.Image = settings.ConstabIcon.Base64ToImage();
             uiMicroPhoneRadioButton.Checked = OsirtVideoCapture.HasMicrophone() && settings.UseMicrophone;
@@ -193,9 +194,9 @@ namespace OSIRT.UI.Options
 
         private void uiExportScreenshotCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            bool copyImg = uiExportScreenshotCheckBox.Checked;
+            bool copyImg = uiExportArtefactsCheckBox.Checked;
             uiBrowseCopyButton.Enabled = copyImg;
-            settings.CopyImage = copyImg;
+            settings.CopyArtefact = copyImg;
             settings.Save();
         }
 

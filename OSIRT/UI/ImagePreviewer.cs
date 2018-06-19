@@ -278,7 +278,7 @@ namespace OSIRT.UI
             {
                 Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
 
-                if (UserSettings.Load().CopyImage) CopyImage();
+                if (UserSettings.Load().CopyArtefact) CopyImage();
 
                 DialogResult = DialogResult.OK;
                 Close();
@@ -299,7 +299,7 @@ namespace OSIRT.UI
             }
             catch(UnauthorizedAccessException)
             {
-                message = "Copy failed, but image placed in case container. This is due to not having permission to save to the copy location.";
+                message = "Copy failed, but image placed in case container. This is due to not having permission to save to the copy location specified in the options menu.";
             }
             catch
             {

@@ -53,9 +53,6 @@ namespace OSIRT.UI
             try
             {
                 File.Copy(Constants.TempTextFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + ext));
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-                File.Delete(Constants.TempTextFile);
                 successful = true;
             }
             catch (UnauthorizedAccessException uex)
@@ -72,9 +69,39 @@ namespace OSIRT.UI
                 
 
                 Logger.Log(new WebpageActionsLog(url, action, Hash, FileName + ext, Note));
+
+                if (UserSettings.Load().CopyArtefact) CopyText();
+
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
+                File.Delete(Constants.TempTextFile);
+
                 DialogResult = DialogResult.OK;
                 Close();
             }
+        }
+
+        private void CopyText()
+        {
+            string message = "";
+            try
+            {
+                File.Copy(filePath, Path.Combine(UserSettings.Load().CopyImageLocation, FileName + FileExtension));
+            }
+            catch (IOException)
+            {
+                message = "Copy failed, but text file placed in case container. This may be because a file with name already exists in the copy location.";
+            }
+            catch (UnauthorizedAccessException)
+            {
+                message = "Copy failed, but text fileplaced in case container. This is due to not having permission to save to the copy location specified in the options menu.";
+            }
+            catch
+            {
+                message = "Copy failed, but text file placed in case container.";
+            }
+
+            if (message != "") MessageBox.Show(message, "Error in Creating Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void uiCancelButton_Click(object sender, EventArgs e)

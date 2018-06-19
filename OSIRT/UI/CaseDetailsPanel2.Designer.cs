@@ -60,7 +60,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.uiHelpLabelLabel = new System.Windows.Forms.Label();
             this.uiNotesTextBox = new OSIRT.UI.SpellBox();
-            this.hostedComponent8 = new System.Windows.Controls.TextBox();
+            this.hostedComponent9 = new System.Windows.Controls.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -503,5 +503,6 @@
         private System.Windows.Forms.Label uiCaserefDetailsLabel;
         private System.Windows.Forms.Label uiHashHelpLabel;
         private System.Windows.Controls.TextBox hostedComponent8;
+        private System.Windows.Controls.TextBox hostedComponent9;
     }
 }
