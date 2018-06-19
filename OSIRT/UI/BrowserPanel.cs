@@ -885,9 +885,16 @@ namespace OSIRT.UI
             if(printed)
             {
                 string savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), Path.GetFileName(savefile.FileName));
+
+                if (File.Exists(savePath))
+                {
+                    string extension = Path.GetExtension(savePath);
+                    string name = Path.GetFileNameWithoutExtension(savePath) + "_" + (DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss") + extension);
+                    savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), name);
+                }
+
                 File.Copy(savefile.FileName, savePath);
                 Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Actions.Download, OsirtHelper.GetFileHash(savefile.FileName), Path.GetFileName(savePath), ""));
-                Process.Start(savefile.FileName);
             }
             else
             {
