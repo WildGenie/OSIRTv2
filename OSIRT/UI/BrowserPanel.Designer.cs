@@ -76,6 +76,7 @@
             this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPageAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -90,7 +91,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.printPageAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
@@ -424,8 +424,8 @@
             this.uRLListerToolStripMenuItem,
             this.toDoListToolStripMenuItem,
             this.autoscrollstartToolStripMenuItem,
-            this.deleteCookiesToolStripMenuItem,
             this.printPageAsPDFToolStripMenuItem,
+            this.deleteCookiesToolStripMenuItem,
             this.twitterToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutOSIRTToolStripMenuItem});
@@ -537,7 +537,7 @@
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.historyToolStripMenuItem.Text = "History";
             this.historyToolStripMenuItem.ToolTipText = "Displays the history for this session only";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
@@ -545,7 +545,7 @@
             // refreshCacheToolStripMenuItem
             // 
             this.refreshCacheToolStripMenuItem.Name = "refreshCacheToolStripMenuItem";
-            this.refreshCacheToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.refreshCacheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshCacheToolStripMenuItem.Text = "Refresh Cache";
             this.refreshCacheToolStripMenuItem.ToolTipText = "Clears the currently open tab browser\'s in memory cache and forces page to redown" +
     "load";
@@ -554,15 +554,24 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // deleteAllCookiesToolStripMenuItem
             // 
             this.deleteAllCookiesToolStripMenuItem.Name = "deleteAllCookiesToolStripMenuItem";
-            this.deleteAllCookiesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.deleteAllCookiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
             this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
             this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
+            // 
+            // printPageAsPDFToolStripMenuItem
+            // 
+            this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
+            this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
+            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.printPageAsPDFToolStripMenuItem.Text = "Save Page as PDF";
+            this.printPageAsPDFToolStripMenuItem.ToolTipText = "Saves the current page as PDF to location ";
+            this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
             // 
             // twitterToolStripMenuItem
             // 
@@ -680,15 +689,6 @@
             // ContentPanel
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
-            // 
-            // printPageAsPDFToolStripMenuItem
-            // 
-            this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
-            this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
-            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.printPageAsPDFToolStripMenuItem.Text = "Print Page as PDF";
-            this.printPageAsPDFToolStripMenuItem.ToolTipText = "Prints the current page using the system\'s default printer dialog";
-            this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
             // 
             // BrowserPanel
             // 

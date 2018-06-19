@@ -441,7 +441,7 @@ namespace OSIRT.Browser
             }
         }
 
-        private /*async*/ void FullpageScreenshotByScrolling()
+        private void FullpageScreenshotByScrolling()
         {
             
             int scrollHeight = GetDocHeight();
@@ -451,19 +451,11 @@ namespace OSIRT.Browser
                 return;
             }
 
-            Console.WriteLine("-------------SCROLL HEIGHT:------------" + scrollHeight);
-            Console.WriteLine("Client rect height: " + ClientRectangle.Size.Height);
-            Console.WriteLine("Control height: " + Height);
-            Console.WriteLine("Display Rect height: " +  DisplayRectangle.Height);
-            Console.WriteLine("Client size height: " + ClientSize.Height);
-
-          
-
             Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height; 
             int viewportWidth = ClientRectangle.Size.Width;
 
-            //GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
+            GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { document.documentElement.style.overflow = 'hidden'; })();");
             int count = 0;
             int pageLeft = scrollHeight;
             bool atBottom = false;
@@ -475,20 +467,18 @@ namespace OSIRT.Browser
                 if (pageLeft > viewportHeight)
                 {
                     string js = "(function() { window.scroll(0," + (count * viewportHeight) + "); })();";
-                    //await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scroll(0," + (count * viewportHeight) + "); })();");
                     GetBrowser().MainFrame.ExecuteJavaScriptAsync(js);
                     count++;
-                    //await PutTaskDelay();  //we do need these delays. Some pages, like facebook, may need to load viewport content.
-                    Thread.Sleep(500);
+                   
+                    Thread.Sleep(500);   //we do need these delays. Some pages, like facebook, may need to load viewport content.
                     using (Bitmap image = GetCurrentViewScreenshot())
                     {
                         cache.AddImage(count, image);
                     }
 
-                    GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
 
-                    //if (!OsirtHelper.IsOnGoogle(URL))
-                    //    await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
+                    if (!OsirtHelper.IsOnGoogle(URL))
+                        GetBrowser().MainFrame.EvaluateScriptAsync("(function() { var elements = document.querySelectorAll('*'); for (var i = 0; i < elements.length; i++) { var position = window.getComputedStyle(elements[i]).position; if (position === 'fixed') { elements[i].style.visibility = 'hidden'; } } })(); ");
                 }
                 else 
                 {
@@ -496,13 +486,10 @@ namespace OSIRT.Browser
                     //if it's the last image, we're going to need to crop what we need, as it'll take
                     //a capture of the entire viewport.
 
-
-                    // await GetBrowser().MainFrame.EvaluateScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
                     GetBrowser().MainFrame.ExecuteJavaScriptAsync("(function() { window.scrollBy(0," + pageLeft + "); })();");
                     atBottom = true;
                     count++;
 
-                    //await PutTaskDelay();
                     Thread.Sleep(500);
                     Rectangle cropRect = new Rectangle(new Point(0, viewportHeight - pageLeft), new Size(viewportWidth, pageLeft));
 

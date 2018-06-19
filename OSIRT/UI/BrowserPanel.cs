@@ -36,6 +36,7 @@ using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.Text.RegularExpressions;
 using OSIRT.UI.VideoParser;
+using OSIRT.Enums;
 
 namespace OSIRT.UI
 {
@@ -865,7 +866,16 @@ namespace OSIRT.UI
 
         private async void printPageAsPDFToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool printed = await uiTabbedBrowserControl.CurrentTab.Browser.PrintToPdfAsync(@"C:\Users\Joe\Desktop\example.pdf", new PdfPrintSettings
+
+            SaveFileDialog savefile = new SaveFileDialog
+            {
+                FileName = "example.pdf",
+                Filter = "PDF files (*.pdf)|*.pdf"
+            };
+
+            if (savefile.ShowDialog() != DialogResult.OK) return;
+
+            bool printed = await uiTabbedBrowserControl.CurrentTab.Browser.PrintToPdfAsync(savefile.FileName, new PdfPrintSettings
             {
                 BackgroundsEnabled = true,
                 Landscape = false,
@@ -874,7 +884,14 @@ namespace OSIRT.UI
 
             if(printed)
             {
-                MessageBox.Show("Completed");
+                string savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), Path.GetFileName(savefile.FileName));
+                File.Copy(savefile.FileName, savePath);
+                Logger.Log(new WebpageActionsLog(uiTabbedBrowserControl.CurrentTab.Browser.URL, Actions.Download, OsirtHelper.GetFileHash(savefile.FileName), Path.GetFileName(savePath), ""));
+                Process.Start(savefile.FileName);
+            }
+            else
+            {
+                MessageBox.Show("Unable to save page as PDF", "Error Saving as PDF", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
                 
                 
