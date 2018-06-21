@@ -71,12 +71,12 @@
             this.uRLListerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toDoListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoscrollstartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPageAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.historyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.printPageAsPDFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,12 +85,13 @@
             this.uiBrowserMenuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeCaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.uiTabbedBrowserControl = new OSIRT.Browser.TabbedBrowserControl();
+            this.videoDownloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
@@ -427,6 +428,7 @@
             this.printPageAsPDFToolStripMenuItem,
             this.deleteCookiesToolStripMenuItem,
             this.twitterToolStripMenuItem,
+            this.videoDownloaderToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutOSIRTToolStripMenuItem});
             this.uiToolsToolStripSplitButton.Image = global::OSIRT.Properties.Resources.settings;
@@ -522,6 +524,16 @@
             this.autoscrollstartToolStripMenuItem.ToolTipText = "Will automatically scroll the page until stopped";
             this.autoscrollstartToolStripMenuItem.Click += new System.EventHandler(this.AutoscrollstartToolStripMenuItem_Click);
             // 
+            // printPageAsPDFToolStripMenuItem
+            // 
+            this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
+            this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
+            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.printPageAsPDFToolStripMenuItem.Text = "Save Page as PDF";
+            this.printPageAsPDFToolStripMenuItem.ToolTipText = "Saves the current page as PDF to a specified location.\r\nA copy is also placed in " +
+    "the case container.\r\n ";
+            this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
+            // 
             // deleteCookiesToolStripMenuItem
             // 
             this.deleteCookiesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -563,16 +575,6 @@
             this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
             this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
             this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
-            // 
-            // printPageAsPDFToolStripMenuItem
-            // 
-            this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
-            this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
-            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.printPageAsPDFToolStripMenuItem.Text = "Save Page as PDF";
-            this.printPageAsPDFToolStripMenuItem.ToolTipText = "Saves the current page as PDF to a specified location.\r\nA copy is also placed in " +
-    "the case container.\r\n ";
-            this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
             // 
             // twitterToolStripMenuItem
             // 
@@ -645,6 +647,16 @@
             this.closeCaseToolStripMenuItem.Text = "Close Case";
             this.closeCaseToolStripMenuItem.Click += new System.EventHandler(this.closeCaseToolStripMenuItem_Click);
             // 
+            // uiTabbedBrowserControl
+            // 
+            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
+            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
+            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
+            this.uiTabbedBrowserControl.TabIndex = 2;
+            // 
             // BottomToolStripPanel
             // 
             this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
@@ -681,15 +693,12 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // uiTabbedBrowserControl
+            // videoDownloaderToolStripMenuItem
             // 
-            this.uiTabbedBrowserControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiTabbedBrowserControl.Location = new System.Drawing.Point(0, 63);
-            this.uiTabbedBrowserControl.Name = "uiTabbedBrowserControl";
-            this.uiTabbedBrowserControl.Size = new System.Drawing.Size(1089, 635);
-            this.uiTabbedBrowserControl.TabIndex = 2;
+            this.videoDownloaderToolStripMenuItem.Name = "videoDownloaderToolStripMenuItem";
+            this.videoDownloaderToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.videoDownloaderToolStripMenuItem.Text = "Video Downloader";
+            this.videoDownloaderToolStripMenuItem.Click += new System.EventHandler(this.videoDownloaderToolStripMenuItem_Click);
             // 
             // BrowserPanel
             // 
@@ -774,5 +783,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem toDoListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printPageAsPDFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem videoDownloaderToolStripMenuItem;
     }
 }

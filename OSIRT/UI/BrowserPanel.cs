@@ -903,6 +903,25 @@ namespace OSIRT.UI
                 
                 
         }
+
+        private void videoDownloaderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var vd = new VideoDownloader();
+            vd.Show();
+            vd.VideoDownloadComplete += Vd_VideoDownloadComplete;
+        }
+
+        private void Vd_VideoDownloadComplete(object sender, EventArgs e)
+        {
+            //have a bool to check that the event has fired already. Can fire multiple times.
+            Invoke((Action)delegate
+            {
+                using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video, Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4")))
+                {
+                    vidPreviewer.ShowDialog();
+                }
+            });
+        }
     }
 }
 

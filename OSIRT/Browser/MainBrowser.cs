@@ -50,7 +50,7 @@ namespace OSIRT.Browser
         public event EventHandler SearchText = delegate { };
 
         private int MaxScrollHeight => 15000;
-        private readonly int MaxWait = 600;
+        private readonly int MaxWait = 750;
         private RequestHandler requestHandler;
 
         public string Title { get; private set; }
