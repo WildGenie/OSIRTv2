@@ -22,7 +22,8 @@ namespace OSIRT.Browser
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
         private const int UrlInToDo = 26518;
-        
+        private const int CopyLinkAddress = 26519;
+
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
         private const int ViewTwitterId = 26512;
@@ -65,6 +66,7 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)26501, "Open link in new tab");
                 model.AddItem((CefMenuCommand)26518, "Add link to 'To Do' list");
+                model.AddItem((CefMenuCommand)26519, "Copy link address");
                 model.AddSeparator();
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
@@ -83,15 +85,15 @@ namespace OSIRT.Browser
 
                 var sub = model.AddSubMenu((CefMenuCommand)ReverseImgSearchSubMenu, "Reverse image search tools");
                 sub.AddItem((CefMenuCommand)ReverseImageSearchTineye, "Reverse image search using TinEye");
-                //sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
+                sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
                 sub.AddItem((CefMenuCommand)ReverseImageSearchGoogle, "Reverse image search using Google");
                 model.AddSeparator();
                 //
             }
-            if(OsirtHelper.IsOnYouTube(browserControl.Address))
-            {
-                model.AddItem((CefMenuCommand)SaveYouTubeVideo, "Extract YouTube video");
-            }
+            //if(OsirtHelper.IsOnYouTube(browserControl.Address))
+            //{
+            //    model.AddItem((CefMenuCommand)SaveYouTubeVideo, "Extract YouTube video");
+            //}
             if (OsirtHelper.IsOnFacebook(browserControl.Address))
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
@@ -157,7 +159,10 @@ namespace OSIRT.Browser
             {
                 CopyImageLocation?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
             }
-
+            if ((int)commandId == CopyLinkAddress)
+            {
+                Clipboard.SetText(parameters.UnfilteredLinkUrl);
+            }
             if ((int)commandId == ReverseImageSearchTineye)
             {
                 ReverseImgSearch?.Invoke(this, new TextEventArgs("http://www.tineye.com/search/?url=" + parameters.SourceUrl));

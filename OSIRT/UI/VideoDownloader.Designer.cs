@@ -49,9 +49,9 @@
             this.groupBox1.Controls.Add(this.uiDownloadProgressBar);
             this.groupBox1.Controls.Add(this.uiDownloadButton);
             this.groupBox1.Controls.Add(this.uiUrlTextBox);
-            this.groupBox1.Location = new System.Drawing.Point(146, 21);
+            this.groupBox1.Location = new System.Drawing.Point(146, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(556, 112);
+            this.groupBox1.Size = new System.Drawing.Size(556, 121);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Video Downloader";
@@ -70,9 +70,9 @@
             this.uiStatusLabel.AutoSize = true;
             this.uiStatusLabel.Location = new System.Drawing.Point(17, 89);
             this.uiStatusLabel.Name = "uiStatusLabel";
-            this.uiStatusLabel.Size = new System.Drawing.Size(43, 13);
+            this.uiStatusLabel.Size = new System.Drawing.Size(126, 13);
             this.uiStatusLabel.TabIndex = 4;
-            this.uiStatusLabel.Text = "Status: ";
+            this.uiStatusLabel.Text = "Status:  Waiting for video";
             // 
             // uiDownloadProgressBar
             // 
@@ -101,9 +101,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::OSIRT.Properties.Resources.download_vid;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(128, 112);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 121);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -111,12 +111,12 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(673, 136);
+            this.linkLabel1.Location = new System.Drawing.Point(531, 136);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(29, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(171, 13);
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Help";
+            this.linkLabel1.Text = "Help with downloader (opens PDF)";
             // 
             // label2
             // 
@@ -133,7 +133,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(714, 157);
+            this.ClientSize = new System.Drawing.Size(713, 159);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.pictureBox1);

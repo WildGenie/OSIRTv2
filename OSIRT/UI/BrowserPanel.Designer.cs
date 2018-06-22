@@ -77,7 +77,7 @@
             this.refreshCacheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteAllCookiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.twitterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.videoDownloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutOSIRTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiStopAutoScrollingToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -91,7 +91,6 @@
             this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
-            this.videoDownloaderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uiBrowserPanel.SuspendLayout();
             this.uiBookmarkHelperToolStrip.SuspendLayout();
             this.uiBrowserToolStrip.SuspendLayout();
@@ -427,7 +426,6 @@
             this.autoscrollstartToolStripMenuItem,
             this.printPageAsPDFToolStripMenuItem,
             this.deleteCookiesToolStripMenuItem,
-            this.twitterToolStripMenuItem,
             this.videoDownloaderToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutOSIRTToolStripMenuItem});
@@ -444,7 +442,7 @@
             this.toolStripSeparator2});
             this.uiBookMarksToolStripMenuItem.Image = global::OSIRT.Properties.Resources.star;
             this.uiBookMarksToolStripMenuItem.Name = "uiBookMarksToolStripMenuItem";
-            this.uiBookMarksToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.uiBookMarksToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.uiBookMarksToolStripMenuItem.Text = "Bookmarks";
             this.uiBookMarksToolStripMenuItem.Visible = false;
             // 
@@ -464,7 +462,7 @@
             // 
             this.whoIsToolStripMenuItem.Image = global::OSIRT.Properties.Resources.who;
             this.whoIsToolStripMenuItem.Name = "whoIsToolStripMenuItem";
-            this.whoIsToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.whoIsToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.whoIsToolStripMenuItem.Text = "WhoIs?";
             this.whoIsToolStripMenuItem.ToolTipText = "Opens a new tab with CentralOps.net information about this domain";
             this.whoIsToolStripMenuItem.Click += new System.EventHandler(this.whoIsToolStripMenuItem_Click);
@@ -473,7 +471,7 @@
             // 
             this.whatsTheIPToolStripMenuItem.Image = global::OSIRT.Properties.Resources.ip;
             this.whatsTheIPToolStripMenuItem.Name = "whatsTheIPToolStripMenuItem";
-            this.whatsTheIPToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.whatsTheIPToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.whatsTheIPToolStripMenuItem.Text = "What\'s the IP?";
             this.whatsTheIPToolStripMenuItem.ToolTipText = "Shows the IP addresses associated with this domain";
             this.whatsTheIPToolStripMenuItem.Click += new System.EventHandler(this.whatsTheIPToolStripMenuItem_Click);
@@ -482,7 +480,7 @@
             // 
             this.findOnPageToolStripMenuItem.Image = global::OSIRT.Properties.Resources.magnify_sm;
             this.findOnPageToolStripMenuItem.Name = "findOnPageToolStripMenuItem";
-            this.findOnPageToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.findOnPageToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.findOnPageToolStripMenuItem.Text = "Find on Page (Ctrl + F)";
             this.findOnPageToolStripMenuItem.ToolTipText = "Find specific text on the page, then highlights it";
             this.findOnPageToolStripMenuItem.Click += new System.EventHandler(this.findOnPageToolStripMenuItem_Click);
@@ -491,7 +489,7 @@
             // 
             this.getTextToolStripMenuItem.Image = global::OSIRT.Properties.Resources.txt_file;
             this.getTextToolStripMenuItem.Name = "getTextToolStripMenuItem";
-            this.getTextToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.getTextToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.getTextToolStripMenuItem.Text = "Get Text";
             this.getTextToolStripMenuItem.ToolTipText = "Gets the visible text in the currently open tab";
             this.getTextToolStripMenuItem.Click += new System.EventHandler(this.getTextToolStripMenuItem_Click);
@@ -500,7 +498,7 @@
             // 
             this.uRLListerToolStripMenuItem.Image = global::OSIRT.Properties.Resources.web_layout;
             this.uRLListerToolStripMenuItem.Name = "uRLListerToolStripMenuItem";
-            this.uRLListerToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.uRLListerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.uRLListerToolStripMenuItem.Text = "URL Lister";
             this.uRLListerToolStripMenuItem.ToolTipText = "Displays all the URLs from the current open tabs and displays them in the Text Pr" +
     "eviewer";
@@ -510,7 +508,7 @@
             // 
             this.toDoListToolStripMenuItem.Image = global::OSIRT.Properties.Resources.to_do_list_checked_11;
             this.toDoListToolStripMenuItem.Name = "toDoListToolStripMenuItem";
-            this.toDoListToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.toDoListToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.toDoListToolStripMenuItem.Text = "ToDo List";
             this.toDoListToolStripMenuItem.ToolTipText = "Show the current URLs in your To Do list";
             this.toDoListToolStripMenuItem.Click += new System.EventHandler(this.toDoListToolStripMenuItem_Click);
@@ -519,7 +517,7 @@
             // 
             this.autoscrollstartToolStripMenuItem.Image = global::OSIRT.Properties.Resources.scroll_bar;
             this.autoscrollstartToolStripMenuItem.Name = "autoscrollstartToolStripMenuItem";
-            this.autoscrollstartToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.autoscrollstartToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.autoscrollstartToolStripMenuItem.Text = "Start Autoscrolling";
             this.autoscrollstartToolStripMenuItem.ToolTipText = "Will automatically scroll the page until stopped";
             this.autoscrollstartToolStripMenuItem.Click += new System.EventHandler(this.AutoscrollstartToolStripMenuItem_Click);
@@ -528,10 +526,10 @@
             // 
             this.printPageAsPDFToolStripMenuItem.Image = global::OSIRT.Properties.Resources.pdf_icon;
             this.printPageAsPDFToolStripMenuItem.Name = "printPageAsPDFToolStripMenuItem";
-            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.printPageAsPDFToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.printPageAsPDFToolStripMenuItem.Text = "Save Page as PDF";
             this.printPageAsPDFToolStripMenuItem.ToolTipText = "Saves the current page as PDF to a specified location.\r\nA copy is also placed in " +
-    "the case container.\r\n ";
+    "the case container.";
             this.printPageAsPDFToolStripMenuItem.Click += new System.EventHandler(this.printPageAsPDFToolStripMenuItem_Click);
             // 
             // deleteCookiesToolStripMenuItem
@@ -543,13 +541,13 @@
             this.deleteAllCookiesToolStripMenuItem});
             this.deleteCookiesToolStripMenuItem.Image = global::OSIRT.Properties.Resources.google_webmaster_tools;
             this.deleteCookiesToolStripMenuItem.Name = "deleteCookiesToolStripMenuItem";
-            this.deleteCookiesToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.deleteCookiesToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.deleteCookiesToolStripMenuItem.Text = "Browser";
             // 
             // historyToolStripMenuItem
             // 
             this.historyToolStripMenuItem.Name = "historyToolStripMenuItem";
-            this.historyToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.historyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.historyToolStripMenuItem.Text = "History";
             this.historyToolStripMenuItem.ToolTipText = "Displays the history for this session only";
             this.historyToolStripMenuItem.Click += new System.EventHandler(this.historyToolStripMenuItem_Click);
@@ -557,7 +555,7 @@
             // refreshCacheToolStripMenuItem
             // 
             this.refreshCacheToolStripMenuItem.Name = "refreshCacheToolStripMenuItem";
-            this.refreshCacheToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.refreshCacheToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.refreshCacheToolStripMenuItem.Text = "Refresh Cache";
             this.refreshCacheToolStripMenuItem.ToolTipText = "Clears the currently open tab browser\'s in memory cache and forces page to redown" +
     "load";
@@ -566,34 +564,35 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(166, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // deleteAllCookiesToolStripMenuItem
             // 
             this.deleteAllCookiesToolStripMenuItem.Name = "deleteAllCookiesToolStripMenuItem";
-            this.deleteAllCookiesToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.deleteAllCookiesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.deleteAllCookiesToolStripMenuItem.Text = "Delete All Cookies";
             this.deleteAllCookiesToolStripMenuItem.ToolTipText = "Deletes all cookies your current session is using";
             this.deleteAllCookiesToolStripMenuItem.Click += new System.EventHandler(this.deleteAllCookiesToolStripMenuItem_Click);
             // 
-            // twitterToolStripMenuItem
+            // videoDownloaderToolStripMenuItem
             // 
-            this.twitterToolStripMenuItem.Image = global::OSIRT.Properties.Resources.film;
-            this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.twitterToolStripMenuItem.Text = "Facebook Video Downloader";
-            this.twitterToolStripMenuItem.Click += new System.EventHandler(this.twitterToolStripMenuItem_Click);
+            this.videoDownloaderToolStripMenuItem.Image = global::OSIRT.Properties.Resources.film;
+            this.videoDownloaderToolStripMenuItem.Name = "videoDownloaderToolStripMenuItem";
+            this.videoDownloaderToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.videoDownloaderToolStripMenuItem.Text = "Video Downloader";
+            this.videoDownloaderToolStripMenuItem.ToolTipText = "Download videos from Facebook, Twitter, YouTube, Instagram and DailyMotion.";
+            this.videoDownloaderToolStripMenuItem.Click += new System.EventHandler(this.videoDownloaderToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(222, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(190, 6);
             // 
             // aboutOSIRTToolStripMenuItem
             // 
             this.aboutOSIRTToolStripMenuItem.Image = global::OSIRT.Properties.Resources.info;
             this.aboutOSIRTToolStripMenuItem.Name = "aboutOSIRTToolStripMenuItem";
-            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
+            this.aboutOSIRTToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.aboutOSIRTToolStripMenuItem.Text = "About OSIRT";
             this.aboutOSIRTToolStripMenuItem.Click += new System.EventHandler(this.aboutOSIRTToolStripMenuItem_Click);
             // 
@@ -693,13 +692,6 @@
             // 
             this.ContentPanel.Size = new System.Drawing.Size(343, 147);
             // 
-            // videoDownloaderToolStripMenuItem
-            // 
-            this.videoDownloaderToolStripMenuItem.Name = "videoDownloaderToolStripMenuItem";
-            this.videoDownloaderToolStripMenuItem.Size = new System.Drawing.Size(225, 22);
-            this.videoDownloaderToolStripMenuItem.Text = "Video Downloader";
-            this.videoDownloaderToolStripMenuItem.Click += new System.EventHandler(this.videoDownloaderToolStripMenuItem_Click);
-            // 
             // BrowserPanel
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
@@ -758,7 +750,6 @@
         private System.Windows.Forms.ToolStripMenuItem uiBookMarksToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoscrollstartToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton uiStopAutoScrollingToolStripButton;
-        private System.Windows.Forms.ToolStripMenuItem twitterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageBookmarksToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStrip uiBookmarkHelperToolStrip;

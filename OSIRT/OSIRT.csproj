@@ -614,6 +614,7 @@
     <Compile Include="UI\UserAgentSettings.Designer.cs">
       <DependentUpon>UserAgentSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\VideoCaptureCompleteEventArgs.cs" />
     <Compile Include="UI\VideoDownloader.cs">
       <SubType>Form</SubType>
     </Compile>

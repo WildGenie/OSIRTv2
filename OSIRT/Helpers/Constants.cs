@@ -17,7 +17,7 @@ namespace OSIRT.Helpers
         public static string Artefacts => "artefacts";
 
         //versions
-        public static string OsirtVersion = "4.2.0";
+        public static string OsirtVersion = "4.5.0";
         public static string CefVersion = "(Cef 65)";
 
         /// <summary>

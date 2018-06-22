@@ -913,13 +913,13 @@ namespace OSIRT.UI
 
         private void Vd_VideoDownloadComplete(object sender, EventArgs e)
         {
-            //have a bool to check that the event has fired already. Can fire multiple times.
             Invoke((Action)delegate
             {
-                using (VideoPreviewer vidPreviewer = new VideoPreviewer(Enums.Actions.Video, Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4")))
+                using (VideoPreviewer vidPreviewer = new VideoPreviewer(Actions.Video, Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4")))
                 {
                     vidPreviewer.ShowDialog();
-                }
+                }              
+                ImageDiskCache.RemoveSpecificItemFromCache(Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4"));
             });
         }
     }

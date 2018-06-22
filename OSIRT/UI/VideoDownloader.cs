@@ -29,27 +29,42 @@ namespace OSIRT.UI
 
         private  void UiDownloadButton_Click(object sender, EventArgs e)
         {
+            string url = uiUrlTextBox.Text;
+            if (String.IsNullOrWhiteSpace(url))
+            {
+                MessageBox.Show("Please enter a video URL", "No URL Entered", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                uiUrlTextBox.Focus();
+                return;
+            }
+
             uiDownloadButton.Enabled = false;
             string videoLocation = Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4");
-            string url = uiUrlTextBox.Text;
+            this.InvokeIfRequired(() => uiStatusLabel.Text = "Starting download... Please wait as this can take a few seconds to start.");
 
             youtubeDl = new YoutubeDL
             {
                 YoutubeDlPath = "youtube-dl.exe",
-                VideoUrl = url,
-               
+                VideoUrl = url,        
             };
             youtubeDl.Options.FilesystemOptions.Output = videoLocation;
             youtubeDl.Options.GeneralOptions.IgnoreErrors = true;
             youtubeDl.PrepareDownload();
 
+         
+
+
             youtubeDl.Info.PropertyChanged += (o, args) =>
             {
-                
-                DownloadInfo info = (DownloadInfo)o;                 
+                DownloadInfo info = (DownloadInfo)o;          
                 string status = info.Status;
                 this.InvokeIfRequired(() => uiDownloadProgressBar.Value = info.VideoProgress);
                 this.InvokeIfRequired(() => uiStatusLabel.Text = $"Status: {status} Video size: {info.VideoSize} Download speed: {info.DownloadRate} ETA: {info.Eta}");
+
+                if(status == "Error") {
+                    this.InvokeIfRequired(() => uiStatusLabel.Text = "Error downloading video.");
+                    this.InvokeIfRequired(() => uiDownloadButton.Enabled = true);
+                    youtubeDl.KillProcess();
+                }
 
                 if (status == "Done" || info.VideoProgress == 100)
                 {
@@ -57,8 +72,10 @@ namespace OSIRT.UI
                     this.InvokeIfRequired(() => uiStatusLabel.Text = "Status: Download complete. Processing video.");
                     if (!hasFired) //this can fire multiple times, so stop it from happening with flag. Need to reset after download completed! 
                     {
-                        VideoDownloadComplete?.Invoke(this, EventArgs.Empty);
                         hasFired = true;
+                        youtubeDl.KillProcess();
+                        VideoDownloadComplete?.Invoke(this, EventArgs.Empty);
+                        this.InvokeIfRequired(() => Close());
                     }
                 }
             };
