@@ -3,6 +3,7 @@ using OSIRT.UI;
 using OSIRT.UI.CaseClosing;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,8 @@ namespace OSIRT
 
         public static void Handle(object exception)
         {
+            if (exception is SQLiteException) return;
+
             if(exception is DllNotFoundException)
             {
                 MessageBox.Show("A required library is missing that OSIRT needs. Please ensure that OSIRT is running within the extracted folder. See the 'Running OSIRT' section in the user guide.", "Missing Library", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -37,6 +37,8 @@ using System.Xml.Linq;
 using System.Text.RegularExpressions;
 using OSIRT.UI.VideoParser;
 using OSIRT.Enums;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
 
 namespace OSIRT.UI
 {
@@ -922,6 +924,13 @@ namespace OSIRT.UI
                 ImageDiskCache.RemoveSpecificItemFromCache(Path.Combine(Constants.VideoCacheLocation, "temp_video_download.mp4"));
             });
         }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }
 

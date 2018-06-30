@@ -878,6 +878,7 @@
     <EmbeddedResource Include="Resources\documents-128.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\video-downloader-instructions.pdf" />
     <None Include="Resources\view-details-128.png" />
   </ItemGroup>
   <ItemGroup>

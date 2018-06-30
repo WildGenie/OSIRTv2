@@ -901,6 +901,16 @@ namespace OSIRT.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] video_downloader_instructions {
+            get {
+                object obj = ResourceManager.GetObject("video_downloader_instructions", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap view_details_128 {

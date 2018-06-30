@@ -173,45 +173,51 @@ namespace OSIRT.Database
             {
                 using (SQLiteCommand command = new SQLiteCommand(conn))
                 {
-                    conn.Open();
-                    StringBuilder sbCol = new StringBuilder();
-                    StringBuilder sbVal = new StringBuilder();
-
-                    foreach (KeyValuePair<string, string> kv in dataToInsert)
+                    try
                     {
-                        if (sbCol.Length == 0)
+                        conn.Open();
+                        StringBuilder sbCol = new StringBuilder();
+                        StringBuilder sbVal = new StringBuilder();
+
+                        foreach (KeyValuePair<string, string> kv in dataToInsert)
                         {
-                            sbCol.Append("insert into ");
-                            sbCol.Append(tableName);
-                            sbCol.Append("(");
+                            if (sbCol.Length == 0)
+                            {
+                                sbCol.Append("insert into ");
+                                sbCol.Append(tableName);
+                                sbCol.Append("(");
+                            }
+                            else
+                            {
+                                sbCol.Append(",");
+                            }
+
+                            sbCol.Append("`");
+                            sbCol.Append(kv.Key);
+                            sbCol.Append("`");
+
+                            sbVal.Append(sbVal.Length == 0 ? " values(" : ", ");
+
+                            sbVal.Append("@v");
+                            sbVal.Append(kv.Key);
                         }
-                        else
+
+                        sbCol.Append(") ");
+                        sbVal.Append(");");
+
+                        command.CommandText = sbCol + sbVal.ToString();
+
+                        foreach (KeyValuePair<string, string> kv in dataToInsert)
                         {
-                            sbCol.Append(",");
+                            command.Parameters.AddWithValue("@v" + kv.Key, kv.Value);
                         }
 
-                        sbCol.Append("`");
-                        sbCol.Append(kv.Key);
-                        sbCol.Append("`");
-
-                        sbVal.Append(sbVal.Length == 0 ? " values(" : ", ");
-
-                        sbVal.Append("@v");
-                        sbVal.Append(kv.Key);
+                        command.ExecuteNonQuery();
                     }
-
-                    sbCol.Append(") ");
-                    sbVal.Append(");");
-
-                    command.CommandText = sbCol + sbVal.ToString();
-
-                    foreach (KeyValuePair<string, string> kv in dataToInsert)
+                    catch (SQLiteException)
                     {
-                        command.Parameters.AddWithValue("@v" + kv.Key, kv.Value);
-                    }
 
-                    //ExecuteNonQuery(command.CommandText);
-                    command.ExecuteNonQuery();
+                    }
                 }
             }
         }

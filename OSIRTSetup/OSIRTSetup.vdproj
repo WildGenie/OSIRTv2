@@ -21,6 +21,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0134378082624D6E833FE247F69364BE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0199E771C1894F9AABA3297CAD9A9E16"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_033BAA3165C2ED11B59599BA6275354E"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
@@ -35,6 +47,24 @@
         {
         "MsmKey" = "8:_039D32E94F8BC023D2F8214417AF2B76"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_03E0A7EDEFF54AD5B5F6551A24EB3673"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_04569FB0F46B4CEFAD3303B772DBD4CD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_04A7F0659D9F4D45AAE5C1766E202F24"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -93,6 +123,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0A63C37440564BF6B091913FD44485D0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0A98C387A784C0F5953D7CE2EB7C1889"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -101,12 +137,6 @@
         {
         "MsmKey" = "8:_0ADB94006BBA522755E781EB12303A65"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_0B00AA965799401CBF91141B346C8D96"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -129,7 +159,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0DB662ACC1EF464A8373540A44356439"
+        "MsmKey" = "8:_0D4B9747D8FE4F2FAFC8C9B841005F26"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0D790112EEB74CE09D5C3962786E7671"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -153,13 +189,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0FE98DBE92FC40E5A6BF7B01D5313C57"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_131CEE2AFBC2480DAC2CB1BBEBF2024C"
+        "MsmKey" = "8:_104990527D3E4283848D5769169D7A88"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -171,13 +201,31 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_15FDD27533F64284B0C88BD27B83EB42"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_171810DF398E66F55E3DC6D580ACA097"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_17DC878865864E30B1AFC65A43504A62"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_189F61D544CA4CCF96BCB9627612773F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_18FBB5937F3C42BB888FD73DFF43D275"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -231,13 +279,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1EB4021C5AA04E168FC804CF72C4612E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1F9E1ED0215848B0A911AEED4678FEBB"
+        "MsmKey" = "8:_1EDB8CE24DA84994A6561D2E5BD93AB0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -250,24 +292,6 @@
         "Entry"
         {
         "MsmKey" = "8:_2316F2DE3C3549FB8D04148D0C5ED4F6"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2426E9EF38EE48AAB80FC20F9D1E20C8"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_24E783F4595946BF8CD3EAF173ED7B5F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_25B76AB277F44868A7D0C5903046295B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -303,8 +327,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_275A6158A90D47F399141E2DB1A96699"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_27B448E159A86F3A53F08C6B66F24A6B"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_29E16E23675D4F448D2972F48CEAD955"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -321,7 +357,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2BE9DDD293124F9983D0C8372D9610FE"
+        "MsmKey" = "8:_2B3EDA79E93F4649A97DE997E5362637"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -363,6 +399,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_2EFBC8822D034197AD4EB89041E24296"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2F228CFD61BA4457811F0A2D56E72B0D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_2F3BC9575C7C252309EB24630D20F0DA"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -375,19 +423,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_30C8C1A83F2E48FC9C9856D3732CC527"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_31B0985E7721485FBFF775E11755F235"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_3490EB5C54CB4C1782CE1EE37F02F1A9"
+        "MsmKey" = "8:_30C04011BF2A4468A96F1B53F57DE474"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -417,13 +453,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_36555454E3B9455689BC9FE249AEB3AB"
+        "MsmKey" = "8:_35C855977EA4447297775FB002044553"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_3759D0077B4A42AE82238161E8860EC9"
+        "MsmKey" = "8:_377BA9B6E0C34AC9A369A7CE7F2C00A0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -435,7 +471,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_389EB786348444D885E92804BF0901F0"
+        "MsmKey" = "8:_383A0296A965452FA0590A0B319BD321"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -448,6 +484,12 @@
         "Entry"
         {
         "MsmKey" = "8:_3AB3104A8D2948ECAC0EBE2472B8AC48"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3C05DA065C764906BAB82C9E69316C3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -477,6 +519,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_3D666EEF3AE64ACDBFAC0F8B62A87713"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3DC003BA381D48E3B4B62A2268CA0071"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3EA1607BDB78BE293C6EBAEE8C4A8941"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -495,7 +549,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_3FD9958F5D304ED38FD17D5D3FDAF10D"
+        "MsmKey" = "8:_3EB1D909245C40C089FA12B5261A5DA0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3F012AC6C0A14BFFA81DE05D0EF6C4CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3FC58694D0824732BF42B03A048DC27E"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -503,6 +569,12 @@
         {
         "MsmKey" = "8:_4002859DB268E7D44063E0BBBE7880DB"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_400886B0DBFB42E48376BFB6FC91C480"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -525,7 +597,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_43D3846FEF724BBBB1E7F6CB7CDA6259"
+        "MsmKey" = "8:_42C25A11FBCC43AF9C4F6036E390BB40"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -543,19 +615,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_4560AB4E7619450A88D3A61C31A7F1FE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_4613D530A900649427E7254E2CBEDE9E"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_4A603147B18D438C8A3A2E52789F7EFC"
+        "MsmKey" = "8:_4A047B0F2C634CF595250839AF51077F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -579,8 +645,32 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4BD992C0DD1E4E56A172557C1E5C7326"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4C1EF1A1CAB9816F6F50DE2175E1F199"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4E9D5F7353FE4B789CA3FB92B6614CC0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4EA90A0CF7C748928E44E2164A531793"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4F7FA180AAA14FABAA55865B35AE8375"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -593,18 +683,6 @@
         {
         "MsmKey" = "8:_4F8BDB6393DF53003A82374F962A0FA3"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_50F62C9CB4CE43A68825F20C421BC6A7"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_51B17F5EDBF0446C8110DB06A40CA9BB"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -615,6 +693,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_522A1848DACE4485A2E13E8EA6440044"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5257EC002BD1EAC1C40A954C9342A59B"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
@@ -623,6 +707,12 @@
         {
         "MsmKey" = "8:_5257EC002BD1EAC1C40A954C9342A59B"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_538179B16C134C4A9C605BB877E6C330"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -681,6 +771,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_5780C9C765BF46F188F5AFE189DA755B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_5887E5720131A4F0D3FD930C582FAFB0"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -693,13 +789,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_59088FBF886C48C99188A747B48583BB"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_59B0384682A84A369F08C63CA5AF95A8"
+        "MsmKey" = "8:_596FAE4381FC431AA019F3CFB0ACDBE7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -713,12 +803,6 @@
         {
         "MsmKey" = "8:_5B80467A7249CC8FCA258ED536005A26"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5CC0B699D6994054812C3E711FED0740"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -737,12 +821,6 @@
         {
         "MsmKey" = "8:_5F92BB0FDCC19AE17021EC41C74202F6"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5FF002F59DCC470A899512C10C58EF59"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -777,6 +855,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_62F7AB1F516A446C8C494C694070FCDC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_640E010415F67315CDF839DC76A0A3C1"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
@@ -785,6 +869,18 @@
         {
         "MsmKey" = "8:_64461020CF1E612CBD202B5CC684CD10"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6504924ED1084601B99D2C37F48CD684"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_655F19FD5650419B9300249161CCAC06"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -802,6 +898,12 @@
         "Entry"
         {
         "MsmKey" = "8:_65F36210B70B4D8F8CB8E443369613A2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_66099239186A4C91B5424F2EE4AAFC05"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -833,6 +935,18 @@
         {
         "MsmKey" = "8:_6889B9501681DE82C5C61B325030D545"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6A19B2F86FC24871B9B28A24A293242D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6B5B189624244833A30B1F851622C9E7"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -873,7 +987,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6E998CFA1F1D427981DA184EC6C9F197"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6F1DD9020ACC4F84804170F885055369"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6F4DF77E6BBF47BEA2C2E11E24B16FAB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6FB4AA462EAF451182612187EA7074D6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -885,13 +1017,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_71A0CF6C09D04D50A932D6DB9C5ABAA6"
+        "MsmKey" = "8:_71B6B900B313458791DADBD64846402A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_740237C3AD4542BCB80C69916E9C1B3F"
+        "MsmKey" = "8:_7203C455EA2C4906ABB0683AFDAF6487"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7364E97F41674BC89A0F498BA8C7EE15"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73B6430355CF40BD837813C2CF1CE249"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_73DC7F01835B40A98A90AC05199762B8"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -909,7 +1059,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_750C18DCD8264620B84B788037484C42"
+        "MsmKey" = "8:_7519E158465F4128B7AF88277D04E2C9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -922,12 +1072,6 @@
         "Entry"
         {
         "MsmKey" = "8:_759F1BC3FBFA4D67BAC6E96FCA864D75"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_75AD73A639CD44A681B1E0A32D704431"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -951,19 +1095,31 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7AB3FF3BA84A4EB6B14F5FC9EC9B6C7A"
+        "MsmKey" = "8:_77374BA8FCB5486AA09748E88732876A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7AE534F34A9844559318BC9DA4A0CB23"
+        "MsmKey" = "8:_7B1F3251DF3643D88C196D4B379E0122"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_7B25B1F9AC424493A61AB64F7E8A25F6"
+        "MsmKey" = "8:_7BFAE5E6AAD041C2A6692D3D938C4DDE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7C2F30CEAAAA426E9F4CA3011F960CC1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7C520189F59C4F408EADB4CCFC5EAA63"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -993,7 +1149,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_7F7A3C78FBD6430DA1E9B4ED7CA0030C"
+        "MsmKey" = "8:_7DFE8CB7D6A6470583209F794CF7DCF0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1035,6 +1191,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8382ACAA807B453F9C91FDC54D9B5AA8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_844B097737484FD1BB508FA190A0562F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_84F0FCF1261B1A4F9D99BF3AB5C45E26"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1049,6 +1217,12 @@
         {
         "MsmKey" = "8:_85DF517838211470FA27F9F84FB14DF6"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_87C77A6D18CD4D76978314BE1BC42E1D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1077,31 +1251,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_89EE6C09987E4626B07818626D6170B3"
+        "MsmKey" = "8:_8AAAD872BDE64D128D7C3FB76CF9D580"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_8A46CB91114F43A988B647E425A16FB9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8A8AE407468D4B5EA46DF1142AC2FC68"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8ABB2A3E4CBA45DCA2A1D831D4473655"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B70794D8CC34D588C197A52BB4704CB"
+        "MsmKey" = "8:_8B959E58E288499B8FD187A84875AD69"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1125,8 +1281,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8D09A5E1B5804FADA83A9CE718AEBF54"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8D3C90F4D0E8E3384EAE9BB6469F78C3"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8E6BB99501F34CF68D33265472CF27D5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1167,7 +1335,25 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_91F81F0ADE934CC1A845AD838495CFF8"
+        "MsmKey" = "8:_9098B735BB124580B57365CF94E9C190"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90B55A1E655C48D4B4A67CE3CC7B2315"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_927739B9722B4C4A860D7D47AA224347"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_92C1DFDA26894DA19AF5DBF4020A6F54"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1175,6 +1361,12 @@
         {
         "MsmKey" = "8:_92CA980EEAE12742A9D9603EBCBAEDC1"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_92DC2EDC32B0458689ECE7347A2AAFC3"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1203,6 +1395,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95EC5C68D86647E389999D80E0E46C45"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_963F7300571B4B4B8A98772B46DF971B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_975771357D5E3E844BF93550B595C859"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1215,8 +1419,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_985D777F7F2F4F40A4D0BAA412C6D6B2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9910EDA3CA1042667393119B9E7B5314"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9C0E5D0ABC0D4EF7983411AB301A5C56"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1233,14 +1449,50 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9E301CE6EE5940E6A9E6D5FE037E3EA9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_9EE2C9A7C210AA62E5CBCB2B03997379"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_A097663E26C842F3938AD0F6276D0353"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A0B24AD1410216939A128CD8673A5D5A"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A11DAA97CF344ED28A836A6DD80AADA5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A16069B74D264B438EDE0235995732BC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A1B33932D0694A61B36933E883C3C65E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A319F447E36E477983CF1C730F5ED00E"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1257,6 +1509,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_A423E4A7B5AB4EE5BB4DFD325395914E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A56B3EB51E8D6B1A882A1DF3F6EDB442"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1265,6 +1523,18 @@
         {
         "MsmKey" = "8:_A68F2A5618B57E89688951736B25F68D"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A6B0F4B3C2DB4F4B8088AE52CF724BE4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A6F8D16BD3A546D4BD213E91CDB3C594"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1283,6 +1553,12 @@
         {
         "MsmKey" = "8:_A8A6F1AB6F23F55D3ADD1381D24CB917"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A8F2191F6AF44E15B6428A2E69BB0499"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1311,25 +1587,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_ABC23E9E72E544C0BCAEA2D94FA19F7B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AC07A080B107CDB154B5347D2F8E4871"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_AD59480AE9ED48AEB197F2331F133608"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AD942DD67B004066A594181C395BE1E8"
+        "MsmKey" = "8:_AC7127306C3C41469BFB2CA570AA6FC3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1341,20 +1605,8 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_AE623C9E78684ECD8C9A927719E98632"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_AE96FA4BB8E383FE7292069724D4CE2A"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_AEDA74CD8F7B4BF3B78D616494637C99"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1407,13 +1659,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B0B214568E5C4B6EBBD190DD50E925BE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B0DB32892EA340B32D9E80F97DDEFD47"
         "OwnerKey" = "8:_B216DA29BA595C737FD352F470E209E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B1EE08BDFE1D4527B0F92BBDFF8084E0"
+        "MsmKey" = "8:_B102065F8F174E9DBED15FD903C8AB97"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1431,25 +1689,19 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B28FECAC1CF347B3A00328648228BB8F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B30E49C12F7746BD93FDB74D72F79D20"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B478D68EAEE448DBBCC063E3ABDA6E4F"
+        "MsmKey" = "8:_B3ED6DC667EE4B02A82E872AA7F957F3"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B52D5555F0A3416288A4F6E3BF2C23FE"
+        "MsmKey" = "8:_B3EDAB5B47ED4380A07BD4E9B0734E71"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1461,13 +1713,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B5E68644CABA4A9DA500D110053506A3"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B6E600FBDFB3424784742E777113C945"
+        "MsmKey" = "8:_B5931797FB144D3F931A198B5E74ACC7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1479,7 +1725,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B78C47378E8D4B2D89EDE6262E7A0B1C"
+        "MsmKey" = "8:_B7D2DFACADFF4CC1B1BD179F7F846B1B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1509,8 +1755,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B90DFD2B8BF84352A849FCC6C216AFFE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BA491063C6404543A5068AA8948DFF0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BB29F10EA211AFE9F815CCB1A4C33996"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BC4FED2B50F5442281318A712EBA8E88"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1539,7 +1803,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BF48441CDD4A4519933B0AD5D3D981BE"
+        "MsmKey" = "8:_C03C9ADC50A0403BA1C2CB8E6388C777"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1557,6 +1821,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C1BEB5456C0F42059BC5BB2A77D482A2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C1CAC963519718345ED944D5ED915DDB"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1569,14 +1839,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C32BAD8FB6B213D26B62AE238A13A809"
-        "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmKey" = "8:_C2843D570F214547B079FC1EDB5B09B5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_C336F52B01B74205ACCE263CA91DDD5D"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_C32BAD8FB6B213D26B62AE238A13A809"
+        "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1593,6 +1863,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C45E18522705440CB465903FF89C5B37"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C4B9496115C52CE681AB671E6A2B2E59"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1601,6 +1877,12 @@
         {
         "MsmKey" = "8:_C6609E203B981FB4EFC55A92F5F41424"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C710935AA1264F8D9F7DC2CF967C346B"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1665,6 +1947,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D028CB03F0054FFFB3797A53B4B91F53"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D0994115BB6DA5587117D147B3803A25"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1677,13 +1965,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_D23677EC2A0646B7A43D69F701E46661"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_D29A12D9A15D4DFFAA119F3992F87CB7"
+        "MsmKey" = "8:_D3B3EE87E5F84CE98B599C5D342386E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1691,6 +1973,12 @@
         {
         "MsmKey" = "8:_D453D615A64399688BF80F7A4B556072"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D58A26D5D6A3454FBD93731F15FE5BB6"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1707,8 +1995,20 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D6CD16BCE3C2493CA3352002C3CF4DB0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D6DB600971E6A296C37CC2A5A9B210A9"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D7832F6CE36F47CA91D8932E91BFD6E5"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1773,8 +2073,26 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_DD2F4D7A460942158F5C5D6D2A0FC6E2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DD670EB3420E40C7B8F5DC7FFF008E9F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_DDEF9EEB2B08216D23ACD0B31CA9E9F2"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DE4572C5DC914E57ACF20909FA468169"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1787,6 +2105,18 @@
         {
         "MsmKey" = "8:_DFA14694FA38D05DBF8E7128E438FC1D"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_DFC90EDF816644EBAED4C7D8635E43B2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E09569FD294B4AA8BAEDD4E6B36F0750"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1817,6 +2147,18 @@
         {
         "MsmKey" = "8:_E282A72E193C38D5B11B4A6ED7B7263C"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E2C82ADC65AA4F05B4CCCDC4774B5E97"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E2C9969295CA4019827A086D0EB6D7D3"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1857,12 +2199,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E715A0BC1D4B4D72961E87834875229C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_E7C4D38463B0E30F05363547F86A991A"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1877,24 +2213,6 @@
         {
         "MsmKey" = "8:_E8336E82E54041885958E853737AF8A0"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EB3ADCA0D35D4C5E847A22866D99221B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EBF0CCC919B04D0AB6BA3F6D507C905D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EC96405B9313421F8E7ABF6BB4EC56FA"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1917,6 +2235,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F067AE392546446EBF6EFCA471A79E27"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F228CA20A516869778A930532E40417C"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1929,14 +2253,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F37BFEDBDE463DB9135874B97B94E268"
-        "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
+        "MsmKey" = "8:_F313256AA5AE41F890C53BFE965D410D"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_F5488E6C014B42C48FB5A48A12A40D93"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_F37BFEDBDE463DB9135874B97B94E268"
+        "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1959,6 +2283,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F8C65B7E37F84995A105166EA23570F9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F8CAF9ED14CD5976947DBCC4FC06C03E"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
@@ -1971,19 +2301,31 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F948662B018C4045B43475E67D610E18"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F98A82A4B5EBD7C8E0D1371191500BCD"
         "OwnerKey" = "8:_B22715AF2C964C7199719ECC75AA7AA4"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FC2E6DF64AEE4AA68B49CFC557A2861F"
+        "MsmKey" = "8:_FB589CCBD44A4FA69F535DF266ADC25A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_FC48223743774527983197AD9DDC09D0"
+        "MsmKey" = "8:_FBE095E889CC40CAB22F57E640D9A875"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FC5C55228F89406CB71D68FCE1401601"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -2019,7 +2361,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_FF145B38E6DD4D43BF0B63CE18DA4833"
+        "MsmKey" = "8:_FEC5E0F6D3244B19B524313384066D75"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -3416,6 +3758,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0134378082624D6E833FE247F69364BE"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\da.pak.info"
+            "TargetName" = "8:da.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0199E771C1894F9AABA3297CAD9A9E16"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fi.pak"
+            "TargetName" = "8:fi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_033BAA3165C2ED11B59599BA6275354E"
             {
             "AssemblyRegister" = "3:1"
@@ -3476,6 +3858,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_03E0A7EDEFF54AD5B5F6551A24EB3673"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\lv.pak"
+            "TargetName" = "8:lv.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04569FB0F46B4CEFAD3303B772DBD4CD"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hi.pak.info"
+            "TargetName" = "8:hi.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_04A7F0659D9F4D45AAE5C1766E202F24"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\it.pak.info"
+            "TargetName" = "8:it.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_052487B785CD50B5FCFCD5B381509A99"
@@ -3726,6 +4168,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A63C37440564BF6B091913FD44485D0"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\snapshot_blob.bin"
+            "TargetName" = "8:snapshot_blob.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0A98C387A784C0F5953D7CE2EB7C1889"
             {
             "AssemblyRegister" = "3:1"
@@ -3788,26 +4250,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0B00AA965799401CBF91141B346C8D96"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ms.pak"
-            "TargetName" = "8:ms.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0B7C91FF69F20524B7F15CBF7CFDC2FB"
             {
             "AssemblyRegister" = "3:1"
@@ -3859,12 +4301,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0DB662ACC1EF464A8373540A44356439"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D4B9747D8FE4F2FAFC8C9B841005F26"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\cef_100_percent.pak"
-            "TargetName" = "8:cef_100_percent.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\et.pak.info"
+            "TargetName" = "8:et.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0D790112EEB74CE09D5C3962786E7671"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\lt.pak.info"
+            "TargetName" = "8:lt.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3941,32 +4403,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0FE98DBE92FC40E5A6BF7B01D5313C57"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_104990527D3E4283848D5769169D7A88"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ca.pak"
-            "TargetName" = "8:ca.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ja.pak"
+            "TargetName" = "8:ja.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_131CEE2AFBC2480DAC2CB1BBEBF2024C"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\fa.pak"
-            "TargetName" = "8:fa.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4012,6 +4454,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_15FDD27533F64284B0C88BD27B83EB42"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fil.pak.info"
+            "TargetName" = "8:fil.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_171810DF398E66F55E3DC6D580ACA097"
             {
             "AssemblyRegister" = "3:1"
@@ -4043,12 +4505,52 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17DC878865864E30B1AFC65A43504A62"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\nl.pak"
+            "TargetName" = "8:nl.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_189F61D544CA4CCF96BCB9627612773F"
             {
             "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\Tor\\Tor\\libevent-2-0-5.dll"
             "TargetName" = "8:libevent-2-0-5.dll"
             "Tag" = "8:"
             "Folder" = "8:_BE4F2B1E4933456195E5CF78F0F13254"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18FBB5937F3C42BB888FD73DFF43D275"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\en-GB.pak.info"
+            "TargetName" = "8:en-GB.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4258,32 +4760,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1EB4021C5AA04E168FC804CF72C4612E"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1EDB8CE24DA84994A6561D2E5BD93AB0"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\libcef.dll"
-            "TargetName" = "8:libcef.dll"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ms.pak.info"
+            "TargetName" = "8:ms.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1F9E1ED0215848B0A911AEED4678FEBB"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\sl.pak"
-            "TargetName" = "8:sl.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4335,66 +4817,6 @@
             "TargetName" = "8:CefSharp.WinForms.xml"
             "Tag" = "8:"
             "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2426E9EF38EE48AAB80FC20F9D1E20C8"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\libEGL.dll"
-            "TargetName" = "8:libEGL.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_24E783F4595946BF8CD3EAF173ED7B5F"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\bn.pak"
-            "TargetName" = "8:bn.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_25B76AB277F44868A7D0C5903046295B"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\kn.pak"
-            "TargetName" = "8:kn.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4533,6 +4955,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_275A6158A90D47F399141E2DB1A96699"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fr.pak.info"
+            "TargetName" = "8:fr.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_27B448E159A86F3A53F08C6B66F24A6B"
             {
             "AssemblyRegister" = "3:1"
@@ -4562,6 +5004,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_29E16E23675D4F448D2972F48CEAD955"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\kn.pak.info"
+            "TargetName" = "8:kn.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2A93AB8722B610E502377FCFB53DCBB5"
@@ -4626,12 +5088,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2BE9DDD293124F9983D0C8372D9610FE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2B3EDA79E93F4649A97DE997E5362637"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ro.pak"
-            "TargetName" = "8:ro.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\libEGL.dll"
+            "TargetName" = "8:libEGL.dll"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -4790,6 +5252,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2EFBC8822D034197AD4EB89041E24296"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\en-US.pak"
+            "TargetName" = "8:en-US.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2F228CFD61BA4457811F0A2D56E72B0D"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\am.pak"
+            "TargetName" = "8:am.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2F3BC9575C7C252309EB24630D20F0DA"
             {
             "AssemblyRegister" = "3:1"
@@ -4852,52 +5354,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30C8C1A83F2E48FC9C9856D3732CC527"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_30C04011BF2A4468A96F1B53F57DE474"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ko.pak"
-            "TargetName" = "8:ko.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\te.pak"
+            "TargetName" = "8:te.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_31B0985E7721485FBFF775E11755F235"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\es.pak"
-            "TargetName" = "8:es.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3490EB5C54CB4C1782CE1EE37F02F1A9"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\devtools_resources.pak"
-            "TargetName" = "8:devtools_resources.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5036,12 +5498,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_36555454E3B9455689BC9FE249AEB3AB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_35C855977EA4447297775FB002044553"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\pl.pak"
-            "TargetName" = "8:pl.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ar.pak"
+            "TargetName" = "8:ar.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5056,12 +5518,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3759D0077B4A42AE82238161E8860EC9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_377BA9B6E0C34AC9A369A7CE7F2C00A0"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\nl.pak"
-            "TargetName" = "8:nl.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\zh-TW.pak.info"
+            "TargetName" = "8:zh-TW.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5107,12 +5569,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_389EB786348444D885E92804BF0901F0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_383A0296A965452FA0590A0B319BD321"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\da.pak"
-            "TargetName" = "8:da.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\am.pak.info"
+            "TargetName" = "8:am.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5164,6 +5626,26 @@
             "TargetName" = "8:chrome_elf.dll"
             "Tag" = "8:"
             "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3C05DA065C764906BAB82C9E69316C3C"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\id.pak"
+            "TargetName" = "8:id.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5302,6 +5784,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3D666EEF3AE64ACDBFAC0F8B62A87713"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pt-BR.pak.info"
+            "TargetName" = "8:pt-BR.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3DC003BA381D48E3B4B62A2268CA0071"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\gu.pak"
+            "TargetName" = "8:gu.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3EA1607BDB78BE293C6EBAEE8C4A8941"
             {
             "AssemblyRegister" = "3:1"
@@ -5333,12 +5855,52 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3FD9958F5D304ED38FD17D5D3FDAF10D"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3EB1D909245C40C089FA12B5261A5DA0"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\uk.pak"
-            "TargetName" = "8:uk.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\zh-TW.pak"
+            "TargetName" = "8:zh-TW.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3F012AC6C0A14BFFA81DE05D0EF6C4CC"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\en-GB.pak"
+            "TargetName" = "8:en-GB.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3FC58694D0824732BF42B03A048DC27E"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\v8_context_snapshot.bin"
+            "TargetName" = "8:v8_context_snapshot.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5382,6 +5944,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_400886B0DBFB42E48376BFB6FC91C480"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sw.pak.info"
+            "TargetName" = "8:sw.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_400F056ACEB969E792961E60A4F49AEA"
@@ -5455,12 +6037,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_43D3846FEF724BBBB1E7F6CB7CDA6259"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_42C25A11FBCC43AF9C4F6036E390BB40"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\it.pak"
-            "TargetName" = "8:it.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sl.pak.info"
+            "TargetName" = "8:sl.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5537,26 +6119,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4560AB4E7619450A88D3A61C31A7F1FE"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\mr.pak"
-            "TargetName" = "8:mr.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4613D530A900649427E7254E2CBEDE9E"
             {
             "AssemblyRegister" = "3:1"
@@ -5588,12 +6150,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A603147B18D438C8A3A2E52789F7EFC"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A047B0F2C634CF595250839AF51077F"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\zh-TW.pak"
-            "TargetName" = "8:zh-TW.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\el.pak.info"
+            "TargetName" = "8:el.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -5639,6 +6201,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4BD992C0DD1E4E56A172557C1E5C7326"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\cs.pak.info"
+            "TargetName" = "8:cs.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4C1EF1A1CAB9816F6F50DE2175E1F199"
             {
             "AssemblyRegister" = "3:1"
@@ -5668,6 +6250,66 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4E9D5F7353FE4B789CA3FB92B6614CC0"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\tr.pak"
+            "TargetName" = "8:tr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4EA90A0CF7C748928E44E2164A531793"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fi.pak.info"
+            "TargetName" = "8:fi.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4F7FA180AAA14FABAA55865B35AE8375"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fil.pak"
+            "TargetName" = "8:fil.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_4F8BDB6393DF53003A82374F962A0FA3"
@@ -5701,46 +6343,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50F62C9CB4CE43A68825F20C421BC6A7"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\sv.pak"
-            "TargetName" = "8:sv.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_51B17F5EDBF0446C8110DB06A40CA9BB"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\hi.pak"
-            "TargetName" = "8:hi.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_521962C5AB7110F540AB0814336B5ED3"
             {
             "AssemblyRegister" = "3:1"
@@ -5772,6 +6374,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_522A1848DACE4485A2E13E8EA6440044"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\uk.pak.info"
+            "TargetName" = "8:uk.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5257EC002BD1EAC1C40A954C9342A59B"
             {
             "AssemblyRegister" = "3:1"
@@ -5801,6 +6423,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_538179B16C134C4A9C605BB877E6C330"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sv.pak"
+            "TargetName" = "8:sv.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_53932051141A3F9C0A876B9C46822966"
@@ -6009,6 +6651,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5780C9C765BF46F188F5AFE189DA755B"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\es.pak"
+            "TargetName" = "8:es.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5887E5720131A4F0D3FD930C582FAFB0"
             {
             "AssemblyRegister" = "3:1"
@@ -6071,32 +6733,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59088FBF886C48C99188A747B48583BB"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_596FAE4381FC431AA019F3CFB0ACDBE7"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\zh-CN.pak"
-            "TargetName" = "8:zh-CN.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\nb.pak"
+            "TargetName" = "8:nb.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59B0384682A84A369F08C63CA5AF95A8"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\tr.pak"
-            "TargetName" = "8:tr.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6171,26 +6813,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5CC0B699D6994054812C3E711FED0740"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\id.pak"
-            "TargetName" = "8:id.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5F33826C53794B7B54CD91CBD209D962"
@@ -6284,26 +6906,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5FF002F59DCC470A899512C10C58EF59"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\sr.pak"
-            "TargetName" = "8:sr.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_610F5DD3D63438D56B6B070EC7F0B31F"
@@ -6430,6 +7032,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_62F7AB1F516A446C8C494C694070FCDC"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pl.pak.info"
+            "TargetName" = "8:pl.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_640E010415F67315CDF839DC76A0A3C1"
             {
             "AssemblyRegister" = "3:1"
@@ -6492,6 +7114,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6504924ED1084601B99D2C37F48CD684"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ta.pak.info"
+            "TargetName" = "8:ta.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_655F19FD5650419B9300249161CCAC06"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pt-PT.pak.info"
+            "TargetName" = "8:pt-PT.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_65A374D8A4E415C7866F99B00A0288B8"
             {
             "AssemblyRegister" = "3:1"
@@ -6529,6 +7191,26 @@
             "TargetName" = "8:libssp-0.dll"
             "Tag" = "8:"
             "Folder" = "8:_BE4F2B1E4933456195E5CF78F0F13254"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66099239186A4C91B5424F2EE4AAFC05"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\th.pak.info"
+            "TargetName" = "8:th.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6665,6 +7347,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6A19B2F86FC24871B9B28A24A293242D"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\tr.pak.info"
+            "TargetName" = "8:tr.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6B5B189624244833A30B1F851622C9E7"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sr.pak.info"
+            "TargetName" = "8:sr.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6BE7819D1D98ACDA1B521928A5ABD5F9"
@@ -6853,12 +7575,72 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6E998CFA1F1D427981DA184EC6C9F197"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\cef_200_percent.pak"
+            "TargetName" = "8:cef_200_percent.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F1DD9020ACC4F84804170F885055369"
             {
             "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\debug.log"
             "TargetName" = "8:debug.log"
             "Tag" = "8:"
             "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6F4DF77E6BBF47BEA2C2E11E24B16FAB"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\th.pak"
+            "TargetName" = "8:th.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6FB4AA462EAF451182612187EA7074D6"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\vi.pak"
+            "TargetName" = "8:vi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6904,12 +7686,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71A0CF6C09D04D50A932D6DB9C5ABAA6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71B6B900B313458791DADBD64846402A"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\sw.pak"
-            "TargetName" = "8:sw.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\he.pak"
+            "TargetName" = "8:he.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6924,12 +7706,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_740237C3AD4542BCB80C69916E9C1B3F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7203C455EA2C4906ABB0683AFDAF6487"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ta.pak"
-            "TargetName" = "8:ta.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\libcef.dll"
+            "TargetName" = "8:libcef.dll"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7364E97F41674BC89A0F498BA8C7EE15"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ru.pak.info"
+            "TargetName" = "8:ru.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_73B6430355CF40BD837813C2CF1CE249"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\nb.pak.info"
+            "TargetName" = "8:nb.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_73DC7F01835B40A98A90AC05199762B8"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\kn.pak"
+            "TargetName" = "8:kn.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -6995,12 +7837,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_750C18DCD8264620B84B788037484C42"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7519E158465F4128B7AF88277D04E2C9"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ru.pak"
-            "TargetName" = "8:ru.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ja.pak.info"
+            "TargetName" = "8:ja.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7050,26 +7892,6 @@
             {
             "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\cef_extensions.pak"
             "TargetName" = "8:cef_extensions.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_75AD73A639CD44A681B1E0A32D704431"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\cef.pak"
-            "TargetName" = "8:cef.pak"
             "Tag" = "8:"
             "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
@@ -7148,12 +7970,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AB3FF3BA84A4EB6B14F5FC9EC9B6C7A"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_77374BA8FCB5486AA09748E88732876A"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\pt-BR.pak"
-            "TargetName" = "8:pt-BR.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\lv.pak.info"
+            "TargetName" = "8:lv.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7168,12 +7990,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AE534F34A9844559318BC9DA4A0CB23"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B1F3251DF3643D88C196D4B379E0122"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\hr.pak"
-            "TargetName" = "8:hr.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\cs.pak"
+            "TargetName" = "8:cs.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7188,12 +8010,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7B25B1F9AC424493A61AB64F7E8A25F6"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7BFAE5E6AAD041C2A6692D3D938C4DDE"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\vi.pak"
-            "TargetName" = "8:vi.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\mr.pak"
+            "TargetName" = "8:mr.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C2F30CEAAAA426E9F4CA3011F960CC1"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\bg.pak.info"
+            "TargetName" = "8:bg.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7C520189F59C4F408EADB4CCFC5EAA63"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\chrome_elf.dll"
+            "TargetName" = "8:chrome_elf.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7321,12 +8183,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F7A3C78FBD6430DA1E9B4ED7CA0030C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7DFE8CB7D6A6470583209F794CF7DCF0"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\bg.pak"
-            "TargetName" = "8:bg.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ar.pak.info"
+            "TargetName" = "8:ar.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7496,6 +8358,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8382ACAA807B453F9C91FDC54D9B5AA8"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\nl.pak.info"
+            "TargetName" = "8:nl.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_844B097737484FD1BB508FA190A0562F"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\gu.pak.info"
+            "TargetName" = "8:gu.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_84F0FCF1261B1A4F9D99BF3AB5C45E26"
             {
             "AssemblyRegister" = "3:1"
@@ -7589,6 +8491,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_87C77A6D18CD4D76978314BE1BC42E1D"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\el.pak"
+            "TargetName" = "8:el.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_87D95937EF6DB3FEE5A11D312FCC2317"
             {
             "AssemblyRegister" = "3:1"
@@ -7671,12 +8593,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_89EE6C09987E4626B07818626D6170B3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8AAAD872BDE64D128D7C3FB76CF9D580"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\te.pak"
-            "TargetName" = "8:te.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sr.pak"
+            "TargetName" = "8:sr.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7691,72 +8613,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A46CB91114F43A988B647E425A16FB9"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B959E58E288499B8FD187A84875AD69"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\en-US.pak"
-            "TargetName" = "8:en-US.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ml.pak"
+            "TargetName" = "8:ml.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A8AE407468D4B5EA46DF1142AC2FC68"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\icudtl.dat"
-            "TargetName" = "8:icudtl.dat"
-            "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8ABB2A3E4CBA45DCA2A1D831D4473655"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\lt.pak"
-            "TargetName" = "8:lt.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B70794D8CC34D588C197A52BB4704CB"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\en-GB.pak"
-            "TargetName" = "8:en-GB.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -7822,6 +8684,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8D09A5E1B5804FADA83A9CE718AEBF54"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\es-419.pak"
+            "TargetName" = "8:es-419.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8D3C90F4D0E8E3384EAE9BB6469F78C3"
             {
             "AssemblyRegister" = "3:1"
@@ -7851,6 +8733,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8E6BB99501F34CF68D33265472CF27D5"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\libGLESv2.dll"
+            "TargetName" = "8:libGLESv2.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8E8D436B1EB0F13C5F540E147EE5AF89"
@@ -7977,12 +8879,72 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_91F81F0ADE934CC1A845AD838495CFF8"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9098B735BB124580B57365CF94E9C190"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ar.pak"
-            "TargetName" = "8:ar.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ru.pak"
+            "TargetName" = "8:ru.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_90B55A1E655C48D4B4A67CE3CC7B2315"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fr.pak"
+            "TargetName" = "8:fr.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_927739B9722B4C4A860D7D47AA224347"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\bn.pak"
+            "TargetName" = "8:bn.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92C1DFDA26894DA19AF5DBF4020A6F54"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hu.pak.info"
+            "TargetName" = "8:hu.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8026,6 +8988,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_92DC2EDC32B0458689ECE7347A2AAFC3"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ca.pak"
+            "TargetName" = "8:ca.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9307C5F84C1BF6218125415344D30DCC"
@@ -8121,6 +9103,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95EC5C68D86647E389999D80E0E46C45"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\snapshot_blob.bin"
+            "TargetName" = "8:snapshot_blob.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_963F7300571B4B4B8A98772B46DF971B"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\he.pak.info"
+            "TargetName" = "8:he.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_975771357D5E3E844BF93550B595C859"
             {
             "AssemblyRegister" = "3:1"
@@ -8183,6 +9205,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_985D777F7F2F4F40A4D0BAA412C6D6B2"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\de.pak"
+            "TargetName" = "8:de.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9910EDA3CA1042667393119B9E7B5314"
             {
             "AssemblyRegister" = "3:1"
@@ -8212,6 +9254,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9C0E5D0ABC0D4EF7983411AB301A5C56"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pt-BR.pak"
+            "TargetName" = "8:pt-BR.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9D3324E97CEF30CF5994D1532122E37F"
@@ -8276,6 +9338,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E301CE6EE5940E6A9E6D5FE037E3EA9"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\bn.pak.info"
+            "TargetName" = "8:bn.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9EE2C9A7C210AA62E5CBCB2B03997379"
             {
             "AssemblyRegister" = "3:1"
@@ -8307,6 +9389,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A097663E26C842F3938AD0F6276D0353"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\da.pak"
+            "TargetName" = "8:da.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A0B24AD1410216939A128CD8673A5D5A"
             {
             "AssemblyRegister" = "3:1"
@@ -8336,6 +9438,86 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A11DAA97CF344ED28A836A6DD80AADA5"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ro.pak"
+            "TargetName" = "8:ro.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A16069B74D264B438EDE0235995732BC"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\en-US.pak.info"
+            "TargetName" = "8:en-US.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A1B33932D0694A61B36933E883C3C65E"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fa.pak"
+            "TargetName" = "8:fa.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A319F447E36E477983CF1C730F5ED00E"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ko.pak.info"
+            "TargetName" = "8:ko.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A339120D06683F296F1AF385A03DD43C"
@@ -8400,6 +9582,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A423E4A7B5AB4EE5BB4DFD325395914E"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\fa.pak.info"
+            "TargetName" = "8:fa.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A56B3EB51E8D6B1A882A1DF3F6EDB442"
             {
             "AssemblyRegister" = "3:1"
@@ -8460,6 +9662,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6B0F4B3C2DB4F4B8088AE52CF724BE4"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sv.pak.info"
+            "TargetName" = "8:sv.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A6F8D16BD3A546D4BD213E91CDB3C594"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ko.pak"
+            "TargetName" = "8:ko.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A7634C6B0D8A1A83CAF86D0653A2ED47"
@@ -8542,6 +9784,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A8F2191F6AF44E15B6428A2E69BB0499"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\mr.pak.info"
+            "TargetName" = "8:mr.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A9D85FAAB5DC69E743BAC1696C7A0CA1"
@@ -8668,26 +9930,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_ABC23E9E72E544C0BCAEA2D94FA19F7B"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\et.pak"
-            "TargetName" = "8:et.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AC07A080B107CDB154B5347D2F8E4871"
             {
             "AssemblyRegister" = "3:1"
@@ -8719,32 +9961,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD59480AE9ED48AEB197F2331F133608"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AC7127306C3C41469BFB2CA570AA6FC3"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\d3dcompiler_47.dll"
-            "TargetName" = "8:d3dcompiler_47.dll"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\id.pak.info"
+            "TargetName" = "8:id.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AD942DD67B004066A594181C395BE1E8"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\fil.pak"
-            "TargetName" = "8:fil.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -8790,26 +10012,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AE623C9E78684ECD8C9A927719E98632"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\fr.pak"
-            "TargetName" = "8:fr.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AE96FA4BB8E383FE7292069724D4CE2A"
             {
             "AssemblyRegister" = "3:1"
@@ -8839,26 +10041,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AEDA74CD8F7B4BF3B78D616494637C99"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\lv.pak"
-            "TargetName" = "8:lv.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AEDDBE038CCD07AAA6AD2699AC38571B"
@@ -8954,6 +10136,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B0B214568E5C4B6EBBD190DD50E925BE"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\natives_blob.bin"
+            "TargetName" = "8:natives_blob.bin"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B0DB32892EA340B32D9E80F97DDEFD47"
             {
             "AssemblyRegister" = "3:1"
@@ -8985,12 +10187,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B1EE08BDFE1D4527B0F92BBDFF8084E0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B102065F8F174E9DBED15FD903C8AB97"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\am.pak"
-            "TargetName" = "8:am.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\d3dcompiler_47.dll"
+            "TargetName" = "8:d3dcompiler_47.dll"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9036,26 +10238,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B28FECAC1CF347B3A00328648228BB8F"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\he.pak"
-            "TargetName" = "8:he.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B30E49C12F7746BD93FDB74D72F79D20"
             {
             "AssemblyRegister" = "3:1"
@@ -9087,12 +10269,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B478D68EAEE448DBBCC063E3ABDA6E4F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3ED6DC667EE4B02A82E872AA7F957F3"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\el.pak"
-            "TargetName" = "8:el.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\et.pak"
+            "TargetName" = "8:et.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9107,12 +10289,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B52D5555F0A3416288A4F6E3BF2C23FE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B3EDAB5B47ED4380A07BD4E9B0734E71"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\natives_blob.bin"
-            "TargetName" = "8:natives_blob.bin"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sk.pak.info"
+            "TargetName" = "8:sk.pak.info"
             "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9158,32 +10340,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B5E68644CABA4A9DA500D110053506A3"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B5931797FB144D3F931A198B5E74ACC7"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ja.pak"
-            "TargetName" = "8:ja.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sw.pak"
+            "TargetName" = "8:sw.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B6E600FBDFB3424784742E777113C945"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\ml.pak"
-            "TargetName" = "8:ml.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9229,12 +10391,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B78C47378E8D4B2D89EDE6262E7A0B1C"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B7D2DFACADFF4CC1B1BD179F7F846B1B"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\cef_200_percent.pak"
-            "TargetName" = "8:cef_200_percent.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hr.pak"
+            "TargetName" = "8:hr.pak"
             "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9342,6 +10504,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B90DFD2B8BF84352A849FCC6C216AFFE"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pt-PT.pak"
+            "TargetName" = "8:pt-PT.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BA491063C6404543A5068AA8948DFF0B"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ms.pak"
+            "TargetName" = "8:ms.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BB29F10EA211AFE9F815CCB1A4C33996"
             {
             "AssemblyRegister" = "3:1"
@@ -9371,6 +10573,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC4FED2B50F5442281318A712EBA8E88"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ca.pak.info"
+            "TargetName" = "8:ca.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC77DB0F1DE742FDAC63DEE8D1CE78BC"
@@ -9466,12 +10688,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BF48441CDD4A4519933B0AD5D3D981BE"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C03C9ADC50A0403BA1C2CB8E6388C777"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\pt-PT.pak"
-            "TargetName" = "8:pt-PT.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\lt.pak"
+            "TargetName" = "8:lt.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -9548,6 +10770,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C1BEB5456C0F42059BC5BB2A77D482A2"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\de.pak.info"
+            "TargetName" = "8:de.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1CAC963519718345ED944D5ED915DDB"
             {
             "AssemblyRegister" = "3:1"
@@ -9610,6 +10852,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C2843D570F214547B079FC1EDB5B09B5"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\es-419.pak.info"
+            "TargetName" = "8:es-419.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C32BAD8FB6B213D26B62AE238A13A809"
             {
             "AssemblyRegister" = "3:1"
@@ -9641,26 +10903,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C336F52B01B74205ACCE263CA91DDD5D"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\sk.pak"
-            "TargetName" = "8:sk.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C3717FF143B3ED0F6AB35A9F3777053A"
             {
             "AssemblyRegister" = "3:1"
@@ -9690,6 +10932,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C45E18522705440CB465903FF89C5B37"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\devtools_resources.pak"
+            "TargetName" = "8:devtools_resources.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C4B9496115C52CE681AB671E6A2B2E59"
@@ -9752,6 +11014,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C710935AA1264F8D9F7DC2CF967C346B"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\zh-CN.pak"
+            "TargetName" = "8:zh-CN.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C805AC156BA7972EB29C52E2AB8AD7B6"
@@ -10042,6 +11324,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D028CB03F0054FFFB3797A53B4B91F53"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\it.pak"
+            "TargetName" = "8:it.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D0994115BB6DA5587117D147B3803A25"
             {
             "AssemblyRegister" = "3:1"
@@ -10104,32 +11406,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D23677EC2A0646B7A43D69F701E46661"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D3B3EE87E5F84CE98B599C5D342386E7"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\nb.pak"
-            "TargetName" = "8:nb.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\chrome_elf.dll"
+            "TargetName" = "8:chrome_elf.dll"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D29A12D9A15D4DFFAA119F3992F87CB7"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\fi.pak"
-            "TargetName" = "8:fi.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -10173,6 +11455,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D58A26D5D6A3454FBD93731F15FE5BB6"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\es.pak.info"
+            "TargetName" = "8:es.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D61387B5F929CF1D50634E2787157737"
@@ -10237,6 +11539,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6CD16BCE3C2493CA3352002C3CF4DB0"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\te.pak.info"
+            "TargetName" = "8:te.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D6DB600971E6A296C37CC2A5A9B210A9"
             {
             "AssemblyRegister" = "3:1"
@@ -10266,6 +11588,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D7832F6CE36F47CA91D8932E91BFD6E5"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sl.pak"
+            "TargetName" = "8:sl.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D8B57B7578664C3DB9619B34F2195A83"
@@ -10567,6 +11909,46 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD2F4D7A460942158F5C5D6D2A0FC6E2"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\sk.pak"
+            "TargetName" = "8:sk.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DD670EB3420E40C7B8F5DC7FFF008E9F"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\vi.pak.info"
+            "TargetName" = "8:vi.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DDEF9EEB2B08216D23ACD0B31CA9E9F2"
             {
             "AssemblyRegister" = "3:1"
@@ -10596,6 +11978,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DE4572C5DC914E57ACF20909FA468169"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ml.pak.info"
+            "TargetName" = "8:ml.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DE66BFB602C85544C83D70C2EBA5DFD9"
@@ -10658,6 +12060,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DFC90EDF816644EBAED4C7D8635E43B2"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ro.pak.info"
+            "TargetName" = "8:ro.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E09569FD294B4AA8BAEDD4E6B36F0750"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hu.pak"
+            "TargetName" = "8:hu.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E0EC15563D3B7D591023973552887DEF"
@@ -10751,6 +12193,46 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E2C82ADC65AA4F05B4CCCDC4774B5E97"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\zh-CN.pak.info"
+            "TargetName" = "8:zh-CN.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E2C9969295CA4019827A086D0EB6D7D3"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\uk.pak"
+            "TargetName" = "8:uk.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E3265E149D358635D7F075E1A156BEFF"
@@ -10939,26 +12421,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E715A0BC1D4B4D72961E87834875229C"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\libGLESv2.dll"
-            "TargetName" = "8:libGLESv2.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E7C4D38463B0E30F05363547F86A991A"
             {
             "AssemblyRegister" = "3:1"
@@ -11052,66 +12514,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EB3ADCA0D35D4C5E847A22866D99221B"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\cs.pak"
-            "TargetName" = "8:cs.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EBF0CCC919B04D0AB6BA3F6D507C905D"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\de.pak"
-            "TargetName" = "8:de.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EC96405B9313421F8E7ABF6BB4EC56FA"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\hu.pak"
-            "TargetName" = "8:hu.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EEAAB77440CEDEC3AF10C58FAE7847CF"
             {
             "AssemblyRegister" = "3:1"
@@ -11194,6 +12596,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F067AE392546446EBF6EFCA471A79E27"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\bg.pak"
+            "TargetName" = "8:bg.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F228CA20A516869778A930532E40417C"
             {
             "AssemblyRegister" = "3:1"
@@ -11256,6 +12678,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F313256AA5AE41F890C53BFE965D410D"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\icudtl.dat"
+            "TargetName" = "8:icudtl.dat"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F37BFEDBDE463DB9135874B97B94E268"
             {
             "AssemblyRegister" = "3:1"
@@ -11285,26 +12727,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F5488E6C014B42C48FB5A48A12A40D93"
-            {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\es-419.pak"
-            "TargetName" = "8:es-419.pak"
-            "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F779BA072F39AEFEEF3C6F04A047569A"
@@ -11389,6 +12811,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F8C65B7E37F84995A105166EA23570F9"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hi.pak"
+            "TargetName" = "8:hi.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F8CAF9ED14CD5976947DBCC4FC06C03E"
             {
             "AssemblyRegister" = "3:1"
@@ -11451,6 +12893,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F948662B018C4045B43475E67D610E18"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\cef.pak"
+            "TargetName" = "8:cef.pak"
+            "Tag" = "8:"
+            "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_F98A82A4B5EBD7C8E0D1371191500BCD"
             {
             "AssemblyRegister" = "3:1"
@@ -11482,12 +12944,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC2E6DF64AEE4AA68B49CFC557A2861F"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB589CCBD44A4FA69F535DF266ADC25A"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\gu.pak"
-            "TargetName" = "8:gu.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\pl.pak"
+            "TargetName" = "8:pl.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11502,12 +12964,32 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC48223743774527983197AD9DDC09D0"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FBE095E889CC40CAB22F57E640D9A875"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\d3dcompiler_43.dll"
-            "TargetName" = "8:d3dcompiler_43.dll"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\cef_100_percent.pak"
+            "TargetName" = "8:cef_100_percent.pak"
             "Tag" = "8:"
             "Folder" = "8:_7FD06AB3841E44ADBDEE1C6A960B1D6F"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FC5C55228F89406CB71D68FCE1401601"
+            {
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\hr.pak.info"
+            "TargetName" = "8:hr.pak.info"
+            "Tag" = "8:"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11635,12 +13117,12 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FF145B38E6DD4D43BF0B63CE18DA4833"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FEC5E0F6D3244B19B524313384066D75"
             {
-            "SourcePath" = "8:..\\OSIRT\\bin\\x86\\Release\\locales\\th.pak"
-            "TargetName" = "8:th.pak"
+            "SourcePath" = "8:..\\..\\cefsharp-overlay\\locales\\ta.pak"
+            "TargetName" = "8:ta.pak"
             "Tag" = "8:"
-            "Folder" = "8:_AAF39B068BE84A1EBC410A116FE3F4D7"
+            "Folder" = "8:_31D74D61BB7642C5A5CCEDC185464C94"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11746,13 +13228,13 @@
                         {
                         }
                     }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_AAF39B068BE84A1EBC410A116FE3F4D7"
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_31D74D61BB7642C5A5CCEDC185464C94"
                     {
                     "Name" = "8:locales"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
-                    "Property" = "8:_0E9EA447B11247BC9B43012340993E56"
+                    "Property" = "8:_CD3EC71671124510AA6B4448DA9F1514"
                         "Folders"
                         {
                         }
@@ -11820,7 +13302,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:OSIRT"
         "ProductCode" = "8:{C3173AC2-8320-4A19-84E9-4EBC4B49A352}"
-        "PackageCode" = "8:{6FDEBD07-D8DF-4CC8-84EC-ECD4F92D2820}"
+        "PackageCode" = "8:{F4C445C7-9AF3-4FD2-B2F1-C7BC08653B29}"
         "UpgradeCode" = "8:{7C597F6A-E0B3-4BEE-8306-084648E52FF4}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
