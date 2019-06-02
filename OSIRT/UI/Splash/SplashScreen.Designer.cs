@@ -31,7 +31,7 @@
             this.uiSplashLoadingProgressBar = new System.Windows.Forms.ProgressBar();
             this.label1 = new System.Windows.Forms.Label();
             this.uiProgressLabel = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.uiVersionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // uiSplashLoadingProgressBar
@@ -48,11 +48,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(641, 17);
+            this.label1.Location = new System.Drawing.Point(641, 19);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(168, 25);
+            this.label1.Size = new System.Drawing.Size(146, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Joseph Williams";
             // 
@@ -67,16 +67,16 @@
             this.uiProgressLabel.TabIndex = 2;
             this.uiProgressLabel.Text = "Checking previous case closed successfully...";
             // 
-            // label2
+            // uiVersionLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
-            this.label2.Location = new System.Drawing.Point(1, 3);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(126, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "v 3.3.933 (Cef55) - BETA";
+            this.uiVersionLabel.AutoSize = true;
+            this.uiVersionLabel.BackColor = System.Drawing.Color.Transparent;
+            this.uiVersionLabel.ForeColor = System.Drawing.SystemColors.Control;
+            this.uiVersionLabel.Location = new System.Drawing.Point(1, 3);
+            this.uiVersionLabel.Name = "uiVersionLabel";
+            this.uiVersionLabel.Size = new System.Drawing.Size(126, 13);
+            this.uiVersionLabel.TabIndex = 3;
+            this.uiVersionLabel.Text = "v 3.3.933 (Cef55) - BETA";
             // 
             // SplashScreen
             // 
@@ -85,7 +85,7 @@
             this.BackgroundImage = global::OSIRT.Properties.Resources.splash_screen_small;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(803, 261);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.uiVersionLabel);
             this.Controls.Add(this.uiProgressLabel);
             this.Controls.Add(this.uiSplashLoadingProgressBar);
             this.Controls.Add(this.label1);
@@ -107,6 +107,6 @@
         private System.Windows.Forms.ProgressBar uiSplashLoadingProgressBar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label uiProgressLabel;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label uiVersionLabel;
     }
 }

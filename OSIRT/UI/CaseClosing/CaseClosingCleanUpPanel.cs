@@ -13,8 +13,6 @@ namespace OSIRT.UI.CaseClosing
     public partial class CaseClosingCleanUpPanel : UserControl
     {
 
-
-
         public CaseClosingCleanUpPanel(string password, bool isInAuditViewMode) 
         {
             InitializeComponent();
@@ -24,6 +22,7 @@ namespace OSIRT.UI.CaseClosing
             cleanUp.ReportProgress += CleanUp_ReportProgress;
             cleanUp.Start();
         }
+
 
         private void CleanUp_CaseArchived(object sender, EventArgs e)
         {

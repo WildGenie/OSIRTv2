@@ -25,13 +25,13 @@ namespace OSIRT.Browser.SearchFinder
         private void uiNextButton_Click(object sender, EventArgs e)
         {
             string search = uiFindTextTextBox.Text;
-            FindNext?.Invoke(this, new ExifViewerEventArgs(search));
+            FindNext?.Invoke(this, new TextEventArgs(search));
         }
 
         private void uiFindPreviousButton_Click(object sender, EventArgs e)
         {
             string search = uiFindTextTextBox.Text;
-            FindPrevious?.Invoke(this, new ExifViewerEventArgs(search));
+            FindPrevious?.Invoke(this, new TextEventArgs(search));
         }
 
         protected override void OnClosing(CancelEventArgs e)

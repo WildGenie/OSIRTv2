@@ -57,6 +57,8 @@ namespace DotNetChromeTabs
             contextMenuStrip = new ContextMenuStrip();
             pinItem = new ToolStripMenuItem("Pin tab");
             reopenItem = new ToolStripMenuItem("Reopen last closed tab");
+
+
             contextMenuStrip.Opening += contextMenuStrip_Opening;
             pinItem.Click += pinItem_Click;
             reopenItem.Click += reopenItem_Click;
@@ -65,6 +67,7 @@ namespace DotNetChromeTabs
             contextMenuStrip.Items.Add(reopenItem);
 
         }
+
 
         #region Windows Functions
 
@@ -193,6 +196,7 @@ namespace DotNetChromeTabs
         private ContextMenuStrip contextMenuStrip;
         private ToolStripMenuItem pinItem;
         private ToolStripMenuItem reopenItem;
+        private ToolStripMenuItem displayAllUrls;
         void pinItem_Click(object sender, EventArgs e)
         {
             _tabPages[hoverAtTimeOfMenuOpening].Pinned = !_tabPages[hoverAtTimeOfMenuOpening].Pinned;

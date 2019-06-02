@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.props')" />
-  <Import Project="..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.props')" />
+  <Import Project="..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props" Condition="Exists('..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -66,6 +65,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -78,6 +78,18 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CefSharp, Version=58.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Source\Repos\CefSharp5\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.Core, Version=58.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Source\Repos\CefSharp5\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CefSharp.WinForms, Version=58.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Source\Repos\CefSharp5\CefSharp.WinForms.Example\bin\x86\Release\CefSharp.WinForms.dll</HintPath>
+    </Reference>
     <Reference Include="Cyotek.Windows.Forms.ImageBox, Version=1.1.5.1, Culture=neutral, PublicKeyToken=58daa28b0b2de221, processorArchitecture=MSIL">
       <HintPath>..\packages\CyotekImageBox.1.1.5.1\lib\net20\Cyotek.Windows.Forms.ImageBox.dll</HintPath>
       <Private>True</Private>
@@ -106,11 +118,18 @@
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="IPAddressRange, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\IPAddressRange.1.5.0.0\lib\net40\IPAddressRange.dll</HintPath>
+    </Reference>
     <Reference Include="Magick.NET-Q16-AnyCPU, Version=7.0.0.0, Culture=neutral, PublicKeyToken=2004825badfa91ec, processorArchitecture=MSIL">
       <HintPath>..\packages\Magick.NET-Q16-AnyCPU.7.0.4.400\lib\net40-client\Magick.NET-Q16-AnyCPU.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="MimeTypeMap, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MediaTypeMap.2.1.0.0\lib\net40\MimeTypeMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="NAudio, Version=1.7.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.7.3\lib\net35\NAudio.dll</HintPath>
       <Private>True</Private>
@@ -141,6 +160,7 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xaml" />
@@ -168,6 +188,9 @@
       <HintPath>..\packages\Whois.1.0.0\lib\net45\Whois.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WhoisClient, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WhoisClient.NET.2.0.1\lib\net45\WhoisClient.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
     <Reference Include="YoutubeExtractor">
@@ -189,7 +212,11 @@
     <Compile Include="BaseAuditTab.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="BookmarkJsonHelper.cs" />
+    <Compile Include="BookmarksToolbar.cs" />
+    <Compile Include="Browser\AppendResponseFilter.cs" />
     <Compile Include="Browser\ChromeWidgetMessageInterceptor.cs" />
+    <Compile Include="Browser\CookieCollector.cs" />
     <Compile Include="Browser\DownloadHandler.cs" />
     <Compile Include="Browser\DownloadImageViaContextMenuEventArgs.cs" />
     <Compile Include="Browser\DownloadManager\BrowserDownloadManager.cs" />
@@ -198,10 +225,12 @@
     <Compile Include="Browser\ExifViewerEventArgs.cs" />
     <Compile Include="Browser\KeyboardHandler.cs" />
     <Compile Include="Browser\LifespanHandler.cs" />
+    <Compile Include="Browser\MemoryStreamResponseFilter.cs" />
     <Compile Include="Browser\MenuHandler.cs" />
     <Compile Include="Browser\NavigationEventArgs.cs" />
     <Compile Include="Browser\NewTabEventArgs.cs" />
     <Compile Include="Browser\OnPopUpEventArgs.cs" />
+    <Compile Include="Browser\PassThruResponseFilter.cs" />
     <Compile Include="Browser\RequestHandler.cs" />
     <Compile Include="Browser\SearchFinder\Find.cs">
       <SubType>Form</SubType>
@@ -223,11 +252,17 @@
     <Compile Include="CaseSettings.cs" />
     <Compile Include="DownloadEventArgs.cs" />
     <Compile Include="ExtendedRowEnterEventArgs.cs" />
+    <Compile Include="FacebookIdFinder.cs" />
     <Compile Include="FatalExceptionHandler.cs" />
+    <Compile Include="GlobalSettings.cs" />
+    <Compile Include="GSettings.cs" />
+    <Compile Include="HeaderWrapper.cs" />
     <Compile Include="Helpers\HtmlHelper.cs" />
     <Compile Include="Helpers\HTMLtoPDF.cs" />
     <Compile Include="Helpers\OsirtLogWriter.cs" />
+    <Compile Include="Helpers\RuntimeSettings.cs" />
     <Compile Include="Helpers\SecurePasswordHasher.cs" />
+    <Compile Include="History.cs" />
     <Compile Include="IconManager.cs" />
     <Compile Include="Enums\Actions.cs" />
     <Compile Include="Database\DatabaseHandler.cs" />
@@ -236,7 +271,9 @@
     <Compile Include="Helpers\HashServiceFactory.cs" />
     <Compile Include="Helpers\ImageDiskCache.cs" />
     <Compile Include="Helpers\ScreenCapturedEvent.cs" />
+    <Compile Include="IIdFinder.cs" />
     <Compile Include="ImageSaveOptions.cs" />
+    <Compile Include="InstagramIdFinder.cs" />
     <Compile Include="IPageable.cs" />
     <Compile Include="Loggers\AttachmentsLog.cs" />
     <Compile Include="Loggers\BaseLog.cs" />
@@ -261,11 +298,13 @@
     <Compile Include="Loggers\OsirtActionsLog.cs" />
     <Compile Include="Loggers\VideoLog.cs" />
     <Compile Include="Loggers\WebpageActionsLog.cs" />
+    <Compile Include="PageDownloader.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="RequestWrapper.cs" />
     <Compile Include="Resources\strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -274,7 +313,9 @@
     <Compile Include="Database\SQLiteConnectionFactory.cs" />
     <Compile Include="Enums\SaveableFileTypes.cs" />
     <Compile Include="Enums\ScreenshotDetails.cs" />
+    <Compile Include="RichTextSpellBox.cs" />
     <Compile Include="RowDetails.cs" />
+    <Compile Include="TwitterIdFinder.cs" />
     <Compile Include="UI\AboutOSIRT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -337,6 +378,12 @@
     <Compile Include="UI\AuthenticationForm.Designer.cs">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\BookmarkManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BookmarkManager.Designer.cs">
+      <DependentUpon>BookmarkManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\BrowserOptions\BrowserOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,11 +444,23 @@
     <Compile Include="UI\ExifViewerForm.Designer.cs">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UI\FacebookDetailsForm.cs">
+    <Compile Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\FacebookDetailsForm.Designer.cs">
-      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
+    <Compile Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.Designer.cs">
+      <DependentUpon>ExtendedCaseNotes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HistoryViewer\HistoryViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\HistoryViewer\HistoryViewForm.Designer.cs">
+      <DependentUpon>HistoryViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\IdDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\IdDetailsForm.Designer.cs">
+      <DependentUpon>IdDetailsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\FirstLoadPanel.cs">
       <SubType>UserControl</SubType>
@@ -494,6 +553,12 @@
     <Compile Include="UI\RestoreCaseForm.Designer.cs">
       <DependentUpon>RestoreCaseForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\Search.Designer.cs">
+      <DependentUpon>Search.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\SelectTimeForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -526,11 +591,23 @@
     <Compile Include="UI\UnhandledExceptionForm.Designer.cs">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\UrlLister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\UrlLister.Designer.cs">
+      <DependentUpon>UrlLister.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\UserAgentSettings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="UI\UserAgentSettings.Designer.cs">
       <DependentUpon>UserAgentSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\VideoParser\VideoParseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\VideoParser\VideoParseForm.Designer.cs">
+      <DependentUpon>VideoParseForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ViewSource\SaveSourceEventArgs.cs" />
     <Compile Include="UI\ViewSource\ViewPageSource.cs">
@@ -548,6 +625,7 @@
       <DependentUpon>VideoPreviewer.cs</DependentUpon>
     </Compile>
     <Compile Include="WebImageDownloader.cs" />
+    <Compile Include="YoutubeIdFinder.cs" />
     <EmbeddedResource Include="Browser\BrowserTab.resx">
       <DependentUpon>BrowserTab.cs</DependentUpon>
     </EmbeddedResource>
@@ -585,8 +663,12 @@
     <EmbeddedResource Include="UI\AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\BookmarkManager.resx">
+      <DependentUpon>BookmarkManager.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserOptions\BrowserOptionsForm.resx">
       <DependentUpon>BrowserOptionsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\BrowserPanel.resx">
       <DependentUpon>BrowserPanel.cs</DependentUpon>
@@ -612,8 +694,14 @@
     <EmbeddedResource Include="UI\ExifViewerForm.resx">
       <DependentUpon>ExifViewerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UI\FacebookDetailsForm.resx">
-      <DependentUpon>FacebookDetailsForm.cs</DependentUpon>
+    <EmbeddedResource Include="UI\ExtendedCaseNotes\ExtendedCaseNotes.resx">
+      <DependentUpon>ExtendedCaseNotes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\HistoryViewer\HistoryViewForm.resx">
+      <DependentUpon>HistoryViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\IdDetailsForm.resx">
+      <DependentUpon>IdDetailsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\FirstLoadPanel.resx">
       <DependentUpon>FirstLoadPanel.cs</DependentUpon>
@@ -662,6 +750,9 @@
     <EmbeddedResource Include="UI\RestoreCaseForm.resx">
       <DependentUpon>RestoreCaseForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\Search.resx">
+      <DependentUpon>Search.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\SelectTimeForm.resx">
       <DependentUpon>SelectTimeForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -677,8 +768,14 @@
     <EmbeddedResource Include="UI\UnhandledExceptionForm.resx">
       <DependentUpon>UnhandledExceptionForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\UrlLister.resx">
+      <DependentUpon>UrlLister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\UserAgentSettings.resx">
       <DependentUpon>UserAgentSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\VideoParser\VideoParseForm.resx">
+      <DependentUpon>VideoParseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ViewSource\ViewPageSource.resx">
       <DependentUpon>ViewPageSource.cs</DependentUpon>
@@ -817,6 +914,26 @@
     <None Include="Resources\door.png" />
     <EmbeddedResource Include="Resources\TextSaveableTypes.txt" />
     <None Include="Resources\star.png" />
+    <None Include="Resources\scroll_bar.png" />
+    <None Include="Resources\book_open.png" />
+    <None Include="Resources\book_picture.png" />
+    <None Include="Resources\man-icon.png" />
+    <None Include="Resources\man-icon2.png" />
+    <None Include="Resources\magnifier.png" />
+    <None Include="Resources\network_tools1.png" />
+    <None Include="Resources\user_go.png" />
+    <None Include="Resources\network_firewall.png" />
+    <None Include="Resources\star1.png" />
+    <None Include="Resources\information.png" />
+    <None Include="Resources\web_layout.png" />
+    <EmbeddedResource Include="Resources\ua.txt" />
+    <None Include="Resources\download_cloud1.png" />
+    <None Include="Resources\google_webmaster_tools.png" />
+    <None Include="Resources\cookies.png" />
+    <None Include="Resources\cookies1.png" />
+    <None Include="Resources\arrow_rotate_clockwise1.png" />
+    <None Include="Resources\text_large_cap.png" />
+    <None Include="Resources\cancel.png" />
     <Content Include="ssleay32.dll" />
     <Content Include="VideoCapture.dll" />
     <Content Include="wkhtmltox.dll" />
@@ -849,17 +966,12 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Fody.1.29.4\build\dotnet\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.1.29.4\build\dotnet\Fody.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets'))" />
-    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2883.1552\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2883.1552\build\cef.redist.x86.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.targets'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.props'))" />
-    <Error Condition="!Exists('..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.sdk.3.3112.1656\build\cef.sdk.props'))" />
   </Target>
-  <Import Project="..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2883.1552\build\cef.redist.x64.targets')" />
-  <Import Project="..\packages\cef.redist.x86.3.2883.1552\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2883.1552\build\cef.redist.x86.targets')" />
-  <Import Project="..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.55.0.0\build\CefSharp.Common.targets')" />
-  <Import Project="..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.55.0.0\build\CefSharp.WinForms.targets')" />
+  <Import Project="..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2987.1601\build\cef.redist.x64.targets')" />
+  <Import Project="..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.3112.1656\build\cef.redist.x86.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 using CefSharp;
 using System.Threading;
 using System.Net;
+using OSIRT.UI;
+using OSIRT.Helpers;
 
 namespace OSIRT.Browser
 {
@@ -41,9 +43,13 @@ namespace OSIRT.Browser
             Browser.MouseMove += Browser_MouseMove;
             Browser.OnLoadingStateChanged += Browser_OnLoadingStateChanged;
 
+            BrowserSettings bs = new BrowserSettings();
+            bs.Javascript = RuntimeSettings.JsDisabled ? CefState.Disabled : CefState.Default;
+            bs.ImageLoading = RuntimeSettings.ImagesDisabled ? CefState.Disabled : CefState.Default;
+            bs.Plugins = RuntimeSettings.PluginsDisabled ? CefState.Disabled : CefState.Default;
+            Browser.BrowserSettings = bs;
 
             Controls.Add(Browser);
-
             Browser.Load(url);
         }
 
@@ -72,10 +78,12 @@ namespace OSIRT.Browser
 
         private void Browser_AddressChanged(object sender, AddressChangedEventArgs e)
         {
-            Console.WriteLine(e.Address);
-
-            Logger.Log(new WebsiteLog(e.Address));
+            var log = new WebsiteLog(e.Address);
+            Logger.Log(log);
             this.InvokeIfRequired(() => addressBar.Text = e.Address);
+
+            OsirtHelper.history.Add(new History(log.Url, log.Date, log.Time));
+
         }
 
         private void Browser_TitleChanged(object sender, TitleChangedEventArgs e)

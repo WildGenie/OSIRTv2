@@ -49,9 +49,10 @@ namespace OSIRT.UI
                 DataGridViewCheckBoxCell column = (DataGridViewCheckBoxCell)Rows[e.RowIndex].Cells[e.ColumnIndex];
                 if (column.Value != null)
                 {
-                    bool isChecked = (bool)column.Value;
+                    bool isChecked = column.Value != null && (bool)column.Value;
                     string id = Rows[e.RowIndex].Cells["id"].Value.ToString();
-                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'";
+                    Rows[e.RowIndex].Cells["print"].Value = !isChecked;
+                    string query = $"UPDATE {TableName} SET print = '{(!isChecked)}' WHERE id='{id}'".ToLower();
                     DatabaseHandler db = new DatabaseHandler();
                     db.ExecuteNonQuery(query); //TODO: Place an Update method in the db handler   
                 }

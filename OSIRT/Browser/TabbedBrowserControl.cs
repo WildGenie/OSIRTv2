@@ -23,8 +23,14 @@ namespace OSIRT.Browser
         private ToolStripComboBox addressBar;
         private ToolStripMenuItem menuItem;
         private ExtendedBrowser CurrentBrowser => CurrentTab?.Browser;
+        private bool firstLoad = true;
         public event EventHandler ScreenshotComplete;
         public event EventHandler UpdateNavigation;
+        public event EventHandler BookmarkAdded;
+        public event EventHandler LoadingStateCompleted;
+
+        public DotNetChromeTabs.ChromeTabControl.TabPage.TabPageCollection TabPages { get { return uiBrowserTabControl?.TabPages;  }  }
+
 
         public BrowserTab CurrentTab
         {
@@ -106,10 +112,22 @@ namespace OSIRT.Browser
 
         public void CreateTab(string url)
         {
-            BrowserTab tab = new BrowserTab(url, addressBar);
-            uiBrowserTabControl.TabPages.Add(tab);
-            AddBrowserEvents();
-            tab.OpenInNewtab += Tab_OpenInNewtab;
+
+            //if ((RuntimeSettings.EnableWebDownloadMode && firstLoad) || !RuntimeSettings.EnableWebDownloadMode)
+            //{
+                BrowserTab tab = new BrowserTab(url, addressBar);
+                uiBrowserTabControl.TabPages.Add(tab);
+                AddBrowserEvents();
+                tab.OpenInNewtab += Tab_OpenInNewtab;
+                firstLoad = false;
+            //}
+            //else
+            //{
+            //    CurrentTab.Browser.Load(url);
+            //}
+            
+
+
         }
 
         private void Tab_OpenInNewtab(object sender, EventArgs e)
@@ -119,7 +137,10 @@ namespace OSIRT.Browser
 
         private void CreateTab()
         {
-            CreateTab(UserSettings.Load().Homepage);
+            string url = "";
+                                            //duckduckgo
+            url = RuntimeSettings.IsUsingTor ? "http://3g2upl4pq6kufc4m.onion" : UserSettings.Load().Homepage;
+            CreateTab(url);
         }
 
         private void AddBrowserEvents()
@@ -135,6 +156,22 @@ namespace OSIRT.Browser
             CurrentBrowser.OpenTinEye += CurrentBrowser_OpenTinEye;
             CurrentBrowser.DownloadStatusChanged += CurrentBrowser_DownloadStatusChanged;
             CurrentBrowser.DownloadCompleted += CurrentBrowser_DownloadCompleted;
+            CurrentBrowser.SearchText += CurrentBrowser_SearchText;
+            CurrentBrowser.AddBookmark += CurrentBrowser_AddBookmark;
+        }
+
+
+        private void CurrentBrowser_AddBookmark(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() => OsirtHelper.Favourites[CurrentTab.Browser.Title] = CurrentTab.Browser.URL);
+            OsirtHelper.WriteFavourites();
+            BookmarkAdded?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void CurrentBrowser_SearchText(object sender, EventArgs e)
+        {
+            string text = ((TextEventArgs)e).Result;
+            this.InvokeIfRequired(() => CreateTab("https://www.google.co.uk/search?q=" + text));
         }
 
         private void CurrentBrowser_DownloadCompleted(object sender, EventArgs e)
@@ -145,6 +182,7 @@ namespace OSIRT.Browser
             {
                 uiActionLoggedToolStripStatusLabel.Visible = false;
                 uiDownloadProgressBar.Visible = false;
+                //TODO: Open file?
                 MessageBox.Show("Download Completed", "Download Complete", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             });
 
@@ -157,8 +195,6 @@ namespace OSIRT.Browser
                 string name = Path.GetFileNameWithoutExtension(savePath) + "_" + (DateTime.Now.ToString("yyyy-MM-dd_hh_mm_ss") + extension);
                 savePath = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(Actions.Download), name);
             }
-
-        
              File.Copy(dlPath, savePath);
              Logger.Log(new WebpageActionsLog(dl.DownloadItems.Url, Actions.Download, OsirtHelper.GetFileHash(dlPath), Path.GetFileName(savePath), ""));
        
@@ -178,15 +214,18 @@ namespace OSIRT.Browser
                 }
 
                 int progress = dl.DownloadItems.PercentComplete;
-                uiDownloadProgressBar.Value = progress;
-                uiActionLoggedToolStripStatusLabel.Text = $"Speed (KB/s): {dl.DownloadItems.CurrentSpeed / 1024} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
+                if (progress > -1)
+                {
+                    uiDownloadProgressBar.Value = progress;
+                    uiActionLoggedToolStripStatusLabel.Text = $"Speed (KB/s): {dl.DownloadItems.CurrentSpeed / 1024} :  Percentage complete: {dl.DownloadItems.PercentComplete}%";
+                }
             });
         }
 
         private void CurrentBrowser_OpenTinEye(object sender, EventArgs e)
         {
-            string url = ((ExifViewerEventArgs)e).ImageUrl;
-            this.InvokeIfRequired(() => CreateTab("http://www.tineye.com/search/?url=" + url));
+            string url = ((TextEventArgs)e).Result;
+            this.InvokeIfRequired(() => CreateTab(url));
         }
 
         private void CurrentBrowser_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
@@ -201,6 +240,7 @@ namespace OSIRT.Browser
 
         private void CurrentBrowser_OpenNewTabContextMenu(object sender, EventArgs e)
         {
+
             this.InvokeIfRequired(() => CreateTab(((NewTabEventArgs)e).Url));
         }
 
@@ -225,25 +265,14 @@ namespace OSIRT.Browser
 
         }
 
-        private void CurrentBrowser_Navigated(object sender, WebBrowserNavigatedEventArgs e)
-        {
-            //CurrentTab.CurrentUrl = CurrentBrowser.Url.AbsoluteUri;
-            addressBar.Text = CurrentTab.CurrentUrl;
-
-            if (e.Url.Equals(((WebBrowser)sender).Url))
-            {
-                Logger.Log(new WebsiteLog(CurrentTab.CurrentUrl));
-            }
-        }
-
         private void Screenshot_Completed(object sender, EventArgs e)
         {
             bool showPreviewer = ((ScreenshotCompletedEventArgs)e).Successful;
-            ScreenshotComplete?.Invoke(this, new EventArgs());
-            if (showPreviewer)
+            if ( (showPreviewer && !BrowserPanel.isDownloadingPage   ))
             {
                 ShowImagePreviewer(Actions.Screenshot, Constants.TempImgFile);
             }
+            ScreenshotComplete?.Invoke(this, new EventArgs());
         }
 
         private void ShowImagePreviewer(Actions action, string imagePath)
@@ -357,22 +386,20 @@ namespace OSIRT.Browser
 
         private void TabbedBrowserControl_Load(object sender, EventArgs e)
         {
+
             if (DesignMode)
             {
                 uiBrowserTabControl.NewTabButton = false;
             }
             else
             {
-                uiBrowserTabControl.NewTabButton = UserSettings.Load().AllowMultipleTabs;
+                //uiBrowserTabControl.NewTabButton = !RuntimeSettings.EnableWebDownloadMode; //UserSettings.Load().AllowMultipleTabs;
                 //
                 CreateTab();
                 CurrentBrowser.StatusMessage += CurrentBrowser_StatusMessage;
-
             }
         }
 
-
-
-
+   
     }
 }

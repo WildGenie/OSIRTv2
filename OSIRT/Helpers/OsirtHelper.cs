@@ -14,13 +14,31 @@ using System.Security.Cryptography;
 using ImageMagick;
 using OSIRT.Extensions;
 using System.Collections.Generic;
+using System.Net;
+using CefSharp;
 
 namespace OSIRT.Helpers
 {
     public class OsirtHelper
     {
 
+        public static bool DisableWebRtc = false;
         public static Dictionary<string, string> Favourites = new Dictionary<string, string>();
+        public static List<History> history = new List<History>();
+
+
+        public static string GetIpFromUrl(string url)
+        {
+            Uri uri = new Uri(url);
+            IPAddress[] addresses = Dns.GetHostAddresses(uri.Host);
+
+            string message = "";
+            foreach (var address in addresses)
+            {
+                message += address.ToString() + "\r\n";
+            }
+            return message;
+        }
 
         //http://stackoverflow.com/questions/12899876/checking-strings-for-a-strong-enough-password
         public enum PasswordScore
@@ -58,6 +76,54 @@ namespace OSIRT.Helpers
             return (PasswordScore)score;
         }
 
+        public static string GetSafeFilename(string filename, string mimeType)
+        {
+            try
+            {
+                //filename = Path.GetFileName(filename);
+                filename = StripQueryFromFile(filename);
+                filename = Path.GetFileName(filename);
+                filename = string.Join("_", filename.Split(Path.GetInvalidFileNameChars()));
+
+                if (filename.Length > 150)
+                {
+                    filename = filename.Substring(0, 150);
+                }
+
+                if (filename == "") filename = "blank_file_" + DateTime.Now.ToString("ddMMyyyyHHmmss");// + "." + MimeTypeMap.GetExtension(MimeType);
+
+                
+                if (string.IsNullOrEmpty(Path.GetExtension(filename))) 
+                {
+                    Console.WriteLine("MIME: " + mimeType);
+                    try
+                    {
+                        filename += MimeTypes.MimeTypeMap.GetExtension(mimeType);
+                    }
+                    catch
+                    {
+                        if (mimeType == "text/javascript")
+                        {
+                            filename += ".js";
+                        }
+                        else
+                        {
+                            filename += ".unknown";
+                        }
+                    }
+                }
+
+            }
+            catch
+            {
+                filename = "error_file_" + DateTime.Now.ToString("ddMMyyyyHHmmss");// + "." + MimeTypeMap.GetExtension(MimeType);
+            }
+            return filename;
+        }
+
+
+
+
         public static void CheckCacheDirectoriesExist()
         {
            Directory.CreateDirectory(Constants.CacheLocation);
@@ -65,9 +131,18 @@ namespace OSIRT.Helpers
            Directory.CreateDirectory(Constants.TextCacheLocation);
             if (!File.Exists(Constants.ApplicationLog)) File.Create(Constants.ApplicationLog);
             if (!File.Exists(Constants.Favourites)) File.Create(Constants.Favourites);
+            if (!File.Exists(Constants.UserAgentsFile) || new FileInfo(Constants.UserAgentsFile).Length == 0)
+            {
+                string res = GetResource("ua.txt");
+                File.WriteAllText(Constants.UserAgentsFile, res);
+            }
         }
 
-
+        public static void WriteFavourites()
+        {
+            string[] lines = Favourites.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
+            File.WriteAllLines(Constants.Favourites, lines);
+        }
 
 
         public static bool IsOnFacebook(string url)
@@ -158,6 +233,16 @@ namespace OSIRT.Helpers
                     || Path.GetExtension(path).Equals(".jpeg", StringComparison.InvariantCultureIgnoreCase);
         }
 
+        public static string StripQueryFromFile(string file)
+        {
+            Uri uri = new Uri(file);
+            if (uri.Query != string.Empty)
+            {
+                file = uri.OriginalString.Replace(uri.Query, "");
+            } 
+            return file;
+        }
+
         public static string StripQueryFromPath(string path)
         {
             Uri uri = new Uri(path);
@@ -208,12 +293,16 @@ namespace OSIRT.Helpers
             }
 
             return result;
+        }
 
+        public static bool IsOnTwitter(string url)
+        {
+            string pattern = @"http(?:s)?:\/\/(?:www.)?twitter\.com\/([a-zA-Z0-9_]+)";
+            return Regex.Match(url, pattern).Success;
         }
 
         public static bool IsOnGoogle(string url)
         {
-
             return url.StartsWith("http://www.google") || url.StartsWith("https://www.google") || url.StartsWith("http://google") || url.StartsWith("https://google");
         }
 
@@ -231,6 +320,7 @@ namespace OSIRT.Helpers
         public static void DeleteDirectory(string path)
         {
             //Thread.Sleep(1); <--- Bad
+            //TODO: Throwing a directory not found sometimes
             foreach (string directory in Directory.GetDirectories(path))
             {
                 DeleteDirectory(directory);
@@ -326,6 +416,12 @@ namespace OSIRT.Helpers
         public static string GetFileHash(string path)
         {
             return GetFileHash(path, UserSettings.Load().Hash);
+        }
+
+        public static string GetFileHash(byte[] bytes)
+        {
+            HashService hashService = HashServiceFactory.Create(UserSettings.Load().Hash);
+            return hashService.ToHex(hashService.ComputeHash(bytes));
         }
 
 

@@ -19,7 +19,6 @@ namespace OSIRT.UI.AuditLog
         private string filePath = "";
         private ToolTip tooltip = new ToolTip();
 
-
         public RowDetailsPanel()
         {
             InitializeComponent();
@@ -131,9 +130,17 @@ namespace OSIRT.UI.AuditLog
 
         private void DisplayFileIconWithFileSize(string file, Actions caseDirectory)
         {
-            BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
-            FilePreviewImage.Image = OsirtHelper.GetBitmap(icon);
-            DisplayFileDetailsLabel(file, caseDirectory);
+            try
+            {
+                BitmapSource icon = IconManager.GetLargeIcon(file, true, false);
+                FilePreviewImage.Image = OsirtHelper.GetBitmap(icon);
+                DisplayFileDetailsLabel(file, caseDirectory);
+            }
+            catch
+            {
+                FilePreviewImage.Image = null;
+                SetFileLabelText("Unable to read file");
+            }
         }
 
         private void DisplayFileDetailsLabel(string file, Actions caseDirectory)

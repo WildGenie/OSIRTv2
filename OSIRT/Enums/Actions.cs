@@ -16,6 +16,7 @@
         Whois,
         Ipaddress,
         Links,
+        Text,
         Report,
         Loaded,
         CaseLoaded,

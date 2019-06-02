@@ -16,6 +16,14 @@ namespace OSIRT
         public bool ExportHashOnClose = true;
         public bool EnterInCaseNotesNewLine = false;
         public bool AllowMultipleTabs = true;
+        public bool CopyImage = false;
+        public string CopyImageLocation = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+        public int ScrollTimer = 850;
+
+        //browser
+        public bool AllowImages = true;
+        public bool AllowJavaScript = true;
+        public bool AllowPlugins = true;
 
         //reporting
         public bool PrintImagesInReport = true;
@@ -29,5 +37,9 @@ namespace OSIRT
         public int FramesPerSecond = 30;
         public bool UseStereoMix = true;
         public bool UseMicrophone = false;
+
+
+
+
     }
 }

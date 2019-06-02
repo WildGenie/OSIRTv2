@@ -26,6 +26,8 @@ using ZXing;
 using ZXing.Common;
 using ZXing.QrCode;
 using HtmlAgilityPack;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace OSIRT.Browser
 {
@@ -45,9 +47,11 @@ namespace OSIRT.Browser
         public event EventHandler DownloadStatusChanged = delegate { };
         public event EventHandler DownloadCompleted = delegate { };
         public event EventHandler AddBookmark = delegate { };
+        public event EventHandler SearchText = delegate { };
 
         private int MaxScrollHeight => 15000;
         private readonly int MaxWait = 600;
+        private RequestHandler requestHandler;
 
         public string Title { get; private set; }
 
@@ -57,7 +61,6 @@ namespace OSIRT.Browser
         public ExtendedBrowser() : base(UserSettings.Load().Homepage)
         {
 
-            
             //InitialiseMouseTrail();
             var handler = new MenuHandler();
             handler.DownloadImage += Handler_DownloadImage;
@@ -65,14 +68,16 @@ namespace OSIRT.Browser
             handler.DownloadYouTubeVideo += Handler_DownloadYouTubeVideo;
             handler.ViewImageExif += Handler_ViewImageExif;
             handler.ViewFacebookIdNum += Handler_ViewFacebookIdNum;
+            handler.ViewTwitterIdNum += Handler_ViewTwitterIdNum;
             handler.CopyImageLocation += Handler_CopyImageLocation; ;
             handler.OpenInNewTabContextMenu += Handler_OpenInNewTabContextMenu;
             handler.ReverseImgSearch += Handler_ReverseImgSearch;
             handler.ExtractLinks += Handler_ExtractLinks;
             handler.AddPageToBookmarks += Handler_AddPageToBookmarks;
+            handler.SearchText += Handler_SearchText;
+            handler.SaveSelectedText += Handler_SaveSelectedText;
            
             MenuHandler = handler;
-            //MouseMove += ExtendedBrowser_MouseMove;
             LoadingStateChanged += ExtendedBrowser_LoadingStateChanged;
 
             var downloadHandler = new DownloadHandler();
@@ -81,16 +86,67 @@ namespace OSIRT.Browser
             downloadHandler.DownloadUpdated += DownloadHandler_DownloadUpdated;
             downloadHandler.DownloadCompleted += DownloadHandler_DownloadCompleted;
 
-            RequestHandler = new RequestHandler();
+            requestHandler = new RequestHandler();
+            RequestHandler = requestHandler;
             KeyboardHandler = new KeyboardHandler();
             TitleChanged += ExtendedBrowser_TitleChanged;
-            IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
+            if (OsirtHelper.DisableWebRtc)
+            {
+                IsBrowserInitializedChanged += ExtendedBrowser_IsBrowserInitializedChanged;
+            }
             
+        }
+
+        public HashSet<RequestWrapper> ResourcesSet()
+        {
+            return requestHandler.Resources;
+        }
+
+        public List<HeaderWrapper> ResponseHeaders()
+        {
+            return requestHandler.ResponseHeaders;
+        }
+
+        public List<HeaderWrapper> RequestHeaders()
+        {
+            return requestHandler.RequestHeaders;
+        }
+
+
+        private void Handler_SaveSelectedText(object sender, EventArgs e)
+        {
+            try
+            {
+                File.WriteAllText(Constants.TempTextFile, ((TextEventArgs)e).Result);
+                this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Text, URL).Show());
+            }
+            catch { MessageBox.Show("Error saving selected text.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+        }
+
+        private void Handler_SearchText(object sender, EventArgs e)
+        {
+            SearchText?.Invoke(this, (TextEventArgs)e);
         }
 
         private void ExtendedBrowser_IsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
         {
+            var browserHost =   GetBrowser().GetHost();
+            var requestContext = browserHost.RequestContext;
+            string errorMessage = "";
+            
+            requestContext.SetPreference("enable_do_not_track", true, out errorMessage);
+            //see: http://magpcss.org/ceforum/viewtopic.php?f=14&t=15194 post by fddima for webrtc stuff
+            requestContext.SetPreference("disable-webrtc", true, out errorMessage);
+            requestContext.SetPreference("enable-webrtc", false, out errorMessage);
+            requestContext.SetPreference("webrtc.multiple_routes_enabled", false, out errorMessage);
+            requestContext.SetPreference("webrtc.nonproxied_udp_enabled", false, out errorMessage);
+            requestContext.SetPreference("webrtc.ip_handling_policy", "disable_non_proxied_udp", out errorMessage);
 
+            //other useful webrtc links
+            //http://magpcss.org/ceforum/viewtopic.php?f=14&t=13350
+            //https://github.com/cefsharp/CefSharp/issues/2059
+
+            //set prefs on init: https://github.com/cefsharp/CefSharp/blob/master/CefSharp.WinForms.Example/BrowserTabUserControl.cs
         }
 
         private void ExtendedBrowser_TitleChanged(object sender, TitleChangedEventArgs e)
@@ -129,9 +185,10 @@ namespace OSIRT.Browser
 
         private async void Handler_ExtractLinks(object sender, EventArgs e)
         {
-            string source = await GetBrowser().MainFrame.GetSourceAsync();
+            
             try
             {
+                string source = await GetBrowser().MainFrame.GetSourceAsync();
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();
                 doc.LoadHtml(source);
                 string links = "";
@@ -147,8 +204,7 @@ namespace OSIRT.Browser
             catch
             {
                 MessageBox.Show("Unable to extract any links from this page.", "No links to extract", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            //this.InvokeIfRequired(() => new ViewPageSource(links, Enums.Actions.Links, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")).Show());
+            } 
         }
 
         private void Handler_ReverseImgSearch(object sender, EventArgs e)
@@ -158,7 +214,7 @@ namespace OSIRT.Browser
 
         private void Handler_CopyImageLocation(object sender, EventArgs e)
         {
-            string link = ((ExifViewerEventArgs)e).ImageUrl;
+            string link = ((TextEventArgs)e).Result;
             Clipboard.SetText(link);
         }
 
@@ -172,15 +228,27 @@ namespace OSIRT.Browser
             OpenNewTabContextMenu?.Invoke(this, (NewTabEventArgs)e);
         }
 
-        private async void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        private  void Handler_ViewTwitterIdNum(object sender, EventArgs e)
+        {
+            GetAndDisplayId(new TwitterIdFinder(), "Twitter");
+        }
+
+        private  void Handler_ViewFacebookIdNum(object sender, EventArgs e)
+        {
+
+            GetAndDisplayId(new FacebookIdFinder(), "Facebook");
+        }
+
+        private async void GetAndDisplayId(IIdFinder finder, string title)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-            this.InvokeIfRequired(() => new FacebookDetailsForm(source).Show());
+            string id =  finder.FindId(source);
+            this.InvokeIfRequired(() => new IdDetailsForm(id, title).Show());
         }
 
         private void Handler_ViewImageExif(object sender, EventArgs e)
         {
-            string path = ((ExifViewerEventArgs)e).ImageUrl;
+            string path = ((TextEventArgs)e).Result;
             WebClient webClientexif = new WebClient();
             string file = Path.Combine(Constants.CacheLocation, Path.GetFileName(OsirtHelper.StripQueryFromPath(path)));
             webClientexif.DownloadFileAsync(new Uri(path), file, file);
@@ -200,18 +268,12 @@ namespace OSIRT.Browser
             }
         }
 
+
         private async void Handler_ViewPageSource(object sender, EventArgs e)
         {
             string source = await GetBrowser().MainFrame.GetSourceAsync();
-
-            //TODO: make sure this is overwriting text, and not appending!
-            //TODO: append website URL to default file name
             File.WriteAllText(Constants.TempTextFile, source);
             this.InvokeIfRequired(() => new TextPreviewer(Enums.Actions.Source, URL).Show());
-            //this.InvokeIfRequired(() => new ViewPageSource(source, Enums.Actions.Source, new Tuple<string, string, string>(new Uri(URL).Host.Replace(".", ""), URL, "")  ).Show());
-
-
-
         }
 
         private void Handler_DownloadImage(object sender, EventArgs e)
@@ -389,7 +451,7 @@ namespace OSIRT.Browser
 
           
 
-             Enabled = false;
+            Enabled = false;
             int viewportHeight = ClientRectangle.Size.Height; 
             int viewportWidth = ClientRectangle.Size.Width;
 

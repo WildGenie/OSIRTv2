@@ -1,10 +1,12 @@
 ﻿using CefSharp;
+using OSIRT.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using WebDownloader;
 
 namespace OSIRT.Browser
@@ -17,7 +19,13 @@ namespace OSIRT.Browser
 
         public void OnBeforeDownload(IBrowser browser, DownloadItem downloadItem, IBeforeDownloadCallback callback)
         {
-           
+            if (RuntimeSettings.EnableWebDownloadMode)
+            {
+                MessageBox.Show("Web downloads are disabled in this mode.", "Downloads Disabled", MessageBoxButton.OK, MessageBoxImage.Information);
+                callback.Dispose();
+                return;
+            }
+
             if (!callback.IsDisposed)
             {
                 using (callback)
@@ -29,13 +37,16 @@ namespace OSIRT.Browser
 
         public void OnDownloadUpdated(IBrowser browser, DownloadItem downloadItem, IDownloadItemCallback callback)
         {
-            DownloadUpdated?.Invoke(this, new DownloadEventArgs(downloadItem));
+            if (RuntimeSettings.EnableWebDownloadMode)
+            {
+                callback.Dispose();
+                return;
+            }
 
-            
+            DownloadUpdated?.Invoke(this, new DownloadEventArgs(downloadItem));
 
             if (downloadItem.IsComplete)
             {
-                //System.Windows.MessageBox.Show("Download Completed");
                 DownloadCompleted?.Invoke(this, new DownloadEventArgs(downloadItem));
             
             }

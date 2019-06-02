@@ -85,16 +85,16 @@
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox2.Controls.Add(this.uiWhySha512Label);
-            this.groupBox2.Controls.Add(this.uiHashProgressBar);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.uiFileNameTextBox);
+            this.groupBox2.Controls.Add(this.uiHashProgressBar);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.uiFileHashTextBox);
-            this.groupBox2.Controls.Add(this.uiHashLabel);
             this.groupBox2.Controls.Add(this.uiLastModifiedTextBox);
+            this.groupBox2.Controls.Add(this.uiHashLabel);
+            this.groupBox2.Controls.Add(this.uiFileHashTextBox);
             this.groupBox2.Location = new System.Drawing.Point(211, 298);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(600, 193);
+            this.groupBox2.Size = new System.Drawing.Size(600, 112);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Case Container Details";
@@ -103,21 +103,23 @@
             // 
             this.uiWhySha512Label.AutoSize = true;
             this.uiWhySha512Label.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.uiWhySha512Label.Location = new System.Drawing.Point(575, 82);
+            this.uiWhySha512Label.Location = new System.Drawing.Point(575, 110);
             this.uiWhySha512Label.Name = "uiWhySha512Label";
             this.uiWhySha512Label.Size = new System.Drawing.Size(19, 13);
             this.uiWhySha512Label.TabIndex = 13;
             this.uiWhySha512Label.Text = "[?]";
+            this.uiWhySha512Label.Visible = false;
             this.uiWhySha512Label.Click += new System.EventHandler(this.uiWhySha512Label_Click);
             // 
             // uiHashProgressBar
             // 
-            this.uiHashProgressBar.Location = new System.Drawing.Point(6, 98);
+            this.uiHashProgressBar.Location = new System.Drawing.Point(6, 126);
             this.uiHashProgressBar.MarqueeAnimationSpeed = 10;
             this.uiHashProgressBar.Name = "uiHashProgressBar";
             this.uiHashProgressBar.Size = new System.Drawing.Size(588, 19);
             this.uiHashProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.uiHashProgressBar.TabIndex = 12;
+            this.uiHashProgressBar.Visible = false;
             // 
             // label1
             // 
@@ -139,7 +141,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 135);
+            this.label4.Location = new System.Drawing.Point(6, 71);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 11;
@@ -149,26 +151,28 @@
             // 
             this.uiFileHashTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiFileHashTextBox.Location = new System.Drawing.Point(6, 98);
+            this.uiFileHashTextBox.Location = new System.Drawing.Point(6, 126);
             this.uiFileHashTextBox.Name = "uiFileHashTextBox";
             this.uiFileHashTextBox.ReadOnly = true;
             this.uiFileHashTextBox.Size = new System.Drawing.Size(588, 20);
             this.uiFileHashTextBox.TabIndex = 7;
+            this.uiFileHashTextBox.Visible = false;
             // 
             // uiHashLabel
             // 
             this.uiHashLabel.AutoSize = true;
-            this.uiHashLabel.Location = new System.Drawing.Point(6, 82);
+            this.uiHashLabel.Location = new System.Drawing.Point(6, 110);
             this.uiHashLabel.Name = "uiHashLabel";
-            this.uiHashLabel.Size = new System.Drawing.Size(81, 13);
+            this.uiHashLabel.Size = new System.Drawing.Size(32, 13);
             this.uiHashLabel.TabIndex = 10;
-            this.uiHashLabel.Text = "Hash [SHA512]";
+            this.uiHashLabel.Text = "Hash";
+            this.uiHashLabel.Visible = false;
             // 
             // uiLastModifiedTextBox
             // 
             this.uiLastModifiedTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiLastModifiedTextBox.Location = new System.Drawing.Point(6, 151);
+            this.uiLastModifiedTextBox.Location = new System.Drawing.Point(6, 87);
             this.uiLastModifiedTextBox.Name = "uiLastModifiedTextBox";
             this.uiLastModifiedTextBox.ReadOnly = true;
             this.uiLastModifiedTextBox.Size = new System.Drawing.Size(588, 20);

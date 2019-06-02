@@ -16,8 +16,9 @@ namespace OSIRT.UI.BrowserOptions
     public partial class BrowserOptionsForm : Form
     {
 
-        public bool IsUsingTor { get; private set; }
+        private GSettings settings = GSettings.Load();
         public string UserAgent{ get; private set; }
+        private string webRtc;
 
         public BrowserOptionsForm()
         {
@@ -38,10 +39,28 @@ namespace OSIRT.UI.BrowserOptions
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
-            IsUsingTor = uiConnectToTorCheckBox.Checked;
-            UserAgent = uiUserAgentTextBox.Text;
-
+            RuntimeSettings.IsUsingTor = uiConnectToTorCheckBox.Checked;
+            UserAgent =  uiUserAgentsComboBox.SelectedValue == null ?  "" : uiUserAgentsComboBox.SelectedValue.ToString();
             CheckProxySettings();
+
+            uiHashFileLocationTextBox.Text = settings.SaveDirectory;
+            uiSaveAllResponseHeadersCheckbox.Checked = settings.SaveHttpHeaders;
+            uiOpenDirectoryCheckBox.Checked = settings.OpenDirectory;
+        }
+
+        private void PopulateUserAgents()
+        {
+            if (File.Exists(Constants.UserAgentsFile))
+            {
+                string[] lines = File.ReadAllLines(Constants.UserAgentsFile);
+                var dict = lines.Select(l => l.Split('=')).ToDictionary(a => a[0], a => a[1]);
+                dict.Add("Default User Agent", "");
+
+                uiUserAgentsComboBox.DataSource = new BindingSource(dict, null);
+                uiUserAgentsComboBox.DisplayMember = "Key";
+                uiUserAgentsComboBox.ValueMember = "Value";
+            }
+            uiUserAgentsComboBox.Text = "Default User Agent";
         }
 
         private void CheckProxySettings()
@@ -54,7 +73,8 @@ namespace OSIRT.UI.BrowserOptions
             {
                 { "cefProxy", cefProxy },
                 { "torProxy", string.IsNullOrWhiteSpace(torProxy) ? "127.0.0.1:8182" : torProxy },
-                { "torPort", string.IsNullOrWhiteSpace(torPort) ? "9051" : torPort }
+                { "torPort", string.IsNullOrWhiteSpace(torPort) ? "9051" : torPort },
+                { "disablewebrtc", webRtc }
             };
 
             string[] lines = proxySettings.Select(kvp => kvp.Key + "=" + kvp.Value).ToArray();
@@ -63,6 +83,19 @@ namespace OSIRT.UI.BrowserOptions
 
         private void BrowserOptionsForm_Load(object sender, EventArgs e)
         {
+            uiHashFileLocationTextBox.Text = settings.SaveDirectory;
+            uiSaveAllResponseHeadersCheckbox.Checked = settings.SaveHttpHeaders;
+            uiOpenDirectoryCheckBox.Checked = settings.OpenDirectory;
+
+            uiWebSaveGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+            uiFolderLocationGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+
+            if (!File.Exists(@"Tor\Tor\tor.exe"))
+            {
+                uiBrowserOptionsGroupBox.Enabled = false;
+                uiConnectToTorCheckBox.Visible = false;
+                uiTorDisabledLabel.Visible = true;
+            }
 
             if (File.Exists(Constants.ProxySettingsFile))
             {
@@ -72,9 +105,60 @@ namespace OSIRT.UI.BrowserOptions
                 uiBrowserProxyTextBox.Text = dict["cefProxy"];
                 uiTorProxyTextBox.Text = dict["torProxy"];
                 uiTorControlPortTextBox.Text = dict["torPort"];
+                if(!dict.ContainsKey("disablewebrtc")) dict.Add("disablewebrtc", "false");
+                webRtc = dict["disablewebrtc"];
+            }
+            PopulateUserAgents();
+        }
+
+        private void uiDisableJSCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.JsDisabled = uiDisableJSCheckBox.Checked;
+        }
+
+        private void uiDisableImagesCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.ImagesDisabled = uiDisableImagesCheckBox.Checked;
+        }
+
+        private void uiDisablePluginsCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.PluginsDisabled = uiDisableImagesCheckBox.Checked;
+        }
+
+        private void uiDownloadModeCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            RuntimeSettings.EnableWebDownloadMode = uiWebDownloadModeCheckBox.Checked;
+
+            uiWebSaveGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+            uiFolderLocationGroupBox.Enabled = uiWebDownloadModeCheckBox.Checked;
+
+        }
+
+        private void uiSaveAllResponseHeadersCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.SaveHttpHeaders = uiSaveAllResponseHeadersCheckbox.Checked;
+            settings.Save();
+        }
+
+        private void uiBrowseLocationButton_Click(object sender, EventArgs e)
+        {
+            using (FolderBrowserDialog folderBrowser = new FolderBrowserDialog())
+            {
+                if (folderBrowser.ShowDialog() != DialogResult.OK)
+                    return;
+
+                string path = folderBrowser.SelectedPath;
+                uiHashFileLocationTextBox.Text = path;
+                settings.SaveDirectory = path;
+                settings.Save();
             }
         }
 
-    
+        private void uiOpenDirectoryCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            settings.OpenDirectory = uiSaveAllResponseHeadersCheckbox.Checked;
+            settings.Save();
+        }
     }
 }
