@@ -36,23 +36,13 @@ namespace OSIRT.UI
             fctb.Text = File.ReadAllText(Constants.TempTextFile);
             uiURLTextBox.Text = url;
             uiPreviewerSplitContainer.Panel2.Controls.Add(fctb);
-
-            uiFileExtensionComboBox.Visible = false;
-
         }
 
         private void uiOKButton_Click(object sender, EventArgs e)
         {
-            string ext = FileExtension;
-            if (string.IsNullOrWhiteSpace(ext))
-            {
-                ext = ".txt";
-            }
-            
-
             try
-            {
-                File.Copy(Constants.TempTextFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + ext));
+            {      
+                File.Copy(Constants.TempTextFile, Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName + FileExtension));
                 GC.Collect();
                 GC.WaitForPendingFinalizers();
                 File.Delete(Constants.TempTextFile);
@@ -69,9 +59,7 @@ namespace OSIRT.UI
 
             if (successful)
             {
-                
-
-                Logger.Log(new WebpageActionsLog(url, action, Hash, FileName + ext, Note));
+                Logger.Log(new WebpageActionsLog(url, action, Hash, FileName + FileExtension, Note));
                 DialogResult = DialogResult.OK;
                 Close();
             }

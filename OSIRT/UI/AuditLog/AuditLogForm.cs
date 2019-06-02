@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using OSIRT.Database;
 using OSIRT.Helpers;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
 
 namespace OSIRT.UI.AuditLog
 {
@@ -47,103 +45,14 @@ namespace OSIRT.UI.AuditLog
             AddCompleteAuditTrail();
         }
 
-        private OsirtGridView completeGridView;
-        private DataTable dt = new DataTable();
-        private DataTable temp = new DataTable();
         private void AddCompleteAuditTrail()
         {
-            //Complete tab
-            completeGridView = new OsirtGridView();
-            completeGridView.RowEntered += Grid_RowEntered;
-
-            //lazy loading commented out. Partially works, but misses last few records which is probably down to the limit variable
-            //need a closer look
-
-            //completeGridView.Scroll += CompleteGridView_Scroll;
-            //dt = new DatabaseHandler().GetAllDatabaseData();
-            //foreach(DataColumn c in dt.Columns)
-            //{ 
-            //    temp.Columns.Add(c.ColumnName, c.DataType);
-            //}
-            completeGridView.DataSource = new DatabaseHandler().GetAllDatabaseData();
-            completeGridView.Dock = DockStyle.Fill;
-            auditTabControlPanel.AddGridToTab(completeGridView, "Complete");
-            //AddRows();
+            OsirtGridView grid = new OsirtGridView();
+            grid.RowEntered += Grid_RowEntered;
+            grid.DataSource = new DatabaseHandler().GetAllDatabaseData();
+            grid.Dock = DockStyle.Fill;
+            auditTabControlPanel.AddGridToTab(grid, "Complete");
         }
-
-       
-
-        //private void CompleteGridView_Scroll(object sender, ScrollEventArgs e)
-        //{
-        //    if (e.Type == ScrollEventType.SmallIncrement || e.Type == ScrollEventType.LargeIncrement)
-        //    {
-        //        if (e.NewValue >= completeGridView.Rows.Count - GetDisplayedRowsCount())
-        //        {
-        //            TimeSpan ts = DateTime.Now - lastLoading;
-        //            if (ts.TotalMilliseconds > 100)
-        //            {
-        //                firstVisibleRow = e.NewValue;
-        //                AddRows();
-        //            }
-        //            else
-        //            {
-        //                completeGridView.FirstDisplayedScrollingRowIndex = completeGridView.RowCount - 10;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //private const int limit = 10;
-        //private int current = 0;
-        //private DateTime lastLoading;
-        //private int firstVisibleRow = 0;
-
-        //private void AddRows()
-        //{
-        //    //HideScrollBar(); //this stays commented out
-        //    lastLoading = DateTime.Now;
-        //    int total_after = limit + current;
-        //    while (current < total_after)
-        //    {
-        //        if (dt.Rows.Count >= total_after)
-        //        {
-        //            DataRow dr = dt.Rows[current++];
-        //            temp.Rows.Add(dr.ItemArray);
-        //        }
-        //        else
-        //            break;
-        //    }
-        //    if (firstVisibleRow > -1)
-        //    {
-        //        //ShowScrollBars(); //this stays commented out
-        //        try
-        //        {
-        //            completeGridView.FirstDisplayedScrollingRowIndex = completeGridView.RowCount - 10;
-        //        }
-        //        catch { }
-
-        //    }
-        //    completeGridView.DataSource = temp;
-        //}
-
-        //ScrollBars gridscrollbar;
-        //private void HideScrollBar()
-        //{
-        //    gridscrollbar = completeGridView.ScrollBars;
-        //    completeGridView.ScrollBars = ScrollBars.None;
-        //}
-        //private void ShowScrollBars()
-        //{
-        //    completeGridView.ScrollBars = gridscrollbar;
-        //}
-
-        //private int GetDisplayedRowsCount()
-        //{
-        //    int count = completeGridView.Rows[completeGridView.FirstDisplayedScrollingRowIndex].Height;
-        //    count = completeGridView.Height / count;
-        //    return count;
-        //}
-
 
         private void InitialiseSearchComboBox()
         {

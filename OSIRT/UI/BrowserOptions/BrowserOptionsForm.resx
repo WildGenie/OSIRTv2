@@ -117,16 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label9.Text" xml:space="preserve">
-    <value>Note: This isn't a "scraper" or a "crawler". This option will save everything that was requested to 
-make the webpage by the server. This includes elements not seen by the user.
-
-Files are UNSANITISED, as in, OSIRT does not parse them to remove any external hyperlinks.
-If, for example, mainframe.html has external hyperlinks, these will be requested again if opened 
-in a web browser.
-
-Memory consumption is increased in this mode, so use tabs sparingly if experiencing slow-downs.</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

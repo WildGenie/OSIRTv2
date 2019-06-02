@@ -81,7 +81,7 @@ namespace OSIRT.UI
             }
 
             e.Cancel = true;
-            DialogResult result = MessageBox.Show("Shutdown OSIRT and close the current case?", "Close Current Case?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(strings.In_order_to_safely_close_a_case__you_are_required_to_enter_the_case_password__Would_you_like_to_enter_the_case_password_now_, "Close Current Case?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
             if (result == DialogResult.Yes)
             {
@@ -93,11 +93,8 @@ namespace OSIRT.UI
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            FirstLoad();
-        }
+            
 
-        private void FirstLoad()
-        {
             FirstLoadPanel firstLoadPanel = new FirstLoadPanel();
             firstLoadPanel.NewCaseClick += firstLoadPanel_NewCase_Click;
             firstLoadPanel.LoadOldCaseClick += FirstLoadPanel_LoadOldCase_Click;
@@ -115,7 +112,7 @@ namespace OSIRT.UI
                 if (result != DialogResult.OK)
                     return;
 
-                usingTor = RuntimeSettings.IsUsingTor;
+                usingTor = browserOptions.IsUsingTor;
                 userAgent = browserOptions.UserAgent;
             }
         }
@@ -170,7 +167,7 @@ namespace OSIRT.UI
         private void ShowBrowserPanel()
         {
             Controls.Clear();
-            BrowserPanel browserPanel = new BrowserPanel(userAgent, this);
+            BrowserPanel browserPanel = new BrowserPanel(usingTor, userAgent, this);
             Controls.Add(browserPanel);
             WindowState = FormWindowState.Maximized;
             browserPanel.CaseClosing += BrowserPanel_CaseClosing;

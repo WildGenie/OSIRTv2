@@ -27,9 +27,6 @@ namespace OSIRT.UI.Splash
 
         private  void SplashScreen_Load(object sender, EventArgs e)
         {
-            uiVersionLabel.Text = $"v{Constants.OsirtVersion} {Constants.CefVersion}";
-
-
             var backgroundWorker = new BackgroundWorker();
             backgroundWorker.WorkerReportsProgress = true;
             backgroundWorker.DoWork +=  delegate

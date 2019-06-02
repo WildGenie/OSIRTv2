@@ -17,7 +17,10 @@ namespace OSIRT.UI
         {
             InitializeComponent();
             Dock = DockStyle.Fill;
+           
         }
+
+   
 
         private void uiFirstLoadPanel_Paint(object sender, PaintEventArgs e)
         {

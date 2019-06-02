@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace OSIRT.Browser
 {
-    public class TextEventArgs : EventArgs
+    public class ExifViewerEventArgs : EventArgs
     {
-        public string Result { get; set; }
+        public string ImageUrl { get; set; }
         
-        public TextEventArgs(string result)
+        public ExifViewerEventArgs(string url)
         {
-            Result = result;
+            ImageUrl = url;
         }
 
 

@@ -26,7 +26,6 @@ namespace OSIRT.UI
         private CannotOpenImagePanel cantOpenPanel;
         private string Url;
         private bool successful = false;
-        private string pathToSave;
 
         public ImagePreviewer(Actions a, string url) : this(a, url, Constants.TempImgFile) { }
 
@@ -80,9 +79,9 @@ namespace OSIRT.UI
         {
             try
             {
-                pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), name + SaveableFileTypes.Png);
                 string sourceFile = Path.Combine(Constants.CacheLocation, Constants.TempImgFile);
-                File.Copy(sourceFile, pathToSave); //use Copy for now, then delete cache later
+                File.Copy(sourceFile, destLocation); //use Copy for now, then delete cache later
                 successful = true;
             }
             catch (Exception ex) when (ex is IOException || ex is  NotSupportedException)
@@ -186,9 +185,9 @@ namespace OSIRT.UI
         {
             try
             {
-                pathToSave = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName);
+                string destLocation = Path.Combine(Constants.ContainerLocation, Constants.Directories.GetSpecifiedCaseDirectory(action), FileName);
                 string sourceFile = Path.Combine(filePath);
-                File.Copy(sourceFile, pathToSave); //Will need to delete this from the cache
+                File.Copy(sourceFile, destLocation); //Will need to delete this from the cache
                 ImageDiskCache.RemoveSpecificItemFromCache(filePath);
                 successful = true; 
             }
@@ -214,10 +213,14 @@ namespace OSIRT.UI
             string fileName = options.FileName;
             string fileType = options.FileType;
             MagickFormat format = options.ImageFormat;
-            pathToSave = "";
+
+            string pathToSave = "";
             bool thrown = false;
             try
             {
+
+             
+
                 using (MagickImage image = new MagickImage(filePath/*, settings*/))
                 {                  
                     image.Format = format;
@@ -277,37 +280,9 @@ namespace OSIRT.UI
             if (successful)
             {
                 Logger.Log(new WebpageActionsLog(Url, action, Hash, FileName + FileExtension, Note));
-
-                if (UserSettings.Load().CopyImage) CopyImage();
-
                 DialogResult = DialogResult.OK;
                 Close();
             }
-        }
-
-
-        private void CopyImage()
-        {
-            string message = "";
-            try
-            {
-                File.Copy(pathToSave, Path.Combine(UserSettings.Load().CopyImageLocation, FileName + FileExtension));
-            }
-            catch (IOException)
-            {
-                message = "Copy failed, but image placed in case container. This may be because a file with name already exists in the copy location.";
-            }
-            catch(UnauthorizedAccessException)
-            {
-                message = "Copy failed, but image placed in case container. This is due to not having permission to save to the copy location.";
-            }
-            catch
-            {
-                message = "Copy failed, but image placed in case container.";
-            }
-
-            if(message != "") MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
         }
 
         private void uiCancelButton_Click(object sender, EventArgs e)

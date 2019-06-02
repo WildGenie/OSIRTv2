@@ -41,7 +41,7 @@ namespace OSIRT.UI.CaseClosing
 
         private void uiPasswordHelpLabel_Click(object sender, EventArgs e)
         {
-            string message = "This is the password entered when the case was first created.";
+            string message = "This is password entered when the case was first created.";
             MessageBox.Show(message, strings.CloseCasePanel_uiPasswordHelpLabel_Click_Password_Help, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }

@@ -9,7 +9,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OSIRT.Extensions;
-using OSIRT.Helpers;
 
 namespace OSIRT.Browser
 {
@@ -19,11 +18,8 @@ namespace OSIRT.Browser
 
         bool ILifeSpanHandler.OnBeforePopup(IWebBrowser browserControl, IBrowser browser, IFrame frame, string targetUrl, string targetFrameName, WindowOpenDisposition targetDisposition, bool userGesture, IPopupFeatures popupFeatures, IWindowInfo windowInfo, IBrowserSettings browserSettings, ref bool noJavascriptAccess, out IWebBrowser newBrowser)
         {
-
             newBrowser = null;
-
-            //if (RuntimeSettings.EnableWebDownloadMode) return true; //this prevents all pop-ups.
-
+            //browserControl.Load(targetUrl);
             OpenInNewTab?.Invoke(this, new NewTabEventArgs(targetUrl));
             return true;
         }
@@ -35,9 +31,8 @@ namespace OSIRT.Browser
 
         bool ILifeSpanHandler.DoClose(IWebBrowser browserControl, IBrowser browser)
         {
-
             //browserControl.Dispose();
-            return true; //was true
+            return true; //was false
         }
 
         void ILifeSpanHandler.OnBeforeClose(IWebBrowser browserControl, IBrowser browser)

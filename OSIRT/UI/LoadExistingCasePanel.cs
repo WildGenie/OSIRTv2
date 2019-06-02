@@ -63,14 +63,13 @@ namespace OSIRT.UI
             string result = e.Result.ToString();
             uiFileHashTextBox.Text = result;
             uiHashProgressBar.Visible = false;
-            uiHashLabel.Text = "Hash [SHA512]";
         }
 
         private void BackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             //We haven't extracted the case container, so we don't know the user setting.
             //We'll use SHA512 as the default for hashing and verifying containers.
-            e.Result = OsirtHelper.GetFileHash(file.FullName,  /*UserSettings.Load().Hash*/ "SHA512");
+            e.Result = OsirtHelper.GetFileHash(file.FullName, "SHA512");
         }
 
 

@@ -21,43 +21,25 @@ namespace OSIRT.Browser
         private const int ViewImageExifData = 26506;
         private const int ViewFacebookId = 26507;
         private const int CopyImgLocation = 26508;
-        
+        private const int ReverseImageSearch = 26509;
         private const int ExtractAllLinks = 26510;
         private const int Bookmark = 26511;
-        private const int ViewTwitterId = 26512;
-        private const int SearchSelectedText = 26513;
-        private const int SaveText = 26517;
-
-        private const int ReverseImgSearchSubMenu = 26514;
-        private const int ReverseImageSearchTineye = 26509;
-        private const int ReverseImageSearchGoogle = 26515;
-        private const int ReverseImageSearchYandex = 26516;
 
         public event EventHandler DownloadImage = delegate { };
         public event EventHandler ViewPageSource = delegate { };
         public event EventHandler DownloadYouTubeVideo = delegate { };
         public event EventHandler ViewImageExif = delegate { };
         public event EventHandler ViewFacebookIdNum = delegate { };
-        public event EventHandler ViewTwitterIdNum = delegate { };
         public event EventHandler OpenInNewTabContextMenu = delegate { };
         public event EventHandler CopyImageLocation = delegate { };
         public event EventHandler ReverseImgSearch = delegate { };
         public event EventHandler ExtractLinks = delegate { };
         public event EventHandler AddPageToBookmarks = delegate { };
-        public event EventHandler SearchText = delegate { };
-        public event EventHandler SaveSelectedText = delegate { };
 
         void IContextMenuHandler.OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             //Removing existing menu item
-            //model.Clear();
-
-            if (parameters.TypeFlags.HasFlag(ContextMenuType.Selection))
-            {
-                model.AddItem((CefMenuCommand)SearchSelectedText, "Search selected text using Google");
-                model.AddItem((CefMenuCommand)SaveText, "Save selected text");
-                model.AddSeparator();
-            }
+            model.Clear();
 
             if (!string.IsNullOrEmpty(parameters.UnfilteredLinkUrl))
             {
@@ -66,7 +48,7 @@ namespace OSIRT.Browser
             }
             if (parameters.TypeFlags.HasFlag(ContextMenuType.Media) && parameters.HasImageContents)
             {
-                if (!RuntimeSettings.IsUsingTor)
+                if (!UI.BrowserPanel.IsUsingTor)
                 {
                     if (OsirtHelper.HasJpegExtension(parameters.SourceUrl))
                     {
@@ -75,11 +57,7 @@ namespace OSIRT.Browser
                     model.AddItem((CefMenuCommand)MenuSaveImage, "Save image");
                 }          
                 model.AddItem((CefMenuCommand)CopyImgLocation, "Copy image location to clipboard");
-
-                var sub = model.AddSubMenu((CefMenuCommand)ReverseImgSearchSubMenu, "Reverse image search tools");
-                sub.AddItem((CefMenuCommand)ReverseImageSearchTineye, "Reverse image search using TinEye");
-                //sub.AddItem((CefMenuCommand)ReverseImageSearchYandex, "Reverse image search using Yandex");
-                sub.AddItem((CefMenuCommand)ReverseImageSearchGoogle, "Reverse image search using Google");
+                model.AddItem((CefMenuCommand)ReverseImageSearch, "Reverse image search using TinEye");
                 model.AddSeparator();
                 //
             }
@@ -91,23 +69,10 @@ namespace OSIRT.Browser
             {
                 model.AddItem((CefMenuCommand)ViewFacebookId, "Show Facebook profile ID");
             }
-            if (OsirtHelper.IsOnTwitter(browserControl.Address))
-            {
-                model.AddItem((CefMenuCommand)ViewTwitterId, "Show Twitter profile ID");
-            }
-
+           
             model.AddItem((CefMenuCommand)ViewSource, "View page source");
             model.AddItem((CefMenuCommand)ExtractAllLinks, "Extract all links on page");
             model.AddItem((CefMenuCommand)Bookmark, "Add page to bookmarks");
-
-
-            model.Remove(CefMenuCommand.ViewSource);
-            model.Remove(CefMenuCommand.Print);
-            model.Remove(CefMenuCommand.Undo);
-            model.Remove(CefMenuCommand.Redo);
-            model.Remove(CefMenuCommand.Forward);
-            model.Remove(CefMenuCommand.Back);
-
         }
 
          bool  IContextMenuHandler.OnContextMenuCommand(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, CefMenuCommand commandId, CefEventFlags eventFlags)
@@ -135,34 +100,20 @@ namespace OSIRT.Browser
             }
             if ((int)commandId == ViewImageExifData)
             {
-                ViewImageExif?.Invoke(this, new TextEventArgs(parameters.SourceUrl)); 
+                ViewImageExif?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl)); 
             }
             if ((int)commandId == ViewFacebookId)
             {
                 ViewFacebookIdNum?.Invoke(this, EventArgs.Empty);
             }
-            if ((int)commandId == ViewTwitterId)
-            {
-                ViewTwitterIdNum?.Invoke(this, EventArgs.Empty);
-            }
             if ((int)commandId == CopyImgLocation)
             {
-                CopyImageLocation?.Invoke(this, new TextEventArgs(parameters.SourceUrl));
+                CopyImageLocation?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
             }
-
-            if ((int)commandId == ReverseImageSearchTineye)
+            if ((int)commandId == ReverseImageSearch)
             {
-                ReverseImgSearch?.Invoke(this, new TextEventArgs("http://www.tineye.com/search/?url=" + parameters.SourceUrl));
+                ReverseImgSearch?.Invoke(this, new ExifViewerEventArgs(parameters.SourceUrl));
             }
-            if ((int)commandId == ReverseImageSearchGoogle)
-            {
-                ReverseImgSearch?.Invoke(this, new TextEventArgs("https://www.google.com/searchbyimage?&image_url=" + Uri.EscapeUriString(parameters.SourceUrl)));
-            }
-            if ((int)commandId == ReverseImageSearchYandex)
-            {
-                ReverseImgSearch?.Invoke(this, new TextEventArgs("https://yandex.com/images/search?url=" + Uri.EscapeUriString(parameters.SourceUrl) + "&rpt=imageview"));
-            }
-
             if ((int)commandId == ExtractAllLinks)
             {
                 ExtractLinks?.Invoke(this, EventArgs.Empty);
@@ -171,15 +122,6 @@ namespace OSIRT.Browser
             {
                 AddPageToBookmarks?.Invoke(this, EventArgs.Empty);
             }
-            if ((int)commandId == SearchSelectedText)
-            {
-                SearchText?.Invoke(this, new TextEventArgs(parameters.SelectionText));
-            }
-            if ((int)commandId == SaveText)
-            {
-                SaveSelectedText?.Invoke(this, new TextEventArgs(parameters.SelectionText));
-            }
-
 
             return false;
         }

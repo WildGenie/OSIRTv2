@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TextPreviewer));
-            this.hostedComponent10 = new System.Windows.Controls.TextBox();
+            this.hostedComponent5 = new System.Windows.Controls.TextBox();
             this.uiURLTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.uiPreviewerSplitContainer)).BeginInit();
@@ -52,7 +52,7 @@
             // uiNotePictureBox
             // 
             this.uiNotePictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiNotePictureBox.Image")));
-            this.uiNotePictureBox.Location = new System.Drawing.Point(321, 408);
+            this.uiNotePictureBox.Location = new System.Drawing.Point(344, 408);
             // 
             // uiFileExtensionComboBox
             // 
@@ -61,42 +61,31 @@
             "",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
             ""});
-            this.uiFileExtensionComboBox.Size = new System.Drawing.Size(25, 21);
-            this.uiFileExtensionComboBox.Visible = false;
             // 
             // uiDoesFileExistPictureBox
             // 
             this.uiDoesFileExistPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("uiDoesFileExistPictureBox.Image")));
-            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(321, 30);
-            // 
-            // uiHashCalcProgressBar
-            // 
-            this.uiHashCalcProgressBar.Size = new System.Drawing.Size(300, 20);
+            this.uiDoesFileExistPictureBox.Location = new System.Drawing.Point(344, 30);
             // 
             // uiHashTextBox
             // 
-            this.uiHashTextBox.Size = new System.Drawing.Size(300, 20);
+            this.uiHashTextBox.Size = new System.Drawing.Size(323, 20);
             // 
             // uiCancelButton
             // 
-            this.uiCancelButton.Location = new System.Drawing.Point(151, 430);
+            this.uiCancelButton.Location = new System.Drawing.Point(174, 430);
             this.uiCancelButton.Click += new System.EventHandler(this.uiCancelButton_Click);
             // 
             // uiOKButton
             // 
-            this.uiOKButton.Location = new System.Drawing.Point(236, 430);
+            this.uiOKButton.Location = new System.Drawing.Point(259, 430);
             this.uiOKButton.Click += new System.EventHandler(this.uiOKButton_Click);
             // 
             // uiNoteSpellBox
             // 
             this.uiNoteSpellBox.Location = new System.Drawing.Point(13, 237);
-            this.uiNoteSpellBox.Size = new System.Drawing.Size(302, 187);
+            this.uiNoteSpellBox.Size = new System.Drawing.Size(325, 187);
             // 
             // label5
             // 
@@ -104,11 +93,7 @@
             // 
             // uiDateAndTimeTextBox
             // 
-            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(300, 20);
-            // 
-            // uiFileNameComboBox
-            // 
-            this.uiFileNameComboBox.Size = new System.Drawing.Size(300, 21);
+            this.uiDateAndTimeTextBox.Size = new System.Drawing.Size(323, 20);
             // 
             // uiURLTextBox
             // 
@@ -117,7 +102,7 @@
             this.uiURLTextBox.Location = new System.Drawing.Point(15, 180);
             this.uiURLTextBox.Name = "uiURLTextBox";
             this.uiURLTextBox.ReadOnly = true;
-            this.uiURLTextBox.Size = new System.Drawing.Size(300, 20);
+            this.uiURLTextBox.Size = new System.Drawing.Size(323, 20);
             this.uiURLTextBox.TabIndex = 39;
             // 
             // label3
@@ -158,10 +143,5 @@
         protected System.Windows.Controls.TextBox hostedComponent3;
         protected System.Windows.Controls.TextBox hostedComponent4;
         protected System.Windows.Controls.TextBox hostedComponent5;
-        protected System.Windows.Controls.TextBox hostedComponent6;
-        protected System.Windows.Controls.TextBox hostedComponent7;
-        protected System.Windows.Controls.TextBox hostedComponent8;
-        protected System.Windows.Controls.TextBox hostedComponent9;
-        protected System.Windows.Controls.TextBox hostedComponent10;
     }
 }

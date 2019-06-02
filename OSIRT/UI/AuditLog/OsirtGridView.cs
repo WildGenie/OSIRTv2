@@ -1,8 +1,6 @@
-﻿using Jacksonsoft;
-using OSIRT.Database;
+﻿using OSIRT.Database;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,52 +38,19 @@ namespace OSIRT.UI.AuditLog
             RowEnter += AuditGridView_RowEnter;
             CellClick += OsirtGridView_CellClick;
 
-            DataBindingComplete += OsirtGridView_DataBindingComplete;
-            ColumnHeaderMouseClick += OsirtGridView_ColumnHeaderMouseClick;
-        }
 
-
-
-        private void OsirtGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            DataGridViewColumn newColumn = Columns[e.ColumnIndex];
-
-            if (newColumn.HeaderText != "print") return;
-
-            WaitWindow.Show(UncheckAll, "Working... Please Wait");
-        }
-
-        private void UncheckAll(object sender, WaitWindowEventArgs e)
-        {
-            foreach (DataGridViewRow row in Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    if (cell is DataGridViewCheckBoxCell)
-                    {
-
-                        var checkbox = cell as DataGridViewCheckBoxCell;
-                        string id = row.Cells["id"].Value.ToString();
-                        bool isChecked = checkbox.Value != null && (bool)checkbox.Value;
-                        row.Cells["print"].Value = !isChecked;
-                        string tableName = ((System.Data.DataTable)DataSource).TableName;
-                        //the value being returned is True or False (note uppercase) but we're getting it from the db using "where = 'true'"
-                        //note lower case. hence toLower.
-                        string query = $"UPDATE {tableName} SET print = '{(!isChecked)}' WHERE id='{id}'".ToLower();
-
-                        DatabaseHandler db = new DatabaseHandler();
-                        db.ExecuteNonQuery(query); //TODO: Place an Update method in the db handler  
-                    }
-                }
-            }
-       
+            //DataBindingComplete += OsirtGridView_DataBindingComplete;
+           
         }
 
         private void OsirtGridView_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            for (int i = 0; i < 5; i++)
+            var dataGridView = sender as DataGridView;
+            if (dataGridView != null)
             {
-                Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                dataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dataGridView.Columns[dataGridView.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
             }
         }
 
@@ -103,6 +68,7 @@ namespace OSIRT.UI.AuditLog
                     bool isChecked = (bool)column.Value;
                     string id = Rows[e.RowIndex].Cells["id"].Value.ToString();
                     string query = $"UPDATE {table} SET print = '{(!isChecked)}' WHERE id='{id}'";
+                    System.Diagnostics.Debug.WriteLine("QUERY: " + query);
                     DatabaseHandler db = new DatabaseHandler();
                     db.ExecuteNonQuery(query); //TODO: Place an Update method in the db handler   
                 }

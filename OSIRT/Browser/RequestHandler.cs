@@ -6,18 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography.X509Certificates;
 using OSIRT.UI;
-using System.Windows.Forms;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using OSIRT.Helpers;
-using System.Security.Cryptography;
 
 namespace OSIRT.Browser
 {
     public class RequestHandler : IRequestHandler
     {
-
+        
         public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
         {
 
@@ -27,8 +21,8 @@ namespace OSIRT.Browser
 
                 //use attempts counter to stop basic auth dialog popping up in continually incorrect un and pass entered.
                 //test here: https://www.httpwatch.com/httpgallery/authentication/
-                DialogResult dr = auth.ShowDialog();
-                if (dr == DialogResult.OK)
+                System.Windows.Forms.DialogResult dr = auth.ShowDialog();
+                if (dr == System.Windows.Forms.DialogResult.OK)
                 {
                     callback.Continue(auth.UserName, auth.Password);
                     return true;
@@ -43,18 +37,9 @@ namespace OSIRT.Browser
             //return false;
         }
 
-        private Dictionary<ulong, MemoryStreamResponseFilter> responseDictionary = new Dictionary<ulong, MemoryStreamResponseFilter>();
         public IResponseFilter GetResourceResponseFilter(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
-            //if (!RuntimeSettings.EnableWebDownloadMode) return null;
-
-
-            var dataFilter = new MemoryStreamResponseFilter();
-            responseDictionary.Add(request.Identifier, dataFilter);
-            return dataFilter;
-
-           
-            //return null;
+            return null;
         }
 
         public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
@@ -62,10 +47,8 @@ namespace OSIRT.Browser
             return false;
         }
 
-
         public CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
-
             //List<string> ua = new List<string>()
             //{
             //    "Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0; Acoo Browser 1.98.744; .NET CLR 3.5.30729)",
@@ -81,6 +64,7 @@ namespace OSIRT.Browser
             //request.Headers = headers;
 
             callback.Dispose();
+            //this is the one for setting user agent at run time
             return CefReturnValue.Continue;
         }
 
@@ -121,40 +105,10 @@ namespace OSIRT.Browser
            
         }
 
-
-        private string oldAddress = "";
-        public HashSet<RequestWrapper> Resources { get; private set; } = new HashSet<RequestWrapper>();
-        public List<HeaderWrapper> ResponseHeaders { get; private set; } = new List<HeaderWrapper>();
-        public List<HeaderWrapper> RequestHeaders { get; private set; } = new List<HeaderWrapper>();
-
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
-            if (!RuntimeSettings.EnableWebDownloadMode) return;
-
-            
-            if (oldAddress != browserControl.Address || oldAddress == "")
-            {
-                oldAddress = browserControl.Address;
-                Resources.Clear();
-                ResponseHeaders.Clear();
-                RequestHeaders.Clear();
-            }
-
-            var dict = response.ResponseHeaders.AllKeys.ToDictionary(x => x, x => response.ResponseHeaders[x]);
-            ResponseHeaders.Add(new HeaderWrapper(request.Identifier, dict));
-
-            var reqDict = request.Headers.AllKeys.ToDictionary(x => x, x => request.Headers[x]);
-            RequestHeaders.Add(new HeaderWrapper(request.Identifier, reqDict));
-
-            MemoryStreamResponseFilter filter;
-            if (responseDictionary.TryGetValue(request.Identifier, out filter))
-            {
-                var data = filter.Data;
-                Resources.Add(new RequestWrapper(request.Url, request.ResourceType, response.MimeType, data, request.Identifier));
-            }
-
+           
         }
-
 
         public void OnResourceRedirect(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, ref string newUrl)
         {
@@ -163,9 +117,6 @@ namespace OSIRT.Browser
 
         public bool OnResourceResponse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response)
         {
-
-            
-
             return false;
         }
 
